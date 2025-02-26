@@ -1,0 +1,44 @@
+extends Node
+
+#Width and Height of the grid to be generated
+@export var grid_width : int = 1
+@export var grid_height : int = 1
+
+#Tile that is placed at each grid position
+var tile : PackedScene = preload("res://Prefabs/World/tile.tscn")
+
+#Array of the generated grid, stored as [[0,0],[0,1]] etc.
+var grid : Array = []
+
+func _ready() -> void:
+	#Generates a grid at run time
+	generate_grid()
+
+#Generates a grid
+func generate_grid():
+	#Resizes the array to be the size of the width
+	grid.resize(grid_width)
+	#Loops over the grid width
+	for width in range(grid_width):
+		#Creates an array at each width position
+		grid[width] = Array()
+		#Resizes the new array to be the size of the grid height
+		grid[width].resize(grid_height)
+		#Loops over the grid height
+		for height in range(grid_height):
+			#Instantiates the tile prefab for each grid row and column
+			var new_tile = tile.instantiate()
+			#Sets the newly made tile's position to be at the right grid spot
+			#TODO - Offset the width and height by the size of the tile
+			new_tile.global_position = Vector2i(width, height)
+			#Adds the newly generated tile as a child of this node
+			add_child(new_tile)
+			#Sets the current grid position to be the newly generated tile
+			grid[width][height] = new_tile
+			
+	##TESTING
+	#Prints the generated grid
+	for elements in grid:
+		for e in elements:
+			print(e)
+			print(e.global_position)
