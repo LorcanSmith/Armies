@@ -1,5 +1,8 @@
 extends Node
 
+#Unit ID
+@export var unit_ID : int = -1
+
 #Keeps track of if the unit is on the same tile as an enemy (brawling)
 var brawling = false
 #Does the unit move to defend empty columns
