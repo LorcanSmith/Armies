@@ -38,8 +38,9 @@ func generate_grid():
 			#Instantiates the tile prefab for each grid row and column
 			var new_tile = tile.instantiate()
 			#Sets the newly made tile's position to be at the right grid spot
-			#TODO - Offset the width and height by the size of the tile
-			new_tile.global_position = Vector2i(width, height)
+			#Offset the width and height by the size of the tile
+			var offset = new_tile.find_child("Sprite2D").texture.get_width()
+			new_tile.global_position = Vector2i(width * offset, height * offset)
 			#Adds the newly generated tile as a child of this node
 			add_child(new_tile)
 			#Sets the current grid position to be the newly generated tile

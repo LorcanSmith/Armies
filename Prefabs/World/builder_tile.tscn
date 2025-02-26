@@ -1,3 +1,21 @@
-[gd_scene format=3 uid="uid://50084nvc7a4n"]
+[gd_scene load_steps=4 format=3 uid="uid://50084nvc7a4n"]
 
-[node name="Tile" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="1_6u53t"]
+[ext_resource type="Script" path="res://Scripts/Grid/tile.gd" id="1_87l63"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_62j2u"]
+size = Vector2(164.228, 156.098)
+
+[node name="Tile" type="Node2D" groups=["tile"]]
+script = ExtResource("1_87l63")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.266866, 0.478329, 3.85046e-07, 0.152941)
+texture = ExtResource("1_6u53t")
+
+[node name="Area2D" type="Area2D" parent="." groups=["tile"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.5, 0)
+scale = Vector2(0.615, 0.615)
+shape = SubResource("RectangleShape2D_62j2u")

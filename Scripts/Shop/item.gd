@@ -9,15 +9,27 @@ extends Node2D
 #How much money you get from selling the item
 @export var sell_cost : int = 0
 
+#Set when the player is placing the object. When this item is hovering over
+#a tile, the tile is set below. Then when the player "places" the item, we use
+#this variable to work out which node to put the item on. Also used for snapping
+#the sprite to the grid
+var tile_currently_over : Node2D = null
+#The child sprite which is the visuals for the item
+var sprite : Sprite2D
+
 #Is the player currently hovering over the item, used to detect if they click on this item
 var mouse_over_item : bool = false
 #Should the item follow the mouse
 var follow_mouse : bool = false
+
+func _ready() -> void:
+	sprite = find_child("Sprite2D")
+	
 #Called when the mouse is hovering over
-func _on_area_2d_mouse_entered() -> void:
+func _on_area_2d__mouse_collision_mouse_entered() -> void:
 	mouse_over_item = true
 #Called when the mouse stops hovering over
-func _on_area_2d_mouse_exited() -> void:
+func _on_area_2d__mouse_collision_mouse_exited() -> void:
 	mouse_over_item = false
 	
 #Checks to see if the mouse is clicked. This is so we can check to see if a user
@@ -30,23 +42,65 @@ func _input(event):
 			if(event.pressed and mouse_over_item):
 				#Follow the mouse
 				follow_mouse = true
+				#If the unit is on a tile, set the tile to be empty when the unit is picked up
+				if(self.get_parent().is_in_group("tile")):
+					self.get_parent().is_empty = true
+
 			#If the mouse button is lifted up the item should no longer follow the mouse
 			elif(!event.pressed):
 				follow_mouse = false
-				#The item should attempt to be purchased when the user lets go of it
-				attempt_to_buy()
+				#The item should attempt to be placed when the user lets go of it
+				attempt_to_place()
 				
 func _process(delta: float) -> void:
+	#If the player has clicked on an item in the shop
 	if(follow_mouse):
+		#Follow the mouse
 		self.global_position = get_global_mouse_position()
-		
-#Called when the player attempts to buy the item
-func attempt_to_buy():
+	else:
+		self.position = Vector2(0,0)
+	#If the item is currently over a tile that is empty
+	if(tile_currently_over != null and tile_currently_over.is_empty):
+		#Snap to the tile location
+		sprite.global_position = tile_currently_over.global_position
+	#If there is no valid tile to snap to
+	elif(tile_currently_over == null):
+		#Reset the sprite postion back to the parents position.
+		#The parent is either following the mouse or set to the shop item location
+		sprite.position = Vector2(0,0)
+
+#Called when the player attempts to place the item on a tile
+func attempt_to_place():
 	##TODO
-	#Check if the item is over a free grid spot/a unit of the same type and if
-	#the player has enough money
-	#Resets position back to parent
-	self.position = Vector2(0,0)
+	##Check if the player has enough money
+	##NOTE - Will need to be updated when boosts are added as they won't be placed on a tile
+	
+	#If there is an available tile underneath the unit, then we can place it
+	if(tile_currently_over != null and tile_currently_over.is_empty):
+		#Tells the tile that the unit is placed on to no longer be empty
+		#and tells the tile what the unit is
+		tile_currently_over.unit_placed_on(self)
+		#Set the units' parent to be the tile that it is placed on
+		self.reparent(tile_currently_over)
+	#Not enough money or not a valid tile will reset the node back to the shop item locaiton
+	else:
+		#Resets position back to parent which is the item shop location or 
+		self.position = Vector2(0,0)
 #Called when the player sells the item
 func sell_item():
 	pass
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	#If the area is a tile and the item is picked up, following the mouse
+	if(area.is_in_group("tile") and follow_mouse):
+		#Set the tile which we are currently over. This is so we can snap the 
+		#Sprite2D to the tiles' location
+		tile_currently_over = area.get_parent()
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	#If the area we just left is the current tile the sprite is snapping to
+	if(area.get_parent() == tile_currently_over):
+		#We are no longer over the tile so unset it
+		tile_currently_over = null
+		#Reset the sprite position back to the parent node which is following
+		#the mouse
+		sprite.position = Vector2(0,0)
