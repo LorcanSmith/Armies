@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4h2dufyod7as"]
+
+[ext_resource type="Script" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
+[ext_resource type="Script" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
+[ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="3_ew2it"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4adb8"]
+size = Vector2(122, 127)
+
+[node name="ShopManager" type="Node2D"]
+script = ExtResource("1_0fc1a")
+
+[node name="ShopItemGenerator" type="Node2D" parent="."]
+script = ExtResource("2_v5hhx")
+
+[node name="TestLocation1" type="Node2D" parent="ShopItemGenerator"]
+position = Vector2(136, 494)
+
+[node name="TestLocation2" type="Node2D" parent="ShopItemGenerator"]
+position = Vector2(337, 486)
+
+[node name="TestLocation3" type="Node2D" parent="ShopItemGenerator"]
+position = Vector2(555, 469)
+
+[node name="TestLocation4" type="Node2D" parent="ShopItemGenerator"]
+position = Vector2(739, 504)
+
+[node name="SellLocation" type="Node2D" parent="ShopItemGenerator"]
+modulate = Color(0.959821, 0, 0.391569, 1)
+position = Vector2(920, 475)
+
+[node name="Area2D" type="Area2D" parent="ShopItemGenerator/SellLocation" groups=["sell_location"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShopItemGenerator/SellLocation/Area2D"]
+position = Vector2(-2, -1.5)
+shape = SubResource("RectangleShape2D_4adb8")
+
+[node name="Sprite2D" type="Sprite2D" parent="ShopItemGenerator/SellLocation"]
+texture = ExtResource("3_ew2it")

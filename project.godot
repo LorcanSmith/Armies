@@ -18,3 +18,4 @@ config/icon="res://icon.svg"
 [global_group]
 
 tile="Group for map tile nodes"
+sell_location="Area which triggers selling a unit"

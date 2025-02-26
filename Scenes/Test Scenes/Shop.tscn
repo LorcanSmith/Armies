@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7nocrafqpgb0"]
+
+[ext_resource type="PackedScene" uid="uid://d4h2dufyod7as" path="res://Prefabs/Shop Items/shop_manager.tscn" id="1_t5ow2"]
+[ext_resource type="PackedScene" uid="uid://dnwdnehmu8uoy" path="res://Scenes/Test Scenes/GridGeneration.tscn" id="3_d5ww3"]
+
+[node name="ShopScene" type="Node2D"]
+
+[node name="ShopManager" parent="." instance=ExtResource("1_t5ow2")]
+
+[node name="GridGeneration" parent="." instance=ExtResource("3_d5ww3")]

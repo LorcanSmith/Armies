@@ -4,16 +4,27 @@ extends Node2D
 #Items that aren't units do not need an ID
 @export var unit : int = -1
 
+#The shop manager keeps track of player money
+var shop_manager : Node2D
+
 #How much it costs to buy the item
 @export var buy_cost : int = 0
 #How much money you get from selling the item
 @export var sell_cost : int = 0
+#Keeps track if the player has bought the unit yet. Stops the player from selling
+#items that haven't been bought yet, as well as making sure the player pays for items
+var bought : bool = false
 
 #Set when the player is placing the object. When this item is hovering over
 #a tile, the tile is set below. Then when the player "places" the item, we use
 #this variable to work out which node to put the item on. Also used for snapping
 #the sprite to the grid
 var tile_currently_over : Node2D = null
+
+#Used to keep track of if the player is holding the item over the sell area
+#If they let go of the item whilst this is set to true, the item will sell
+var item_on_sell_location : bool = false
+
 #The child sprite which is the visuals for the item
 var sprite : Sprite2D
 
@@ -24,6 +35,7 @@ var follow_mouse : bool = false
 
 func _ready() -> void:
 	sprite = find_child("Sprite2D")
+	shop_manager = find_parent("ShopManager")
 	
 #Called when the mouse is hovering over
 func _on_area_2d__mouse_collision_mouse_entered() -> void:
@@ -71,24 +83,48 @@ func _process(delta: float) -> void:
 
 #Called when the player attempts to place the item on a tile
 func attempt_to_place():
-	##TODO
-	##Check if the player has enough money
 	##NOTE - Will need to be updated when boosts are added as they won't be placed on a tile
 	
-	#If there is an available tile underneath the unit, then we can place it
-	if(tile_currently_over != null and tile_currently_over.is_empty):
-		#Tells the tile that the unit is placed on to no longer be empty
-		#and tells the tile what the unit is
-		tile_currently_over.unit_placed_on(self)
-		#Set the units' parent to be the tile that it is placed on
-		self.reparent(tile_currently_over)
-	#Not enough money or not a valid tile will reset the node back to the shop item locaiton
+	#The player is trying to sell the item and the item has already been bought
+	if(item_on_sell_location and bought):
+		sell_item()	
+	
+	#If the item has been bought already
+	if(bought):			
+		#If there is an available tile underneath the unit, then we can place it
+		if(tile_currently_over != null and tile_currently_over.is_empty):
+			place_item()
+		#Not enough money or not a valid tile will reset the node back to the shop item locaiton
+		else:
+			#Resets position back to parent which is the item shop location or 
+			self.position = Vector2(0,0)
 	else:
-		#Resets position back to parent which is the item shop location or 
-		self.position = Vector2(0,0)
+		if(shop_manager.money >= buy_cost):
+			#If there is an available tile underneath the unit, then we can place it
+			if(tile_currently_over != null and tile_currently_over.is_empty):
+				#Spend the money required to buy the item
+				shop_manager.change_money(buy_cost)
+				#Change the item to be bought
+				bought = true
+				place_item()
+			#Not enough money or not a valid tile will reset the node back to the shop item locaiton
+			else:
+				#Resets position back to parent which is the item shop location or 
+				self.position = Vector2(0,0)
+#Called when an attempt_to_place is sucessful
+func place_item():
+	#Tells the tile that the unit is placed on to no longer be empty
+	#and tells the tile what the unit is
+	tile_currently_over.unit_placed_on(self)
+	#Set the units' parent to be the tile that it is placed on
+	self.reparent(tile_currently_over)
+	
 #Called when the player sells the item
 func sell_item():
-	pass
+	#Gives the player money for selling an item
+	shop_manager.change_money(-sell_cost)
+	#Deltes the item
+	queue_free()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	#If the area is a tile and the item is picked up, following the mouse
@@ -96,6 +132,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		#Set the tile which we are currently over. This is so we can snap the 
 		#Sprite2D to the tiles' location
 		tile_currently_over = area.get_parent()
+	#The player is holding the item over the sell area location
+	elif(area.is_in_group("sell_location")):
+		item_on_sell_location = true
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	#If the area we just left is the current tile the sprite is snapping to
 	if(area.get_parent() == tile_currently_over):
@@ -104,3 +143,6 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 		#Reset the sprite position back to the parent node which is following
 		#the mouse
 		sprite.position = Vector2(0,0)
+	#The player has stopped holding the item over the sell area location
+	elif(area.is_in_group("sell_location")):
+		item_on_sell_location = false
