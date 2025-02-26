@@ -48,3 +48,19 @@ func load_items():
 	for file_name in common_item_files:
 		common_items.append(file_name)
 	show_new_items()
+
+func reroll_shop():
+	#Remove old shop items before showing new items
+	#The items are parented to the shop location they are at, so we loop over every
+	#shop location and delete their child
+	for location in item_locations:
+		#If it doesn't have a child no need to delete the child, this if statement
+		#stops crashes
+		if(location.get_child_count() > 0):
+			location.get_child(0).queue_free()
+	#Gets new items for the shop
+	show_new_items()
+##USED TO REROLL THE SHOP, WILL EVENTUALLY BE DONE BY A BUTTON
+func _input(event):
+	if Input.is_key_pressed(KEY_R):
+		reroll_shop()

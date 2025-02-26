@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnwdnehmu8uoy"]
+[gd_scene load_steps=3 format=3 uid="uid://dnwdnehmu8uoy"]
 
 [ext_resource type="Script" path="res://Scripts/Grid/grid_generation.gd" id="1_6wxo7"]
 [ext_resource type="Script" path="res://Scripts/Shop/shop_item_generator.gd" id="2_lmhua"]
-[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="3_dql8s"]
 
 [node name="GridGeneration" type="Node2D"]
 script = ExtResource("1_6wxo7")
@@ -13,8 +12,6 @@ grid_height = 5
 script = ExtResource("2_lmhua")
 
 [node name="TestLocation1" type="Node2D" parent="ArmyBuilder"]
-
-[node name="Item" parent="ArmyBuilder/TestLocation1" instance=ExtResource("3_dql8s")]
 
 [node name="TestLocation2" type="Node2D" parent="ArmyBuilder"]
 position = Vector2(287, 146)
