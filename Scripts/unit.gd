@@ -1,14 +1,13 @@
 extends Node
 
-#Keeps track of if the unit is on the same tile as an enemy
-#and engaged in hand-to-hand combat
-var engaged = false
+#Keeps track of if the unit is on the same tile as an enemy (brawling)
+var brawling = false
 #Does the unit move to defend empty columns
 @export var defender : bool
 
-#Damage unit does to other units when
-#engaged in hand-to-hand combat (on the same tile as enemy)
-@export var damage : int
+#Damage done when brawling
+@export var brawl_damage : int
+#Units health
 @export var health : int
 
 #The amount of damage/heals the unit's skill does
