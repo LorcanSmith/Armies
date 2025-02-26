@@ -15,6 +15,9 @@ var engaged = false
 @export var skill_damage : int
 @export var skill_heal : int
 
+#The location where the skill will spawn*
+var skill_location = []
+
 #Moves the unit in a desired direction and distance
 func move(direction : Vector2i, distance : Vector2i):
 ##	TODO
