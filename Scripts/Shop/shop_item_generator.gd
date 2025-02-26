@@ -58,6 +58,7 @@ func reroll_shop():
 		#stops crashes
 		if(location.get_child_count() > 0):
 			location.get_child(0).queue_free()
+	print("RE-ROLLED")
 	#Gets new items for the shop
 	show_new_items()
 ##USED TO REROLL THE SHOP, WILL EVENTUALLY BE DONE BY A BUTTON

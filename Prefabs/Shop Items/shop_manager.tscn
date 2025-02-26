@@ -37,3 +37,10 @@ shape = SubResource("RectangleShape2D_4adb8")
 
 [node name="Sprite2D" type="Sprite2D" parent="ShopItemGenerator/SellLocation"]
 texture = ExtResource("3_ew2it")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 76.0
+offset_top = 360.0
+offset_right = 1084.0
+offset_bottom = 457.0
+text = "These are the shop locations where the items appear. The red is for selling. Check the console to see how much money you have. Pressing \"R\" rerolls the shop. No visual cue of this happening but check console"
