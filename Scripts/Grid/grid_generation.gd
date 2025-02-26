@@ -1,16 +1,25 @@
 extends Node
 
+#Is the generation for the battle or the shop? Will spawn a different tile based on this
+@export var is_battle_grid : bool = false
+
 #Width and Height of the grid to be generated
 @export var grid_width : int = 1
 @export var grid_height : int = 1
 
 #Tile that is placed at each grid position
-var tile : PackedScene = preload("res://Prefabs/World/tile.tscn")
+var tile : PackedScene
 
 #Array of the generated grid, stored as [[0,0],[0,1]] etc.
 var grid : Array = []
 
 func _ready() -> void:
+	#Sets the tile to be the tile used in battle
+	if(is_battle_grid):
+		tile = preload("res://Prefabs/World/battle_tile.tscn")
+	#Sets the tile to be the tile used in the army builder
+	else:
+		tile = preload("res://Prefabs/World/builder_tile.tscn")
 	#Generates a grid at run time
 	generate_grid()
 
@@ -35,10 +44,3 @@ func generate_grid():
 			add_child(new_tile)
 			#Sets the current grid position to be the newly generated tile
 			grid[width][height] = new_tile
-			
-	##TESTING
-	#Prints the generated grid
-	for elements in grid:
-		for e in elements:
-			print(e)
-			print(e.global_position)
