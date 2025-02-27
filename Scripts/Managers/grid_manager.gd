@@ -1,7 +1,6 @@
 extends Node
 
-var army : Array = []
-
+#Where should we save the files?
 var game_folder = ProjectSettings.globalize_path("res://")
 
 #Saves a grid
@@ -29,9 +28,7 @@ func load_layout(file_to_load : String):
 		if not parse_result == OK:
 			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 			continue
-
-		# Get the data from the JSON object.
-		file_to_load = json.data
+	#Returns the contents of the file to whatever called it
 	return file_to_load
 
 ##USED TO REROLL THE SHOP, WILL EVENTUALLY BE DONE BY A BUTTON
