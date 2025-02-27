@@ -2,7 +2,7 @@ extends Node2D
 
 #Unit ID, refer to UNIT ID document
 #Items that aren't units do not need an ID
-@export var unit : int = -1
+@export var unit_ID : int = -1
 
 #The shop manager keeps track of player money
 var shop_manager : Node2D
@@ -57,7 +57,8 @@ func _input(event):
 				#If the unit is on a tile, set the tile to be empty when the unit is picked up
 				if(self.get_parent().is_in_group("tile")):
 					self.get_parent().is_empty = true
-
+					#Tell the tile that it no longer needs to keep track of the current unit
+					self.get_parent().units_on_tile[0] = null
 			#If the mouse button is lifted up the item should no longer follow the mouse
 			elif(!event.pressed):
 				follow_mouse = false
