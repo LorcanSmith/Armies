@@ -35,7 +35,7 @@ var follow_mouse : bool = false
 
 func _ready() -> void:
 	sprite = find_child("Sprite2D")
-	shop_manager = find_parent("ShopManager")
+	shop_manager = find_parent("shop_manager")
 	
 #Called when the mouse is hovering over
 func _on_area_2d__mouse_collision_mouse_entered() -> void:
