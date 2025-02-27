@@ -3,9 +3,39 @@ extends Node
 var game_manager
 #Where should we save the files?
 var game_folder = ProjectSettings.globalize_path("res://")
+var test_unit = preload("res://Prefabs/Units/Level1/Knight.tscn")
+
+
+func load_units():
+	var tiles = get_child(0).grid
+	var unit_IDs = game_manager.army
+	
+#	reverses enemy army position so that they are placed 180 degrees
+	#var enemy_army = game_manager.send_enemy_army()
+	#for column in range(enemy_army.size()):
+		#enemy_army[column].reverse()
+	#enemy_army.reverse()
+	
+	for width in range(tiles.size()):
+		for height in range(tiles[width].size()):
+			if unit_IDs[width][height] != null:
+				
+#				TODO
+#				translate Unit ID to appropriate unit
+
+				var instance = test_unit.instantiate()
+				
+				tiles[width][height].add_child(instance)
+				instance.position = Vector2i(0,0)
+				print("hello")
+				tiles[width][height].unit_placed_on(instance)
+				
+#	TODO
+#	spawn enemies on other side of the grid
 
 #Saves a grid
 func save_layout(grid_name : String, grid_data : Array):
+	game_manager.army = grid_data
 	#This will give you the project directory.
 	var save_file = FileAccess.open(game_folder + grid_name + ".save", FileAccess.WRITE)
 	# JSON provides a static method to serialized JSON string.

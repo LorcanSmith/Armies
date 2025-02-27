@@ -20,11 +20,15 @@ var in_combat : bool = false
 func _ready():
 	in_combat = false
 	create_scene()
-	
+
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		swap_scenes()
 		create_scene()
+		
+func send_enemy_army() -> Array:
+	return Array()
+	
 		
 func swap_scenes():
 	#reverses the value of in_combat boolean
@@ -60,5 +64,8 @@ func _input(event):
 		GridManager.load_layout("army")
 	if Input.is_key_pressed(KEY_M):
 		CombatManager.movement_phase()
+		print("im moving!")
 	if Input.is_key_pressed(KEY_C):
 		CombatManager.battle_ticker()
+	if Input.is_key_pressed(KEY_U):
+		GridManager.load_units()

@@ -29,20 +29,22 @@ func movement_phase():
 	
 	#For both of the grids
 	for grid in grids:
-		for width in grid:
-			for tile in width:
+		for width in range(grid.size()):
+			for tile in range(width):
 				#If there is a unit on the tile
-				if(tile.units_on_tile.size() == 1):
+				if(grid[width][tile].units_on_tile.size() == 1):
 					#Space which the unit will move to
 					var unit_space_to_move
 					#The unit on the grid
-					var unit = tile.units_on_tile[0]
+					var unit = grid[width][tile].units_on_tile[0]
 					#If its a player unit, move in a forward direction
 					if(unit.is_in_group("player")):
-						unit_space_to_move = tile + 1
+						unit_space_to_move = grid_reversed[width][tile - 1] 
+						print("I did somethinbg els")
 					#If its an enemy unit, move in a backwards direction
 					else:
-						unit_space_to_move = tile - 1
+						unit_space_to_move = grid_forward[width][tile - 1] 
+						print("I did somethinbg")
 					#If the grid in front of the unit is empty, then we can move there
 					if(grid[width][unit_space_to_move].is_empty):
 						unit.tile_to_move_to = grid[width][unit_space_to_move]
@@ -51,8 +53,8 @@ func movement_phase():
 						#move the unit
 						unit.move()
 					#If there is more than one unit on the tile then they can't move as they are brawling
-					elif(tile.units_on_tile.size() > 1):
-						pass
+					#elif(tile.units_on_tile.size() > 1):
+						#pass
 
 func combat_phase():
 #	call skill() for each unit that can use them or calculate brawl damage

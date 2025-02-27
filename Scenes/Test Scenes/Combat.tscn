@@ -11,3 +11,7 @@
 [node name="grid_manager" parent="." instance=ExtResource("2_ocspw")]
 
 [node name="grid_generator" parent="grid_manager" instance=ExtResource("3_w7yv5")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(287, 229)
+zoom = Vector2(0.6, 0.6)
