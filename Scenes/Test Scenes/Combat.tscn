@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://u21jciyxoppv"]
+
+[ext_resource type="PackedScene" uid="uid://dnwdnehmu8uoy" path="res://Scenes/Test Scenes/GridGeneration.tscn" id="1_k1v6k"]
+
+[node name="Combat" type="Node2D"]
+
+[node name="GridGeneration" parent="." instance=ExtResource("1_k1v6k")]
+position = Vector2(299, 79)
+is_battle_grid = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 327)
+zoom = Vector2(0.6, 0.6)
