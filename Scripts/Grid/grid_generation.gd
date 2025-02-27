@@ -21,10 +21,10 @@ var grid_with_unit_IDs : Array = []
 func _ready() -> void:
 	#Sets the tile to be the tile used in battle
 	if(is_battle_grid):
-		tile = preload("res://Prefabs/World/battle_tile.tscn")
+		tile = preload("res://Prefabs/Grid/battle_tile.tscn")
 	#Sets the tile to be the tile used in the army builder
 	else:
-		tile = preload("res://Prefabs/World/builder_tile.tscn")
+		tile = preload("res://Prefabs/Grid/builder_tile.tscn")
 	#Generates a grid at run time
 	generate_grid()
 
@@ -63,7 +63,7 @@ func save_current_grid():
 	for width in range(grid_width):
 		for height in range(grid_height):
 			#If there is a unit on the grid tile
-			if(grid[width][height].units_on_tile[0] != null):
+			if(grid[width][height].units_on_tile.size() > 0 and grid[width][height].units_on_tile[0] != null):
 				#Get the units ID and save it in the variable grid_with_unit_IDs
 				grid_with_unit_IDs[width][height] = grid[width][height].units_on_tile[0].unit_ID
 			#If the is no unit on the grid tile
@@ -72,5 +72,5 @@ func save_current_grid():
 				grid_with_unit_IDs[width][height] = null
 	#Tells the manager to save the layout of the grid, includes the name and a list
 	#of all the unit IDs
-	find_parent("GridManager").save_layout(grid_name, grid_with_unit_IDs)
+	find_parent("grid_manager").save_layout(grid_name, grid_with_unit_IDs)
 	

@@ -1,13 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://u21jciyxoppv"]
+[gd_scene load_steps=4 format=3 uid="uid://u21jciyxoppv"]
 
-[ext_resource type="PackedScene" uid="uid://dnwdnehmu8uoy" path="res://Scenes/Test Scenes/GridGeneration.tscn" id="1_k1v6k"]
+[ext_resource type="PackedScene" uid="uid://bgv4jk4whdmy6" path="res://Prefabs/Managers/combat_manager.tscn" id="1_xfnto"]
+[ext_resource type="PackedScene" uid="uid://dr2o4nm3x37eu" path="res://Prefabs/Managers/grid_manager.tscn" id="2_ocspw"]
+[ext_resource type="PackedScene" uid="uid://bqgwbmbquy7su" path="res://Prefabs/Grid/grid_generator.tscn" id="3_w7yv5"]
 
 [node name="Combat" type="Node2D"]
 
-[node name="GridGeneration" parent="." instance=ExtResource("1_k1v6k")]
-position = Vector2(299, 79)
-is_battle_grid = true
+[node name="combat_manager" parent="." instance=ExtResource("1_xfnto")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(577, 327)
-zoom = Vector2(0.6, 0.6)
+[node name="grid_manager" parent="." instance=ExtResource("2_ocspw")]
+
+[node name="grid_generator" parent="grid_manager" instance=ExtResource("3_w7yv5")]
