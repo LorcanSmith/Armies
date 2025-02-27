@@ -8,17 +8,30 @@ var current_scene : Node2D
 var army : Array
 
 var shop_scene = preload("res://Scenes/Test Scenes/Shop.tscn")
+var combat_scene = preload("res://Scenes/Test Scenes/Combat.tscn")
+
+var in_combat : bool = false
 
 func _ready():
-	enter_shop()
+	in_combat = false
+	create_scene()
 	
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("ui_accept"):
-		enter_combat()
-
-func enter_shop():
-	current_scene = shop_scene.instantiate()
-	add_child(current_scene)
+		swap_scenes()
+		create_scene()
+		
+func swap_scenes():
+	#	reverses the value of in_combat boolean
+	in_combat = !in_combat
 	
-func enter_combat():
-	print("moved to combat")
+	current_scene.queue_free()
+	print("in_combat = ", in_combat)
+	
+func create_scene():
+	if in_combat:
+		current_scene = combat_scene.instantiate()
+	else:
+		current_scene = shop_scene.instantiate()
+	add_child(current_scene)
+		

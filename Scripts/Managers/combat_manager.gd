@@ -1,10 +1,13 @@
 extends Node
 
-var battle_over = false
+# used to end combat and return to store
+var battle_over : bool = false
 
-##TODO
-#SPAWN ARMIES
-#SWITCH BETWEEN SKILL/MOVING
+# army belonging to the user running the client
+var player_army : Array = []
+
+# army belonging to the opponent that has been received from the server
+var enemy_army : Array = []
 
 func _ready():
 #	Read in both armies and place them on the grid
