@@ -17,3 +17,4 @@ mono_crash.*.json
 # Windows temp files related to backup saves in Godot editor settings
 *.tmp
 army.save
+army.save

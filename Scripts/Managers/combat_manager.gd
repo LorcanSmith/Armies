@@ -13,7 +13,27 @@ var player_army : Array = []
 # army belonging to the opponent
 var enemy_army : Array = []
 
-	
+var player_headquarter : Node2D
+var enemy_headquarter : Node2D
+
+func _ready() -> void:
+	player_headquarter = self.find_child("player_headquarter")
+	enemy_headquarter = self.find_child("enemy_headquarter")
+func setup_headquarters():
+	#Gets the current grid so we can find out its size
+	var grid = game_manager.GridManager.get_grid()
+	#Gets the center of the grid in the y axis
+	var grid_height_center = (grid[0][-1].global_position.y)/2
+	#Gets the tile which is the furthest to the right
+	var grid_width = grid[-1]
+	#Offsets our headquarters by its sprite size
+	var offset = find_child("Sprite2D").texture.get_width()
+	#Sets the player headquarter to be to the left of the map
+	player_headquarter.global_position = Vector2(-offset, grid_height_center)
+	#Sets the player headquarter to be to the right of the map
+	enemy_headquarter.global_position = Vector2(grid_width[0].global_position.x + offset, grid_height_center)
+
+
 func battle_ticker():
 	#while !battle_over:
 	#If movement is next

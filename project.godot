@@ -19,3 +19,5 @@ config/icon="res://icon.svg"
 
 tile="Group for map tile nodes"
 sell_location="Area which triggers selling a unit"
+player=""
+enemy=""

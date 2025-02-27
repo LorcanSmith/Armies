@@ -69,3 +69,5 @@ func _input(event):
 		CombatManager.battle_ticker()
 	if Input.is_key_pressed(KEY_U):
 		GridManager.load_units()
+	if Input.is_key_pressed(KEY_X):
+		CombatManager.setup_headquarters()
