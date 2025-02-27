@@ -73,4 +73,3 @@ func save_current_grid():
 	#Tells the manager to save the layout of the grid, includes the name and a list
 	#of all the unit IDs
 	find_parent("grid_manager").save_layout(grid_name, grid_with_unit_IDs)
-	
