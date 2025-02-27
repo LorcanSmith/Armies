@@ -27,7 +27,6 @@ func load_units():
 				
 				tiles[width][height].add_child(instance)
 				instance.position = Vector2i(0,0)
-				print("hello")
 				tiles[width][height].unit_placed_on(instance)
 				
 #	TODO

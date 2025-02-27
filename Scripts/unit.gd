@@ -20,12 +20,24 @@ var brawling = false
 #The location where the skill will spawn*
 var skill_location = []
 
+#Keep track of if the unit has moved this turn
+var moved = false
+
 #Moves the unit in a desired direction and distance
-func move(direction : Vector2i, distance : Vector2i):
-##	TODO
-	pass
+func move(new_tile):
+	#The unit has moved this turn
+	moved = true
+	#Set the parent to be the new tile
+	reparent(new_tile)
+	#Tell the new tile that this unit is now on it
+	new_tile.unit_placed_on(self)
+	#Set the units position to the new tile (units' parent)
+	self.position = Vector2(0,0)
+	print("MOVED")
 
 func skill():
+	moved = false
+	print("SKILL")
 ##	TODO
 ##	Instantiate the skill
 	pass
