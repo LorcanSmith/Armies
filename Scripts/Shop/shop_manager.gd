@@ -1,5 +1,8 @@
 extends Node
 
+#The Game Manager
+var game_manager
+
 #Amount of money the player can spend each turn
 @export var money = 30
 

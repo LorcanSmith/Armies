@@ -1,5 +1,6 @@
 extends Node
-
+#The Game Manager
+var game_manager
 #Where should we save the files?
 var game_folder = ProjectSettings.globalize_path("res://")
 
@@ -19,22 +20,20 @@ func load_layout(file_to_load : String):
 	# Load the file line by line and process that dictionary to restore
 	# the object it represents.
 	var save_file = FileAccess.open(game_folder + file_to_load + ".save", FileAccess.READ)
+	var json = JSON.new()
+
 	while save_file.get_position() < save_file.get_length():
 		var json_string = save_file.get_line()
 		# Creates the helper class to interact with JSON.
-		var json = JSON.new()
 		# Check if there is any error while parsing the JSON string, skip in case of failure.
 		var parse_result = json.parse(json_string)
 		if not parse_result == OK:
 			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 			continue
-	#Returns the contents of the file to whatever called it
-	return file_to_load
 
-##USED TO REROLL THE SHOP, WILL EVENTUALLY BE DONE BY A BUTTON
-func _input(event):
-	if Input.is_key_pressed(KEY_S):
-		for grids in self.get_children():
-			grids.save_current_grid()
-	if Input.is_key_pressed(KEY_L):
-		load_layout("army")
+	#Returns the contents of the file to whatever called it
+	return json.data
+
+#Returns the grid of the child back to whoever calls the function
+func get_grid():
+	return get_child(0).grid

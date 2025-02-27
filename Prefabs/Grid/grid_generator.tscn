@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Grid/grid_generation.gd" id="1_itawy"]
 
-[node name="GridGenerator" type="Node2D"]
+[node name="grid_generator" type="Node2D"]
 script = ExtResource("1_itawy")
 grid_width = 5
 grid_height = 5
