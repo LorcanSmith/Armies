@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7nocrafqpgb0"]
+
+[ext_resource type="PackedScene" uid="uid://d4h2dufyod7as" path="res://Prefabs/Shop Items/shop_manager.tscn" id="1_t5ow2"]
+[ext_resource type="PackedScene" uid="uid://dnwdnehmu8uoy" path="res://Scenes/Test Scenes/GridGeneration.tscn" id="3_d5ww3"]
+[ext_resource type="Script" path="res://Scripts/Grid/grid_generation.gd" id="3_vrdlk"]
+
+[node name="ShopScene" type="Node2D"]
+
+[node name="ShopManager" parent="." instance=ExtResource("1_t5ow2")]
+position = Vector2(0, 267)
+
+[node name="GridGeneration" parent="." instance=ExtResource("3_d5ww3")]
+
+[node name="Inventory" type="Node2D" parent="."]
+position = Vector2(995, 37)
+script = ExtResource("3_vrdlk")
+grid_width = 2
+grid_height = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Inventory"]
+offset_left = -4.0
+offset_top = -139.0
+offset_right = 384.0
+offset_bottom = -77.0
+text = "This is your inventory where you can store spare items"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 327)
+zoom = Vector2(0.6, 0.6)

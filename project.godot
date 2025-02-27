@@ -11,5 +11,11 @@ config_version=5
 [application]
 
 config/name="Armies"
+run/main_scene="res://Scenes/Test Scenes/GridGeneration.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[global_group]
+
+tile="Group for map tile nodes"
+sell_location="Area which triggers selling a unit"
