@@ -17,6 +17,7 @@ var player_headquarter : Node2D
 var enemy_headquarter : Node2D
 
 func _ready() -> void:
+	game_manager = find_parent("game_manager")
 	player_headquarter = self.find_child("player_headquarter")
 	enemy_headquarter = self.find_child("enemy_headquarter")
 func setup_headquarters():
