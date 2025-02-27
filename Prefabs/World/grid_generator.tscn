@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqgwbmbquy7su"]
+
+[ext_resource type="Script" path="res://Scripts/Grid/grid_generation.gd" id="1_itawy"]
+
+[node name="GridGenerator" type="Node2D"]
+script = ExtResource("1_itawy")
+grid_width = 5
+grid_height = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 9.0
+offset_top = -70.0
+offset_right = 397.0
+offset_bottom = -8.0
+text = "This is where your army is created"

@@ -1,5 +1,8 @@
 extends Node
 
+#What is the name of this grid
+@export var grid_name : String
+
 #Is the generation for the battle or the shop? Will spawn a different tile based on this
 @export var is_battle_grid : bool = false
 
@@ -12,6 +15,8 @@ var tile : PackedScene
 
 #Array of the generated grid, stored as [[0,0],[0,1]] etc.
 var grid : Array = []
+#Array of the units on the grid and their IDs. Used for saving the scene
+var grid_with_unit_IDs : Array = []
 
 func _ready() -> void:
 	#Sets the tile to be the tile used in battle
@@ -27,12 +32,18 @@ func _ready() -> void:
 func generate_grid():
 	#Resizes the array to be the size of the width
 	grid.resize(grid_width)
+	grid_with_unit_IDs.resize(grid_width)
+	
 	#Loops over the grid width
 	for width in range(grid_width):
 		#Creates an array at each width position
 		grid[width] = Array()
+		grid_with_unit_IDs[width] = Array()
+		
 		#Resizes the new array to be the size of the grid height
 		grid[width].resize(grid_height)
+		grid_with_unit_IDs[width].resize(grid_height)
+		
 		#Loops over the grid height
 		for height in range(grid_height):
 			#Instantiates the tile prefab for each grid row and column
@@ -45,3 +56,21 @@ func generate_grid():
 			add_child(new_tile)
 			#Sets the current grid position to be the newly generated tile
 			grid[width][height] = new_tile
+
+#Called when you want to save the current unit layout of the grid
+func save_current_grid():
+	#Loops over the entire grid and the units on the grid
+	for width in range(grid_width):
+		for height in range(grid_height):
+			#If there is a unit on the grid tile
+			if(grid[width][height].units_on_tile[0] != null):
+				#Get the units ID and save it in the variable grid_with_unit_IDs
+				grid_with_unit_IDs[width][height] = grid[width][height].units_on_tile[0].unit_ID
+			#If the is no unit on the grid tile
+			else:
+				#Set that grid id to be null. This updates any tiles that previously had a unit on it
+				grid_with_unit_IDs[width][height] = null
+	#Tells the manager to save the layout of the grid, includes the name and a list
+	#of all the unit IDs
+	find_parent("GridManager").save_layout(grid_name, grid_with_unit_IDs)
+	
