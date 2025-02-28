@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp080ti5p3qme"]
+
+[ext_resource type="Script" path="res://Scripts/Skills/skill.gd" id="1_gybtf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xsytj"]
+radius = 17.0
+
+[node name="attack_skill_1" type="Node2D"]
+script = ExtResource("1_gybtf")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_xsytj")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
