@@ -118,10 +118,6 @@ func combat_phase():
 	for unit in player_army:
 		unit.skill()
 		
-		
-	var base_destroyed = true
-	if base_destroyed:
-		battle_over = true
 
 #Called by a headquarter when it is destroyed
 func headquarter_destroyed(enemy_base_destroyed : bool):

@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=8 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
 [ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="3_ew2it"]
+[ext_resource type="PackedScene" uid="uid://dr2o4nm3x37eu" path="res://Prefabs/Managers/grid_manager.tscn" id="4_2ahac"]
+[ext_resource type="Script" path="res://Scripts/Grid/grid_generation.gd" id="5_q2vn5"]
+[ext_resource type="PackedScene" uid="uid://bqgwbmbquy7su" path="res://Prefabs/Grid/grid_generator.tscn" id="6_e3q61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4adb8"]
 size = Vector2(122, 127)
 
-[node name="ShopManager" type="Node2D"]
+[node name="shop_manager" type="Node2D"]
 script = ExtResource("1_0fc1a")
 
 [node name="ShopItemGenerator" type="Node2D" parent="."]
@@ -44,3 +47,26 @@ shape = SubResource("RectangleShape2D_4adb8")
 
 [node name="Sprite2D" type="Sprite2D" parent="SellLocation"]
 texture = ExtResource("3_ew2it")
+
+[node name="grid_manager" parent="." instance=ExtResource("4_2ahac")]
+
+[node name="grid_generator (inventory)" type="Node2D" parent="grid_manager"]
+position = Vector2(995, 37)
+script = ExtResource("5_q2vn5")
+grid_name = "inventory"
+grid_width = 2
+grid_height = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="grid_manager/grid_generator (inventory)"]
+offset_left = -4.0
+offset_top = -139.0
+offset_right = 384.0
+offset_bottom = -77.0
+text = "This is your inventory where you can store spare items"
+
+[node name="grid_generator (army)" parent="grid_manager" instance=ExtResource("6_e3q61")]
+grid_name = "army"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 327)
+zoom = Vector2(0.6, 0.6)
