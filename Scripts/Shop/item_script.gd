@@ -124,7 +124,6 @@ func place_item():
 	if(DebuggerScript.place_enemy):
 		self.remove_from_group("player")
 		self.add_to_group("enemy")
-		print(self.get_groups())
 	
 #Called when the player sells the item
 func sell_item():
