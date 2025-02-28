@@ -4,6 +4,7 @@ var game_manager
 #Where should we save the files?
 var game_folder = ProjectSettings.globalize_path("res://")
 var test_unit = preload("res://Prefabs/Units/Level1/Knight.tscn")
+var test_item = preload("res://Prefabs/Shop Items/Common/testItem.tscn")
 
 
 
@@ -21,7 +22,7 @@ func generate_grids():
 
 
 func load_units():
-	var tiles = get_child(0).grid
+	var tiles = find_child("grid_generator (army)").grid
 	var unit_IDs = game_manager.army
 	#If we are in combat unit_IDs will be > 0 therefore we should load in units
 	if(unit_IDs.size() > 0):
@@ -30,26 +31,35 @@ func load_units():
 		#for column in range(enemy_army.size()):
 			#enemy_army[column].reverse()
 		#enemy_army.reverse()
-		
-		for width in range(tiles.size()):
-			for height in range(tiles[width].size()):
+		var width = 0
+		while width in range(tiles.size()):
+			var height = 0
+			while height in range(tiles[width].size()):
 				if unit_IDs[width][height] != null:
 					
 	#				TODO
 	#				translate Unit ID to appropriate unit
-
-					var instance = test_unit.instantiate()
+	
+					var instance
+					
+					if game_manager.in_combat:
+						instance = test_unit.instantiate()
+					else:
+						instance = test_item.instantiate()
+						instance.bought = true
 					
 					tiles[width][height].add_child(instance)
 					instance.position = Vector2i(0,0)
 					tiles[width][height].unit_placed_on(instance)
-					
+				height += 1
+			width += 1
 	#	TODO
 	#	spawn enemies on other side of the grid
 
 #Saves a grid
 func save_layout(grid_name : String, grid_data : Array):
-	game_manager.army = grid_data
+	if grid_name == "army":
+		game_manager.army = grid_data
 	#This will give you the project directory.
 	var save_file = FileAccess.open(game_folder + grid_name + ".save", FileAccess.WRITE)
 	# JSON provides a static method to serialized JSON string.
