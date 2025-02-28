@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bh1i1tp3dgvik"]
 
-[ext_resource type="Script" path="res://Scripts/unit.gd" id="1_h20h1"]
+[ext_resource type="Script" path="res://Scripts/Units/unit.gd" id="1_h20h1"]
 [ext_resource type="PackedScene" uid="uid://bp080ti5p3qme" path="res://Prefabs/Skills/skill.tscn" id="2_gpp3g"]
 [ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="2_ktl1k"]
 
