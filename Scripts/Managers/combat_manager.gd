@@ -7,6 +7,8 @@ var movement_next_phase = true
 
 # used to end combat and return to store
 var battle_over : bool = false
+#If the enemy base gets destroyed, this gets set to true
+var player_won : bool = false
 
 # army belonging to the user
 var player_army : Array = []
@@ -36,15 +38,18 @@ func setup_headquarters():
 
 
 func battle_ticker():
-	#while !battle_over:
-	#If movement is next
-	if(movement_next_phase):
-		movement_phase()
-	#If movement is not next, it must be combat
+	#If the battle isn't over, keep the units fighting
+	if(!battle_over):
+		#If movement is next
+		if(movement_next_phase):
+			movement_phase()
+		#If movement is not next, it must be combat
+		else:
+			combat_phase()
+			#combat_phase()
+	#If the battle is over then go back to the shop
 	else:
-		combat_phase()
-		#combat_phase()
-
+		game_manager.swap_scenes()
 func movement_phase():
 	#Makes sure we don't do two sets of movement
 	movement_next_phase = false
@@ -117,3 +122,10 @@ func combat_phase():
 	var base_destroyed = true
 	if base_destroyed:
 		battle_over = true
+
+#Called by a headquarter when it is destroyed
+func headquarter_destroyed(enemy_base_destroyed : bool):
+	#If it was the enemy base that got destroyed then the player wins
+	player_won = enemy_base_destroyed
+	#The battle is over
+	battle_over = true

@@ -24,7 +24,7 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		swap_scenes()
-		create_scene()
+		
 		
 func send_enemy_army() -> Array:
 	return Array()
@@ -36,6 +36,7 @@ func swap_scenes():
 	
 	current_scene.queue_free()
 	print("in_combat = ", in_combat)
+	create_scene()
 	
 func create_scene():
 	if in_combat:
@@ -72,3 +73,5 @@ func _input(event):
 		CombatManager.battle_ticker()
 	if Input.is_key_pressed(KEY_X):
 		CombatManager.setup_headquarters()
+	if Input.is_key_pressed(KEY_D):
+		CombatManager.player_headquarter.hurt(100)

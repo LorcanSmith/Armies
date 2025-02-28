@@ -13,8 +13,11 @@ func hurt(amount : int):
 func destroy_headquarters():
 	#If this is the players headquaters, then we lose
 	if(self.is_in_group("player")):
-		#LOSE
+		#Tell the combat manager that the player's headquarter has been destroyed
+		get_parent().headquarter_destroyed(false)
 		print("YOU LOSE")
 	#If this is the enemies headquarters, then we win
 	else:
+		#Tell the combat manager that the enemy's headquarter has been destroyed
+		get_parent().headquarter_destroyed(true)
 		print("YOU WIN")
