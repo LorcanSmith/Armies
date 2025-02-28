@@ -3,10 +3,6 @@ extends Node
 var game_manager
 #Where should we save the files?
 var game_folder = ProjectSettings.globalize_path("res://")
-var test_unit = preload("res://Prefabs/Units/Level1/Knight.tscn")
-var test_item = preload("res://Prefabs/Shop Items/Common/testItem.tscn")
-
-
 
 func _ready() -> void:
 	game_manager = find_parent("game_manager")
@@ -35,17 +31,14 @@ func load_units():
 		while width in range(tiles.size()):
 			var height = 0
 			while height in range(tiles[width].size()):
-				if unit_IDs[width][height] != null:
-					
+				if unit_IDs[width][height] != null:	
 	#				TODO
 	#				translate Unit ID to appropriate unit
-	
-					var instance
-					
+					var instance				
 					if game_manager.in_combat:
-						instance = test_unit.instantiate()
+						instance = UnitDictionary.unit_scenes[unit_IDs[width][height][0]].instantiate()
 					else:
-						instance = test_item.instantiate()
+						instance = UnitDictionary.item_scenes[unit_IDs[width][height][0]].instantiate()
 						instance.bought = true
 					
 					tiles[width][height].add_child(instance)

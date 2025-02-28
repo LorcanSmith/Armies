@@ -4,4 +4,5 @@
 [ext_resource type="PackedScene" uid="uid://by8ndrehnsmpn" path="res://Prefabs/Skills/attack_skill_1.tscn" id="2_0o1nn"]
 
 [node name="unit_prefab" instance=ExtResource("1_abkdl")]
+unit_ID = 0
 skill_prefab = ExtResource("2_0o1nn")
