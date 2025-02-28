@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgv4jk4whdmy6"]
+[gd_scene load_steps=3 format=3 uid="uid://bgv4jk4whdmy6"]
 
 [ext_resource type="Script" path="res://Scripts/Managers/combat_manager.gd" id="1_7ijpe"]
+[ext_resource type="PackedScene" uid="uid://cuf4kh851odj1" path="res://Prefabs/Managers/headquarter.tscn" id="2_2r55k"]
 
 [node name="combat_manager" type="Node2D"]
 script = ExtResource("1_7ijpe")
+
+[node name="player_headquarter" parent="." groups=["player"] instance=ExtResource("2_2r55k")]
+
+[node name="enemy_headquarter" parent="." groups=["enemy"] instance=ExtResource("2_2r55k")]

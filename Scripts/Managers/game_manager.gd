@@ -46,14 +46,20 @@ func create_scene():
 	
 	#Sets all the managers to be that of the newly instantiated scene
 	CombatManager = current_scene.find_child("combat_manager")
-	if(CombatManager != null):
-		CombatManager.game_manager = self
 	ShopManager = current_scene.find_child("shop_manager")
 	if(ShopManager != null):
 		ShopManager.game_manager = self
 	GridManager = current_scene.find_child("grid_manager")
-	if(GridManager != null):
-		GridManager.game_manager = self
+	
+	load_complete("scene")
+
+func load_complete(element_loaded : String):
+	if(element_loaded == "scene"):
+		GridManager.generate_grids()
+	if(element_loaded == "grids"):
+		if(in_combat):
+			CombatManager.setup_headquarters()
+			
 		
 ##USED TO REROLL THE SHOP, WILL EVENTUALLY BE DONE BY A BUTTON
 func _input(event):
@@ -62,10 +68,7 @@ func _input(event):
 			grids.save_current_grid()
 	if Input.is_key_pressed(KEY_L):
 		GridManager.load_layout("army")
-	if Input.is_key_pressed(KEY_M):
-		CombatManager.movement_phase()
-		print("im moving!")
-	if Input.is_key_pressed(KEY_C):
+	if Input.is_key_pressed(KEY_T):
 		CombatManager.battle_ticker()
-	if Input.is_key_pressed(KEY_U):
-		GridManager.load_units()
+	if Input.is_key_pressed(KEY_X):
+		CombatManager.setup_headquarters()

@@ -25,8 +25,6 @@ func _ready() -> void:
 	#Sets the tile to be the tile used in the army builder
 	else:
 		tile = preload("res://Prefabs/Grid/builder_tile.tscn")
-	#Generates a grid at run time
-	generate_grid()
 
 #Generates a grid
 func generate_grid():
@@ -56,7 +54,7 @@ func generate_grid():
 			add_child(new_tile)
 			#Sets the current grid position to be the newly generated tile
 			grid[width][height] = new_tile
-
+	return true
 #Called when you want to save the current unit layout of the grid
 func save_current_grid():
 	#Loops over the entire grid and the units on the grid
