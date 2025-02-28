@@ -46,8 +46,8 @@ func create_scene():
 	add_child(current_scene)
 	
 	#Sets all the managers to be that of the newly instantiated scene
-	CombatManager = get_node("combat_manager")
-	ShopManager = get_node("shop_manager")
+	CombatManager = get_node_or_null("combat_manager")
+	ShopManager = get_node_or_null("shop_manager")
 	if(ShopManager != null):
 		ShopManager.game_manager = self
 	GridManager = current_scene.find_child("grid_manager")

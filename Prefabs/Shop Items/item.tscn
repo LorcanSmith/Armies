@@ -9,7 +9,7 @@ size = Vector2(33, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fj8s"]
 size = Vector2(112, 108)
 
-[node name="Item" type="Node2D"]
+[node name="Item" type="Node2D" groups=["player"]]
 z_index = 1
 z_as_relative = false
 script = ExtResource("1_mdv0s")

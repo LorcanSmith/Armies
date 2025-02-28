@@ -10,6 +10,7 @@ extends Node
 @export var grid_width : int = 1
 @export var grid_height : int = 1
 
+
 #Tile that is placed at each grid position
 var tile : PackedScene
 
@@ -62,8 +63,14 @@ func save_current_grid():
 		for height in range(grid_height):
 			#If there is a unit on the grid tile
 			if(grid[width][height].units_on_tile.size() > 0 and grid[width][height].units_on_tile[0] != null):
-				#Get the units ID and save it in the variable grid_with_unit_IDs
-				grid_with_unit_IDs[width][height] = grid[width][height].units_on_tile[0].unit_ID
+				#Gets the unit on the tile for easy access
+				var unit = grid[width][height].units_on_tile[0]
+				#If the unit is in the player group
+				if(unit.is_in_group("player")):
+					#Save the unit ID and data in the grid to be used later
+					grid_with_unit_IDs[width][height] = [unit.unit_ID, "player"]
+				else:
+					grid_with_unit_IDs[width][height] = [unit.unit_ID, "enemy"]
 			#If the is no unit on the grid tile
 			else:
 				#Set that grid id to be null. This updates any tiles that previously had a unit on it

@@ -4,3 +4,12 @@
 
 [node name="game_manager" type="Node2D"]
 script = ExtResource("1_y45oy")
+
+[node name="DEBUGGER" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="DEBUGGER"]
+
+[node name="CheckButton" type="CheckButton" parent="DEBUGGER/CanvasLayer"]
+offset_right = 44.0
+offset_bottom = 24.0
+text = "Place Enemy"
