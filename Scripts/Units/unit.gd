@@ -47,10 +47,14 @@ func skill():
 		#Spawn an instance of the skill at every skill location
 		for location in skill_locations_parent.get_children():
 			var skill_instance = skill_prefab.instantiate()
+			skill_instance.damage = skill_damage
 			self.add_child(skill_instance)
 			#Set skills location to be at the correct spot
 			skill_instance.global_position = location.global_position
-		
+			if(self.is_in_group("player")):
+				skill_instance.belongs_to_player = true
+			else:
+				skill_instance.belongs_to_player = false
 
 #Does damage to unit
 func hurt(amount : int):
@@ -67,14 +71,14 @@ func destroy_unit():
 
 func _on_skill_area_2d_area_entered(area: Area2D) -> void:
 	#If the area on our skill location is a unit of the opposite type
-	if(self.is_in_group("player") and area.is_in_group("enemey")):
+	if(self.is_in_group("player") and area.get_parent().is_in_group("enemy")):
 		enemies_in_range += 1
-	elif(self.is_in_group("enemy") and area.is_in_group("player")):
+	elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
 		enemies_in_range += 1
-
+		
 func _on_skill_area_2d_area_exited(area: Area2D) -> void:
 	#If the area on our skill location is a unit of the opposite type and it is no longer in range
-	if(self.is_in_group("player") and area.is_in_group("enemey")):
+	if(self.is_in_group("player") and area.get_parent().is_in_group("enemey")):
 		enemies_in_range -= 1
-	elif(self.is_in_group("enemy") and area.is_in_group("player")):
+	elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
 		enemies_in_range -= 1

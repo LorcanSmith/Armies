@@ -37,6 +37,9 @@ func load_units():
 					var instance				
 					if game_manager.in_combat:
 						instance = UnitDictionary.unit_scenes[unit_IDs[width][height][0]].instantiate()
+						instance.add_to_group(unit_IDs[width][height][1])
+						if(instance.is_in_group("enemy")):
+							instance.scale.x = -instance.scale.x
 					else:
 						instance = UnitDictionary.item_scenes[unit_IDs[width][height][0]].instantiate()
 						instance.bought = true

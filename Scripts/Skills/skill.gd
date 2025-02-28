@@ -9,8 +9,8 @@ var heal : int
 var belongs_to_player : bool
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if(belongs_to_player and area.is_in_group("enemy")):
-		area.hurt(damage)
-	elif(!belongs_to_player and area.is_in_group("player")):
-		area.heal(heal)
+	if(belongs_to_player and area.get_parent().is_in_group("enemy")):
+		area.get_parent().hurt(damage)
+	if(!belongs_to_player and area.get_parent().is_in_group("player")):
+		area.get_parent().hurt(damage)
 	queue_free()

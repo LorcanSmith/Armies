@@ -120,6 +120,12 @@ func place_item():
 	#Set the units' parent to be the tile that it is placed on
 	self.reparent(tile_currently_over)
 	
+##	DEBUG
+	if(DebuggerScript.place_enemy):
+		self.remove_from_group("player")
+		self.add_to_group("enemy")
+		print(self.get_groups())
+	
 #Called when the player sells the item
 func sell_item():
 	#Gives the player money for selling an item

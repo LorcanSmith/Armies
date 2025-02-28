@@ -1,15 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://brgi4h0spiup2"]
+[gd_scene load_steps=3 format=3 uid="uid://brgi4h0spiup2"]
 
 [ext_resource type="Script" path="res://Scripts/Managers/game_manager.gd" id="1_y45oy"]
+[ext_resource type="Script" path="res://Scripts/DEBUGGER_script.gd" id="2_pa0fo"]
 
 [node name="game_manager" type="Node2D"]
 script = ExtResource("1_y45oy")
 
 [node name="DEBUGGER" type="Node" parent="."]
+script = ExtResource("2_pa0fo")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="DEBUGGER"]
 
-[node name="CheckButton" type="CheckButton" parent="DEBUGGER/CanvasLayer"]
+[node name="place_enemy_button" type="CheckButton" parent="DEBUGGER/CanvasLayer"]
 offset_right = 44.0
 offset_bottom = 24.0
 text = "Place Enemy"
+
+[connection signal="toggled" from="DEBUGGER/CanvasLayer/place_enemy_button" to="DEBUGGER" method="_on_place_enemy_button_toggled"]
