@@ -13,12 +13,17 @@ var brawling = false
 #Units health
 @export var health : int
 
+#Skill to spawn in
+@export var skill_prefab : PackedScene
 #The amount of damage/heals the unit's skill does
 @export var skill_damage : int
 @export var skill_heal : int
 
-#The location where the skill will spawn*
-var skill_location = []
+#The parent containing all the skill locations
+@export var skill_locations_parent : Node2D
+
+#Enemies inside our range
+var enemies_in_range : int = 0
 
 #Keep track of if the unit has moved this turn
 var moved = false
@@ -38,16 +43,38 @@ func move(new_tile):
 func skill():
 	moved = false
 	print("SKILL")
-##	TODO
-##	Instantiate the skill
-	pass
+	if(enemies_in_range > 0):
+		#Spawn an instance of the skill at every skill location
+		for location in skill_locations_parent.get_children():
+			var skill_instance = skill_prefab.instantiate()
+			self.add_child(skill_instance)
+			#Set skills location to be at the correct spot
+			skill_instance.global_position = location.global_position
+		
 
-#Does damage and heals unit
-#Positive numbers to hurt, negative numbers to heal
+#Does damage to unit
 func hurt(amount : int):
 	health -= amount
 	if(health <= 0):
 		destroy_unit()
+#Heals unit
+func heal(amount : int):
+	health += amount
+	
 #Called when the unit is destroyed
 func destroy_unit():
 	queue_free()
+
+func _on_skill_area_2d_area_entered(area: Area2D) -> void:
+	#If the area on our skill location is a unit of the opposite type
+	if(self.is_in_group("player") and area.is_in_group("enemey")):
+		enemies_in_range += 1
+	elif(self.is_in_group("enemy") and area.is_in_group("player")):
+		enemies_in_range += 1
+
+func _on_skill_area_2d_area_exited(area: Area2D) -> void:
+	#If the area on our skill location is a unit of the opposite type and it is no longer in range
+	if(self.is_in_group("player") and area.is_in_group("enemey")):
+		enemies_in_range -= 1
+	elif(self.is_in_group("enemy") and area.is_in_group("player")):
+		enemies_in_range -= 1

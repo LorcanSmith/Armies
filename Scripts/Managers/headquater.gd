@@ -21,3 +21,4 @@ func destroy_headquarters():
 		#Tell the combat manager that the enemy's headquarter has been destroyed
 		get_parent().headquarter_destroyed(true)
 		print("YOU WIN")
+	queue_free()

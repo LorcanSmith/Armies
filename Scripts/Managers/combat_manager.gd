@@ -10,9 +10,9 @@ var battle_over : bool = false
 #If the enemy base gets destroyed, this gets set to true
 var player_won : bool = false
 
-# army belonging to the user
+#army belonging to the user
 var player_army : Array = []
-# army belonging to the opponent
+#army belonging to the opponent
 var enemy_army : Array = []
 
 var player_headquarter : Node2D
@@ -118,7 +118,6 @@ func combat_phase():
 	for unit in player_army:
 		unit.skill()
 		
-
 #Called by a headquarter when it is destroyed
 func headquarter_destroyed(enemy_base_destroyed : bool):
 	#If it was the enemy base that got destroyed then the player wins
