@@ -1,11 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cp7cu2n1hgu2p"]
 
-[ext_resource type="Script" path="res://Scripts/unit.gd" id="1_nvp6n"]
-[ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="2_dnale"]
+[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_abkdl"]
+[ext_resource type="PackedScene" uid="uid://by8ndrehnsmpn" path="res://Prefabs/Skills/attack_skill_1.tscn" id="2_0o1nn"]
 
-[node name="Knight" type="Node2D"]
-modulate = Color(1, 0.172549, 1, 1)
-script = ExtResource("1_nvp6n")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_dnale")
+[node name="unit_prefab" instance=ExtResource("1_abkdl")]
+skill_prefab = ExtResource("2_0o1nn")

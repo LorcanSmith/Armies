@@ -14,23 +14,19 @@ var brawling = false
 @export var health : int
 
 #Skill to spawn in
-@export var skill_prefab : Node2D
+@export var skill_prefab : PackedScene
 #The amount of damage/heals the unit's skill does
 @export var skill_damage : int
 @export var skill_heal : int
 
-#The location where the skill will spawn
-var skill_locations = []
+#The parent containing all the skill locations
+@export var skill_locations_parent : Node2D
 
 #Enemies inside our range
 var enemies_in_range : int = 0
 
 #Keep track of if the unit has moved this turn
 var moved = false
-
-func _ready() -> void:
-	var skill_locations_parent = find_child("skil_locations")
-	skill_locations = skill_locations_parent.get_children()
 
 #Moves the unit in a desired direction and distance
 func move(new_tile):
@@ -49,8 +45,8 @@ func skill():
 	print("SKILL")
 	if(enemies_in_range > 0):
 		#Spawn an instance of the skill at every skill location
-		for location in skill_locations:
-			var skill_instance = skill_prefab.instanciate()
+		for location in skill_locations_parent.get_children():
+			var skill_instance = skill_prefab.instantiate()
 			self.add_child(skill_instance)
 			#Set skills location to be at the correct spot
 			skill_instance.global_position = location.global_position
