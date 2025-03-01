@@ -3,8 +3,6 @@ extends Node
 #Unit ID
 @export var unit_ID : int = -1
 
-#Keeps track of if the unit is on the same tile as an enemy (brawling)
-var brawling = false
 #Does the unit move to defend empty columns
 @export var defender : bool
 
@@ -28,36 +26,52 @@ var enemies_in_range : int = 0
 #Keep track of if the unit has moved this turn
 var moved = false
 
+var tile_to_move_to : Node2D
+
 #Moves the unit in a desired direction and distance
-func move(new_tile):
+func move():
 	#The unit has moved this turn
 	moved = true
 	#Set the parent to be the new tile
-	reparent(new_tile)
+	reparent(tile_to_move_to)
 	#Tell the new tile that this unit is now on it
-	new_tile.unit_placed_on(self)
+	tile_to_move_to.unit_placed_on(self)
 	#Set the units position to the new tile (units' parent)
 	self.position = Vector2(0,0)
 	print("MOVED")
 
 func skill():
 	moved = false
-	print("SKILL")
-	#If there is at least one enemy within the units range (in a skill location)
-	if(enemies_in_range > 0):
-		#Spawn an instance of the skill at every skill location
-		for location in skill_locations_parent.get_children():
-			var skill_instance = skill_prefab.instantiate()
-			#Tell the skill how much damage it does
-			skill_instance.damage = skill_damage
-			self.add_child(skill_instance)
-			#Set skills location to be at the correct spot
-			skill_instance.global_position = location.global_position
-			#Tell the skill if it is a friendly or enemy skill
-			if(self.is_in_group("player")):
-				skill_instance.belongs_to_player = true
-			else:
-				skill_instance.belongs_to_player = false
+	#If this unit is the only unit on the tile then they can do their skill
+	if(get_parent().units_on_tile.size() == 1):
+		#If there is at least one enemy within the units range (in a skill location)
+		if(enemies_in_range > 0):
+			print("SKILL")
+			#Spawn an instance of the skill at every skill location
+			for location in skill_locations_parent.get_children():
+				var skill_instance = skill_prefab.instantiate()
+				#Tell the skill how much damage it does
+				skill_instance.damage = skill_damage
+				self.add_child(skill_instance)
+				#Set skills location to be at the correct spot
+				skill_instance.global_position = location.global_position
+				#Tell the skill if it is a friendly or enemy skill
+				if(self.is_in_group("player")):
+					skill_instance.belongs_to_player = true
+				else:
+					skill_instance.belongs_to_player = false
+	#If there is another unit on this tile then they will brawl
+	else:
+		brawl()
+
+func brawl():
+	print("BRAWL")
+	#Finds each unit on this unit's current tile
+	for unit in get_parent().units_on_tile:
+		#If the unit isnt itself do some brawl damage to it
+		if(unit != self):
+			unit.hurt(brawl_damage)
+
 
 #Does damage to unit
 func hurt(amount : int):
