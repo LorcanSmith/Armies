@@ -10,6 +10,8 @@ extends Node
 @export var brawl_damage : int
 #Units health
 @export var health : int
+#How much damage will be applied to this unit, this turn
+var damage_done_to_self : int = 0
 
 #Skill to spawn in
 @export var skill_prefab : PackedScene
@@ -76,13 +78,18 @@ func brawl():
 
 #Does damage to unit
 func hurt(amount : int):
-	health -= amount
-	if(health <= 0):
-		destroy_unit()
+	damage_done_to_self += amount
+	
 #Heals unit
 func heal(amount : int):
-	health += amount
-	
+	damage_done_to_self -= amount
+
+func apply_damage():
+	health -= damage_done_to_self
+	if(health <= 0):
+		destroy_unit()
+	damage_done_to_self = 0
+
 #Called when the unit is destroyed
 func destroy_unit():
 	#Tells parent to remove this unit from its list of units on it
