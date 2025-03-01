@@ -41,7 +41,6 @@ func move():
 		tile_to_move_to.unit_placed_on(self)
 		#Set the units position to the new tile (units' parent)
 		self.position = Vector2(0,0)
-		print("MOVED")
 
 func skill():
 	moved = false
@@ -49,13 +48,12 @@ func skill():
 	if(get_parent().units_on_tile.size() == 1):
 		#If there is at least one enemy within the units range (in a skill location)
 		if(enemies_in_range > 0):
-			print("SKILL")
 			#Spawn an instance of the skill at every skill location
 			for location in skill_locations_parent.get_children():
 				var skill_instance = skill_prefab.instantiate()
 				#Tell the skill how much damage it does
 				skill_instance.damage = skill_damage
-				self.add_child(skill_instance)
+				find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
 				#Set skills location to be at the correct spot
 				skill_instance.global_position = location.global_position
 				#Tell the skill if it is a friendly or enemy skill
@@ -97,14 +95,46 @@ func destroy_unit():
 	queue_free()
 
 func _on_skill_area_2d_area_entered(area: Area2D) -> void:
-	#If the area on our skill location is a unit of the opposite type
-	if(self.is_in_group("player") and area.get_parent().is_in_group("enemy")):
-		enemies_in_range += 1
-	elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
-		enemies_in_range += 1
+	#Checking the area isnt a buff area
+	if(!area.is_in_group("buff_location")):
+		#If the area on our skill location is a unit of the opposite type
+		if(self.is_in_group("player") and area.get_parent().is_in_group("enemy")):
+			enemies_in_range += 1
+		elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
+			enemies_in_range += 1
 func _on_skill_area_2d_area_exited(area: Area2D) -> void:
-	#If the area on our skill location is a unit of the opposite type and it is no longer in range
-	if(self.is_in_group("player") and area.get_parent().is_in_group("enemey")):
-		enemies_in_range -= 1
-	elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
-		enemies_in_range -= 1
+	#Checking the area isnt a buff area
+	if(!area.is_in_group("buff_location")):
+		#If the area on our skill location is a unit of the opposite type and it is no longer in range
+		if(self.is_in_group("player") and area.get_parent().is_in_group("enemey")):
+			enemies_in_range -= 1
+		elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
+			enemies_in_range -= 1
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	#If the unit is in a buff location
+	if(area.is_in_group("buff_location")):
+		#Checks if the buff location belongs to an enemy
+		if((self.is_in_group("player") and area.get_parent().get_parent().is_in_group("enemey")) or (self.is_in_group("enemy") and area.get_parent().get_parent().is_in_group("player"))):
+			#We have entered the area so apply weakening
+			health -= area.get_parent().health_weaken
+			skill_damage -= area.get_parent().damage_weaken
+		#Checks if the buff belongs to a friendly
+		elif((self.is_in_group("player") and area.get_parent().get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().get_parent().is_in_group("enemy"))):
+			#We have entered a buff location of a friendly so apply buffs
+			health += area.get_parent().health_buff
+			skill_damage += area.get_parent().damage_buff
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	#If the unit is in a buff location
+	if(area.is_in_group("buff_location")):
+		#Checks if the buff location belongs to an enemy
+		if((self.is_in_group("player") and area.get_parent().is_in_group("enemey")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("player"))):
+			#We have left the area so stop the weakening from working
+			health += area.get_parent().health_weaken
+			skill_damage += area.get_parent().damage_weaken
+		#Checks if the buff belongs to a friendly
+		elif((self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy"))):
+			#We have left the area so stop the weakening from working
+			health -= area.get_parent().health_buff
+			skill_damage -= area.get_parent().damage_buff

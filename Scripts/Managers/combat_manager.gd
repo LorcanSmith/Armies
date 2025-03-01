@@ -102,7 +102,6 @@ func movement_phase():
 								unit_space_to_move = grid_forward[x-1][y] 
 						#If the grid in front of the unit is empty, then we can move there
 						if(unit_space_to_move and unit_space_to_move.is_empty):
-							print(x, grid_forward[x].size())
 							#Tell the current tile the unit is on that the unit is moving off it
 							unit.get_parent().units_on_tile = []
 							#Set the current tile to be empty so other units can move here
@@ -127,17 +126,28 @@ func combat_phase():
 	#Combat is this turn so set the movement phase to be next turn
 	movement_next_phase = true
 	#Tell each unit in the enemy army to do their skill
-	for unit in player_army:
-		unit.skill()
+	var unit = 0
+	while unit in range(player_army.size()):
+		player_army[unit].skill()
+		unit += 1
 	#Tell each unit in the player army to do their skill
-	for unit in enemy_army:
-		unit.skill()
+	unit = 0
+	while unit in range(enemy_army.size()):
+		enemy_army[unit].skill()
+		unit += 1
 	
+	find_child("skill_holder").waiting_for_skills = true
+
+func no_skills_left():	
 	#Tells the units to take damage
-	for unit in player_army:
-		unit.apply_damage()
-	for unit in enemy_army:
-		unit.apply_damage()
+	var unit = 0
+	while unit in range(player_army.size()):
+		player_army[unit].apply_damage()
+		unit += 1
+	unit = 0
+	while unit in range(enemy_army.size()):
+		enemy_army[unit].apply_damage()
+		unit += 1
 #Called by a headquarter when it is destroyed
 func headquarter_destroyed(enemy_base_destroyed : bool):
 	#If it was the enemy base that got destroyed then the player wins

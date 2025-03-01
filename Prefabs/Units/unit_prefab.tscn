@@ -1,19 +1,40 @@
-[gd_scene load_steps=6 format=3 uid="uid://bh1i1tp3dgvik"]
+[gd_scene load_steps=8 format=3 uid="uid://bh1i1tp3dgvik"]
 
 [ext_resource type="Script" path="res://Scripts/Units/unit.gd" id="1_h20h1"]
 [ext_resource type="PackedScene" uid="uid://bp080ti5p3qme" path="res://Prefabs/Skills/skill.tscn" id="2_gpp3g"]
 [ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="2_ktl1k"]
+[ext_resource type="Script" path="res://Scripts/Skills/buff.gd" id="4_4nfq5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1caxc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xy1do"]
-size = Vector2(95, 90)
+size = Vector2(76, 71)
 
 [node name="unit_prefab" type="Node2D" node_paths=PackedStringArray("skill_locations_parent")]
 modulate = Color(1, 0.172549, 1, 1)
 script = ExtResource("1_h20h1")
 skill_prefab = ExtResource("2_gpp3g")
 skill_locations_parent = NodePath("skill_locations")
+
+[node name="buffs" type="Node2D" parent="."]
+script = ExtResource("4_4nfq5")
+damage_buff = 500
+
+[node name="location_area" type="Area2D" parent="buffs" groups=["buff_location"]]
+position = Vector2(0, -137)
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buffs/location_area"]
+shape = SubResource("CircleShape2D_1caxc")
+
+[node name="location_area2" type="Area2D" parent="buffs" groups=["buff_location"]]
+position = Vector2(0, 146)
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buffs/location_area2"]
+shape = SubResource("CircleShape2D_1caxc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_ktl1k")
@@ -36,3 +57,5 @@ shape = SubResource("RectangleShape2D_xy1do")
 
 [connection signal="area_entered" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
