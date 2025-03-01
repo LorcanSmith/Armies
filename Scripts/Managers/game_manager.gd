@@ -15,10 +15,13 @@ var army : Array
 var shop_scene = preload("res://Prefabs/Managers/shop_manager.tscn")
 var combat_scene = preload("res://Prefabs/Managers/combat_manager.tscn")
 
+var status_bar : StatusBar
+
 var in_combat : bool = false
 
 func _ready():
 	in_combat = false
+	status_bar = get_node("StatusBar")
 	create_scene()
 
 func _process(_delta):
@@ -43,6 +46,7 @@ func create_scene():
 		current_scene = combat_scene.instantiate()
 	else:
 		current_scene = shop_scene.instantiate()
+		current_scene.money_changed.connect(_money_changed)
 	add_child(current_scene)
 	
 	#Sets all the managers to be that of the newly instantiated scene
@@ -77,3 +81,6 @@ func _input(event):
 		CombatManager.setup_headquarters()
 	if Input.is_key_pressed(KEY_D):
 		CombatManager.player_headquarter.hurt(100)
+	
+func _money_changed(amount : int):
+	status_bar.set_money(amount)
