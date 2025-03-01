@@ -23,7 +23,7 @@ var damage_done_to_self : int = 0
 @export var skill_locations_parent : Node2D
 
 #Enemies inside our range
-var enemies_in_range : int = 0
+var enemies_in_range : Array = []
 
 #Keep track of if the unit has moved this turn
 var moved = false
@@ -32,7 +32,7 @@ var tile_to_move_to : Node2D
 
 #Moves the unit in a desired direction and distance
 func move():
-	if(enemies_in_range == 0):
+	if(enemies_in_range.size() == 0):
 		#The unit has moved this turn
 		moved = true
 		#Set the parent to be the new tile
@@ -41,13 +41,12 @@ func move():
 		tile_to_move_to.unit_placed_on(self)
 		#Set the units position to the new tile (units' parent)
 		self.position = Vector2(0,0)
-
 func skill():
 	moved = false
 	#If this unit is the only unit on the tile then they can do their skill
 	if(get_parent().units_on_tile.size() == 1):
 		#If there is at least one enemy within the units range (in a skill location)
-		if(enemies_in_range > 0):
+		if(enemies_in_range.size() > 0):
 			#Spawn an instance of the skill at every skill location
 			for location in skill_locations_parent.get_children():
 				var skill_instance = skill_prefab.instantiate()
@@ -63,6 +62,7 @@ func skill():
 					skill_instance.belongs_to_player = false
 	#If there is another unit on this tile then they will brawl
 	else:
+		#print(get_parent().units_on_tile.size())
 		brawl()
 
 func brawl():
@@ -92,6 +92,8 @@ func apply_damage():
 func destroy_unit():
 	#Tells parent to remove this unit from its list of units on it
 	get_parent().units_on_tile.erase(self)
+	if(get_parent().units_on_tile.size() == 0):
+		get_parent().is_empty = true
 	queue_free()
 
 func _on_skill_area_2d_area_entered(area: Area2D) -> void:
@@ -99,18 +101,16 @@ func _on_skill_area_2d_area_entered(area: Area2D) -> void:
 	if(!area.is_in_group("buff_location")):
 		#If the area on our skill location is a unit of the opposite type
 		if(self.is_in_group("player") and area.get_parent().is_in_group("enemy")):
-			enemies_in_range += 1
+			enemies_in_range.append(area.get_parent())
 		elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
-			enemies_in_range += 1
+			enemies_in_range.append(area.get_parent())
 func _on_skill_area_2d_area_exited(area: Area2D) -> void:
 	#Checking the area isnt a buff area
 	if(!area.is_in_group("buff_location")):
-		#If the area on our skill location is a unit of the opposite type and it is no longer in range
-		if(self.is_in_group("player") and area.get_parent().is_in_group("enemey")):
-			enemies_in_range -= 1
-		elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
-			enemies_in_range -= 1
-
+		#If the unit was in our range, remove it from our range
+		if(enemies_in_range.has(area.get_parent())):
+			enemies_in_range.erase(area.get_parent())
+			
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	#If the unit is in a buff location
 	if(area.is_in_group("buff_location")):

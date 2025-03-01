@@ -23,6 +23,8 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_accept"):
+		for grids in GridManager.get_children():
+			grids.save_current_grid()
 		swap_scenes()
 		
 		

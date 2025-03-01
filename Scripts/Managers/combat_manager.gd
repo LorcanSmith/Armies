@@ -136,8 +136,10 @@ func combat_phase():
 		enemy_army[unit].skill()
 		unit += 1
 	
+	#Tell the skill_holder that skills have been spawned and we're waiting for them to be finished
 	find_child("skill_holder").waiting_for_skills = true
 
+#Called by the skill_holder child when no skills remain, meaning we can proceed with combat
 func no_skills_left():	
 	#Tells the units to take damage
 	var unit = 0
