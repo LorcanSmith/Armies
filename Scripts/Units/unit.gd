@@ -42,6 +42,7 @@ func move():
 
 func skill():
 	moved = false
+	#If this unit is the only unit on the tile then they can do their skill
 	if(get_parent().units_on_tile.size() == 1):
 		#If there is at least one enemy within the units range (in a skill location)
 		if(enemies_in_range > 0):
@@ -59,12 +60,15 @@ func skill():
 					skill_instance.belongs_to_player = true
 				else:
 					skill_instance.belongs_to_player = false
+	#If there is another unit on this tile then they will brawl
 	else:
 		brawl()
 
 func brawl():
 	print("BRAWL")
+	#Finds each unit on this unit's current tile
 	for unit in get_parent().units_on_tile:
+		#If the unit isnt itself do some brawl damage to it
 		if(unit != self):
 			unit.hurt(brawl_damage)
 
