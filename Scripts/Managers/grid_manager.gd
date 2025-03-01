@@ -4,6 +4,8 @@ var game_manager
 #Where should we save the files?
 var game_folder = ProjectSettings.globalize_path("res://")
 
+var dictionary = load("res://Scripts/Units/dictionary.gd")
+
 func _ready() -> void:
 	game_manager = find_parent("game_manager")
 	
@@ -18,6 +20,8 @@ func generate_grids():
 
 
 func load_units():
+	var dictionary_instance = dictionary.new()
+	
 	var tiles = find_child("grid_generator (army)").grid
 	var unit_IDs = game_manager.army
 	#If we are in combat unit_IDs will be > 0 therefore we should load in units
@@ -37,7 +41,7 @@ func load_units():
 					var instance				
 					if game_manager.in_combat:
 						#Spawn in a unit. Reference the UnitDictionary to find out what unit to spawn
-						instance = UnitDictionary.unit_scenes[unit_IDs[width][height][0]].instantiate()
+						instance = dictionary_instance.unit_scenes[unit_IDs[width][height][0]].instantiate()
 						#Add the unit to either the player or the enemy group
 						instance.add_to_group(unit_IDs[width][height][1])
 						#If the unit is an enemy. Make them face the opposite direction
@@ -45,7 +49,7 @@ func load_units():
 							instance.scale.x = -instance.scale.x
 					else:
 						#Spawn an item. Reference the UnitDictionary to find out what item to spawn
-						instance = UnitDictionary.item_scenes[unit_IDs[width][height][0]].instantiate()
+						instance = dictionary_instance.item_scenes[unit_IDs[width][height][0]].instantiate()
 						#Tell the item it has already been bought
 						instance.bought = true
 					
