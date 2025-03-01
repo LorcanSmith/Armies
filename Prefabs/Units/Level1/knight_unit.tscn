@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp7cu2n1hgu2p"]
+
+[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_abkdl"]
+[ext_resource type="PackedScene" uid="uid://by8ndrehnsmpn" path="res://Prefabs/Skills/attack_skill_1.tscn" id="2_0o1nn"]
+
+[node name="knight_unit" instance=ExtResource("1_abkdl")]
+unit_ID = 0
+health = 16
+skill_prefab = ExtResource("2_0o1nn")
+skill_damage = 8

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d26riwgg0v8nl"]
 
-[ext_resource type="Script" path="res://Scripts/Shop/item.gd" id="1_mdv0s"]
+[ext_resource type="Script" path="res://Scripts/Shop/item_script.gd" id="1_mdv0s"]
 [ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="2_wbsm8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4oje"]
@@ -9,7 +9,7 @@ size = Vector2(33, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fj8s"]
 size = Vector2(112, 108)
 
-[node name="Item" type="Node2D"]
+[node name="Item" type="Node2D" groups=["player"]]
 z_index = 1
 z_as_relative = false
 script = ExtResource("1_mdv0s")

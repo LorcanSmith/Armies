@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bh1i1tp3dgvik"]
+
+[ext_resource type="Script" path="res://Scripts/Units/unit.gd" id="1_h20h1"]
+[ext_resource type="PackedScene" uid="uid://bp080ti5p3qme" path="res://Prefabs/Skills/skill.tscn" id="2_gpp3g"]
+[ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="2_ktl1k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xy1do"]
+size = Vector2(95, 90)
+
+[node name="unit_prefab" type="Node2D" node_paths=PackedStringArray("skill_locations_parent")]
+modulate = Color(1, 0.172549, 1, 1)
+script = ExtResource("1_h20h1")
+skill_prefab = ExtResource("2_gpp3g")
+skill_locations_parent = NodePath("skill_locations")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ktl1k")
+
+[node name="skill_locations" type="Node2D" parent="."]
+
+[node name="location" type="Node2D" parent="skill_locations"]
+position = Vector2(139, 0)
+
+[node name="skill_area2D" type="Area2D" parent="skill_locations/location"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location/skill_area2D"]
+shape = SubResource("CircleShape2D_11hi7")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_xy1do")
+
+[connection signal="area_entered" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
+[connection signal="area_exited" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://by8ndrehnsmpn"]
+
+[ext_resource type="PackedScene" uid="uid://bp080ti5p3qme" path="res://Prefabs/Skills/skill.tscn" id="1_oc5wx"]
+
+[node name="attack_skill_1" instance=ExtResource("1_oc5wx")]
+
+[node name="Sprite2D" parent="." index="1"]
+z_index = 4
+scale = Vector2(0.795, 0.155)

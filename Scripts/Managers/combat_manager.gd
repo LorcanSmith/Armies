@@ -10,9 +10,9 @@ var battle_over : bool = false
 #If the enemy base gets destroyed, this gets set to true
 var player_won : bool = false
 
-# army belonging to the user
+#army belonging to the user
 var player_army : Array = []
-# army belonging to the opponent
+#army belonging to the opponent
 var enemy_army : Array = []
 
 var player_headquarter : Node2D
@@ -68,34 +68,35 @@ func movement_phase():
 	#Used to loop over the entire grid
 	var x = 0
 	var y = 0
-	for grid in grids:
+	var grid_number = 0
+	while(grid_number < grids.size()):
 		x = 0
-		while(x < grid.size()):
+		while(x < grids[grid_number].size()):
 			y = 0
 		#Loop through the grid
-			while(y < grid[x].size()):
+			while(y < grids[grid_number][x].size()):
 				#If there is a unit on the tile
-				if(grid[x][y].units_on_tile.size() == 1):
+				if(grids[grid_number][x][y].units_on_tile.size() == 1):
 					#Space which the unit will move to
 					var unit_space_to_move
 					#The unit on the grid
-					var unit = grid[x][y].units_on_tile[0]
+					var unit = grids[grid_number][x][y].units_on_tile[0]
 					#If the unit hasn't already moved this turn
 					if(unit.moved == false):
 						#If its a player unit, move in a forward direction
-						if(unit.is_in_group("player")):
+						if(grids[grid_number] == grid_reversed and unit.is_in_group("player")):
 							#Add this unit to the array as its still alive
 							player_army.append(unit)
 							#Find the spot which we wish to move to
-							unit_space_to_move = grid_forward[x+1][y] 
+							unit_space_to_move = grid_reversed[x-1][y] 
 						#If its an enemy unit, move in a backwards direction
-						else:
+						elif(grids[grid_number] == grid_forward and unit.is_in_group("enemy")):
 							#Add this unit to the array as its still alive
 							enemy_army.append(unit)
 							#Find the spot which we wish to move to
 							unit_space_to_move = grid_forward[x-1][y] 
 						#If the grid in front of the unit is empty, then we can move there
-						if(unit_space_to_move.is_empty):
+						if(unit_space_to_move and unit_space_to_move.is_empty):
 							#Tell the current tile the unit is on that the unit is moving off it
 							unit.get_parent().units_on_tile = []
 							#Set the current tile to be empty so other units can move here
@@ -103,11 +104,11 @@ func movement_phase():
 							#move the unit
 							unit.move(unit_space_to_move)
 				#If there is more than one unit on the tile then they can't move as they are brawling
-				elif(grid[x][y].units_on_tile.size() > 1):
+				elif(grids[grid_number][x][y].units_on_tile.size() > 1):
 					print("BRAWL")
 				y += 1
 			x += 1 
-			
+		grid_number += 1	
 func combat_phase():
 	#Combat is this turn so set the movement phase to be next turn
 	movement_next_phase = true
@@ -118,7 +119,6 @@ func combat_phase():
 	for unit in player_army:
 		unit.skill()
 		
-
 #Called by a headquarter when it is destroyed
 func headquarter_destroyed(enemy_base_destroyed : bool):
 	#If it was the enemy base that got destroyed then the player wins
