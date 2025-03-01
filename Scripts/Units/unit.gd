@@ -28,14 +28,16 @@ var enemies_in_range : int = 0
 #Keep track of if the unit has moved this turn
 var moved = false
 
+var tile_to_move_to : Node2D
+
 #Moves the unit in a desired direction and distance
-func move(new_tile):
+func move():
 	#The unit has moved this turn
 	moved = true
 	#Set the parent to be the new tile
-	reparent(new_tile)
+	reparent(tile_to_move_to)
 	#Tell the new tile that this unit is now on it
-	new_tile.unit_placed_on(self)
+	tile_to_move_to.unit_placed_on(self)
 	#Set the units position to the new tile (units' parent)
 	self.position = Vector2(0,0)
 	print("MOVED")
@@ -58,6 +60,10 @@ func skill():
 				skill_instance.belongs_to_player = true
 			else:
 				skill_instance.belongs_to_player = false
+
+func brawl():
+	print("BRAWL")
+
 
 #Does damage to unit
 func hurt(amount : int):

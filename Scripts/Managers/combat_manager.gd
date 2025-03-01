@@ -69,6 +69,8 @@ func movement_phase():
 	var x = 0
 	var y = 0
 	var grid_number = 0
+	
+	var units_to_move = []
 	while(grid_number < grids.size()):
 		x = 0
 		while(x < grids[grid_number].size()):
@@ -102,13 +104,17 @@ func movement_phase():
 							#Set the current tile to be empty so other units can move here
 							unit.get_parent().is_empty = true
 							#move the unit
-							unit.move(unit_space_to_move)
-				#If there is more than one unit on the tile then they can't move as they are brawling
-				elif(grids[grid_number][x][y].units_on_tile.size() > 1):
-					print("BRAWL")
+							unit.tile_to_move_to = unit_space_to_move
+							units_to_move.append(unit)
+				#If there are two units on the tile then they can't move as they are brawling
+				elif(grids[grid_number][x][y].units_on_tile.size() == 2):
+					for unit in range(grids[grid_number][x][y].units_on_tile):
+						grids[grid_number][x][y].units_on_tile[unit].brawl()
 				y += 1
 			x += 1 
-		grid_number += 1	
+		grid_number += 1
+	for unit in range(units_to_move):
+		units_to_move[unit].move()
 func combat_phase():
 	#Combat is this turn so set the movement phase to be next turn
 	movement_next_phase = true
