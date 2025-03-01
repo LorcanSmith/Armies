@@ -127,12 +127,17 @@ func combat_phase():
 	#Combat is this turn so set the movement phase to be next turn
 	movement_next_phase = true
 	#Tell each unit in the enemy army to do their skill
-	for unit in enemy_army:
-		unit.skill()
-	#Tell each unit in the player army to do their skill
 	for unit in player_army:
 		unit.skill()
-		
+	#Tell each unit in the player army to do their skill
+	for unit in enemy_army:
+		unit.skill()
+	
+	#Tells the units to take damage
+	for unit in player_army:
+		unit.apply_damage()
+	for unit in enemy_army:
+		unit.apply_damage()
 #Called by a headquarter when it is destroyed
 func headquarter_destroyed(enemy_base_destroyed : bool):
 	#If it was the enemy base that got destroyed then the player wins
