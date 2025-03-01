@@ -88,16 +88,21 @@ func movement_phase():
 						if(grids[grid_number] == grid_reversed and unit.is_in_group("player")):
 							#Add this unit to the array as its still alive
 							player_army.append(unit)
-							#Find the spot which we wish to move to
-							unit_space_to_move = grid_reversed[x-1][y] 
+							#If the unit is not at the edge of the map
+							if(x > 0):
+								#Find the spot which we wish to move to
+								unit_space_to_move = grid_reversed[x-1][y] 
 						#If its an enemy unit, move in a backwards direction
 						elif(grids[grid_number] == grid_forward and unit.is_in_group("enemy")):
 							#Add this unit to the array as its still alive
 							enemy_army.append(unit)
-							#Find the spot which we wish to move to
-							unit_space_to_move = grid_forward[x-1][y] 
+							#If the unit is not at the edge of the map
+							if(x > 0):
+								#Find the spot which we wish to move to
+								unit_space_to_move = grid_forward[x-1][y] 
 						#If the grid in front of the unit is empty, then we can move there
 						if(unit_space_to_move and unit_space_to_move.is_empty):
+							print(x, grid_forward[x].size())
 							#Tell the current tile the unit is on that the unit is moving off it
 							unit.get_parent().units_on_tile = []
 							#Set the current tile to be empty so other units can move here

@@ -30,15 +30,16 @@ var tile_to_move_to : Node2D
 
 #Moves the unit in a desired direction and distance
 func move():
-	#The unit has moved this turn
-	moved = true
-	#Set the parent to be the new tile
-	reparent(tile_to_move_to)
-	#Tell the new tile that this unit is now on it
-	tile_to_move_to.unit_placed_on(self)
-	#Set the units position to the new tile (units' parent)
-	self.position = Vector2(0,0)
-	print("MOVED")
+	if(enemies_in_range == 0):
+		#The unit has moved this turn
+		moved = true
+		#Set the parent to be the new tile
+		reparent(tile_to_move_to)
+		#Tell the new tile that this unit is now on it
+		tile_to_move_to.unit_placed_on(self)
+		#Set the units position to the new tile (units' parent)
+		self.position = Vector2(0,0)
+		print("MOVED")
 
 func skill():
 	moved = false
@@ -84,6 +85,8 @@ func heal(amount : int):
 	
 #Called when the unit is destroyed
 func destroy_unit():
+	#Tells parent to remove this unit from its list of units on it
+	get_parent().units_on_tile.erase(self)
 	queue_free()
 
 func _on_skill_area_2d_area_entered(area: Area2D) -> void:
@@ -92,7 +95,6 @@ func _on_skill_area_2d_area_entered(area: Area2D) -> void:
 		enemies_in_range += 1
 	elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
 		enemies_in_range += 1
-		
 func _on_skill_area_2d_area_exited(area: Area2D) -> void:
 	#If the area on our skill location is a unit of the opposite type and it is no longer in range
 	if(self.is_in_group("player") and area.get_parent().is_in_group("enemey")):
