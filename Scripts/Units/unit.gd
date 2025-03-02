@@ -35,6 +35,9 @@ var moved = false
 var tile_to_move_to : Node2D
 
 func _ready():
+	if self.is_in_group("enemy"):
+		$Label.modulate = Color(1, 0, 0, 1)
+		$Label.position.y = -75
 	update_label()
 
 #Moves the unit in a desired direction and distance
