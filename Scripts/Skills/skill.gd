@@ -5,6 +5,8 @@ var damage : int
 #Amount of heals to do to friendly units
 var heal : int
 
+var pushes_units : bool
+
 #Does this skill belong to the player or enemy
 var belongs_to_player : bool
 

@@ -23,6 +23,8 @@ var damage_done_to_self : int = 0
 @export var skill_damage : int
 @export var skill_heal : int
 
+@export var skill_pushes_units : bool = false
+
 #The parent containing all the skill locations
 @export var skill_locations_parent : Node2D
 
@@ -95,6 +97,7 @@ func skill():
 				var skill_instance = skill_prefab.instantiate()
 				#Tell the skill how much damage it does
 				skill_instance.damage = skill_damage
+				skill_instance.pushes_units = skill_pushes_units
 				find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
 				#Set skills location to be at the correct spot
 				skill_instance.global_position = location.global_position
@@ -141,6 +144,21 @@ func destroy_unit():
 		get_parent().is_empty = true
 	queue_free()
 
+func push(direction_pushed_from : String):
+	#CODE TO PUSH PLAYER
+	#Something like:
+	#If direction_pushed_from == up:
+	#check if the tile "down" is on, is_empty
+	#Each direction node will have to be set as a variable in this script
+	
+	#if the tile is empty, set this position to that tile
+	#if it is not, deal some sorta damage to this unit and the unit on that tile
+	
+	#Also check if bool "headquarter" is false on the push direction node
+	#If its set to true, we're next to the headquarter and cant be pushed that direction
+	pass
+
+
 func _on_skill_area_2d_area_entered(area: Area2D) -> void:
 	#Checking the area isnt a buff area
 	if(!area.is_in_group("buff_location")):
@@ -155,9 +173,7 @@ func _on_skill_area_2d_area_exited(area: Area2D) -> void:
 		#If the unit was in our range, remove it from our range
 		if(enemies_in_range.has(area.get_parent())):
 			enemies_in_range.erase(area.get_parent())
-			
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	#If the unit is in a buff location
+
 	if(area.is_in_group("buff_location")):
 		#Checks if the buff location belongs to an enemy
 		if((self.is_in_group("player") and area.get_parent().get_parent().is_in_group("enemy")) or (self.is_in_group("enemy") and area.get_parent().get_parent().is_in_group("player"))):
@@ -183,3 +199,18 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 			#We have left the area so stop the weakening from working
 			health -= area.get_parent().health_buff
 			skill_damage -= area.get_parent().damage_buff
+
+
+func _on_up_area_area_entered(area: Area2D) -> void:
+	push_area_entered(area.get_parent(), "up")
+func _on_right_area_area_entered(area: Area2D) -> void:
+	push_area_entered(area.get_parent(), "right")
+func _on_down_area_area_entered(area: Area2D) -> void:
+	push_area_entered(area.get_parent(), "down")
+func _on_left_area_area_entered(area: Area2D) -> void:
+	push_area_entered(area.get_parent(), "left")
+
+func push_area_entered(area, direction):
+	if(area.is_in_group("skill")):
+		if((self.is_in_group("player") and !area.belongs_to_player) or (self.is_in_group("enemy") and area.belongs_to_player)):
+			push(direction)

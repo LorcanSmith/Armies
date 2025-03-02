@@ -5,7 +5,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0kkya"]
 
-[node name="skill" type="Node2D"]
+[node name="skill" type="Node2D" groups=["skill"]]
 script = ExtResource("1_gybtf")
 
 [node name="Area2D" type="Area2D" parent="."]
