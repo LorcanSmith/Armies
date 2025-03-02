@@ -12,7 +12,7 @@ signal money_changed
 func _ready() -> void:
 	print("Money: $" + str(money))
 	emit_signal("money_changed", money)
-
+  
 #Called when we want to add or take away money
 func change_money(amount : int):
 	money -= amount

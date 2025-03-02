@@ -26,6 +26,8 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_accept"):
+		for grids in GridManager.get_children():
+			grids.save_current_grid()
 		swap_scenes()
 		
 		
@@ -35,10 +37,7 @@ func send_enemy_army() -> Array:
 func swap_scenes():
 	#reverses the value of in_combat boolean
 	in_combat = !in_combat
-	
 	current_scene.queue_free()
-	
-	print("in_combat = ", in_combat)
 	create_scene()
 	
 func create_scene():
@@ -62,10 +61,8 @@ func load_complete(element_loaded : String):
 	if(element_loaded == "scene"):
 		GridManager.generate_grids()
 	if(element_loaded == "grids"):
-		print(army)
 		if(in_combat):
 			CombatManager.setup_headquarters()
-			
 		
 ##USED TO REROLL THE SHOP, WILL EVENTUALLY BE DONE BY A BUTTON
 func _input(event):
@@ -77,6 +74,7 @@ func _input(event):
 	if Input.is_key_pressed(KEY_T):
 		if (CombatManager!= null):
 			CombatManager.battle_ticker()
+
 	if Input.is_key_pressed(KEY_X):
 		CombatManager.setup_headquarters()
 	if Input.is_key_pressed(KEY_D):

@@ -3,16 +3,15 @@
 [ext_resource type="Script" path="res://Scripts/Skills/skill.gd" id="1_gybtf"]
 [ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="2_foxvt"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xsytj"]
-radius = 17.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0kkya"]
 
-[node name="attack_skill_1" type="Node2D"]
+[node name="skill" type="Node2D"]
 script = ExtResource("1_gybtf")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_xsytj")
+shape = SubResource("RectangleShape2D_0kkya")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.155, 0.155)

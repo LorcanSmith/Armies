@@ -43,7 +43,7 @@ func load_units():
 						#Spawn in a unit. Reference the UnitDictionary to find out what unit to spawn
 						instance = dictionary_instance.unit_scenes[unit_IDs[width][height][0]].instantiate()
 						#Add the unit to either the player or the enemy group
-						instance.add_to_group(unit_IDs[width][height][1])
+						instance.add_to_group(unit_IDs[width][height][1], true)
 						#If the unit is an enemy. Make them face the opposite direction
 						if(instance.is_in_group("enemy")):
 							instance.scale.x = -instance.scale.x
