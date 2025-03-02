@@ -28,13 +28,32 @@ var enemies_in_range : Array = []
 #Keep track of if the unit has moved this turn
 var moved = false
 
+#Child node that contains all the locations the unit can move to
+var movement_locations : Array = []
+@export var move_distance : int = 1
 var tile_to_move_to : Node2D
 
+func _ready() -> void:
+	movement_locations = find_child("movement_locations").get_children()
+
+func find_movement_tile():
+	var moved_distance = 0
+	#The unit has already found a tile this turn
+	moved = true
+	while(moved_distance < move_distance):
+		if(movement_locations[0].movement_tile.is_empty):
+			tile_to_move_to = movement_locations[0].movement_tile
+			get_parent().is_empty = true
+			get_parent().units_on_tile.erase(self)
+		moved_distance += 1
+	var cm = find_parent("combat_manager")
+	cm.units_moved += 1
+	if(cm.units_moved >= cm.units_to_move.size()):
+		cm.move_units()
 #Moves the unit in a desired direction and distance
 func move():
 	if(enemies_in_range.size() == 0):
-		#The unit has moved this turn
-		moved = true
+		print("H")
 		#Set the parent to be the new tile
 		reparent(tile_to_move_to)
 		#Tell the new tile that this unit is now on it
@@ -62,7 +81,7 @@ func skill():
 					skill_instance.belongs_to_player = false
 	#If there is another unit on this tile then they will brawl
 	else:
-		#print(get_parent().units_on_tile.size())
+		print(get_parent().units_on_tile)
 		brawl()
 
 func brawl():

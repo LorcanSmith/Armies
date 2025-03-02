@@ -65,7 +65,12 @@ func battle_ticker():
 	#If the battle is over then go back to the shop
 	else:
 		game_manager.swap_scenes()
+
+var units_moved = 0
+var units_to_move = []
 func movement_phase():
+	units_to_move = []
+	units_moved = 0
 	#Makes sure we don't do two sets of movement
 	movement_next_phase = false
 	#Clears the player and enemy army
@@ -85,7 +90,6 @@ func movement_phase():
 	var y = 0
 	var grid_number = 0
 	
-	var units_to_move = []
 	while(grid_number < grids.size()):
 		x = 0
 		while(x < grids[grid_number].size()):
@@ -99,33 +103,18 @@ func movement_phase():
 					var unit = grids[grid_number][x][y].units_on_tile[0]
 					#If the unit hasn't already moved this turn
 					if(unit.moved == false):
+						unit.moved = true
 						#If its a player unit, move in a forward direction
 						if(grids[grid_number] == grid_reversed and unit.is_in_group("player")):
 							#Add this unit to the array as its still alive
-							player_army.append(unit)
-							#If the unit is not at the edge of the map
-							if(x > 0):
-								#Find the spot which we wish to move to
-								unit_space_to_move = grid_reversed[x-1][y] 
+							player_army.append(unit) 
 						#If its an enemy unit, move in a backwards direction
 						elif(grids[grid_number] == grid_forward and unit.is_in_group("enemy")):
 							#Add this unit to the array as its still alive
 							enemy_army.append(unit)
-							#If the unit is not at the edge of the map
-							if(x > 0):
-								#Find the spot which we wish to move to
-								unit_space_to_move = grid_forward[x-1][y] 
-						#If the grid in front of the unit is empty, then we can move there
-						if(unit_space_to_move and unit_space_to_move.is_empty):
-							#Tell the current tile the unit is on that the unit is moving off it
-							unit.get_parent().units_on_tile = []
-							#Set the current tile to be empty so other units can move here
-							unit.get_parent().is_empty = true
-							#move the unit
-							unit.tile_to_move_to = unit_space_to_move
-							units_to_move.append(unit)
+						units_to_move.append(unit)
 				#If there are two units then they are brawling and shouldnt move
-				if(grids[grid_number][x][y].units_on_tile.size() == 2):
+				elif(grids[grid_number][x][y].units_on_tile.size() == 2):
 					#Get each unit on the tile
 					for unit in grids[grid_number][x][y].units_on_tile:
 						if(unit.is_in_group("player")):
@@ -133,8 +122,11 @@ func movement_phase():
 						else:
 							enemy_army.append(unit)
 				y += 1
-			x += 1 
+			x += 1
 		grid_number += 1
+		for u in units_to_move:
+			u.find_movement_tile()
+func move_units():
 	for unit in units_to_move:
 		unit.move()
 func combat_phase():
