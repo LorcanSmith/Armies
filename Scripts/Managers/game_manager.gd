@@ -71,6 +71,11 @@ func _input(event):
 			grids.save_current_grid()
 	if Input.is_key_pressed(KEY_L):
 		GridManager.load_layout("army")
+	if Input.is_key_pressed(KEY_P):
+		if (CombatManager!= null):
+			CombatManager.ticker_paused = !CombatManager.ticker_paused
+			if !CombatManager.ticker_paused:
+				CombatManager.auto_tick()
 	if Input.is_key_pressed(KEY_T):
 		if (CombatManager!= null):
 			CombatManager.battle_ticker()

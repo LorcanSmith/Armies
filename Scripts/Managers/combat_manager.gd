@@ -29,6 +29,8 @@ func _ready() -> void:
 	game_manager = find_parent("game_manager")
 	player_headquarter = self.find_child("player_headquarter")
 	enemy_headquarter = self.find_child("enemy_headquarter")
+	auto_tick()
+
 func setup_headquarters():
 	#Gets the current grid so we can find out its size
 	var grid = game_manager.GridManager.get_grid()
@@ -43,12 +45,17 @@ func setup_headquarters():
 	#Sets the player headquarter to be to the right of the map
 	enemy_headquarter.global_position = Vector2(grid_width[0].global_position.x + offset, grid_height_center)
 
-func _process(delta):
-	if !ticker_paused:
+#func _process(delta):
+	#if !ticker_paused:
+		#battle_ticker()
+		#ticker_paused = true
+		#await get_tree().create_timer(tick_delay).timeout
+		#ticker_paused = false
+		
+func auto_tick():
+	while !ticker_paused:
 		battle_ticker()
-		ticker_paused = true
 		await get_tree().create_timer(tick_delay).timeout
-		ticker_paused = false
 
 func battle_ticker():
 	#If the battle isn't over, keep the units fighting
