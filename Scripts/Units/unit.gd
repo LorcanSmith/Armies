@@ -37,6 +37,7 @@ func _ready() -> void:
 	movement_locations = find_child("movement_locations").get_children()
 
 func find_movement_tile():
+	print(self.name)
 	var moved_distance = 0
 	#The unit has already found a tile this turn
 	moved = true
@@ -50,6 +51,7 @@ func find_movement_tile():
 	var cm = find_parent("combat_manager")
 	cm.units_moved += 1
 	if(cm.units_moved >= cm.units_to_move.size()):
+		print(get_parent().is_empty)
 		cm.move_units()
 		cm.z = 0
 	else:

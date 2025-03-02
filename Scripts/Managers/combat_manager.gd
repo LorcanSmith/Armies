@@ -100,17 +100,24 @@ func movement_phase():
 				if(grids[grid_number][x][y].units_on_tile.size() == 1):
 					#The unit on the grid
 					var unit = grids[grid_number][x][y].units_on_tile[0]
-					#If the unit hasn't already moved this turn
-					if(unit.moved == false):
-						units_to_move.append(unit)
-						unit.moved = true
 					#If its a player unit, move in a forward direction
 					if(grids[grid_number] == grid_reversed and unit.is_in_group("player")):
+						#If the unit hasn't already moved this turn
+						if(unit.moved == false):
+							print("ADDING UNIT: ", unit)
+							units_to_move.append(unit)
+							unit.moved = true
+						
 						#Add this unit to the array as its still alive
 						if(!player_army.has(unit)):
 							player_army.append(unit) 
 					#If its an enemy unit, move in a backwards direction
 					elif(grids[grid_number] == grid_forward and unit.is_in_group("enemy")):
+						#If the unit hasn't already moved this turn
+						if(unit.moved == false):
+							print("ADDING UNIT: ", unit)
+							units_to_move.append(unit)
+							unit.moved = true
 						#Add this unit to the array as its still alive
 						if(!enemy_army.has(unit)):
 							enemy_army.append(unit)
@@ -132,13 +139,13 @@ func find_units_movement_tile():
 	units_to_move[z].find_movement_tile()
 
 func move_units():
+	print("UNITS TO MOVE: ", units_to_move)
 	var u = 0
 	while u < units_to_move.size():
 		units_to_move[u].move()
 		u += 1
 	auto_tick()
 func combat_phase():
-	print(player_army)
 	#Combat is this turn so set the movement phase to be next turn
 	movement_next_phase = true
 	#Tell each unit in the enemy army to do their skill
