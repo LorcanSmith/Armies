@@ -47,6 +47,7 @@ func load_units():
 						#If the unit is an enemy. Make them face the opposite direction
 						if(instance.is_in_group("enemy")):
 							instance.scale.x = -instance.scale.x
+							#instance.find_child("Label").scale.x = -instance.find_child("Label").scale.x
 					else:
 						#Spawn an item. Reference the UnitDictionary to find out what item to spawn
 						instance = dictionary_instance.item_scenes[unit_IDs[width][height][0]].instantiate()
