@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8tc75l58h1a0"]
+
+[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_f6bog"]
+[ext_resource type="Texture2D" uid="uid://df5ttnq4lmysr" path="res://Sprites/Units/Wizard/tornado wizard.png" id="2_8ifp2"]
+
+[node name="wizard_unit" instance=ExtResource("1_f6bog")]
+modulate = Color(1, 1, 1, 1)
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_8ifp2")
