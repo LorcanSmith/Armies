@@ -14,30 +14,32 @@ size = Vector2(122, 127)
 script = ExtResource("1_0fc1a")
 
 [node name="ShopItemGenerator" type="Node2D" parent="."]
+position = Vector2(116, 250)
 script = ExtResource("2_v5hhx")
 
 [node name="TestLocation1" type="Node2D" parent="ShopItemGenerator"]
-position = Vector2(136, 494)
+position = Vector2(77, 497)
 
 [node name="TestLocation2" type="Node2D" parent="ShopItemGenerator"]
-position = Vector2(337, 486)
+position = Vector2(278, 496)
 
 [node name="TestLocation3" type="Node2D" parent="ShopItemGenerator"]
-position = Vector2(555, 469)
+position = Vector2(473, 495)
 
 [node name="TestLocation4" type="Node2D" parent="ShopItemGenerator"]
-position = Vector2(739, 504)
+position = Vector2(658, 494)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 76.0
-offset_top = 360.0
-offset_right = 1084.0
-offset_bottom = 457.0
+offset_left = 75.0
+offset_top = 623.0
+offset_right = 1083.0
+offset_bottom = 720.0
 text = "These are the shop locations where the items appear. The red is for selling. Check the console to see how much money you have. Pressing \"R\" rerolls the shop. No visual cue of this happening but check console"
+metadata/_edit_use_anchors_ = true
 
 [node name="SellLocation" type="Node2D" parent="."]
 modulate = Color(0.959821, 0, 0.391569, 1)
-position = Vector2(920, 475)
+position = Vector2(1036, 744)
 
 [node name="Area2D" type="Area2D" parent="SellLocation" groups=["sell_location"]]
 
