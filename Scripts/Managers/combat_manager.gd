@@ -15,13 +15,22 @@ var player_army : Array = []
 #army belonging to the opponent
 var enemy_army : Array = []
 
+#determines whether the ticks are automatic or called manually
+@export var ticker_paused : bool = false
+
+#determines the length between ticks while the ticker is unpaused
+@export var tick_delay : float = .2
+
 var player_headquarter : Node2D
 var enemy_headquarter : Node2D
+
 
 func _ready() -> void:
 	game_manager = find_parent("game_manager")
 	player_headquarter = self.find_child("player_headquarter")
 	enemy_headquarter = self.find_child("enemy_headquarter")
+	auto_tick()
+
 func setup_headquarters():
 	#Gets the current grid so we can find out its size
 	var grid = game_manager.GridManager.get_grid()
@@ -36,6 +45,12 @@ func setup_headquarters():
 	#Sets the player headquarter to be to the right of the map
 	enemy_headquarter.global_position = Vector2(grid_width[0].global_position.x + offset, grid_height_center)
 
+# called from ready() or from game_manager, automatically cycles through battle_ticker()
+func auto_tick():
+	while !ticker_paused:
+		battle_ticker()
+#		causes the function to pause, allows an opening for game_manager to pause if necessary
+		await get_tree().create_timer(tick_delay).timeout
 
 func battle_ticker():
 	#If the battle isn't over, keep the units fighting
