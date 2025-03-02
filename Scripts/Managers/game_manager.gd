@@ -21,7 +21,7 @@ var in_combat : bool = false
 
 func _ready():
 	in_combat = false
-	status_bar = get_node("StatusBar")
+	status_bar = get_node("StatusBarLayer/StatusBar")
 	create_scene()
 
 func _process(_delta):
