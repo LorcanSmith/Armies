@@ -148,7 +148,7 @@ func push(direction_pushed_from : String):
 	#CODE TO PUSH PLAYER
 	#Something like:
 	#If direction_pushed_from == up:
-	#check if the tile "down" is on, is_empty
+	#check if the tile "down" is_empty
 	#Each direction node will have to be set as a variable in this script
 	
 	#if the tile is empty, set this position to that tile

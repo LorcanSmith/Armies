@@ -13,7 +13,7 @@ health = 16
 skill_prefab = ExtResource("2_0o1nn")
 skill_damage = 8
 
-[node name="Sprite2D" parent="." index="3"]
+[node name="Sprite2D" parent="." index="4"]
 texture_filter = 1
 texture = ExtResource("3_lqsp5")
 
