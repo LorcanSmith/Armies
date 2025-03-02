@@ -115,7 +115,6 @@ func movement_phase():
 					elif(grids[grid_number] == grid_forward and unit.is_in_group("enemy")):
 						#If the unit hasn't already moved this turn
 						if(unit.moved == false):
-							print("ADDING UNIT: ", unit)
 							units_to_move.append(unit)
 							unit.moved = true
 						#Add this unit to the array as its still alive
@@ -134,12 +133,12 @@ func movement_phase():
 		grid_number += 1
 	find_units_movement_tile()
 
-var z = 0	
+#Finds a tile for each unit, looped from the unit once it has found a tile
+var unit_to_find_tile = 0	
 func find_units_movement_tile():
-	units_to_move[z].find_movement_tile()
-
+	units_to_move[unit_to_find_tile].find_movement_tile()
+	
 func move_units():
-	print("UNITS TO MOVE: ", units_to_move)
 	var u = 0
 	while u < units_to_move.size():
 		units_to_move[u].move()

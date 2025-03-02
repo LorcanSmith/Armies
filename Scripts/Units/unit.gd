@@ -37,27 +37,34 @@ func _ready() -> void:
 	movement_locations = find_child("movement_locations").get_children()
 
 func find_movement_tile():
-	print(self.name)
 	var moved_distance = 0
 	#The unit has already found a tile this turn
 	moved = true
+	#Moves the unit forward until it has moved its maximum distance
 	while(moved_distance < move_distance):
+		#If the tile it is trying to move to is empty
 		if(movement_locations[0].movement_tile.is_empty):
+			#Sets the tile it wishes to move to
 			tile_to_move_to = movement_locations[0].movement_tile
-			print("SETTING")
+			#Tells the tile we're currently on to be empty
 			get_parent().is_empty = true
 			get_parent().units_on_tile.erase(self)
+		#We have moved one unit
 		moved_distance += 1
-	var cm = find_parent("combat_manager")
-	cm.units_moved += 1
-	if(cm.units_moved >= cm.units_to_move.size()):
-		print(get_parent().is_empty)
-		cm.move_units()
-		cm.z = 0
+	#combat manager
+	var combat_manager = find_parent("combat_manager")
+	#Tell the combat manager that a unit has finished its "find tile" turn
+	combat_manager.units_moved += 1
+	#If the combat manager has no more units to find tiles for, then tell the manager to move the units
+	if(combat_manager.units_moved >= combat_manager.units_to_move.size()):
+		combat_manager.move_units()
+		#Reset the counter for next time for which unit has to find a tile
+		combat_manager.unit_to_find_tile = 0
+	#There are still units to find tiles for
 	else:
-		print(get_parent().is_empty)
-		cm.z += 1
-		cm.find_units_movement_tile()
+		#Tell the combat manager to find a tile for the next unit
+		combat_manager.unit_to_find_tile += 1
+		combat_manager.find_units_movement_tile()
 #Moves the unit in a desired direction and distance
 func move():
 	if(enemies_in_range.size() == 0):
