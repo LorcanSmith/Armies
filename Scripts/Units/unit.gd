@@ -32,27 +32,60 @@ var enemies_in_range : Array = []
 #Keep track of if the unit has moved this turn
 var moved = false
 
+#Child node that contains all the locations the unit can move to
+var movement_locations : Array = []
+@export var move_distance : int = 1
 var tile_to_move_to : Node2D
 
-func _ready():
-	if self.is_in_group("enemy"):
+func _ready() -> void:
+	movement_locations = find_child("movement_locations").get_children()
+  if self.is_in_group("enemy"):
 		$Label.modulate = Color(1, 0, 0, 1)
 		$Label.position.y = -75
 	update_label()
 
+func find_movement_tile():
+	var moved_distance = 0
+	#The unit has already found a tile this turn
+	moved = true
+	#Moves the unit forward until it has moved its maximum distance
+	while(moved_distance < move_distance):
+		#If the tile it is trying to move to is empty
+		if(movement_locations[0].movement_tile.is_empty):
+			#Sets the tile it wishes to move to
+			tile_to_move_to = movement_locations[0].movement_tile
+			#Tells the tile we're currently on to be empty
+			get_parent().is_empty = true
+			get_parent().units_on_tile.erase(self)
+		#We have moved one unit
+		moved_distance += 1
+	#combat manager
+	var combat_manager = find_parent("combat_manager")
+	#Tell the combat manager that a unit has finished its "find tile" turn
+	combat_manager.units_moved += 1
+	#If the combat manager has no more units to find tiles for, then tell the manager to move the units
+	if(combat_manager.units_moved >= combat_manager.units_to_move.size()):
+		combat_manager.move_units()
+		#Reset the counter for next time for which unit has to find a tile
+		combat_manager.unit_to_find_tile = 0
+	#There are still units to find tiles for
+	else:
+		#Tell the combat manager to find a tile for the next unit
+		combat_manager.unit_to_find_tile += 1
+		combat_manager.find_units_movement_tile()
+
 #Moves the unit in a desired direction and distance
 func move():
 	if(enemies_in_range.size() == 0):
-		#The unit has moved this turn
-		moved = true
-		#Set the parent to be the new tile
-		reparent(tile_to_move_to)
-		#Tell the new tile that this unit is now on it
-		tile_to_move_to.unit_placed_on(self)
-		#Set the units position to the new tile (units' parent)
-		self.position = Vector2(0,0)
-func skill():
+		if(tile_to_move_to != null):
+			#Set the parent to be the new tile
+			reparent(tile_to_move_to)
+			#Tell the new tile that this unit is now on it
+			tile_to_move_to.unit_placed_on(self)
+			#Set the units position to the new tile (units' parent)
+			self.position = Vector2(0,0)
 	moved = false
+func skill():
 	#If this unit is the only unit on the tile then they can do their skill
 	if(get_parent().units_on_tile.size() == 1):
 		#If there is at least one enemy within the units range (in a skill location)
@@ -72,7 +105,6 @@ func skill():
 					skill_instance.belongs_to_player = false
 	#If there is another unit on this tile then they will brawl
 	else:
-		#print(get_parent().units_on_tile.size())
 		brawl()
 
 func brawl():

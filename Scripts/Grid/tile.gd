@@ -7,4 +7,5 @@ var units_on_tile : Array = []
 
 func unit_placed_on(unit):
 	is_empty = false
-	units_on_tile.append(unit)
+	if(!units_on_tile.has(unit)):
+		units_on_tile.append(unit)
