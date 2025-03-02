@@ -58,7 +58,7 @@ func _input(event):
 				if(self.get_parent().is_in_group("tile")):
 					self.get_parent().is_empty = true
 					#Tell the tile that it no longer needs to keep track of the current unit
-					self.get_parent().units_on_tile[0] = null
+					self.get_parent().units_on_tile.clear()
 			#If the mouse button is lifted up the item should no longer follow the mouse
 			elif(!event.pressed):
 				follow_mouse = false
