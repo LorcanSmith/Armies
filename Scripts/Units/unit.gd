@@ -154,7 +154,7 @@ func push(direction_pushed_from : String):
 	#if the tile is empty, set this position to that tile
 	#if it is not, deal some sorta damage to this unit and the unit on that tile
 	
-	#Also check if bool "headquarter" is false on the push direction node
+	#Also check if bool "inside_headquarter" is false on the push direction node
 	#If its set to true, we're next to the headquarter and cant be pushed that direction
 	pass
 
@@ -200,7 +200,7 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 			health -= area.get_parent().health_buff
 			skill_damage -= area.get_parent().damage_buff
 
-
+#Called when something enters one of the "push location" nodes
 func _on_up_area_area_entered(area: Area2D) -> void:
 	push_area_entered(area.get_parent(), "up")
 func _on_right_area_area_entered(area: Area2D) -> void:
@@ -211,6 +211,11 @@ func _on_left_area_area_entered(area: Area2D) -> void:
 	push_area_entered(area.get_parent(), "left")
 
 func push_area_entered(area, direction):
+	#If the area is a skill
 	if(area.is_in_group("skill")):
-		if((self.is_in_group("player") and !area.belongs_to_player) or (self.is_in_group("enemy") and area.belongs_to_player)):
-			push(direction)
+		#If that skill pushes units
+		if(area.pushes_units):
+			#If the skill belongs to an enemy
+			if((self.is_in_group("player") and !area.belongs_to_player) or (self.is_in_group("enemy") and area.belongs_to_player)):
+				#Tell the unit to push, from the direction the skill happend
+				push(direction)
