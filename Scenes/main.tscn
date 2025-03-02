@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://brgi4h0spiup2"]
+[gd_scene load_steps=4 format=3 uid="uid://brgi4h0spiup2"]
 
 [ext_resource type="Script" path="res://Scripts/Managers/game_manager.gd" id="1_y45oy"]
 [ext_resource type="Script" path="res://Scripts/DEBUGGER_script.gd" id="2_pa0fo"]
+[ext_resource type="PackedScene" uid="uid://cdtulbdqtnexg" path="res://Prefabs/Status/status_bar.tscn" id="3_x7ng8"]
 
 [node name="game_manager" type="Node2D"]
 script = ExtResource("1_y45oy")
@@ -15,5 +16,17 @@ script = ExtResource("2_pa0fo")
 offset_right = 44.0
 offset_bottom = 24.0
 text = "Place Enemy"
+
+[node name="StatusBarLayer" type="CanvasLayer" parent="."]
+
+[node name="StatusBar" parent="StatusBarLayer" instance=ExtResource("3_x7ng8")]
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -35.0
+offset_right = 5.0
+offset_bottom = -35.0
+grow_vertical = 0
 
 [connection signal="toggled" from="DEBUGGER/CanvasLayer/place_enemy_button" to="DEBUGGER" method="_on_place_enemy_button_toggled"]

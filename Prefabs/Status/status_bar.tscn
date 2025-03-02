@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdtulbdqtnexg"]
+
+[ext_resource type="Script" path="res://Scripts/Status/status_bar.gd" id="1_6o2rf"]
+[ext_resource type="Texture2D" uid="uid://cnoi5c3xrloj3" path="res://Sprites/UI/dollar_sign.png" id="1_dqyfn"]
+
+[node name="StatusBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6o2rf")
+
+[node name="MainContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 5.0
+offset_bottom = 23.0
+
+[node name="MoneyContainer" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MainContainer/MoneyContainer"]
+layout_mode = 2
+texture = ExtResource("1_dqyfn")
+
+[node name="Label" type="Label" parent="MainContainer/MoneyContainer"]
+layout_mode = 2
