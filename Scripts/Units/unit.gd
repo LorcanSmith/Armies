@@ -43,25 +43,33 @@ func find_movement_tile():
 	while(moved_distance < move_distance):
 		if(movement_locations[0].movement_tile.is_empty):
 			tile_to_move_to = movement_locations[0].movement_tile
+			
 			get_parent().is_empty = true
+			print("P",get_parent().is_empty)
 			get_parent().units_on_tile.erase(self)
+		else:
+			print(get_parent().units_on_tile)
 		moved_distance += 1
 	var cm = find_parent("combat_manager")
 	cm.units_moved += 1
 	if(cm.units_moved >= cm.units_to_move.size()):
 		cm.move_units()
+		cm.z = 0
+	else:
+		cm.z += 1
+		cm.find_units_movement_tile()
 #Moves the unit in a desired direction and distance
 func move():
 	if(enemies_in_range.size() == 0):
-		print("H")
-		#Set the parent to be the new tile
-		reparent(tile_to_move_to)
-		#Tell the new tile that this unit is now on it
-		tile_to_move_to.unit_placed_on(self)
-		#Set the units position to the new tile (units' parent)
-		self.position = Vector2(0,0)
-func skill():
+		if(tile_to_move_to != null):
+			#Set the parent to be the new tile
+			reparent(tile_to_move_to)
+			#Tell the new tile that this unit is now on it
+			tile_to_move_to.unit_placed_on(self)
+			#Set the units position to the new tile (units' parent)
+			self.position = Vector2(0,0)
 	moved = false
+func skill():
 	#If this unit is the only unit on the tile then they can do their skill
 	if(get_parent().units_on_tile.size() == 1):
 		#If there is at least one enemy within the units range (in a skill location)

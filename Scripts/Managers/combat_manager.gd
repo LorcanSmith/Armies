@@ -19,7 +19,7 @@ var enemy_army : Array = []
 @export var ticker_paused : bool = false
 
 #determines the length between ticks while the ticker is unpaused
-@export var tick_delay : float = .2
+@export var tick_delay : float = 0.3
 
 var player_headquarter : Node2D
 var enemy_headquarter : Node2D
@@ -47,11 +47,10 @@ func setup_headquarters():
 
 # called from ready() or from game_manager, automatically cycles through battle_ticker()
 func auto_tick():
-	while !ticker_paused:
-		battle_ticker()
-#		causes the function to pause, allows an opening for game_manager to pause if necessary
-		await get_tree().create_timer(tick_delay).timeout
-
+##		causes the function to pause, allows an opening for game_manager to pause if necessary
+	await get_tree().create_timer(tick_delay).timeout
+	battle_ticker()
+	
 func battle_ticker():
 	#If the battle isn't over, keep the units fighting
 	if(!battle_over):
@@ -103,16 +102,18 @@ func movement_phase():
 					var unit = grids[grid_number][x][y].units_on_tile[0]
 					#If the unit hasn't already moved this turn
 					if(unit.moved == false):
-						unit.moved = true
-						#If its a player unit, move in a forward direction
-						if(grids[grid_number] == grid_reversed and unit.is_in_group("player")):
-							#Add this unit to the array as its still alive
-							player_army.append(unit) 
-						#If its an enemy unit, move in a backwards direction
-						elif(grids[grid_number] == grid_forward and unit.is_in_group("enemy")):
-							#Add this unit to the array as its still alive
-							enemy_army.append(unit)
 						units_to_move.append(unit)
+						unit.moved = true
+					#If its a player unit, move in a forward direction
+					if(grids[grid_number] == grid_reversed and unit.is_in_group("player")):
+						#Add this unit to the array as its still alive
+						if(!player_army.has(unit)):
+							player_army.append(unit) 
+					#If its an enemy unit, move in a backwards direction
+					elif(grids[grid_number] == grid_forward and unit.is_in_group("enemy")):
+						#Add this unit to the array as its still alive
+						if(!enemy_army.has(unit)):
+							enemy_army.append(unit)
 				#If there are two units then they are brawling and shouldnt move
 				elif(grids[grid_number][x][y].units_on_tile.size() == 2):
 					#Get each unit on the tile
@@ -124,12 +125,21 @@ func movement_phase():
 				y += 1
 			x += 1
 		grid_number += 1
-		for u in units_to_move:
-			u.find_movement_tile()
+	find_units_movement_tile()
+
+var z = 0	
+func find_units_movement_tile():
+	units_to_move[z].find_movement_tile()
+
 func move_units():
-	for unit in units_to_move:
-		unit.move()
+	print("move units")
+	var u = 0
+	while u < units_to_move.size():
+		units_to_move[u].move()
+		u += 1
+	auto_tick()
 func combat_phase():
+	print(player_army)
 	#Combat is this turn so set the movement phase to be next turn
 	movement_next_phase = true
 	#Tell each unit in the enemy army to do their skill
@@ -157,6 +167,7 @@ func no_skills_left():
 	while unit in range(enemy_army.size()):
 		enemy_army[unit].apply_damage()
 		unit += 1
+	auto_tick()
 #Called by a headquarter when it is destroyed
 func headquarter_destroyed(enemy_base_destroyed : bool):
 	#If it was the enemy base that got destroyed then the player wins
