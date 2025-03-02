@@ -20,3 +20,10 @@ scale = Vector2(1, 2.5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-2, 0.5)
 shape = SubResource("RectangleShape2D_awxjh")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -34.0
+offset_top = -363.0
+offset_right = 17.0
+offset_bottom = -340.0
+theme_override_font_sizes/font_size = 20
