@@ -8,6 +8,10 @@ extends Node
 
 #Damage done when brawling
 @export var brawl_damage : int
+
+#Units max health 
+@export var max_health : int
+
 #Units health
 @export var health : int
 #How much damage will be applied to this unit, this turn
@@ -35,6 +39,10 @@ var tile_to_move_to : Node2D
 
 func _ready() -> void:
 	movement_locations = find_child("movement_locations").get_children()
+  if self.is_in_group("enemy"):
+		$Label.modulate = Color(1, 0, 0, 1)
+		$Label.position.y = -75
+	update_label()
 
 func find_movement_tile():
 	var moved_distance = 0
@@ -65,6 +73,7 @@ func find_movement_tile():
 		#Tell the combat manager to find a tile for the next unit
 		combat_manager.unit_to_find_tile += 1
 		combat_manager.find_units_movement_tile()
+
 #Moves the unit in a desired direction and distance
 func move():
 	if(enemies_in_range.size() == 0):
@@ -106,6 +115,8 @@ func brawl():
 		if(unit != self):
 			unit.hurt(brawl_damage)
 
+func update_label():
+	$Label.text = str(health) + "/" + str(max_health)
 
 #Does damage to unit
 func hurt(amount : int):
@@ -117,6 +128,7 @@ func heal(amount : int):
 
 func apply_damage():
 	health -= damage_done_to_self
+	update_label()
 	if(health <= 0):
 		destroy_unit()
 	damage_done_to_self = 0

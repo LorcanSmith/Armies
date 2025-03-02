@@ -7,6 +7,7 @@
 [node name="wizard_unit" instance=ExtResource("1_f6bog")]
 modulate = Color(1, 1, 1, 1)
 brawl_damage = 2
+max_health = 12
 health = 12
 skill_prefab = ExtResource("2_q76gf")
 skill_damage = 4

@@ -69,6 +69,15 @@ texture = ExtResource("2_ktl1k")
 position = Vector2(-0.5, -2)
 shape = SubResource("RectangleShape2D_xy1do")
 
+[node name="Label" type="Label" parent="."]
+offset_left = -25.0
+offset_top = 19.0
+offset_right = 25.0
+offset_bottom = 69.0
+pivot_offset = Vector2(25, 25)
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="area_entered" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
 [connection signal="area_entered" from="movement_locations/move_spot/Area2D" to="movement_locations/move_spot" method="_on_area_2d_area_entered"]
