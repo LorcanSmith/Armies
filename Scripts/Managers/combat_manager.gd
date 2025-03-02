@@ -45,16 +45,11 @@ func setup_headquarters():
 	#Sets the player headquarter to be to the right of the map
 	enemy_headquarter.global_position = Vector2(grid_width[0].global_position.x + offset, grid_height_center)
 
-#func _process(delta):
-	#if !ticker_paused:
-		#battle_ticker()
-		#ticker_paused = true
-		#await get_tree().create_timer(tick_delay).timeout
-		#ticker_paused = false
-		
+# called from ready() or from game_manager, automatically cycles through battle_ticker()
 func auto_tick():
 	while !ticker_paused:
 		battle_ticker()
+#		causes the function to pause, allows an opening for game_manager to pause if necessary
 		await get_tree().create_timer(tick_delay).timeout
 
 func battle_ticker():
