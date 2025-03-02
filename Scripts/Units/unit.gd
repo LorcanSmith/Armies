@@ -43,7 +43,7 @@ func find_movement_tile():
 	while(moved_distance < move_distance):
 		if(movement_locations[0].movement_tile.is_empty):
 			tile_to_move_to = movement_locations[0].movement_tile
-			
+			print("SETTING")
 			get_parent().is_empty = true
 			get_parent().units_on_tile.erase(self)
 		moved_distance += 1
@@ -53,6 +53,7 @@ func find_movement_tile():
 		cm.move_units()
 		cm.z = 0
 	else:
+		print(get_parent().is_empty)
 		cm.z += 1
 		cm.find_units_movement_tile()
 #Moves the unit in a desired direction and distance
