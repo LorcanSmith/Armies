@@ -39,7 +39,7 @@ var tile_to_move_to : Node2D
 
 func _ready() -> void:
 	movement_locations = find_child("movement_locations").get_children()
-  if self.is_in_group("enemy"):
+	if self.is_in_group("enemy"):
 		$Label.modulate = Color(1, 0, 0, 1)
 		$Label.position.y = -75
 	update_label()

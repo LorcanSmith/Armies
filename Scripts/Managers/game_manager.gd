@@ -76,7 +76,7 @@ func _input(event):
 		if (CombatManager!= null):
 			CombatManager.ticker_paused = !CombatManager.ticker_paused
 			if !CombatManager.ticker_paused:
-				CombatManager.auto_tick()
+				CombatManager.battle_ticker()
 	if Input.is_key_pressed(KEY_T):
 		if (CombatManager!= null):
 			CombatManager.battle_ticker()
