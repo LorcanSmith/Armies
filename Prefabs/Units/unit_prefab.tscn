@@ -55,6 +55,12 @@ shape = SubResource("CircleShape2D_11hi7")
 position = Vector2(-0.5, -2)
 shape = SubResource("RectangleShape2D_xy1do")
 
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = 37.0
+offset_right = 20.0
+offset_bottom = 60.0
+
 [connection signal="area_entered" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

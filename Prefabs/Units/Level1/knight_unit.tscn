@@ -8,6 +8,7 @@
 modulate = Color(1, 1, 1, 1)
 unit_ID = 0
 brawl_damage = 4
+max_health = 16
 health = 16
 skill_prefab = ExtResource("2_0o1nn")
 skill_damage = 8
