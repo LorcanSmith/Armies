@@ -115,7 +115,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	#If the unit is in a buff location
 	if(area.is_in_group("buff_location")):
 		#Checks if the buff location belongs to an enemy
-		if((self.is_in_group("player") and area.get_parent().get_parent().is_in_group("enemey")) or (self.is_in_group("enemy") and area.get_parent().get_parent().is_in_group("player"))):
+		if((self.is_in_group("player") and area.get_parent().get_parent().is_in_group("enemy")) or (self.is_in_group("enemy") and area.get_parent().get_parent().is_in_group("player"))):
 			#We have entered the area so apply weakening
 			health -= area.get_parent().health_weaken
 			skill_damage -= area.get_parent().damage_weaken
@@ -129,7 +129,7 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	#If the unit is in a buff location
 	if(area.is_in_group("buff_location")):
 		#Checks if the buff location belongs to an enemy
-		if((self.is_in_group("player") and area.get_parent().is_in_group("enemey")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("player"))):
+		if((self.is_in_group("player") and area.get_parent().is_in_group("enemy")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("player"))):
 			#We have left the area so stop the weakening from working
 			health += area.get_parent().health_weaken
 			skill_damage += area.get_parent().damage_weaken
