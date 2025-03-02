@@ -132,7 +132,6 @@ func find_units_movement_tile():
 	units_to_move[z].find_movement_tile()
 
 func move_units():
-	print("move units")
 	var u = 0
 	while u < units_to_move.size():
 		units_to_move[u].move()

@@ -45,10 +45,7 @@ func find_movement_tile():
 			tile_to_move_to = movement_locations[0].movement_tile
 			
 			get_parent().is_empty = true
-			print("P",get_parent().is_empty)
 			get_parent().units_on_tile.erase(self)
-		else:
-			print(get_parent().units_on_tile)
 		moved_distance += 1
 	var cm = find_parent("combat_manager")
 	cm.units_moved += 1
@@ -89,7 +86,6 @@ func skill():
 					skill_instance.belongs_to_player = false
 	#If there is another unit on this tile then they will brawl
 	else:
-		print(get_parent().units_on_tile)
 		brawl()
 
 func brawl():
