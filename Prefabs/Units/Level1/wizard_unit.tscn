@@ -1,17 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7bn26lst8qrl"]
+[gd_scene load_steps=5 format=3 uid="uid://c7bn26lst8qrl"]
 
 [ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_f6bog"]
+[ext_resource type="PackedScene" uid="uid://by8ndrehnsmpn" path="res://Prefabs/Skills/basic_skill.tscn" id="2_6enja"]
 [ext_resource type="Texture2D" uid="uid://df5ttnq4lmysr" path="res://Sprites/Units/Wizard/tornado wizard.png" id="2_8ifp2"]
-[ext_resource type="PackedScene" path="res://Prefabs/Skills/push_skill.tscn" id="2_q76gf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
 [node name="wizard_unit" instance=ExtResource("1_f6bog")]
 modulate = Color(1, 1, 1, 1)
-brawl_damage = 2
 max_health = 12
-health = 12
-skill_prefab = ExtResource("2_q76gf")
-skill_damage = 4
+spawn_skill_on_self = true
+brawl_damage = 2
+skill_pushes_units = true
+skill_prefab = ExtResource("2_6enja")
+
+[node name="buffs" parent="." index="0"]
+visible = false
+
+[node name="location" parent="skill_locations" index="0"]
+position = Vector2(128, 0)
+
+[node name="location2" type="Node2D" parent="skill_locations" index="1"]
+position = Vector2(1, -129)
+
+[node name="skill_area2D" type="Area2D" parent="skill_locations/location2" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location2/skill_area2D" index="0"]
+shape = SubResource("CircleShape2D_11hi7")
+
+[node name="location3" type="Node2D" parent="skill_locations" index="2"]
+position = Vector2(1, 127)
+
+[node name="skill_area2D" type="Area2D" parent="skill_locations/location3" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location3/skill_area2D" index="0"]
+shape = SubResource("CircleShape2D_11hi7")
+
+[node name="movement_locations" parent="." index="2"]
+visible = false
+
+[node name="push_locations" parent="." index="3"]
+visible = false
 
 [node name="Sprite2D" parent="." index="4"]
 texture_filter = 3
 texture = ExtResource("2_8ifp2")
+
+[connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
+[connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
+[connection signal="area_entered" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
+[connection signal="area_exited" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
