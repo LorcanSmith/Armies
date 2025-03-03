@@ -15,6 +15,7 @@ z_as_relative = false
 script = ExtResource("1_mdv0s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("2_wbsm8")
 
 [node name="Area2D - Tile Collsion" type="Area2D" parent="."]
@@ -28,6 +29,13 @@ shape = SubResource("RectangleShape2D_a4oje")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - Mouse Collision"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_8fj8s")
+
+[node name="Level" type="Label" parent="."]
+offset_left = -25.0
+offset_top = 39.0
+offset_right = 29.0
+offset_bottom = 62.0
+text = "Level 0"
 
 [connection signal="area_entered" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_exited"]

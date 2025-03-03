@@ -165,7 +165,7 @@ func combat_phase():
 	find_child("skill_holder").waiting_for_skills = true
 
 #Called by the skill_holder child when no skills remain, meaning we can proceed with combat
-func no_skills_left():	
+func no_skills_left():
 	#Tells the units to take damage
 	var unit = 0
 	while unit in range(player_army.size()):

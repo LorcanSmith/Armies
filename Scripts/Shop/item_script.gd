@@ -73,6 +73,7 @@ func _input(event):
 func _process(delta: float) -> void:
 	#If the player has clicked on an item in the shop
 	if(follow_mouse):
+		print(unit_currently_over_can_upgrade)
 		#Follow the mouse
 		self.global_position = get_global_mouse_position()
 	else:
@@ -86,7 +87,8 @@ func _process(delta: float) -> void:
 			unit_currently_over_can_upgrade = false
 		#If the tile isnt empty 			
 		#Check if its a unit which we can upgrade and is of the same type
-		elif(tile_currently_over.units_on_tile[0].can_be_upgraded and tile_currently_over.units_on_tile[0].unit_ID <= unit_ID and (unit_ID - tile_currently_over.units_on_tile[0].unit_ID) < 3):
+		elif((tile_currently_over.units_on_tile[0].can_be_upgraded and tile_currently_over.units_on_tile[0].unit_ID <= unit_ID)
+		and (((unit_ID - tile_currently_over.units_on_tile[0].unit_ID) < 3) or (tile_currently_over.units_on_tile[0].unit_ID) - unit_ID <= 0)):
 			#Snap to the tile location
 			sprite.global_position = tile_currently_over.global_position
 			unit_currently_over_can_upgrade = true
@@ -101,7 +103,7 @@ func _process(delta: float) -> void:
 		#Reset the sprite postion back to the parents position.
 		#The parent is either following the mouse or set to the shop item location
 		sprite.position = Vector2(0,0)
-		unit_currently_over_can_upgrade = false
+		#unit_currently_over_can_upgrade = false
 
 #Called when the player attempts to place the item on a tile
 func attempt_to_place():
@@ -112,7 +114,7 @@ func attempt_to_place():
 	#If the item has been bought already
 	if(bought):			
 		#If there is an available tile underneath the unit, then we can place it
-		if(tile_currently_over != null and tile_currently_over.is_empty):
+		if(tile_currently_over != null and (tile_currently_over.is_empty or unit_currently_over_can_upgrade)):
 			place_item()
 		#Not enough money or not a valid tile will reset the node back to the shop item locaiton
 		else:
@@ -133,6 +135,7 @@ func attempt_to_place():
 				self.position = Vector2(0,0)
 #Called when an attempt_to_place is sucessful
 func place_item():
+	print(unit_currently_over_can_upgrade)
 	#Check if we are upgrading the unit below
 	if(!unit_currently_over_can_upgrade):
 		#Tells the tile that the unit is placed on to no longer be empty
