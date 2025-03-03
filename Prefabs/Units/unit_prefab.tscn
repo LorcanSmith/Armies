@@ -21,8 +21,8 @@ size = Vector2(76, 71)
 [node name="unit_prefab" type="Node2D" node_paths=PackedStringArray("skill_locations_parent")]
 modulate = Color(1, 0.172549, 1, 1)
 script = ExtResource("1_h20h1")
-skill_prefab = ExtResource("2_gpp3g")
 skill_locations_parent = NodePath("skill_locations")
+skill_prefab = ExtResource("2_gpp3g")
 
 [node name="buffs" type="Node2D" parent="."]
 script = ExtResource("4_4nfq5")
