@@ -136,7 +136,10 @@ func movement_phase():
 #Finds a tile for each unit, looped from the unit once it has found a tile
 var unit_to_find_tile = 0	
 func find_units_movement_tile():
-	units_to_move[unit_to_find_tile].find_movement_tile()
+	if(units_to_move.size() > 0):
+		units_to_move[unit_to_find_tile].find_movement_tile()
+	else:
+		auto_tick()
 	
 func move_units():
 	var u = 0

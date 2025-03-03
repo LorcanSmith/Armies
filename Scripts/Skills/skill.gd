@@ -19,5 +19,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if(!belongs_to_player and area.get_parent().is_in_group("player") and !area.is_in_group("buff_location")):
 		#Do damage to the player
 		area.get_parent().hurt(damage)
-		area.get_parent().apply_damage()
+		
+		##DEBUG
+		#Allows us to do damage to units straight away without waiting for the ticker
+		#used for testing skills
+		if(DebuggerScript.place_skill):
+			area.get_parent().apply_damage()
 	queue_free()

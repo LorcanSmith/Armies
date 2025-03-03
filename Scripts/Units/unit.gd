@@ -53,7 +53,7 @@ func find_movement_tile():
 	#Moves the unit forward until it has moved its maximum distance
 	while(moved_distance < move_distance):
 		#If the tile it is trying to move to is empty
-		if(movement_locations[0].movement_tile.is_empty):
+		if(movement_locations[0].movement_tile != null and movement_locations[0].movement_tile.is_empty):
 			#Sets the tile it wishes to move to
 			tile_to_move_to = movement_locations[0].movement_tile
 			#Tells the tile we're currently on to be empty
