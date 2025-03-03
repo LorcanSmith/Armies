@@ -179,26 +179,29 @@ func destroy_unit():
 
 func push(direction_pushed_from : String):
 	var can_be_pushed = false
+#	units that are getting pushed into
 	var collateral_units = []
 	var push_locations = find_child("push_locations").get_children()
 	var destination_tile = null
+#	set a vector to account for multiple push forces
 	if direction_pushed_from == "down":
 		pushed_vector += Vector2i(0, 1)
 		destination_tile = push_locations[0].tile_under_location
 	elif direction_pushed_from == "left":
-		pushed_vector += Vector2i(-1, 0)
+		pushed_vector += Vector2i(1, 0)
 		destination_tile = push_locations[1].tile_under_location
 	elif direction_pushed_from == "up":
 		pushed_vector += Vector2i(0, -1)
 		destination_tile = push_locations[2].tile_under_location
 	elif direction_pushed_from == "right":
-		pushed_vector += Vector2i(1, 0)
+		pushed_vector += Vector2i(-1, 0)
 		destination_tile = push_locations[3].tile_under_location
 	
 	if destination_tile != null:
 		if destination_tile.is_empty:
 			can_be_pushed = true
 		else:
+#			if units are on opposite teams, start a brawl
 			if destination_tile.units_on_tile.size() == 1:
 				if (destination_tile.units_on_tile[0].is_in_group("player") and
 				self.is_in_group("enemy") or
@@ -206,28 +209,21 @@ func push(direction_pushed_from : String):
 				self.is_in_group("player")):
 					can_be_pushed = true
 				else:
+#					friendly unit, both units take damage but no push
 					collateral_units = destination_tile.units_on_tile
 			else:
+#				pushed into brawl square - no push but all units involved take damage
 				collateral_units = destination_tile.units_on_tile
 	if can_be_pushed:
-		#print(self, self.get_groups(), destination_tile.global_position)
 		pushed_destination = destination_tile
 		
 	else:
-		#print("hurt", self, self.get_groups(), collateral_units)
 		hurt(bump_damage)
 		if collateral_units != []:
-			var u = 0
-			while u < collateral_units.size():
-				collateral_units[u].hurt(bump_damage)
-				u += 1
-	
-	#if the tile is empty, set this position to that tile
-	#if it is not, deal some sorta damage to this unit and the unit on that tile
-	
-	#Also check if bool "inside_headquarter" is false on the push direction node
-	#If its set to true, we're next to the headquarter and cant be pushed that direction
-
+			var unit = 0
+			while unit < collateral_units.size():
+				collateral_units[unit].hurt(bump_damage)
+				unit += 1
 
 func _on_skill_area_2d_area_entered(area: Area2D) -> void:
 	#Checking the area isnt a buff area
