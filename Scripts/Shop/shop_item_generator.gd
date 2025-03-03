@@ -3,11 +3,12 @@ extends Node
 #Places where shop items show up
 var item_locations = []
 
-#Folder containing common shop items
-var common_folder = "res://Prefabs/Shop Items/Common/"
+#Folder containing shop items
+var level1_folder = "res://Prefabs/Shop Items/Level1/"
+var level2_folder = "res://Prefabs/Shop Items/Level2/"
 #Individual item file names
-var common_items: Array = []
-
+var level1_items: Array = []
+var level2_items : Array = []
 #Loads new items and then shows new items in the shop
 func _ready() -> void:
 	#Gets the children and sets them as locations items can spawn at
@@ -21,9 +22,8 @@ func show_new_items():
 	for location in item_locations.size():
 		#Chooses a random item and loads the item from the path
 		var chosen_item = choose_random_item()
-		var loaded_item = load(str(common_folder + chosen_item))
 		#Spawns in the chosen item as a new item in the shop
-		var new_item = loaded_item.instantiate()
+		var new_item = chosen_item.instantiate()
 		#Sets the new items' parent to be the item location in the shop
 		item_locations[location].add_child(new_item)
 		#Sets the new items' location to be that of its parent (the shop item location)
@@ -31,22 +31,31 @@ func show_new_items():
 		
 #Chooses a random item
 func choose_random_item():
+	var random_folder = randi_range(1,2)
 	#Gets a random number within the range of how many items there are
-	var random_number = randi_range(0, common_items.size()-1)
-	#Sends a randomly selected item back to the show_new_items function
-	return common_items[random_number]
+	var random_item = randi_range(0, level1_items.size()-1)
+	var loaded_item
+	if(random_folder == 1):
+		loaded_item = load(str(level1_folder + level1_items[random_item]))
+	elif(random_folder == 2):
+		loaded_item = load(str(level2_folder + level2_items[random_item]))
+	return loaded_item
 	
 	
 #Finds all items in folders
 func load_items():
 	#Returns an instance for access folder
-	var common_folder_instance = DirAccess.open(common_folder)
+	var level1_folder_instance = DirAccess.open(level1_folder)
+	var level2_folder_instance = DirAccess.open(level2_folder)
 	#Gets each file out of common folder
-	var common_item_files = common_folder_instance.get_files()
+	var level1_item_files = level1_folder_instance.get_files()
+	var level2_item_files = level2_folder_instance.get_files()
 	
 	#Adds each items' file location to the common items array
-	for file_name in common_item_files:
-		common_items.append(file_name)
+	for file_name in level1_item_files:
+		level1_items.append(file_name)
+	for file_name in level2_item_files:
+		level2_items.append(file_name)
 	show_new_items()
 
 func reroll_shop():
