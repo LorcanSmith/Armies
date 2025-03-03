@@ -1,7 +1,7 @@
 extends Node
 
 #Unit ID
-@export var unit_ID : int = -1
+var unit_ID : int = -1
 
 #Does the unit move to defend empty columns
 @export var defender : bool

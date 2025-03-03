@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_gmeag"]
 
 [node name="wizard_item" instance=ExtResource("1_gmeag")]
-unit_ID = 1
+unit_ID = 3
 buy_cost = 5
 sell_cost = 2
 

@@ -1,9 +1,14 @@
 extends Node2D
 
+#Unit dictionary, used to spawn in upgraded units
+var dictionary = load("res://Scripts/Units/dictionary.gd")
 #Unit ID, refer to UNIT ID document
 #Items that aren't units do not need an ID
 @export var unit_ID : int = -1
-
+#Can this item be upgraded further?
+@export var can_be_upgraded : bool = true
+#Keeps track of if the unit is over a potential upgrade
+var unit_currently_over_can_upgrade : bool = false
 #The shop manager keeps track of player money
 var shop_manager : Node2D
 
@@ -72,15 +77,31 @@ func _process(delta: float) -> void:
 		self.global_position = get_global_mouse_position()
 	else:
 		self.position = Vector2(0,0)
-	#If the item is currently over a tile that is empty
-	if(tile_currently_over != null and tile_currently_over.is_empty):
-		#Snap to the tile location
-		sprite.global_position = tile_currently_over.global_position
+	#If the item is currently over a tile
+	if(tile_currently_over != null):
+		#If the tile is empty 
+		if(tile_currently_over.is_empty):
+			#Snap to the tile location
+			sprite.global_position = tile_currently_over.global_position
+			unit_currently_over_can_upgrade = false
+		#If the tile isnt empty 			
+		#Check if its a unit which we can upgrade and is of the same type
+		elif(tile_currently_over.units_on_tile[0].can_be_upgraded and tile_currently_over.units_on_tile[0].unit_ID <= unit_ID and (unit_ID - tile_currently_over.units_on_tile[0].unit_ID) < 3):
+			#Snap to the tile location
+			sprite.global_position = tile_currently_over.global_position
+			unit_currently_over_can_upgrade = true
+		#If the unit cant be upgraded or isnt the same unit
+		else:
+			#Reset the sprite postion back to the parents position.
+			#The parent is either following the mouse or set to the shop item location
+			sprite.position = Vector2(0,0)
+			unit_currently_over_can_upgrade = false
 	#If there is no valid tile to snap to
-	elif(tile_currently_over == null):
+	else:
 		#Reset the sprite postion back to the parents position.
 		#The parent is either following the mouse or set to the shop item location
 		sprite.position = Vector2(0,0)
+		unit_currently_over_can_upgrade = false
 
 #Called when the player attempts to place the item on a tile
 func attempt_to_place():
@@ -102,7 +123,7 @@ func attempt_to_place():
 	else:
 		if(shop_manager.money >= buy_cost):
 			#If there is an available tile underneath the unit, then we can place it
-			if(tile_currently_over != null and tile_currently_over.is_empty):
+			if(tile_currently_over != null and (tile_currently_over.is_empty or unit_currently_over_can_upgrade)):
 				#Spend the money required to buy the item
 				shop_manager.change_money(buy_cost)
 				#Change the item to be bought
@@ -114,12 +135,15 @@ func attempt_to_place():
 				self.position = Vector2(0,0)
 #Called when an attempt_to_place is sucessful
 func place_item():
-	#Tells the tile that the unit is placed on to no longer be empty
-	#and tells the tile what the unit is
-	tile_currently_over.unit_placed_on(self)
-	#Set the units' parent to be the tile that it is placed on
-	self.reparent(tile_currently_over)
-	
+	if(!unit_currently_over_can_upgrade):
+		#Tells the tile that the unit is placed on to no longer be empty
+		#and tells the tile what the unit is
+		tile_currently_over.unit_placed_on(self)
+		#Set the units' parent to be the tile that it is placed on
+		self.reparent(tile_currently_over)
+	else:
+		tile_currently_over.units_on_tile[0].upgrade_unit(unit_ID)
+		queue_free()
 ##	DEBUG
 	if(DebuggerScript.place_enemy):
 		self.remove_from_group("player")
@@ -130,6 +154,21 @@ func sell_item():
 	#Gives the player money for selling an item
 	shop_manager.change_money(-sell_cost)
 	#Deltes the item
+	queue_free()
+
+
+func upgrade_unit(ID):
+	var dictionary_instance = dictionary.new()
+	var upgraded_unit
+	if(ID == unit_ID or ID-1 == unit_ID):
+		upgraded_unit = dictionary_instance.item_scenes[ID+1].instantiate()
+	else:
+		upgraded_unit = dictionary_instance.item_scenes[ID].instantiate()
+	get_parent().add_child(upgraded_unit)
+	upgraded_unit.position = Vector2(0,0)
+	upgraded_unit.bought = true
+	get_parent().units_on_tile.erase(self)
+	get_parent().unit_placed_on(upgraded_unit)
 	queue_free()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

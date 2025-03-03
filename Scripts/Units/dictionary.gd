@@ -8,6 +8,8 @@ var unit_scenes = {
 }
 
 var item_scenes = {
-	0: preload("res://Prefabs/Shop Items/Common/knight_item.tscn"),
-	1: preload("res://Prefabs/Shop Items/Common/wizard_item.tscn")
+	0: preload("res://Prefabs/Shop Items/Level1/knight_item.tscn"),
+	1: preload("res://Prefabs/Shop Items/Level2/knight_level2_item.tscn"),
+	3: preload("res://Prefabs/Shop Items/Level1/wizard_item.tscn"),
+	4: preload("res://Prefabs/Shop Items/Level2/wizard_level2_item.tscn")
 }

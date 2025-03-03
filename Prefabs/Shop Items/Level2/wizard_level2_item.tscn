@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbcuwvvhomyu6"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_t6yfw"]
+
+[node name="wizard_item" instance=ExtResource("1_t6yfw")]
+modulate = Color(0.929412, 1, 0, 1)
+unit_ID = 4
+buy_cost = 5
+sell_cost = 2
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0, 0.382188, 0.614172, 1)
