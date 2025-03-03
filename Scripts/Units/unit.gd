@@ -1,45 +1,46 @@
 extends Node
 
-#Unit ID
+#Unit ID - SET ID ON THE ITEM COUNTERPART
 var unit_ID : int = -1
-
-#Does the unit move to defend empty columns
-@export var defender : bool
-
-#Damage done when brawling
-@export var brawl_damage : int
 
 #Units max health 
 @export var max_health : int
-
-#Units health
-@export var health : int
-#How much damage will be applied to this unit, this turn
-var damage_done_to_self : int = 0
-
-#Skill to spawn in
-@export var skill_prefab : PackedScene
-#The amount of damage/heals the unit's skill does
-@export var skill_damage : int
-@export var skill_heal : int
-
-@export var skill_pushes_units : bool = false
-
-#The parent containing all the skill locations
-@export var skill_locations_parent : Node2D
-
-#Enemies inside our range
-var enemies_in_range : Array = []
+#Unit's current health
+var health : int
 
 #Keep track of if the unit has moved this turn
 var moved = false
-
 #Child node that contains all the locations the unit can move to
 var movement_locations : Array = []
 @export var move_distance : int = 1
 var tile_to_move_to : Node2D
 
+#Damage done when brawling
+@export var brawl_damage : int
+
+
+#How much damage will be applied to this unit, this turn
+var damage_done_to_self : int = 0
+
+##How many skills will spawn
+@export var skill_spawn_amount : int = 1
+##Does the skill spawn at a random skill_location?
+@export var skill_spawn_random : bool = false
+#The amount of damage/heals the unit's skill does
+@export var skill_damage : int
+@export var skill_heal : int
+
+
+@export var skill_pushes_units : bool = false
+#The parent containing all the skill locations
+@export var skill_locations_parent : Node2D
+#Skill to spawn in
+@export var skill_prefab : PackedScene
+#Enemies inside our range
+var enemies_in_range : Array = []
+
 func _ready() -> void:
+	health = max_health
 	movement_locations = find_child("movement_locations").get_children()
 	if self.is_in_group("enemy"):
 		$Label.modulate = Color(1, 0, 0, 1)
@@ -47,20 +48,21 @@ func _ready() -> void:
 	update_label()
 
 func find_movement_tile():
-	var moved_distance = 0
-	#The unit has already found a tile this turn
-	moved = true
-	#Moves the unit forward until it has moved its maximum distance
-	while(moved_distance < move_distance):
-		#If the tile it is trying to move to is empty
-		if(movement_locations[0].movement_tile != null and movement_locations[0].movement_tile.is_empty):
-			#Sets the tile it wishes to move to
-			tile_to_move_to = movement_locations[0].movement_tile
-			#Tells the tile we're currently on to be empty
-			get_parent().is_empty = true
-			get_parent().units_on_tile.erase(self)
-		#We have moved one unit
-		moved_distance += 1
+	if(enemies_in_range.size() == 0):
+		var moved_distance = 0
+		#The unit has already found a tile this turn
+		moved = true
+		#Moves the unit forward until it has moved its maximum distance
+		while(moved_distance < move_distance):
+			#If the tile it is trying to move to is empty
+			if(movement_locations[0].movement_tile != null and movement_locations[0].movement_tile.is_empty):
+				#Sets the tile it wishes to move to
+				tile_to_move_to = movement_locations[0].movement_tile
+				#Tells the tile we're currently on to be empty
+				get_parent().is_empty = true
+				get_parent().units_on_tile.erase(self)
+			#We have moved one unit
+			moved_distance += 1
 	#combat manager
 	var combat_manager = find_parent("combat_manager")
 	#Tell the combat manager that a unit has finished its "find tile" turn
@@ -89,23 +91,37 @@ func move():
 	moved = false
 func skill():
 	#If this unit is the only unit on the tile then they can do their skill
-	if(get_parent().units_on_tile.size() == 1):
+	if(get_parent().units_on_tile.size() < 2):
 		#If there is at least one enemy within the units range (in a skill location)
 		if(enemies_in_range.size() > 0):
+			var skills_spawned = 0
+			#which enemy in enemies_in_range are we shooting
+			var enemy_number = 0
 			#Spawn an instance of the skill at every skill location
-			for location in skill_locations_parent.get_children():
+			while skills_spawned < skill_spawn_amount:
+				if(enemy_number > enemies_in_range.size()):
+					enemy_number = 0
 				var skill_instance = skill_prefab.instantiate()
 				#Tell the skill how much damage it does
 				skill_instance.damage = skill_damage
 				skill_instance.pushes_units = skill_pushes_units
 				find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
-				#Set skills location to be at the correct spot
-				skill_instance.global_position = location.global_position
+				#If the skill doesnt spawn randomly
+				if(!skill_spawn_random):
+					#Set skills location to be at the enemy location
+					skill_instance.global_position = enemies_in_range[enemy_number].global_position
+				#If the skill spawns at a random location
+				else:
+					#Choose a random enemy in range
+					var random_position = randi_range(0, enemies_in_range.size()-1)
+					skill_instance.global_position = enemies_in_range[random_position].global_position
 				#Tell the skill if it is a friendly or enemy skill
 				if(self.is_in_group("player")):
 					skill_instance.belongs_to_player = true
 				else:
 					skill_instance.belongs_to_player = false
+				enemy_number += 1
+				skills_spawned += 1
 	#If there is another unit on this tile then they will brawl
 	else:
 		brawl()

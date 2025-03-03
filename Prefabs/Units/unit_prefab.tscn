@@ -19,7 +19,6 @@
 size = Vector2(76, 71)
 
 [node name="unit_prefab" type="Node2D" node_paths=PackedStringArray("skill_locations_parent")]
-modulate = Color(1, 0.172549, 1, 1)
 script = ExtResource("1_h20h1")
 skill_prefab = ExtResource("2_gpp3g")
 skill_locations_parent = NodePath("skill_locations")
@@ -122,6 +121,15 @@ offset_bottom = 69.0
 pivot_offset = Vector2(25, 25)
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Level" type="Label" parent="Label"]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 54.0
+offset_bottom = 57.0
+scale = Vector2(0.56, 0.56)
+pivot_offset = Vector2(26.7857, 0)
+text = "Level 0"
 
 [connection signal="area_entered" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
