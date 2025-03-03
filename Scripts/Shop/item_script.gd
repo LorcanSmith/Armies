@@ -105,8 +105,6 @@ func _process(delta: float) -> void:
 
 #Called when the player attempts to place the item on a tile
 func attempt_to_place():
-	##NOTE - Will need to be updated when boosts are added as they won't be placed on a tile
-	
 	#The player is trying to sell the item and the item has already been bought
 	if(item_on_sell_location and bought):
 		sell_item()	
@@ -135,12 +133,14 @@ func attempt_to_place():
 				self.position = Vector2(0,0)
 #Called when an attempt_to_place is sucessful
 func place_item():
+	#Check if we are upgrading the unit below
 	if(!unit_currently_over_can_upgrade):
 		#Tells the tile that the unit is placed on to no longer be empty
 		#and tells the tile what the unit is
 		tile_currently_over.unit_placed_on(self)
 		#Set the units' parent to be the tile that it is placed on
 		self.reparent(tile_currently_over)
+	#If we are then upgrade it
 	else:
 		tile_currently_over.units_on_tile[0].upgrade_unit(unit_ID)
 		queue_free()
@@ -160,15 +160,23 @@ func sell_item():
 func upgrade_unit(ID):
 	var dictionary_instance = dictionary.new()
 	var upgraded_unit
-	if(ID == unit_ID or ID-1 == unit_ID):
+	#Two units on the same level
+	if(ID == unit_ID):
 		upgraded_unit = dictionary_instance.item_scenes[ID+1].instantiate()
+	#Two units of different levels
 	else:
 		upgraded_unit = dictionary_instance.item_scenes[ID].instantiate()
+	#Add the newly upgraded unit to the tile we are on
 	get_parent().add_child(upgraded_unit)
+	#Set the newly upgraded unit's position
 	upgraded_unit.position = Vector2(0,0)
+	#Purchase the unit
 	upgraded_unit.bought = true
+	#Remove non-upgraded unit (self) from the tile
 	get_parent().units_on_tile.erase(self)
+	#Tell the tile that the upgraded unit has been placed on it
 	get_parent().unit_placed_on(upgraded_unit)
+	#Delete non-upgraded unit (self)
 	queue_free()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

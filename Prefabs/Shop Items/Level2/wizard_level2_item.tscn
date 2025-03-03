@@ -5,6 +5,7 @@
 [node name="wizard_item" instance=ExtResource("1_t6yfw")]
 modulate = Color(0.929412, 1, 0, 1)
 unit_ID = 4
+can_be_upgraded = false
 buy_cost = 5
 sell_cost = 2
 
