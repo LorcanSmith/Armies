@@ -48,8 +48,9 @@ func setup_headquarters():
 # called from ready() or from game_manager, automatically cycles through battle_ticker()
 func auto_tick():
 ##		causes the function to pause, allows an opening for game_manager to pause if necessary
-	await get_tree().create_timer(tick_delay).timeout
-	battle_ticker()
+	if(!ticker_paused):
+		await get_tree().create_timer(tick_delay).timeout
+		battle_ticker()
 	
 func battle_ticker():
 	#If the battle isn't over, keep the units fighting
@@ -104,7 +105,6 @@ func movement_phase():
 					if(grids[grid_number] == grid_reversed and unit.is_in_group("player")):
 						#If the unit hasn't already moved this turn
 						if(unit.moved == false):
-							print("ADDING UNIT: ", unit)
 							units_to_move.append(unit)
 							unit.moved = true
 						

@@ -1,16 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://bh1i1tp3dgvik"]
+[gd_scene load_steps=12 format=3 uid="uid://bh1i1tp3dgvik"]
 
 [ext_resource type="Script" path="res://Scripts/Units/unit.gd" id="1_h20h1"]
 [ext_resource type="PackedScene" uid="uid://bp080ti5p3qme" path="res://Prefabs/Skills/skill.tscn" id="2_gpp3g"]
 [ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="2_ktl1k"]
 [ext_resource type="Script" path="res://Scripts/Units/move_spot.gd" id="4_4fdo6"]
 [ext_resource type="Script" path="res://Scripts/Skills/buff.gd" id="4_4nfq5"]
+[ext_resource type="Script" path="res://Scripts/Units/push_locations.gd" id="5_8a1pl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1caxc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kn7ua"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sefj8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xy1do"]
 size = Vector2(76, 71)
@@ -60,6 +63,48 @@ script = ExtResource("4_4fdo6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="movement_locations/move_spot/Area2D"]
 shape = SubResource("CircleShape2D_kn7ua")
 
+[node name="push_locations" type="Node2D" parent="."]
+
+[node name="UP" type="Node2D" parent="push_locations"]
+position = Vector2(0, -137)
+script = ExtResource("5_8a1pl")
+
+[node name="up_area" type="Area2D" parent="push_locations/UP"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="push_locations/UP/up_area"]
+shape = SubResource("CircleShape2D_sefj8")
+
+[node name="RIGHT" type="Node2D" parent="push_locations"]
+position = Vector2(139, 0)
+script = ExtResource("5_8a1pl")
+
+[node name="right_area" type="Area2D" parent="push_locations/RIGHT"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="push_locations/RIGHT/right_area"]
+shape = SubResource("CircleShape2D_sefj8")
+
+[node name="DOWN" type="Node2D" parent="push_locations"]
+position = Vector2(0, 146)
+script = ExtResource("5_8a1pl")
+
+[node name="down_area" type="Area2D" parent="push_locations/DOWN"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="push_locations/DOWN/down_area"]
+shape = SubResource("CircleShape2D_sefj8")
+
+[node name="LEFT" type="Node2D" parent="push_locations"]
+position = Vector2(-135, -2)
+script = ExtResource("5_8a1pl")
+
+[node name="left_area" type="Area2D" parent="push_locations/LEFT"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="push_locations/LEFT/left_area"]
+shape = SubResource("CircleShape2D_sefj8")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_ktl1k")
 
@@ -82,5 +127,13 @@ vertical_alignment = 1
 [connection signal="area_exited" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
 [connection signal="area_entered" from="movement_locations/move_spot/Area2D" to="movement_locations/move_spot" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="movement_locations/move_spot/Area2D" to="movement_locations/move_spot" method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="push_locations/UP/up_area" to="." method="_on_up_area_area_entered"]
+[connection signal="area_entered" from="push_locations/UP/up_area" to="push_locations/UP" method="_on_up_area_area_entered"]
+[connection signal="area_entered" from="push_locations/RIGHT/right_area" to="." method="_on_right_area_area_entered"]
+[connection signal="area_entered" from="push_locations/RIGHT/right_area" to="push_locations/RIGHT" method="_on_right_area_area_entered"]
+[connection signal="area_entered" from="push_locations/DOWN/down_area" to="." method="_on_down_area_area_entered"]
+[connection signal="area_entered" from="push_locations/DOWN/down_area" to="push_locations/DOWN" method="_on_down_area_area_entered"]
+[connection signal="area_entered" from="push_locations/LEFT/left_area" to="." method="_on_left_area_area_entered"]
+[connection signal="area_entered" from="push_locations/LEFT/left_area" to="push_locations/LEFT" method="_on_left_area_area_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

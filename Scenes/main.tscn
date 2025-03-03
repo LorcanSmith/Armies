@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://brgi4h0spiup2"]
+[gd_scene load_steps=5 format=3 uid="uid://brgi4h0spiup2"]
 
 [ext_resource type="Script" path="res://Scripts/Managers/game_manager.gd" id="1_y45oy"]
 [ext_resource type="Script" path="res://Scripts/DEBUGGER_script.gd" id="2_pa0fo"]
+[ext_resource type="PackedScene" uid="uid://by8ndrehnsmpn" path="res://Prefabs/Skills/basic_skill.tscn" id="3_0tvwk"]
 [ext_resource type="PackedScene" uid="uid://cdtulbdqtnexg" path="res://Prefabs/Status/status_bar.tscn" id="3_x7ng8"]
 
 [node name="game_manager" type="Node2D"]
 script = ExtResource("1_y45oy")
 
-[node name="DEBUGGER" type="Node" parent="."]
+[node name="DEBUGGER" type="Node2D" parent="."]
 script = ExtResource("2_pa0fo")
+skills = [ExtResource("3_0tvwk")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="DEBUGGER"]
 
@@ -16,6 +18,20 @@ script = ExtResource("2_pa0fo")
 offset_right = 44.0
 offset_bottom = 24.0
 text = "Place Enemy"
+
+[node name="CheckButton" type="CheckButton" parent="DEBUGGER/CanvasLayer"]
+offset_top = 31.0
+offset_right = 124.0
+offset_bottom = 62.0
+text = "Place skill"
+
+[node name="OptionButton" type="OptionButton" parent="DEBUGGER/CanvasLayer"]
+offset_left = 5.0
+offset_top = 62.0
+offset_right = 102.0
+offset_bottom = 93.0
+item_count = 1
+popup/item_0/text = "attack_1"
 
 [node name="StatusBarLayer" type="CanvasLayer" parent="."]
 
@@ -30,3 +46,5 @@ offset_bottom = -35.0
 grow_vertical = 0
 
 [connection signal="toggled" from="DEBUGGER/CanvasLayer/place_enemy_button" to="DEBUGGER" method="_on_place_enemy_button_toggled"]
+[connection signal="toggled" from="DEBUGGER/CanvasLayer/CheckButton" to="DEBUGGER" method="_on_check_button_toggled"]
+[connection signal="item_selected" from="DEBUGGER/CanvasLayer/OptionButton" to="DEBUGGER" method="_on_option_button_item_selected"]
