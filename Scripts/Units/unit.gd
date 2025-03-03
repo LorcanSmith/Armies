@@ -15,12 +15,23 @@ var movement_locations : Array = []
 @export var move_distance : int = 1
 var tile_to_move_to : Node2D
 
+@export var spawn_skill_on_self: bool
+
 #Damage done when brawling
 @export var brawl_damage : int
+
+##Damage done when pushed into a tile that isn't empty
+@export	var bump_damage : int = 4
 
 
 #How much damage will be applied to this unit, this turn
 var damage_done_to_self : int = 0
+
+#where a unit is being pushed to
+var pushed_destination : Node2D = null
+
+#where a unit is being pushed to in Vector2i
+var pushed_vector : Vector2i = Vector2i(0, 0)
 
 ##How many skills will spawn
 @export var skill_spawn_amount : int = 1
@@ -40,6 +51,7 @@ var damage_done_to_self : int = 0
 var enemies_in_range : Array = []
 
 func _ready() -> void:
+	health = max_health
 	movement_locations = find_child("movement_locations").get_children()
 	if self.is_in_group("enemy"):
 		$Label.modulate = Color(1, 0, 0, 1)
@@ -101,8 +113,11 @@ func skill():
 				skill_instance.pushes_units = skill_pushes_units
 				find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
 				if(!skill_spawn_random):
-					#Set skills location to be at the correct spot
-					skill_instance.global_position = skill_locations_parent.get_child(location).global_position
+					if spawn_skill_on_self:
+						skill_instance.global_position = self.global_position
+					else:
+						#Set skills location to be at the correct spot
+						skill_instance.global_position = skill_locations_parent.get_child(location).global_position
 				else:
 					var random_position = randi_range(0, skill_locations_parent.get_child_count())
 					skill_instance.global_position = skill_locations_parent.get_child(random_position)
@@ -136,6 +151,18 @@ func heal(amount : int):
 	damage_done_to_self -= amount
 
 func apply_damage():
+	if pushed_destination:
+		print(self, pushed_vector)
+		if pushed_vector != Vector2i(0, 0):
+			get_parent().is_empty = true
+			get_parent().units_on_tile.erase(self)
+	#			place unit on new tile
+			reparent(pushed_destination)
+			#Tell the new tile that this unit is now on it
+			pushed_destination.unit_placed_on(self)
+			#Set the units position to the new tile (units' parent)
+			self.position = Vector2(0,0)
+		pushed_destination = null
 	health -= damage_done_to_self
 	update_label()
 	if(health <= 0):
@@ -151,18 +178,55 @@ func destroy_unit():
 	queue_free()
 
 func push(direction_pushed_from : String):
-	#CODE TO PUSH PLAYER
-	#Something like:
-	#If direction_pushed_from == up:
-	#check if the tile "down" is_empty
-	#Each direction node will have to be set as a variable in this script
+	var can_be_pushed = false
+	var collateral_units = []
+	var push_locations = find_child("push_locations").get_children()
+	var destination_tile = null
+	if direction_pushed_from == "down":
+		pushed_vector += Vector2i(0, 1)
+		destination_tile = push_locations[0].tile_under_location
+	elif direction_pushed_from == "left":
+		pushed_vector += Vector2i(-1, 0)
+		destination_tile = push_locations[1].tile_under_location
+	elif direction_pushed_from == "up":
+		pushed_vector += Vector2i(0, -1)
+		destination_tile = push_locations[2].tile_under_location
+	elif direction_pushed_from == "right":
+		pushed_vector += Vector2i(1, 0)
+		destination_tile = push_locations[3].tile_under_location
+	
+	if destination_tile != null:
+		if destination_tile.is_empty:
+			can_be_pushed = true
+		else:
+			if destination_tile.units_on_tile.size() == 1:
+				if (destination_tile.units_on_tile[0].is_in_group("player") and
+				self.is_in_group("enemy") or
+				destination_tile.units_on_tile[0].is_in_group("enemy") and
+				self.is_in_group("player")):
+					can_be_pushed = true
+				else:
+					collateral_units = destination_tile.units_on_tile
+			else:
+				collateral_units = destination_tile.units_on_tile
+	if can_be_pushed:
+		#print(self, self.get_groups(), destination_tile.global_position)
+		pushed_destination = destination_tile
+		
+	else:
+		#print("hurt", self, self.get_groups(), collateral_units)
+		hurt(bump_damage)
+		if collateral_units != []:
+			var u = 0
+			while u < collateral_units.size():
+				collateral_units[u].hurt(bump_damage)
+				u += 1
 	
 	#if the tile is empty, set this position to that tile
 	#if it is not, deal some sorta damage to this unit and the unit on that tile
 	
 	#Also check if bool "inside_headquarter" is false on the push direction node
 	#If its set to true, we're next to the headquarter and cant be pushed that direction
-	pass
 
 
 func _on_skill_area_2d_area_entered(area: Area2D) -> void:
