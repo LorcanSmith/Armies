@@ -113,7 +113,7 @@ func skill():
 			var enemy_number = 0
 			#Spawn an instance of the skill at every skill location
 			while skills_spawned < skill_spawn_amount:
-				if(enemy_number > enemies_in_range.size()):
+				if(enemy_number > enemies_in_range.size()-1):
 					enemy_number = 0
 
 				var skill_instance = skill_prefab.instantiate()
