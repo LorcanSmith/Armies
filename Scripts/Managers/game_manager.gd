@@ -72,8 +72,6 @@ func _input(event):
 	if Input.is_key_pressed(KEY_S):
 		for grids in GridManager.get_children():
 			grids.save_current_grid()
-	if Input.is_key_pressed(KEY_L):
-		GridManager.load_layout("army")
 #	pauses/restarts the battle ticks, can be used in conjunction with "T" to step through a battle
 	if Input.is_key_pressed(KEY_P):
 		if (CombatManager!= null):

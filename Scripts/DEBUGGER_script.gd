@@ -3,7 +3,7 @@ extends Node2D
 #Are you placing friendly or enemy units in the shop
 var place_enemy : bool = false
 var place_skill : bool = false
-
+var save_enemy_army : bool = false
 #Skill number  to spawn, number is gotten from the canvas "optionbutton"
 var skill_to_place : int = 0
 #List of skills we can spawn
@@ -13,6 +13,8 @@ func _on_place_enemy_button_toggled(toggled_on: bool) -> void:
 	DebuggerScript.place_enemy = toggled_on
 func _on_check_button_toggled(toggled_on: bool) -> void:
 	DebuggerScript.place_skill = toggled_on
+func _on_save_grid_as_enemy_toggled(toggled_on: bool) -> void:
+	DebuggerScript.save_enemy_army = toggled_on
 
 
 func _on_option_button_item_selected(index: int) -> void:

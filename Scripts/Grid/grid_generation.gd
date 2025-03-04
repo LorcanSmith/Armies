@@ -70,7 +70,7 @@ func save_current_grid():
 					#Save the unit ID and data in the grid to be used later
 					grid_with_unit_IDs[width][height] = [unit.unit_ID, "player"]
 				else:
-					grid_with_unit_IDs[width][height] = [unit.unit_ID, "enemy"]
+					grid_with_unit_IDs[width][height] = [int(unit.unit_ID), "enemy"]
 			#If the is no unit on the grid tile
 			else:
 				#Set that grid id to be null. This updates any tiles that previously had a unit on it

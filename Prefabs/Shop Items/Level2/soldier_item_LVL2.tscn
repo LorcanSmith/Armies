@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvi03u8rr7ohq"]
+[gd_scene load_steps=3 format=3 uid="uid://bsi01si1o3jm6"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_1rdgn"]
 [ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="2_r4ex3"]

@@ -19,6 +19,12 @@ offset_right = 44.0
 offset_bottom = 24.0
 text = "Place Enemy"
 
+[node name="save_grid_as_enemy" type="CheckButton" parent="DEBUGGER/CanvasLayer"]
+offset_top = 93.0
+offset_right = 209.0
+offset_bottom = 124.0
+text = "Save Army As Enemy"
+
 [node name="CheckButton" type="CheckButton" parent="DEBUGGER/CanvasLayer"]
 offset_top = 31.0
 offset_right = 124.0
@@ -47,5 +53,6 @@ offset_bottom = -35.0
 grow_vertical = 0
 
 [connection signal="toggled" from="DEBUGGER/CanvasLayer/place_enemy_button" to="DEBUGGER" method="_on_place_enemy_button_toggled"]
+[connection signal="toggled" from="DEBUGGER/CanvasLayer/save_grid_as_enemy" to="DEBUGGER" method="_on_save_grid_as_enemy_toggled"]
 [connection signal="toggled" from="DEBUGGER/CanvasLayer/CheckButton" to="DEBUGGER" method="_on_check_button_toggled"]
 [connection signal="item_selected" from="DEBUGGER/CanvasLayer/OptionButton" to="DEBUGGER" method="_on_option_button_item_selected"]
