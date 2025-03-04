@@ -73,7 +73,6 @@ func _input(event):
 func _process(delta: float) -> void:
 	#If the player has clicked on an item in the shop
 	if(follow_mouse):
-		print(unit_currently_over_can_upgrade)
 		#Follow the mouse
 		self.global_position = get_global_mouse_position()
 	else:
@@ -135,7 +134,6 @@ func attempt_to_place():
 				self.position = Vector2(0,0)
 #Called when an attempt_to_place is sucessful
 func place_item():
-	print(unit_currently_over_can_upgrade)
 	#Check if we are upgrading the unit below
 	if(!unit_currently_over_can_upgrade):
 		#Tells the tile that the unit is placed on to no longer be empty

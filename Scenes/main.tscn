@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://brgi4h0spiup2"]
 
-[ext_resource type="Script" path="res://Scripts/Managers/game_manager.gd" id="1_y45oy"]
-[ext_resource type="Script" path="res://Scripts/DEBUGGER_script.gd" id="2_pa0fo"]
+[ext_resource type="Script" uid="uid://ceah7wfd5evx8" path="res://Scripts/Managers/game_manager.gd" id="1_y45oy"]
+[ext_resource type="Script" uid="uid://06xxppo51p7p" path="res://Scripts/DEBUGGER_script.gd" id="2_pa0fo"]
 [ext_resource type="PackedScene" uid="uid://by8ndrehnsmpn" path="res://Prefabs/Skills/basic_skill.tscn" id="3_0tvwk"]
 [ext_resource type="PackedScene" uid="uid://cdtulbdqtnexg" path="res://Prefabs/Status/status_bar.tscn" id="3_x7ng8"]
 
@@ -32,6 +32,7 @@ offset_right = 102.0
 offset_bottom = 93.0
 item_count = 1
 popup/item_0/text = "attack_1"
+popup/item_0/id = 0
 
 [node name="StatusBarLayer" type="CanvasLayer" parent="."]
 

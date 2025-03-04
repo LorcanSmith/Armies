@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgv4jk4whdmy6"]
 
-[ext_resource type="Script" path="res://Scripts/Managers/combat_manager.gd" id="1_7ijpe"]
+[ext_resource type="Script" uid="uid://ekpmqxviagv3" path="res://Scripts/Managers/combat_manager.gd" id="1_7ijpe"]
 [ext_resource type="PackedScene" uid="uid://cuf4kh851odj1" path="res://Prefabs/Managers/headquarter.tscn" id="2_2r55k"]
 [ext_resource type="PackedScene" uid="uid://dr2o4nm3x37eu" path="res://Prefabs/Managers/grid_manager.tscn" id="3_0mwca"]
 [ext_resource type="PackedScene" uid="uid://bqgwbmbquy7su" path="res://Prefabs/Grid/grid_generator.tscn" id="4_tbeai"]
-[ext_resource type="Script" path="res://Scripts/Skills/skill_holder.gd" id="5_vexsu"]
+[ext_resource type="Script" uid="uid://dq7gpf703ku0i" path="res://Scripts/Skills/skill_holder.gd" id="5_vexsu"]
 
 [node name="combat_manager" type="Node2D"]
 script = ExtResource("1_7ijpe")
