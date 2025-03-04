@@ -21,51 +21,63 @@ func generate_grids():
 
 func load_units():
 	var dictionary_instance = dictionary.new()
-	
-	var tiles = find_child("grid_generator (army)").grid
+	var tiles
+	tiles = find_child("grid_generator (army)").grid
 	var unit_IDs = game_manager.army
-	#If we are in combat unit_IDs will be > 0 therefore we should load in units
+	#This needs to be removed, i dont think it does anything
 	if(unit_IDs.size() > 0):
-	#	reverses enemy army position so that they are placed 180 degrees
-		#var enemy_army = game_manager.send_enemy_army()
-		#for column in range(enemy_army.size()):
-			#enemy_army[column].reverse()
-		#enemy_army.reverse()
 		var width = 0
 		while width in range(tiles.size()):
 			var height = 0
 			while height in range(tiles[width].size()):
-				if(width < unit_IDs[0].size() and unit_IDs[width][height] != null):	
-	#				TODO
-	#				translate Unit ID to appropriate unit
+				if(width < unit_IDs[0].size()):	
 					var instance				
 					if game_manager.in_combat:
-						#Spawn in a unit. Reference the UnitDictionary to find out what unit to spawn
-						instance = dictionary_instance.unit_scenes[unit_IDs[width][height][0]].instantiate()
-						#Add the unit to either the player or the enemy group
-						instance.add_to_group(unit_IDs[width][height][1], true)
-						#If the unit is an enemy. Make them face the opposite direction
-						if(instance.is_in_group("enemy")):
+						#	reverses tiles for enemy spawning
+						var reversed_tiles = tiles.duplicate()
+						reversed_tiles.reverse()
+						#Loads enemy army
+						var enemy_unit_IDs = load_layout("enemy")
+						
+						if(unit_IDs[width][height] != null):
+							#Spawn in a unit. Reference the UnitDictionary to find out what unit to spawn
+							instance = dictionary_instance.unit_scenes[unit_IDs[width][height][0]].instantiate()
+							#Add the unit to either the player or the enemy group
+							instance.add_to_group(unit_IDs[width][height][1], true)
+							#If the unit is an enemy. Make them face the opposite direction
+							tiles[width][height].add_child(instance)
+							instance.position = Vector2i(0,0)
+							tiles[width][height].unit_placed_on(instance)
+						if(enemy_unit_IDs[width][height] != null):	
+							var ID_to_int = int(enemy_unit_IDs[width][height][0])
+							#Spawn in a unit. Reference the UnitDictionary to find out what unit to spawn
+							instance = dictionary_instance.unit_scenes[ID_to_int].instantiate()
+							#Add the unit to either the player or the enemy group
+							instance.add_to_group(enemy_unit_IDs[width][height][1], true)
 							instance.scale.x = -instance.scale.x
 							instance.find_child("Label").scale.x = -instance.find_child("Label").scale.x
+							reversed_tiles[width][height].add_child(instance)
+							instance.position = Vector2i(0,0)
+							reversed_tiles[width][height].unit_placed_on(instance)
 					else:
-						#Spawn an item. Reference the UnitDictionary to find out what item to spawn
-						instance = dictionary_instance.item_scenes[unit_IDs[width][height][0]].instantiate()
-						#Tell the item it has already been bought
-						instance.bought = true
-					
-					tiles[width][height].add_child(instance)
-					instance.position = Vector2i(0,0)
-					tiles[width][height].unit_placed_on(instance)
+						if(unit_IDs[width][height] != null):
+							#Spawn an item. Reference the UnitDictionary to find out what item to spawn
+							instance = dictionary_instance.item_scenes[unit_IDs[width][height][0]].instantiate()
+							tiles[width][height].add_child(instance)
+							instance.position = Vector2i(0,0)
+							tiles[width][height].unit_placed_on(instance)
+							#Tell the item it has already been bought
+							instance.bought = true
 				height += 1
 			width += 1
-	#	TODO
-	#	spawn enemies on other side of the grid
 
 #Saves a grid
 func save_layout(grid_name : String, grid_data : Array):
 	if grid_name == "army":
 		game_manager.army = grid_data
+	#Saves army as an enemy army
+	if(DebuggerScript.place_enemy):
+		grid_name = "enemy"
 	#This will give you the project directory.
 	var save_file = FileAccess.open(game_folder + grid_name + ".save", FileAccess.WRITE)
 	# JSON provides a static method to serialized JSON string.

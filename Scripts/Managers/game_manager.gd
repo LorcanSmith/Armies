@@ -30,10 +30,6 @@ func _process(_delta):
 			grids.save_current_grid()
 		swap_scenes()
 		
-		
-func send_enemy_army() -> Array:
-	return Array()
-		
 func swap_scenes():
 	#reverses the value of in_combat boolean
 	in_combat = !in_combat
