@@ -43,6 +43,9 @@ var pushed_vector : Vector2i = Vector2i(0, 0)
 @export var skill_damage : int
 @export var skill_heal : int
 
+var buff_values : Dictionary = {}
+var buffed_health : int
+
 
 @export var skill_pushes_units : bool = false
 #The parent containing all the skill locations
@@ -54,6 +57,7 @@ var enemies_in_range : Array = []
 
 func _ready() -> void:
 	health = max_health
+	buffed_health = max_health
 	movement_locations = find_child("movement_locations").get_children()
 	if self.is_in_group("enemy"):
 		$Label.modulate = Color(1, 0, 0, 1)
@@ -268,21 +272,40 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		#Checks if the buff belongs to a friendly
 		elif((self.is_in_group("player") and area.get_parent().get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().get_parent().is_in_group("enemy"))):
 			#We have entered a buff location of a friendly so apply buffs
-			health += area.get_parent().health_buff
+			buff_values.set(area.get_rid(), area.get_parent())
+			var buff_total = 0
+			for value in buff_values.values():
+				buff_total += value.health_buff
+			if max_health + buff_total > buffed_health:
+				buffed_health = max_health + buff_total
+				health += buffed_health - max_health
+			#health += area.get_parent().health_buff
 			skill_damage += area.get_parent().damage_buff
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	#If the unit is in a buff location
 	if(area.is_in_group("buff_location")):
+		print("hello?")
+		print(self.health)
 		#Checks if the buff location belongs to an enemy
-		if((self.is_in_group("player") and area.get_parent().is_in_group("enemy")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("player"))):
+		if((self.is_in_group("player") and area.get_parent().get_parent().is_in_group("enemy")) or (self.is_in_group("enemy") and area.get_parent().get_parent().is_in_group("player"))):
 			#We have left the area so stop the weakening from working
+			
 			health += area.get_parent().health_weaken
 			skill_damage += area.get_parent().damage_weaken
 		#Checks if the buff belongs to a friendly
-		elif((self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy"))):
+		elif((self.is_in_group("player") and area.get_parent().get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().get_parent().is_in_group("enemy"))):
 			#We have left the area so stop the weakening from working
-			health -= area.get_parent().health_buff
+			print("end buff")
+			print(self)
+			buff_values.erase(area.get_rid())
+			var buff_total = 0
+			for value in buff_values.values():
+				buff_total += value.health_buff
+			if max_health + buff_total < buffed_health:
+				health -= buffed_health - (max_health + buff_total)
+				buffed_health = max_health + buff_total
+			#health -= area.get_parent().health_buff
 			skill_damage -= area.get_parent().damage_buff
 			
 #Called when something enters one of the "push location" nodes
