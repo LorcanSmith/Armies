@@ -35,7 +35,7 @@ func load_units():
 		while width in range(tiles.size()):
 			var height = 0
 			while height in range(tiles[width].size()):
-				if unit_IDs[width][height] != null:	
+				if(width < unit_IDs[0].size() and unit_IDs[width][height] != null):	
 	#				TODO
 	#				translate Unit ID to appropriate unit
 					var instance				
