@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yxvdsbdkfv48"
-path="res://.godot/imported/catapult_sprite.png-dd4b3ddd629c1b17eeefadcb38b6cb09.ctex"
+uid="uid://blbt32wdlfngh"
+path="res://.godot/imported/tank_sprite.png-7cd2f1811d99b08681c8a13a8bb7da05.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Units/Medieval/Catapult/catapult_sprite.png"
-dest_files=["res://.godot/imported/catapult_sprite.png-dd4b3ddd629c1b17eeefadcb38b6cb09.ctex"]
+source_file="res://Sprites/Units/Army/tank/tank_sprite.png"
+dest_files=["res://.godot/imported/tank_sprite.png-7cd2f1811d99b08681c8a13a8bb7da05.ctex"]
 
 [params]
 

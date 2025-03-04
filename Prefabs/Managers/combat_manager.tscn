@@ -16,9 +16,10 @@ script = ExtResource("1_7ijpe")
 [node name="grid_manager" parent="." instance=ExtResource("3_0mwca")]
 
 [node name="grid_generator (army)" parent="grid_manager" instance=ExtResource("4_tbeai")]
+grid_width = 10
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(287, 229)
+position = Vector2(572, 189)
 zoom = Vector2(0.6, 0.6)
 
 [node name="skill_holder" type="Node2D" parent="."]

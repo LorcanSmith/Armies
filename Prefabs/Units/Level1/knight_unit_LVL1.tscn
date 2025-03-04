@@ -6,12 +6,12 @@
 
 [node name="knight_unit" instance=ExtResource("1_abkdl")]
 max_health = 16
+move_distance = 3
 brawl_damage = 8
 skill_damage = 8
 skill_prefab = ExtResource("2_0o1nn")
 
 [node name="Sprite2D" parent="." index="4"]
-texture_filter = 1
 texture = ExtResource("3_lqsp5")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://og4mb3d631v7"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_54iqj"]
+[ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="2_2ka7r"]
+
+[node name="Soldier" instance=ExtResource("1_54iqj")]
+unit_ID = 14
+can_be_upgraded = false
+buy_cost = 12
+sell_cost = 5
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_2ka7r")
+
+[node name="Level" parent="." index="3"]
+text = "Level 3"
