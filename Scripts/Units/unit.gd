@@ -43,8 +43,6 @@ var pushed_vector : Vector2i = Vector2i(0, 0)
 @export var skill_damage : int
 @export var skill_heal : int
 
-var buffed_health : int
-
 
 @export var skill_pushes_units : bool = false
 #The parent containing all the skill locations
@@ -56,7 +54,6 @@ var enemies_in_range : Array = []
 
 func _ready() -> void:
 	health = max_health
-	buffed_health = max_health
 	movement_locations = find_child("movement_locations").get_children()
 	if self.is_in_group("enemy"):
 		$Label.modulate = Color(1, 0, 0, 1)

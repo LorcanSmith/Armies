@@ -19,6 +19,9 @@ var status_bar : StatusBar
 
 var in_combat : bool = false
 
+#What turn are we on
+var turn_number = 0
+
 func _ready():
 	in_combat = false
 	status_bar = get_node("StatusBarLayer/StatusBar")
@@ -40,6 +43,7 @@ func create_scene():
 	if in_combat:
 		current_scene = combat_scene.instantiate()
 	else:
+		turn_number += 1
 		current_scene = shop_scene.instantiate()
 		current_scene.money_changed.connect(_money_changed)
 	add_child(current_scene)
@@ -65,8 +69,6 @@ func _input(event):
 	if Input.is_key_pressed(KEY_S):
 		for grids in GridManager.get_children():
 			grids.save_current_grid()
-	if Input.is_key_pressed(KEY_L):
-		GridManager.load_layout("army")
 #	pauses/restarts the battle ticks, can be used in conjunction with "T" to step through a battle
 	if Input.is_key_pressed(KEY_P):
 		if (CombatManager!= null):
@@ -76,11 +78,6 @@ func _input(event):
 	if Input.is_key_pressed(KEY_T):
 		if (CombatManager!= null):
 			CombatManager.battle_ticker()
-
-	if Input.is_key_pressed(KEY_X):
-		CombatManager.setup_headquarters()
-	if Input.is_key_pressed(KEY_D):
-		CombatManager.player_headquarter.hurt(100)
 	
 func _money_changed(amount : int):
 	status_bar.set_money(amount)

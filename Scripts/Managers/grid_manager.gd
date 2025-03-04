@@ -48,6 +48,7 @@ func load_units():
 							tiles[width][height].add_child(instance)
 							instance.position = Vector2i(0,0)
 							tiles[width][height].unit_placed_on(instance)
+						#If a crash happens here, its likely the enemy army doesn't have an army made for the current turn number
 						if(enemy_unit_IDs[width][height] != null):	
 							var ID_to_int = int(enemy_unit_IDs[width][height][0])
 							#Spawn in a unit. Reference the UnitDictionary to find out what unit to spawn
@@ -78,30 +79,41 @@ func save_layout(grid_name : String, grid_data : Array):
 	#Saves army as an enemy army
 	if(DebuggerScript.place_enemy):
 		grid_name = "enemy"
+	
+	var current_turn_number = str("turn", game_manager.turn_number)
+	
 	#This will give you the project directory.
-	var save_file = FileAccess.open(game_folder + grid_name + ".save", FileAccess.WRITE)
+	var save_file = FileAccess.open(game_folder + grid_name + current_turn_number + ".save", FileAccess.WRITE)
 	# JSON provides a static method to serialized JSON string.
 	var json_string = JSON.stringify(grid_data)
 	# Store the save dictionary as a new line in the save file.
 	save_file.store_line(json_string)
 
 func load_layout(file_to_load : String):
-	if not FileAccess.file_exists(game_folder + "army.save"):
-		print("ERROR - No data to load")
-
+	var current_turn_number
+	#If we're in combat then load this turn nubmer army
+	if(game_manager.in_combat):
+		current_turn_number = str("turn", game_manager.turn_number)
+	#If wer'e in the shop, load the last turn's army as this turn's army hasnt been saved yet
+	else:
+		current_turn_number = str("turn", (game_manager.turn_number-1))
+		
 	# Load the file line by line and process that dictionary to restore
 	# the object it represents.
-	var save_file = FileAccess.open(game_folder + file_to_load + ".save", FileAccess.READ)
+	var save_file = FileAccess.open(game_folder + file_to_load + current_turn_number + ".save", FileAccess.READ)
 	var json = JSON.new()
-
-	while save_file.get_position() < save_file.get_length():
-		var json_string = save_file.get_line()
-		# Creates the helper class to interact with JSON.
-		# Check if there is any error while parsing the JSON string, skip in case of failure.
-		var parse_result = json.parse(json_string)
-		if not parse_result == OK:
-			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
-			continue
+	#THIS DOESNT SEEM TO PRINT, CRASHES ELSEWHERE
+	if not FileAccess.file_exists(game_folder + file_to_load + current_turn_number + ".save"):
+		print("ERROR - No data to load")
+	else:
+		while save_file.get_position() < save_file.get_length():
+			var json_string = save_file.get_line()
+			# Creates the helper class to interact with JSON.
+			# Check if there is any error while parsing the JSON string, skip in case of failure.
+			var parse_result = json.parse(json_string)
+			if not parse_result == OK:
+				print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+				continue
 
 	#Returns the contents of the file to whatever called it
 	return json.data
