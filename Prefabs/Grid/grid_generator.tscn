@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bqgwbmbquy7su"]
 
-[ext_resource type="Script" path="res://Scripts/Grid/grid_generation.gd" id="1_itawy"]
+[ext_resource type="Script" uid="uid://bi20rliok0lqp" path="res://Scripts/Grid/grid_generation.gd" id="1_itawy"]
 
 [node name="grid_generator" type="Node2D"]
 script = ExtResource("1_itawy")
