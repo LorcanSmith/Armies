@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://d4h2dufyod7as"]
 
-[ext_resource type="Script" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
-[ext_resource type="Script" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
+[ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
+[ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
 [ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="3_ew2it"]
 [ext_resource type="PackedScene" uid="uid://dr2o4nm3x37eu" path="res://Prefabs/Managers/grid_manager.tscn" id="4_2ahac"]
-[ext_resource type="Script" path="res://Scripts/Grid/grid_generation.gd" id="5_q2vn5"]
+[ext_resource type="Script" uid="uid://bi20rliok0lqp" path="res://Scripts/Grid/grid_generation.gd" id="5_q2vn5"]
 [ext_resource type="PackedScene" uid="uid://bqgwbmbquy7su" path="res://Prefabs/Grid/grid_generator.tscn" id="6_e3q61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4adb8"]
