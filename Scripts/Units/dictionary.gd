@@ -21,12 +21,12 @@ var unit_scenes = {
 	11: preload("res://Prefabs/Units/Level3/tank_unit_LVL3.tscn"),
 	#Soldier
 	12: preload("res://Prefabs/Units/Level1/soldier_unit_LVL1.tscn"),
-	13: preload("res://Prefabs/Units/Level1/soldier_unit_LVL1.tscn"),
-	14: preload("res://Prefabs/Units/Level1/soldier_unit_LVL1.tscn"),
+	13: preload("res://Prefabs/Units/Level2/soldier_unit_LVL2.tscn"),
+	14: preload("res://Prefabs/Units/Level3/soldier_unit_LVL3.tscn"),
 	#Medic
-	15: preload("res://Prefabs/Units/Level1/soldier_unit_LVL1.tscn"),
-	16: preload("res://Prefabs/Units/Level1/soldier_unit_LVL1.tscn"),
-	17: preload("res://Prefabs/Units/Level1/soldier_unit_LVL1.tscn")
+	15: preload("res://Prefabs/Units/Level1/medic_unit_LVL1.tscn"),
+	16: preload("res://Prefabs/Units/Level2/medic_unit_LVL2.tscn"),
+	17: preload("res://Prefabs/Units/Level3/medic_unit_LVL3.tscn")
 }
 
 var item_scenes = {
@@ -48,10 +48,10 @@ var item_scenes = {
 	11: preload("res://Prefabs/Shop Items/Level3/tank_item_LVL3.tscn"),
 	#Soldier
 	12: preload("res://Prefabs/Shop Items/Level1/soldier_item_LVL1.tscn"),
-	13: preload("res://Prefabs/Shop Items/Level1/soldier_item_LVL1.tscn"),
-	14: preload("res://Prefabs/Shop Items/Level1/soldier_item_LVL1.tscn"),
+	13: preload("res://Prefabs/Shop Items/Level2/soldier_item_LVL2.tscn"),
+	14: preload("res://Prefabs/Shop Items/Level3/soldier_item_LVL3.tscn"),
 	#Medic
-	15: preload("res://Prefabs/Shop Items/Level1/soldier_item_LVL1.tscn"),
-	16: preload("res://Prefabs/Shop Items/Level1/soldier_item_LVL1.tscn"),
-	17: preload("res://Prefabs/Shop Items/Level1/soldier_item_LVL1.tscn")
+	15: preload("res://Prefabs/Shop Items/Level1/medic_item_LVL1.tscn"),
+	16: preload("res://Prefabs/Shop Items/Level2/medic_item_LVL2.tscn"),
+	17: preload("res://Prefabs/Shop Items/Level3/medic_item_LVL3.tscn")
 }
