@@ -1,6 +1,7 @@
 extends Node2D
 
-# swaps between the battle and shop scene
+#What turn are we on
+var current_turn_number = 0
 
 #List of all managers
 var CombatManager : Node2D
@@ -44,6 +45,8 @@ func create_scene():
 	if in_combat:
 		current_scene = combat_scene.instantiate()
 	else:
+		current_turn_number += 1
+		print("TURN NUMBER: ", current_turn_number)
 		current_scene = shop_scene.instantiate()
 		current_scene.money_changed.connect(_money_changed)
 	add_child(current_scene)
