@@ -10,7 +10,23 @@ var unit_scenes = {
 	#ARCHER
 	3: preload("res://Prefabs/Units/Level1/archer_unit_LVL1.tscn"),
 	4: preload("res://Prefabs/Units/Level2/archer_unit_LVL2.tscn"),
-	5: preload("res://Prefabs/Units/Level3/archer_unit_LVL3.tscn")
+	5: preload("res://Prefabs/Units/Level3/archer_unit_LVL3.tscn"),
+	#Catapult
+	6: preload("res://Prefabs/Units/Level1/catapult_unit_LVL1.tscn"),
+	7: preload("res://Prefabs/Units/Level2/catapult_unit_LVL2.tscn"),
+	8: preload("res://Prefabs/Units/Level3/catapult_unit_LVL3.tscn"),
+	#Tank
+	9: preload("res://Prefabs/Units/Level1/tank_unit_LVL1.tscn"),
+	10: preload("res://Prefabs/Units/Level2/tank_unit_LVL2.tscn"),
+	11: preload("res://Prefabs/Units/Level3/tank_unit_LVL3.tscn"),
+	#Soldier
+	12: preload("res://Prefabs/Units/Level1/soldier_unit_LVL1.tscn"),
+	13: preload("res://Prefabs/Units/Level1/soldier_unit_LVL1.tscn"),
+	14: preload("res://Prefabs/Units/Level1/soldier_unit_LVL1.tscn"),
+	#Medic
+	15: preload("res://Prefabs/Units/Level1/soldier_unit_LVL1.tscn"),
+	16: preload("res://Prefabs/Units/Level1/soldier_unit_LVL1.tscn"),
+	17: preload("res://Prefabs/Units/Level1/soldier_unit_LVL1.tscn")
 }
 
 var item_scenes = {
@@ -21,5 +37,21 @@ var item_scenes = {
 	#ARCHER
 	3: preload("res://Prefabs/Shop Items/Level1/archer_item_LVL1.tscn"),
 	4: preload("res://Prefabs/Shop Items/Level2/archer_item_LVL2.tscn"),
-	5: preload("res://Prefabs/Shop Items/Level3/archer_item_LVL3.tscn")
+	5: preload("res://Prefabs/Shop Items/Level3/archer_item_LVL3.tscn"),
+	#Catapult
+	6: preload("res://Prefabs/Shop Items/Level1/catapult_item_LVL1.tscn"),
+	7: preload("res://Prefabs/Shop Items/Level2/catapult_item_LVL2.tscn"),
+	8: preload("res://Prefabs/Shop Items/Level3/catapult_item_LVL3.tscn"),
+	#Tank
+	9: preload("res://Prefabs/Shop Items/Level1/tank_item_LVL1.tscn"),
+	10: preload("res://Prefabs/Shop Items/Level2/tank_item_LVL2.tscn"),
+	11: preload("res://Prefabs/Shop Items/Level3/tank_item_LVL3.tscn"),
+	#Soldier
+	12: preload("res://Prefabs/Shop Items/Level1/soldier_item_LVL1.tscn"),
+	13: preload("res://Prefabs/Shop Items/Level1/soldier_item_LVL1.tscn"),
+	14: preload("res://Prefabs/Shop Items/Level1/soldier_item_LVL1.tscn"),
+	#Medic
+	15: preload("res://Prefabs/Shop Items/Level1/soldier_item_LVL1.tscn"),
+	16: preload("res://Prefabs/Shop Items/Level1/soldier_item_LVL1.tscn"),
+	17: preload("res://Prefabs/Shop Items/Level1/soldier_item_LVL1.tscn")
 }

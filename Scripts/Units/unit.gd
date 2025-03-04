@@ -242,6 +242,7 @@ func push(direction_pushed_from : String):
 				collateral_units[unit].hurt(bump_damage)
 				unit += 1
 
+
 func _on_skill_area_2d_area_entered(area: Area2D) -> void:
 	#Checking the area isnt a buff area
 	if(!area.is_in_group("buff_location")):
@@ -257,6 +258,7 @@ func _on_skill_area_2d_area_exited(area: Area2D) -> void:
 		if(enemies_in_range.has(area.get_parent())):
 			enemies_in_range.erase(area.get_parent())
 
+func _on_area_2d_area_entered(area: Area2D) -> void:
 	if(area.is_in_group("buff_location")):
 		#Checks if the buff location belongs to an enemy
 		if((self.is_in_group("player") and area.get_parent().get_parent().is_in_group("enemy")) or (self.is_in_group("enemy") and area.get_parent().get_parent().is_in_group("player"))):
@@ -282,7 +284,7 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 			#We have left the area so stop the weakening from working
 			health -= area.get_parent().health_buff
 			skill_damage -= area.get_parent().damage_buff
-
+			
 #Called when something enters one of the "push location" nodes
 func _on_up_area_area_entered(area: Area2D) -> void:
 	push_area_entered(area.get_parent(), "up")
