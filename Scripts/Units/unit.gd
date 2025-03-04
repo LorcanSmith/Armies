@@ -125,10 +125,10 @@ func skill():
 				#If the skill doesnt spawn randomly
 				if(!skill_spawn_random):
 					#Set skills location to be at the enemy location
-          if spawn_skill_on_self:
+					if spawn_skill_on_self:
 						skill_instance.global_position = self.global_position
-          else:
-					  skill_instance.global_position = enemies_in_range[enemy_number].global_position
+					else:
+						skill_instance.global_position = enemies_in_range[enemy_number].global_position
 				#If the skill spawns at a random location
 				else:
 					#Choose a random enemy in range
