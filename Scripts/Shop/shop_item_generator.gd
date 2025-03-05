@@ -3,6 +3,9 @@ extends Node
 #Places where shop items show up
 var item_locations = []
 
+#Dictionary containing all units
+var dictionary = load("res://Scripts/Units/dictionary.gd")
+
 #Folder containing shop items
 var level1_folder = "res://Prefabs/Shop Items/Level1/"
 var level2_folder = "res://Prefabs/Shop Items/Level2/"
@@ -22,10 +25,11 @@ func _ready() -> void:
 func show_new_items():
 	#Displays a new item for each shop item location
 	for location in item_locations.size():
-		#Chooses a random item and loads the item from the path
+		#Chooses a random item and loads the item from the path, gets it unit_ID
 		var chosen_item = choose_random_item()
 		#Spawns in the chosen item as a new item in the shop
-		var new_item = chosen_item.instantiate()
+		var new_item = chosen_item[0].instantiate()
+		new_item.unit_ID = chosen_item[1]
 		#Sets the new items' parent to be the item location in the shop
 		item_locations[location].add_child(new_item)
 		#Sets the new items' location to be that of its parent (the shop item location)
@@ -33,17 +37,24 @@ func show_new_items():
 		
 #Chooses a random item
 func choose_random_item():
-	var random_folder = randi_range(1,3)
+	var dictionary_instance = dictionary.new()
+	var random_item = (randi_range(1,(dictionary_instance.item_scenes.size()/3))*3)
 	#Gets a random number within the range of how many items there are
-	var random_item = randi_range(0, level1_items.size()-1)
+	var random_level = randi_range(1,3)
 	var loaded_item
-	if(random_folder == 1):
-		loaded_item = load(str(level1_folder + level1_items[random_item]))
-	elif(random_folder == 2):
-		loaded_item = load(str(level2_folder + level2_items[random_item]))
-	elif(random_folder == 3):
-		loaded_item = load(str(level3_folder + level3_items[random_item]))
-	return loaded_item
+	if(random_level == 1):
+		random_item = random_item-3
+		loaded_item = dictionary_instance.item_scenes[random_item]
+	elif(random_level == 2):
+		#Gets the unit ID
+		random_item = random_item-2
+		loaded_item = dictionary_instance.item_scenes[random_item]
+	elif(random_level == 3):
+		#Gets the unit ID
+		random_item = random_item-1
+		loaded_item = dictionary_instance.item_scenes[random_item]
+	#print(random_item)
+	return [loaded_item, (random_item)]
 	
 	
 #Finds all items in folders

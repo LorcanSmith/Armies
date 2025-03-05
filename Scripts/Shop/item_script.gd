@@ -4,7 +4,7 @@ extends Node2D
 var dictionary = load("res://Scripts/Units/dictionary.gd")
 #Unit ID, refer to UNIT ID document
 #Items that aren't units do not need an ID
-@export var unit_ID : int = -1
+var unit_ID : int = -1
 #Can this item be upgraded further?
 @export var can_be_upgraded : bool = true
 #Keeps track of if the unit is over a potential upgrade
