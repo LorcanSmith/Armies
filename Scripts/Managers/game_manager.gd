@@ -66,16 +66,16 @@ func load_complete(element_loaded : String):
 		
 ##USED TO REROLL THE SHOP, WILL EVENTUALLY BE DONE BY A BUTTON
 func _input(event):
-	if Input.is_key_pressed(KEY_S):
+	if Input.is_action_just_pressed("save"):
 		for grids in GridManager.get_children():
 			grids.save_current_grid()
 #	pauses/restarts the battle ticks, can be used in conjunction with "T" to step through a battle
-	if Input.is_key_pressed(KEY_P):
+	if Input.is_action_just_pressed("pause"):
 		if (CombatManager!= null):
 			CombatManager.ticker_paused = !CombatManager.ticker_paused
 			if !CombatManager.ticker_paused:
 				CombatManager.battle_ticker()
-	if Input.is_key_pressed(KEY_T):
+	if Input.is_action_just_pressed("tick"):
 		if (CombatManager!= null):
 			CombatManager.battle_ticker()
 	
