@@ -12,9 +12,6 @@ skill_spawn_amount = 5
 skill_spawn_random = true
 skill_damage = 7
 
-[node name="buffs" parent="." index="0"]
-damage_buff = 0
-
 [node name="CollisionShape2D" parent="skill_locations/location/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
@@ -91,13 +88,12 @@ position = Vector2(523, -128)
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="Sprite2D" parent="." index="4"]
-texture_filter = 1
 texture = ExtResource("2_o20n7")
 
 [node name="Level" parent="Label" index="0"]
 offset_top = 0.0
 offset_bottom = 23.0
-text = "Level 1"
+text = "Level 2"
 
 [connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
