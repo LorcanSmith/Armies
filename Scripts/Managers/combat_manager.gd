@@ -175,14 +175,15 @@ func combat_phase():
 			find_child("skill_holder").waiting_for_skills = true
 		#If no units that can do damage to bases are alive, then end the combat
 		else:
-			game_manager.won_battle(true)
-			battle_over = true
-			auto_tick()
+			end_combat()
 	#No units exist, you win
 	else:
-		game_manager.won_battle(true)
-		battle_over = true
-		auto_tick()
+		end_combat()
+func end_combat():
+	game_manager.won_battle(true)
+	battle_over = true
+	auto_tick()
+
 #Called by the skill_holder child when no skills remain, meaning we can proceed with combat
 func no_skills_left():
 	#Tells the units to take damage
