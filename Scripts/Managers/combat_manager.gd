@@ -148,22 +148,41 @@ func move_units():
 		u += 1
 	auto_tick()
 func combat_phase():
-	#Combat is this turn so set the movement phase to be next turn
-	movement_next_phase = true
-	#Tell each unit in the enemy army to do their skill
-	var unit = 0
-	while unit in range(player_army.size()):
-		player_army[unit].skill()
-		unit += 1
-	#Tell each unit in the player army to do their skill
-	unit = 0
-	while unit in range(enemy_army.size()):
-		enemy_army[unit].skill()
-		unit += 1
-	
-	#Tell the skill_holder that skills have been spawned and we're waiting for them to be finished
-	find_child("skill_holder").waiting_for_skills = true
-
+	#If there are still units on the board
+	if(player_army.size() > 0 or enemy_army.size() > 0):
+		#Used to check if any units remain that can do damage
+		var damage_unit_alive = false
+		#Combat is this turn so set the movement phase to be next turn
+		movement_next_phase = true
+		#Tell each unit in the enemy army to do their skill
+		var unit = 0
+		while unit in range(player_army.size()):
+			player_army[unit].skill()
+			#Checks to see if the unit can do damage
+			if(player_army[unit].skill_damage > 0):
+				damage_unit_alive = true
+			unit += 1
+		#Tell each unit in the player army to do their skill
+		unit = 0
+		while unit in range(enemy_army.size()):
+			enemy_army[unit].skill()
+			if(enemy_army[unit].skill_damage > 0):
+				damage_unit_alive = true
+			unit += 1
+		#If a unit who can damage the base is still alive continue game
+		if(damage_unit_alive):
+			#Tell the skill_holder that skills have been spawned and we're waiting for them to be finished
+			find_child("skill_holder").waiting_for_skills = true
+		#If no units that can do damage to bases are alive, then end the combat
+		else:
+			game_manager.won_battle(true)
+			battle_over = true
+			auto_tick()
+	#No units exist, you win
+	else:
+		game_manager.won_battle(true)
+		battle_over = true
+		auto_tick()
 #Called by the skill_holder child when no skills remain, meaning we can proceed with combat
 func no_skills_left():
 	#Tells the units to take damage
