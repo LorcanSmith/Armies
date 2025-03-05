@@ -1,17 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://sum8b1xnnmvp"]
+[gd_scene load_steps=3 format=3 uid="uid://sum8b1xnnmvp"]
 
 [ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_e00cj"]
-[ext_resource type="PackedScene" uid="uid://by8ndrehnsmpn" path="res://Prefabs/Skills/basic_skill.tscn" id="2_ypu7r"]
 [ext_resource type="Texture2D" uid="uid://ca2y0ewqn4yt" path="res://Sprites/Units/Medieval/Knight/knight_sprite.png" id="3_niotv"]
 
 [node name="knight_unit" instance=ExtResource("1_e00cj")]
 max_health = 25
 brawl_damage = 10
 skill_damage = 18
-skill_prefab = ExtResource("2_ypu7r")
 
 [node name="Sprite2D" parent="." index="4"]
-texture_filter = 1
 texture = ExtResource("3_niotv")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]

@@ -1,8 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bh1i1tp3dgvik"]
+[gd_scene load_steps=11 format=3 uid="uid://bh1i1tp3dgvik"]
 
 [ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_h20h1"]
-[ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_h20h1"]
-[ext_resource type="PackedScene" uid="uid://bp080ti5p3qme" path="res://Prefabs/Skills/skill.tscn" id="2_gpp3g"]
 [ext_resource type="Script" uid="uid://cdc2qqsvqw1rh" path="res://Scripts/Units/move_spot.gd" id="4_4fdo6"]
 [ext_resource type="Script" uid="uid://bbyqyvnyg3d6s" path="res://Scripts/Skills/buff.gd" id="4_4nfq5"]
 [ext_resource type="Script" uid="uid://b34p24hcbhwg" path="res://Scripts/Units/push_locations.gd" id="5_8a1pl"]
@@ -19,10 +17,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xy1do"]
 size = Vector2(76, 71)
 
-[node name="unit_prefab" type="Node2D" node_paths=PackedStringArray("skill_locations_parent")]
+[node name="unit_prefab" type="Node2D"]
 script = ExtResource("1_h20h1")
-skill_locations_parent = NodePath("skill_locations")
-skill_prefab = ExtResource("2_gpp3g")
 
 [node name="buffs" type="Node2D" parent="."]
 script = ExtResource("4_4nfq5")

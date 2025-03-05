@@ -42,8 +42,10 @@ func load_units():
 							if(unit_IDs[width][height] != null):
 								#Spawn in a unit. Reference the UnitDictionary to find out what unit to spawn
 								instance = dictionary_instance.unit_scenes[unit_IDs[width][height][0]].instantiate()
+								#Add unit ID
+								instance.unit_ID = unit_IDs[width][height][0]
 								#Add the unit to either the player or the enemy group
-								instance.add_to_group(unit_IDs[width][height][1], true)
+								instance.add_to_group("player")
 								#If the unit is an enemy. Make them face the opposite direction
 								tiles[width][height].add_child(instance)
 								instance.position = Vector2i(0,0)
@@ -53,8 +55,10 @@ func load_units():
 								var ID_to_int = int(enemy_unit_IDs[width][height][0])
 								#Spawn in a unit. Reference the UnitDictionary to find out what unit to spawn
 								instance = dictionary_instance.unit_scenes[ID_to_int].instantiate()
+								#Add unit ID
+								instance.unit_ID = ID_to_int
 								#Add the unit to either the player or the enemy group
-								instance.add_to_group(enemy_unit_IDs[width][height][1], true)
+								instance.add_to_group("enemy")
 								instance.scale.x = -instance.scale.x
 								instance.find_child("Label").scale.x = -instance.find_child("Label").scale.x
 								reversed_tiles[width][height].add_child(instance)
@@ -64,6 +68,8 @@ func load_units():
 						if(unit_IDs[width][height] != null):
 							#Spawn an item. Reference the UnitDictionary to find out what item to spawn
 							instance = dictionary_instance.item_scenes[unit_IDs[width][height][0]].instantiate()
+							#Add unit ID
+							instance.unit_ID = unit_IDs[width][height][0]
 							tiles[width][height].add_child(instance)
 							instance.position = Vector2i(0,0)
 							tiles[width][height].unit_placed_on(instance)

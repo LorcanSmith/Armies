@@ -79,9 +79,9 @@ func save_current_grid():
 				#If the unit is in the player group
 				if(unit.is_in_group("player")):
 					#Save the unit ID and data in the grid to be used later
-					grid_with_unit_IDs[width][height] = [unit.unit_ID, "player"]
+					grid_with_unit_IDs[width][height] = [unit.unit_ID]
 				else:
-					grid_with_unit_IDs[width][height] = [unit.unit_ID, "enemy"]
+					grid_with_unit_IDs[width][height] = [unit.unit_ID]
 			#If the is no unit on the grid tile
 			else:
 				#Set that grid id to be null. This updates any tiles that previously had a unit on it
