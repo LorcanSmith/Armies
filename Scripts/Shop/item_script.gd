@@ -87,7 +87,7 @@ func _process(delta: float) -> void:
 		#If the tile isnt empty 			
 		#Check if its a unit which we can upgrade and is of the same type
 		elif((tile_currently_over.units_on_tile[0].can_be_upgraded and tile_currently_over.units_on_tile[0].unit_ID <= unit_ID)
-		and (((unit_ID - tile_currently_over.units_on_tile[0].unit_ID) < 3) or (tile_currently_over.units_on_tile[0].unit_ID) - unit_ID <= 0)):
+		and ((unit_ID - tile_currently_over.units_on_tile[0].unit_ID) < 3) and ((tile_currently_over.units_on_tile[0].unit_ID) - unit_ID <= 0)):
 			#Snap to the tile location
 			sprite.global_position = tile_currently_over.global_position
 			unit_currently_over_can_upgrade = true
