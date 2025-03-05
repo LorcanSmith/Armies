@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://c73uyed4ispk4" path="res://Sprites/Units/Medieval/Archer/archer_sprite.png" id="2_eoa7x"]
 
 [node name="Item" instance=ExtResource("1_gcx7p")]
-unit_ID = 3
 buy_cost = 5
 sell_cost = 2
 
@@ -12,4 +11,4 @@ sell_cost = 2
 texture = ExtResource("2_eoa7x")
 
 [node name="Level" parent="." index="3"]
-text = "Level 1"
+text = ""

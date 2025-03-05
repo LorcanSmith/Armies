@@ -6,21 +6,16 @@ var item_locations = []
 #Dictionary containing all units
 var dictionary = load("res://Scripts/Units/dictionary.gd")
 
-#Folder containing shop items
-var level1_folder = "res://Prefabs/Shop Items/Level1/"
-var level2_folder = "res://Prefabs/Shop Items/Level2/"
-var level3_folder = "res://Prefabs/Shop Items/Level3/"
-#Individual item file names
-var level1_items: Array = []
-var level2_items : Array = []
-var level3_items : Array = []
+##Percentage out of 100 for how likely a level 2 unit is to show up
+@export var level2_percentage = 7
+@export var level3_percentage = 0.5
+##Percentage out of 100 for how likely a level 3 unit is to show up
 #Loads new items and then shows new items in the shop
 func _ready() -> void:
 	#Gets the children and sets them as locations items can spawn at
 	for loc in self.get_children():
 		item_locations.append(loc)
-	load_items()
-
+	show_new_items()
 #Spawns in new shop items
 func show_new_items():
 	#Displays a new item for each shop item location
@@ -38,9 +33,17 @@ func show_new_items():
 #Chooses a random item
 func choose_random_item():
 	var dictionary_instance = dictionary.new()
+	#Gets a random unit type
 	var random_item = (randi_range(1,(dictionary_instance.item_scenes.size()/3))*3)
-	#Gets a random number within the range of how many items there are
-	var random_level = randi_range(1,3)
+	#Gets a random number
+	var random_percentage = randf_range(1,100)
+	var random_level
+	if(random_percentage <= level2_percentage):
+		random_level = 2
+		if(random_percentage <= level3_percentage):
+			random_level = 3
+	else:
+		random_level = 1
 	var loaded_item
 	if(random_level == 1):
 		random_item = random_item-3
@@ -54,27 +57,8 @@ func choose_random_item():
 		random_item = random_item-1
 		loaded_item = dictionary_instance.item_scenes[random_item]
 	#print(random_item)
-	return [loaded_item, (random_item)]
+	return [loaded_item, random_item]
 	
-	
-#Finds all items in folders
-func load_items():
-	#Returns an instance for access folder
-	var level1_folder_instance = DirAccess.open(level1_folder)
-	var level2_folder_instance = DirAccess.open(level2_folder)
-	var level3_folder_instance = DirAccess.open(level3_folder)
-	#Gets each file out of common folder
-	var level1_item_files = level1_folder_instance.get_files()
-	var level2_item_files = level2_folder_instance.get_files()
-	var level3_item_files = level3_folder_instance.get_files()
-	#Adds each items' file location to the common items array
-	for file_name in level1_item_files:
-		level1_items.append(file_name)
-	for file_name in level2_item_files:
-		level2_items.append(file_name)
-	for file_name in level3_item_files:
-		level3_items.append(file_name)
-	show_new_items()
 
 func reroll_shop():
 	#Remove old shop items before showing new items
@@ -88,6 +72,7 @@ func reroll_shop():
 	print("RE-ROLLED")
 	#Gets new items for the shop
 	show_new_items()
+	
 ##USED TO REROLL THE SHOP, WILL EVENTUALLY BE DONE BY A BUTTON
 func _input(event):
 	if Input.is_key_pressed(KEY_R):

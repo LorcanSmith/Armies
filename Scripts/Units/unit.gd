@@ -52,7 +52,10 @@ var pushed_vector : Vector2i = Vector2i(0, 0)
 #Enemies inside our range
 var enemies_in_range : Array = []
 
+var level_label : Label
+
 func _ready() -> void:
+	level_label = find_child("Level")
 	health = max_health
 	movement_locations = find_child("movement_locations").get_children()
 	if self.is_in_group("enemy"):
@@ -158,7 +161,15 @@ func brawl():
 
 func update_label():
 	$Label.text = str(health) + "/" + str(max_health)
-
+	#Auto assigns the Level label
+	var level : int
+	var normalised_id = unit_ID + 1
+	if(normalised_id % 3 == 1):
+		level_label.text = "Level 1"
+	elif(normalised_id % 3 == 2):
+		level_label.text = "Level 2"
+	else:
+		level_label.text = "Level 3"
 #Does damage to unit
 func hurt(amount : int):
 	damage_done_to_self += amount

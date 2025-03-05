@@ -32,7 +32,7 @@ var item_on_sell_location : bool = false
 
 #The child sprite which is the visuals for the item
 var sprite : Sprite2D
-
+var level_label : Label
 #Is the player currently hovering over the item, used to detect if they click on this item
 var mouse_over_item : bool = false
 #Should the item follow the mouse
@@ -41,7 +41,19 @@ var follow_mouse : bool = false
 func _ready() -> void:
 	sprite = find_child("Sprite2D")
 	shop_manager = find_parent("shop_manager")
-	
+	level_label = find_child("Level")
+	calculate_unit_level()
+
+#Auto assigns the Level label
+func calculate_unit_level():
+	var level : int
+	var normalised_id = unit_ID + 1
+	if(normalised_id % 3 == 1):
+		level_label.text = "Level 1"
+	elif(normalised_id % 3 == 2):
+		level_label.text = "Level 2"
+	else:
+		level_label.text = "Level 3"
 #Called when the mouse is hovering over
 func _on_area_2d__mouse_collision_mouse_entered() -> void:
 	mouse_over_item = true
