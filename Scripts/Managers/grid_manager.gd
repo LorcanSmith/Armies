@@ -13,7 +13,7 @@ func _ready() -> void:
 func generate_grids():
 	#Tells all the grid generators to make a grid
 	for generator in get_children():
-		generator.generate_grid()
+		generator.generate_grid(game_manager.turn_number, game_manager.in_combat)
 	game_manager.load_complete("grids")
 	#Loads units into the scene
 	load_units()
@@ -30,7 +30,7 @@ func load_units():
 		while width in range(tiles.size()):
 			var height = 0
 			while height in range(tiles[width].size()):
-				if(width < unit_IDs[0].size()):	
+				if(width < unit_IDs.size() and height < unit_IDs[0].size()):	
 					var instance				
 					if game_manager.in_combat:
 						#	reverses tiles for enemy spawning

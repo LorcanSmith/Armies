@@ -56,8 +56,6 @@ texture = ExtResource("3_ew2it")
 position = Vector2(995, 37)
 script = ExtResource("5_q2vn5")
 grid_name = "inventory"
-grid_width = 2
-grid_height = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="grid_manager/grid_generator (inventory)"]
 offset_left = -4.0

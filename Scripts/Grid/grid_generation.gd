@@ -7,9 +7,11 @@ extends Node
 @export var is_battle_grid : bool = false
 
 #Width and Height of the grid to be generated
-@export var grid_width : int = 1
-@export var grid_height : int = 1
+var grid_width : int = 1
+var grid_height : int = 1
 
+@export var width_per_turn = [3,3,4,4]
+@export var height_per_turn = [2,3,3,4]
 
 #Tile that is placed at each grid position
 var tile : PackedScene
@@ -28,7 +30,16 @@ func _ready() -> void:
 		tile = preload("res://Prefabs/Grid/builder_tile.tscn")
 
 #Generates a grid
-func generate_grid():
+func generate_grid(turn_number : int, in_combat : bool):
+	turn_number -= 1
+	if(width_per_turn[turn_number]):
+		grid_width = width_per_turn[turn_number]
+		grid_height = height_per_turn[turn_number]
+	else:
+		grid_width = width_per_turn[-1]
+		grid_height = height_per_turn[-1]
+	if(in_combat):
+		grid_width = (grid_width*2)+2
 	#Resizes the array to be the size of the width
 	grid.resize(grid_width)
 	grid_with_unit_IDs.resize(grid_width)
