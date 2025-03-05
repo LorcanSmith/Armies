@@ -38,28 +38,28 @@ func load_units():
 						reversed_tiles.reverse()
 						#Loads enemy army
 						var enemy_unit_IDs = load_layout("enemy")
-						
-						if(unit_IDs[width][height] != null):
-							#Spawn in a unit. Reference the UnitDictionary to find out what unit to spawn
-							instance = dictionary_instance.unit_scenes[unit_IDs[width][height][0]].instantiate()
-							#Add the unit to either the player or the enemy group
-							instance.add_to_group(unit_IDs[width][height][1], true)
-							#If the unit is an enemy. Make them face the opposite direction
-							tiles[width][height].add_child(instance)
-							instance.position = Vector2i(0,0)
-							tiles[width][height].unit_placed_on(instance)
-						#If a crash happens here, its likely the enemy army doesn't have an army made for the current turn number
-						if(enemy_unit_IDs[width][height] != null):	
-							var ID_to_int = int(enemy_unit_IDs[width][height][0])
-							#Spawn in a unit. Reference the UnitDictionary to find out what unit to spawn
-							instance = dictionary_instance.unit_scenes[ID_to_int].instantiate()
-							#Add the unit to either the player or the enemy group
-							instance.add_to_group(enemy_unit_IDs[width][height][1], true)
-							instance.scale.x = -instance.scale.x
-							instance.find_child("Label").scale.x = -instance.find_child("Label").scale.x
-							reversed_tiles[width][height].add_child(instance)
-							instance.position = Vector2i(0,0)
-							reversed_tiles[width][height].unit_placed_on(instance)
+						if(enemy_unit_IDs):
+							if(unit_IDs[width][height] != null):
+								#Spawn in a unit. Reference the UnitDictionary to find out what unit to spawn
+								instance = dictionary_instance.unit_scenes[unit_IDs[width][height][0]].instantiate()
+								#Add the unit to either the player or the enemy group
+								instance.add_to_group(unit_IDs[width][height][1], true)
+								#If the unit is an enemy. Make them face the opposite direction
+								tiles[width][height].add_child(instance)
+								instance.position = Vector2i(0,0)
+								tiles[width][height].unit_placed_on(instance)
+							#If a crash happens here, its likely the enemy army doesn't have an army made for the current turn number
+							if(enemy_unit_IDs[width][height] != null):	
+								var ID_to_int = int(enemy_unit_IDs[width][height][0])
+								#Spawn in a unit. Reference the UnitDictionary to find out what unit to spawn
+								instance = dictionary_instance.unit_scenes[ID_to_int].instantiate()
+								#Add the unit to either the player or the enemy group
+								instance.add_to_group(enemy_unit_IDs[width][height][1], true)
+								instance.scale.x = -instance.scale.x
+								instance.find_child("Label").scale.x = -instance.find_child("Label").scale.x
+								reversed_tiles[width][height].add_child(instance)
+								instance.position = Vector2i(0,0)
+								reversed_tiles[width][height].unit_placed_on(instance)
 					else:
 						if(unit_IDs[width][height] != null):
 							#Spawn an item. Reference the UnitDictionary to find out what item to spawn
@@ -104,7 +104,7 @@ func load_layout(file_to_load : String):
 	var json = JSON.new()
 	#THIS DOESNT SEEM TO PRINT, CRASHES ELSEWHERE
 	if not FileAccess.file_exists(game_folder + file_to_load + current_turn_number + ".save"):
-		print("ERROR - No data to load")
+		print("ERROR - No data to load", file_to_load)
 	else:
 		while save_file.get_position() < save_file.get_length():
 			var json_string = save_file.get_line()
@@ -113,10 +113,8 @@ func load_layout(file_to_load : String):
 			var parse_result = json.parse(json_string)
 			if not parse_result == OK:
 				print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
-				continue
-
-	#Returns the contents of the file to whatever called it
-	return json.data
+			#Returns the contents of the file to whatever called it
+			return json.data
 
 #Returns the grid of the child back to whoever calls the function
 func get_grid():
