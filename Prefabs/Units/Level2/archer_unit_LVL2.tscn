@@ -11,6 +11,8 @@ brawl_damage = 5
 skill_spawn_amount = 5
 skill_spawn_random = true
 skill_damage = 7
+solider_effective = true
+animal_effective = true
 
 [node name="CollisionShape2D" parent="skill_locations/location/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")

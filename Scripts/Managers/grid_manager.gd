@@ -45,7 +45,7 @@ func load_units():
 								#Add unit ID
 								instance.unit_ID = unit_IDs[width][height][0]
 								#Add the unit to either the player or the enemy group
-								instance.add_to_group(unit_IDs[width][height][1], true)
+								instance.add_to_group("player")
 								#If the unit is an enemy. Make them face the opposite direction
 								tiles[width][height].add_child(instance)
 								instance.position = Vector2i(0,0)
@@ -58,7 +58,7 @@ func load_units():
 								#Add unit ID
 								instance.unit_ID = ID_to_int
 								#Add the unit to either the player or the enemy group
-								instance.add_to_group(enemy_unit_IDs[width][height][1], true)
+								instance.add_to_group("enemy")
 								instance.scale.x = -instance.scale.x
 								instance.find_child("Label").scale.x = -instance.find_child("Label").scale.x
 								reversed_tiles[width][height].add_child(instance)

@@ -2,7 +2,7 @@ extends Node
 
 #Unit ID - SET ID ON THE ITEM COUNTERPART
 var unit_ID : int = -1
-
+@export_group("Unit Properties")
 #Units max health 
 @export var max_health : int
 #Unit's current health
@@ -15,46 +15,63 @@ var movement_locations : Array = []
 @export var move_distance : int = 1
 var tile_to_move_to : Node2D
 
-@export var spawn_skill_on_self: bool
-
-
-#Damage done when brawling
+##Damage done when brawling
 @export var brawl_damage : int
-
 
 ##Damage done when pushed into a tile that isn't empty
 @export	var bump_damage : int = 4
 
+@export_subgroup("Unit Types")
+var unit_types : Array = [
+	"soldier",
+	"animal"
+]
+@export var soldier : bool
+@export var animal : bool
+var potential_types : Array
+
 #How much damage will be applied to this unit, this turn
 var damage_done_to_self : int = 0
-
 
 #where a unit is being pushed to
 var pushed_destination : Node2D = null
 
 #where a unit is being pushed to in Vector2i
 var pushed_vector : Vector2i = Vector2i(0, 0)
-
+@export_group("Skill Properties")
+##Does the skill spawn at the units position (eg.Suicide robot)
+@export var spawn_skill_on_self: bool
 ##How many skills will spawn
 @export var skill_spawn_amount : int = 1
 ##Does the skill spawn at a random skill_location?
 @export var skill_spawn_random : bool = false
-#The amount of damage/heals the unit's skill does
+##The amount of damage the unit's skill does
 @export var skill_damage : int
+##The amount of damage the unit's skill does
 @export var skill_heal : int
 
-
 @export var skill_pushes_units : bool = false
+
+@export_subgroup("Skill Effective Against")
+@export var effectiveness : int = 4
+@export var soldier_effective : bool
+@export var animal_effective : bool
+var potential_skill_effective_types : Array
+var effective_against_types : Array
+
 #The parent containing all the skill locations
-@export var skill_locations_parent : Node2D
+var skill_locations_parent : Node2D
 #Skill to spawn in
-@export var skill_prefab : PackedScene
+var skill_prefab : PackedScene = load("res://Prefabs/Skills/basic_skill.tscn")
 #Enemies inside our range
 var enemies_in_range : Array = []
 
 var level_label : Label
 
 func _ready() -> void:
+
+	skill_locations_parent = find_child("skill_locations")
+
 	level_label = find_child("Level")
 	health = max_health
 	movement_locations = find_child("movement_locations").get_children()
@@ -62,7 +79,20 @@ func _ready() -> void:
 		$Label.modulate = Color(1, 0, 0, 1)
 		$Label.position.y = -75
 	update_label()
+	set_unit_types()
 
+func set_unit_types():
+	effective_against_types = unit_types.duplicate()
+	potential_types = [soldier, animal]
+	potential_skill_effective_types = [soldier_effective, animal_effective]
+	var x = 0
+	while(x < (potential_types.size())):
+		if(!potential_types[x]):
+			unit_types[x] = null
+		if(!potential_skill_effective_types[x]):
+			effective_against_types[x] = null
+		x += 1
+	print("OUTPUT: ", effective_against_types)
 func find_movement_tile():
 	if(enemies_in_range.size() == 0):
 		var moved_distance = 0
@@ -123,6 +153,8 @@ func skill():
 				#Tell the skill how much damage it does
 				skill_instance.damage = skill_damage
 				skill_instance.pushes_units = skill_pushes_units
+				skill_instance.effective_against = effective_against_types
+				skill_instance.effectiveness = effectiveness
 				find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
 
 				#If the skill doesnt spawn randomly
