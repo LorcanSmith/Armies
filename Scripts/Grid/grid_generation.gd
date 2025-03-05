@@ -31,10 +31,9 @@ func _ready() -> void:
 
 #Generates a grid
 func generate_grid(turn_number : int, in_combat : bool):
-	turn_number -= 1
-	if(width_per_turn[turn_number]):
-		grid_width = width_per_turn[turn_number]
-		grid_height = height_per_turn[turn_number]
+	if(width_per_turn.size() > turn_number):
+		grid_width = width_per_turn[turn_number - 1]
+		grid_height = height_per_turn[turn_number - 1]
 	else:
 		grid_width = width_per_turn[-1]
 		grid_height = height_per_turn[-1]
