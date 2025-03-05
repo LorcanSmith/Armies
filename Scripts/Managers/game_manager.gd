@@ -82,6 +82,8 @@ func _input(event):
 	if Input.is_action_just_pressed("tick"):
 		if (CombatManager!= null):
 			CombatManager.battle_ticker()
+	if Input.is_key_pressed(KEY_N):
+		DebuggerScript.create_enemy_armies()
 	
 func _money_changed(amount : int):
 	status_bar.set_money(amount)
