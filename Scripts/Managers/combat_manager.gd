@@ -180,5 +180,10 @@ func no_skills_left():
 func headquarter_destroyed(enemy_base_destroyed : bool):
 	#If it was the enemy base that got destroyed then the player wins
 	player_won = enemy_base_destroyed
+	#If our base was destroyed, tell the game manager that we lost a battle
+	if(enemy_base_destroyed):
+		game_manager.won_battle(true)
+	else:
+		game_manager.won_battle(false)
 	#The battle is over
 	battle_over = true

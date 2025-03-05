@@ -21,6 +21,10 @@ var in_combat : bool = false
 
 #What turn are we on
 var turn_number = 0
+#How many wins do we have
+var wins = 0
+#How much life are we on
+var life_remaining = 10
 
 func _ready():
 	in_combat = false
@@ -81,3 +85,29 @@ func _input(event):
 	
 func _money_changed(amount : int):
 	status_bar.set_money(amount)
+
+#Called by combat manager when our headquarters is destroyed
+func won_battle(won : bool):
+	#If we won
+	if(won):
+		#Add a win
+		wins += 1
+		#If we haven't won the whole game (10 wins)
+		if(wins < 10):
+			print("WINS: ", wins)
+		else:
+			print("10 WINS! GAME OVER, YOU WIN!")
+	#A round was lost
+	else:
+		#Does a different amount of damage based on the turn number
+		if(turn_number == 1):
+			life_remaining -= 1
+		elif(turn_number == 2):
+			life_remaining -= 2
+		else:
+			life_remaining -= 3
+		#If we no longer have life left, its game over
+		if(life_remaining <= 0):	
+			print("0 LIFE REMAINING! GAME OVER")
+		else:
+			print("LIFE REMAINING: ", life_remaining)
