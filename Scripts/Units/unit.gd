@@ -257,7 +257,7 @@ func push(direction_pushed_from : String):
 		pushed_vector += Vector2i(-1, 0)
 		destination_tile = push_locations[3].tile_under_location
 	
-	if destination_tile != null:
+	if destination_tile != null and !destination_tile.is_in_group("headquarter"):
 		if destination_tile.is_empty:
 			can_be_pushed = true
 		else:
