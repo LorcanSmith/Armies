@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 DebuggerScript="*res://Scripts/DEBUGGER_script.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [global_group]
 
 tile="Group for map tile nodes"

@@ -18,8 +18,7 @@ script = ExtResource("1_7ijpe")
 [node name="grid_generator (army)" parent="grid_manager" instance=ExtResource("4_tbeai")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(572, 189)
-zoom = Vector2(0.6, 0.6)
+position = Vector2(158, 0)
 
 [node name="skill_holder" type="Node2D" parent="."]
 script = ExtResource("5_vexsu")

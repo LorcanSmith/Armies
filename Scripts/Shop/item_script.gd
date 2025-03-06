@@ -1,7 +1,7 @@
 extends Node2D
 
 #Unit dictionary, used to spawn in upgraded units
-var dictionary = load("res://Scripts/Units/dictionary.gd")
+var dictionary = preload("res://Scripts/Units/dictionary.gd")
 #Unit ID, refer to UNIT ID document
 #Items that aren't units do not need an ID
 var unit_ID : int = -1
@@ -34,6 +34,7 @@ var item_on_sell_location : bool = false
 #The child sprite which is the visuals for the item
 var sprite : Sprite2D
 var level_label : Label
+var cost_label : Label
 #Is the player currently hovering over the item, used to detect if they click on this item
 var mouse_over_item : bool = false
 #Should the item follow the mouse
@@ -49,10 +50,11 @@ func _ready() -> void:
 	sprite = find_child("Sprite2D")
 	shop_manager = find_parent("shop_manager")
 	level_label = find_child("Level")
-	calculate_unit_level()
+	cost_label = find_child("Cost")
+	set_labels()
 
 #Auto assigns the Level label
-func calculate_unit_level():
+func set_labels():
 	if(!is_boost):
 		var level : int
 		var normalised_id = unit_ID + 1
@@ -64,6 +66,16 @@ func calculate_unit_level():
 			level_label.text = "Level 3"
 	else:
 		level_label.queue_free()
+	if(unit_ID != -1):
+		var dictionary_instance = dictionary.new()
+		var attack_label : Label = find_child("Attack")
+		var defense_label : Label = find_child("Defense")
+		cost_label = find_child("Cost")
+		var unit = dictionary_instance.unit_scenes[unit_ID].instantiate()
+		attack_label.text = str(unit.skill_damage)
+		defense_label.text = str(unit.max_health)
+		cost_label.text = str(buy_cost)
+
 #Called when the mouse is hovering over
 func _on_area_2d__mouse_collision_mouse_entered() -> void:
 	mouse_over_item = true
@@ -157,6 +169,7 @@ func attempt_to_place():
 				shop_manager.change_money(buy_cost)
 				#Change the item to be bought
 				bought = true
+				cost_label.visible = false
 				if(tile_currently_over.is_empty):
 					if(!is_boost):
 						place_item()
@@ -230,6 +243,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	#The player is holding the item over the sell area location
 	elif(area.is_in_group("sell_location")):
 		item_on_sell_location = true
+		#Set the cost label to the sell amount so we can see how much money we will get back
+		cost_label.text = str(sell_cost)
+		cost_label.visible = true
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	#If the area we just left is the current tile the sprite is snapping to
 	if(area.get_parent() == tile_currently_over):
@@ -241,3 +257,4 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	#The player has stopped holding the item over the sell area location
 	elif(area.is_in_group("sell_location")):
 		item_on_sell_location = false
+		cost_label.visible = false

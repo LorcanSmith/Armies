@@ -85,6 +85,7 @@ func load_units():
 							tiles[width][height].unit_placed_on(instance)
 							#Tell the item it has already been bought
 							instance.bought = true
+							instance.cost_label.visible = false
 							instance.damage_boost += unit_IDs[width][height][1]
 							instance.health_boost += unit_IDs[width][height][2]
 

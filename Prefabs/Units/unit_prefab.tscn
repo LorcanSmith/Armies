@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bh1i1tp3dgvik"]
+[gd_scene load_steps=12 format=3 uid="uid://bh1i1tp3dgvik"]
 
 [ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_h20h1"]
 [ext_resource type="Script" uid="uid://cdc2qqsvqw1rh" path="res://Scripts/Units/move_spot.gd" id="4_4fdo6"]
 [ext_resource type="Script" uid="uid://bbyqyvnyg3d6s" path="res://Scripts/Skills/buff.gd" id="4_4nfq5"]
 [ext_resource type="Script" uid="uid://b34p24hcbhwg" path="res://Scripts/Units/push_locations.gd" id="5_8a1pl"]
+[ext_resource type="Texture2D" uid="uid://bqh0gf33g02e8" path="res://Sprites/UI/unit_ui.png" id="6_5f33s"]
 [ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="6_cxn27"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1caxc"]
@@ -127,6 +128,31 @@ offset_bottom = 57.0
 scale = Vector2(0.56, 0.56)
 pivot_offset = Vector2(26.7857, 0)
 text = "Level 0"
+
+[node name="Sprite2D" type="Sprite2D" parent="Label"]
+texture_filter = 1
+position = Vector2(25, -19)
+texture = ExtResource("6_5f33s")
+
+[node name="Attack" type="Label" parent="Label/Sprite2D"]
+offset_left = -41.0
+offset_top = 9.0
+offset_right = -1.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "5"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Defense" type="Label" parent="Label/Sprite2D"]
+offset_left = 2.0
+offset_top = 9.0
+offset_right = 42.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "5"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="area_entered" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

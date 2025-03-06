@@ -92,7 +92,6 @@ func set_unit_types():
 		if(!potential_skill_effective_types[x]):
 			effective_against_types[x] = null
 		x += 1
-	print("OUTPUT: ", effective_against_types)
 func find_movement_tile():
 	if(enemies_in_range.size() == 0):
 		var moved_distance = 0
@@ -184,7 +183,6 @@ func skill():
 		brawl()
 
 func brawl():
-	print("BRAWL")
 	#Finds each unit on this unit's current tile
 	for unit in get_parent().units_on_tile:
 		#If the unit isnt itself do some brawl damage to it
@@ -192,7 +190,10 @@ func brawl():
 			unit.hurt(brawl_damage)
 
 func update_label():
-	$Label.text = str(health) + "/" + str(max_health)
+	var attack_label : Label = find_child("Attack")
+	var defense_label : Label = find_child("Defense")
+	attack_label.text = str(skill_damage)
+	defense_label.text = str(max_health)
 	#Auto assigns the Level label
 	var level : int
 	var normalised_id = unit_ID + 1
@@ -212,7 +213,6 @@ func heal(amount : int):
 
 func apply_damage():
 	if pushed_destination:
-		print(self, pushed_vector)
 		if pushed_vector != Vector2i(0, 0):
 			get_parent().is_empty = true
 			get_parent().units_on_tile.erase(self)
