@@ -22,12 +22,4 @@ func update_label():
 
 #Called when the headquater runs out of health
 func destroy_headquarters():
-	#If this is the players headquaters, then we lose
-	if(self.is_in_group("player")):
-		#Tell the combat manager that the player's headquarter has been destroyed
-		get_parent().headquarter_destroyed(false)
-	#If this is the enemies headquarters, then we win
-	else:
-		#Tell the combat manager that the enemy's headquarter has been destroyed
-		get_parent().headquarter_destroyed(true)
 	queue_free()
