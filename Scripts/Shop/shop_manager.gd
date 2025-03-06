@@ -4,6 +4,9 @@ extends Node
 var game_manager
 var status_bar: StatusBar
 
+@export var free_reroll : bool = true
+@export var reroll_cost : int = 2
+
 signal money_changed
 
 #Amount of money the player can spend each turn
