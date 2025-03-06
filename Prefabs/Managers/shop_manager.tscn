@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
-[ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="3_ew2it"]
+[ext_resource type="Texture2D" uid="uid://bdngb6gmlmf0h" path="res://Sprites/UI/sell_location.png" id="3_nu7bh"]
 [ext_resource type="PackedScene" uid="uid://dr2o4nm3x37eu" path="res://Prefabs/Managers/grid_manager.tscn" id="4_2ahac"]
 [ext_resource type="Script" uid="uid://bi20rliok0lqp" path="res://Scripts/Grid/grid_generation.gd" id="5_q2vn5"]
 [ext_resource type="PackedScene" uid="uid://bqgwbmbquy7su" path="res://Prefabs/Grid/grid_generator.tscn" id="6_e3q61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4adb8"]
-size = Vector2(122, 127)
+size = Vector2(46, 59)
 
 [node name="shop_manager" type="Node2D"]
 script = ExtResource("1_0fc1a")
@@ -18,20 +18,22 @@ position = Vector2(116, 250)
 script = ExtResource("2_v5hhx")
 
 [node name="Unit Locations" type="Node2D" parent="ShopItemGenerator"]
+position = Vector2(396, -56)
 
 [node name="Unit 1" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
-position = Vector2(77, 497)
+position = Vector2(-192, 406)
 
 [node name="Unit 2" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
-position = Vector2(278, 496)
+position = Vector2(-64, 405)
 
 [node name="Unit 3" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
-position = Vector2(473, 495)
+position = Vector2(64, 404)
 
 [node name="Unit 4" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
-position = Vector2(658, 494)
+position = Vector2(192, 403)
 
 [node name="Boost Locations" type="Node2D" parent="ShopItemGenerator"]
+position = Vector2(88, 0)
 
 [node name="Boost 1" type="Node2D" parent="ShopItemGenerator/Boost Locations"]
 position = Vector2(658, 322)
@@ -39,26 +41,18 @@ position = Vector2(658, 322)
 [node name="Boost 2" type="Node2D" parent="ShopItemGenerator/Boost Locations"]
 position = Vector2(658, 165)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 75.0
-offset_top = 623.0
-offset_right = 1083.0
-offset_bottom = 720.0
-text = "These are the shop locations where the items appear. The red is for selling. Check the console to see how much money you have. Pressing \"R\" rerolls the shop. No visual cue of this happening but check console"
-metadata/_edit_use_anchors_ = true
-
 [node name="SellLocation" type="Node2D" parent="."]
-modulate = Color(0.959821, 0, 0.391569, 1)
-position = Vector2(1036, 744)
+position = Vector2(792, 596)
 
 [node name="Area2D" type="Area2D" parent="SellLocation" groups=["sell_location"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SellLocation/Area2D"]
-position = Vector2(-2, -1.5)
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_4adb8")
 
 [node name="Sprite2D" type="Sprite2D" parent="SellLocation"]
-texture = ExtResource("3_ew2it")
+texture_filter = 1
+texture = ExtResource("3_nu7bh")
 
 [node name="grid_manager" parent="." instance=ExtResource("4_2ahac")]
 
@@ -76,8 +70,9 @@ offset_bottom = -77.0
 text = "This is your inventory where you can store spare items"
 
 [node name="grid_generator (army)" parent="grid_manager" instance=ExtResource("6_e3q61")]
+position = Vector2(382, 421)
 grid_name = "army"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(577, 327)
-zoom = Vector2(0.6, 0.6)
+position = Vector2(589, 508)
+zoom = Vector2(1.8, 1.8)
