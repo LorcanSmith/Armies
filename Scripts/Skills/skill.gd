@@ -25,6 +25,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 				area.get_parent().hurt(damage + effectiveness)
 			else:
 				area.get_parent().hurt(damage)
+		else:
+			area.get_parent().hurt(damage)
 	#FRIENDLY DO HEALS
 	if((belongs_to_player and area.get_parent().is_in_group("player")) or (!belongs_to_player and area.get_parent().is_in_group("enemy")) and (!area.is_in_group("buff_location"))):
 		var effective = false
@@ -37,9 +39,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 				area.get_parent().heal(heal + effectiveness)
 			else:
 				area.get_parent().heal(heal)
-		#Do damage to the player
-		area.get_parent().heal(heal)
-		
+		else:
+			area.get_parent().hurt(damage)
 		##DEBUG
 		#Allows us to do damage to units straight away without waiting for the ticker
 		#used for testing skills
