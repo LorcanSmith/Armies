@@ -52,6 +52,7 @@ func load_units():
 								instance.skill_damage += unit_IDs[width][height][1]
 								instance.max_health += unit_IDs[width][height][2]
 								instance.health = instance.max_health
+								instance.update_label()
 							#If a crash happens here, its likely the enemy army doesn't have an army made for the current turn number
 							if(enemy_unit_IDs[width][height] != null):	
 								var ID_to_int = int(enemy_unit_IDs[width][height][0])
@@ -68,9 +69,11 @@ func load_units():
 								reversed_tiles[width][height].unit_placed_on(instance)
 								
 								#NOTE below has to be uncommented when the army generation script has been updated
-								#instance.skill_damage += unit_IDs[width][height][1]
-								#instance.max_health += unit_IDs[width][height][2]
-								#instance.health = instance.max_health
+#								needs to be enemy_Unit_IDs?
+								instance.skill_damage += enemy_unit_IDs[width][height][1]
+								instance.max_health += enemy_unit_IDs[width][height][2]
+								instance.health = instance.max_health
+								instance.update_label()
 					else:
 						if(unit_IDs[width][height] != null):
 							#Spawn an item. Reference the UnitDictionary to find out what item to spawn
