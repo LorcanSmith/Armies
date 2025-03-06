@@ -59,7 +59,7 @@ func generate_grid(turn_number : int, in_combat : bool):
 			var new_tile = tile.instantiate()
 			#Sets the newly made tile's position to be at the right grid spot
 			#Offset the width and height by the size of the tile
-			var offset = new_tile.find_child("Sprite2D").texture.get_width()
+			var offset = (new_tile.find_child("Sprite2D").texture.get_width())-4
 			new_tile.global_position = Vector2i(width * offset, height * offset)
 			#Adds the newly generated tile as a child of this node
 			add_child(new_tile)
