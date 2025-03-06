@@ -83,7 +83,7 @@ func create_enemy_armies():
 					items.erase(random_item)
 				else:
 					money -= price
-					units.append([random_item, "enemy"])
+					units.append([random_item, 0, 0])
 		while units.size() < total_units:
 			units.append(null)
 		
@@ -91,9 +91,6 @@ func create_enemy_armies():
 		var grid_data = []
 		var counter = 0
 		while counter < total_units:
-			#print(units.slice(0, 2))
-			#print(units.slice(2, 4))
-			#print(units.slice(4, 6))
 			grid_data.append(units.slice(counter, counter + grid_height))
 			counter += grid_height
 		var game_folder = ProjectSettings.globalize_path("res://")
