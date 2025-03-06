@@ -12,6 +12,9 @@ skill_spawn_amount = 0
 skill_spawn_random = true
 skill_damage = 5
 
+[node name="buffs" parent="." index="0"]
+visible = false
+
 [node name="CollisionShape2D" parent="skill_locations/location/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
@@ -86,6 +89,12 @@ position = Vector2(523, -128)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location13/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
+
+[node name="movement_locations" parent="." index="2"]
+visible = false
+
+[node name="push_locations" parent="." index="3"]
+visible = false
 
 [node name="Sprite2D" parent="." index="4"]
 texture = ExtResource("2_402ld")

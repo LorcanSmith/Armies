@@ -227,6 +227,8 @@ func upgrade_unit(ID):
 	upgraded_unit.position = Vector2(0,0)
 	#Purchase the unit
 	upgraded_unit.bought = true
+	#Turn off the coin visual
+	upgraded_unit.cost_label.visible = false
 	#Remove non-upgraded unit (self) from the tile
 	get_parent().units_on_tile.erase(self)
 	#Tell the tile that the upgraded unit has been placed on it
