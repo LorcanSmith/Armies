@@ -17,17 +17,27 @@ script = ExtResource("1_0fc1a")
 position = Vector2(116, 250)
 script = ExtResource("2_v5hhx")
 
-[node name="TestLocation1" type="Node2D" parent="ShopItemGenerator"]
+[node name="Unit Locations" type="Node2D" parent="ShopItemGenerator"]
+
+[node name="Unit 1" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
 position = Vector2(77, 497)
 
-[node name="TestLocation2" type="Node2D" parent="ShopItemGenerator"]
+[node name="Unit 2" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
 position = Vector2(278, 496)
 
-[node name="TestLocation3" type="Node2D" parent="ShopItemGenerator"]
+[node name="Unit 3" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
 position = Vector2(473, 495)
 
-[node name="TestLocation4" type="Node2D" parent="ShopItemGenerator"]
+[node name="Unit 4" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
 position = Vector2(658, 494)
+
+[node name="Boost Locations" type="Node2D" parent="ShopItemGenerator"]
+
+[node name="Boost 1" type="Node2D" parent="ShopItemGenerator/Boost Locations"]
+position = Vector2(658, 322)
+
+[node name="Boost 2" type="Node2D" parent="ShopItemGenerator/Boost Locations"]
+position = Vector2(658, 165)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 75.0

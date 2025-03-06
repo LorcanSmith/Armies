@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d26riwgg0v8nl"]
+[gd_scene load_steps=5 format=3 uid="uid://coklokvg6mem2"]
 
-[ext_resource type="Script" uid="uid://bvdq4sn7w35b4" path="res://Scripts/Shop/item_script.gd" id="1_mdv0s"]
-[ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="2_wbsm8"]
+[ext_resource type="Script" uid="uid://bvdq4sn7w35b4" path="res://Scripts/Shop/item_script.gd" id="1_qvph8"]
+[ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="2_wiu1c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4oje"]
 size = Vector2(33, 32)
@@ -12,11 +12,17 @@ size = Vector2(112, 108)
 [node name="Item" type="Node2D" groups=["player"]]
 z_index = 1
 z_as_relative = false
-script = ExtResource("1_mdv0s")
+script = ExtResource("1_qvph8")
+can_be_upgraded = false
+is_boost = true
+damage_boost = 5
+health_boost = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_wbsm8")
+rotation = 3.14131
+scale = Vector2(0.51, 0.51)
+texture = ExtResource("2_wiu1c")
 
 [node name="Area2D - Tile Collsion" type="Area2D" parent="."]
 
