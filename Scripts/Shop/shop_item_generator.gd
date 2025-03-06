@@ -81,14 +81,22 @@ func reroll_shop():
 	#Remove old shop units before showing new units
 	#The units are parented to the shop location they are at, so we loop over every
 	#shop location and delete their child
-	for location in unit_locations:
-		#If it doesn't have a child no need to delete the child, this if statement
-		#stops crashes
-		if(location.get_child_count() > 0):
-			location.get_child(0).queue_free()
-	print("RE-ROLLED")
-	#Gets new units for the shop
-	show_new_units()
+	var reroll_success = false
+	if !get_parent().free_reroll:
+		if get_parent().reroll_cost <= get_parent().money:
+			get_parent().change_money(get_parent().reroll_cost)
+			reroll_success = true
+	else:
+		reroll_success = true
+	if reroll_success:
+		for location in unit_locations:
+			#If it doesn't have a child no need to delete the child, this if statement
+			#stops crashes
+			if(location.get_child_count() > 0):
+				location.get_child(0).queue_free()
+		print("RE-ROLLED")
+		#Gets new units for the shop
+		show_new_units()
 	
 ##USED TO REROLL THE SHOP, WILL EVENTUALLY BE DONE BY A BUTTON
 func _input(event):
