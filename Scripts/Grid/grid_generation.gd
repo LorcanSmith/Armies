@@ -75,12 +75,8 @@ func save_current_grid():
 			if(grid[width][height].units_on_tile.size() > 0 and grid[width][height].units_on_tile[0] != null):
 				#Gets the unit on the tile for easy access
 				var unit = grid[width][height].units_on_tile[0]
-				#If the unit is in the player group
-				if(unit.is_in_group("player")):
-					#Save the unit ID and data in the grid to be used later
-					grid_with_unit_IDs[width][height] = [unit.unit_ID]
-				else:
-					grid_with_unit_IDs[width][height] = [unit.unit_ID]
+				#Save the unit ID and data in the grid to be used later
+				grid_with_unit_IDs[width][height] = [unit.unit_ID, unit.damage_boost, unit.health_boost]
 			#If the is no unit on the grid tile
 			else:
 				#Set that grid id to be null. This updates any tiles that previously had a unit on it

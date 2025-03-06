@@ -46,10 +46,12 @@ func load_units():
 								instance.unit_ID = unit_IDs[width][height][0]
 								#Add the unit to either the player or the enemy group
 								instance.add_to_group("player")
-								#If the unit is an enemy. Make them face the opposite direction
 								tiles[width][height].add_child(instance)
 								instance.position = Vector2i(0,0)
 								tiles[width][height].unit_placed_on(instance)
+								instance.skill_damage += unit_IDs[width][height][1]
+								instance.max_health += unit_IDs[width][height][2]
+								instance.health = instance.max_health
 							#If a crash happens here, its likely the enemy army doesn't have an army made for the current turn number
 							if(enemy_unit_IDs[width][height] != null):	
 								var ID_to_int = int(enemy_unit_IDs[width][height][0])
@@ -64,6 +66,11 @@ func load_units():
 								reversed_tiles[width][height].add_child(instance)
 								instance.position = Vector2i(0,0)
 								reversed_tiles[width][height].unit_placed_on(instance)
+								
+								#NOTE below has to be uncommented when the army generation script has been updated
+								#instance.skill_damage += unit_IDs[width][height][1]
+								#instance.max_health += unit_IDs[width][height][2]
+								#instance.health = instance.max_health
 					else:
 						if(unit_IDs[width][height] != null):
 							#Spawn an item. Reference the UnitDictionary to find out what item to spawn
@@ -75,6 +82,9 @@ func load_units():
 							tiles[width][height].unit_placed_on(instance)
 							#Tell the item it has already been bought
 							instance.bought = true
+							instance.damage_boost += unit_IDs[width][height][1]
+							instance.health_boost += unit_IDs[width][height][2]
+
 				height += 1
 			width += 1
 

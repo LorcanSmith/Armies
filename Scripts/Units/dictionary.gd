@@ -55,3 +55,7 @@ var item_scenes = {
 	16: preload("res://Prefabs/Shop Items/Level2/medic_item_LVL2.tscn"),
 	17: preload("res://Prefabs/Shop Items/Level3/medic_item_LVL3.tscn")
 }
+
+var boost_scenes = {
+	0: preload("res://Prefabs/Shop Items/Boosts/boost_1.tscn")
+}

@@ -1,8 +1,8 @@
 extends Node
 
-#Places where shop items show up
-var item_locations = []
-
+#Places where shop units show up
+var unit_locations = []
+var boost_locations = []
 #Dictionary containing all units
 var dictionary = load("res://Scripts/Units/dictionary.gd")
 
@@ -10,31 +10,43 @@ var dictionary = load("res://Scripts/Units/dictionary.gd")
 @export var level2_percentage = 7
 @export var level3_percentage = 0.5
 ##Percentage out of 100 for how likely a level 3 unit is to show up
-#Loads new items and then shows new items in the shop
+#Loads new units and then shows new units in the shop
 func _ready() -> void:
-	#Gets the children and sets them as locations items can spawn at
-	for loc in self.get_children():
-		item_locations.append(loc)
-	show_new_items()
-#Spawns in new shop items
-func show_new_items():
-	#Displays a new item for each shop item location
-	for location in item_locations.size():
-		#Chooses a random item and loads the item from the path, gets it unit_ID
-		var chosen_item = choose_random_item()
-		#Spawns in the chosen item as a new item in the shop
-		var new_item = chosen_item[0].instantiate()
-		new_item.unit_ID = chosen_item[1]
-		#Sets the new items' parent to be the item location in the shop
-		item_locations[location].add_child(new_item)
-		#Sets the new items' location to be that of its parent (the shop item location)
-		new_item.position = Vector2(0,0)
+	#Gets the children and sets them as locations units can spawn at
+	for loc in find_child("Unit Locations").get_children():
+		unit_locations.append(loc)
+	for loc in find_child("Boost Locations").get_children():
+		boost_locations.append(loc)
+	show_new_units()
+#Spawns in new shop units
+func show_new_units():
+	#Displays a new unit for each shop unit location
+	for location in unit_locations.size():
+		#Chooses a random unit and loads the unit from the path, gets it unit_ID
+		var chosen_unit = choose_random_unit()
+		#Spawns in the chosen unit as a new unit in the shop
+		var new_unit = chosen_unit[0].instantiate()
+		new_unit.unit_ID = chosen_unit[1]
+		#Sets the new units' parent to be the unit location in the shop
+		unit_locations[location].add_child(new_unit)
+		#Sets the new units' location to be that of its parent (the shop unit location)
+		new_unit.position = Vector2(0,0)
 		
-#Chooses a random item
-func choose_random_item():
+	#Displays a new boost for each shop boost location
+	for location in boost_locations.size():
+		#Chooses a random unit and loads the unit from the path, gets it unit_ID
+		var chosen_boost = choose_random_boost()
+		#Spawns in the chosen unit as a new unit in the shop
+		var new_boost = chosen_boost.instantiate()
+		#Sets the new units' parent to be the unit location in the shop
+		boost_locations[location].add_child(new_boost)
+		#Sets the new units' location to be that of its parent (the shop unit location)
+		new_boost.position = Vector2(0,0)	
+#Chooses a random unit
+func choose_random_unit():
 	var dictionary_instance = dictionary.new()
 	#Gets a random unit type
-	var random_item = (randi_range(1,(dictionary_instance.item_scenes.size()/3))*3)
+	var random_unit = (randi_range(1,(dictionary_instance.item_scenes.size()/3))*3)
 	#Gets a random number
 	var random_percentage = randf_range(1,100)
 	var random_level
@@ -44,34 +56,39 @@ func choose_random_item():
 			random_level = 3
 	else:
 		random_level = 1
-	var loaded_item
+	var loaded_unit
 	if(random_level == 1):
-		random_item = random_item-3
-		loaded_item = dictionary_instance.item_scenes[random_item]
+		random_unit = random_unit-3
+		loaded_unit = dictionary_instance.item_scenes[random_unit]
 	elif(random_level == 2):
 		#Gets the unit ID
-		random_item = random_item-2
-		loaded_item = dictionary_instance.item_scenes[random_item]
+		random_unit = random_unit-2
+		loaded_unit = dictionary_instance.item_scenes[random_unit]
 	elif(random_level == 3):
 		#Gets the unit ID
-		random_item = random_item-1
-		loaded_item = dictionary_instance.item_scenes[random_item]
-	#print(random_item)
-	return [loaded_item, random_item]
+		random_unit = random_unit-1
+		loaded_unit = dictionary_instance.item_scenes[random_unit]
+	#print(random_unit)
+	return [loaded_unit, random_unit]
 	
-
+func choose_random_boost():
+	var dictionary_instance = dictionary.new()
+	#Gets a random unit type
+	var random_boost = randi_range(0,(dictionary_instance.boost_scenes.size())-1)
+	var boost = dictionary_instance.boost_scenes[random_boost]
+	return boost
 func reroll_shop():
-	#Remove old shop items before showing new items
-	#The items are parented to the shop location they are at, so we loop over every
+	#Remove old shop units before showing new units
+	#The units are parented to the shop location they are at, so we loop over every
 	#shop location and delete their child
-	for location in item_locations:
+	for location in unit_locations:
 		#If it doesn't have a child no need to delete the child, this if statement
 		#stops crashes
 		if(location.get_child_count() > 0):
 			location.get_child(0).queue_free()
 	print("RE-ROLLED")
-	#Gets new items for the shop
-	show_new_items()
+	#Gets new units for the shop
+	show_new_units()
 	
 ##USED TO REROLL THE SHOP, WILL EVENTUALLY BE DONE BY A BUTTON
 func _input(event):
