@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bh1i1tp3dgvik"]
+[gd_scene load_steps=13 format=3 uid="uid://bh1i1tp3dgvik"]
 
 [ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_h20h1"]
 [ext_resource type="Script" uid="uid://cdc2qqsvqw1rh" path="res://Scripts/Units/move_spot.gd" id="4_4fdo6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b34p24hcbhwg" path="res://Scripts/Units/push_locations.gd" id="5_8a1pl"]
 [ext_resource type="Texture2D" uid="uid://bqh0gf33g02e8" path="res://Sprites/UI/unit_ui.png" id="6_5f33s"]
 [ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="6_cxn27"]
+[ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="7_5f33s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1caxc"]
 
@@ -16,7 +17,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_sefj8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xy1do"]
-size = Vector2(76, 71)
+size = Vector2(44, 41)
 
 [node name="unit_prefab" type="Node2D"]
 script = ExtResource("1_h20h1")
@@ -108,7 +109,7 @@ texture = ExtResource("6_cxn27")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, -2)
+position = Vector2(-1, 1.5)
 shape = SubResource("RectangleShape2D_xy1do")
 
 [node name="Label" type="Label" parent="."]
@@ -119,6 +120,7 @@ offset_bottom = 69.0
 pivot_offset = Vector2(25, 25)
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Level" type="Label" parent="Label"]
 layout_mode = 0
@@ -128,6 +130,7 @@ offset_bottom = 57.0
 scale = Vector2(0.56, 0.56)
 pivot_offset = Vector2(26.7857, 0)
 text = "Level 0"
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Label"]
 texture_filter = 1
@@ -154,6 +157,9 @@ text = "5"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="Tooltip" parent="." instance=ExtResource("7_5f33s")]
+visible = false
+
 [connection signal="area_entered" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
 [connection signal="area_entered" from="movement_locations/move_spot/Area2D" to="movement_locations/move_spot" method="_on_area_2d_area_entered"]
@@ -168,3 +174,5 @@ metadata/_edit_use_anchors_ = true
 [connection signal="area_entered" from="push_locations/LEFT/left_area" to="push_locations/LEFT" method="_on_left_area_area_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

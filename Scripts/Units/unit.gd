@@ -2,6 +2,10 @@ extends Node
 
 #Unit ID - SET ID ON THE ITEM COUNTERPART
 var unit_ID : int = -1
+var tooltip : Control
+var mouse_over : bool = false
+@export var tooltip_show_time : float = 0.4
+var current_tooltip_time_left
 @export_group("Unit Properties")
 #Units max health 
 @export var max_health : int
@@ -69,7 +73,8 @@ var enemies_in_range : Array = []
 var level_label : Label
 
 func _ready() -> void:
-
+	tooltip = find_child("Tooltip")
+	current_tooltip_time_left = tooltip_show_time
 	skill_locations_parent = find_child("skill_locations")
 
 	level_label = find_child("Level")
@@ -347,3 +352,18 @@ func push_area_entered(area, direction):
 			if((self.is_in_group("player") and !area.belongs_to_player) or (self.is_in_group("enemy") and area.belongs_to_player)):
 				#Tell the unit to push, from the direction the skill happend
 				push(direction)
+
+#TOOL TIP STUFF
+func _on_area_2d_mouse_entered() -> void:
+	mouse_over = true
+func _on_area_2d_mouse_exited() -> void:
+	mouse_over = false
+	
+func _process(delta: float) -> void:
+	if(mouse_over and current_tooltip_time_left < 0):
+		tooltip.set_visible(true)
+	elif(mouse_over and current_tooltip_time_left > 0):
+		current_tooltip_time_left -= delta
+	if(!mouse_over):
+		current_tooltip_time_left = tooltip_show_time
+		tooltip.set_visible(false)
