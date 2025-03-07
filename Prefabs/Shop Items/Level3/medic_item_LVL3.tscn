@@ -4,13 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://c7x0n5de2qo45" path="res://Sprites/Units/Army/Medic/medic_sprite.png" id="2_6o6l7"]
 
 [node name="Medic" instance=ExtResource("1_e5h32")]
-unit_ID = 17
+unit_name = "Medic"
 can_be_upgraded = false
 buy_cost = 13
 sell_cost = 6
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_6o6l7")
-
-[node name="Level" parent="." index="3"]
-text = "Level 3"

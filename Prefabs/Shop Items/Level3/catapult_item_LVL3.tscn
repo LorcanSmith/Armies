@@ -1,16 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://ce1hr6d55jndy"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_v6nuh"]
-[ext_resource type="Texture2D" uid="uid://ghgw6mmhtteb" path="res://Sprites/Units/Medieval/Catapult/catapult_sprite.png" id="2_fsnvp"]
+[ext_resource type="Texture2D" uid="uid://cxmhv5kgan1ns" path="res://Sprites/Units/Medieval/Catapult/catapult_sprite.png" id="2_fsnvp"]
 
 [node name="Catapult" instance=ExtResource("1_v6nuh")]
-unit_ID = 8
+unit_name = "Catapult"
 can_be_upgraded = false
 buy_cost = 15
 sell_cost = 8
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_fsnvp")
-
-[node name="Level" parent="." index="3"]
-text = "Level 3"

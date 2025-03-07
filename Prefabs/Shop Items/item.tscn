@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://d2ua4mo5fqjps" path="res://Sprites/UI/cost_ui.png" id="4_1nmpe"]
 [ext_resource type="Texture2D" uid="uid://ca2y0ewqn4yt" path="res://Sprites/Units/Medieval/Knight/knight_sprite.png" id="5_1nmpe"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4oje"]
-size = Vector2(16, 26)
+[sub_resource type="CircleShape2D" id="CircleShape2D_1nmpe"]
+radius = 1.41421
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fj8s"]
 size = Vector2(42, 42)
@@ -99,10 +99,11 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D - Tile Collsion" type="Area2D" parent="."]
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - Tile Collsion"]
 position = Vector2(-1, 5)
-shape = SubResource("RectangleShape2D_a4oje")
+shape = SubResource("CircleShape2D_1nmpe")
 
 [node name="Area2D - Mouse Collision" type="Area2D" parent="."]
 

@@ -4,12 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://blbt32wdlfngh" path="res://Sprites/Units/Army/tank/tank_sprite.png" id="2_8ifng"]
 
 [node name="Tank" instance=ExtResource("1_0eqnr")]
-unit_ID = 10
+unit_name = "Tank"
 buy_cost = 16
 sell_cost = 7
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_8ifng")
-
-[node name="Level" parent="." index="3"]
-text = "Level 2"
