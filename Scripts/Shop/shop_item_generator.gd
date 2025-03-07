@@ -98,7 +98,6 @@ func reroll_shop():
 		#Gets new units for the shop
 		show_new_units()
 	
-##USED TO REROLL THE SHOP, WILL EVENTUALLY BE DONE BY A BUTTON
-func _input(event):
-	if Input.is_key_pressed(KEY_R):
-		reroll_shop()
+
+func _on_texture_button_pressed() -> void:
+	reroll_shop()
