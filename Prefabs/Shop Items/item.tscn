@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://d26riwgg0v8nl"]
 
 [ext_resource type="Script" uid="uid://bvdq4sn7w35b4" path="res://Scripts/Shop/item_script.gd" id="1_mdv0s"]
-[ext_resource type="Script" uid="uid://me4w4b6ct4m7" path="res://Scripts/UI/tooltip.gd" id="3_1nmpe"]
 [ext_resource type="Texture2D" uid="uid://bqh0gf33g02e8" path="res://Sprites/UI/unit_ui.png" id="3_uxgjc"]
 [ext_resource type="Texture2D" uid="uid://d2ua4mo5fqjps" path="res://Sprites/UI/cost_ui.png" id="4_1nmpe"]
 [ext_resource type="Texture2D" uid="uid://ca2y0ewqn4yt" path="res://Sprites/Units/Medieval/Knight/knight_sprite.png" id="5_1nmpe"]
+[ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="6_7cyn1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1nmpe"]
 radius = 1.41421
@@ -16,6 +16,7 @@ size = Vector2(42, 42)
 z_index = 1
 z_as_relative = false
 script = ExtResource("1_mdv0s")
+show_tooltip_time = 0.3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -26,7 +27,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("3_1nmpe")
 
 [node name="Level" type="Label" parent="Sprite2D/Item_Info"]
 layout_mode = 0
@@ -110,6 +110,8 @@ shape = SubResource("CircleShape2D_1nmpe")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - Mouse Collision"]
 position = Vector2(-3, 2)
 shape = SubResource("RectangleShape2D_8fj8s")
+
+[node name="Tooltip" parent="." instance=ExtResource("6_7cyn1")]
 
 [connection signal="mouse_entered" from="Sprite2D/Item_Info" to="Sprite2D/Item_Info" method="_on_mouse_entered"]
 [connection signal="area_entered" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_entered"]

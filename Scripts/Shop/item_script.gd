@@ -5,6 +5,10 @@ var dictionary = preload("res://Scripts/Units/dictionary.gd")
 #Unit ID, refer to UNIT ID document
 #Items that aren't units do not need an ID
 var unit_ID : int = -1
+@export var description : String
+var tooltip : Control
+@export var show_tooltip_time : float = 1.4
+var current_time_till_tooltip : float
 @export_group("Item is a unit")
 @export var unit_name : String
 #Can this item be upgraded further?
@@ -36,6 +40,7 @@ var item_on_sell_location : bool = false
 var sprite : Sprite2D
 var level_label : Label
 var cost_label : Label
+
 #Is the player currently hovering over the item, used to detect if they click on this item
 var mouse_over_item : bool = false
 #Should the item follow the mouse
@@ -48,6 +53,7 @@ var follow_mouse : bool = false
 @export var health_boost : int
 
 func _ready() -> void:
+	tooltip = find_child("Tooltip")
 	sprite = find_child("Sprite2D")
 	shop_manager = find_parent("shop_manager")
 	level_label = find_child("Level")
@@ -102,8 +108,16 @@ func _input(event):
 				follow_mouse = false
 				#The item should attempt to be placed when the user lets go of it
 				attempt_to_place()
-				
+		
 func _process(delta: float) -> void:
+	if(tooltip and mouse_over_item and !follow_mouse):
+		if(current_time_till_tooltip > 0):
+			current_time_till_tooltip -= delta
+		else:
+			tooltip.set_visible(true)
+	elif(tooltip and (!mouse_over_item or follow_mouse)):
+		tooltip.set_visible(false)
+		current_time_till_tooltip = show_tooltip_time
 	if(follow_mouse):
 		#Follow the mouse
 		self.global_position = get_global_mouse_position()
