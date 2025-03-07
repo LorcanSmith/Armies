@@ -4,18 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://n532qas2ij4q" path="res://Sprites/UI/tile.png" id="2_54ony"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62j2u"]
-size = Vector2(102.439, 102.439)
+size = Vector2(97.561, 99.187)
 
 [node name="Tile" type="Node2D" groups=["tile"]]
 script = ExtResource("1_87l63")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.266866, 0.478329, 3.85046e-07, 0.152941)
 texture = ExtResource("2_54ony")
 
 [node name="Area2D" type="Area2D" parent="." groups=["tile"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.499999, 0.5)
+position = Vector2(-3.57628e-07, 0)
 scale = Vector2(0.615, 0.615)
 shape = SubResource("RectangleShape2D_62j2u")

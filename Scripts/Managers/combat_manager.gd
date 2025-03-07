@@ -195,15 +195,26 @@ func no_skills_left():
 	while unit in range(enemy_army.size()):
 		enemy_army[unit].apply_damage()
 		unit += 1
-	auto_tick()
-#Called by a headquarter when it is destroyed
-func headquarter_destroyed(enemy_base_destroyed : bool):
-	#If it was the enemy base that got destroyed then the player wins
-	player_won = enemy_base_destroyed
-	#If our base was destroyed, tell the game manager that we lost a battle
-	if(enemy_base_destroyed):
+	
+	#Used for checking to see if anyone has won
+	var enemy_headquarter_alive : bool = false
+	var player_headquarter_alive : bool = false
+	#Sees if both headquarters are alive
+	if(find_child("player_headquarter")):
+		player_headquarter_alive = true
+	if(find_child("enemy_headquarter")):
+		enemy_headquarter_alive = true
+	#Based on which headquarters are alive we can work out who won
+	#Player wins
+	if(player_headquarter_alive and !enemy_headquarter_alive):
 		game_manager.won_battle(true)
-	else:
+		battle_over = true
+	#Enemy wins
+	elif(!player_headquarter_alive and enemy_headquarter_alive):
 		game_manager.won_battle(false)
-	#The battle is over
-	battle_over = true
+		battle_over = true
+	#Its a draw, so counts as a win
+	elif(!player_headquarter_alive and !enemy_headquarter_alive):
+		game_manager.won_battle(true)
+		battle_over = true
+	auto_tick()

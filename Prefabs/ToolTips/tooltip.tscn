@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://trk87sgcanig"]
+
+[ext_resource type="Script" uid="uid://me4w4b6ct4m7" path="res://Scripts/UI/tooltip.gd" id="1_mtw84"]
+[ext_resource type="Texture2D" uid="uid://btu0hvh51orbt" path="res://Tooltip Images/Archer Lvl1.png" id="2_5ijbp"]
+
+[node name="Tooltip" type="Control"]
+auto_translate_mode = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 300.0
+script = ExtResource("1_mtw84")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.447059)
+
+[node name="Image" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 10.0
+offset_right = 400.0
+offset_bottom = 543.0
+grow_horizontal = 2
+scale = Vector2(0.215, 0.215)
+pivot_offset = Vector2(400, 0)
+texture = ExtResource("2_5ijbp")
+stretch_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 0)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+text = "grgw"

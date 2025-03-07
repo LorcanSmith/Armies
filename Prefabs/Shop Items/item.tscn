@@ -1,15 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://d26riwgg0v8nl"]
+[gd_scene load_steps=8 format=3 uid="uid://d26riwgg0v8nl"]
 
 [ext_resource type="Script" uid="uid://bvdq4sn7w35b4" path="res://Scripts/Shop/item_script.gd" id="1_mdv0s"]
-[ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="2_wbsm8"]
+[ext_resource type="Script" uid="uid://me4w4b6ct4m7" path="res://Scripts/UI/tooltip.gd" id="3_1nmpe"]
 [ext_resource type="Texture2D" uid="uid://bqh0gf33g02e8" path="res://Sprites/UI/unit_ui.png" id="3_uxgjc"]
 [ext_resource type="Texture2D" uid="uid://d2ua4mo5fqjps" path="res://Sprites/UI/cost_ui.png" id="4_1nmpe"]
+[ext_resource type="Texture2D" uid="uid://ca2y0ewqn4yt" path="res://Sprites/Units/Medieval/Knight/knight_sprite.png" id="5_1nmpe"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4oje"]
-size = Vector2(33, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_1nmpe"]
+radius = 1.41421
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fj8s"]
-size = Vector2(112, 108)
+size = Vector2(42, 42)
 
 [node name="Item" type="Node2D" groups=["player"]]
 z_index = 1
@@ -18,76 +19,99 @@ script = ExtResource("1_mdv0s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_wbsm8")
+texture = ExtResource("5_1nmpe")
 
-[node name="Area2D - Tile Collsion" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - Tile Collsion"]
-position = Vector2(-2.5, 2)
-shape = SubResource("RectangleShape2D_a4oje")
-
-[node name="Area2D - Mouse Collision" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - Mouse Collision"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_8fj8s")
-
-[node name="Item_Info" type="Control" parent="."]
+[node name="Item_Info" type="Control" parent="Sprite2D"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("3_1nmpe")
 
-[node name="Level" type="Label" parent="Item_Info"]
+[node name="Level" type="Label" parent="Sprite2D/Item_Info"]
 layout_mode = 0
-offset_left = -25.0
-offset_top = 39.0
-offset_right = 29.0
-offset_bottom = 62.0
+offset_left = -170.0
+offset_top = -27.0
+offset_right = 164.0
+offset_bottom = 110.0
+scale = Vector2(0.085, 0.085)
+pivot_offset = Vector2(168, 0)
+theme_override_font_sizes/font_size = 100
 text = "Level 0"
 
-[node name="Sprite2D" type="Sprite2D" parent="Item_Info"]
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Item_Info"]
+z_index = 2
 texture_filter = 1
 position = Vector2(0, -5)
 texture = ExtResource("3_uxgjc")
 
-[node name="Cost" type="Label" parent="Item_Info/Sprite2D"]
+[node name="Cost" type="Label" parent="Sprite2D/Item_Info/Sprite2D"]
 z_index = 5
 z_as_relative = false
-offset_left = -40.0
-offset_top = -32.0
-offset_bottom = -9.0
+offset_left = -33.0
+offset_top = -26.0
+offset_right = 83.27
+offset_bottom = 114.0
+scale = Vector2(0.085, 0.085)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "5"
+theme_override_font_sizes/font_size = 95
+text = "55"
 horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Item_Info/Sprite2D/Cost"]
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Item_Info/Sprite2D/Cost"]
 z_index = 1
 z_as_relative = false
-position = Vector2(40, 32)
+position = Vector2(329.412, 341.176)
+scale = Vector2(11.7647, 11.7647)
 texture = ExtResource("4_1nmpe")
 
-[node name="Attack" type="Label" parent="Item_Info/Sprite2D"]
-offset_left = -41.0
-offset_top = 9.0
-offset_right = -1.0
-offset_bottom = 32.0
+[node name="Attack" type="Label" parent="Sprite2D/Item_Info/Sprite2D"]
+z_index = 5
+z_as_relative = false
+offset_left = -83.0
+offset_top = -49.0
+offset_right = 31.0
+offset_bottom = 88.0
+scale = Vector2(0.12, 0.12)
+pivot_offset = Vector2(62.0367, 69.4437)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "5"
+theme_override_font_sizes/font_size = 100
+text = "55"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Defense" type="Label" parent="Sprite2D/Item_Info/Sprite2D"]
+z_index = 5
+z_as_relative = false
+offset_left = -36.0
+offset_top = -44.0
+offset_right = 99.0
+offset_bottom = 96.0
+scale = Vector2(0.12, 0.12)
+pivot_offset = Vector2(55.5556, 63.889)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "55"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Defense" type="Label" parent="Item_Info/Sprite2D"]
-offset_left = 2.0
-offset_top = 9.0
-offset_right = 42.0
-offset_bottom = 32.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "5"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
+[node name="Area2D - Tile Collsion" type="Area2D" parent="."]
+input_pickable = false
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - Tile Collsion"]
+position = Vector2(-1, 5)
+shape = SubResource("CircleShape2D_1nmpe")
+
+[node name="Area2D - Mouse Collision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - Mouse Collision"]
+position = Vector2(-3, 2)
+shape = SubResource("RectangleShape2D_8fj8s")
+
+[connection signal="mouse_entered" from="Sprite2D/Item_Info" to="Sprite2D/Item_Info" method="_on_mouse_entered"]
 [connection signal="area_entered" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_exited"]
 [connection signal="mouse_exited" from="Area2D - Tile Collsion" to="." method="_on_area_2d_mouse_exited"]
