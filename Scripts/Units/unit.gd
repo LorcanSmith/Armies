@@ -48,13 +48,14 @@ var pushed_vector : Vector2i = Vector2i(0, 0)
 ##How many skills will spawn
 @export var skill_spawn_amount : int = 1
 ##Does the skill spawn at a random skill_location?
-@export var skill_spawn_random : bool = false
+@export var skill_spawn_random : bool
 ##The amount of damage the unit's skill does
 @export var skill_damage : int
 ##The amount of damage the unit's skill does
 @export var skill_heal : int
 
-@export var skill_pushes_units : bool = false
+@export var skill_pushes_units : bool
+@export var skill_shooots_closest_enemy : bool
 
 @export_subgroup("Skill Effective Against")
 @export var effectiveness : int = 4
@@ -163,9 +164,13 @@ func skill():
 
 				#If the skill doesnt spawn randomly
 				if(!skill_spawn_random):
-					#Set skills location to be at the enemy location
+					#Set skills location to be at a random enemy location
 					if spawn_skill_on_self:
 						skill_instance.global_position = self.global_position
+					#Sets skill's location to be at the closest enemy location
+					elif(skill_shooots_closest_enemy):
+						skill_instance.global_position = enemies_in_range[0].global_position
+					#Loops through all enemies and sets the skill to be there location
 					else:
 						skill_instance.global_position = enemies_in_range[enemy_number].global_position
 				#If the skill spawns at a random location

@@ -1,24 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://ch5460gcv4wru"]
+[gd_scene load_steps=4 format=3 uid="uid://xn0r1641fcns"]
 
-[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_5sj4m"]
-[ext_resource type="Texture2D" uid="uid://ghgw6mmhtteb" path="res://Sprites/Units/Medieval/Catapult/catapult_sprite.png" id="2_rp7qg"]
+[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_g20xn"]
+[ext_resource type="Texture2D" uid="uid://cxmhv5kgan1ns" path="res://Sprites/Units/Medieval/Catapult/catapult_sprite.png" id="2_3u0c2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
-[node name="Catapult" instance=ExtResource("1_5sj4m")]
-max_health = 24
+[node name="Catapult" instance=ExtResource("1_g20xn")]
+max_health = 20
 brawl_damage = 1
-skill_damage = 20
+skill_damage = 15
 skill_pushes_units = true
 
 [node name="buffs" parent="." index="0"]
-damage_buff = 0
+visible = false
 
 [node name="location" parent="skill_locations" index="0"]
-position = Vector2(384, 0)
+position = Vector2(370, 0)
 
 [node name="location2" type="Node2D" parent="skill_locations" index="1"]
-position = Vector2(512, 0)
+position = Vector2(296, 0)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location2" index="0"]
 
@@ -26,30 +26,35 @@ position = Vector2(512, 0)
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="location3" type="Node2D" parent="skill_locations" index="2"]
-position = Vector2(384, 128)
+position = Vector2(222, 0)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location3" index="0"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location3/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
-[node name="location5" type="Node2D" parent="skill_locations" index="3"]
-position = Vector2(384, -128)
+[node name="move_spot" parent="movement_locations" index="0"]
+position = Vector2(74, 0)
 
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location5" index="0"]
+[node name="UP" parent="push_locations" index="0"]
+position = Vector2(0, -74)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location5/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_11hi7")
+[node name="RIGHT" parent="push_locations" index="1"]
+position = Vector2(74, 0)
+
+[node name="DOWN" parent="push_locations" index="2"]
+position = Vector2(0, 74)
+
+[node name="LEFT" parent="push_locations" index="3"]
+position = Vector2(-74, 0)
 
 [node name="Sprite2D" parent="." index="4"]
-texture = ExtResource("2_rp7qg")
+texture = ExtResource("2_3u0c2")
 
 [node name="Level" parent="Label" index="0"]
-text = "Level 2"
+text = "Level 1"
 
 [connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
 [connection signal="area_entered" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location5/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location5/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

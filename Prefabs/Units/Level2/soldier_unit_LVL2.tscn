@@ -1,30 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://ch0mi0otbjofk"]
+[gd_scene load_steps=3 format=3 uid="uid://bvl0wdbg8haoc"]
 
-[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_jvwys"]
+[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_kuq7i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
-[node name="Soldier" instance=ExtResource("1_jvwys")]
-max_health = 13
-brawl_damage = 13
+[node name="Soldier" instance=ExtResource("1_kuq7i")]
+max_health = 10
+brawl_damage = 10
 bump_damage = 2
 skill_spawn_amount = 2
-skill_damage = 13
+skill_damage = 10
 
-[node name="buffs" parent="." index="0"]
-damage_buff = 6
-health_buff = 8
+[node name="location_area" parent="buffs" index="0"]
+position = Vector2(0, -74)
+
+[node name="location_area2" parent="buffs" index="1"]
+position = Vector2(0, 74)
+
+[node name="location" parent="skill_locations" index="0"]
+position = Vector2(74, 0)
 
 [node name="location2" type="Node2D" parent="skill_locations" index="1"]
-position = Vector2(256, 0)
+position = Vector2(148, 0)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location2" index="0"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location2/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
+[node name="move_spot" parent="movement_locations" index="0"]
+position = Vector2(74, 0)
+
+[node name="UP" parent="push_locations" index="0"]
+position = Vector2(0, -74)
+
+[node name="RIGHT" parent="push_locations" index="1"]
+position = Vector2(74, 0)
+
+[node name="DOWN" parent="push_locations" index="2"]
+position = Vector2(0, 74)
+
+[node name="LEFT" parent="push_locations" index="3"]
+position = Vector2(-74, 0)
+
 [node name="Level" parent="Label" index="0"]
-text = "Level 2"
+text = "Level 1"
 
 [connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

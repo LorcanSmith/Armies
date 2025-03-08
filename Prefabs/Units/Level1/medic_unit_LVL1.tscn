@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bafq0ubjun4sc"]
+[gd_scene load_steps=5 format=3 uid="uid://bafq0ubjun4sc"]
 
 [ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_oiijl"]
 [ext_resource type="Texture2D" uid="uid://c7x0n5de2qo45" path="res://Sprites/Units/Army/Medic/medic_sprite.png" id="2_t6osg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1caxc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
@@ -12,10 +14,33 @@ skill_spawn_amount = 4
 skill_heal = 5
 
 [node name="buffs" parent="." index="0"]
-health_buff = 8
+health_buff = 5
+
+[node name="location_area" parent="buffs" index="0"]
+position = Vector2(0, -74)
+
+[node name="location_area2" parent="buffs" index="1"]
+position = Vector2(0, 74)
+
+[node name="location_area3" type="Area2D" parent="buffs" index="2" groups=["buff_location"]]
+position = Vector2(74, 0)
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buffs/location_area3" index="0"]
+shape = SubResource("CircleShape2D_1caxc")
+
+[node name="location_area4" type="Area2D" parent="buffs" index="3" groups=["buff_location"]]
+position = Vector2(-74, 0)
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buffs/location_area4" index="0"]
+shape = SubResource("CircleShape2D_1caxc")
+
+[node name="location" parent="skill_locations" index="0"]
+position = Vector2(74, 0)
 
 [node name="location2" type="Node2D" parent="skill_locations" index="1"]
-position = Vector2(0, 128)
+position = Vector2(0, 74)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location2" index="0"]
 
@@ -23,7 +48,7 @@ position = Vector2(0, 128)
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="location3" type="Node2D" parent="skill_locations" index="2"]
-position = Vector2(-128, 0)
+position = Vector2(-74, 0)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location3" index="0"]
 
@@ -31,12 +56,27 @@ position = Vector2(-128, 0)
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="location4" type="Node2D" parent="skill_locations" index="3"]
-position = Vector2(0, -128)
+position = Vector2(0, -74)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location4" index="0"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location4/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
+
+[node name="move_spot" parent="movement_locations" index="0"]
+position = Vector2(74, 0)
+
+[node name="UP" parent="push_locations" index="0"]
+position = Vector2(0, -74)
+
+[node name="RIGHT" parent="push_locations" index="1"]
+position = Vector2(74, 0)
+
+[node name="DOWN" parent="push_locations" index="2"]
+position = Vector2(0, 74)
+
+[node name="LEFT" parent="push_locations" index="3"]
+position = Vector2(-74, 0)
 
 [node name="Sprite2D" parent="." index="4"]
 texture = ExtResource("2_t6osg")

@@ -1,24 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://lja5lfxpnfy4"]
+[gd_scene load_steps=4 format=3 uid="uid://8vnmsckpyytm"]
 
-[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_ry2rb"]
-[ext_resource type="Texture2D" uid="uid://c73uyed4ispk4" path="res://Sprites/Units/Medieval/Archer/archer_sprite.png" id="2_o20n7"]
+[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_3gkwe"]
+[ext_resource type="Texture2D" uid="uid://c73uyed4ispk4" path="res://Sprites/Units/Medieval/Archer/archer_sprite.png" id="2_cfirb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
-[node name="archer" instance=ExtResource("1_ry2rb")]
+[node name="archer" instance=ExtResource("1_3gkwe")]
 max_health = 18
-brawl_damage = 5
-skill_spawn_amount = 5
+brawl_damage = 3
+skill_spawn_amount = 2
 skill_spawn_random = true
-skill_damage = 7
-solider_effective = true
-animal_effective = true
+skill_damage = 5
+
+[node name="buffs" parent="." index="0"]
+visible = false
+
+[node name="location_area" parent="buffs" index="0"]
+visible = false
+
+[node name="location_area2" parent="buffs" index="1"]
+visible = false
+
+[node name="location" parent="skill_locations" index="0"]
+position = Vector2(74, 0)
 
 [node name="CollisionShape2D" parent="skill_locations/location/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="location2" type="Node2D" parent="skill_locations" index="1"]
-position = Vector2(267, 0)
+position = Vector2(148, 0)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location2" index="0"]
 
@@ -26,7 +36,7 @@ position = Vector2(267, 0)
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="location3" type="Node2D" parent="skill_locations" index="2"]
-position = Vector2(395, 0)
+position = Vector2(222, 0)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location3" index="0"]
 
@@ -34,68 +44,51 @@ position = Vector2(395, 0)
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="location4" type="Node2D" parent="skill_locations" index="3"]
-position = Vector2(523, 0)
+position = Vector2(296, 0)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location4" index="0"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location4/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
-[node name="location7" type="Node2D" parent="skill_locations" index="4"]
-position = Vector2(267, 128)
+[node name="location5" type="Node2D" parent="skill_locations" index="4"]
+position = Vector2(370, 0)
 
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location7" index="0"]
+[node name="skill_area2D" type="Area2D" parent="skill_locations/location5" index="0"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location7/skill_area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location5/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
-[node name="location8" type="Node2D" parent="skill_locations" index="5"]
-position = Vector2(395, 128)
+[node name="location6" type="Node2D" parent="skill_locations" index="5"]
+position = Vector2(444, 0)
 
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location8" index="0"]
+[node name="skill_area2D" type="Area2D" parent="skill_locations/location6" index="0"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location8/skill_area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location6/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
-[node name="location9" type="Node2D" parent="skill_locations" index="6"]
-position = Vector2(523, 128)
+[node name="move_spot" parent="movement_locations" index="0"]
+position = Vector2(74, 0)
 
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location9" index="0"]
+[node name="UP" parent="push_locations" index="0"]
+position = Vector2(0, -74)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location9/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_11hi7")
+[node name="RIGHT" parent="push_locations" index="1"]
+position = Vector2(74, 0)
 
-[node name="location11" type="Node2D" parent="skill_locations" index="7"]
-position = Vector2(267, -128)
+[node name="DOWN" parent="push_locations" index="2"]
+position = Vector2(0, 74)
 
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location11" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location11/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_11hi7")
-
-[node name="location12" type="Node2D" parent="skill_locations" index="8"]
-position = Vector2(395, -128)
-
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location12" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location12/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_11hi7")
-
-[node name="location13" type="Node2D" parent="skill_locations" index="9"]
-position = Vector2(523, -128)
-
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location13" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location13/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_11hi7")
+[node name="LEFT" parent="push_locations" index="3"]
+position = Vector2(-74, 0)
 
 [node name="Sprite2D" parent="." index="4"]
-texture = ExtResource("2_o20n7")
+texture = ExtResource("2_cfirb")
 
 [node name="Level" parent="Label" index="0"]
 offset_top = 0.0
 offset_bottom = 23.0
-text = "Level 2"
+text = "Level 1"
 
 [connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
@@ -103,15 +96,7 @@ text = "Level 2"
 [connection signal="area_exited" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
 [connection signal="area_entered" from="skill_locations/location4/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location4/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location7/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location7/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location8/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location8/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location9/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location9/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location11/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location11/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location12/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location12/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location13/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location13/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
+[connection signal="area_entered" from="skill_locations/location5/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
+[connection signal="area_exited" from="skill_locations/location5/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
+[connection signal="area_entered" from="skill_locations/location6/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
+[connection signal="area_exited" from="skill_locations/location6/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

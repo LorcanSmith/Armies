@@ -9,6 +9,33 @@ move_distance = 3
 brawl_damage = 8
 skill_damage = 8
 
+[node name="buffs" parent="." index="0"]
+damage_buff = 4
+
+[node name="location_area" parent="buffs" index="0"]
+position = Vector2(0, -74)
+
+[node name="location_area2" parent="buffs" index="1"]
+position = Vector2(0, 74)
+
+[node name="location" parent="skill_locations" index="0"]
+position = Vector2(74, 0)
+
+[node name="move_spot" parent="movement_locations" index="0"]
+position = Vector2(74, 0)
+
+[node name="UP" parent="push_locations" index="0"]
+position = Vector2(0, -74)
+
+[node name="RIGHT" parent="push_locations" index="1"]
+position = Vector2(74, 0)
+
+[node name="DOWN" parent="push_locations" index="2"]
+position = Vector2(0, 74)
+
+[node name="LEFT" parent="push_locations" index="3"]
+position = Vector2(-74, 0)
+
 [node name="Sprite2D" parent="." index="4"]
 texture = ExtResource("3_lqsp5")
 

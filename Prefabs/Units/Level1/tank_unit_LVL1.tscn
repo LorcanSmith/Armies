@@ -11,11 +11,14 @@ move_distance = 2
 brawl_damage = 5
 skill_damage = 20
 
+[node name="buffs" parent="." index="0"]
+visible = false
+
 [node name="location" parent="skill_locations" index="0"]
-position = Vector2(128, 0)
+position = Vector2(74, 0)
 
 [node name="location2" type="Node2D" parent="skill_locations" index="1"]
-position = Vector2(256, 0)
+position = Vector2(148, 0)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location2" index="0"]
 
@@ -23,7 +26,7 @@ position = Vector2(256, 0)
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="location3" type="Node2D" parent="skill_locations" index="2"]
-position = Vector2(384, 0)
+position = Vector2(222, 0)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location3" index="0"]
 
@@ -31,12 +34,27 @@ position = Vector2(384, 0)
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="location4" type="Node2D" parent="skill_locations" index="3"]
-position = Vector2(512, 0)
+position = Vector2(296, 0)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location4" index="0"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location4/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
+
+[node name="move_spot" parent="movement_locations" index="0"]
+position = Vector2(74, 0)
+
+[node name="UP" parent="push_locations" index="0"]
+position = Vector2(0, -74)
+
+[node name="RIGHT" parent="push_locations" index="1"]
+position = Vector2(74, 0)
+
+[node name="DOWN" parent="push_locations" index="2"]
+position = Vector2(0, 74)
+
+[node name="LEFT" parent="push_locations" index="3"]
+position = Vector2(-74, 0)
 
 [node name="Sprite2D" parent="." index="4"]
 texture = ExtResource("2_ur0nq")

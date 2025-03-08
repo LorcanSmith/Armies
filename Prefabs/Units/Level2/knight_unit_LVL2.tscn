@@ -1,21 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://n1aymaliknjm"]
+[gd_scene load_steps=3 format=3 uid="uid://dqbbcptodmco"]
 
-[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_di7ac"]
-[ext_resource type="Texture2D" uid="uid://ca2y0ewqn4yt" path="res://Sprites/Units/Medieval/Knight/knight_sprite.png" id="3_cdbe5"]
+[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_igas3"]
+[ext_resource type="Texture2D" uid="uid://ca2y0ewqn4yt" path="res://Sprites/Units/Medieval/Knight/knight_sprite.png" id="2_11ii0"]
 
-[node name="knight_unit" instance=ExtResource("1_di7ac")]
-max_health = 28
+[node name="knight_unit" instance=ExtResource("1_igas3")]
+max_health = 16
+move_distance = 3
 brawl_damage = 8
-skill_damage = 12
+skill_damage = 8
+
+[node name="buffs" parent="." index="0"]
+damage_buff = 4
+
+[node name="location_area" parent="buffs" index="0"]
+position = Vector2(0, -74)
+
+[node name="location_area2" parent="buffs" index="1"]
+position = Vector2(0, 74)
+
+[node name="location" parent="skill_locations" index="0"]
+position = Vector2(74, 0)
 
 [node name="move_spot" parent="movement_locations" index="0"]
-position = Vector2(128, 0)
+position = Vector2(74, 0)
+
+[node name="UP" parent="push_locations" index="0"]
+position = Vector2(0, -74)
+
+[node name="RIGHT" parent="push_locations" index="1"]
+position = Vector2(74, 0)
+
+[node name="DOWN" parent="push_locations" index="2"]
+position = Vector2(0, 74)
+
+[node name="LEFT" parent="push_locations" index="3"]
+position = Vector2(-74, 0)
 
 [node name="Sprite2D" parent="." index="4"]
-texture = ExtResource("3_cdbe5")
+texture = ExtResource("2_11ii0")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-2, -0.5)
 
 [node name="Level" parent="Label" index="0"]
-text = "Level 2"
+text = "Level 1"
