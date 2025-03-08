@@ -26,9 +26,13 @@ var wins = 0
 #How much life are we on
 var life_remaining = 10
 
+@export var health_text : RichTextLabel
+@export var coin_text : RichTextLabel
+
 func _ready():
 	in_combat = false
 	status_bar = get_node("StatusBarLayer/StatusBar")
+	health_text.text = str(life_remaining)
 	create_scene()
 
 func _process(_delta):
@@ -86,7 +90,7 @@ func _input(event):
 		DebuggerScript.create_enemy_armies()
 	
 func _money_changed(amount : int):
-	status_bar.set_money(amount)
+	coin_text.text = str("$   ", amount)
 
 #Called by combat manager when our headquarters is destroyed
 func won_battle(won : bool):
@@ -113,3 +117,4 @@ func won_battle(won : bool):
 			print("0 LIFE REMAINING! GAME OVER")
 		else:
 			print("LIFE REMAINING: ", life_remaining)
+	health_text.text = str(life_remaining)
