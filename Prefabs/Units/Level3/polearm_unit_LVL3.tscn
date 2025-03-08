@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdoi3cx3inpak"]
+[gd_scene load_steps=3 format=3 uid="uid://bxlbakvmmqtsu"]
 
 [ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_m7hja"]
 [ext_resource type="Texture2D" uid="uid://befn01dmekcw1" path="res://Sprites/Units/Medieval/Polearm/Polearm.png" id="2_6taf2"]
@@ -10,6 +10,27 @@ brawl_damage = 20
 bump_damage = 2
 soldier = true
 skill_damage = 18
+
+[node name="buffs" parent="." index="0"]
+visible = false
+
+[node name="location" parent="skill_locations" index="0"]
+position = Vector2(74, 0)
+
+[node name="move_spot" parent="movement_locations" index="0"]
+position = Vector2(74, 0)
+
+[node name="UP" parent="push_locations" index="0"]
+position = Vector2(0, -74)
+
+[node name="RIGHT" parent="push_locations" index="1"]
+position = Vector2(74, 0)
+
+[node name="DOWN" parent="push_locations" index="2"]
+position = Vector2(0, 74)
+
+[node name="LEFT" parent="push_locations" index="3"]
+position = Vector2(-74, 0)
 
 [node name="Sprite2D" parent="." index="4"]
 texture = ExtResource("2_6taf2")
