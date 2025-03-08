@@ -21,6 +21,7 @@ text = "45"
 text = "545"
 
 [node name="Tooltip" parent="." index="3"]
+visible = false
 offset_left = -116.0
 offset_top = -153.0
 offset_right = 84.0
