@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bycvn8qku7474"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_sc67e"]
+[ext_resource type="Texture2D" uid="uid://befn01dmekcw1" path="res://Sprites/Units/Medieval/Polearm/Polearm.png" id="2_wkyxm"]
+
+[node name="Item" instance=ExtResource("1_sc67e")]
+unit_name = "Polearm"
+buy_cost = 8
+sell_cost = 4
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_wkyxm")
+
+[node name="Cost" parent="Sprite2D/Item_Info/Sprite2D" index="0"]
+text = "45"
+
+[node name="Attack" parent="Sprite2D/Item_Info/Sprite2D" index="1"]
+text = "45"
+
+[node name="Defense" parent="Sprite2D/Item_Info/Sprite2D" index="2"]
+text = "545"
+
+[node name="Tooltip" parent="." index="3"]
+offset_left = -116.0
+offset_top = -153.0
+offset_right = 84.0
+offset_bottom = 147.0
