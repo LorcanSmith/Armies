@@ -26,14 +26,14 @@ script = ExtResource("1_h20h1")
 script = ExtResource("4_4nfq5")
 
 [node name="location_area" type="Area2D" parent="buffs" groups=["buff_location"]]
-position = Vector2(0, -137)
+position = Vector2(0, -74)
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="buffs/location_area"]
 shape = SubResource("CircleShape2D_1caxc")
 
 [node name="location_area2" type="Area2D" parent="buffs" groups=["buff_location"]]
-position = Vector2(0, 146)
+position = Vector2(0, 74)
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="buffs/location_area2"]
@@ -42,7 +42,7 @@ shape = SubResource("CircleShape2D_1caxc")
 [node name="skill_locations" type="Node2D" parent="."]
 
 [node name="location" type="Node2D" parent="skill_locations"]
-position = Vector2(128, 0)
+position = Vector2(74, 0)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location"]
 
@@ -52,7 +52,7 @@ shape = SubResource("CircleShape2D_11hi7")
 [node name="movement_locations" type="Node2D" parent="."]
 
 [node name="move_spot" type="Node2D" parent="movement_locations"]
-position = Vector2(139, 0)
+position = Vector2(74, 0)
 script = ExtResource("4_4fdo6")
 
 [node name="Area2D" type="Area2D" parent="movement_locations/move_spot"]
@@ -63,7 +63,7 @@ shape = SubResource("CircleShape2D_kn7ua")
 [node name="push_locations" type="Node2D" parent="."]
 
 [node name="UP" type="Node2D" parent="push_locations"]
-position = Vector2(0, -137)
+position = Vector2(0, -74)
 script = ExtResource("5_8a1pl")
 
 [node name="up_area" type="Area2D" parent="push_locations/UP"]
@@ -73,7 +73,7 @@ monitorable = false
 shape = SubResource("CircleShape2D_sefj8")
 
 [node name="RIGHT" type="Node2D" parent="push_locations"]
-position = Vector2(139, 0)
+position = Vector2(74, 0)
 script = ExtResource("5_8a1pl")
 
 [node name="right_area" type="Area2D" parent="push_locations/RIGHT"]
@@ -83,7 +83,7 @@ monitorable = false
 shape = SubResource("CircleShape2D_sefj8")
 
 [node name="DOWN" type="Node2D" parent="push_locations"]
-position = Vector2(0, 146)
+position = Vector2(0, 74)
 script = ExtResource("5_8a1pl")
 
 [node name="down_area" type="Area2D" parent="push_locations/DOWN"]
@@ -93,7 +93,7 @@ monitorable = false
 shape = SubResource("CircleShape2D_sefj8")
 
 [node name="LEFT" type="Node2D" parent="push_locations"]
-position = Vector2(-135, -2)
+position = Vector2(-74, 0)
 script = ExtResource("5_8a1pl")
 
 [node name="left_area" type="Area2D" parent="push_locations/LEFT"]
