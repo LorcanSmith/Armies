@@ -26,7 +26,15 @@ var unit_scenes = {
 	#Medic
 	15: preload("res://Prefabs/Units/Level1/medic_unit_LVL1.tscn"),
 	16: preload("res://Prefabs/Units/Level2/medic_unit_LVL2.tscn"),
-	17: preload("res://Prefabs/Units/Level3/medic_unit_LVL3.tscn")
+	17: preload("res://Prefabs/Units/Level3/medic_unit_LVL3.tscn"),
+	#Polearm
+	18: preload("res://Prefabs/Units/Level1/polearm_unit_LVL1.tscn"),
+	19: preload("res://Prefabs/Units/Level2/polearm_unit_LVL2.tscn"),
+	20: preload("res://Prefabs/Units/Level3/polearm_unit_LVL3.tscn")
+	#Sniper
+	#21: preload("res://Prefabs/Units/Level1/sniper_unit_LVL1.tscn"),
+	#22: preload("res://Prefabs/Units/Level2/sniper_unit_LVL2.tscn"),
+	#23: preload("res://Prefabs/Units/Level3/sniper_unit_LVL3.tscn")
 }
 
 var item_scenes = {
@@ -53,7 +61,15 @@ var item_scenes = {
 	#Medic
 	15: preload("res://Prefabs/Shop Items/Level1/medic_item_LVL1.tscn"),
 	16: preload("res://Prefabs/Shop Items/Level2/medic_item_LVL2.tscn"),
-	17: preload("res://Prefabs/Shop Items/Level3/medic_item_LVL3.tscn")
+	17: preload("res://Prefabs/Shop Items/Level3/medic_item_LVL3.tscn"),
+	#Polearm
+	18: preload("res://Prefabs/Shop Items/Level1/polearm_item_LVL1.tscn"),
+	19: preload("res://Prefabs/Shop Items/Level2/polearm_item_LVL2.tscn"),
+	20: preload("res://Prefabs/Shop Items/Level3/polearm_item_LVL3.tscn")
+	#Sniper
+	#21: preload("res://Prefabs/Units/Level1/sniper_unit_LVL1.tscn"),
+	#22: preload("res://Prefabs/Units/Level2/sniper_unit_LVL2.tscn"),
+	#23: preload("res://Prefabs/Units/Level3/sniper_unit_LVL3.tscn")
 }
 
 var boost_scenes = {
