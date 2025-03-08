@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdoi3cx3inpak"]
+
+[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_m7hja"]
+[ext_resource type="Texture2D" uid="uid://befn01dmekcw1" path="res://Sprites/Units/Medieval/Polearm/Polearm.png" id="2_6taf2"]
+
+[node name="polearm_unit" instance=ExtResource("1_m7hja")]
+max_health = 20
+move_distance = 2
+brawl_damage = 20
+bump_damage = 2
+soldier = true
+skill_damage = 18
+
+[node name="Sprite2D" parent="." index="4"]
+texture = ExtResource("2_6taf2")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-2, -0.5)
+
+[node name="Level" parent="Label" index="0"]
+text = "Level 3"
