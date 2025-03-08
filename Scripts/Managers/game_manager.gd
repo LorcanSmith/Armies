@@ -15,8 +15,6 @@ var army : Array
 var shop_scene = preload("res://Prefabs/Managers/shop_manager.tscn")
 var combat_scene = preload("res://Prefabs/Managers/combat_manager.tscn")
 
-var status_bar : StatusBar
-
 var in_combat : bool = false
 
 #What turn are we on
@@ -31,7 +29,6 @@ var life_remaining = 10
 
 func _ready():
 	in_combat = false
-	status_bar = get_node("StatusBarLayer/StatusBar")
 	health_text.text = str(life_remaining)
 	create_scene()
 
