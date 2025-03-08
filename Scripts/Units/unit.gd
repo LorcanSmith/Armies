@@ -187,7 +187,16 @@ func skill():
 
 				enemy_number += 1
 				skills_spawned += 1
-
+		#No units in range
+		else:
+			#Check if there is a unit in front of you
+			if(movement_locations[0].movement_tile.units_on_tile.size() > 0):
+				#Unit on the tile in front of you
+				var unit_in_front = movement_locations[0].movement_tile.units_on_tile[0]
+				#Check if the unit front of you in an enemy
+				if((unit_in_front.is_in_group("enemy") and self.is_in_group("player")) or (unit_in_front.is_in_group("player") and self.is_in_group("enemy"))):
+					#Do brawl damage to the enemy in front of you
+					unit_in_front.hurt(brawl_damage)
 	#If there is another unit on this tile then they will brawl
 	else:
 		brawl()
