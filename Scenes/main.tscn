@@ -1,18 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://brgi4h0spiup2"]
+[gd_scene load_steps=6 format=3 uid="uid://brgi4h0spiup2"]
 
 [ext_resource type="Script" uid="uid://ceah7wfd5evx8" path="res://Scripts/Managers/game_manager.gd" id="1_y45oy"]
 [ext_resource type="Script" uid="uid://06xxppo51p7p" path="res://Scripts/DEBUGGER_script.gd" id="2_pa0fo"]
 [ext_resource type="PackedScene" uid="uid://by8ndrehnsmpn" path="res://Prefabs/Skills/basic_skill.tscn" id="3_0tvwk"]
-[ext_resource type="PackedScene" uid="uid://cdtulbdqtnexg" path="res://Prefabs/Status/status_bar.tscn" id="3_x7ng8"]
+[ext_resource type="Texture2D" uid="uid://bos864ovdl3jf" path="res://Sprites/UI/heart.png" id="5_kry3j"]
+[ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="6_21xkr"]
 
-[node name="game_manager" type="Node2D"]
+[node name="game_manager" type="Node2D" node_paths=PackedStringArray("health_text", "coin_text")]
 script = ExtResource("1_y45oy")
+health_text = NodePath("UI/HBoxContainer/heart/HEALTH")
+coin_text = NodePath("UI/HBoxContainer/dollar/COINS")
 
 [node name="DEBUGGER" type="Node2D" parent="."]
+visible = false
 script = ExtResource("2_pa0fo")
 skills = [ExtResource("3_0tvwk")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="DEBUGGER"]
+visible = false
 
 [node name="place_enemy_button" type="CheckButton" parent="DEBUGGER/CanvasLayer"]
 offset_right = 44.0
@@ -34,17 +39,59 @@ item_count = 1
 popup/item_0/text = "attack_1"
 popup/item_0/id = 0
 
-[node name="StatusBarLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="StatusBar" parent="StatusBarLayer" instance=ExtResource("3_x7ng8")]
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = -35.0
-offset_right = 5.0
-offset_bottom = -35.0
-grow_vertical = 0
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 34.335
+grow_horizontal = 2
+
+[node name="heart" type="TextureRect" parent="UI/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(39.28, 0)
+layout_mode = 2
+texture = ExtResource("5_kry3j")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="HEALTH" type="RichTextLabel" parent="UI/HBoxContainer/heart"]
+clip_contents = false
+custom_minimum_size = Vector2(82.795, 0)
+layout_mode = 2
+offset_left = -24.0
+offset_top = -14.0
+offset_right = 58.795
+offset_bottom = 20.0
+scale = Vector2(0.21, 0.21)
+pivot_offset = Vector2(42.8571, 19.0476)
+theme_override_font_sizes/normal_font_size = 100
+text = "
+"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="dollar" type="TextureRect" parent="UI/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("6_21xkr")
+expand_mode = 3
+
+[node name="COINS" type="RichTextLabel" parent="UI/HBoxContainer/dollar"]
+clip_contents = false
+custom_minimum_size = Vector2(82.795, 0)
+layout_mode = 2
+offset_left = 11.0
+offset_top = 2.0
+offset_right = 621.0
+offset_bottom = 36.0
+scale = Vector2(0.21, 0.21)
+theme_override_font_sizes/normal_font_size = 100
+text = "h"
+scroll_active = false
+autowrap_mode = 0
 
 [connection signal="toggled" from="DEBUGGER/CanvasLayer/place_enemy_button" to="DEBUGGER" method="_on_place_enemy_button_toggled"]
 [connection signal="toggled" from="DEBUGGER/CanvasLayer/CheckButton" to="DEBUGGER" method="_on_check_button_toggled"]
