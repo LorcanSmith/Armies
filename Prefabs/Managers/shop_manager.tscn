@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=14 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dr2o4nm3x37eu" path="res://Prefabs/Managers/grid_manager.tscn" id="4_2ahac"]
 [ext_resource type="Script" uid="uid://bi20rliok0lqp" path="res://Scripts/Grid/grid_generation.gd" id="5_q2vn5"]
 [ext_resource type="PackedScene" uid="uid://bqgwbmbquy7su" path="res://Prefabs/Grid/grid_generator.tscn" id="6_e3q61"]
+[ext_resource type="Texture2D" uid="uid://bgp4d3tyho0hd" path="res://Sprites/UI/battle.png" id="6_uivje"]
+[ext_resource type="Texture2D" uid="uid://dr2405y3ramn1" path="res://Sprites/UI/battle_pressed.png" id="7_cnpns"]
+[ext_resource type="Texture2D" uid="uid://b4nfucca01mfo" path="res://Sprites/UI/battle_hover.png" id="7_h8oip"]
 [ext_resource type="Texture2D" uid="uid://cboeci24t6dot" path="res://Sprites/UI/re-roll.png" id="7_sr3ik"]
 [ext_resource type="Texture2D" uid="uid://kndito00ykl5" path="res://Sprites/UI/re-roll_pressed.png" id="8_aj6hm"]
 [ext_resource type="Texture2D" uid="uid://8ben0pgeisvw" path="res://Sprites/UI/re-roll_hover.png" id="9_apgq3"]
@@ -24,16 +27,16 @@ script = ExtResource("2_v5hhx")
 position = Vector2(393, -7)
 
 [node name="Unit 1" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
-position = Vector2(-192, 406)
+position = Vector2(-75, 400)
 
 [node name="Unit 2" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
-position = Vector2(-64, 405)
+position = Vector2(0, 400)
 
 [node name="Unit 3" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
-position = Vector2(64, 404)
+position = Vector2(75, 400)
 
 [node name="Unit 4" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
-position = Vector2(192, 403)
+position = Vector2(150, 400)
 
 [node name="Boost Locations" type="Node2D" parent="ShopItemGenerator"]
 position = Vector2(88, 0)
@@ -46,13 +49,23 @@ position = Vector2(658, 165)
 
 [node name="re-roll button" type="TextureButton" parent="ShopItemGenerator"]
 texture_filter = 1
-offset_left = 656.0
-offset_top = 374.0
-offset_right = 713.0
-offset_bottom = 414.0
+offset_left = 215.0
+offset_top = 373.0
+offset_right = 272.0
+offset_bottom = 413.0
 texture_normal = ExtResource("7_sr3ik")
 texture_pressed = ExtResource("8_aj6hm")
 texture_hover = ExtResource("9_apgq3")
+
+[node name="battle button" type="TextureButton" parent="ShopItemGenerator"]
+texture_filter = 1
+offset_left = 594.0
+offset_top = 377.0
+offset_right = 658.0
+offset_bottom = 404.0
+texture_normal = ExtResource("6_uivje")
+texture_pressed = ExtResource("7_cnpns")
+texture_hover = ExtResource("7_h8oip")
 
 [node name="SellLocation" type="Node2D" parent="."]
 position = Vector2(858, 638)
@@ -83,7 +96,7 @@ offset_bottom = -77.0
 text = "This is your inventory where you can store spare items"
 
 [node name="grid_generator (army)" parent="grid_manager" instance=ExtResource("6_e3q61")]
-position = Vector2(382, 421)
+position = Vector2(471, 399)
 grid_name = "army"
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -91,3 +104,4 @@ position = Vector2(589, 508)
 zoom = Vector2(1.8, 1.8)
 
 [connection signal="pressed" from="ShopItemGenerator/re-roll button" to="ShopItemGenerator" method="_on_texture_button_pressed"]
+[connection signal="pressed" from="ShopItemGenerator/battle button" to="." method="_on_battle_button_pressed"]

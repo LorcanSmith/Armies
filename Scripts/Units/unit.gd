@@ -253,9 +253,9 @@ func apply_damage():
 		health -= damage_done_to_self
 		#Update the health visual to show remaining health
 		defense_label.text = str(health)
-	if(health <= 0):
-		destroy_unit()
-	damage_done_to_self = 0
+		if(health <= 0):
+			destroy_unit()
+		damage_done_to_self = 0
 
 #Called when the unit is destroyed
 func destroy_unit():

@@ -33,13 +33,11 @@ func _ready():
 	health_text.text = str(life_remaining)
 	create_scene()
 
-func _process(_delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		for grids in GridManager.get_children():
-			grids.save_current_grid()
-		swap_scenes()
-		
+
 func swap_scenes():
+	if(!in_combat):
+		for grids in GridManager.get_children():
+				grids.save_current_grid()
 	#reverses the value of in_combat boolean
 	in_combat = !in_combat
 	current_scene.queue_free()
@@ -87,7 +85,7 @@ func _input(event):
 		DebuggerScript.create_enemy_armies()
 	
 func money_changed(amount : int):
-	coin_text.text = str("$   ", amount)
+	coin_text.text = str(amount)
 	money_remaining = amount
 #Called by combat manager when our headquarters is destroyed
 func won_battle(won : bool):

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bguwg136nre2v"]
+[gd_scene load_steps=4 format=4 uid="uid://bguwg136nre2v"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_4d4bt"]
 [ext_resource type="Texture2D" uid="uid://c73uyed4ispk4" path="res://Sprites/Units/Medieval/Archer/archer_sprite.png" id="2_ctkp1"]
+[ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Grid/skill_tile_map.tscn" id="3_8ymtv"]
 
 [node name="Item" instance=ExtResource("1_4d4bt")]
 unit_name = "Archer"
@@ -11,3 +12,9 @@ sell_cost = 4
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_ctkp1")
+
+[node name="skill_tiles" parent="." index="4"]
+scale = Vector2(1e-05, 1e-05)
+
+[node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_8ymtv")]
+tile_map_data = PackedByteArray("AAAlDWC7AAAAAAAAAAAAAP//AAAAAAAAAAABAP//AAAAAAAAAAACAP//AAAAAAAAAAADAP//AAAAAAAAAAAEAP//AAAAAAAAAAA=")

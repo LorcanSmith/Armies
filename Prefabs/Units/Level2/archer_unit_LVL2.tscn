@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://8vnmsckpyytm"]
 
-[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_3gkwe"]
+[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Sprites/Units/unit_prefab.tscn" id="1_3gkwe"]
 [ext_resource type="Texture2D" uid="uid://c73uyed4ispk4" path="res://Sprites/Units/Medieval/Archer/archer_sprite.png" id="2_cfirb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
