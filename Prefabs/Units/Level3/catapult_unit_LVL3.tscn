@@ -8,7 +8,7 @@
 [node name="Catapult" instance=ExtResource("1_a8gj2")]
 max_health = 20
 brawl_damage = 1
-skill_damage = 15
+skill_damage = 8
 skill_pushes_units = true
 
 [node name="buffs" parent="." index="0"]
@@ -32,21 +32,6 @@ position = Vector2(222, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location3/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
-
-[node name="move_spot" parent="movement_locations" index="0"]
-position = Vector2(74, 0)
-
-[node name="UP" parent="push_locations" index="0"]
-position = Vector2(0, -74)
-
-[node name="RIGHT" parent="push_locations" index="1"]
-position = Vector2(74, 0)
-
-[node name="DOWN" parent="push_locations" index="2"]
-position = Vector2(0, 74)
-
-[node name="LEFT" parent="push_locations" index="3"]
-position = Vector2(-74, 0)
 
 [node name="Sprite2D" parent="." index="4"]
 texture = ExtResource("2_7n7sj")

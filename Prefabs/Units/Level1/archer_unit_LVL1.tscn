@@ -70,10 +70,16 @@ texture = ExtResource("2_402ld")
 text = "Level 1"
 
 [node name="Attack" parent="Label/Sprite2D" index="0"]
-anchor_left = -0.171875
+anchor_left = -0.15625
+anchor_right = 1.26563
+offset_left = -21.0
+offset_right = 19.0
 
 [node name="Defense" parent="Label/Sprite2D" index="1"]
-anchor_left = -0.171875
+anchor_left = -0.234375
+anchor_right = 1.73438
+offset_left = 22.0
+offset_right = 62.0
 
 [connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

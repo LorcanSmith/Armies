@@ -10,7 +10,8 @@ max_health = 7
 brawl_damage = 4
 bump_damage = 2
 soldier = true
-skill_damage = 30
+skill_damage = 9
+skill_shooots_closest_enemy = true
 
 [node name="buffs" parent="." index="0"]
 damage_buff = 5

@@ -72,7 +72,8 @@ var skill_prefab : PackedScene = load("res://Prefabs/Skills/basic_skill.tscn")
 var enemies_in_range : Array = []
 
 var level_label : Label
-
+var defense_label : Label
+var attack_label : Label
 func _ready() -> void:
 	tooltip = find_child("Tooltip")
 	current_tooltip_time_left = tooltip_show_time
@@ -208,10 +209,9 @@ func brawl():
 		#If the unit isnt itself do some brawl damage to it
 		if(unit != self):
 			unit.hurt(brawl_damage)
-
 func update_label():
-	var attack_label : Label = find_child("Attack")
-	var defense_label : Label = find_child("Defense")
+	attack_label = find_child("Attack")
+	defense_label = find_child("Defense")
 	attack_label.text = str(skill_damage)
 	defense_label.text = str(max_health)
 	#Auto assigns the Level label
@@ -246,8 +246,12 @@ func apply_damage():
 			#Set the units position to the new tile (units' parent)
 			self.position = Vector2(0,0)
 		pushed_destination = null
-	health -= damage_done_to_self
-	update_label()
+	if(damage_done_to_self > 0):
+		#Play animation to show the unit has been hurt
+		self.get_node("AnimationPlayer").play("unit_damage")
+		health -= damage_done_to_self
+		#Update the health visual to show remaining health
+		defense_label.text = str(health)
 	if(health <= 0):
 		destroy_unit()
 	damage_done_to_self = 0

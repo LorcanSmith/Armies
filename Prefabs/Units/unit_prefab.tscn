@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bh1i1tp3dgvik"]
+[gd_scene load_steps=16 format=3 uid="uid://bh1i1tp3dgvik"]
 
 [ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_h20h1"]
 [ext_resource type="Script" uid="uid://cdc2qqsvqw1rh" path="res://Scripts/Units/move_spot.gd" id="4_4fdo6"]
@@ -18,6 +18,67 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xy1do"]
 size = Vector2(44, 41)
+
+[sub_resource type="Animation" id="Animation_5f33s"]
+resource_name = "unit_damage"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.961518, 5.29438e-06, 5.77569e-07, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.139626, 0.0698132, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ybheq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bcdoc"]
+_data = {
+&"RESET": SubResource("Animation_ybheq"),
+&"unit_damage": SubResource("Animation_5f33s")
+}
 
 [node name="unit_prefab" type="Node2D"]
 script = ExtResource("1_h20h1")
@@ -113,10 +174,10 @@ position = Vector2(-1, 1.5)
 shape = SubResource("RectangleShape2D_xy1do")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -25.0
-offset_top = 19.0
-offset_right = 25.0
-offset_bottom = 69.0
+offset_left = -26.0
+offset_top = -25.0
+offset_right = 24.0
+offset_bottom = 25.0
 pivot_offset = Vector2(25, 25)
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -125,10 +186,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Level" type="Label" parent="Label"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.04
-anchor_top = -1.6
-anchor_right = -0.04
-anchor_bottom = -1.6
+anchor_left = -0.02
+anchor_top = -0.76
+anchor_right = -0.02
+anchor_bottom = -0.76
 offset_top = 34.0
 offset_right = 54.0
 offset_bottom = 57.0
@@ -139,37 +200,51 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Label"]
 texture_filter = 1
-position = Vector2(25, -19)
+position = Vector2(26, 23)
 texture = ExtResource("6_5f33s")
 
 [node name="Attack" type="Label" parent="Label/Sprite2D"]
 anchors_preset = -1
 anchor_left = 0.15625
-anchor_right = -0.171875
+anchor_top = 0.015625
+anchor_right = 1.57813
+anchor_bottom = 1.92188
 offset_left = -41.0
 offset_top = 9.0
 offset_right = -1.0
 offset_bottom = 32.0
+scale = Vector2(0.145, 0.145)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
 text = "5"
 horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Defense" type="Label" parent="Label/Sprite2D"]
 anchors_preset = -1
 anchor_left = 0.078125
-anchor_right = -0.171875
+anchor_right = 2.04688
+anchor_bottom = 2.125
 offset_left = 2.0
 offset_top = 10.0
 offset_right = 42.0
 offset_bottom = 33.0
+scale = Vector2(0.145, 0.145)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
 text = "5"
 horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Tooltip" parent="." instance=ExtResource("7_5f33s")]
 visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bcdoc")
+}
 
 [connection signal="area_entered" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
