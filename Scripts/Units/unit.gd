@@ -315,10 +315,10 @@ func _on_skill_area_2d_area_entered(area: Area2D) -> void:
 				enemies_in_range.append(area.get_parent())
 			elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
 				enemies_in_range.append(area.get_parent())
-		else:
-			#If the area on our skill location is a unit of the same type
-			if((self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy"))):
-				enemies_in_range.append(area.get_parent())
+		#else:
+			##If the area on our skill location is a unit of the same type
+			#if((self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy"))):
+				#enemies_in_range.append(area.get_parent())
 			
 			
 func _on_skill_area_2d_area_exited(area: Area2D) -> void:
