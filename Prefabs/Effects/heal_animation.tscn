@@ -281,10 +281,13 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 64.0
+"speed": 120.0
 }]
 
 [node name="heal_animation" type="AnimatedSprite2D"]
+modulate = Color(1, 1, 1, 0.286275)
+z_index = -1
+z_as_relative = false
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_s8vy0")
 autoplay = "default"

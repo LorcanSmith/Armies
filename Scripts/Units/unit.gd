@@ -159,6 +159,7 @@ func skill():
 				var skill_instance = skill_prefab.instantiate()
 				#Tell the skill how much damage it does
 				skill_instance.damage = skill_damage
+				skill_instance.heal = skill_heal
 				skill_instance.pushes_units = skill_pushes_units
 				skill_instance.effective_against = effective_against_types
 				skill_instance.effectiveness = effectiveness
@@ -323,10 +324,10 @@ func _on_skill_area_2d_area_entered(area: Area2D) -> void:
 				enemies_in_range.append(area.get_parent())
 			elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
 				enemies_in_range.append(area.get_parent())
-		#else:
+		if(skill_heal > 0):
 			##If the area on our skill location is a unit of the same type
-			#if((self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy"))):
-				#enemies_in_range.append(area.get_parent())
+			if((self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy"))):
+				enemies_in_range.append(area.get_parent())
 			
 			
 func _on_skill_area_2d_area_exited(area: Area2D) -> void:

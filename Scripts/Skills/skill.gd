@@ -46,7 +46,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		else:
 			area.get_parent().hurt(damage)
 		var heal_instance = heal_animation.instantiate()
-		heal_instance.get_parent().add_child(heal_instance)
+		self.get_parent().add_child(heal_instance)
 		heal_instance.global_position = self.global_position
 		##DEBUG
 		#Allows us to do damage to units straight away without waiting for the ticker
