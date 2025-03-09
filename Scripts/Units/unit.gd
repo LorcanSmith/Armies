@@ -191,7 +191,7 @@ func skill():
 		#No units in range
 		else:
 			#Check if there is a unit in front of you
-			if(movement_locations[0].movement_tile.units_on_tile.size() > 0):
+			if(movement_locations[0].movement_tile != null and movement_locations[0].movement_tile.units_on_tile.size() > 0):
 				#Unit on the tile in front of you
 				var unit_in_front = movement_locations[0].movement_tile.units_on_tile[0]
 				#Check if the unit front of you in an enemy
@@ -312,11 +312,19 @@ func push(direction_pushed_from : String):
 func _on_skill_area_2d_area_entered(area: Area2D) -> void:
 	#Checking the area isnt a buff area
 	if(!area.is_in_group("buff_location")):
-		#If the area on our skill location is a unit of the opposite type
-		if(self.is_in_group("player") and area.get_parent().is_in_group("enemy")):
-			enemies_in_range.append(area.get_parent())
-		elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
-			enemies_in_range.append(area.get_parent())
+#		check if skill is meant to be used on allies or enemies
+		if(skill_damage > 0):
+			#If the area on our skill location is a unit of the opposite type
+			if(self.is_in_group("player") and area.get_parent().is_in_group("enemy")):
+				enemies_in_range.append(area.get_parent())
+			elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
+				enemies_in_range.append(area.get_parent())
+		#else:
+			##If the area on our skill location is a unit of the same type
+			#if((self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy"))):
+				#enemies_in_range.append(area.get_parent())
+			
+			
 func _on_skill_area_2d_area_exited(area: Area2D) -> void:
 	#Checking the area isnt a buff area
 	if(!area.is_in_group("buff_location")):
