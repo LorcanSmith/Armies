@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckpxfqh157tuj"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_mnu5e"]
+[ext_resource type="Texture2D" uid="uid://edy18x6xxarr" path="res://Sprites/Units/Army/sniper/Sniper.png" id="2_ns023"]
+
+[node name="Sniper" instance=ExtResource("1_mnu5e")]
+unit_name = "Sniper"
+can_be_upgraded = false
+buy_cost = 25
+sell_cost = 12
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_ns023")
