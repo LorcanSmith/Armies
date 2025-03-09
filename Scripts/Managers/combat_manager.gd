@@ -39,7 +39,7 @@ func setup_headquarters():
 	#Gets the tile which is the furthest to the right
 	var grid_width = grid[-1]
 	#Offsets our headquarters by its sprite size
-	var offset = find_child("Sprite2D").texture.get_width()
+	var offset = (find_child("Sprite2D").texture.get_width())-22
 	#Sets the player headquarter to be to the left of the map
 	player_headquarter.global_position = Vector2(-offset, grid_height_center)
 	#Sets the player headquarter to be to the right of the map

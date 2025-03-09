@@ -83,7 +83,8 @@ func _ready() -> void:
 	movement_locations = find_child("movement_locations").get_children()
 	if self.is_in_group("enemy"):
 		$Label.modulate = Color(1, 0, 0, 1)
-		$Label.position.y = -75
+		$Label.position.y = -25
+		find_child("Level").position.y = 45
 	update_label()
 	set_unit_types()
 
@@ -222,6 +223,9 @@ func update_label():
 		level_label.text = "Level 2"
 	else:
 		level_label.text = "Level 3"
+	
+	#Set tooltip
+	find_child("Tooltip").update_tooltip()
 #Does damage to unit
 func hurt(amount : int):
 	damage_done_to_self += amount

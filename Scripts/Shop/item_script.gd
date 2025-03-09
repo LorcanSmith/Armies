@@ -82,7 +82,8 @@ func set_labels():
 		attack_label.text = str(unit.skill_damage)
 		defense_label.text = str(unit.max_health)
 		cost_label.text = str(buy_cost)
-
+	#Set tooltip
+	tooltip.update_tooltip()
 #Called when the mouse is hovering over
 func _on_area_2d__mouse_collision_mouse_entered() -> void:
 	mouse_over_item = true
@@ -205,6 +206,10 @@ func place_item():
 		#If we are then upgrade it
 		else:
 			tile_currently_over.units_on_tile[0].upgrade_unit(unit_ID)
+			if(get_parent().is_in_group("tile")):
+				#Remove non-upgraded unit (self) from the tile
+				get_parent().units_on_tile.erase(self)
+				get_parent().is_empty = true
 			queue_free()
 	#placing a boost
 	else:
@@ -227,12 +232,15 @@ func sell_item():
 func upgrade_unit(ID):
 	var dictionary_instance = dictionary.new()
 	var upgraded_unit
+	var new_ID : int
 	#Two units on the same level
 	if(ID == unit_ID):
 		upgraded_unit = dictionary_instance.item_scenes[ID+1].instantiate()
+		new_ID = ID + 1
 	#Two units of different levels
 	else:
 		upgraded_unit = dictionary_instance.item_scenes[ID].instantiate()
+		new_ID = ID
 	#Add the newly upgraded unit to the tile we are on
 	get_parent().add_child(upgraded_unit)
 	#Set the newly upgraded unit's position
@@ -241,6 +249,10 @@ func upgrade_unit(ID):
 	upgraded_unit.bought = true
 	#Turn off the coin visual
 	upgraded_unit.cost_label.visible = false
+	#Give the unit an ID
+	upgraded_unit.unit_ID = new_ID
+	#Updates the units labels
+	upgraded_unit.set_labels()
 	#Remove non-upgraded unit (self) from the tile
 	get_parent().units_on_tile.erase(self)
 	#Tell the tile that the upgraded unit has been placed on it

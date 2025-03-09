@@ -20,9 +20,6 @@ visible = false
 [node name="location_area2" parent="buffs" index="1"]
 visible = false
 
-[node name="location" parent="skill_locations" index="0"]
-position = Vector2(74, 0)
-
 [node name="CollisionShape2D" parent="skill_locations/location/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
@@ -66,28 +63,17 @@ position = Vector2(444, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location6/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
-[node name="move_spot" parent="movement_locations" index="0"]
-position = Vector2(74, 0)
-
-[node name="UP" parent="push_locations" index="0"]
-position = Vector2(0, -74)
-
-[node name="RIGHT" parent="push_locations" index="1"]
-position = Vector2(74, 0)
-
-[node name="DOWN" parent="push_locations" index="2"]
-position = Vector2(0, 74)
-
-[node name="LEFT" parent="push_locations" index="3"]
-position = Vector2(-74, 0)
-
 [node name="Sprite2D" parent="." index="4"]
 texture = ExtResource("2_402ld")
 
 [node name="Level" parent="Label" index="0"]
-offset_top = 0.0
-offset_bottom = 23.0
 text = "Level 1"
+
+[node name="Attack" parent="Label/Sprite2D" index="0"]
+anchor_left = -0.171875
+
+[node name="Defense" parent="Label/Sprite2D" index="1"]
+anchor_left = -0.171875
 
 [connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

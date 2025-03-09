@@ -8,6 +8,7 @@
 
 [node name="combat_manager" type="Node2D"]
 script = ExtResource("1_7ijpe")
+tick_delay = 0.5
 
 [node name="player_headquarter" parent="." groups=["player"] instance=ExtResource("2_2r55k")]
 
@@ -16,9 +17,10 @@ script = ExtResource("1_7ijpe")
 [node name="grid_manager" parent="." instance=ExtResource("3_0mwca")]
 
 [node name="grid_generator (army)" parent="grid_manager" instance=ExtResource("4_tbeai")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(158, 0)
+combat_grid_width = 12
 
 [node name="skill_holder" type="Node2D" parent="."]
 script = ExtResource("5_vexsu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(393, 1)
