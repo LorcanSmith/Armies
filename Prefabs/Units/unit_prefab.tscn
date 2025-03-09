@@ -123,7 +123,12 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Level" type="Label" parent="Label"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.04
+anchor_top = -1.6
+anchor_right = -0.04
+anchor_bottom = -1.6
 offset_top = 34.0
 offset_right = 54.0
 offset_bottom = 57.0
@@ -138,6 +143,9 @@ position = Vector2(25, -19)
 texture = ExtResource("6_5f33s")
 
 [node name="Attack" type="Label" parent="Label/Sprite2D"]
+anchors_preset = -1
+anchor_left = 0.15625
+anchor_right = -0.171875
 offset_left = -41.0
 offset_top = 9.0
 offset_right = -1.0
@@ -148,10 +156,13 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Defense" type="Label" parent="Label/Sprite2D"]
+anchors_preset = -1
+anchor_left = 0.078125
+anchor_right = -0.171875
 offset_left = 2.0
-offset_top = 9.0
+offset_top = 10.0
 offset_right = 42.0
-offset_bottom = 32.0
+offset_bottom = 33.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "5"
 horizontal_alignment = 1

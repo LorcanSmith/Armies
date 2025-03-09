@@ -10,6 +10,7 @@ extends Node
 var grid_width : int = 1
 var grid_height : int = 1
 
+@export var combat_grid_width : int
 @export var width_per_turn = [3,3,4,4]
 @export var height_per_turn = [2,3,3,4]
 
@@ -38,7 +39,7 @@ func generate_grid(turn_number : int, in_combat : bool):
 		grid_width = width_per_turn[-1]
 		grid_height = height_per_turn[-1]
 	if(in_combat):
-		grid_width = (grid_width*2)+2
+		grid_width = combat_grid_width
 	#Resizes the array to be the size of the width
 	grid.resize(grid_width)
 	grid_with_unit_IDs.resize(grid_width)

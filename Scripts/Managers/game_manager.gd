@@ -24,6 +24,7 @@ var wins = 0
 #How much life are we on
 var life_remaining = 10
 
+var money_remaining : int = 0
 @export var health_text : RichTextLabel
 @export var coin_text : RichTextLabel
 
@@ -50,7 +51,6 @@ func create_scene():
 	else:
 		turn_number += 1
 		current_scene = shop_scene.instantiate()
-		current_scene.money_changed.connect(_money_changed)
 	add_child(current_scene)
 	
 	#Sets all the managers to be that of the newly instantiated scene
@@ -86,9 +86,9 @@ func _input(event):
 	if Input.is_key_pressed(KEY_N):
 		DebuggerScript.create_enemy_armies()
 	
-func _money_changed(amount : int):
+func money_changed(amount : int):
 	coin_text.text = str("$   ", amount)
-
+	money_remaining = amount
 #Called by combat manager when our headquarters is destroyed
 func won_battle(won : bool):
 	#If we won

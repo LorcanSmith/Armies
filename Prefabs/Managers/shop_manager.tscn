@@ -19,7 +19,6 @@ script = ExtResource("1_0fc1a")
 [node name="ShopItemGenerator" type="Node2D" parent="."]
 position = Vector2(116, 250)
 script = ExtResource("2_v5hhx")
-level2_percentage = 50
 
 [node name="Unit Locations" type="Node2D" parent="ShopItemGenerator"]
 position = Vector2(393, -7)

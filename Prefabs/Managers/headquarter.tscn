@@ -11,7 +11,7 @@ modulate = Color(0, 1, 0, 1)
 script = ExtResource("1_2vm1v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1, 5)
+scale = Vector2(0.986, 2.795)
 texture = ExtResource("1_fkx2v")
 
 [node name="Area2D" type="Area2D" parent="." groups=["headquarter"]]
@@ -22,8 +22,8 @@ position = Vector2(-2, 0.5)
 shape = SubResource("RectangleShape2D_awxjh")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -34.0
-offset_top = -363.0
-offset_right = 17.0
-offset_bottom = -340.0
+offset_left = -32.0
+offset_top = -230.0
+offset_right = 19.0
+offset_bottom = -202.0
 theme_override_font_sizes/font_size = 20

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://coklokvg6mem2"]
+[gd_scene load_steps=6 format=3 uid="uid://coklokvg6mem2"]
 
 [ext_resource type="Script" uid="uid://bvdq4sn7w35b4" path="res://Scripts/Shop/item_script.gd" id="1_qvph8"]
 [ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="2_wiu1c"]
+[ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="3_v8cbh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4oje"]
 size = Vector2(33, 32)
@@ -42,6 +43,8 @@ offset_top = 39.0
 offset_right = 29.0
 offset_bottom = 62.0
 text = "Level 0"
+
+[node name="Tooltip" parent="." instance=ExtResource("3_v8cbh")]
 
 [connection signal="area_entered" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_exited"]

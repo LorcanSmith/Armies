@@ -70,6 +70,11 @@ texture = ExtResource("4_1nmpe")
 [node name="Attack" type="Label" parent="Sprite2D/Item_Info/Sprite2D"]
 z_index = 5
 z_as_relative = false
+anchors_preset = -1
+anchor_left = -0.046875
+anchor_top = -0.015625
+anchor_right = 0.65625
+anchor_bottom = 0.296875
 offset_left = -83.0
 offset_top = -49.0
 offset_right = 31.0
@@ -86,6 +91,11 @@ metadata/_edit_use_anchors_ = true
 [node name="Defense" type="Label" parent="Sprite2D/Item_Info/Sprite2D"]
 z_index = 5
 z_as_relative = false
+anchors_preset = -1
+anchor_left = -0.09375
+anchor_top = -0.015625
+anchor_right = 0.9375
+anchor_bottom = 0.5
 offset_left = -36.0
 offset_top = -44.0
 offset_right = 99.0
@@ -96,6 +106,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 100
 text = "55"
 horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D - Tile Collsion" type="Area2D" parent="."]
@@ -112,6 +123,7 @@ position = Vector2(-3, 2)
 shape = SubResource("RectangleShape2D_8fj8s")
 
 [node name="Tooltip" parent="." instance=ExtResource("6_7cyn1")]
+visible = false
 
 [connection signal="mouse_entered" from="Sprite2D/Item_Info" to="Sprite2D/Item_Info" method="_on_mouse_entered"]
 [connection signal="area_entered" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_entered"]
