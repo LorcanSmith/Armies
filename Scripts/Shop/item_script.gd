@@ -92,8 +92,8 @@ func update_label_text():
 		attack_label.text = str(unit.skill_damage + damage_boost)
 		defense_label.text = str(unit.max_health + health_boost)
 	else:
-		attack_label.text = str(damage_boost)
-		defense_label.text = str(health_boost)
+		attack_label.text = str("+",damage_boost)
+		defense_label.text = str("+",health_boost)
 	cost_label.text = str(buy_cost)
 #Called when the mouse is hovering over
 func _on_area_2d__mouse_collision_mouse_entered() -> void:
