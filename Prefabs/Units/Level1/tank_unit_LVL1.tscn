@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://cesxabo5u7ar8"]
 
-[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Sprites/Units/unit_prefab.tscn" id="1_r74ut"]
+[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_r74ut"]
 [ext_resource type="Texture2D" uid="uid://blbt32wdlfngh" path="res://Sprites/Units/Army/tank/tank_sprite.png" id="2_ur0nq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
-[node name="tank" instance=ExtResource("1_r74ut")]
+[node name="Tank" instance=ExtResource("1_r74ut")]
 max_health = 30
 brawl_damage = 4
 bump_damage = 6
