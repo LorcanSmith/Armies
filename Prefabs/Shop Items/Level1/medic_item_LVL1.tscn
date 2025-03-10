@@ -5,8 +5,8 @@
 
 [node name="Medic" instance=ExtResource("1_kbpoi")]
 unit_name = "Medic"
-buy_cost = 8
-sell_cost = 3
+buy_cost = 10
+sell_cost = 5
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_5gco6")

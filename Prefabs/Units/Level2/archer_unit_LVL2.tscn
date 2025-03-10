@@ -6,8 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
 [node name="archer" instance=ExtResource("1_3gkwe")]
-max_health = 18
-brawl_damage = 3
+max_health = 28
+brawl_damage = 4
+soldier = true
 skill_spawn_amount = 2
 skill_spawn_random = true
 skill_damage = 5

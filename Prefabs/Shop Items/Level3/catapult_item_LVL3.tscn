@@ -6,7 +6,7 @@
 [node name="Catapult" instance=ExtResource("1_v6nuh")]
 unit_name = "Catapult"
 can_be_upgraded = false
-buy_cost = 15
+buy_cost = 16
 sell_cost = 8
 
 [node name="Sprite2D" parent="." index="0"]

@@ -4,5 +4,5 @@
 
 [node name="Item" instance=ExtResource("1_fukew")]
 unit_name = "Knight"
-buy_cost = 7
-sell_cost = 3
+buy_cost = 15
+sell_cost = 7

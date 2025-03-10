@@ -6,11 +6,12 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
 [node name="archer" instance=ExtResource("1_ecmbt")]
-max_health = 18
-brawl_damage = 3
+max_health = 32
+brawl_damage = 6
+soldier = true
 skill_spawn_amount = 3
 skill_spawn_random = true
-skill_damage = 5
+skill_damage = 6
 
 [node name="buffs" parent="." index="0"]
 visible = false
@@ -64,6 +65,14 @@ position = Vector2(444, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location6/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
+[node name="location7" type="Node2D" parent="skill_locations" index="6"]
+position = Vector2(518, 0)
+
+[node name="skill_area2D" type="Area2D" parent="skill_locations/location7" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location7/skill_area2D" index="0"]
+shape = SubResource("CircleShape2D_11hi7")
+
 [node name="Sprite2D" parent="." index="4"]
 texture = ExtResource("2_d2kmc")
 
@@ -86,3 +95,5 @@ anchor_left = -0.171875
 [connection signal="area_exited" from="skill_locations/location5/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
 [connection signal="area_entered" from="skill_locations/location6/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location6/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
+[connection signal="area_entered" from="skill_locations/location7/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
+[connection signal="area_exited" from="skill_locations/location7/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
