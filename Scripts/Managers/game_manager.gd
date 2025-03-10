@@ -28,9 +28,12 @@ var money_remaining : int = 0
 @export var health_text : RichTextLabel
 @export var coin_text : RichTextLabel
 
+var game_over_canvas : CanvasLayer
+
 func _ready():
 	in_combat = false
 	health_text.text = str(life_remaining)
+	game_over_canvas = find_child("game_over_canvas")
 	create_scene()
 
 
@@ -97,7 +100,7 @@ func won_battle(won : bool):
 		if(wins < 10):
 			print("WINS: ", wins)
 		else:
-			print("10 WINS! GAME OVER, YOU WIN!")
+			show_game_over(true)
 	#A round was lost
 	else:
 		#Does a different amount of damage based on the turn number
@@ -109,7 +112,14 @@ func won_battle(won : bool):
 			life_remaining -= 3
 		#If we no longer have life left, its game over
 		if(life_remaining <= 0):	
-			print("0 LIFE REMAINING! GAME OVER")
+			show_game_over(false)
 		else:
 			print("LIFE REMAINING: ", life_remaining)
 	health_text.text = str(life_remaining)
+
+func show_game_over(win : bool):
+	game_over_canvas.visible = true
+	if(win):
+		game_over_canvas.find_child("Title").text = "10 Wins! You win!"
+	else:
+		game_over_canvas.find_child("Title").text = "You Lose!"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5edr2eiohh3j"
-path="res://.godot/imported/restart.png-4bf13fca2575c3c9176fa8e1200e1c95.ctex"
+uid="uid://bf5hr0f5f82ex"
+path="res://.godot/imported/restart_pressed.png-37dc9dec2aba747a848d13a65f6ed8e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/restart.png"
-dest_files=["res://.godot/imported/restart.png-4bf13fca2575c3c9176fa8e1200e1c95.ctex"]
+source_file="res://Sprites/UI/restart_button/restart_pressed.png"
+dest_files=["res://.godot/imported/restart_pressed.png-37dc9dec2aba747a848d13a65f6ed8e3.ctex"]
 
 [params]
 
