@@ -71,3 +71,7 @@ button_group = ExtResource("6_36bif")
 texture_normal = ExtResource("8_gu5ih")
 texture_pressed = ExtResource("13_7hp4a")
 texture_hover = ExtResource("14_5jl04")
+
+[connection signal="toggled" from="PlayButton" to="." method="_on_play_button_toggled"]
+[connection signal="toggled" from="PauseButton" to="." method="_on_pause_button_toggled"]
+[connection signal="toggled" from="Forward" to="." method="_on_forward_toggled"]
