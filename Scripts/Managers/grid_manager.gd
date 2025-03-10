@@ -25,6 +25,9 @@ func load_units():
 	tiles = find_child("grid_generator (army)").grid
 	var unit_IDs = game_manager.army
 	#This needs to be removed, i dont think it does anything
+	var enemy_unit_IDs
+	if game_manager.in_combat:
+		enemy_unit_IDs = load_layout("enemy")
 	if(unit_IDs.size() > 0):
 		var width = 0
 		while width in range(tiles.size()):
@@ -37,7 +40,6 @@ func load_units():
 						var reversed_tiles = tiles.duplicate()
 						reversed_tiles.reverse()
 						#Loads enemy army
-						var enemy_unit_IDs = load_layout("enemy")
 						if(enemy_unit_IDs):
 							if(unit_IDs[width][height] != null):
 								#Spawn in a unit. Reference the UnitDictionary to find out what unit to spawn
