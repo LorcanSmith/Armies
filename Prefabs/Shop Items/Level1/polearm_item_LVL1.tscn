@@ -22,10 +22,9 @@ text = "45"
 text = "545"
 
 [node name="Tooltip" parent="." index="3"]
-offset_left = -116.0
-offset_top = -153.0
-offset_right = 84.0
-offset_bottom = 147.0
+offset_right = 49.0
+offset_bottom = 80.0
+pivot_offset = Vector2(149.941, 217.214)
 
 [node name="skill_tiles" parent="." index="4"]
 scale = Vector2(1e-05, 1e-05)

@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://da2qaqt55ambe"]
 
-[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Sprites/Units/unit_prefab.tscn" id="1_7ehoi"]
+[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_7ehoi"]
 [ext_resource type="Texture2D" uid="uid://c7x0n5de2qo45" path="res://Sprites/Units/Army/Medic/medic_sprite.png" id="2_gqaq4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1caxc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
-[node name="medic" instance=ExtResource("1_7ehoi")]
+[node name="Medic" instance=ExtResource("1_7ehoi")]
 max_health = 15
 brawl_damage = 1
 skill_spawn_amount = 4

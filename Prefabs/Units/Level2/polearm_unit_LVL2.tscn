@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://qdnrh6p6rrsp"]
 
-[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Sprites/Units/unit_prefab.tscn" id="1_wmsdo"]
+[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_wmsdo"]
 [ext_resource type="Texture2D" uid="uid://befn01dmekcw1" path="res://Sprites/Units/Medieval/Polearm/Polearm.png" id="2_i3b4p"]
 
-[node name="polearm_unit" instance=ExtResource("1_wmsdo")]
+[node name="Polearm" instance=ExtResource("1_wmsdo")]
 max_health = 26
 move_distance = 2
 brawl_damage = 16

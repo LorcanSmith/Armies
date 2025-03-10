@@ -96,7 +96,7 @@ offset_bottom = -77.0
 text = "This is your inventory where you can store spare items"
 
 [node name="grid_generator (army)" parent="grid_manager" instance=ExtResource("6_e3q61")]
-position = Vector2(471, 399)
+position = Vector2(490, 387)
 grid_name = "army"
 
 [node name="Camera2D" type="Camera2D" parent="."]
