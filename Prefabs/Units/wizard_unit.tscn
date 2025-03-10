@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c7bn26lst8qrl"]
 
-[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_f6bog"]
+[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Sprites/Units/unit_prefab.tscn" id="1_f6bog"]
 [ext_resource type="PackedScene" uid="uid://by8ndrehnsmpn" path="res://Prefabs/Skills/basic_skill.tscn" id="2_6enja"]
 [ext_resource type="Texture2D" uid="uid://df5ttnq4lmysr" path="res://Sprites/Units/Wizard/tornado wizard.png" id="2_8ifp2"]
 

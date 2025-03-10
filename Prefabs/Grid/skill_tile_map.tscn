@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://5jxuxdnyror0"]
+
+[ext_resource type="Texture2D" uid="uid://ddkhkxynro383" path="res://Sprites/UI/Tilemap/attack_location.png" id="1_4my5d"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6sqpo"]
+texture = ExtResource("1_4my5d")
+texture_region_size = Vector2i(74, 74)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_te1c8"]
+tile_size = Vector2i(74, 74)
+sources/0 = SubResource("TileSetAtlasSource_6sqpo")
+
+[node name="skill_tile_map" type="TileMapLayer" groups=["tilemap"]]
+texture_filter = 1
+position = Vector2(33, 48)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 37, 13, 96, 187, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_te1c8")

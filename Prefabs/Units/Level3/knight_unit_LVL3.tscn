@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwsjsv7i7wfqg"]
 
-[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_krqdd"]
+[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Sprites/Units/unit_prefab.tscn" id="1_krqdd"]
 [ext_resource type="Texture2D" uid="uid://ca2y0ewqn4yt" path="res://Sprites/Units/Medieval/Knight/knight_sprite.png" id="2_dnap8"]
 
 [node name="knight_unit" instance=ExtResource("1_krqdd")]

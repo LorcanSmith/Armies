@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://d26riwgg0v8nl"]
+[gd_scene load_steps=13 format=3 uid="uid://d26riwgg0v8nl"]
 
 [ext_resource type="Script" uid="uid://bvdq4sn7w35b4" path="res://Scripts/Shop/item_script.gd" id="1_mdv0s"]
 [ext_resource type="Texture2D" uid="uid://bqh0gf33g02e8" path="res://Sprites/UI/unit_ui.png" id="3_uxgjc"]
-[ext_resource type="Texture2D" uid="uid://d2ua4mo5fqjps" path="res://Sprites/UI/cost_ui.png" id="4_1nmpe"]
+[ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="4_1nmpe"]
 [ext_resource type="Texture2D" uid="uid://ca2y0ewqn4yt" path="res://Sprites/Units/Medieval/Knight/knight_sprite.png" id="5_1nmpe"]
 [ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="6_7cyn1"]
+[ext_resource type="Texture2D" uid="uid://ccgy3b8l23r0w" path="res://Sprites/Units/shadow.png" id="6_awdqk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1nmpe"]
 radius = 1.41421
@@ -12,11 +13,53 @@ radius = 1.41421
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fj8s"]
 size = Vector2(42, 42)
 
+[sub_resource type="Animation" id="Animation_opg0c"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_awdqk"]
+resource_name = "tilemap_popin"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266666, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.3, 1.3), Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6sqpo"]
+resource_name = "tilemap_popout"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6sqpo"]
+_data = {
+&"RESET": SubResource("Animation_opg0c"),
+&"tilemap_popin": SubResource("Animation_awdqk"),
+&"tilemap_popout": SubResource("Animation_6sqpo")
+}
+
 [node name="Item" type="Node2D" groups=["player"]]
 z_index = 1
 z_as_relative = false
 script = ExtResource("1_mdv0s")
-show_tooltip_time = 0.3
+show_tooltip_time = 0.6
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -40,7 +83,7 @@ theme_override_font_sizes/font_size = 100
 text = "Level 0"
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Item_Info"]
-z_index = 2
+z_index = 3
 texture_filter = 1
 position = Vector2(0, -5)
 texture = ExtResource("3_uxgjc")
@@ -63,8 +106,8 @@ metadata/_edit_use_anchors_ = true
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Item_Info/Sprite2D/Cost"]
 z_index = 1
 z_as_relative = false
-position = Vector2(329.412, 341.176)
-scale = Vector2(11.7647, 11.7647)
+position = Vector2(58.8235, 70.5882)
+scale = Vector2(4.41176, 4.41177)
 texture = ExtResource("4_1nmpe")
 
 [node name="Attack" type="Label" parent="Sprite2D/Item_Info/Sprite2D"]
@@ -109,6 +152,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="shadow" type="Sprite2D" parent="Sprite2D"]
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-1, 14)
+texture = ExtResource("6_awdqk")
+
 [node name="Area2D - Tile Collsion" type="Area2D" parent="."]
 input_pickable = false
 
@@ -125,9 +174,17 @@ shape = SubResource("RectangleShape2D_8fj8s")
 [node name="Tooltip" parent="." instance=ExtResource("6_7cyn1")]
 visible = false
 
+[node name="skill_tiles" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="skill_tiles"]
+libraries = {
+&"": SubResource("AnimationLibrary_6sqpo")
+}
+
 [connection signal="mouse_entered" from="Sprite2D/Item_Info" to="Sprite2D/Item_Info" method="_on_mouse_entered"]
 [connection signal="area_entered" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_exited"]
 [connection signal="mouse_exited" from="Area2D - Tile Collsion" to="." method="_on_area_2d_mouse_exited"]
 [connection signal="mouse_entered" from="Area2D - Mouse Collision" to="." method="_on_area_2d__mouse_collision_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D - Mouse Collision" to="." method="_on_area_2d__mouse_collision_mouse_exited"]
+[connection signal="animation_finished" from="skill_tiles/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

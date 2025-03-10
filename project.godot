@@ -33,6 +33,7 @@ enemy=""
 headquarter=""
 buff_location=""
 skill=""
+tilemap=""
 
 [input]
 

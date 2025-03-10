@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bl00alav0ft5w"]
 
-[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_1f732"]
+[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Sprites/Units/unit_prefab.tscn" id="1_1f732"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
@@ -9,16 +9,7 @@ max_health = 10
 brawl_damage = 10
 bump_damage = 2
 skill_spawn_amount = 2
-skill_damage = 10
-
-[node name="location_area" parent="buffs" index="0"]
-position = Vector2(0, -74)
-
-[node name="location_area2" parent="buffs" index="1"]
-position = Vector2(0, 74)
-
-[node name="location" parent="skill_locations" index="0"]
-position = Vector2(74, 0)
+skill_damage = 4
 
 [node name="location2" type="Node2D" parent="skill_locations" index="1"]
 position = Vector2(148, 0)
@@ -27,21 +18,6 @@ position = Vector2(148, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location2/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
-
-[node name="move_spot" parent="movement_locations" index="0"]
-position = Vector2(74, 0)
-
-[node name="UP" parent="push_locations" index="0"]
-position = Vector2(0, -74)
-
-[node name="RIGHT" parent="push_locations" index="1"]
-position = Vector2(74, 0)
-
-[node name="DOWN" parent="push_locations" index="2"]
-position = Vector2(0, 74)
-
-[node name="LEFT" parent="push_locations" index="3"]
-position = Vector2(-74, 0)
 
 [node name="Level" parent="Label" index="0"]
 text = "Level 1"

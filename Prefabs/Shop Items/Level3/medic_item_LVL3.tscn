@@ -11,3 +11,6 @@ sell_cost = 6
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_6o6l7")
+
+[node name="TileMapLayer" parent="Sprite2D/skill_tiles" index="1"]
+tile_map_data = PackedByteArray()
