@@ -125,10 +125,10 @@ func _process(delta: float) -> void:
 		current_time_till_tooltip = show_tooltip_time
 	if(follow_mouse):
 		#Turn on the skill location tiles
-		if(sprite.scale != Vector2(1.2,1.2)):
+		if(sprite.scale != Vector2(1.2,1.2) and !wait_for_anim):
 			skill_tiles.get_node("AnimationPlayer").play("tilemap_popin")
 			sprite.scale = Vector2(1.2,1.2)
-		skill_tiles.position = sprite.position
+		skill_tiles.global_position = sprite.global_position
 		#Follow the mouse
 		self.global_position = get_global_mouse_position()
 		#If the item is currently over a tile
@@ -159,13 +159,12 @@ func _process(delta: float) -> void:
 			sprite.position = Vector2(0,0)
 			unit_currently_over_can_upgrade = false
 	else:
-		
 		self.position = Vector2(0,0)
 		unit_currently_over_can_upgrade = false
-		if(skill_tiles and sprite.scale == Vector2(1.2,1.2) and !wait_for_anim):
+		if(skill_tiles and sprite.scale != Vector2(1,1) and !wait_for_anim):
+			skill_tiles.get_node("AnimationPlayer").play("tilemap_popout")
 			wait_for_anim = true
 			sprite.scale = Vector2(1,1)
-			skill_tiles.get_node("AnimationPlayer").play("tilemap_popout")
 #Called when the player attempts to place the item on a tile
 func attempt_to_place():
 	#The player is trying to sell the item and the item has already been bought
