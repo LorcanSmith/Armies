@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3b48xr2ty14y"]
+[gd_scene load_steps=4 format=3 uid="uid://d3b48xr2ty14y"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_a4ilc"]
 [ext_resource type="Texture2D" uid="uid://c7x0n5de2qo45" path="res://Sprites/Units/Army/Medic/medic_sprite.png" id="2_elbiq"]
+[ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_tyy54"]
 
 [node name="Medic" instance=ExtResource("1_a4ilc")]
 unit_name = "Medic"
@@ -11,5 +12,8 @@ sell_cost = 7
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_elbiq")
 
-[node name="TileMapLayer" parent="Sprite2D/skill_tiles" index="1"]
-tile_map_data = PackedByteArray()
+[node name="skill_tiles" parent="." index="4"]
+scale = Vector2(1e-05, 1e-05)
+
+[node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_tyy54")]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 1, 0, 0, 0, 0, 0, 37, 13, 96, 187, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0)
