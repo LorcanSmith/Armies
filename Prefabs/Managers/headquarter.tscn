@@ -1,18 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://cuf4kh851odj1"]
 
 [ext_resource type="Script" uid="uid://bjlyw6fhd5y8w" path="res://Scripts/Managers/headquater.gd" id="1_2vm1v"]
-[ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="1_fkx2v"]
+[ext_resource type="Texture2D" uid="uid://ba3k0vi51bcxr" path="res://Sprites/Units/Castle_V1.png" id="2_41a8y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awxjh"]
 size = Vector2(114, 253)
 
 [node name="headquarter" type="Node2D" groups=["headquarter"]]
-modulate = Color(0, 1, 0, 1)
+modulate = Color(0.821536, 0.823897, 0.8615, 1)
 script = ExtResource("1_2vm1v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.986, 2.795)
-texture = ExtResource("1_fkx2v")
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_41a8y")
+offset = Vector2(0, -20)
 
 [node name="Area2D" type="Area2D" parent="." groups=["headquarter"]]
 scale = Vector2(1, 2.5)
@@ -20,6 +22,7 @@ scale = Vector2(1, 2.5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-2, 0.5)
 shape = SubResource("RectangleShape2D_awxjh")
+debug_color = Color(0, 0.599853, 0.700848, 0.42)
 
 [node name="Label" type="Label" parent="."]
 offset_left = -32.0
