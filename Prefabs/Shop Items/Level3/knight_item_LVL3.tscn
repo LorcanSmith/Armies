@@ -6,11 +6,13 @@
 [node name="Item" instance=ExtResource("1_bl01k")]
 unit_name = "Knight"
 can_be_upgraded = false
-buy_cost = 10
-sell_cost = 4
+
+buy_cost = 20
+sell_cost = 10
 
 [node name="skill_tiles" parent="." index="4"]
 scale = Vector2(1e-05, 1e-05)
 
 [node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("2_j4e3m")]
 tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 37, 13, 96, 187, 0, 0, 0, 0, 0, 0, 0, 0)
+

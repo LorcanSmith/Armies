@@ -6,9 +6,12 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
 [node name="Catapult" instance=ExtResource("1_a8gj2")]
-max_health = 20
+max_health = 30
 brawl_damage = 1
-skill_damage = 8
+
+skill_spawn_amount = 2
+skill_damage = 25
+
 skill_pushes_units = true
 
 [node name="buffs" parent="." index="0"]
@@ -38,6 +41,12 @@ texture = ExtResource("2_7n7sj")
 
 [node name="Level" parent="Label" index="0"]
 text = "Level 1"
+
+[node name="Attack" parent="Label/Sprite2D" index="0"]
+anchor_left = -0.171875
+
+[node name="Defense" parent="Label/Sprite2D" index="1"]
+anchor_left = -0.171875
 
 [connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

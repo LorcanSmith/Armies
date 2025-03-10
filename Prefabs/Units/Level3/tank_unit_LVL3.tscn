@@ -5,17 +5,15 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
-[node name="unit_prefab" instance=ExtResource("1_8srpm")]
-max_health = 45
+[node name="tank" instance=ExtResource("1_8srpm")]
+max_health = 50
 move_distance = 2
-brawl_damage = 5
-skill_damage = 20
+brawl_damage = 10
+bump_damage = 6
+skill_damage = 35
 
 [node name="buffs" parent="." index="0"]
 visible = false
-
-[node name="location" parent="skill_locations" index="0"]
-position = Vector2(74, 0)
 
 [node name="location2" type="Node2D" parent="skill_locations" index="1"]
 position = Vector2(148, 0)
@@ -41,26 +39,17 @@ position = Vector2(296, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location4/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
-[node name="move_spot" parent="movement_locations" index="0"]
-position = Vector2(74, 0)
-
-[node name="UP" parent="push_locations" index="0"]
-position = Vector2(0, -74)
-
-[node name="RIGHT" parent="push_locations" index="1"]
-position = Vector2(74, 0)
-
-[node name="DOWN" parent="push_locations" index="2"]
-position = Vector2(0, 74)
-
-[node name="LEFT" parent="push_locations" index="3"]
-position = Vector2(-74, 0)
-
 [node name="Sprite2D" parent="." index="4"]
 texture = ExtResource("2_4pobx")
 
 [node name="Level" parent="Label" index="0"]
 text = "Level 1"
+
+[node name="Attack" parent="Label/Sprite2D" index="0"]
+anchor_left = -0.171875
+
+[node name="Defense" parent="Label/Sprite2D" index="1"]
+anchor_left = -0.171875
 
 [connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
