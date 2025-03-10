@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://brgi4h0spiup2"]
+[gd_scene load_steps=7 format=3 uid="uid://brgi4h0spiup2"]
 
 [ext_resource type="Script" uid="uid://ceah7wfd5evx8" path="res://Scripts/Managers/game_manager.gd" id="1_y45oy"]
 [ext_resource type="Script" uid="uid://06xxppo51p7p" path="res://Scripts/DEBUGGER_script.gd" id="2_pa0fo"]
 [ext_resource type="PackedScene" uid="uid://by8ndrehnsmpn" path="res://Prefabs/Skills/basic_skill.tscn" id="3_0tvwk"]
+[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://Jersey15-Regular.ttf" id="5_21xkr"]
 [ext_resource type="Texture2D" uid="uid://bos864ovdl3jf" path="res://Sprites/UI/heart.png" id="5_kry3j"]
 [ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="6_21xkr"]
 
@@ -68,8 +69,9 @@ offset_right = 242.0
 offset_bottom = 223.0
 scale = Vector2(0.21, 0.21)
 pivot_offset = Vector2(42.8571, 19.0476)
+theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 100
-text = "
+text = "55
 "
 scroll_active = false
 autowrap_mode = 0
@@ -90,6 +92,7 @@ offset_right = 290.0
 offset_bottom = 290.0
 scale = Vector2(0.2, 0.2)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 150
 text = "55"
 scroll_active = false
