@@ -39,13 +39,13 @@ func create_enemy_armies():
 	var turn_number = 1
 	var dictionary_instance = dictionary.new()
 	var base_money : int = 30
-	var base_threshold : int = 10
+	var base_threshold : int = 7
 	var money : int
 	var threshold : int
 	var items : Dictionary
 	var units : Array
 	
-	var level2_percentage = 7
+	var level2_percentage = 3
 	var level3_percentage = 0.5
 	
 	var price : int
@@ -59,13 +59,14 @@ func create_enemy_armies():
 #	item scenes
 
 	while turn_number <= 14:
-	
+		
 		units = []
 		
 		items = dictionary_instance.item_scenes.duplicate()
 		
 		money = base_money * turn_number
-		threshold = base_threshold * turn_number
+#		factor in reroll per turn
+		threshold = base_threshold + 6
 
 		
 		if(width_per_turn.size() > turn_number):
@@ -81,9 +82,9 @@ func create_enemy_armies():
 			random_unit = (randi_range(1,(dictionary_instance.item_scenes.size()/3))*3)
 			var random_percentage = randf_range(1,100)
 			var random_level
-			if(random_percentage <= level2_percentage):
+			if(random_percentage <= (level2_percentage + (4 * turn_number))):
 				random_level = 2
-				if(random_percentage <= level3_percentage):
+				if(random_percentage <= level3_percentage * turn_number):
 					random_level = 3
 			else:
 				random_level = 1
