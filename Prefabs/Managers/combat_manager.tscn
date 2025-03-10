@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bgv4jk4whdmy6"]
+[gd_scene load_steps=16 format=3 uid="uid://bgv4jk4whdmy6"]
 
 [ext_resource type="Script" uid="uid://ekpmqxviagv3" path="res://Scripts/Managers/combat_manager.gd" id="1_7ijpe"]
 [ext_resource type="PackedScene" uid="uid://cuf4kh851odj1" path="res://Prefabs/Managers/headquarter.tscn" id="2_2r55k"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bqgwbmbquy7su" path="res://Prefabs/Grid/grid_generator.tscn" id="4_tbeai"]
 [ext_resource type="Script" uid="uid://dq7gpf703ku0i" path="res://Scripts/Skills/skill_holder.gd" id="5_vexsu"]
 [ext_resource type="Texture2D" uid="uid://d11fx2ucer6cx" path="res://Sprites/UI/pause.png" id="6_7wshk"]
+[ext_resource type="ButtonGroup" uid="uid://xsce6j74u5eq" path="res://Prefabs/Status/combat_playback.tres" id="6_36bif"]
 [ext_resource type="Texture2D" uid="uid://cr6c47fbphtd2" path="res://Sprites/UI/play_pressed.png" id="7_5mabu"]
 [ext_resource type="Texture2D" uid="uid://c5jaynrhewbdm" path="res://Sprites/UI/play.png" id="7_st48h"]
 [ext_resource type="Texture2D" uid="uid://c3y2fepvkycwo" path="res://Sprites/UI/play_hover.png" id="8_36bif"]
@@ -36,33 +37,37 @@ position = Vector2(393, 1)
 
 [node name="PlayButton" type="TextureButton" parent="."]
 texture_filter = 1
-offset_left = 376.0
-offset_top = -320.0
-offset_right = 416.0
-offset_bottom = -280.0
+offset_left = 426.0
+offset_top = -317.0
+offset_right = 466.0
+offset_bottom = -277.0
 toggle_mode = true
+button_pressed = true
+button_group = ExtResource("6_36bif")
 texture_normal = ExtResource("7_st48h")
 texture_pressed = ExtResource("7_5mabu")
 texture_hover = ExtResource("8_36bif")
 
 [node name="PauseButton" type="TextureButton" parent="."]
 texture_filter = 1
-offset_left = 424.0
-offset_top = -319.0
-offset_right = 464.0
-offset_bottom = -279.0
+offset_left = 383.0
+offset_top = -316.0
+offset_right = 423.0
+offset_bottom = -276.0
 toggle_mode = true
+button_group = ExtResource("6_36bif")
 texture_normal = ExtResource("6_7wshk")
 texture_pressed = ExtResource("10_yc1ci")
 texture_hover = ExtResource("11_yudfw")
 
 [node name="Forward" type="TextureButton" parent="."]
 texture_filter = 1
-offset_left = 473.0
-offset_top = -319.0
-offset_right = 513.0
-offset_bottom = -279.0
+offset_left = 468.0
+offset_top = -317.0
+offset_right = 508.0
+offset_bottom = -277.0
 toggle_mode = true
+button_group = ExtResource("6_36bif")
 texture_normal = ExtResource("8_gu5ih")
 texture_pressed = ExtResource("13_7hp4a")
 texture_hover = ExtResource("14_5jl04")
