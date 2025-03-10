@@ -4,3 +4,5 @@
 
 [node name="grid_generator" type="Node2D"]
 script = ExtResource("1_itawy")
+width_per_turn = [3, 3, 3, 3, 4, 4, 4]
+height_per_turn = [2, 2, 3, 3, 3, 3, 4]
