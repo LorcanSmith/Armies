@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://brgi4h0spiup2"]
+[gd_scene load_steps=7 format=3 uid="uid://brgi4h0spiup2"]
 
 [ext_resource type="Script" uid="uid://ceah7wfd5evx8" path="res://Scripts/Managers/game_manager.gd" id="1_y45oy"]
 [ext_resource type="Script" uid="uid://06xxppo51p7p" path="res://Scripts/DEBUGGER_script.gd" id="2_pa0fo"]
 [ext_resource type="PackedScene" uid="uid://by8ndrehnsmpn" path="res://Prefabs/Skills/basic_skill.tscn" id="3_0tvwk"]
 [ext_resource type="Texture2D" uid="uid://bos864ovdl3jf" path="res://Sprites/UI/heart.png" id="5_kry3j"]
+[ext_resource type="Texture2D" uid="uid://dooe83u72qoig" path="res://Sprites/UI/hourglass.png" id="6_6bp64"]
 [ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="6_21xkr"]
 
-[node name="game_manager" type="Node2D" node_paths=PackedStringArray("health_text", "coin_text")]
+[node name="game_manager" type="Node2D" node_paths=PackedStringArray("health_text", "coin_text", "turn_text")]
 script = ExtResource("1_y45oy")
 health_text = NodePath("UI/HBoxContainer/heart/HEALTH")
 coin_text = NodePath("UI/HBoxContainer/dollar/COINS")
+turn_text = NodePath("UI/HBoxContainer/turn/TURN")
 
 [node name="DEBUGGER" type="Node2D" parent="."]
 visible = false
@@ -92,6 +94,28 @@ scale = Vector2(0.2, 0.2)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 150
 text = "55"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="turn" type="TextureRect" parent="UI/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("6_6bp64")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TURN" type="RichTextLabel" parent="UI/HBoxContainer/turn"]
+clip_contents = false
+custom_minimum_size = Vector2(82.795, 0)
+layout_mode = 2
+offset_right = 240.0
+offset_bottom = 290.0
+scale = Vector2(0.2, 0.2)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 150
+text = "14"
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
