@@ -52,8 +52,8 @@ func create_enemy_armies():
 	var random_unit : int
 	var grid_width : int = 1
 	var grid_height : int = 1
-	var width_per_turn = [3,3,4,4]
-	var height_per_turn = [2,3,3,4]
+	var width_per_turn = [3,3,3,3,4,4,4]
+	var height_per_turn = [2,2,3,3,3,3,4]
 	
 	
 #	item scenes
