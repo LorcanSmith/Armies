@@ -28,6 +28,7 @@ var money_remaining : int = 0
 @export var health_text : RichTextLabel
 @export var coin_text : RichTextLabel
 @export var turn_text : RichTextLabel
+@export var wins_text : RichTextLabel
 
 var game_over_canvas : CanvasLayer
 
@@ -99,9 +100,7 @@ func won_battle(won : bool):
 		#Add a win
 		wins += 1
 		#If we haven't won the whole game (10 wins)
-		if(wins < 10):
-			print("WINS: ", wins)
-		else:
+		if(wins == 10):
 			show_game_over(true)
 	#A round was lost
 	else:
@@ -115,10 +114,10 @@ func won_battle(won : bool):
 		#If we no longer have life left, its game over
 		if(life_remaining <= 0):	
 			show_game_over(false)
-		else:
-			print("LIFE REMAINING: ", life_remaining)
+	#Updates UI text
 	health_text.text = str(life_remaining)
-
+	wins_text.text = str(wins)
+	
 func show_game_over(win : bool):
 	game_over_canvas.visible = true
 	if(win):
