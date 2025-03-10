@@ -46,6 +46,9 @@ var mouse_over_item : bool = false
 #Should the item follow the mouse
 var follow_mouse : bool = false
 
+var skill_tiles : Node2D
+var wait_for_anim = false
+
 @export_group("Item is a boost")
 ##Is this item a boost item
 @export var is_boost : bool
@@ -53,6 +56,7 @@ var follow_mouse : bool = false
 @export var health_boost : int
 
 func _ready() -> void:
+	skill_tiles = find_child("skill_tiles")
 	tooltip = find_child("Tooltip")
 	sprite = find_child("Sprite2D")
 	shop_manager = find_parent("shop_manager")
@@ -120,6 +124,11 @@ func _process(delta: float) -> void:
 		tooltip.set_visible(false)
 		current_time_till_tooltip = show_tooltip_time
 	if(follow_mouse):
+		#Turn on the skill location tiles
+		if(sprite.scale != Vector2(1.2,1.2)):
+			skill_tiles.get_node("AnimationPlayer").play("tilemap_popin")
+			sprite.scale = Vector2(1.2,1.2)
+		skill_tiles.position = sprite.position
 		#Follow the mouse
 		self.global_position = get_global_mouse_position()
 		#If the item is currently over a tile
@@ -150,8 +159,13 @@ func _process(delta: float) -> void:
 			sprite.position = Vector2(0,0)
 			unit_currently_over_can_upgrade = false
 	else:
+		
 		self.position = Vector2(0,0)
 		unit_currently_over_can_upgrade = false
+		if(skill_tiles and sprite.scale == Vector2(1.2,1.2) and !wait_for_anim):
+			wait_for_anim = true
+			sprite.scale = Vector2(1,1)
+			skill_tiles.get_node("AnimationPlayer").play("tilemap_popout")
 #Called when the player attempts to place the item on a tile
 func attempt_to_place():
 	#The player is trying to sell the item and the item has already been bought
@@ -285,3 +299,8 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	elif(area.is_in_group("sell_location")):
 		item_on_sell_location = false
 		cost_label.visible = false
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if(anim_name == "tilemap_popout"):
+		wait_for_anim = false

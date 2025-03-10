@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://og4mb3d631v7"]
+[gd_scene load_steps=4 format=3 uid="uid://og4mb3d631v7"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_54iqj"]
 [ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="2_2ka7r"]
+[ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Grid/skill_tile_map.tscn" id="3_2ka7r"]
 
 [node name="Soldier" instance=ExtResource("1_54iqj")]
 unit_name = "Soldier"
@@ -11,3 +12,8 @@ sell_cost = 9
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_2ka7r")
+
+[node name="skill_tiles" parent="." index="4"]
+scale = Vector2(1e-05, 1e-05)
+
+[node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_2ka7r")]

@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bh1i1tp3dgvik"]
+[gd_scene load_steps=17 format=3 uid="uid://bh1i1tp3dgvik"]
 
-[ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_h20h1"]
-[ext_resource type="Script" uid="uid://cdc2qqsvqw1rh" path="res://Scripts/Units/move_spot.gd" id="4_4fdo6"]
-[ext_resource type="Script" uid="uid://bbyqyvnyg3d6s" path="res://Scripts/Skills/buff.gd" id="4_4nfq5"]
-[ext_resource type="Script" uid="uid://b34p24hcbhwg" path="res://Scripts/Units/push_locations.gd" id="5_8a1pl"]
-[ext_resource type="Texture2D" uid="uid://bqh0gf33g02e8" path="res://Sprites/UI/unit_ui.png" id="6_5f33s"]
-[ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="6_cxn27"]
-[ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="7_5f33s"]
+[ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_bdk6m"]
+[ext_resource type="Script" uid="uid://bbyqyvnyg3d6s" path="res://Scripts/Skills/buff.gd" id="2_b2sj0"]
+[ext_resource type="Script" uid="uid://cdc2qqsvqw1rh" path="res://Scripts/Units/move_spot.gd" id="3_lq4h4"]
+[ext_resource type="Script" uid="uid://b34p24hcbhwg" path="res://Scripts/Units/push_locations.gd" id="4_tb74d"]
+[ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="5_dwjn5"]
+[ext_resource type="Texture2D" uid="uid://bqh0gf33g02e8" path="res://Sprites/UI/unit_ui.png" id="6_o7a8d"]
+[ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="7_36wne"]
+[ext_resource type="Texture2D" uid="uid://ccgy3b8l23r0w" path="res://Sprites/Units/shadow.png" id="8_fbpnc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1caxc"]
 
@@ -19,11 +20,72 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xy1do"]
 size = Vector2(44, 41)
 
+[sub_resource type="Animation" id="Animation_ybheq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5f33s"]
+resource_name = "unit_damage"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.961518, 5.29438e-06, 5.77569e-07, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.139626, 0.0698132, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bcdoc"]
+_data = {
+&"RESET": SubResource("Animation_ybheq"),
+&"unit_damage": SubResource("Animation_5f33s")
+}
+
 [node name="unit_prefab" type="Node2D"]
-script = ExtResource("1_h20h1")
+script = ExtResource("1_bdk6m")
 
 [node name="buffs" type="Node2D" parent="."]
-script = ExtResource("4_4nfq5")
+script = ExtResource("2_b2sj0")
 
 [node name="location_area" type="Area2D" parent="buffs" groups=["buff_location"]]
 position = Vector2(0, -74)
@@ -53,7 +115,7 @@ shape = SubResource("CircleShape2D_11hi7")
 
 [node name="move_spot" type="Node2D" parent="movement_locations"]
 position = Vector2(74, 0)
-script = ExtResource("4_4fdo6")
+script = ExtResource("3_lq4h4")
 
 [node name="Area2D" type="Area2D" parent="movement_locations/move_spot"]
 
@@ -64,7 +126,7 @@ shape = SubResource("CircleShape2D_kn7ua")
 
 [node name="UP" type="Node2D" parent="push_locations"]
 position = Vector2(0, -74)
-script = ExtResource("5_8a1pl")
+script = ExtResource("4_tb74d")
 
 [node name="up_area" type="Area2D" parent="push_locations/UP"]
 monitorable = false
@@ -74,7 +136,7 @@ shape = SubResource("CircleShape2D_sefj8")
 
 [node name="RIGHT" type="Node2D" parent="push_locations"]
 position = Vector2(74, 0)
-script = ExtResource("5_8a1pl")
+script = ExtResource("4_tb74d")
 
 [node name="right_area" type="Area2D" parent="push_locations/RIGHT"]
 monitorable = false
@@ -84,7 +146,7 @@ shape = SubResource("CircleShape2D_sefj8")
 
 [node name="DOWN" type="Node2D" parent="push_locations"]
 position = Vector2(0, 74)
-script = ExtResource("5_8a1pl")
+script = ExtResource("4_tb74d")
 
 [node name="down_area" type="Area2D" parent="push_locations/DOWN"]
 monitorable = false
@@ -94,7 +156,7 @@ shape = SubResource("CircleShape2D_sefj8")
 
 [node name="LEFT" type="Node2D" parent="push_locations"]
 position = Vector2(-74, 0)
-script = ExtResource("5_8a1pl")
+script = ExtResource("4_tb74d")
 
 [node name="left_area" type="Area2D" parent="push_locations/LEFT"]
 monitorable = false
@@ -103,8 +165,9 @@ monitorable = false
 shape = SubResource("CircleShape2D_sefj8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 texture_filter = 1
-texture = ExtResource("6_cxn27")
+texture = ExtResource("5_dwjn5")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -113,10 +176,10 @@ position = Vector2(-1, 1.5)
 shape = SubResource("RectangleShape2D_xy1do")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -25.0
-offset_top = 19.0
-offset_right = 25.0
-offset_bottom = 69.0
+offset_left = -26.0
+offset_top = -25.0
+offset_right = 24.0
+offset_bottom = 25.0
 pivot_offset = Vector2(25, 25)
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -125,10 +188,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Level" type="Label" parent="Label"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.04
-anchor_top = -1.6
-anchor_right = -0.04
-anchor_bottom = -1.6
+anchor_left = -0.02
+anchor_top = -0.76
+anchor_right = -0.02
+anchor_bottom = -0.76
 offset_top = 34.0
 offset_right = 54.0
 offset_bottom = 57.0
@@ -138,38 +201,60 @@ text = "Level 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Label"]
+z_index = 2
 texture_filter = 1
-position = Vector2(25, -19)
-texture = ExtResource("6_5f33s")
+position = Vector2(26, 23)
+texture = ExtResource("6_o7a8d")
 
 [node name="Attack" type="Label" parent="Label/Sprite2D"]
 anchors_preset = -1
 anchor_left = 0.15625
-anchor_right = -0.171875
+anchor_top = 0.015625
+anchor_right = 1.57813
+anchor_bottom = 1.92188
 offset_left = -41.0
 offset_top = 9.0
 offset_right = -1.0
 offset_bottom = 32.0
+scale = Vector2(0.145, 0.145)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
 text = "5"
 horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Defense" type="Label" parent="Label/Sprite2D"]
 anchors_preset = -1
 anchor_left = 0.078125
-anchor_right = -0.171875
+anchor_right = 2.04688
+anchor_bottom = 2.125
 offset_left = 2.0
 offset_top = 10.0
 offset_right = 42.0
 offset_bottom = 33.0
+scale = Vector2(0.145, 0.145)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
 text = "5"
 horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Tooltip" parent="." instance=ExtResource("7_5f33s")]
+[node name="Tooltip" parent="." instance=ExtResource("7_36wne")]
 visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bcdoc")
+}
+
+[node name="shadow" type="Sprite2D" parent="."]
+z_index = 1
+z_as_relative = false
+texture_filter = 1
+position = Vector2(0, 13)
+texture = ExtResource("8_fbpnc")
 
 [connection signal="area_entered" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

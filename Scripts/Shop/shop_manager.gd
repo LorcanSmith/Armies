@@ -18,3 +18,7 @@ func _ready() -> void:
 func change_money(amount : int):
 	money -= amount
 	game_manager.money_changed(money)
+
+
+func _on_battle_button_pressed() -> void:
+	game_manager.swap_scenes()

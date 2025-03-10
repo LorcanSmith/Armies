@@ -24,8 +24,8 @@ func update_tooltip() -> void:
 		brawl = find_child("brawl")
 		cost = find_child("cost")
 		description.text = item.description
-		health.text = str(unit.max_health)
-		skill_damage.text = str(unit.skill_damage)
-		skill_heal.text = str(unit.skill_heal)
-		brawl.text = str(unit.brawl_damage)
-		cost.text = str(item.buy_cost)
+		health.text = str("Health: ", unit.max_health)
+		skill_damage.text = str("Skill Damage: ", unit.skill_damage)
+		skill_heal.text = str("Skill Heal: ", unit.skill_heal)
+		brawl.text = str("Brawl Damage: ", unit.brawl_damage)
+		cost.text = str("Buy Cost: ", item.buy_cost, "Sell Cost: ", item.sell_cost)

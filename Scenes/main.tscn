@@ -47,7 +47,7 @@ anchor_right = 1.0
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 10.0
-offset_bottom = 44.335
+offset_bottom = 68.0
 grow_horizontal = 2
 
 [node name="heart" type="TextureRect" parent="UI/HBoxContainer"]
@@ -62,10 +62,10 @@ stretch_mode = 4
 clip_contents = false
 custom_minimum_size = Vector2(82.795, 0)
 layout_mode = 2
-offset_left = -24.0
-offset_top = -14.0
-offset_right = 58.795
-offset_bottom = 20.0
+offset_left = -34.0
+offset_top = -15.0
+offset_right = 242.0
+offset_bottom = 223.0
 scale = Vector2(0.21, 0.21)
 pivot_offset = Vector2(42.8571, 19.0476)
 theme_override_font_sizes/normal_font_size = 100
@@ -80,21 +80,22 @@ vertical_alignment = 1
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("6_21xkr")
-expand_mode = 3
+expand_mode = 2
 
 [node name="COINS" type="RichTextLabel" parent="UI/HBoxContainer/dollar"]
 clip_contents = false
 custom_minimum_size = Vector2(82.795, 0)
 layout_mode = 2
-offset_left = 11.0
-offset_top = 2.0
-offset_right = 621.0
-offset_bottom = 36.0
-scale = Vector2(0.21, 0.21)
-theme_override_font_sizes/normal_font_size = 100
-text = "h"
+offset_right = 290.0
+offset_bottom = 290.0
+scale = Vector2(0.2, 0.2)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 150
+text = "55"
 scroll_active = false
 autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="toggled" from="DEBUGGER/CanvasLayer/place_enemy_button" to="DEBUGGER" method="_on_place_enemy_button_toggled"]
 [connection signal="toggled" from="DEBUGGER/CanvasLayer/CheckButton" to="DEBUGGER" method="_on_check_button_toggled"]
