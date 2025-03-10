@@ -239,7 +239,9 @@ func place_item():
 func sell_item():
 	#Gives the player money for selling an item
 	shop_manager.change_money(-sell_cost)
-	#Deltes the item
+	#Deletes the item
+	get_parent().is_empty = true
+	get_parent().units_on_tile.erase(self)
 	queue_free()
 
 
