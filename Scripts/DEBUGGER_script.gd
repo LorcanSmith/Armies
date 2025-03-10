@@ -45,8 +45,11 @@ func create_enemy_armies():
 	var items : Dictionary
 	var units : Array
 	
+	var level2_percentage = 7
+	var level3_percentage = 0.5
+	
 	var price : int
-	var random_item : int
+	var random_unit : int
 	var grid_width : int = 1
 	var grid_height : int = 1
 	var width_per_turn = [3,3,4,4]
@@ -75,15 +78,31 @@ func create_enemy_armies():
 		var total_units : int = grid_width * grid_height
 		
 		while money > threshold and units.size() <= total_units:
-			random_item = randi_range(1, items.size()) - 1
-			if items.has(random_item):
-				price = items[random_item].instantiate().buy_cost
+			random_unit = (randi_range(1,(dictionary_instance.item_scenes.size()/3))*3)
+			var random_percentage = randf_range(1,100)
+			var random_level
+			if(random_percentage <= level2_percentage):
+				random_level = 2
+				if(random_percentage <= level3_percentage):
+					random_level = 3
+			else:
+				random_level = 1
+			if(random_level == 1):
+				random_unit = random_unit-3
+			elif(random_level == 2):
+				#Gets the unit ID
+				random_unit = random_unit-2
+			elif(random_level == 3):
+				#Gets the unit ID
+				random_unit = random_unit-1
+			if items.has(random_unit):
+				price = items[random_unit].instantiate().buy_cost
 				
 				if price > money:
-					items.erase(random_item)
+					items.erase(random_unit)
 				else:
 					money -= price
-					units.append([random_item, 0, 0])
+					units.append([random_unit, 0, 0])
 		while units.size() < total_units:
 			units.append(null)
 		
