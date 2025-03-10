@@ -123,3 +123,7 @@ func show_game_over(win : bool):
 		game_over_canvas.find_child("Title").text = "10 Wins! You win!"
 	else:
 		game_over_canvas.find_child("Title").text = "You Lose!"
+
+
+func _on_restart_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/main.tscn")

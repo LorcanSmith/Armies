@@ -107,10 +107,10 @@ vertical_alignment = 1
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="game_over_canvas"]
-offset_left = 353.0
-offset_top = 88.0
-offset_right = 745.0
-offset_bottom = 440.0
+offset_left = -742.0
+offset_top = -580.0
+offset_right = 1818.0
+offset_bottom = 1044.0
 color = Color(0.279406, 0.361789, 0.522832, 1)
 
 [node name="Restart Button" type="TextureButton" parent="game_over_canvas"]
@@ -155,3 +155,4 @@ horizontal_alignment = 1
 [connection signal="toggled" from="DEBUGGER/CanvasLayer/place_enemy_button" to="DEBUGGER" method="_on_place_enemy_button_toggled"]
 [connection signal="toggled" from="DEBUGGER/CanvasLayer/CheckButton" to="DEBUGGER" method="_on_check_button_toggled"]
 [connection signal="item_selected" from="DEBUGGER/CanvasLayer/OptionButton" to="DEBUGGER" method="_on_option_button_item_selected"]
+[connection signal="pressed" from="game_over_canvas/Restart Button" to="." method="_on_restart_button_pressed"]
