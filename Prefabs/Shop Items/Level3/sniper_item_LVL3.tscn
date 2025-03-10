@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_mnu5e"]
 [ext_resource type="Texture2D" uid="uid://edy18x6xxarr" path="res://Sprites/Units/Army/sniper/Sniper.png" id="2_ns023"]
-[ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Grid/skill_tile_map.tscn" id="3_pxq8h"]
+[ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_pxq8h"]
 
 [node name="Sniper" instance=ExtResource("1_mnu5e")]
 unit_name = "Sniper"

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_4d4bt"]
 [ext_resource type="Texture2D" uid="uid://c73uyed4ispk4" path="res://Sprites/Units/Medieval/Archer/archer_sprite.png" id="2_ctkp1"]
-[ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Grid/skill_tile_map.tscn" id="3_8ymtv"]
+[ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_8ymtv"]
 
 [node name="Item" instance=ExtResource("1_4d4bt")]
 unit_name = "Archer"

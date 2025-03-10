@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_oryew"]
 [ext_resource type="Texture2D" uid="uid://cxmhv5kgan1ns" path="res://Sprites/Units/Medieval/Catapult/catapult_sprite.png" id="2_3jtvu"]
-[ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Grid/skill_tile_map.tscn" id="3_3jtvu"]
+[ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_3jtvu"]
 
 [node name="Catapult" instance=ExtResource("1_oryew")]
 unit_name = "Catapult"
