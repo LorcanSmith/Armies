@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgv4jk4whdmy6"]
+[gd_scene load_steps=15 format=3 uid="uid://bgv4jk4whdmy6"]
 
 [ext_resource type="Script" uid="uid://ekpmqxviagv3" path="res://Scripts/Managers/combat_manager.gd" id="1_7ijpe"]
 [ext_resource type="PackedScene" uid="uid://cuf4kh851odj1" path="res://Prefabs/Managers/headquarter.tscn" id="2_2r55k"]
 [ext_resource type="PackedScene" uid="uid://dr2o4nm3x37eu" path="res://Prefabs/Managers/grid_manager.tscn" id="3_0mwca"]
 [ext_resource type="PackedScene" uid="uid://bqgwbmbquy7su" path="res://Prefabs/Grid/grid_generator.tscn" id="4_tbeai"]
 [ext_resource type="Script" uid="uid://dq7gpf703ku0i" path="res://Scripts/Skills/skill_holder.gd" id="5_vexsu"]
+[ext_resource type="Texture2D" uid="uid://d11fx2ucer6cx" path="res://Sprites/UI/pause.png" id="6_7wshk"]
+[ext_resource type="Texture2D" uid="uid://cr6c47fbphtd2" path="res://Sprites/UI/play_pressed.png" id="7_5mabu"]
+[ext_resource type="Texture2D" uid="uid://c5jaynrhewbdm" path="res://Sprites/UI/play.png" id="7_st48h"]
+[ext_resource type="Texture2D" uid="uid://c3y2fepvkycwo" path="res://Sprites/UI/play_hover.png" id="8_36bif"]
+[ext_resource type="Texture2D" uid="uid://db3lbb8uxgg2i" path="res://Sprites/UI/forward.png" id="8_gu5ih"]
+[ext_resource type="Texture2D" uid="uid://ij0x13nmaplx" path="res://Sprites/UI/pause_pressed.png" id="10_yc1ci"]
+[ext_resource type="Texture2D" uid="uid://bxoh8tj77bc6k" path="res://Sprites/UI/pause_hover.png" id="11_yudfw"]
+[ext_resource type="Texture2D" uid="uid://bnaifll0siivm" path="res://Sprites/UI/forward_pressed.png" id="13_7hp4a"]
+[ext_resource type="Texture2D" uid="uid://b5le3oyfa0jkj" path="res://Sprites/UI/forward_hover.png" id="14_5jl04"]
 
 [node name="combat_manager" type="Node2D"]
 script = ExtResource("1_7ijpe")
@@ -24,3 +33,36 @@ script = ExtResource("5_vexsu")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(393, 1)
+
+[node name="PlayButton" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 376.0
+offset_top = -320.0
+offset_right = 416.0
+offset_bottom = -280.0
+toggle_mode = true
+texture_normal = ExtResource("7_st48h")
+texture_pressed = ExtResource("7_5mabu")
+texture_hover = ExtResource("8_36bif")
+
+[node name="PauseButton" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 424.0
+offset_top = -319.0
+offset_right = 464.0
+offset_bottom = -279.0
+toggle_mode = true
+texture_normal = ExtResource("6_7wshk")
+texture_pressed = ExtResource("10_yc1ci")
+texture_hover = ExtResource("11_yudfw")
+
+[node name="Forward" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 473.0
+offset_top = -319.0
+offset_right = 513.0
+offset_bottom = -279.0
+toggle_mode = true
+texture_normal = ExtResource("8_gu5ih")
+texture_pressed = ExtResource("13_7hp4a")
+texture_hover = ExtResource("14_5jl04")

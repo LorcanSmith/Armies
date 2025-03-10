@@ -51,6 +51,7 @@ offset_top = 10.0
 offset_right = 10.0
 offset_bottom = 68.0
 grow_horizontal = 2
+mouse_filter = 2
 
 [node name="heart" type="TextureRect" parent="UI/HBoxContainer"]
 texture_filter = 1
