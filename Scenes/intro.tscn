@@ -1,0 +1,109 @@
+[gd_scene load_steps=6 format=3 uid="uid://q0yweuttmdr5"]
+
+[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://font.ttf" id="1_b226h"]
+[ext_resource type="Script" uid="uid://ckujhhkmirwqw" path="res://Scripts/Managers/onboarder.gd" id="1_hwjxs"]
+[ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="2_duh1u"]
+[ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="3_geirw"]
+[ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="4_hwjxs"]
+
+[node name="Intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hwjxs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 145.0
+offset_right = 499.0
+offset_bottom = 566.0
+color = Color(0.122162, 0.193228, 0.464963, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 577.0
+offset_top = 145.0
+offset_right = 1071.0
+offset_bottom = 566.0
+mouse_filter = 2
+color = Color(0.0851379, 0.259224, 0.204702, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 12.0
+offset_right = 1499.0
+offset_bottom = 614.0
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/normal_font = ExtResource("1_b226h")
+theme_override_font_sizes/normal_font_size = 300
+text = "Welcome to our playtest"
+fit_content = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 148.0
+offset_right = 4994.0
+offset_bottom = 4663.0
+scale = Vector2(0.09, 0.09)
+theme_override_fonts/normal_font = ExtResource("1_b226h")
+theme_override_font_sizes/normal_font_size = 300
+text = "This is a very very early build. We just want to test our core systems. Find out what works/what sucks. If you can screen record you playing the game as well as first impressions, that would be mighty helpful.
+What we need to know:
+- How the overall loop of the game feels
+- Units that are too powerful
+- Units that are too weak
+- What confuses you
+- What do you like/dislike
+
+What we don't need to know:
+- Feedback on visuals as this will change
+
+"
+fit_content = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 590.0
+offset_top = 148.0
+offset_right = 5557.0
+offset_bottom = 4663.0
+scale = Vector2(0.09, 0.09)
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("1_b226h")
+theme_override_font_sizes/normal_font_size = 300
+text = "How our game works:
+Each turn you receive 30 coins to spend on units. You place these units on a grid and then when you are happy with your \"Army\" you go to battle! Fighting an enemy team. You must get 10wins/draws to beat the game. You lose life every time you lose a battle."
+fit_content = true
+
+[node name="TextureButton" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 731.0
+offset_top = 416.0
+offset_right = 804.0
+offset_bottom = 456.0
+scale = Vector2(2.69, 2.69)
+texture_normal = ExtResource("2_duh1u")
+texture_pressed = ExtResource("3_geirw")
+texture_hover = ExtResource("4_hwjxs")
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="TextureButton"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -3.0
+offset_right = 601.0
+offset_bottom = 298.0
+scale = Vector2(0.11, 0.11)
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("1_b226h")
+theme_override_font_sizes/normal_font_size = 300
+text = "PLAY!"
+fit_content = true
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

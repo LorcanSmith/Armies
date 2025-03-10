@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_4r6vu"]
 
 [node name="Soldier" instance=ExtResource("1_1rdgn")]
+description = "Shoots a burst of damage at multiple untis up close"
 unit_name = "Soldier"
 buy_cost = 12
 sell_cost = 6
