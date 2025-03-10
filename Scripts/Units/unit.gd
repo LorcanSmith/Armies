@@ -101,7 +101,7 @@ func set_unit_types():
 			effective_against_types[x] = null
 		x += 1
 func find_movement_tile():
-	if(enemies_in_range.size() == 0):
+	if(enemies_in_range.size() == 0 or skill_damage <= 0):
 		var moved_distance = 0
 		#The unit has already found a tile this turn
 		moved = true
@@ -133,7 +133,7 @@ func find_movement_tile():
 
 #Moves the unit in a desired direction and distance
 func move():
-	if(enemies_in_range.size() == 0):
+	if(enemies_in_range.size() == 0 or skill_damage <= 0):
 		if(tile_to_move_to != null):
 			#Set the parent to be the new tile
 			reparent(tile_to_move_to)
