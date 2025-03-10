@@ -27,6 +27,7 @@ var life_remaining = 10
 var money_remaining : int = 0
 @export var health_text : RichTextLabel
 @export var coin_text : RichTextLabel
+@export var turn_text : RichTextLabel
 
 func _ready():
 	in_combat = false
@@ -48,6 +49,7 @@ func create_scene():
 		current_scene = combat_scene.instantiate()
 	else:
 		turn_number += 1
+		turn_text.text = str(turn_number)
 		current_scene = shop_scene.instantiate()
 	add_child(current_scene)
 	
