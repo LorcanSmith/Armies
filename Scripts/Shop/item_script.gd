@@ -77,17 +77,24 @@ func set_labels():
 			level_label.text = "Level 3"
 	else:
 		level_label.queue_free()
+		update_label_text()
 	if(unit_ID != -1):
-		var dictionary_instance = dictionary.new()
-		var attack_label : Label = find_child("Attack")
-		var defense_label : Label = find_child("Defense")
-		cost_label = find_child("Cost")
-		var unit = dictionary_instance.unit_scenes[unit_ID].instantiate()
-		attack_label.text = str(unit.skill_damage)
-		defense_label.text = str(unit.max_health)
-		cost_label.text = str(buy_cost)
+		update_label_text()
 	#Set tooltip
 	tooltip.update_tooltip()
+func update_label_text():
+	var attack_label : Label = find_child("Attack")
+	var defense_label : Label = find_child("Defense")
+	if(!is_boost):
+		var dictionary_instance = dictionary.new()
+		cost_label = find_child("Cost")
+		var unit = dictionary_instance.unit_scenes[unit_ID].instantiate()
+		attack_label.text = str(unit.skill_damage + damage_boost)
+		defense_label.text = str(unit.max_health + health_boost)
+	else:
+		attack_label.text = str("+",damage_boost)
+		defense_label.text = str("+",health_boost)
+	cost_label.text = str(buy_cost)
 #Called when the mouse is hovering over
 func _on_area_2d__mouse_collision_mouse_entered() -> void:
 	mouse_over_item = true
@@ -124,11 +131,12 @@ func _process(delta: float) -> void:
 		tooltip.set_visible(false)
 		current_time_till_tooltip = show_tooltip_time
 	if(follow_mouse):
-		#Turn on the skill location tiles
-		if(sprite.scale != Vector2(1.2,1.2) and !wait_for_anim):
-			skill_tiles.get_node("AnimationPlayer").play("tilemap_popin")
-			sprite.scale = Vector2(1.2,1.2)
-		skill_tiles.global_position = sprite.global_position
+		if(!is_boost):
+			#Turn on the skill location tiles
+			if(sprite.scale != Vector2(1.2,1.2) and !wait_for_anim):
+				skill_tiles.get_node("AnimationPlayer").play("tilemap_popin")
+				sprite.scale = Vector2(1.2,1.2)
+			skill_tiles.global_position = sprite.global_position
 		#Follow the mouse
 		self.global_position = get_global_mouse_position()
 		#If the item is currently over a tile
@@ -140,7 +148,7 @@ func _process(delta: float) -> void:
 				unit_currently_over_can_upgrade = false
 			#If the tile isnt empty 			
 			#Check if its a unit which we can upgrade and is of the same type
-			elif(!tile_currently_over.is_empty and !is_boost and tile_currently_over.units_on_tile[0].can_be_upgraded and tile_currently_over.units_on_tile[0].unit_ID <= unit_ID and tile_currently_over.units_on_tile[0].unit_name == self.unit_name):
+			elif(!tile_currently_over.is_empty and tile_currently_over.units_on_tile[0].can_be_upgraded and tile_currently_over.units_on_tile[0].unit_ID <= unit_ID and tile_currently_over.units_on_tile[0].unit_name == self.unit_name):
 				if(tile_currently_over.units_on_tile[0] != self):
 					#Snap to the tile location
 					sprite.global_position = tile_currently_over.global_position
@@ -148,6 +156,9 @@ func _process(delta: float) -> void:
 			elif (tile_currently_over == self.get_parent()):
 				sprite.global_position = tile_currently_over.global_position
 				unit_currently_over_can_upgrade = false
+			elif(is_boost and !tile_currently_over.is_empty):
+				#Snap to the boost to unit
+				sprite.global_position = tile_currently_over.global_position
 			#If the unit cant be upgraded or isnt the same unit or this item is a boost
 			else:
 				sprite.position = Vector2(0,0)
@@ -196,6 +207,10 @@ func attempt_to_place():
 				if(tile_currently_over.is_empty):
 					if(!is_boost):
 						place_item()
+					else:
+						get_parent().units_on_tile[0].damage_boost += damage_boost
+						get_parent().units_on_tile[0].health_boost += health_boost
+						get_parent().units_on_tile[0].update_label_text()
 				else:
 					place_item()
 			#Not enough money or not a valid tile will reset the node back to the shop item locaiton
@@ -228,6 +243,7 @@ func place_item():
 	else:
 		tile_currently_over.units_on_tile[0].damage_boost += damage_boost
 		tile_currently_over.units_on_tile[0].health_boost += health_boost
+		tile_currently_over.units_on_tile[0].update_label_text()
 		queue_free()
 ##	DEBUG
 	if(DebuggerScript.place_enemy):

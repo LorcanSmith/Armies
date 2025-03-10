@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://coklokvg6mem2"]
+[gd_scene load_steps=9 format=3 uid="uid://coklokvg6mem2"]
 
 [ext_resource type="Script" uid="uid://bvdq4sn7w35b4" path="res://Scripts/Shop/item_script.gd" id="1_qvph8"]
-[ext_resource type="Texture2D" uid="uid://fx6vipkd6jt3" path="res://icon.svg" id="2_wiu1c"]
+[ext_resource type="Texture2D" uid="uid://5m1l3yd4xp1e" path="res://Sprites/UI/boost.png" id="2_v8cbh"]
+[ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="3_kxefw"]
 [ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="3_v8cbh"]
+[ext_resource type="Texture2D" uid="uid://bos864ovdl3jf" path="res://Sprites/UI/heart.png" id="4_5l76t"]
+[ext_resource type="Texture2D" uid="uid://fpwwhqpb42av" path="res://Sprites/UI/sword.png" id="5_riarm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4oje"]
 size = Vector2(33, 32)
@@ -10,20 +13,110 @@ size = Vector2(33, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fj8s"]
 size = Vector2(112, 108)
 
-[node name="Item" type="Node2D" groups=["player"]]
+[node name="Boost" type="Node2D" groups=["player"]]
 z_index = 1
 z_as_relative = false
 script = ExtResource("1_qvph8")
+description = "Gives units +5 damage and +5 health"
 can_be_upgraded = false
+buy_cost = 4
 is_boost = true
 damage_boost = 5
 health_boost = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-rotation = 3.14131
-scale = Vector2(0.51, 0.51)
-texture = ExtResource("2_wiu1c")
+texture = ExtResource("2_v8cbh")
+
+[node name="Item_Info" type="Control" parent="Sprite2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Cost" type="Label" parent="Sprite2D/Item_Info"]
+z_index = 5
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0749998
+anchor_top = 0.2
+anchor_right = 0.0749998
+anchor_bottom = 0.2
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 83.27
+offset_bottom = 109.0
+scale = Vector2(0.085, 0.085)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 95
+text = "55"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Item_Info/Cost"]
+z_index = 1
+z_as_relative = false
+position = Vector2(58.8235, 70.5882)
+scale = Vector2(4.41176, 4.41177)
+texture = ExtResource("3_kxefw")
+
+[node name="HeartSprite" type="Sprite2D" parent="Sprite2D/Item_Info"]
+z_index = 3
+texture_filter = 1
+position = Vector2(-25, -1.8125)
+scale = Vector2(0.666667, 0.64881)
+texture = ExtResource("4_5l76t")
+
+[node name="Defense" type="Label" parent="Sprite2D/Item_Info/HeartSprite"]
+z_index = 5
+z_as_relative = false
+anchors_preset = -1
+anchor_left = -2.63542
+anchor_top = -3.2061
+anchor_right = 0.114582
+anchor_bottom = -1.25372
+offset_left = 2.25
+offset_top = 0.328125
+offset_right = 137.25
+offset_bottom = 140.328
+scale = Vector2(0.12, 0.12)
+pivot_offset = Vector2(55.5556, 63.889)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "55"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SwordSprite" type="Sprite2D" parent="Sprite2D/Item_Info"]
+z_index = 3
+texture_filter = 1
+position = Vector2(-26, 13)
+scale = Vector2(0.666667, 0.64881)
+texture = ExtResource("5_riarm")
+
+[node name="Attack" type="Label" parent="Sprite2D/Item_Info/SwordSprite"]
+z_index = 5
+z_as_relative = false
+anchors_preset = -1
+anchor_left = -0.296875
+anchor_top = 0.0070917
+anchor_right = 4.00313
+anchor_bottom = 0.340425
+offset_left = -59.0625
+offset_top = -72.1122
+offset_right = 54.9375
+offset_bottom = 64.8878
+scale = Vector2(0.12, 0.12)
+pivot_offset = Vector2(62.0367, 69.4437)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "55"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D - Tile Collsion" type="Area2D" parent="."]
 
@@ -46,6 +139,7 @@ text = "Level 0"
 
 [node name="Tooltip" parent="." instance=ExtResource("3_v8cbh")]
 
+[connection signal="mouse_entered" from="Sprite2D/Item_Info" to="Sprite2D/Item_Info" method="_on_mouse_entered"]
 [connection signal="area_entered" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_exited"]
 [connection signal="mouse_exited" from="Area2D - Tile Collsion" to="." method="_on_area_2d_mouse_exited"]
