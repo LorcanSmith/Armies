@@ -41,10 +41,10 @@ vertical_alignment = 2
 [node name="description" type="RichTextLabel" parent="."]
 clip_contents = false
 layout_mode = 1
-offset_left = 24.2649
-offset_top = 48.2951
-offset_right = 2544.26
-offset_bottom = 615.295
+offset_left = 24.0
+offset_top = 48.0
+offset_right = 2012.0
+offset_bottom = 615.0
 scale = Vector2(0.125, 0.125)
 pivot_offset = Vector2(1.84082, 0.826416)
 mouse_filter = 2

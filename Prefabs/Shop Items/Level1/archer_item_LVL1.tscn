@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://c73uyed4ispk4" path="res://Sprites/Units/Medieval/Archer/archer_sprite.png" id="2_eoa7x"]
 [ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_fl8cp"]
 
-[node name="Archer" instance=ExtResource("1_gcx7p")]
-description = "Shooty shooty"
+[node name="Item" instance=ExtResource("1_gcx7p")]
+description = "Shoots a few arrows at random units"
+
 unit_name = "Archer"
 buy_cost = 5
 sell_cost = 2

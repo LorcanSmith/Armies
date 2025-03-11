@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_5gco6"]
 
 [node name="Medic" instance=ExtResource("1_kbpoi")]
+description = "Heals units"
 unit_name = "Medic"
 buy_cost = 10
 sell_cost = 5

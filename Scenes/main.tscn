@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ceah7wfd5evx8" path="res://Scripts/Managers/game_manager.gd" id="1_y45oy"]
 [ext_resource type="Script" uid="uid://06xxppo51p7p" path="res://Scripts/DEBUGGER_script.gd" id="2_pa0fo"]
 [ext_resource type="PackedScene" uid="uid://by8ndrehnsmpn" path="res://Prefabs/Skills/basic_skill.tscn" id="3_0tvwk"]
-[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://Jersey15-Regular.ttf" id="5_21xkr"]
+[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://font.ttf" id="5_21xkr"]
 [ext_resource type="Texture2D" uid="uid://bos864ovdl3jf" path="res://Sprites/UI/heart.png" id="5_kry3j"]
 [ext_resource type="Texture2D" uid="uid://dooe83u72qoig" path="res://Sprites/UI/hourglass.png" id="6_6bp64"]
 [ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="6_21xkr"]
