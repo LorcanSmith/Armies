@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	else:
 		self.global_position = enemy_position
 	##Makes sure the projectile hasnt flown off into the distance, if it has, it deletes it
-	if(t > 2):
+	if(t > 1):
 		queue_free()
 
 
