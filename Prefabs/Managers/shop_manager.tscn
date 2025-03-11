@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=13 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
 [ext_resource type="Texture2D" uid="uid://bdngb6gmlmf0h" path="res://Sprites/UI/sell_location.png" id="3_nu7bh"]
 [ext_resource type="PackedScene" uid="uid://dr2o4nm3x37eu" path="res://Prefabs/Managers/grid_manager.tscn" id="4_2ahac"]
-[ext_resource type="Script" uid="uid://bi20rliok0lqp" path="res://Scripts/Grid/grid_generation.gd" id="5_q2vn5"]
 [ext_resource type="PackedScene" uid="uid://bqgwbmbquy7su" path="res://Prefabs/Grid/grid_generator.tscn" id="6_e3q61"]
 [ext_resource type="Texture2D" uid="uid://bgp4d3tyho0hd" path="res://Sprites/UI/battle.png" id="6_uivje"]
 [ext_resource type="Texture2D" uid="uid://dr2405y3ramn1" path="res://Sprites/UI/battle_pressed.png" id="7_cnpns"]
@@ -82,19 +81,6 @@ texture_filter = 1
 texture = ExtResource("3_nu7bh")
 
 [node name="grid_manager" parent="." instance=ExtResource("4_2ahac")]
-
-[node name="grid_generator (inventory)" type="Node2D" parent="grid_manager"]
-visible = false
-position = Vector2(995, 37)
-script = ExtResource("5_q2vn5")
-grid_name = "inventory"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="grid_manager/grid_generator (inventory)"]
-offset_left = -4.0
-offset_top = -139.0
-offset_right = 384.0
-offset_bottom = -77.0
-text = "This is your inventory where you can store spare items"
 
 [node name="grid_generator (army)" parent="grid_manager" instance=ExtResource("6_e3q61")]
 position = Vector2(490, 387)
