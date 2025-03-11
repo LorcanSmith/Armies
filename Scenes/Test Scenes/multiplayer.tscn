@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxmma66mbv2pe"]
+
+[ext_resource type="Script" uid="uid://cvams86vo0vlk" path="res://Scripts/Multiplayer/Test.gd" id="1_ke0qe"]
+
+[node name="Control" type="Node2D"]
+script = ExtResource("1_ke0qe")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Button" type="Button" parent="."]
+offset_right = 499.0
+offset_bottom = 207.0
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 597.0
+offset_top = 34.0
+offset_right = 1096.0
+offset_bottom = 241.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
