@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_3hp6j"]
 
 [node name="Item" instance=ExtResource("1_op7fb")]
+description = "Shoots a few arrows at random units"
 unit_name = "Archer"
 buy_cost = 7
 sell_cost = 3

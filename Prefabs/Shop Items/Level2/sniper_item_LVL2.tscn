@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_87d7p"]
 
 [node name="Sniper" instance=ExtResource("1_cfgqa")]
+description = "Long range high damage unit"
 unit_name = "Sniper"
 buy_cost = 15
 sell_cost = 7

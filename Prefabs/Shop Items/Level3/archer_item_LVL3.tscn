@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_8ymtv"]
 
 [node name="Item" instance=ExtResource("1_4d4bt")]
+description = "Shoots a few arrows at random units"
 unit_name = "Archer"
 can_be_upgraded = false
 buy_cost = 10
@@ -17,4 +18,4 @@ texture = ExtResource("2_ctkp1")
 scale = Vector2(1e-05, 1e-05)
 
 [node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_8ymtv")]
-tile_map_data = PackedByteArray("AAAlDWC7AAAAAAAAAAAAAP//AAAAAAAAAAABAP//AAAAAAAAAAACAP//AAAAAAAAAAADAP//AAAAAAAAAAAEAP//AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAABAP//AAAAAAAAAAAlDWC7AAAAAAAAAAACAP//AAAAAAAAAAADAP//AAAAAAAAAAAEAP//AAAAAAAAAAA=")
