@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bh1i1tp3dgvik"]
+[gd_scene load_steps=17 format=3 uid="uid://di2vorbunt4ep"]
 
 [ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_bdk6m"]
 [ext_resource type="Script" uid="uid://bbyqyvnyg3d6s" path="res://Scripts/Skills/buff.gd" id="2_b2sj0"]
@@ -201,12 +201,14 @@ text = "Level 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Label"]
+visible = false
 z_index = 2
 texture_filter = 1
 position = Vector2(26, 23)
 texture = ExtResource("6_o7a8d")
 
 [node name="Attack" type="Label" parent="Label/Sprite2D"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.15625
 anchor_top = 0.015625
@@ -225,6 +227,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Defense" type="Label" parent="Label/Sprite2D"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.078125
 anchor_right = 2.04688
