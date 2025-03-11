@@ -33,7 +33,6 @@ combat_grid_width = 10
 
 [node name="Camera2D" type="Camera2D" parent="grid_manager/grid_generator (army)"]
 position = Vector2(271, 1)
-zoom = Vector2(1.1, 1.1)
 
 [node name="PlayButton" type="TextureButton" parent="grid_manager/grid_generator (army)/Camera2D"]
 texture_filter = 1
