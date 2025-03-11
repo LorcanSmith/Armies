@@ -34,6 +34,7 @@ headquarter=""
 buff_location=""
 skill=""
 tilemap=""
+item=""
 
 [input]
 

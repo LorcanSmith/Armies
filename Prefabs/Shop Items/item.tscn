@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d26riwgg0v8nl"]
+[gd_scene load_steps=19 format=3 uid="uid://d26riwgg0v8nl"]
 
 [ext_resource type="Script" uid="uid://bvdq4sn7w35b4" path="res://Scripts/Shop/item_script.gd" id="1_mdv0s"]
 [ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="4_1nmpe"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://fpwwhqpb42av" path="res://Sprites/UI/sword.png" id="5_opg0c"]
 [ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="6_7cyn1"]
 [ext_resource type="Texture2D" uid="uid://ccgy3b8l23r0w" path="res://Sprites/Units/shadow.png" id="6_awdqk"]
+[ext_resource type="Texture2D" uid="uid://doklob2e1xafl" path="res://Sprites/UI/arrow.png" id="7_6sqpo"]
 [ext_resource type="Script" uid="uid://qmo5gtfqa526" path="res://Scripts/UI/start_scale_zero.gd" id="7_awdqk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1nmpe"]
@@ -57,7 +58,44 @@ _data = {
 &"tilemap_popout": SubResource("Animation_6sqpo")
 }
 
-[node name="Item" type="Node2D" groups=["player"]]
+[sub_resource type="Animation" id="Animation_te1c8"]
+resource_name = "upgrade_arrow"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 0.366021, 0.366022),
+"update": 0,
+"values": [Vector2(27, -18), Vector2(27, -9.195), Vector2(27, -18)]
+}
+
+[sub_resource type="Animation" id="Animation_eytbw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(27, -18)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pf34d"]
+_data = {
+&"RESET": SubResource("Animation_eytbw"),
+&"upgrade_arrow": SubResource("Animation_te1c8")
+}
+
+[node name="Item" type="Node2D" groups=["item", "player"]]
 z_index = 1
 z_as_relative = false
 script = ExtResource("1_mdv0s")
@@ -67,7 +105,7 @@ show_tooltip_time = 0.6
 texture_filter = 1
 texture = ExtResource("5_1nmpe")
 
-[node name="Item_Info" type="Control" parent="Sprite2D"]
+[node name="Item_Info" type="Control" parent="Sprite2D" groups=["item"]]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -175,6 +213,12 @@ texture_filter = 1
 position = Vector2(-1, 14)
 texture = ExtResource("6_awdqk")
 
+[node name="upgrade_arrow" type="Sprite2D" parent="Sprite2D"]
+visible = false
+texture_filter = 1
+position = Vector2(27, -18)
+texture = ExtResource("7_6sqpo")
+
 [node name="Area2D - Tile Collsion" type="Area2D" parent="."]
 input_pickable = false
 
@@ -198,6 +242,13 @@ script = ExtResource("7_awdqk")
 libraries = {
 &"": SubResource("AnimationLibrary_6sqpo")
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D/upgrade_arrow")
+libraries = {
+&"": SubResource("AnimationLibrary_pf34d")
+}
+autoplay = "upgrade_arrow"
 
 [connection signal="mouse_entered" from="Sprite2D/Item_Info" to="Sprite2D/Item_Info" method="_on_mouse_entered"]
 [connection signal="area_entered" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_entered"]

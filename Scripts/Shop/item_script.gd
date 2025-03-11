@@ -17,7 +17,6 @@ var current_time_till_tooltip : float
 var unit_currently_over_can_upgrade : bool = false
 #The shop manager keeps track of player money
 var shop_manager : Node2D
-
 #How much it costs to buy the item
 @export var buy_cost : int = 0
 #How much money you get from selling the item
@@ -25,6 +24,8 @@ var shop_manager : Node2D
 #Keeps track if the player has bought the unit yet. Stops the player from selling
 #items that haven't been bought yet, as well as making sure the player pays for items
 var bought : bool = false
+
+var upgrade_arrow : Node2D
 
 #Set when the player is placing the object. When this item is hovering over
 #a tile, the tile is set below. Then when the player "places" the item, we use
@@ -47,7 +48,7 @@ var mouse_over_item : bool = false
 var follow_mouse : bool = false
 
 var skill_tiles : Node2D
-var wait_for_anim = false
+var play_skill_popout = false
 
 @export_group("Item is a boost")
 ##Is this item a boost item
@@ -56,6 +57,7 @@ var wait_for_anim = false
 @export var health_boost : int
 
 func _ready() -> void:
+	upgrade_arrow = find_child("upgrade_arrow")
 	skill_tiles = find_child("skill_tiles")
 	tooltip = find_child("Tooltip")
 	sprite = find_child("Sprite2D")
@@ -98,9 +100,13 @@ func update_label_text():
 #Called when the mouse is hovering over
 func _on_area_2d__mouse_collision_mouse_entered() -> void:
 	mouse_over_item = true
+	shop_manager.show_potential_upgrades(true,self)
+	sprite.scale = Vector2(1.2,1.2)
 #Called when the mouse stops hovering over
 func _on_area_2d__mouse_collision_mouse_exited() -> void:
 	mouse_over_item = false
+	shop_manager.show_potential_upgrades(false,self)
+	sprite.scale = Vector2(1,1)
 	
 #Checks to see if the mouse is clicked. This is so we can check to see if a user
 #has clicked on an item.
@@ -133,9 +139,9 @@ func _process(delta: float) -> void:
 	if(follow_mouse):
 		if(!is_boost):
 			#Turn on the skill location tiles
-			if(sprite.scale != Vector2(1.2,1.2) and !wait_for_anim):
+			if(!play_skill_popout):
+				play_skill_popout = true
 				skill_tiles.get_node("AnimationPlayer").play("tilemap_popin")
-				sprite.scale = Vector2(1.2,1.2)
 			skill_tiles.global_position = sprite.global_position
 		#Follow the mouse
 		self.global_position = get_global_mouse_position()
@@ -148,7 +154,7 @@ func _process(delta: float) -> void:
 				unit_currently_over_can_upgrade = false
 			#If the tile isnt empty 			
 			#Check if its a unit which we can upgrade and is of the same type
-			elif(!tile_currently_over.is_empty and tile_currently_over.units_on_tile[0].can_be_upgraded and tile_currently_over.units_on_tile[0].unit_ID <= unit_ID and tile_currently_over.units_on_tile[0].unit_name == self.unit_name):
+			elif(!tile_currently_over.is_empty and tile_currently_over.units_on_tile[0].can_be_upgraded and tile_currently_over.units_on_tile[0].unit_ID == unit_ID):
 				if(tile_currently_over.units_on_tile[0] != self):
 					#Snap to the tile location
 					sprite.global_position = tile_currently_over.global_position
@@ -172,10 +178,9 @@ func _process(delta: float) -> void:
 	else:
 		self.position = Vector2(0,0)
 		unit_currently_over_can_upgrade = false
-		if(skill_tiles and sprite.scale != Vector2(1,1) and !wait_for_anim):
+		if(skill_tiles and play_skill_popout):
 			skill_tiles.get_node("AnimationPlayer").play("tilemap_popout")
-			wait_for_anim = true
-			sprite.scale = Vector2(1,1)
+			play_skill_popout = false
 #Called when the player attempts to place the item on a tile
 func attempt_to_place():
 	#The player is trying to sell the item and the item has already been bought
@@ -318,6 +323,6 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 		cost_label.visible = false
 
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if(anim_name == "tilemap_popout"):
-		wait_for_anim = false
+#func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	#if(anim_name == "tilemap_popout"):
+		#play_skill_popout = false
