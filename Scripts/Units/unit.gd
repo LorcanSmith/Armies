@@ -11,7 +11,7 @@ var current_tooltip_time_left
 @export var max_health : int
 #Unit's current health
 var health : int
-
+var health_bar : ColorRect
 #Keep track of if the unit has moved this turn
 var moved = false
 #Child node that contains all the locations the unit can move to
@@ -75,6 +75,7 @@ var level_label : Label
 var defense_label : Label
 var attack_label : Label
 func _ready() -> void:
+	health_bar = find_child("health_bar_color")
 	tooltip = find_child("Tooltip")
 	current_tooltip_time_left = tooltip_show_time
 	skill_locations_parent = find_child("skill_locations")
@@ -247,6 +248,9 @@ func apply_damage():
 		#Play animation to show the unit has been hurt
 		self.get_node("AnimationPlayer").play("unit_damage")
 		health -= damage_done_to_self
+		var percentage_of_health_reamining = float(health)/float(max_health)
+		print(percentage_of_health_reamining)
+		health_bar.scale.x = health_bar.scale.x * percentage_of_health_reamining
 		#Update the health visual to show remaining health
 		defense_label.text = str(health)
 		if(health <= 0):

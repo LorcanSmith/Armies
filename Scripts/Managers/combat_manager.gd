@@ -39,14 +39,14 @@ func setup_headquarters():
 	#Gets the tile which is the furthest to the right
 	var grid_width = grid[-1]
 	#Offsets our headquarters by its sprite size
-	var offset = (find_child("Sprite2D").texture.get_width())+60
+	var offset = (find_child("Sprite2D").texture.get_width())+45
 	#Sets the player headquarter to be to the left of the map
 	player_headquarter.global_position = Vector2(-offset, grid_height_center)
 	#Get enemy child Sprite 2D and flip horizontally
 	var enemy_base = enemy_headquarter.get_node("Sprite2D")  
-	enemy_base.flip_h = true  
+	enemy_base.scale.x = -enemy_base.scale.x
 	#Sets the player headquarter to be to the right of the map
-	enemy_headquarter.global_position = Vector2(grid_width[0].global_position.x + offset, grid_height_center)
+	enemy_headquarter.global_position = Vector2(grid_width[0].global_position.x + (offset*1.6), grid_height_center)
 
 # called from ready() or from game_manager, automatically cycles through battle_ticker()
 func auto_tick():
