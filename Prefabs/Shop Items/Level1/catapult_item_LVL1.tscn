@@ -11,6 +11,7 @@ buy_cost = 10
 sell_cost = 4
 
 [node name="Sprite2D" parent="." index="0"]
+position = Vector2(-5, 0)
 texture = ExtResource("2_3jtvu")
 
 [node name="skill_tile_map" parent="skill_tiles" index="1" instance=ExtResource("3_3jtvu")]

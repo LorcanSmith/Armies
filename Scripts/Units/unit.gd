@@ -139,8 +139,6 @@ func move():
 			reparent(tile_to_move_to)
 			#Tell the new tile that this unit is now on it
 			tile_to_move_to.unit_placed_on(self)
-			#Set the units position to the new tile (units' parent)
-			self.position = Vector2(0,0)
 	moved = false
 func skill():
 	#If this unit is the only unit on the tile then they can do their skill
@@ -244,8 +242,6 @@ func apply_damage():
 			reparent(pushed_destination)
 			#Tell the new tile that this unit is now on it
 			pushed_destination.unit_placed_on(self)
-			#Set the units position to the new tile (units' parent)
-			self.position = Vector2(0,0)
 		pushed_destination = null
 	if(damage_done_to_self > 0):
 		#Play animation to show the unit has been hurt
@@ -389,8 +385,12 @@ func _on_area_2d_mouse_entered() -> void:
 	mouse_over = true
 func _on_area_2d_mouse_exited() -> void:
 	mouse_over = false
-	
+
 func _process(delta: float) -> void:
+	#If the unit isnt where it should be, then move it
+	if(self.position != Vector2(0,0)):
+		#Moves the unit smoothly
+		self.position = lerp(self.position, Vector2(0,0), delta*5)
 	if(mouse_over and current_tooltip_time_left < 0):
 		tooltip.set_visible(true)
 	elif(mouse_over and current_tooltip_time_left > 0):

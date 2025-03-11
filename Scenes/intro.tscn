@@ -1,7 +1,9 @@
+
 [gd_scene load_steps=6 format=3 uid="uid://q0yweuttmdr5"]
 
 [ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://font.ttf" id="1_b226h"]
 [ext_resource type="Script" uid="uid://ckujhhkmirwqw" path="res://Scripts/Managers/onboarder.gd" id="1_hwjxs"]
+
 [ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="2_duh1u"]
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="3_geirw"]
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="4_hwjxs"]
