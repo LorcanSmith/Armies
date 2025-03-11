@@ -196,10 +196,19 @@ func attempt_to_place():
 					place_item()
 			else:
 				place_item()
-		else:
-			#Resets position back to parent which is the item shop location or 
+		#If there is a unit on the tile, we can switch position with it
+		elif(tile_currently_over != null and !tile_currently_over.is_empty):
+			#Set other unit to move to our current tile
+			var unit_to_swap_with = tile_currently_over.units_on_tile[0]
+			unit_to_swap_with.reparent(self.get_parent())
+			tile_currently_over.units_on_tile.erase(unit_to_swap_with)
+			self.get_parent().unit_placed_on(unit_to_swap_with)
+			unit_to_swap_with.position = Vector2(0,0)
+			#Set our unit to the swapped units tile
+			self.get_parent().units_on_tile.erase(self)
+			self.reparent(tile_currently_over)
+			self.get_parent().unit_placed_on(self)
 			self.position = Vector2(0,0)
-			unit_currently_over_can_upgrade = false
 	else:
 		if(shop_manager.money >= buy_cost):
 			#If there is an available tile underneath the unit, then we can place it
