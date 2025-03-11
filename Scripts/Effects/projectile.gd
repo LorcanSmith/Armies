@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 		#If the enemy positiion exists
 		if(enemy_position):
 			#Move towards it
-			self.global_position = lerp(current_pos, enemy_position, t * speed)
+			self.global_position = lerp(self.global_position, enemy_position, t * speed)
 			#If the projectile is close by delete it and apply damage to enemy
 			if(self.global_position.distance_to(enemy_position) < 1):
 				if(enemy):
@@ -25,11 +25,9 @@ func _process(delta: float) -> void:
 				queue_free()
 	else:
 		self.global_position = enemy_position
-	##Makes sure the projectile hasnt flown off into the distance, if it has, it deletes it
-	if(t > 1):
+	#Stops an issue where projectiles over shoot their target for some reason
+	if(t > 1.5):
 		queue_free()
-
-
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if(enemy):
 		enemy.projectile_hit()

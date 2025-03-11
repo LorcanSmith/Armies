@@ -81,6 +81,8 @@ texture_filter = 1
 script = ExtResource("2_d0xyp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 4
+z_as_relative = false
 sprite_frames = SubResource("SpriteFrames_q7nvv")
 autoplay = "default"
 frame = 8

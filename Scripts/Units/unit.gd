@@ -76,6 +76,8 @@ var skill_locations_parent : Node2D
 var skill_prefab : PackedScene = load("res://Prefabs/Skills/basic_skill.tscn")
 #Enemies inside our range
 var enemies_in_range : Array = []
+#Friendlies inside our range
+var friendlies_in_range : Array = []
 
 var level_label : Label
 var defense_label : Label
@@ -151,17 +153,16 @@ func skill():
 	#If this unit is the only unit on the tile then they can do their skill
 	if(get_parent().units_on_tile.size() < 2):
 		#If there is at least one enemy within the units range (in a skill location)
-		if(enemies_in_range.size() > 0):
-
+		if(enemies_in_range.size() > 0 or friendlies_in_range.size() > 0):
 			var skills_spawned = 0
-			#which enemy in enemies_in_range are we shooting
-			var enemy_number = 0
+			#which unit in enemies_in_range/friendlies_in_range are we targeting
+			var unit_number = 0
 			#Spawn an instance of the skill at every skill location
 			while skills_spawned < skill_spawn_amount:
-				if(enemy_number > enemies_in_range.size()-1):
+				if((unit_number > enemies_in_range.size()-1 and skill_damage > 0) or (unit_number > friendlies_in_range.size()-1 and skill_heal > 0)):
 					#If the skill can be spawned on each unit more than once
 					if(!skill_max_once_per_unit):
-						enemy_number = 0
+						unit_number = 0
 					else:
 						break
 				var skill_instance = skill_prefab.instantiate()
@@ -172,7 +173,6 @@ func skill():
 				skill_instance.effective_against = effective_against_types
 				skill_instance.effectiveness = effectiveness
 				find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
-				
 				#If the skill doesnt spawn randomly
 				if(!skill_spawn_random):
 					#Set skills location to be at a random enemy location
@@ -180,12 +180,20 @@ func skill():
 						skill_instance.global_position = self.global_position
 					#Sets skill's location to be at the closest enemy location
 					elif(skill_shooots_closest_enemy):
-						skill_instance.global_position = enemies_in_range[0].global_position
-						attack_visuals(enemies_in_range[0])
+						if(skill_damage > 0):
+							skill_instance.global_position = enemies_in_range[0].global_position
+							attack_visuals(enemies_in_range[0])
+						elif(skill_heal > 0):
+							skill_instance.global_position = friendlies_in_range[0].global_position
+							attack_visuals(friendlies_in_range[0])
 					#Loops through all enemies and sets the skill to be there location
 					else:
-						skill_instance.global_position = enemies_in_range[enemy_number].global_position
-						attack_visuals(enemies_in_range[enemy_number])
+						if(skill_damage > 0):
+							skill_instance.global_position = enemies_in_range[unit_number].global_position
+							attack_visuals(enemies_in_range[unit_number])
+						elif(skill_heal > 0):
+							skill_instance.global_position = friendlies_in_range[unit_number].global_position
+							attack_visuals(friendlies_in_range[unit_number])
 				#If the skill spawns at a random location
 				else:
 					#Choose a random enemy in range
@@ -198,7 +206,7 @@ func skill():
 				else:
 					skill_instance.belongs_to_player = false
 
-				enemy_number += 1
+				unit_number += 1
 				skills_spawned += 1
 		#No units in range
 		else:
@@ -207,7 +215,7 @@ func skill():
 				#Unit on the tile in front of you
 				var unit_in_front = movement_locations[0].movement_tile.units_on_tile[0]
 				#Check if the unit front of you in an enemy
-				if((unit_in_front.is_in_group("enemy") and self.is_in_group("player")) or (unit_in_front.is_in_group("player") and self.is_in_group("enemy"))):
+				if((unit_in_front and unit_in_front.is_in_group("enemy") and self.is_in_group("player")) or (unit_in_front and unit_in_front.is_in_group("player") and self.is_in_group("enemy"))):
 					#Do brawl damage to the enemy in front of you
 					unit_in_front.hurt(brawl_damage)
 	#If there is another unit on this tile then they will brawl
@@ -218,24 +226,27 @@ func brawl():
 	#Finds each unit on this unit's current tile
 	for unit in get_parent().units_on_tile:
 		#If the unit isnt itself do some brawl damage to it
-		if(unit != self):
+		if(unit and unit != self):
 			unit.hurt(brawl_damage)
 			attack_visuals(unit)
 
 func projectile_hit():
 	health -= damage_done_to_self
-	if(damage_done_to_self > 0):
-		#Play animation to show the unit has been hurt
-		self.get_node("AnimationPlayer").play("unit_damage")
+	if(damage_done_to_self > 0 and alive):
+		if(health > max_health):
+			health = max_health
+		#Update health bar
 		var percentage_of_health_reamining = float(health)/float(max_health)
 		health_bar.scale.x = health_bar.scale.x * percentage_of_health_reamining
 		if(health_bar.scale.x < 0):
 			health_bar.scale.x = 0
-		#Update the health visual to show remaining health
-		defense_label.text = str(health)
 		if(health <= 0):
+			alive = false
 			destroy_unit()
-		damage_done_to_self = 0
+		else:
+			#Play animation to show the unit has been hurt
+			self.get_node("AnimationPlayer").play("unit_damage")
+			damage_done_to_self = 0
 	
 func attack_visuals(enemy : Node2D):
 	#Projectile
@@ -269,6 +280,7 @@ func hurt(amount : int):
 	
 #Heals unit
 func heal(amount : int):
+	print("HEAL", amount)
 	damage_done_to_self -= amount
 
 func apply_damage():
@@ -288,8 +300,11 @@ func destroy_unit():
 	get_parent().units_on_tile.erase(self)
 	if(get_parent().units_on_tile.size() == 0):
 		get_parent().is_empty = true
-	#Set the unit to be dead. Once the damage animation plays, it will be destroyed
-	alive = false
+	#Reparent to skill holder so the game waits for the unit to die
+	self.reparent(find_parent("combat_manager").find_child("skill_holder"))
+	#SOnce the damage animation plays, it will be destroyed
+	self.get_node("AnimationPlayer").play("unit_damage")
+
 
 func push(direction_pushed_from : String):
 	var can_be_pushed = false
@@ -336,7 +351,8 @@ func push(direction_pushed_from : String):
 		if collateral_units != []:
 			var unit = 0
 			while unit < collateral_units.size():
-				collateral_units[unit].hurt(bump_damage)
+				if(collateral_units[unit]):
+					collateral_units[unit].hurt(bump_damage)
 				unit += 1
 
 
@@ -353,7 +369,7 @@ func _on_skill_area_2d_area_entered(area: Area2D) -> void:
 		if(skill_heal > 0):
 			##If the area on our skill location is a unit of the same type
 			if((self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy"))):
-				enemies_in_range.append(area.get_parent())
+				friendlies_in_range.append(area.get_parent())
 			
 			
 func _on_skill_area_2d_area_exited(area: Area2D) -> void:
@@ -362,6 +378,8 @@ func _on_skill_area_2d_area_exited(area: Area2D) -> void:
 		#If the unit was in our range, remove it from our range
 		if(enemies_in_range.has(area.get_parent())):
 			enemies_in_range.erase(area.get_parent())
+		if(friendlies_in_range.has(area.get_parent())):
+			friendlies_in_range.erase(area.get_parent())
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if(area.is_in_group("buff_location")):
@@ -418,7 +436,7 @@ func _on_area_2d_mouse_exited() -> void:
 
 func _process(delta: float) -> void:
 	#If the unit isnt where it should be, then move it
-	if(self.position != Vector2(0,0)):
+	if(self.position != Vector2(0,0) and alive):
 		#Moves the unit smoothly
 		self.position = lerp(self.position, Vector2(0,0), delta*5)
 	if(mouse_over and current_tooltip_time_left < 0):
