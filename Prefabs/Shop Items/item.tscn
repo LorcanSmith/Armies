@@ -7,13 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://fpwwhqpb42av" path="res://Sprites/UI/sword.png" id="5_opg0c"]
 [ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="6_7cyn1"]
 [ext_resource type="Texture2D" uid="uid://ccgy3b8l23r0w" path="res://Sprites/Units/shadow.png" id="6_awdqk"]
-[ext_resource type="Script" path="res://Scripts/UI/start_scale_zero.gd" id="7_awdqk"]
+[ext_resource type="Script" uid="uid://qmo5gtfqa526" path="res://Scripts/UI/start_scale_zero.gd" id="7_awdqk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1nmpe"]
 radius = 1.41421
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fj8s"]
-size = Vector2(42, 42)
+size = Vector2(64, 56)
 
 [sub_resource type="Animation" id="Animation_opg0c"]
 length = 0.001
@@ -72,6 +72,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="Level" type="Label" parent="Sprite2D/Item_Info"]
 layout_mode = 0
@@ -184,7 +185,7 @@ shape = SubResource("CircleShape2D_1nmpe")
 [node name="Area2D - Mouse Collision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - Mouse Collision"]
-position = Vector2(-3, 2)
+position = Vector2(-4, -1)
 shape = SubResource("RectangleShape2D_8fj8s")
 
 [node name="Tooltip" parent="." instance=ExtResource("6_7cyn1")]
