@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6y0b30r4jyj7"]
+[gd_scene load_steps=5 format=3 uid="uid://c6y0b30r4jyj7"]
 
-[ext_resource type="PackedScene" path="res://Prefabs/Units/unit_prefab.tscn" id="1_mkira"]
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_mkira"]
+[ext_resource type="PackedScene" uid="uid://c7tp70ujfb3q3" path="res://Prefabs/Effects/Projectiles/rock_projectile.tscn" id="2_8kyy5"]
 [ext_resource type="Texture2D" uid="uid://cxmhv5kgan1ns" path="res://Sprites/Units/Medieval/Catapult/catapult_sprite.png" id="2_srjyo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
@@ -10,6 +11,8 @@ max_health = 18
 brawl_damage = 1
 skill_damage = 15
 skill_pushes_units = true
+shoots_projectile = true
+projectile = ExtResource("2_8kyy5")
 
 [node name="buffs" parent="." index="0"]
 visible = false

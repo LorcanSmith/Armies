@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://blri1w5opv1nm"]
+
+[ext_resource type="Script" uid="uid://c4cg8tnold5q5" path="res://Scripts/Effects/projectile.gd" id="1_e66qq"]
+[ext_resource type="Texture2D" uid="uid://csd7ykijkua56" path="res://Sprites/Effects/Projectiles/arrow.png" id="2_wmyfy"]
+
+[node name="basic_projectile" type="Node2D"]
+script = ExtResource("1_e66qq")
+speed = 4.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_wmyfy")

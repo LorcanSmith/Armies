@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuf4kh851odj1"]
+[gd_scene load_steps=5 format=3 uid="uid://cuf4kh851odj1"]
 
 [ext_resource type="Script" uid="uid://bjlyw6fhd5y8w" path="res://Scripts/Managers/headquater.gd" id="1_2vm1v"]
-[ext_resource type="Texture2D" uid="uid://ba3k0vi51bcxr" path="res://Sprites/Units/Castle_V1.png" id="2_41a8y"]
+[ext_resource type="Texture2D" uid="uid://8af7s6x54d8a" path="res://Sprites/Units/castle_v2.png" id="2_41a8y"]
+[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://font.ttf" id="3_i8o0q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awxjh"]
 size = Vector2(114, 253)
@@ -9,10 +10,11 @@ size = Vector2(114, 253)
 [node name="headquarter" type="Node2D" groups=["headquarter"]]
 modulate = Color(0.821536, 0.823897, 0.8615, 1)
 script = ExtResource("1_2vm1v")
+max_health = 80
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-32, 20)
+position = Vector2(-32, 78)
 scale = Vector2(4, 4)
 texture = ExtResource("2_41a8y")
 offset = Vector2(0, -20)
@@ -26,8 +28,11 @@ shape = SubResource("RectangleShape2D_awxjh")
 debug_color = Color(0, 0.599853, 0.700848, 0.42)
 
 [node name="Label" type="Label" parent="."]
-offset_left = -32.0
-offset_top = -230.0
-offset_right = 19.0
-offset_bottom = -202.0
-theme_override_font_sizes/font_size = 20
+offset_left = -24.0
+offset_top = -53.0
+offset_right = 232.0
+offset_bottom = 48.0
+scale = Vector2(0.185, 0.185)
+theme_override_fonts/font = ExtResource("3_i8o0q")
+theme_override_font_sizes/font_size = 100
+text = "100/100"

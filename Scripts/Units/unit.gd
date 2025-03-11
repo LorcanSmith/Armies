@@ -1,5 +1,6 @@
 extends Node
 
+var alive : bool = true
 #Unit ID - SET ID ON THE ITEM COUNTERPART
 var unit_ID : int = -1
 var tooltip : Control
@@ -56,6 +57,10 @@ var pushed_vector : Vector2i = Vector2i(0, 0)
 
 @export var skill_pushes_units : bool
 @export var skill_shooots_closest_enemy : bool
+
+@export_subgroup("Skill Projectile")
+@export var shoots_projectile : bool
+@export var projectile : PackedScene
 
 @export_subgroup("Skill Effective Against")
 @export var effectiveness : int = 4
@@ -163,7 +168,7 @@ func skill():
 				skill_instance.effective_against = effective_against_types
 				skill_instance.effectiveness = effectiveness
 				find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
-
+				
 				#If the skill doesnt spawn randomly
 				if(!skill_spawn_random):
 					#Set skills location to be at a random enemy location
@@ -172,15 +177,17 @@ func skill():
 					#Sets skill's location to be at the closest enemy location
 					elif(skill_shooots_closest_enemy):
 						skill_instance.global_position = enemies_in_range[0].global_position
+						attack_visuals(enemies_in_range[0])
 					#Loops through all enemies and sets the skill to be there location
 					else:
 						skill_instance.global_position = enemies_in_range[enemy_number].global_position
+						attack_visuals(enemies_in_range[enemy_number])
 				#If the skill spawns at a random location
 				else:
 					#Choose a random enemy in range
 					var random_position = randi_range(0, enemies_in_range.size()-1)
 					skill_instance.global_position = enemies_in_range[random_position].global_position
-
+					attack_visuals(enemies_in_range[random_position])
 				#Tell the skill if it is a friendly or enemy skill
 				if(self.is_in_group("player")):
 					skill_instance.belongs_to_player = true
@@ -209,6 +216,14 @@ func brawl():
 		#If the unit isnt itself do some brawl damage to it
 		if(unit != self):
 			unit.hurt(brawl_damage)
+			
+func attack_visuals(enemy : Node2D):
+	if(shoots_projectile):
+		#Projectile
+		var projectile_instance = projectile.instantiate()
+		find_parent("combat_manager").find_child("skill_holder").add_child(projectile_instance)
+		projectile_instance.global_position = self.global_position
+		projectile_instance.target_enemy(enemy)
 func update_label():
 	attack_label = find_child("Attack")
 	defense_label = find_child("Defense")
@@ -263,7 +278,8 @@ func destroy_unit():
 	get_parent().units_on_tile.erase(self)
 	if(get_parent().units_on_tile.size() == 0):
 		get_parent().is_empty = true
-	queue_free()
+	#Set the unit to be dead. Once the damage animation plays, it will be destroyed
+	alive = false
 
 func push(direction_pushed_from : String):
 	var can_be_pushed = false
@@ -402,3 +418,9 @@ func _process(delta: float) -> void:
 	if(!mouse_over):
 		current_tooltip_time_left = tooltip_show_time
 		tooltip.set_visible(false)
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	#If the unit is dead and the damage animation has played, destroy this unit
+	if(!alive and anim_name == "unit_damage"):
+		queue_free()

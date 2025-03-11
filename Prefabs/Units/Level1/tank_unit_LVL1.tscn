@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cesxabo5u7ar8"]
+[gd_scene load_steps=5 format=3 uid="uid://cesxabo5u7ar8"]
 
-[ext_resource type="PackedScene" path="res://Prefabs/Units/unit_prefab.tscn" id="1_r74ut"]
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_r74ut"]
+[ext_resource type="PackedScene" uid="uid://bjsx2iphb4gud" path="res://Prefabs/Effects/Projectiles/shell_projectile.tscn" id="2_inajs"]
 [ext_resource type="Texture2D" uid="uid://blbt32wdlfngh" path="res://Sprites/Units/Army/tank/tank_sprite.png" id="2_ur0nq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
@@ -10,6 +11,8 @@ max_health = 45
 brawl_damage = 4
 bump_damage = 6
 skill_damage = 10
+shoots_projectile = true
+projectile = ExtResource("2_inajs")
 
 [node name="buffs" parent="." index="0"]
 visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=4 uid="uid://c06dypr73wuf0"]
+[gd_scene load_steps=4 format=3 uid="uid://c06dypr73wuf0"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_cfgqa"]
 [ext_resource type="Texture2D" uid="uid://edy18x6xxarr" path="res://Sprites/Units/Army/sniper/Sniper.png" id="2_87d7p"]
@@ -13,8 +13,5 @@ sell_cost = 7
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_87d7p")
 
-[node name="skill_tiles" parent="." index="4"]
-scale = Vector2(1e-05, 1e-05)
-
 [node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_87d7p")]
-tile_map_data = PackedByteArray("AAAlDWC7AAAAAAAAAAACAP//AAAAAAAAAAACAP7/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAP//AAAAAAAAAAA=")
+tile_map_data = PackedByteArray(0, 0, 37, 13, 96, 187, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0)

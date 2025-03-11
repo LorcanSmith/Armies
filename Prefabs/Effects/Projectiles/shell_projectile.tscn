@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjsx2iphb4gud"]
+
+[ext_resource type="Script" uid="uid://c4cg8tnold5q5" path="res://Scripts/Effects/projectile.gd" id="1_8ycj3"]
+[ext_resource type="Texture2D" uid="uid://bk7s82mvtvsqq" path="res://Sprites/Effects/Projectiles/shell.png" id="2_8ycj3"]
+
+[node name="basic_projectile" type="Node2D"]
+script = ExtResource("1_8ycj3")
+speed = 8.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_8ycj3")

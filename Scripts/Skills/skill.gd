@@ -48,9 +48,4 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		var heal_instance = heal_animation.instantiate()
 		self.get_parent().add_child(heal_instance)
 		heal_instance.global_position = self.global_position
-		##DEBUG
-		#Allows us to do damage to units straight away without waiting for the ticker
-		#used for testing skills
-		if(DebuggerScript.place_skill):
-			area.get_parent().apply_damage()
 	queue_free()

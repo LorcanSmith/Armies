@@ -45,8 +45,9 @@ func setup_headquarters():
 	#Get enemy child Sprite 2D and flip horizontally
 	var enemy_base = enemy_headquarter.get_node("Sprite2D")  
 	enemy_base.scale.x = -enemy_base.scale.x
+	enemy_base.get_parent().find_child("Label").position.x -= offset
 	#Sets the player headquarter to be to the right of the map
-	enemy_headquarter.global_position = Vector2(grid_width[0].global_position.x + (offset*1.6), grid_height_center)
+	enemy_headquarter.global_position = Vector2(grid_width[0].global_position.x + (offset*1.8), grid_height_center)
 
 # called from ready() or from game_manager, automatically cycles through battle_ticker()
 func auto_tick():
@@ -190,14 +191,14 @@ func end_combat():
 #Called by the skill_holder child when no skills remain, meaning we can proceed with combat
 func no_skills_left():
 	#Tells the units to take damage
-	var unit = 0
-	while unit in range(player_army.size()):
-		player_army[unit].apply_damage()
-		unit += 1
-	unit = 0
-	while unit in range(enemy_army.size()):
-		enemy_army[unit].apply_damage()
-		unit += 1
+	#var unit = 0
+	#while unit in range(player_army.size()):
+		#player_army[unit].apply_damage()
+		#unit += 1
+	#unit = 0
+	#while unit in range(enemy_army.size()):
+		#enemy_army[unit].apply_damage()
+		#unit += 1
 	
 	#Used for checking to see if anyone has won
 	var enemy_headquarter_alive : bool = false

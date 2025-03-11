@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://8vnmsckpyytm"]
+[gd_scene load_steps=5 format=3 uid="uid://8vnmsckpyytm"]
 
-[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_3gkwe"]
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_3gkwe"]
 [ext_resource type="Texture2D" uid="uid://c73uyed4ispk4" path="res://Sprites/Units/Medieval/Archer/archer_sprite.png" id="2_cfirb"]
+[ext_resource type="PackedScene" uid="uid://blri1w5opv1nm" path="res://Prefabs/Effects/Projectiles/arrow_projectile.tscn" id="2_qc3gl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
@@ -12,6 +13,8 @@ soldier = true
 skill_spawn_amount = 2
 skill_spawn_random = true
 skill_damage = 5
+shoots_projectile = true
+projectile = ExtResource("2_qc3gl")
 
 [node name="buffs" parent="." index="0"]
 visible = false
