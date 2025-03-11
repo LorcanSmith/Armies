@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://qdnrh6p6rrsp"]
+[gd_scene load_steps=4 format=3 uid="uid://qdnrh6p6rrsp"]
 
-[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_wmsdo"]
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_wmsdo"]
 [ext_resource type="Texture2D" uid="uid://befn01dmekcw1" path="res://Sprites/Units/Medieval/Polearm/Polearm.png" id="2_i3b4p"]
+[ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_l0xn0"]
 
 [node name="Polearm" instance=ExtResource("1_wmsdo")]
 max_health = 26
@@ -10,6 +11,7 @@ brawl_damage = 16
 bump_damage = 2
 soldier = true
 skill_damage = 16
+projectile = ExtResource("2_l0xn0")
 
 [node name="buffs" parent="." index="0"]
 visible = false

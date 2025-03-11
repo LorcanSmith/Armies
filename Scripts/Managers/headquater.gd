@@ -6,6 +6,7 @@ var health = 150
 var damage_to_do : int
 
 func _ready():
+	health = max_health
 	update_label()
 
 #Does damage and heals headquaters
@@ -15,7 +16,7 @@ func hurt(amount : int):
 	if(!dead):
 		damage_to_do += amount
 
-func apply_damage():
+func projectile_hit():
 	if(!dead):
 		health -= damage_to_do
 		update_label()

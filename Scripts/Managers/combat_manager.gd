@@ -191,14 +191,16 @@ func end_combat():
 #Called by the skill_holder child when no skills remain, meaning we can proceed with combat
 func no_skills_left():
 	#Tells the units to take damage
-	#var unit = 0
-	#while unit in range(player_army.size()):
-		#player_army[unit].apply_damage()
-		#unit += 1
-	#unit = 0
-	#while unit in range(enemy_army.size()):
-		#enemy_army[unit].apply_damage()
-		#unit += 1
+	var unit = 0
+	while unit in range(player_army.size()):
+		if(player_army[unit]):
+			player_army[unit].apply_damage()
+			unit += 1
+	unit = 0
+	while unit in range(enemy_army.size()):
+		if(enemy_army[unit]):
+			enemy_army[unit].apply_damage()
+			unit += 1
 	
 	#Used for checking to see if anyone has won
 	var enemy_headquarter_alive : bool = false

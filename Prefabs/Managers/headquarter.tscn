@@ -5,27 +5,27 @@
 [ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://font.ttf" id="3_i8o0q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awxjh"]
-size = Vector2(114, 253)
+size = Vector2(156, 253)
 
 [node name="headquarter" type="Node2D" groups=["headquarter"]]
 modulate = Color(0.821536, 0.823897, 0.8615, 1)
 script = ExtResource("1_2vm1v")
 max_health = 80
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(-32, 78)
-scale = Vector2(4, 4)
-texture = ExtResource("2_41a8y")
-offset = Vector2(0, -20)
-
 [node name="Area2D" type="Area2D" parent="." groups=["headquarter"]]
 scale = Vector2(1, 2.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-2, 0.5)
+position = Vector2(-20, 0.5)
 shape = SubResource("RectangleShape2D_awxjh")
 debug_color = Color(0, 0.599853, 0.700848, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-15, 2)
+scale = Vector2(4, 4)
+texture = ExtResource("2_41a8y")
+offset = Vector2(-4.25, -1)
 
 [node name="Label" type="Label" parent="."]
 offset_left = -24.0

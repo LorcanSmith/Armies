@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwsjsv7i7wfqg"]
+[gd_scene load_steps=4 format=3 uid="uid://dwsjsv7i7wfqg"]
 
-[ext_resource type="PackedScene" uid="uid://bh1i1tp3dgvik" path="res://Prefabs/Units/unit_prefab.tscn" id="1_krqdd"]
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_krqdd"]
 [ext_resource type="Texture2D" uid="uid://ca2y0ewqn4yt" path="res://Sprites/Units/Medieval/Knight/knight_sprite.png" id="2_dnap8"]
+[ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_gluv3"]
 
 [node name="Knight" instance=ExtResource("1_krqdd")]
 max_health = 44
@@ -9,6 +10,7 @@ move_distance = 3
 brawl_damage = 18
 soldier = true
 skill_damage = 18
+projectile = ExtResource("2_gluv3")
 
 [node name="buffs" parent="." index="0"]
 damage_buff = 4

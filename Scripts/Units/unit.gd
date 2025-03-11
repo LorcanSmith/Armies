@@ -48,6 +48,8 @@ var pushed_vector : Vector2i = Vector2i(0, 0)
 @export var spawn_skill_on_self: bool
 ##How many skills will spawn
 @export var skill_spawn_amount : int = 1
+##Does the skill only spawn once on each enemy/friendly
+@export var skill_max_once_per_unit : bool
 ##Does the skill spawn at a random skill_location?
 @export var skill_spawn_random : bool
 ##The amount of damage the unit's skill does
@@ -59,7 +61,6 @@ var pushed_vector : Vector2i = Vector2i(0, 0)
 @export var skill_shooots_closest_enemy : bool
 
 @export_subgroup("Skill Projectile")
-@export var shoots_projectile : bool
 @export var projectile : PackedScene
 
 @export_subgroup("Skill Effective Against")
@@ -158,8 +159,11 @@ func skill():
 			#Spawn an instance of the skill at every skill location
 			while skills_spawned < skill_spawn_amount:
 				if(enemy_number > enemies_in_range.size()-1):
-					enemy_number = 0
-
+					#If the skill can be spawned on each unit more than once
+					if(!skill_max_once_per_unit):
+						enemy_number = 0
+					else:
+						break
 				var skill_instance = skill_prefab.instantiate()
 				#Tell the skill how much damage it does
 				skill_instance.damage = skill_damage
@@ -216,14 +220,32 @@ func brawl():
 		#If the unit isnt itself do some brawl damage to it
 		if(unit != self):
 			unit.hurt(brawl_damage)
-			
+			attack_visuals(unit)
+
+func projectile_hit():
+	health -= damage_done_to_self
+	if(damage_done_to_self > 0):
+		#Play animation to show the unit has been hurt
+		self.get_node("AnimationPlayer").play("unit_damage")
+		var percentage_of_health_reamining = float(health)/float(max_health)
+		health_bar.scale.x = health_bar.scale.x * percentage_of_health_reamining
+		if(health_bar.scale.x < 0):
+			health_bar.scale.x = 0
+		#Update the health visual to show remaining health
+		defense_label.text = str(health)
+		if(health <= 0):
+			destroy_unit()
+		damage_done_to_self = 0
+	
 func attack_visuals(enemy : Node2D):
-	if(shoots_projectile):
-		#Projectile
+	#Projectile
+	if(projectile):
 		var projectile_instance = projectile.instantiate()
 		find_parent("combat_manager").find_child("skill_holder").add_child(projectile_instance)
 		projectile_instance.global_position = self.global_position
 		projectile_instance.target_enemy(enemy)
+	else:
+		print(self.name)
 func update_label():
 	attack_label = find_child("Attack")
 	defense_label = find_child("Defense")
@@ -259,18 +281,6 @@ func apply_damage():
 			#Tell the new tile that this unit is now on it
 			pushed_destination.unit_placed_on(self)
 		pushed_destination = null
-	if(damage_done_to_self > 0):
-		#Play animation to show the unit has been hurt
-		self.get_node("AnimationPlayer").play("unit_damage")
-		health -= damage_done_to_self
-		var percentage_of_health_reamining = float(health)/float(max_health)
-		print(percentage_of_health_reamining)
-		health_bar.scale.x = health_bar.scale.x * percentage_of_health_reamining
-		#Update the health visual to show remaining health
-		defense_label.text = str(health)
-		if(health <= 0):
-			destroy_unit()
-		damage_done_to_self = 0
 
 #Called when the unit is destroyed
 func destroy_unit():
