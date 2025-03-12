@@ -228,16 +228,19 @@ func no_skills_left():
 
 
 func _on_play_button_toggled(toggled_on):
-	tick_delay = 0.3
-	if ticker_paused:
-		ticker_paused = false
-		auto_tick()
+	if toggled_on:
+		tick_delay = 0.3
+		if ticker_paused:
+			ticker_paused = false
+			auto_tick()
 
 func _on_pause_button_toggled(toggled_on):
-	ticker_paused = true
+	if toggled_on:
+		ticker_paused = true
 
 func _on_forward_toggled(toggled_on):
-	tick_delay = 0.1
-	if ticker_paused:
-		ticker_paused = false
-		auto_tick()
+	if toggled_on:
+		tick_delay = 0.1
+		if ticker_paused:
+			ticker_paused = false
+			auto_tick()
