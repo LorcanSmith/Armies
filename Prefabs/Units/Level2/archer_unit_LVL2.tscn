@@ -13,7 +13,7 @@ soldier = true
 skill_spawn_amount = 2
 skill_spawn_random = true
 skill_damage = 5
-shoots_projectile = true
+reload_time = 2
 projectile = ExtResource("2_qc3gl")
 
 [node name="buffs" parent="." index="0"]
@@ -68,7 +68,7 @@ position = Vector2(444, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location6/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
-[node name="Sprite2D" parent="." index="4"]
+[node name="Sprite2D" parent="." index="3"]
 texture = ExtResource("2_cfirb")
 
 [node name="Level" parent="Label" index="0"]

@@ -8,7 +8,6 @@
 max_health = 26
 move_distance = 2
 brawl_damage = 16
-bump_damage = 2
 soldier = true
 skill_damage = 16
 projectile = ExtResource("2_l0xn0")
@@ -16,7 +15,7 @@ projectile = ExtResource("2_l0xn0")
 [node name="buffs" parent="." index="0"]
 visible = false
 
-[node name="Sprite2D" parent="." index="4"]
+[node name="Sprite2D" parent="." index="3"]
 texture = ExtResource("2_i3b4p")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]

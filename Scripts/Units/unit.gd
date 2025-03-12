@@ -49,6 +49,13 @@ var damage_done_to_self : int = 0
 @export var skill_damage : int
 ##The amount of damage the unit's skill does
 @export var skill_heal : int
+##If a unit is currently reloading
+@export var reloading : bool
+##The amount of time it takes for a unit to reload
+@export var reload_time : int = 1
+
+#internal timer that keeps track of a unit's current reload
+var reloading_counter : int
 
 @export var skill_shooots_closest_enemy : bool
 
@@ -142,10 +149,14 @@ func move():
 			tile_to_move_to.unit_placed_on(self)
 	moved = false
 func skill():
+	if reloading:
+		reloading_counter -= 1
+		if reloading_counter == 0:
+			reloading = false
 	#If this unit is the only unit on the tile then they can do their skill
 	if(get_parent().units_on_tile.size() < 2):
-		#If there is at least one enemy within the units range (in a skill location)
-		if(enemies_in_range.size() > 0 or friendlies_in_range.size() > 0):
+		#If there is at least one enemy within the units range (in a skill location) and the unit isn't reloading
+		if((enemies_in_range.size() > 0 or friendlies_in_range.size() > 0) and !reloading):
 			var skills_spawned = 0
 			#which unit in enemies_in_range/friendlies_in_range are we targeting
 			var unit_number = 0
@@ -164,6 +175,11 @@ func skill():
 				skill_instance.effective_against = effective_against_types
 				skill_instance.effectiveness = effectiveness
 				find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
+				
+				if reload_time > 1:
+					reloading = true
+					reloading_counter = reload_time
+				
 				#If the skill doesnt spawn randomly
 				if(!skill_spawn_random):
 					#Set skills location to be at a random enemy location
@@ -199,7 +215,7 @@ func skill():
 
 				unit_number += 1
 				skills_spawned += 1
-		#No units in range
+		#No units in range or reloading
 		else:
 			#Check if there is a unit in front of you
 			if(movement_locations[0].movement_tile != null and movement_locations[0].movement_tile.units_on_tile.size() > 0):
