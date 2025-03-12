@@ -71,7 +71,6 @@ func load_units():
 								reversed_tiles[width][height].unit_placed_on(instance)
 								
 								#NOTE below has to be uncommented when the army generation script has been updated
-#								needs to be enemy_Unit_IDs?
 								instance.skill_damage += enemy_unit_IDs[width][height][1]
 								instance.max_health += enemy_unit_IDs[width][height][2]
 								instance.health = instance.max_health
@@ -90,6 +89,7 @@ func load_units():
 							instance.cost_label.visible = false
 							instance.damage_boost += unit_IDs[width][height][1]
 							instance.health_boost += unit_IDs[width][height][2]
+							instance.update_label_text()
 
 				height += 1
 			width += 1

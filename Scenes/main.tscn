@@ -95,6 +95,7 @@ expand_mode = 2
 stretch_mode = 4
 
 [node name="WINS" type="RichTextLabel" parent="UI/HBoxContainer/Wins"]
+modulate = Color(0, 0, 0, 1)
 clip_contents = false
 custom_minimum_size = Vector2(82.795, 0)
 layout_mode = 2
