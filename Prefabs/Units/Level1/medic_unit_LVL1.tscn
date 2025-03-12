@@ -13,7 +13,7 @@ max_health = 10
 brawl_damage = 1
 skill_spawn_amount = 3
 skill_max_once_per_unit = true
-skill_heal = 3
+skill_heal = 10
 projectile = ExtResource("2_eq8xu")
 
 [node name="buffs" parent="." index="0"]

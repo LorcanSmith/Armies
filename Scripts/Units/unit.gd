@@ -91,6 +91,7 @@ func _ready() -> void:
 
 	level_label = find_child("Level")
 	health = max_health
+	health_bar_remaining = max_health
 	movement_locations = find_child("movement_locations").get_children()
 	if self.is_in_group("enemy"):
 		$Label.modulate = Color(1, 0, 0, 1)
@@ -231,18 +232,20 @@ func brawl():
 			unit.hurt(brawl_damage)
 			attack_visuals(unit)
 
-func projectile_hit():	
-	health -= damage_done_to_self
+func projectile_hit(amount : int):
 	if(alive):
-		if(health > max_health):
-			health = max_health
-		print(health,max_health)
+		health_bar_remaining -= amount
+		if(health_bar_remaining < 0):
+			health_bar_remaining = 0
+		elif(health_bar_remaining > max_health):
+			health_bar_remaining = max_health
 		#Update health bar
-		var percentage_of_health_reamining = float(health)/float(max_health)
-		health_bar.scale.x = health_bar.scale.x * percentage_of_health_reamining
+		var percentage_of_health_reamining = float(health_bar_remaining)/float(max_health)
+		
+		health_bar.scale.x = 1 * percentage_of_health_reamining
 		if(health_bar.scale.x < 0):
 			health_bar.scale.x = 0
-		if(health <= 0):
+		if(health_bar_remaining <= 0):
 			alive = false
 			destroy_unit()
 		else:
@@ -256,6 +259,10 @@ func attack_visuals(enemy : Node2D):
 		find_parent("combat_manager").find_child("skill_holder").add_child(projectile_instance)
 		projectile_instance.global_position = self.global_position
 		projectile_instance.target_enemy(enemy)
+		if(skill_damage > 0):
+			projectile_instance.damage = skill_damage
+		elif(skill_heal > 0):
+			projectile_instance.damage = -skill_heal
 	else:
 		print(self.name)
 func update_label():
@@ -279,6 +286,7 @@ func heal(amount : int):
 	damage_done_to_self -= amount
 
 func apply_damage():
+	##TO BE REMOVED
 	if pushed_destination:
 		if pushed_vector != Vector2i(0, 0):
 			get_parent().is_empty = true
@@ -288,6 +296,11 @@ func apply_damage():
 			#Tell the new tile that this unit is now on it
 			pushed_destination.unit_placed_on(self)
 		pushed_destination = null
+	##
+	health -= damage_done_to_self
+	damage_done_to_self = 0
+	if(health > max_health):
+		health = max_health
 
 #Called when the unit is destroyed
 func destroy_unit():

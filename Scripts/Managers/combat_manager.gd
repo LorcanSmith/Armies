@@ -200,13 +200,13 @@ func healing_phase():
 	var unit = 0
 	while unit in range(player_army.size()):
 		#Checks to see if the unit can do damage
-		if(unit and player_army[unit].skill_heal > 0):
+		if(player_army[unit] and player_army[unit].skill_heal > 0):
 			player_army[unit].skill()
 		unit += 1
 	#Tell each unit in the player army to do their skill
 	unit = 0
 	while unit in range(enemy_army.size()):
-		if(unit and enemy_army[unit].skill_heal > 0):
+		if(enemy_army[unit] and enemy_army[unit].skill_heal > 0):
 			enemy_army[unit].skill()
 		unit += 1
 	#Tell the skill_holder that skills have been spawned and we're waiting for them to be finished
