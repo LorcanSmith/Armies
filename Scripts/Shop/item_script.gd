@@ -46,6 +46,7 @@ var cost_label : Label
 var mouse_over_item : bool = false
 #Should the item follow the mouse
 var follow_mouse : bool = false
+var mouse_pressed : bool = false
 
 var skill_tiles : Node2D
 var play_skill_popout = false
@@ -99,14 +100,16 @@ func update_label_text():
 	cost_label.text = str(buy_cost)
 #Called when the mouse is hovering over
 func _on_area_2d__mouse_collision_mouse_entered() -> void:
-	mouse_over_item = true
-	shop_manager.show_potential_upgrades(true,self)
-	sprite.scale = Vector2(1.2,1.2)
+	if(!mouse_pressed):
+		mouse_over_item = true
+		shop_manager.show_potential_upgrades(true,self)
+		sprite.scale = Vector2(1.2,1.2)
 #Called when the mouse stops hovering over
 func _on_area_2d__mouse_collision_mouse_exited() -> void:
-	mouse_over_item = false
-	shop_manager.show_potential_upgrades(false,self)
-	sprite.scale = Vector2(1,1)
+	if(!mouse_pressed):
+		mouse_over_item = false
+		shop_manager.show_potential_upgrades(false,self)
+		sprite.scale = Vector2(1,1)
 	
 #Checks to see if the mouse is clicked. This is so we can check to see if a user
 #has clicked on an item.
@@ -115,14 +118,17 @@ func _input(event):
 		#Checks to see if something has happened with the left mouse button
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			#Checks to see if a pressed event happened whilst the mouse was over the item 
-			if(event.pressed and mouse_over_item):
-				#Follow the mouse
-				follow_mouse = true
-				sprite.position = Vector2(0,0)
-				if(get_parent().is_in_group("tile")):
-					tile_currently_over = get_parent()
+			if(event.pressed):
+				mouse_pressed = true
+				if(mouse_over_item):
+					#Follow the mouse
+					follow_mouse = true
+					sprite.position = Vector2(0,0)
+					if(get_parent().is_in_group("tile")):
+						tile_currently_over = get_parent()
 			#If the mouse button is lifted up the item should no longer follow the mouse
 			elif(!event.pressed):
+				mouse_pressed = false
 				follow_mouse = false
 				#The item should attempt to be placed when the user lets go of it
 				attempt_to_place()

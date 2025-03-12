@@ -12,6 +12,7 @@ var current_tooltip_time_left
 @export var max_health : int
 #Unit's current health
 var health : int
+var health_bar_remaining : int
 var health_bar : ColorRect
 #Keep track of if the unit has moved this turn
 var moved = false
@@ -275,7 +276,6 @@ func hurt(amount : int):
 	
 #Heals unit
 func heal(amount : int):
-	print("HEAL", amount)
 	damage_done_to_self -= amount
 
 func apply_damage():
