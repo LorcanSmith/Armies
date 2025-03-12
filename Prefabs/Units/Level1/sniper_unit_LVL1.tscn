@@ -9,11 +9,10 @@
 [node name="Sniper" instance=ExtResource("1_keifj")]
 max_health = 8
 brawl_damage = 2
-bump_damage = 2
 soldier = true
 skill_damage = 10
+reload_time = 2
 skill_shooots_closest_enemy = true
-shoots_projectile = true
 projectile = ExtResource("2_x5eb8")
 
 [node name="buffs" parent="." index="0"]
@@ -40,7 +39,7 @@ position = Vector2(296, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location4/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
-[node name="Sprite2D" parent="." index="4"]
+[node name="Sprite2D" parent="." index="3"]
 texture = ExtResource("2_uocsx")
 
 [node name="Level" parent="Label" index="0"]

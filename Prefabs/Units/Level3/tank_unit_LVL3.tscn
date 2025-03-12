@@ -10,9 +10,8 @@
 max_health = 50
 move_distance = 2
 brawl_damage = 10
-bump_damage = 6
 skill_damage = 28
-shoots_projectile = true
+reload_time = 2
 projectile = ExtResource("2_d5lbt")
 
 [node name="buffs" parent="." index="0"]
@@ -42,7 +41,7 @@ position = Vector2(296, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location4/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
-[node name="Sprite2D" parent="." index="4"]
+[node name="Sprite2D" parent="." index="3"]
 texture = ExtResource("3_x00yl")
 
 [node name="Level" parent="Label" index="0"]

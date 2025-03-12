@@ -75,7 +75,7 @@ position = Vector2(518, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location7/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
-[node name="Sprite2D" parent="." index="4"]
+[node name="Sprite2D" parent="." index="3"]
 texture = ExtResource("2_d2kmc")
 
 [node name="Level" parent="Label" index="0"]

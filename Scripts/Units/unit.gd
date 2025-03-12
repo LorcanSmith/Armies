@@ -24,9 +24,6 @@ var tile_to_move_to : Node2D
 ##Damage done when brawling
 @export var brawl_damage : int
 
-##Damage done when pushed into a tile that isn't empty
-@export	var bump_damage : int = 4
-
 @export_subgroup("Unit Types")
 var unit_types : Array = [
 	"soldier",
@@ -39,11 +36,6 @@ var potential_types : Array
 #How much damage will be applied to this unit, this turn
 var damage_done_to_self : int = 0
 
-#where a unit is being pushed to
-var pushed_destination : Node2D = null
-
-#where a unit is being pushed to in Vector2i
-var pushed_vector : Vector2i = Vector2i(0, 0)
 @export_group("Skill Properties")
 ##Does the skill spawn at the units position (eg.Suicide robot)
 @export var spawn_skill_on_self: bool
@@ -57,8 +49,14 @@ var pushed_vector : Vector2i = Vector2i(0, 0)
 @export var skill_damage : int
 ##The amount of damage the unit's skill does
 @export var skill_heal : int
+##If a unit is currently reloading
+@export var reloading : bool
+##The amount of time it takes for a unit to reload
+@export var reload_time : int = 1
 
-@export var skill_pushes_units : bool
+#internal timer that keeps track of a unit's current reload
+var reloading_counter : int
+
 @export var skill_shooots_closest_enemy : bool
 
 @export_subgroup("Skill Projectile")
@@ -152,10 +150,14 @@ func move():
 			tile_to_move_to.unit_placed_on(self)
 	moved = false
 func skill():
+	if reloading:
+		reloading_counter -= 1
+		if reloading_counter == 0:
+			reloading = false
 	#If this unit is the only unit on the tile then they can do their skill
 	if(get_parent().units_on_tile.size() < 2):
-		#If there is at least one enemy within the units range (in a skill location)
-		if(enemies_in_range.size() > 0 or friendlies_in_range.size() > 0):
+		#If there is at least one enemy within the units range (in a skill location) and the unit isn't reloading
+		if((enemies_in_range.size() > 0 or friendlies_in_range.size() > 0) and !reloading):
 			var skills_spawned = 0
 			#which unit in enemies_in_range/friendlies_in_range are we targeting
 			var unit_number = 0
@@ -171,10 +173,14 @@ func skill():
 				#Tell the skill how much damage it does
 				skill_instance.damage = skill_damage
 				skill_instance.heal = skill_heal
-				skill_instance.pushes_units = skill_pushes_units
 				skill_instance.effective_against = effective_against_types
 				skill_instance.effectiveness = effectiveness
 				find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
+				
+				if reload_time > 1:
+					reloading = true
+					reloading_counter = reload_time
+				
 				#If the skill doesnt spawn randomly
 				if(!skill_spawn_random):
 					#Set skills location to be at a random enemy location
@@ -210,7 +216,7 @@ func skill():
 
 				unit_number += 1
 				skills_spawned += 1
-		#No units in range
+		#No units in range or reloading
 		else:
 			#Check if there is a unit in front of you
 			if(movement_locations[0].movement_tile != null and movement_locations[0].movement_tile.units_on_tile.size() > 0):
@@ -286,17 +292,6 @@ func heal(amount : int):
 	damage_done_to_self -= amount
 
 func apply_damage():
-	##TO BE REMOVED
-	if pushed_destination:
-		if pushed_vector != Vector2i(0, 0):
-			get_parent().is_empty = true
-			get_parent().units_on_tile.erase(self)
-	#			place unit on new tile
-			reparent(pushed_destination)
-			#Tell the new tile that this unit is now on it
-			pushed_destination.unit_placed_on(self)
-		pushed_destination = null
-	##
 	health -= damage_done_to_self
 	damage_done_to_self = 0
 	if(health > max_health):
@@ -312,57 +307,6 @@ func destroy_unit():
 	self.reparent(find_parent("combat_manager").find_child("skill_holder"))
 	#SOnce the damage animation plays, it will be destroyed
 	self.get_node("AnimationPlayer").play("unit_damage")
-
-
-func push(direction_pushed_from : String):
-	var can_be_pushed = false
-#	units that are getting pushed into
-	var collateral_units = []
-	var push_locations = find_child("push_locations").get_children()
-	var destination_tile = null
-#	set a vector to account for multiple push forces
-	if direction_pushed_from == "down":
-		pushed_vector += Vector2i(0, 1)
-		destination_tile = push_locations[0].tile_under_location
-	elif direction_pushed_from == "left":
-		pushed_vector += Vector2i(1, 0)
-		destination_tile = push_locations[1].tile_under_location
-	elif direction_pushed_from == "up":
-		pushed_vector += Vector2i(0, -1)
-		destination_tile = push_locations[2].tile_under_location
-	elif direction_pushed_from == "right":
-		pushed_vector += Vector2i(-1, 0)
-		destination_tile = push_locations[3].tile_under_location
-	
-	if destination_tile != null and !destination_tile.is_in_group("headquarter"):
-		if destination_tile.is_empty:
-			can_be_pushed = true
-		else:
-#			if units are on opposite teams, start a brawl
-			if destination_tile.units_on_tile.size() == 1:
-				if (destination_tile.units_on_tile[0].is_in_group("player") and
-				self.is_in_group("enemy") or
-				destination_tile.units_on_tile[0].is_in_group("enemy") and
-				self.is_in_group("player")):
-					can_be_pushed = true
-				else:
-#					friendly unit, both units take damage but no push
-					collateral_units = destination_tile.units_on_tile
-			else:
-#				pushed into brawl square - no push but all units involved take damage
-				collateral_units = destination_tile.units_on_tile
-	if can_be_pushed:
-		pushed_destination = destination_tile
-		
-	else:
-		hurt(bump_damage)
-		if collateral_units != []:
-			var unit = 0
-			while unit < collateral_units.size():
-				if(collateral_units[unit]):
-					collateral_units[unit].hurt(bump_damage)
-				unit += 1
-
 
 func _on_skill_area_2d_area_entered(area: Area2D) -> void:
 	#Checking the area isnt a buff area
@@ -415,26 +359,6 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 			#We have left the area so stop the weakening from working
 			health -= area.get_parent().health_buff
 			skill_damage -= area.get_parent().damage_buff
-			
-#Called when something enters one of the "push location" nodes
-func _on_up_area_area_entered(area: Area2D) -> void:
-	push_area_entered(area.get_parent(), "up")
-func _on_right_area_area_entered(area: Area2D) -> void:
-	push_area_entered(area.get_parent(), "right")
-func _on_down_area_area_entered(area: Area2D) -> void:
-	push_area_entered(area.get_parent(), "down")
-func _on_left_area_area_entered(area: Area2D) -> void:
-	push_area_entered(area.get_parent(), "left")
-
-func push_area_entered(area, direction):
-	#If the area is a skill
-	if(area.is_in_group("skill")):
-		#If that skill pushes units
-		if(area.pushes_units):
-			#If the skill belongs to an enemy
-			if((self.is_in_group("player") and !area.belongs_to_player) or (self.is_in_group("enemy") and area.belongs_to_player)):
-				#Tell the unit to push, from the direction the skill happend
-				push(direction)
 
 #TOOL TIP STUFF
 func _on_area_2d_mouse_entered() -> void:

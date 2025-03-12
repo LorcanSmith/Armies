@@ -14,6 +14,7 @@ brawl_damage = 1
 skill_spawn_amount = 3
 skill_max_once_per_unit = true
 skill_heal = 10
+reload_time = 2
 projectile = ExtResource("2_eq8xu")
 
 [node name="buffs" parent="." index="0"]
@@ -49,7 +50,7 @@ position = Vector2(74, -74)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location3/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
-[node name="Sprite2D" parent="." index="4"]
+[node name="Sprite2D" parent="." index="3"]
 texture = ExtResource("2_t6osg")
 
 [node name="Level" parent="Label" index="0"]
