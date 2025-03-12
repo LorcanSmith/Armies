@@ -3,7 +3,7 @@ extends Node
 var game_manager : Node2D
 
 #Keeps track of which phase we are in
-var movement_next_phase = true
+var next_phase = "movement"
 
 # used to end combat and return to store
 var battle_over : bool = false
@@ -60,27 +60,31 @@ func battle_ticker():
 	#If the battle isn't over, keep the units fighting
 	if(!battle_over):
 		#If movement is next
-		if(movement_next_phase):
+		if(next_phase == "movement"):
 			movement_phase()
-		#If movement is not next, it must be combat
-		else:
+		#If combat is next
+		elif(next_phase == "combat"):
 			combat_phase()
-			#combat_phase()
+		#If healing is next
+		elif(next_phase == "healing"):
+			healing_phase()
 	#If the battle is over then go back to the shop
 	else:
 		game_manager.swap_scenes()
 
 var units_moved = 0
 var units_to_move = []
+
+
 func movement_phase():
 	units_to_move = []
 	units_moved = 0
 	#Makes sure we don't do two sets of movement
-	movement_next_phase = false
+	next_phase = "combat"
 	#Clears the player and enemy army
 	player_army = []
 	enemy_army = []
-	
+
 	#The grid in a normal layout, used for the enemy units
 	var grid_forward = game_manager.GridManager.get_grid()
 	#The grid in a revered layout, used for the player units
@@ -139,7 +143,10 @@ func movement_phase():
 	find_units_movement_tile()
 
 #Finds a tile for each unit, looped from the unit once it has found a tile
-var unit_to_find_tile = 0	
+var unit_to_find_tile = 0
+
+#Tells the first unit to find a movement tile. The unit will check if there are any units left to move
+#If there are units left to move the unit will call this function again. Otherwise it will call move units
 func find_units_movement_tile():
 	if(units_to_move.size() > 0):
 		units_to_move[unit_to_find_tile].find_movement_tile()
@@ -152,26 +159,27 @@ func move_units():
 		units_to_move[u].move()
 		u += 1
 	auto_tick()
+	
 func combat_phase():
 	#If there are still units on the board
 	if(player_army.size() > 0 or enemy_army.size() > 0):
 		#Used to check if any units remain that can do damage
 		var damage_unit_alive = false
-		#Combat is this turn so set the movement phase to be next turn
-		movement_next_phase = true
+		#Combat is this turn so set the healing phase to be next turn
+		next_phase = "healing"
 		#Tell each unit in the enemy army to do their skill
 		var unit = 0
 		while unit in range(player_army.size()):
-			player_army[unit].skill()
 			#Checks to see if the unit can do damage
 			if(player_army[unit].skill_damage > 0):
+				player_army[unit].skill()
 				damage_unit_alive = true
 			unit += 1
 		#Tell each unit in the player army to do their skill
 		unit = 0
 		while unit in range(enemy_army.size()):
-			enemy_army[unit].skill()
 			if(enemy_army[unit].skill_damage > 0):
+				enemy_army[unit].skill()
 				damage_unit_alive = true
 			unit += 1
 		#If a unit who can damage the base is still alive continue game
@@ -184,6 +192,26 @@ func combat_phase():
 	#No units exist, you win
 	else:
 		end_combat()
+		
+func healing_phase():
+	#Combat is this turn so set the healing phase to be next turn
+	next_phase = "movement"
+	#Tell each unit in the enemy army to do their skill
+	var unit = 0
+	while unit in range(player_army.size()):
+		#Checks to see if the unit can do damage
+		if(unit and player_army[unit].skill_heal > 0):
+			player_army[unit].skill()
+		unit += 1
+	#Tell each unit in the player army to do their skill
+	unit = 0
+	while unit in range(enemy_army.size()):
+		if(unit and enemy_army[unit].skill_heal > 0):
+			enemy_army[unit].skill()
+		unit += 1
+	#Tell the skill_holder that skills have been spawned and we're waiting for them to be finished
+	find_child("skill_holder").waiting_for_skills = true
+	
 func end_combat():
 	game_manager.won_battle(true)
 	battle_over = true
