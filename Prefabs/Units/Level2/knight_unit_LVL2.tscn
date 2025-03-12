@@ -15,7 +15,7 @@ projectile = ExtResource("2_723df")
 [node name="buffs" parent="." index="0"]
 damage_buff = 4
 
-[node name="Sprite2D" parent="." index="4"]
+[node name="Sprite2D" parent="." index="3"]
 texture = ExtResource("2_11ii0")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
