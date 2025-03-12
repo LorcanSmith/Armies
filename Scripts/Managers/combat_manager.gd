@@ -45,8 +45,9 @@ func setup_headquarters():
 	#Get enemy child Sprite 2D and flip horizontally
 	var enemy_base = enemy_headquarter.get_node("Sprite2D")  
 	enemy_base.scale.x = -enemy_base.scale.x
+	enemy_base.get_parent().find_child("Label").position.x -= offset
 	#Sets the player headquarter to be to the right of the map
-	enemy_headquarter.global_position = Vector2(grid_width[0].global_position.x + (offset*1.6), grid_height_center)
+	enemy_headquarter.global_position = Vector2(grid_width[0].global_position.x + (offset*1.8), grid_height_center)
 
 # called from ready() or from game_manager, automatically cycles through battle_ticker()
 func auto_tick():
@@ -105,7 +106,7 @@ func movement_phase():
 					#The unit on the grid
 					var unit = grids[grid_number][x][y].units_on_tile[0]
 					#If its a player unit, move in a forward direction
-					if(grids[grid_number] == grid_reversed and unit.is_in_group("player")):
+					if(unit and grids[grid_number] == grid_reversed and unit.is_in_group("player")):
 						#If the unit hasn't already moved this turn
 						if(unit.moved == false):
 							units_to_move.append(unit)
@@ -115,7 +116,7 @@ func movement_phase():
 						if(!player_army.has(unit)):
 							player_army.append(unit) 
 					#If its an enemy unit, move in a backwards direction
-					elif(grids[grid_number] == grid_forward and unit.is_in_group("enemy")):
+					elif(unit and grids[grid_number] == grid_forward and unit.is_in_group("enemy")):
 						#If the unit hasn't already moved this turn
 						if(unit.moved == false):
 							units_to_move.append(unit)
@@ -127,10 +128,11 @@ func movement_phase():
 				elif(grids[grid_number][x][y].units_on_tile.size() == 2):
 					#Get each unit on the tile
 					for unit in grids[grid_number][x][y].units_on_tile:
-						if(unit.is_in_group("player")):
-							player_army.append(unit)
-						else:
-							enemy_army.append(unit)
+						if(unit):
+							if(unit.is_in_group("player")):
+								player_army.append(unit)
+							else:
+								enemy_army.append(unit)
 				y += 1
 			x += 1
 		grid_number += 1
@@ -192,11 +194,13 @@ func no_skills_left():
 	#Tells the units to take damage
 	var unit = 0
 	while unit in range(player_army.size()):
-		player_army[unit].apply_damage()
+		if(player_army[unit]):
+			player_army[unit].apply_damage()
 		unit += 1
 	unit = 0
 	while unit in range(enemy_army.size()):
-		enemy_army[unit].apply_damage()
+		if(enemy_army[unit]):
+			enemy_army[unit].apply_damage()
 		unit += 1
 	
 	#Used for checking to see if anyone has won

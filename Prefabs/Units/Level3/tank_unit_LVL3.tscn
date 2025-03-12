@@ -1,16 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://jsn5ec8macl1"]
+[gd_scene load_steps=5 format=3 uid="uid://jsn5ec8macl1"]
 
-[ext_resource type="PackedScene" path="res://Prefabs/Units/unit_prefab.tscn" id="1_8srpm"]
-[ext_resource type="Texture2D" uid="uid://blbt32wdlfngh" path="res://Sprites/Units/Army/tank/tank_sprite.png" id="2_4pobx"]
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_0e1kp"]
+[ext_resource type="PackedScene" uid="uid://bjsx2iphb4gud" path="res://Prefabs/Effects/Projectiles/shell_projectile.tscn" id="2_d5lbt"]
+[ext_resource type="Texture2D" uid="uid://blbt32wdlfngh" path="res://Sprites/Units/Army/tank/tank_sprite.png" id="3_x00yl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
-[node name="Tank" instance=ExtResource("1_8srpm")]
+[node name="Tank" instance=ExtResource("1_0e1kp")]
 max_health = 50
 move_distance = 2
 brawl_damage = 10
 bump_damage = 6
 skill_damage = 28
+shoots_projectile = true
+projectile = ExtResource("2_d5lbt")
 
 [node name="buffs" parent="." index="0"]
 visible = false
@@ -40,7 +43,7 @@ position = Vector2(296, 0)
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="Sprite2D" parent="." index="4"]
-texture = ExtResource("2_4pobx")
+texture = ExtResource("3_x00yl")
 
 [node name="Level" parent="Label" index="0"]
 text = "Level 1"

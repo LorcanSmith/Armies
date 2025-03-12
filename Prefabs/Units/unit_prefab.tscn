@@ -268,6 +268,7 @@ pivot_offset = Vector2(17, 1)
 color = Color(0.244776, 0.244776, 0.244776, 1)
 
 [node name="health_bar_color" type="ColorRect" parent="health_bar_background"]
+layout_mode = 0
 offset_right = 34.0
 offset_bottom = 2.0
 pivot_offset = Vector2(0, 1)
@@ -289,3 +290,4 @@ color = Color(0.935177, 0, 0.20955, 1)
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

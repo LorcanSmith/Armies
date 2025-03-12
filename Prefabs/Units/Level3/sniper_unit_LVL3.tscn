@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbsfppjrwvje3"]
+[gd_scene load_steps=5 format=3 uid="uid://dbsfppjrwvje3"]
 
-[ext_resource type="PackedScene" path="res://Prefabs/Units/unit_prefab.tscn" id="1_te73g"]
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_te73g"]
+[ext_resource type="PackedScene" uid="uid://j16g2a5ai3sr" path="res://Prefabs/Effects/Projectiles/bullet_projectile.tscn" id="2_3v1st"]
 [ext_resource type="Texture2D" uid="uid://edy18x6xxarr" path="res://Sprites/Units/Army/sniper/Sniper.png" id="2_ogpeu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
@@ -12,18 +13,21 @@ bump_damage = 2
 soldier = true
 skill_spawn_amount = 2
 skill_damage = 25
+shoots_projectile = true
+projectile = ExtResource("2_3v1st")
 effectiveness = 5
 soldier_effective = true
 
 [node name="buffs" parent="." index="0"]
+visible = false
 damage_buff = 5
 health_buff = 8
 
 [node name="location" parent="skill_locations" index="0"]
-position = Vector2(256, 128)
+position = Vector2(148, 0)
 
 [node name="location2" type="Node2D" parent="skill_locations" index="1"]
-position = Vector2(256, 0)
+position = Vector2(222, 0)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location2" index="0"]
 
@@ -31,7 +35,7 @@ position = Vector2(256, 0)
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="location3" type="Node2D" parent="skill_locations" index="2"]
-position = Vector2(256, -128)
+position = Vector2(296, 0)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location3" index="0"]
 
@@ -39,7 +43,7 @@ position = Vector2(256, -128)
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="location4" type="Node2D" parent="skill_locations" index="3"]
-position = Vector2(384, 0)
+position = Vector2(370, 0)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location4" index="0"]
 
@@ -47,7 +51,7 @@ position = Vector2(384, 0)
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="location5" type="Node2D" parent="skill_locations" index="4"]
-position = Vector2(384, 128)
+position = Vector2(370, 74)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location5" index="0"]
 
@@ -55,19 +59,11 @@ position = Vector2(384, 128)
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="location6" type="Node2D" parent="skill_locations" index="5"]
-position = Vector2(384, -128)
+position = Vector2(370, -74)
 
 [node name="skill_area2D" type="Area2D" parent="skill_locations/location6" index="0"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location6/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_11hi7")
-
-[node name="location7" type="Node2D" parent="skill_locations" index="6"]
-position = Vector2(512, 0)
-
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location7" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location7/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="Sprite2D" parent="." index="4"]
@@ -93,5 +89,3 @@ anchor_left = -0.171875
 [connection signal="area_exited" from="skill_locations/location5/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
 [connection signal="area_entered" from="skill_locations/location6/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location6/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location7/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location7/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

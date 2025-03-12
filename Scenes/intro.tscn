@@ -1,9 +1,7 @@
-
-[gd_scene load_steps=6 format=3 uid="uid://q0yweuttmdr5"]
+[gd_scene load_steps=6 format=3 uid="uid://hcxci321580j"]
 
 [ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://font.ttf" id="1_b226h"]
-[ext_resource type="Script" uid="uid://ckujhhkmirwqw" path="res://Scripts/Managers/onboarder.gd" id="1_hwjxs"]
-
+[ext_resource type="Script" path="res://Scripts/Managers/onboarder.gd" id="1_hwjxs"]
 [ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="2_duh1u"]
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="3_geirw"]
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="4_hwjxs"]
@@ -80,7 +78,8 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("1_b226h")
 theme_override_font_sizes/normal_font_size = 300
 text = "How our game works:
-Each turn you receive 30 coins to spend on units. You place these units on a grid and then when you are happy with your \"Army\" you go to battle! Fighting an enemy team. You must get 10wins/draws to beat the game. You lose life every time you lose a battle."
+Each turn you receive 30 coins to spend on units. You place these units on a grid and then when you are happy with your \"Army\" you go to battle! Fighting an enemy team, you must destroy their base before they destroy your's. 
+You must get 10wins/draws to beat the game. You lose life every time you lose a battle."
 fit_content = true
 
 [node name="TextureButton" type="TextureButton" parent="."]
@@ -107,5 +106,16 @@ theme_override_fonts/normal_font = ExtResource("1_b226h")
 theme_override_font_sizes/normal_font_size = 300
 text = "PLAY!"
 fit_content = true
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1086.0
+offset_top = 625.0
+offset_right = 1402.0
+offset_bottom = 729.0
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/normal_font = ExtResource("1_b226h")
+theme_override_font_sizes/normal_font_size = 100
+text = "ver: 0.01"
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

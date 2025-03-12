@@ -13,9 +13,6 @@ var belongs_to_player : bool
 var effective_against : Array = []
 var effectiveness : int
 
-var heal_animation : PackedScene = preload("res://Prefabs/Effects/heal_animation.tscn")
-
-
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	#ENEMY! DO DAMAGE
 	if((belongs_to_player and area.get_parent().is_in_group("enemy")) or (!belongs_to_player and area.get_parent().is_in_group("player")) and (!area.is_in_group("buff_location"))):
@@ -43,14 +40,4 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 				area.get_parent().heal(heal + effectiveness)
 			else:
 				area.get_parent().heal(heal)
-		else:
-			area.get_parent().hurt(damage)
-		var heal_instance = heal_animation.instantiate()
-		self.get_parent().add_child(heal_instance)
-		heal_instance.global_position = self.global_position
-		##DEBUG
-		#Allows us to do damage to units straight away without waiting for the ticker
-		#used for testing skills
-		if(DebuggerScript.place_skill):
-			area.get_parent().apply_damage()
 	queue_free()
