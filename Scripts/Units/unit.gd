@@ -117,7 +117,7 @@ func find_movement_tile():
 		#Moves the unit forward until it has moved its maximum distance
 		while(moved_distance < move_distance):
 			#If the tile it is trying to move to is empty
-			if(movement_locations[0].movement_tile != null and movement_locations[0].movement_tile.is_empty):
+			if(movement_locations[0].movement_tile != null and (movement_locations[0].movement_tile.is_empty or movement_locations[0].movement_tile.units_on_tile[0] == null)):
 				#Sets the tile it wishes to move to
 				tile_to_move_to = movement_locations[0].movement_tile
 				#Tells the tile we're currently on to be empty
@@ -230,11 +230,12 @@ func brawl():
 			unit.hurt(brawl_damage)
 			attack_visuals(unit)
 
-func projectile_hit():
+func projectile_hit():	
 	health -= damage_done_to_self
-	if(damage_done_to_self > 0 and alive):
+	if(alive):
 		if(health > max_health):
 			health = max_health
+		print(health,max_health)
 		#Update health bar
 		var percentage_of_health_reamining = float(health)/float(max_health)
 		health_bar.scale.x = health_bar.scale.x * percentage_of_health_reamining
@@ -246,8 +247,7 @@ func projectile_hit():
 		else:
 			#Play animation to show the unit has been hurt
 			self.get_node("AnimationPlayer").play("unit_damage")
-			damage_done_to_self = 0
-	
+	damage_done_to_self = 0
 func attack_visuals(enemy : Node2D):
 	#Projectile
 	if(projectile):
@@ -258,10 +258,6 @@ func attack_visuals(enemy : Node2D):
 	else:
 		print(self.name)
 func update_label():
-	attack_label = find_child("Attack")
-	defense_label = find_child("Defense")
-	attack_label.text = str(skill_damage)
-	defense_label.text = str(max_health)
 	#Auto assigns the Level label
 	var level : int
 	var normalised_id = unit_ID + 1
@@ -271,7 +267,6 @@ func update_label():
 		level_label.text = "Level 2"
 	else:
 		level_label.text = "Level 3"
-	
 	#Set tooltip
 	find_child("Tooltip").update_tooltip()
 #Does damage to unit
