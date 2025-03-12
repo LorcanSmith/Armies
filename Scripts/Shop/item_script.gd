@@ -166,8 +166,10 @@ func _process(delta: float) -> void:
 					sprite.global_position = tile_currently_over.global_position
 					unit_currently_over_can_upgrade = true
 			elif (tile_currently_over == self.get_parent()):
-				sprite.global_position = tile_currently_over.global_position
-				unit_currently_over_can_upgrade = false
+				if(tile_currently_over.units_on_tile[0] != self):
+					#Snap to the tile location
+					sprite.global_position = tile_currently_over.global_position
+					unit_currently_over_can_upgrade = true
 			elif(is_boost and !tile_currently_over.is_empty):
 				#Snap to the boost to unit
 				sprite.global_position = tile_currently_over.global_position
@@ -183,6 +185,7 @@ func _process(delta: float) -> void:
 			unit_currently_over_can_upgrade = false
 	else:
 		self.position = Vector2(0,0)
+		sprite.position = Vector2(0,0)
 		unit_currently_over_can_upgrade = false
 		if(skill_tiles and play_skill_popout):
 			skill_tiles.get_node("AnimationPlayer").play("tilemap_popout")
