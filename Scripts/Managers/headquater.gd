@@ -16,7 +16,7 @@ func hurt(amount : int):
 	if(!dead):
 		damage_to_do += amount
 
-func projectile_hit():
+func projectile_hit(amount : int):
 	if(!dead):
 		health -= damage_to_do
 		update_label()
