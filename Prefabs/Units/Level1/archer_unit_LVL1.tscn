@@ -13,7 +13,6 @@ Medieval = true
 Human = true
 skill_spawn_random = true
 skill_damage = 5
-reload_time = 2
 projectile = ExtResource("2_bx5le")
 
 [node name="CollisionShape2D" parent="skill_locations/location/skill_area2D" index="0"]

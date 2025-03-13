@@ -20,7 +20,8 @@
 
 [node name="combat_manager" type="Node2D"]
 script = ExtResource("1_7ijpe")
-tick_delay = 0.5
+regular_speed = 0.3
+quick_speed = 0.2
 
 [node name="player_headquarter" parent="." groups=["player"] instance=ExtResource("2_2r55k")]
 
@@ -39,10 +40,11 @@ zoom = Vector2(1.255, 1.255)
 
 [node name="PlayButton" type="TextureButton" parent="grid_manager/grid_generator (army)/Camera2D"]
 texture_filter = 1
-offset_left = 333.0
-offset_top = -243.0
-offset_right = 373.0
-offset_bottom = -203.0
+offset_left = 402.0
+offset_top = -258.0
+offset_right = 442.0
+offset_bottom = -218.0
+scale = Vector2(0.72, 0.72)
 toggle_mode = true
 button_pressed = true
 button_group = ExtResource("6_36bif")
@@ -52,10 +54,11 @@ texture_hover = ExtResource("8_36bif")
 
 [node name="PauseButton" type="TextureButton" parent="grid_manager/grid_generator (army)/Camera2D"]
 texture_filter = 1
-offset_left = 292.0
-offset_top = -243.0
-offset_right = 332.0
-offset_bottom = -203.0
+offset_left = 374.0
+offset_top = -258.0
+offset_right = 414.0
+offset_bottom = -218.0
+scale = Vector2(0.72, 0.72)
 toggle_mode = true
 button_group = ExtResource("6_36bif")
 texture_normal = ExtResource("6_7wshk")
@@ -64,10 +67,11 @@ texture_hover = ExtResource("11_yudfw")
 
 [node name="Forward" type="TextureButton" parent="grid_manager/grid_generator (army)/Camera2D"]
 texture_filter = 1
-offset_left = 375.0
-offset_top = -243.0
-offset_right = 415.0
-offset_bottom = -203.0
+offset_left = 430.0
+offset_top = -258.0
+offset_right = 470.0
+offset_bottom = -218.0
+scale = Vector2(0.72, 0.72)
 toggle_mode = true
 button_group = ExtResource("6_36bif")
 texture_normal = ExtResource("8_gu5ih")
