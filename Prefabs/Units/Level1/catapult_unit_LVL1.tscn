@@ -9,6 +9,8 @@
 [node name="Catapult" instance=ExtResource("1_mkira")]
 max_health = 18
 brawl_damage = 1
+Medieval = true
+Vehicle = true
 skill_damage = 15
 reload_time = 3
 projectile = ExtResource("2_8kyy5")

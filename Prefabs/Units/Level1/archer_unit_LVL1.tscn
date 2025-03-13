@@ -9,6 +9,8 @@
 [node name="Archer" instance=ExtResource("1_8dqby")]
 max_health = 20
 brawl_damage = 3
+Medieval = true
+Human = true
 skill_spawn_random = true
 skill_damage = 5
 reload_time = 2
