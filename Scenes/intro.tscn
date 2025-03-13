@@ -56,12 +56,10 @@ theme_override_font_sizes/normal_font_size = 300
 text = "This is a very very early build. We need feedback on all aspects of the game with some key focus areas listed below:
 - How understandable are buttons
 - Does the game work in ways you expect it to
-- Units that are too weak
 - Is anything confusing
 - What do you like/dislike
 
-
-
+Plus any other feedback or suggestions you have!
 "
 fit_content = true
 
