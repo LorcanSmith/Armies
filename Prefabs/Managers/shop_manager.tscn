@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=15 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dr2o4nm3x37eu" path="res://Prefabs/Managers/grid_manager.tscn" id="4_2ahac"]
 [ext_resource type="PackedScene" uid="uid://bqgwbmbquy7su" path="res://Prefabs/Grid/grid_generator.tscn" id="6_e3q61"]
 [ext_resource type="Texture2D" uid="uid://bgp4d3tyho0hd" path="res://Sprites/UI/battle.png" id="6_uivje"]
+[ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="6_wk4qg"]
 [ext_resource type="Texture2D" uid="uid://dr2405y3ramn1" path="res://Sprites/UI/battle_pressed.png" id="7_cnpns"]
 [ext_resource type="Texture2D" uid="uid://b4nfucca01mfo" path="res://Sprites/UI/battle_hover.png" id="7_h8oip"]
 [ext_resource type="Texture2D" uid="uid://cboeci24t6dot" path="res://Sprites/UI/re-roll.png" id="7_sr3ik"]
@@ -19,6 +20,7 @@ size = Vector2(46, 59)
 [node name="shop_manager" type="Node2D"]
 script = ExtResource("1_0fc1a")
 free_reroll = false
+reroll_cost = 3
 
 [node name="ShopItemGenerator" type="Node2D" parent="."]
 position = Vector2(116, 250)
@@ -41,26 +43,48 @@ position = Vector2(150, 400)
 
 [node name="re-roll button" type="TextureButton" parent="ShopItemGenerator"]
 texture_filter = 1
-offset_left = 215.0
-offset_top = 373.0
-offset_right = 272.0
-offset_bottom = 413.0
+offset_left = 610.0
+offset_top = 370.0
+offset_right = 667.0
+offset_bottom = 410.0
 texture_normal = ExtResource("7_sr3ik")
 texture_pressed = ExtResource("8_aj6hm")
 texture_hover = ExtResource("9_apgq3")
 
+[node name="TextureRect" type="TextureRect" parent="ShopItemGenerator/re-roll button"]
+layout_mode = 0
+offset_left = -21.0
+offset_top = 10.0
+offset_right = 19.0
+offset_bottom = 50.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_wk4qg")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ShopItemGenerator/re-roll button/TextureRect"]
+clip_contents = false
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.2, 0.2)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 200
+text = "3"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="battle button" type="TextureButton" parent="ShopItemGenerator"]
 texture_filter = 1
-offset_left = 594.0
-offset_top = 377.0
-offset_right = 658.0
-offset_bottom = 404.0
+offset_left = 712.0
+offset_top = 382.0
+offset_right = 776.0
+offset_bottom = 409.0
 texture_normal = ExtResource("6_uivje")
 texture_pressed = ExtResource("7_cnpns")
 texture_hover = ExtResource("7_h8oip")
 
 [node name="SellLocation" type="Node2D" parent="."]
-position = Vector2(858, 638)
+position = Vector2(344, 636)
 
 [node name="Area2D" type="Area2D" parent="SellLocation" groups=["sell_location"]]
 
@@ -75,7 +99,7 @@ texture = ExtResource("3_nu7bh")
 [node name="grid_manager" parent="." instance=ExtResource("4_2ahac")]
 
 [node name="grid_generator (army)" parent="grid_manager" instance=ExtResource("6_e3q61")]
-position = Vector2(490, 387)
+position = Vector2(511, 385)
 grid_name = "army"
 
 [node name="Camera2D" type="Camera2D" parent="."]
