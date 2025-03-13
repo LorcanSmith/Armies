@@ -78,24 +78,17 @@ var enemies_in_range : Array = []
 #Friendlies inside our range
 var friendlies_in_range : Array = []
 
-var level_label : Label
-var defense_label : Label
-var attack_label : Label
 func _ready() -> void:
 	health_bar = find_child("health_bar_color")
 	tooltip = find_child("Tooltip")
 	current_tooltip_time_left = tooltip_show_time
 	skill_locations_parent = find_child("skill_locations")
 
-	level_label = find_child("Level")
 	health = max_health
 	health_bar_remaining = max_health
 	movement_locations = find_child("movement_locations").get_children()
-	if self.is_in_group("enemy"):
-		$Label.modulate = Color(1, 0, 0, 1)
-		$Label.position.y = -25
-		find_child("Level").position.y = 45
-	update_label()
+	#Set tooltip
+	find_child("Tooltip").update_tooltip()
 	set_unit_types()
 
 func set_unit_types():
@@ -271,18 +264,6 @@ func attack_visuals(enemy : Node2D):
 			projectile_instance.damage = -skill_heal
 	else:
 		print(self.name)
-func update_label():
-	#Auto assigns the Level label
-	var level : int
-	var normalised_id = unit_ID + 1
-	if(normalised_id % 3 == 1):
-		level_label.text = "Level 1"
-	elif(normalised_id % 3 == 2):
-		level_label.text = "Level 2"
-	else:
-		level_label.text = "Level 3"
-	#Set tooltip
-	find_child("Tooltip").update_tooltip()
 #Does damage to unit
 func hurt(amount : int):
 	damage_done_to_self += amount
