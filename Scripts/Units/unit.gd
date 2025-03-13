@@ -256,8 +256,12 @@ func projectile_hit(amount : int):
 			alive = false
 			destroy_unit()
 		else:
-			#Play animation to show the unit has been hurt
-			self.get_node("AnimationPlayer").play("unit_damage")
+			if(amount > 0):
+				#Play animation to show the unit has been hurt
+				self.get_node("AnimationPlayer").play("unit_damage")
+			if(amount < 0):
+				#Play animation to show the unit has been healed
+				self.get_node("AnimationPlayer").play("unit_heal")
 	damage_done_to_self = 0
 func attack_visuals(enemy : Node2D):
 	#Projectile

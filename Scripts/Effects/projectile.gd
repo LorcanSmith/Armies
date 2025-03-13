@@ -26,10 +26,11 @@ func _process(delta: float) -> void:
 				queue_free()
 	else:
 		self.global_position = enemy_position
+		if(enemy):
+			enemy.projectile_hit(damage)
+			enemy = null
 	#Stops an issue where projectiles over shoot their target for some reason
 	if(t > 1.5):
 		queue_free()
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if(enemy):
-		enemy.projectile_hit(damage)
 	queue_free()
