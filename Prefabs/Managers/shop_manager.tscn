@@ -38,15 +38,6 @@ position = Vector2(75, 400)
 [node name="Unit 4" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
 position = Vector2(150, 400)
 
-[node name="Boost Locations" type="Node2D" parent="ShopItemGenerator"]
-position = Vector2(88, 0)
-
-[node name="Boost 1" type="Node2D" parent="ShopItemGenerator/Boost Locations"]
-position = Vector2(658, 322)
-
-[node name="Boost 2" type="Node2D" parent="ShopItemGenerator/Boost Locations"]
-position = Vector2(658, 165)
-
 [node name="re-roll button" type="TextureButton" parent="ShopItemGenerator"]
 texture_filter = 1
 offset_left = 215.0

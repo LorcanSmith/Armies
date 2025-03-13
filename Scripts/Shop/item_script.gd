@@ -51,9 +51,9 @@ var mouse_pressed : bool = false
 var skill_tiles : Node2D
 var play_skill_popout = false
 
-@export_group("Item is a boost")
+@export_group("Item buffs")
 ##Is this item a boost item
-@export var is_boost : bool
+@export var can_buff : bool
 @export var damage_boost : int
 @export var health_boost : int
 
@@ -69,18 +69,14 @@ func _ready() -> void:
 
 #Auto assigns the Level label
 func set_labels():
-	if(!is_boost):
-		var level : int
-		var normalised_id = unit_ID + 1
-		if(normalised_id % 3 == 1):
-			level_label.text = "Level 1"
-		elif(normalised_id % 3 == 2):
-			level_label.text = "Level 2"
-		else:
-			level_label.text = "Level 3"
+	var level : int
+	var normalised_id = unit_ID + 1
+	if(normalised_id % 3 == 1):
+		level_label.text = "Level 1"
+	elif(normalised_id % 3 == 2):
+		level_label.text = "Level 2"
 	else:
-		level_label.queue_free()
-		update_label_text()
+		level_label.text = "Level 3"
 	if(unit_ID != -1):
 		update_label_text()
 	#Set tooltip
@@ -88,15 +84,11 @@ func set_labels():
 func update_label_text():
 	var attack_label : Label = find_child("Attack")
 	var defense_label : Label = find_child("Defense")
-	if(!is_boost):
-		var dictionary_instance = dictionary.new()
-		cost_label = find_child("Cost")
-		var unit = dictionary_instance.unit_scenes[unit_ID].instantiate()
-		attack_label.text = str(unit.skill_damage + damage_boost)
-		defense_label.text = str(unit.max_health + health_boost)
-	else:
-		attack_label.text = str("+",damage_boost)
-		defense_label.text = str("+",health_boost)
+	var dictionary_instance = dictionary.new()
+	cost_label = find_child("Cost")
+	var unit = dictionary_instance.unit_scenes[unit_ID].instantiate()
+	attack_label.text = str(unit.skill_damage + damage_boost)
+	defense_label.text = str(unit.max_health + health_boost)
 	cost_label.text = str(buy_cost)
 #Called when the mouse is hovering over
 func _on_area_2d__mouse_collision_mouse_entered() -> void:
@@ -143,18 +135,17 @@ func _process(delta: float) -> void:
 		tooltip.set_visible(false)
 		current_time_till_tooltip = show_tooltip_time
 	if(follow_mouse):
-		if(!is_boost):
-			#Turn on the skill location tiles
-			if(!play_skill_popout):
-				play_skill_popout = true
-				skill_tiles.get_node("AnimationPlayer").play("tilemap_popin")
-			skill_tiles.global_position = sprite.global_position
+		#Turn on the skill location tiles
+		if(!play_skill_popout):
+			play_skill_popout = true
+			skill_tiles.get_node("AnimationPlayer").play("tilemap_popin")
+		skill_tiles.global_position = sprite.global_position
 		#Follow the mouse
 		self.global_position = get_global_mouse_position()
 		#If the item is currently over a tile
 		if(tile_currently_over != null):
 			#If the tile is empty 
-			if(tile_currently_over.is_empty and !is_boost):
+			if(tile_currently_over.is_empty):
 				#Snap to the tile location
 				sprite.global_position = tile_currently_over.global_position
 				unit_currently_over_can_upgrade = false
@@ -170,9 +161,6 @@ func _process(delta: float) -> void:
 					#Snap to the tile location
 					sprite.global_position = tile_currently_over.global_position
 					unit_currently_over_can_upgrade = true
-			elif(is_boost and !tile_currently_over.is_empty):
-				#Snap to the boost to unit
-				sprite.global_position = tile_currently_over.global_position
 			#If the unit cant be upgraded or isnt the same unit or this item is a boost
 			else:
 				sprite.position = Vector2(0,0)
@@ -200,11 +188,7 @@ func attempt_to_place():
 	if(bought):			
 		#If there is an available tile underneath the unit, then we can place it
 		if(tile_currently_over != null and (tile_currently_over.is_empty or unit_currently_over_can_upgrade)):
-			if(tile_currently_over.is_empty):
-				if(!is_boost):
-					place_item()
-			else:
-				place_item()
+			place_item()
 		#If there is a unit on the tile, we can switch position with it
 		elif(tile_currently_over != null and !tile_currently_over.is_empty):
 			#Set other unit to move to our current tile
@@ -221,19 +205,14 @@ func attempt_to_place():
 	else:
 		if(shop_manager.money >= buy_cost):
 			#If there is an available tile underneath the unit, then we can place it
-			if(tile_currently_over != null and (tile_currently_over.is_empty or unit_currently_over_can_upgrade or is_boost)):
+			if(tile_currently_over != null and (tile_currently_over.is_empty or unit_currently_over_can_upgrade)):
 				#Spend the money required to buy the item
 				shop_manager.change_money(buy_cost)
 				#Change the item to be bought
 				bought = true
 				cost_label.visible = false
 				if(tile_currently_over.is_empty):
-					if(!is_boost):
-						place_item()
-					else:
-						get_parent().units_on_tile[0].damage_boost += damage_boost
-						get_parent().units_on_tile[0].health_boost += health_boost
-						get_parent().units_on_tile[0].update_label_text()
+					place_item()
 				else:
 					place_item()
 			#Not enough money or not a valid tile will reset the node back to the shop item locaiton
@@ -242,36 +221,25 @@ func attempt_to_place():
 				self.position = Vector2(0,0)
 #Called when an attempt_to_place is sucessful
 func place_item():
-	if(!is_boost):
-		#Check if we are upgrading the unit below
-		if(!unit_currently_over_can_upgrade):
-			#If the unit is on a tile, set the tile to be empty when the unit is picked up
-			if(self.get_parent().is_in_group("tile")):
-				#Tell the tile that it no longer needs to keep track of the current unit
-				self.get_parent().units_on_tile = []
-				self.get_parent().is_empty = true
-			#Set the units' parent to be the tile that it is placed on
-			self.reparent(tile_currently_over)
-			#Tells its new parent tile to set this item as being on it
-			get_parent().unit_placed_on(self)
-		#If we are then upgrade it
-		else:
-			tile_currently_over.units_on_tile[0].upgrade_unit(unit_ID)
-			if(get_parent().is_in_group("tile")):
-				#Remove non-upgraded unit (self) from the tile
-				get_parent().units_on_tile.erase(self)
-				get_parent().is_empty = true
-			queue_free()
-	#placing a boost
+	#Check if we are upgrading the unit below
+	if(!unit_currently_over_can_upgrade):
+		#If the unit is on a tile, set the tile to be empty when the unit is picked up
+		if(self.get_parent().is_in_group("tile")):
+			#Tell the tile that it no longer needs to keep track of the current unit
+			self.get_parent().units_on_tile = []
+			self.get_parent().is_empty = true
+		#Set the units' parent to be the tile that it is placed on
+		self.reparent(tile_currently_over)
+		#Tells its new parent tile to set this item as being on it
+		get_parent().unit_placed_on(self)
+	#If we are then upgrade it
 	else:
-		tile_currently_over.units_on_tile[0].damage_boost += damage_boost
-		tile_currently_over.units_on_tile[0].health_boost += health_boost
-		tile_currently_over.units_on_tile[0].update_label_text()
+		tile_currently_over.units_on_tile[0].upgrade_unit(unit_ID)
+		if(get_parent().is_in_group("tile")):
+			#Remove non-upgraded unit (self) from the tile
+			get_parent().units_on_tile.erase(self)
+			get_parent().is_empty = true
 		queue_free()
-##	DEBUG
-	if(DebuggerScript.place_enemy):
-		self.remove_from_group("player")
-		self.add_to_group("enemy")
 	
 #Called when the player sells the item
 func sell_item():
