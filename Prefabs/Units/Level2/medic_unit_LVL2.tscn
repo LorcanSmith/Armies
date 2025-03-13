@@ -14,6 +14,7 @@ Vehicle = true
 skill_spawn_amount = 3
 skill_max_once_per_unit = true
 skill_heal = 5
+reload_time = 0
 projectile = ExtResource("2_cv8jd")
 
 [node name="location2" type="Node2D" parent="skill_locations" index="1"]

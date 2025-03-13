@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://di2vorbunt4ep"]
+[gd_scene load_steps=13 format=3 uid="uid://di2vorbunt4ep"]
 
 [ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_bdk6m"]
 [ext_resource type="Script" uid="uid://cdc2qqsvqw1rh" path="res://Scripts/Units/move_spot.gd" id="3_lq4h4"]
@@ -68,10 +68,26 @@ tracks/1/keys = {
 "values": [0.0, -0.139626, 0.0698132, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_mjxsx"]
+resource_name = "unit_heal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bcdoc"]
 _data = {
 &"RESET": SubResource("Animation_ybheq"),
-&"unit_damage": SubResource("Animation_5f33s")
+&"unit_damage": SubResource("Animation_5f33s"),
+&"unit_heal": SubResource("Animation_mjxsx")
 }
 
 [node name="unit_prefab" type="Node2D"]
