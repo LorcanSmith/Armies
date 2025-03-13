@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=16 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://kndito00ykl5" path="res://Sprites/UI/re-roll_pressed.png" id="8_aj6hm"]
 [ext_resource type="Texture2D" uid="uid://8ben0pgeisvw" path="res://Sprites/UI/re-roll_hover.png" id="9_apgq3"]
 [ext_resource type="Script" uid="uid://dq7gpf703ku0i" path="res://Scripts/Skills/skill_holder.gd" id="12_cnpns"]
+[ext_resource type="Texture2D" uid="uid://8af7s6x54d8a" path="res://Sprites/Units/castle_v2.png" id="14_lxqr3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4adb8"]
 size = Vector2(46, 59)
@@ -99,7 +100,7 @@ texture = ExtResource("3_nu7bh")
 [node name="grid_manager" parent="." instance=ExtResource("4_2ahac")]
 
 [node name="grid_generator (army)" parent="grid_manager" instance=ExtResource("6_e3q61")]
-position = Vector2(511, 385)
+position = Vector2(483, 388)
 grid_name = "army"
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -108,6 +109,23 @@ zoom = Vector2(1.8, 1.8)
 
 [node name="buff_animation_holder" type="Node2D" parent="."]
 script = ExtResource("12_cnpns")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(358, 437)
+scale = Vector2(3.4, 3.4)
+texture = ExtResource("14_lxqr3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
+offset_left = 132.353
+offset_top = 2.35295
+offset_right = 1058.35
+offset_bottom = 404.353
+scale = Vector2(0.025, 0.025)
+theme_override_colors/default_color = Color(0.831373, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 200
+text = "Enemy base this way >"
+fit_content = true
 
 [connection signal="pressed" from="ShopItemGenerator/re-roll button" to="ShopItemGenerator" method="_on_texture_button_pressed"]
 [connection signal="pressed" from="ShopItemGenerator/battle button" to="." method="_on_battle_button_pressed"]
