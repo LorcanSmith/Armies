@@ -15,4 +15,4 @@ sell_cost = 12
 texture = ExtResource("2_ns023")
 
 [node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_pxq8h")]
-tile_map_data = PackedByteArray("AAAlDWC7AAAAAAAAAAACAP//AAAAAAAAAAADAP//AAAAAAAAAAAEAP//AAAAAAAAAAABAP//AAAAAAAAAAAEAAAAAAAAAAAAAAAEAP7/AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAABAP//AAAAAAAAAAAlDWC7AAAAAAAAAAACAP//AAAAAAAAAAADAP//AAAAAAAAAAADAP7/AAAAAAAAAAADAAAAAAAAAAAAAAA=")

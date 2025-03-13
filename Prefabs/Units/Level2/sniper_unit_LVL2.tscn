@@ -9,15 +9,9 @@
 [node name="Sniper" instance=ExtResource("1_u80b0")]
 max_health = 12
 brawl_damage = 5
-soldier = true
 skill_damage = 15
 reload_time = 2
 projectile = ExtResource("2_66xo6")
-
-[node name="buffs" parent="." index="0"]
-visible = false
-damage_buff = 5
-health_buff = 8
 
 [node name="location" parent="skill_locations" index="0"]
 position = Vector2(148, 0)
@@ -38,30 +32,10 @@ position = Vector2(296, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location3/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
-[node name="location4" type="Node2D" parent="skill_locations" index="3"]
-position = Vector2(370, 0)
-
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location4" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location4/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_11hi7")
-
-[node name="Sprite2D" parent="." index="3"]
+[node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_sifqi")
-
-[node name="Level" parent="Label" index="0"]
-text = "Level 2
-"
-
-[node name="Attack" parent="Label/Sprite2D" index="0"]
-anchor_left = -0.171875
-
-[node name="Defense" parent="Label/Sprite2D" index="1"]
-anchor_left = -0.171875
 
 [connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
 [connection signal="area_entered" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location4/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location4/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
