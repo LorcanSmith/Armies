@@ -258,7 +258,7 @@ func no_skills_left():
 		end_combat()
 	#Its a draw, so counts as a win
 	elif(!player_headquarter_alive and !enemy_headquarter_alive):
-		player_won = false
+		player_won = true
 		game_manager.won_battle(true)
 		end_combat()
 	if(!battle_over):
