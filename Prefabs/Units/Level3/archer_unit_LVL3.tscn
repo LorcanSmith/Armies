@@ -9,6 +9,8 @@
 [node name="Archer" instance=ExtResource("1_ecmbt")]
 max_health = 32
 brawl_damage = 6
+Medieval = true
+Human = true
 skill_spawn_amount = 3
 skill_spawn_random = true
 skill_damage = 6

@@ -7,7 +7,7 @@
 [node name="Knight" instance=ExtResource("1_abkdl")]
 max_health = 26
 move_distance = 2
-brawl_damage = 8
+brawl_damage = 13
 Medieval = true
 Human = true
 skill_damage = 8

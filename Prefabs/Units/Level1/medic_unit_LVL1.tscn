@@ -9,6 +9,8 @@
 [node name="Medic" instance=ExtResource("1_oiijl")]
 max_health = 10
 brawl_damage = 1
+Army = true
+Vehicle = true
 skill_spawn_amount = 3
 skill_max_once_per_unit = true
 skill_heal = 10

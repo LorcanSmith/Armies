@@ -9,6 +9,8 @@
 [node name="Sniper" instance=ExtResource("1_u80b0")]
 max_health = 12
 brawl_damage = 5
+Army = true
+Human = true
 skill_damage = 15
 reload_time = 2
 projectile = ExtResource("2_66xo6")

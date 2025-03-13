@@ -7,25 +7,14 @@
 [node name="Knight" instance=ExtResource("1_igas3")]
 max_health = 36
 move_distance = 2
-brawl_damage = 12
-soldier = true
+brawl_damage = 15
+Medieval = true
+Human = true
 skill_damage = 12
 projectile = ExtResource("2_723df")
 
-[node name="buffs" parent="." index="0"]
-damage_buff = 4
-
-[node name="Sprite2D" parent="." index="3"]
+[node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_11ii0")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-2, -0.5)
-
-[node name="Level" parent="Label" index="0"]
-text = "Level 1"
-
-[node name="Attack" parent="Label/Sprite2D" index="0"]
-anchor_left = -0.171875
-
-[node name="Defense" parent="Label/Sprite2D" index="1"]
-anchor_left = -0.171875

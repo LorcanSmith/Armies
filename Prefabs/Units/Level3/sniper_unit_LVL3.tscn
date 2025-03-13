@@ -9,8 +9,10 @@
 [node name="Sniper" instance=ExtResource("1_te73g")]
 max_health = 18
 brawl_damage = 7
+Army = true
+Human = true
 skill_spawn_amount = 2
-skill_damage = 25
+skill_damage = 24
 projectile = ExtResource("2_3v1st")
 effectiveness = 5
 soldier_effective = true

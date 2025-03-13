@@ -10,6 +10,8 @@
 max_health = 50
 move_distance = 2
 brawl_damage = 10
+Army = true
+Vehicle = true
 skill_damage = 28
 reload_time = 2
 projectile = ExtResource("2_d5lbt")

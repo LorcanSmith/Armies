@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_ymyad"]
 
 [node name="Catapult" instance=ExtResource("1_hdgot")]
-description = "Long range unit. Knocks enemies backwards"
+description = "Long range unit. Does splash damage"
 unit_name = "Catapult"
 buy_cost = 13
 sell_cost = 6
@@ -14,4 +14,4 @@ sell_cost = 6
 texture = ExtResource("2_8m75q")
 
 [node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_ymyad")]
-tile_map_data = PackedByteArray(0, 0, 37, 13, 96, 187, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_map_data = PackedByteArray(0, 0, 1, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 37, 13, 96, 187, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0)

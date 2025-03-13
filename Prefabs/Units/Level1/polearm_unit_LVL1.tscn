@@ -7,23 +7,14 @@
 [node name="Polearm" instance=ExtResource("1_ky5rb")]
 max_health = 18
 move_distance = 2
-brawl_damage = 12
-bump_damage = 2
-soldier = true
+brawl_damage = 5
+Medieval = true
+Human = true
 skill_damage = 12
 projectile = ExtResource("2_ojcuj")
 
-[node name="buffs" parent="." index="0"]
-visible = false
-
-[node name="Sprite2D" parent="." index="4"]
+[node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_ky5rb")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-2, -0.5)
-
-[node name="Attack" parent="Label/Sprite2D" index="0"]
-anchor_left = -0.171875
-
-[node name="Defense" parent="Label/Sprite2D" index="1"]
-anchor_left = -0.171875

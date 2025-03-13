@@ -9,6 +9,8 @@
 [node name="Catapult" instance=ExtResource("1_a8gj2")]
 max_health = 30
 brawl_damage = 1
+Medieval = true
+Vehicle = true
 skill_spawn_amount = 2
 skill_damage = 25
 reload_time = 2

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_efvey"]
 
 [node name="Item" instance=ExtResource("1_ljmc8")]
-description = "Melee unit"
+description = "Great up close but not good at brawling"
 unit_name = "Polearm"
 buy_cost = 12
 sell_cost = 6
