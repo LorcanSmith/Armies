@@ -26,11 +26,11 @@ var tile_to_move_to : Node2D
 
 @export_subgroup("Unit Types")
 var unit_types : Array = [
-	"soldier",
-	"animal"
+	"Soldier",
+	"Animal"
 ]
-@export var soldier : bool
-@export var animal : bool
+@export var Soldier : bool
+@export var Animal : bool
 var potential_types : Array
 
 #How much damage will be applied to this unit, this turn
@@ -93,7 +93,7 @@ func _ready() -> void:
 
 func set_unit_types():
 	effective_against_types = unit_types.duplicate()
-	potential_types = [soldier, animal]
+	potential_types = [Soldier, Animal]
 	potential_skill_effective_types = [soldier_effective, animal_effective]
 	var x = 0
 	while(x < (potential_types.size())):

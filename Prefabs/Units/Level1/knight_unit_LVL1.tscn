@@ -8,24 +8,12 @@
 max_health = 26
 move_distance = 2
 brawl_damage = 8
-soldier = true
+Soldier = true
 skill_damage = 8
 projectile = ExtResource("2_g20bn")
 
-[node name="buffs" parent="." index="0"]
-damage_buff = 4
-
-[node name="Sprite2D" parent="." index="4"]
+[node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("3_lqsp5")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-2, -0.5)
-
-[node name="Level" parent="Label" index="0"]
-text = "Level 1"
-
-[node name="Attack" parent="Label/Sprite2D" index="0"]
-anchor_left = -0.171875
-
-[node name="Defense" parent="Label/Sprite2D" index="1"]
-anchor_left = -0.171875

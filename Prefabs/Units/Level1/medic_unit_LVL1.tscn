@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bafq0ubjun4sc"]
+[gd_scene load_steps=7 format=3 uid="uid://bafq0ubjun4sc"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_oiijl"]
 [ext_resource type="PackedScene" uid="uid://cwefhvoo3dhqh" path="res://Prefabs/Effects/heal_animation.tscn" id="2_eq8xu"]
 [ext_resource type="Texture2D" uid="uid://c7x0n5de2qo45" path="res://Sprites/Units/Army/Medic/medic_sprite.png" id="2_t6osg"]
 [ext_resource type="Script" path="res://Scripts/Units/push_locations.gd" id="3_eq8xu"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_1caxc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
@@ -19,23 +17,6 @@ skill_max_once_per_unit = true
 skill_heal = 10
 reload_time = 2
 projectile = ExtResource("2_eq8xu")
-
-[node name="buffs" parent="." index="0"]
-health_buff = 5
-
-[node name="location_area3" type="Area2D" parent="buffs" index="2" groups=["buff_location"]]
-position = Vector2(74, 0)
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="buffs/location_area3" index="0"]
-shape = SubResource("CircleShape2D_1caxc")
-
-[node name="location_area4" type="Area2D" parent="buffs" index="3" groups=["buff_location"]]
-position = Vector2(-74, 0)
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="buffs/location_area4" index="0"]
-shape = SubResource("CircleShape2D_1caxc")
 
 [node name="location2" type="Node2D" parent="skill_locations" index="1"]
 position = Vector2(74, 74)
@@ -53,7 +34,7 @@ position = Vector2(74, -74)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location3/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
-[node name="push_locations" type="Node2D" parent="." index="3"]
+[node name="push_locations" type="Node2D" parent="." index="1"]
 
 [node name="UP" type="Node2D" parent="push_locations" index="0"]
 position = Vector2(0, -74)
@@ -95,7 +76,15 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="push_locations/LEFT/left_area" index="0"]
 shape = SubResource("CircleShape2D_sefj8")
 
-[node name="Sprite2D" parent="." index="4"]
+[node name="buffs#location_area4" type="Area2D" parent="." index="3" groups=["buff_location"]]
+position = Vector2(-74, 0)
+monitoring = false
+
+[node name="buffs#location_area3" type="Area2D" parent="." index="4" groups=["buff_location"]]
+position = Vector2(74, 0)
+monitoring = false
+
+[node name="Sprite2D" parent="." index="5"]
 texture = ExtResource("2_t6osg")
 
 [connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
