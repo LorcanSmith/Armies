@@ -9,20 +9,10 @@
 [node name="Archer" instance=ExtResource("1_8dqby")]
 max_health = 20
 brawl_damage = 3
-soldier = true
 skill_spawn_random = true
 skill_damage = 5
 reload_time = 2
 projectile = ExtResource("2_bx5le")
-
-[node name="buffs" parent="." index="0"]
-visible = false
-
-[node name="location_area" parent="buffs" index="0"]
-visible = false
-
-[node name="location_area2" parent="buffs" index="1"]
-visible = false
 
 [node name="CollisionShape2D" parent="skill_locations/location/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
@@ -59,23 +49,8 @@ position = Vector2(370, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location5/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
-[node name="Sprite2D" parent="." index="3"]
+[node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_402ld")
-
-[node name="Level" parent="Label" index="0"]
-text = "Level 1"
-
-[node name="Attack" parent="Label/Sprite2D" index="0"]
-anchor_left = -0.15625
-anchor_right = 1.26563
-offset_left = -21.0
-offset_right = 19.0
-
-[node name="Defense" parent="Label/Sprite2D" index="1"]
-anchor_left = -0.234375
-anchor_right = 1.73438
-offset_left = 22.0
-offset_right = 62.0
 
 [connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
