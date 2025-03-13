@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://rl8ohk3jx7cd"]
+
+[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://font.ttf" id="1_1h4qi"]
+
+[sub_resource type="Animation" id="Animation_1h4qi"]
+resource_name = "letter_close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.65), Vector2(0.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iqmli"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.65)]
+}
+
+[sub_resource type="Animation" id="Animation_1ngvh"]
+resource_name = "letter_open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0), Vector2(0.5, 0.65)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ngvh"]
+_data = {
+&"RESET": SubResource("Animation_iqmli"),
+&"letter_close": SubResource("Animation_1h4qi"),
+&"letter_open": SubResource("Animation_1ngvh")
+}
+
+[node name="Letter" type="Node2D"]
+scale = Vector2(0.5, 0.65)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 520.0
+offset_bottom = 520.0
+scale = Vector2(0.034, 0.034)
+theme_override_fonts/normal_font = ExtResource("1_1h4qi")
+theme_override_font_sizes/normal_font_size = 500
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1ngvh")
+}

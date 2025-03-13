@@ -81,9 +81,17 @@ func update_phase_label(phase : String):
 	var counter = 0
 	while counter < letter_spots.size():
 		if counter < letters.size():
-			letter_spots[counter].text = letters[counter]
+			if letter_spots[counter].get_child(0).text == letters[counter]:
+				print("same letter")
+			else:
+				letter_spots[counter].get_node("AnimationPlayer").play("letter_close")
+				await get_tree().create_timer(0.03).timeout
+				letter_spots[counter].get_child(0).text = letters[counter]
 		else:
-			letter_spots[counter].text = ""
+			letter_spots[counter].get_node("AnimationPlayer").play("letter_close")
+			await get_tree().create_timer(.05).timeout
+			letter_spots[counter].get_child(0).text = ""
+		letter_spots[counter].get_node("AnimationPlayer").play("letter_open")
 		counter += 1
 	
 var units_moved = 0
