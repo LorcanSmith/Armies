@@ -22,7 +22,7 @@ func change_money(amount : int):
 
 
 func _on_battle_button_pressed() -> void:
-	game_manager.swap_scenes()
+	apply_buffs()
 
 func show_potential_upgrades(show : bool, item_who_called : Node2D):
 		if(show):
@@ -46,4 +46,24 @@ func show_potential_upgrades(show : bool, item_who_called : Node2D):
 				unit.upgrade_arrow.visible = show
 		if(!show):
 			same_units = []
-		
+			
+func apply_buffs():	
+	var tiles = find_child("grid_manager").find_child("grid_generator (army)").get_children()
+	var x = 0
+	#Loops over all tiles
+	while (x < (tiles.size())):
+		var y = 0
+		var children = tiles[x].get_children()
+		while (y < (children.size())):
+			#If there is a item on the tile
+			if(children[y].is_in_group("item")):
+				#Add it to the same units array
+				if(children[y].can_buff):
+					children[y].buff()
+			y+=1
+		x+=1
+	find_child("buff_animation_holder").waiting_for_skills = true
+
+func no_skills_left():
+	await get_tree().create_timer(1.0).timeout
+	game_manager.swap_scenes()

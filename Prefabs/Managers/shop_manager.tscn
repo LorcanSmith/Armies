@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=14 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cboeci24t6dot" path="res://Sprites/UI/re-roll.png" id="7_sr3ik"]
 [ext_resource type="Texture2D" uid="uid://kndito00ykl5" path="res://Sprites/UI/re-roll_pressed.png" id="8_aj6hm"]
 [ext_resource type="Texture2D" uid="uid://8ben0pgeisvw" path="res://Sprites/UI/re-roll_hover.png" id="9_apgq3"]
+[ext_resource type="Script" uid="uid://dq7gpf703ku0i" path="res://Scripts/Skills/skill_holder.gd" id="12_cnpns"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4adb8"]
 size = Vector2(46, 59)
@@ -37,15 +38,6 @@ position = Vector2(75, 400)
 
 [node name="Unit 4" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
 position = Vector2(150, 400)
-
-[node name="Boost Locations" type="Node2D" parent="ShopItemGenerator"]
-position = Vector2(88, 0)
-
-[node name="Boost 1" type="Node2D" parent="ShopItemGenerator/Boost Locations"]
-position = Vector2(658, 322)
-
-[node name="Boost 2" type="Node2D" parent="ShopItemGenerator/Boost Locations"]
-position = Vector2(658, 165)
 
 [node name="re-roll button" type="TextureButton" parent="ShopItemGenerator"]
 texture_filter = 1
@@ -89,6 +81,9 @@ grid_name = "army"
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(589, 508)
 zoom = Vector2(1.8, 1.8)
+
+[node name="buff_animation_holder" type="Node2D" parent="."]
+script = ExtResource("12_cnpns")
 
 [connection signal="pressed" from="ShopItemGenerator/re-roll button" to="ShopItemGenerator" method="_on_texture_button_pressed"]
 [connection signal="pressed" from="ShopItemGenerator/battle button" to="." method="_on_battle_button_pressed"]

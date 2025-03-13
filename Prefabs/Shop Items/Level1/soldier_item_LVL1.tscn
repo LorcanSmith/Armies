@@ -1,14 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://mx4husssotyf"]
+[gd_scene load_steps=6 format=3 uid="uid://mx4husssotyf"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_akiqe"]
 [ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="2_avp1i"]
 [ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_avp1i"]
+[ext_resource type="Script" uid="uid://bbyqyvnyg3d6s" path="res://Scripts/Skills/buff.gd" id="4_x8atn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6sqpo"]
+radius = 5.09902
 
 [node name="Soldier" instance=ExtResource("1_akiqe")]
-description = "Shoots a burst of damage at multiple untis up close"
+description = "Gives units above and below a permanent +1 health and +1 attack at the end of the shop phase"
 unit_name = "Soldier"
 buy_cost = 7
 sell_cost = 3
+can_buff = true
+damage_buff = 1
+health_buff = 1
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_avp1i")
@@ -17,3 +24,16 @@ texture = ExtResource("2_avp1i")
 scale = Vector2(1e-05, 1e-05)
 
 [node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_avp1i")]
+
+[node name="buff_location2" type="Node2D" parent="buffs" index="1"]
+position = Vector2(0, 74)
+script = ExtResource("4_x8atn")
+
+[node name="Area2D" type="Area2D" parent="buffs/buff_location2" index="0"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buffs/buff_location2/Area2D" index="0"]
+shape = SubResource("CircleShape2D_6sqpo")
+
+[connection signal="area_entered" from="buffs/buff_location2/Area2D" to="buffs/buff_location2" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="buffs/buff_location2/Area2D" to="buffs/buff_location2" method="_on_area_2d_area_exited"]

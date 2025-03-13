@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvuvemklimewo"]
+
+[ext_resource type="Script" uid="uid://bx7tk0j2kdn7m" path="res://Scripts/Skills/buff_visual.gd" id="1_ivyaq"]
+[ext_resource type="Texture2D" uid="uid://bos864ovdl3jf" path="res://Sprites/UI/heart.png" id="2_ugklp"]
+[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://font.ttf" id="3_ugklp"]
+
+[sub_resource type="Animation" id="Animation_qjc8s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lxqr3"]
+resource_name = "buff_appear"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vg5hm"]
+_data = {
+&"RESET": SubResource("Animation_qjc8s"),
+&"buff_appear": SubResource("Animation_lxqr3")
+}
+
+[node name="buff_health" type="Node2D"]
+script = ExtResource("1_ivyaq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-16, 0)
+texture = ExtResource("2_ugklp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vg5hm")
+}
+autoplay = "buff_appear"
+
+[node name="buff_text" type="RichTextLabel" parent="."]
+offset_left = -28.0
+offset_top = -11.0
+offset_right = 239.0
+offset_bottom = 233.0
+scale = Vector2(0.09, 0.09)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_ugklp")
+theme_override_font_sizes/normal_font_size = 100
+text = "+1"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

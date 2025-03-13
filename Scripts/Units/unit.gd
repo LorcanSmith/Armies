@@ -290,56 +290,25 @@ func destroy_unit():
 	self.get_node("AnimationPlayer").play("unit_damage")
 
 func _on_skill_area_2d_area_entered(area: Area2D) -> void:
-	#Checking the area isnt a buff area
-	if(!area.is_in_group("buff_location")):
-#		check if skill is meant to be used on allies or enemies
-		if(skill_damage > 0):
-			#If the area on our skill location is a unit of the opposite type
-			if(self.is_in_group("player") and area.get_parent().is_in_group("enemy")):
-				enemies_in_range.append(area.get_parent())
-			elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
-				enemies_in_range.append(area.get_parent())
-		if(skill_heal > 0):
-			##If the area on our skill location is a unit of the same type
-			if((self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy"))):
-				friendlies_in_range.append(area.get_parent())
+#	check if skill is meant to be used on allies or enemies
+	if(skill_damage > 0):
+		#If the area on our skill location is a unit of the opposite type
+		if(self.is_in_group("player") and area.get_parent().is_in_group("enemy")):
+			enemies_in_range.append(area.get_parent())
+		elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
+			enemies_in_range.append(area.get_parent())
+	if(skill_heal > 0):
+		##If the area on our skill location is a unit of the same type
+		if((self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy"))):
+			friendlies_in_range.append(area.get_parent())
 			
 			
 func _on_skill_area_2d_area_exited(area: Area2D) -> void:
-	#Checking the area isnt a buff area
-	if(!area.is_in_group("buff_location")):
-		#If the unit was in our range, remove it from our range
-		if(enemies_in_range.has(area.get_parent())):
-			enemies_in_range.erase(area.get_parent())
-		if(friendlies_in_range.has(area.get_parent())):
-			friendlies_in_range.erase(area.get_parent())
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if(area.is_in_group("buff_location")):
-		#Checks if the buff location belongs to an enemy
-		if((self.is_in_group("player") and area.get_parent().get_parent().is_in_group("enemy")) or (self.is_in_group("enemy") and area.get_parent().get_parent().is_in_group("player"))):
-			#We have entered the area so apply weakening
-			health -= area.get_parent().health_weaken
-			skill_damage -= area.get_parent().damage_weaken
-		#Checks if the buff belongs to a friendly
-		elif((self.is_in_group("player") and area.get_parent().get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().get_parent().is_in_group("enemy"))):
-			#We have entered a buff location of a friendly so apply buffs
-			health += area.get_parent().health_buff
-			skill_damage += area.get_parent().damage_buff
-
-func _on_area_2d_area_exited(area: Area2D) -> void:
-	#If the unit is in a buff location
-	if(area.is_in_group("buff_location")):
-		#Checks if the buff location belongs to an enemy
-		if((self.is_in_group("player") and area.get_parent().get_parent().is_in_group("enemy")) or (self.is_in_group("enemy") and area.get_parent().get_parent().is_in_group("player"))):
-			#We have left the area so stop the weakening from working	
-			health += area.get_parent().health_weaken
-			skill_damage += area.get_parent().damage_weaken
-		#Checks if the buff belongs to a friendly
-		elif((self.is_in_group("player") and area.get_parent().get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().get_parent().is_in_group("enemy"))):
-			#We have left the area so stop the weakening from working
-			health -= area.get_parent().health_buff
-			skill_damage -= area.get_parent().damage_buff
+	#If the unit was in our range, remove it from our range
+	if(enemies_in_range.has(area.get_parent())):
+		enemies_in_range.erase(area.get_parent())
+	if(friendlies_in_range.has(area.get_parent())):
+		friendlies_in_range.erase(area.get_parent())
 
 #TOOL TIP STUFF
 func _on_area_2d_mouse_entered() -> void:

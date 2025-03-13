@@ -2,7 +2,6 @@ extends Node
 
 #Places where shop units show up
 var unit_locations = []
-var boost_locations = []
 #Dictionary containing all units
 var dictionary = load("res://Scripts/Units/dictionary.gd")
 
@@ -15,8 +14,6 @@ func _ready() -> void:
 	#Gets the children and sets them as locations units can spawn at
 	for loc in find_child("Unit Locations").get_children():
 		unit_locations.append(loc)
-	for loc in find_child("Boost Locations").get_children():
-		boost_locations.append(loc)
 	show_new_units()
 #Spawns in new shop units
 func show_new_units():
@@ -31,17 +28,7 @@ func show_new_units():
 		unit_locations[location].add_child(new_unit)
 		#Sets the new units' location to be that of its parent (the shop unit location)
 		new_unit.position = Vector2(0,0)
-		
-	#Displays a new boost for each shop boost location
-	for location in boost_locations.size():
-		#Chooses a random unit and loads the unit from the path, gets it unit_ID
-		var chosen_boost = choose_random_boost()
-		#Spawns in the chosen unit as a new unit in the shop
-		var new_boost = chosen_boost.instantiate()
-		#Sets the new units' parent to be the unit location in the shop
-		boost_locations[location].add_child(new_boost)
-		#Sets the new units' location to be that of its parent (the shop unit location)
-		new_boost.position = Vector2(0,0)	
+			
 #Chooses a random unit
 func choose_random_unit():
 	var dictionary_instance = dictionary.new()
