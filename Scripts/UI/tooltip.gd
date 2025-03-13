@@ -8,6 +8,7 @@ var health : RichTextLabel
 var skill_damage : RichTextLabel
 var skill_heal : RichTextLabel
 var brawl : RichTextLabel
+var reload : RichTextLabel
 var cost : RichTextLabel
 
 func update_tooltip() -> void:
@@ -21,6 +22,7 @@ func update_tooltip() -> void:
 		skill_damage = find_child("skill")
 		skill_heal = find_child("heal")
 		brawl = find_child("brawl")
+		reload = find_child("reload")
 		cost = find_child("cost")
 		unit_name.text = unit.name
 		description.text = item.description
@@ -28,4 +30,5 @@ func update_tooltip() -> void:
 		skill_damage.text = str("Skill Damage: ", unit.skill_damage)
 		skill_heal.text = str("Skill Heal: ", unit.skill_heal)
 		brawl.text = str("Brawl Damage: ", unit.brawl_damage)
+		reload.text = str("Reload Time: ", unit.reload_time)
 		cost.text = str("Buy Cost: ", item.buy_cost, " / Sell Cost: ", item.sell_cost)
