@@ -104,8 +104,6 @@ func movement_phase():
 			y = 0
 		#Loop through the grid
 			while(y < grids[grid_number][x].size()):
-				#Space which the unit will move to
-				var unit_space_to_move
 				if(grids[grid_number][x][y].units_on_tile.size() == 1):
 					#The unit on the grid
 					var unit = grids[grid_number][x][y].units_on_tile[0]

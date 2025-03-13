@@ -11,12 +11,12 @@
 max_health = 22
 move_distance = 2
 brawl_damage = 10
-bump_damage = 2
-soldier = true
+Army = true
+Human = true
+Soldier = true
 skill_spawn_amount = 5
 skill_spawn_random = true
 skill_damage = 6
-shoots_projectile = true
 projectile = ExtResource("2_5n52r")
 
 [node name="location3" type="Node2D" parent="skill_locations" index="1"]
@@ -58,15 +58,6 @@ position = Vector2(148, -74)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location6/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_1f732")
-
-[node name="Level" parent="Label" index="0"]
-text = "Level 1"
-
-[node name="Attack" parent="Label/Sprite2D" index="0"]
-anchor_left = -0.171875
-
-[node name="Defense" parent="Label/Sprite2D" index="1"]
-anchor_left = -0.171875
 
 [connection signal="area_entered" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

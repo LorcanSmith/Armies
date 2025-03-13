@@ -29,7 +29,7 @@ position = Vector2(231, 1)
 
 [node name="grid_generator (army)" parent="grid_manager" instance=ExtResource("4_tbeai")]
 is_battle_grid = true
-combat_grid_width = 10
+combat_grid_width = 9
 
 [node name="Camera2D" type="Camera2D" parent="grid_manager/grid_generator (army)"]
 position = Vector2(271, 1)

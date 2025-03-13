@@ -8,7 +8,8 @@
 max_health = 26
 move_distance = 2
 brawl_damage = 8
-Soldier = true
+Medieval = true
+Human = true
 skill_damage = 8
 projectile = ExtResource("2_g20bn")
 
