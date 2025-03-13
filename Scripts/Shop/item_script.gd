@@ -5,6 +5,9 @@ var dictionary = preload("res://Scripts/Units/dictionary.gd")
 #Unit ID, refer to UNIT ID document
 #Items that aren't units do not need an ID
 var unit_ID : int = -1
+#damage and health gained from buffs
+var damage_boost : int
+var health_boost : int
 @export var description : String
 var tooltip : Control
 @export var show_tooltip_time : float = 1.4
@@ -54,10 +57,16 @@ var play_skill_popout = false
 @export_group("Item buffs")
 ##Is this item a boost item
 @export var can_buff : bool
-@export var damage_boost : int
-@export var health_boost : int
+@export var damage_buff : int
+@export var health_buff : int
+#locations where buffs happen
+var buff_locations : Array = []
+#Visual that spawns to show a buff being done
+var damage_buff_visual = preload("res://Prefabs/Effects/Buffs/buff_damage.tscn")
+var health_buff_visual = preload("res://Prefabs/Effects/Buffs/buff_health.tscn")
 
 func _ready() -> void:
+	buff_locations = find_child("buffs").get_children()
 	upgrade_arrow = find_child("upgrade_arrow")
 	skill_tiles = find_child("skill_tiles")
 	tooltip = find_child("Tooltip")
@@ -282,6 +291,31 @@ func upgrade_unit(ID):
 	#Delete non-upgraded unit (self)
 	queue_free()
 
+func buff():
+	if(can_buff):
+		var buff_loc = 0
+		while(buff_loc < buff_locations.size()):
+			var unit = buff_locations[buff_loc].unit_to_buff
+			if(unit != null):
+				if(damage_buff > 0):
+					unit.damage_boost += damage_buff
+					var buff = damage_buff_visual.instantiate()
+					find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff)
+					buff.global_position = self.global_position
+					buff.target = unit
+					buff.find_child("buff_text").text = str("+",damage_buff)
+				if(health_buff > 0):
+					unit.health_boost += health_buff
+					var buff = health_buff_visual.instantiate()
+					find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff)
+					buff.global_position = self.global_position
+					buff.target = unit
+					buff.find_child("buff_text").text = str("+",health_buff)
+				unit.update_label_text()
+			buff_loc += 1
+
+
+
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	#If the area is a tile and the item is picked up, following the mouse
 	if(area.is_in_group("tile") and follow_mouse):
@@ -307,8 +341,3 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	elif(area.is_in_group("sell_location")):
 		item_on_sell_location = false
 		cost_label.visible = false
-
-
-#func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	#if(anim_name == "tilemap_popout"):
-		#play_skill_popout = false
