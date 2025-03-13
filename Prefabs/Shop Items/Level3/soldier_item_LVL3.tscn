@@ -17,6 +17,7 @@ sell_cost = 9
 can_buff = true
 damage_buff = 1
 health_buff = 1
+Soldier = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_2ka7r")

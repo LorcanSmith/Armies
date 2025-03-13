@@ -13,8 +13,5 @@ sell_cost = 10
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_8o2rq")
 
-[node name="skill_tiles" parent="." index="4"]
-scale = Vector2(1e-05, 1e-05)
-
 [node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_8o2rq")]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 37, 13, 96, 187, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 37, 13, 96, 187, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0)

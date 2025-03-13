@@ -81,7 +81,6 @@ func reroll_shop():
 			#stops crashes
 			if(location.get_child_count() > 0):
 				location.get_child(0).queue_free()
-		print("RE-ROLLED")
 		#Gets new units for the shop
 		show_new_units()
 	

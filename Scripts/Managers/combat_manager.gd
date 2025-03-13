@@ -9,7 +9,8 @@ var next_phase = "movement"
 var battle_over : bool = false
 #If the enemy base gets destroyed, this gets set to true
 var player_won : bool = false
-
+var round_won_ui = preload("res://Prefabs/Effects/UI/round_won.tscn")
+var round_lost_ui = preload("res://Prefabs/Effects/UI/round_lost.tscn")
 #army belonging to the user
 var player_army : Array = []
 #army belonging to the opponent
@@ -186,9 +187,11 @@ func combat_phase():
 			find_child("skill_holder").waiting_for_skills = true
 		#If no units that can do damage to bases are alive, then end the combat
 		else:
+			game_manager.won_battle(true)
 			end_combat()
 	#No units exist, you win
 	else:
+		game_manager.won_battle(true)
 		end_combat()
 		
 func healing_phase():
@@ -211,10 +214,15 @@ func healing_phase():
 	find_child("skill_holder").waiting_for_skills = true
 	
 func end_combat():
-	game_manager.won_battle(true)
 	battle_over = true
-	auto_tick()
-
+	var round_end_visuals
+	if(player_won):
+		round_end_visuals = round_won_ui.instantiate()
+	else:
+		round_end_visuals = round_lost_ui.instantiate()
+	self.add_child(round_end_visuals)
+	round_end_visuals.global_position = find_child("Camera2D").global_position
+	
 #Called by the skill_holder child when no skills remain, meaning we can proceed with combat
 func no_skills_left():
 	#Tells the units to take damage
@@ -240,17 +248,21 @@ func no_skills_left():
 	#Based on which headquarters are alive we can work out who won
 	#Player wins
 	if(player_headquarter_alive and !enemy_headquarter_alive):
+		player_won = true
 		game_manager.won_battle(true)
-		battle_over = true
+		end_combat()
 	#Enemy wins
 	elif(!player_headquarter_alive and enemy_headquarter_alive):
+		player_won = false
 		game_manager.won_battle(false)
-		battle_over = true
+		end_combat()
 	#Its a draw, so counts as a win
 	elif(!player_headquarter_alive and !enemy_headquarter_alive):
+		player_won = true
 		game_manager.won_battle(true)
-		battle_over = true
-	auto_tick()
+		end_combat()
+	if(!battle_over):
+		auto_tick()
 
 
 func _on_play_button_toggled(toggled_on):

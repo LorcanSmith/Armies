@@ -291,6 +291,8 @@ func upgrade_unit(ID):
 	upgraded_unit.cost_label.visible = false
 	#Give the unit an ID
 	upgraded_unit.unit_ID = new_ID
+	#Sets the unit's types that buffs work against
+	upgraded_unit.set_unit_buff_types()
 	#Updates the units labels
 	upgraded_unit.set_labels()
 	#Remove non-upgraded unit (self) from the tile
@@ -301,6 +303,8 @@ func upgrade_unit(ID):
 	queue_free()
 func set_unit_buff_types():
 	var dictionary_instance = dictionary.new()
+	while unit_ID == -1:
+		return
 	var unit = dictionary_instance.unit_scenes[unit_ID].instantiate()
 	buffs_work_against = unit.unit_types.duplicate()
 	var potential_types = [Medieval,Army,Vehicle,Human,Soldier,Animal]
