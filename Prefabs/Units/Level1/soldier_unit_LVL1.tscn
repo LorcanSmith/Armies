@@ -10,7 +10,9 @@
 [node name="Soldier" instance=ExtResource("1_1f732")]
 max_health = 15
 brawl_damage = 8
-soldier = true
+Army = true
+Human = true
+Soldier = true
 skill_spawn_amount = 2
 skill_spawn_random = true
 skill_damage = 4

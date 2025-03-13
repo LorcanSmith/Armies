@@ -26,9 +26,17 @@ var tile_to_move_to : Node2D
 
 @export_subgroup("Unit Types")
 var unit_types : Array = [
+	"Medieval",
+	"Army",
+	"Vehicle",
+	"Human",
 	"Soldier",
 	"Animal"
 ]
+@export var Medieval : bool
+@export var Army : bool
+@export var Vehicle : bool
+@export var Human : bool
 @export var Soldier : bool
 @export var Animal : bool
 var potential_types : Array

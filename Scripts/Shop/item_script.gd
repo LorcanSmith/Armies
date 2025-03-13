@@ -66,8 +66,12 @@ var damage_buff_visual = preload("res://Prefabs/Effects/Buffs/buff_damage.tscn")
 var health_buff_visual = preload("res://Prefabs/Effects/Buffs/buff_health.tscn")
 var buffs_work_against : Array = []
 @export_subgroup("Buffs work for")
-@export var soldier : bool
-@export var animal : bool
+@export var Medieval : bool
+@export var Army : bool
+@export var Vehicle : bool
+@export var Human : bool
+@export var Soldier : bool
+@export var Animal : bool
 
 func _ready() -> void:
 	buff_locations = find_child("buffs").get_children()
@@ -83,7 +87,6 @@ func _ready() -> void:
 
 #Auto assigns the Level label
 func set_labels():
-	var level : int
 	var normalised_id = unit_ID + 1
 	if(normalised_id % 3 == 1):
 		level_label.text = "Level 1"
@@ -300,7 +303,7 @@ func set_unit_buff_types():
 	var dictionary_instance = dictionary.new()
 	var unit = dictionary_instance.unit_scenes[unit_ID].instantiate()
 	buffs_work_against = unit.unit_types.duplicate()
-	var potential_types = [soldier, animal]
+	var potential_types = [Medieval,Army,Vehicle,Human,Soldier,Animal]
 	var x = 0
 	while(x < (potential_types.size())):
 		if(!potential_types[x]):
@@ -314,29 +317,28 @@ func buff():
 			if(unit != null):
 				var dictionary_instance = dictionary.new()
 				var unit_dictionary = dictionary_instance.unit_scenes[unit.unit_ID].instantiate()
-				var can_buff
+				var can_buff_unit
 				var b = 0
 				while b < buffs_work_against.size():
-					var type_to_var
 					if(buffs_work_against[b] != null):
 						if(unit_dictionary.get(buffs_work_against[b])):
-							can_buff = true
+							can_buff_unit = true
 					b += 1
-				if(can_buff):
+				if(can_buff_unit):
 					if(damage_buff > 0):
 						unit.damage_boost += damage_buff
-						var buff = damage_buff_visual.instantiate()
-						find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff)
-						buff.global_position = self.global_position
-						buff.target = unit
-						buff.find_child("buff_text").text = str("+",damage_buff)
+						var buff_instance = damage_buff_visual.instantiate()
+						find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
+						buff_instance.global_position = self.global_position
+						buff_instance.target = unit
+						buff_instance.find_child("buff_text").text = str("+",damage_buff)
 					if(health_buff > 0):
 						unit.health_boost += health_buff
-						var buff = health_buff_visual.instantiate()
-						find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff)
-						buff.global_position = self.global_position
-						buff.target = unit
-						buff.find_child("buff_text").text = str("+",health_buff)
+						var buff_instance = health_buff_visual.instantiate()
+						find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
+						buff_instance.global_position = self.global_position
+						buff_instance.target = unit
+						buff_instance.find_child("buff_text").text = str("+",health_buff)
 					unit.update_label_text()
 			buff_loc += 1
 
