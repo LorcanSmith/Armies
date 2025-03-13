@@ -64,16 +64,38 @@ func battle_ticker():
 		#If movement is next
 		if(next_phase == "movement"):
 			movement_phase()
+			update_phase_label("movement")
 		#If combat is next
 		elif(next_phase == "combat"):
 			combat_phase()
+			update_phase_label("combat")
 		#If healing is next
 		elif(next_phase == "healing"):
 			healing_phase()
+			update_phase_label("healing")
 	#If the battle is over then go back to the shop
 	else:
 		game_manager.swap_scenes()
-
+		
+func update_phase_label(phase : String):
+	var letters = phase.to_upper().split()
+	var letter_spots = $"grid_manager/grid_generator (army)/Camera2D/Sprite2D".get_children()
+	var counter = 0
+	while counter < letter_spots.size():
+		if counter < letters.size():
+			if letter_spots[counter].get_child(0).text == letters[counter]:
+				print("same letter")
+			else:
+				letter_spots[counter].get_node("AnimationPlayer").play("letter_close")
+				await get_tree().create_timer(0.03).timeout
+				letter_spots[counter].get_child(0).text = letters[counter]
+		else:
+			letter_spots[counter].get_node("AnimationPlayer").play("letter_close")
+			await get_tree().create_timer(.05).timeout
+			letter_spots[counter].get_child(0).text = ""
+		letter_spots[counter].get_node("AnimationPlayer").play("letter_open")
+		counter += 1
+	
 var units_moved = 0
 var units_to_move = []
 
