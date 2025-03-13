@@ -36,6 +36,10 @@ skill=""
 tilemap=""
 item=""
 
+[gui]
+
+theme/custom_font="uid://ddl4glfhhwobo"
+
 [input]
 
 save={

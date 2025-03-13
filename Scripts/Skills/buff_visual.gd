@@ -13,6 +13,6 @@ func _process(delta: float) -> void:
 			queue_free()
 
 
-func _on_animation_player_animation_finished() -> void:
+func _on_animation_player_animation_finished(anim_name : String) -> void:
 	starting_location = self.global_position
 	move = true

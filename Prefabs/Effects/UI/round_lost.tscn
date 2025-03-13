@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnmvgjeb7xtmc"]
+
+[ext_resource type="PackedScene" uid="uid://y642uwgblpda" path="res://Prefabs/Effects/UI/round_won.tscn" id="1_ac7sx"]
+
+[node name="Round Lost" instance=ExtResource("1_ac7sx")]
+
+[node name="RichTextLabel" parent="." index="0"]
+offset_left = -166.0
+offset_top = -99.0
+offset_right = 166.0
+offset_bottom = 103.0
+text = "Round Lost"
