@@ -10,7 +10,7 @@ size = Vector2(156, 253)
 [node name="headquarter" type="Node2D" groups=["headquarter"]]
 modulate = Color(0.821536, 0.823897, 0.8615, 1)
 script = ExtResource("1_2vm1v")
-max_health = 80
+max_health = 40
 
 [node name="Area2D" type="Area2D" parent="." groups=["headquarter"]]
 scale = Vector2(1, 2.5)

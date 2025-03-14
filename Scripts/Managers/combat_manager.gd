@@ -20,13 +20,16 @@ var enemy_army : Array = []
 @export var ticker_paused : bool = false
 
 #determines the length between ticks while the ticker is unpaused
-@export var tick_delay : float = 0.3
+var tick_delay : float
+@export var regular_speed : float
+@export var quick_speed : float
 
 var player_headquarter : Node2D
 var enemy_headquarter : Node2D
 
 
 func _ready() -> void:
+	tick_delay = regular_speed
 	game_manager = find_parent("game_manager")
 	player_headquarter = self.find_child("player_headquarter")
 	enemy_headquarter = self.find_child("enemy_headquarter")
@@ -63,16 +66,19 @@ func battle_ticker():
 	if(!battle_over):
 		#If movement is next
 		if(next_phase == "movement"):
-			movement_phase()
 			update_phase_label("movement")
+			await get_tree().create_timer(tick_delay*2).timeout
+			movement_phase()
 		#If combat is next
 		elif(next_phase == "combat"):
-			combat_phase()
 			update_phase_label("combat")
+			await get_tree().create_timer(tick_delay*2).timeout
+			combat_phase()
 		#If healing is next
 		elif(next_phase == "healing"):
-			healing_phase()
 			update_phase_label("healing")
+			await get_tree().create_timer(tick_delay*2).timeout
+			healing_phase()
 	#If the battle is over then go back to the shop
 	else:
 		game_manager.swap_scenes()
@@ -290,7 +296,7 @@ func no_skills_left():
 
 func _on_play_button_toggled(toggled_on):
 	if toggled_on:
-		tick_delay = 0.3
+		tick_delay = regular_speed
 		if ticker_paused:
 			ticker_paused = false
 			auto_tick()
@@ -301,7 +307,7 @@ func _on_pause_button_toggled(toggled_on):
 
 func _on_forward_toggled(toggled_on):
 	if toggled_on:
-		tick_delay = 0.1
+		tick_delay = quick_speed
 		if ticker_paused:
 			ticker_paused = false
 			auto_tick()

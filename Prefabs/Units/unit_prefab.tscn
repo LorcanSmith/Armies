@@ -92,6 +92,7 @@ _data = {
 
 [node name="unit_prefab" type="Node2D"]
 script = ExtResource("1_bdk6m")
+reload_time = 0
 
 [node name="skill_locations" type="Node2D" parent="."]
 

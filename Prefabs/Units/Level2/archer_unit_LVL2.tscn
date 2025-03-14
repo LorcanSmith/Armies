@@ -14,7 +14,6 @@ Human = true
 skill_spawn_amount = 2
 skill_spawn_random = true
 skill_damage = 5
-reload_time = 2
 projectile = ExtResource("2_qc3gl")
 
 [node name="CollisionShape2D" parent="skill_locations/location/skill_area2D" index="0"]

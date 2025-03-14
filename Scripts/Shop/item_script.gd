@@ -355,7 +355,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		#Sprite2D to the tiles' location
 		tile_currently_over = area.get_parent()
 	#The player is holding the item over the sell area location
-	elif(area.is_in_group("sell_location")):
+	elif(area.is_in_group("sell_location") and bought):
 		item_on_sell_location = true
 		#Set the cost label to the sell amount so we can see how much money we will get back
 		cost_label.text = str(sell_cost)
@@ -370,6 +370,6 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 		#the mouse
 		sprite.position = Vector2(0,0)
 	#The player has stopped holding the item over the sell area location
-	elif(area.is_in_group("sell_location")):
+	elif(area.is_in_group("sell_location") and bought):
 		item_on_sell_location = false
 		cost_label.visible = false
