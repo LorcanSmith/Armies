@@ -64,6 +64,7 @@ func load_units():
 								#Add the unit to either the player or the enemy group
 								instance.add_to_group("enemy")
 								instance.scale.x = -instance.scale.x
+								instance.find_child("Sprite2D").self_modulate = instance.find_child("Sprite2D").self_modulate + Color(0.2,-0.3,-0.3)
 								reversed_tiles[width][height].add_child(instance)
 								instance.position = Vector2i(0,0)
 								reversed_tiles[width][height].unit_placed_on(instance)
