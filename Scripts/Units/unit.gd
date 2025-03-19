@@ -233,7 +233,7 @@ func skill():
 	
 	if reloading:
 		reloading_counter -= 1
-		var ammo_cooldown = float(reload_time - reloading_counter)/float(reload_time)
+		var ammo_cooldown = float((reload_time - reloading_counter)-1)/float(reload_time - 1)
 		ammo_bar.scale.x = 1 * ammo_cooldown
 		if reloading_counter == 0:
 			reloading = false
