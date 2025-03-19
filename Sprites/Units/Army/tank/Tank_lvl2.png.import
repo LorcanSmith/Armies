@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl51wxccrk8j1"
-path="res://.godot/imported/Heal1.png-d738e26e095cd0a930f5aebc7fcce376.ctex"
+uid="uid://bp3w3rjodcmlh"
+path="res://.godot/imported/Tank_lvl2.png-f8741892bd22945e40b1af2c92abb9b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Effects/Heal1.png"
-dest_files=["res://.godot/imported/Heal1.png-d738e26e095cd0a930f5aebc7fcce376.ctex"]
+source_file="res://Sprites/Units/Army/tank/Tank_lvl2.png"
+dest_files=["res://.godot/imported/Tank_lvl2.png-f8741892bd22945e40b1af2c92abb9b2.ctex"]
 
 [params]
 

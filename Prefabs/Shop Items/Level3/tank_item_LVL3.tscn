@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://oxgd6ip384x7"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_f1o4o"]
-[ext_resource type="Texture2D" uid="uid://blbt32wdlfngh" path="res://Sprites/Units/Army/tank/tank_sprite.png" id="2_iwf0k"]
+[ext_resource type="Texture2D" uid="uid://dd2nlcrqwe18n" path="res://Sprites/Units/Army/tank/Tank_lvl3.png" id="2_kjjmh"]
 [ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_kjjmh"]
 
 [node name="Tank" instance=ExtResource("1_f1o4o")]
@@ -12,7 +12,8 @@ buy_cost = 35
 sell_cost = 17
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_iwf0k")
+texture = ExtResource("2_kjjmh")
+offset = Vector2(2, 8)
 
 [node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_kjjmh")]
 tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 37, 13, 96, 187, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0)

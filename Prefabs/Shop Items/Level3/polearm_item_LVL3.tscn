@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bkt06anmdlcyi"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_bub1e"]
-[ext_resource type="Texture2D" uid="uid://befn01dmekcw1" path="res://Sprites/Units/Medieval/Polearm/Polearm.png" id="2_qyatr"]
+[ext_resource type="Texture2D" uid="uid://dj5mmhix3uapt" path="res://Sprites/Units/Medieval/Polearm/Polearm_lvl3.png" id="2_qyatr"]
 [ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_qyatr"]
 
 [node name="Item" instance=ExtResource("1_bub1e")]

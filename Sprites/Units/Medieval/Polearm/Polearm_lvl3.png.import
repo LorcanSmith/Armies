@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl51wxccrk8j1"
-path="res://.godot/imported/Heal1.png-d738e26e095cd0a930f5aebc7fcce376.ctex"
+uid="uid://dj5mmhix3uapt"
+path="res://.godot/imported/Polearm_lvl3.png-1028c8d943de0ea686161ffeb7bb8404.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Effects/Heal1.png"
-dest_files=["res://.godot/imported/Heal1.png-d738e26e095cd0a930f5aebc7fcce376.ctex"]
+source_file="res://Sprites/Units/Medieval/Polearm/Polearm_lvl3.png"
+dest_files=["res://.godot/imported/Polearm_lvl3.png-1028c8d943de0ea686161ffeb7bb8404.ctex"]
 
 [params]
 
