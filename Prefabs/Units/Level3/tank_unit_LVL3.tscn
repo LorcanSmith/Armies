@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_0e1kp"]
 [ext_resource type="PackedScene" uid="uid://bjsx2iphb4gud" path="res://Prefabs/Effects/Projectiles/shell_projectile.tscn" id="2_d5lbt"]
-[ext_resource type="Texture2D" uid="uid://blbt32wdlfngh" path="res://Sprites/Units/Army/tank/tank_sprite.png" id="3_x00yl"]
+[ext_resource type="Texture2D" uid="uid://dd2nlcrqwe18n" path="res://Sprites/Units/Army/tank/Tank_lvl3.png" id="3_ijajl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
@@ -41,7 +41,8 @@ position = Vector2(296, 0)
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("3_x00yl")
+texture = ExtResource("3_ijajl")
+offset = Vector2(3, 7)
 
 [connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

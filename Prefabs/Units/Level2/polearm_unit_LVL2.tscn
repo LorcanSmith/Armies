@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://qdnrh6p6rrsp"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_wmsdo"]
-[ext_resource type="Texture2D" uid="uid://befn01dmekcw1" path="res://Sprites/Units/Medieval/Polearm/Polearm.png" id="2_i3b4p"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_l0xn0"]
+[ext_resource type="Texture2D" uid="uid://d2kvmhvpxsb5q" path="res://Sprites/Units/Medieval/Polearm/Polearm_lvl2.png" id="3_l0xn0"]
 
 [node name="Polearm" instance=ExtResource("1_wmsdo")]
 max_health = 26
@@ -14,7 +14,7 @@ skill_damage = 16
 projectile = ExtResource("2_l0xn0")
 
 [node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("2_i3b4p")
+texture = ExtResource("3_l0xn0")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-2, -0.5)
