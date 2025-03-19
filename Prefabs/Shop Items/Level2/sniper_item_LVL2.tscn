@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c06dypr73wuf0"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_cfgqa"]
-[ext_resource type="Texture2D" uid="uid://edy18x6xxarr" path="res://Sprites/Units/Army/sniper/Sniper.png" id="2_87d7p"]
+[ext_resource type="Texture2D" uid="uid://v3nlwsuc1f6q" path="res://Sprites/Units/Army/sniper/Sniper_lvl2.png" id="2_87d7p"]
 [ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_87d7p"]
 
 [node name="Sniper" instance=ExtResource("1_cfgqa")]
