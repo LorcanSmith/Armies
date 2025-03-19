@@ -41,19 +41,17 @@ distance_between_grids = 2
 position = Vector2(271, 1)
 zoom = Vector2(1.255, 1.255)
 
-[node name="PlayButton" type="TextureButton" parent="grid_manager/grid_generator (army)/Camera2D"]
+[node name="NextButton" type="TextureButton" parent="grid_manager/grid_generator (army)/Camera2D"]
+visible = false
 texture_filter = 1
-offset_left = 402.0
-offset_top = -258.0
-offset_right = 442.0
-offset_bottom = -218.0
-scale = Vector2(0.72, 0.72)
-toggle_mode = true
-button_pressed = true
-button_group = ExtResource("6_36bif")
-texture_normal = ExtResource("7_st48h")
-texture_pressed = ExtResource("7_5mabu")
-texture_hover = ExtResource("8_36bif")
+offset_left = 152.0
+offset_top = -260.0
+offset_right = 184.0
+offset_bottom = -227.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("12_wxrt4")
+texture_pressed = ExtResource("13_b20ae")
+texture_hover = ExtResource("14_l3yi2")
 
 [node name="PauseButton" type="TextureButton" parent="grid_manager/grid_generator (army)/Camera2D"]
 texture_filter = 1
@@ -68,15 +66,19 @@ texture_normal = ExtResource("6_7wshk")
 texture_pressed = ExtResource("10_yc1ci")
 texture_hover = ExtResource("11_yudfw")
 
-[node name="TextureButton" type="TextureButton" parent="grid_manager/grid_generator (army)/Camera2D/PauseButton"]
-layout_mode = 0
-offset_left = -519.445
-offset_top = 358.333
-offset_right = -479.445
-offset_bottom = 398.333
-texture_normal = ExtResource("12_wxrt4")
-texture_pressed = ExtResource("13_b20ae")
-texture_hover = ExtResource("14_l3yi2")
+[node name="PlayButton" type="TextureButton" parent="grid_manager/grid_generator (army)/Camera2D"]
+texture_filter = 1
+offset_left = 402.0
+offset_top = -258.0
+offset_right = 442.0
+offset_bottom = -218.0
+scale = Vector2(0.72, 0.72)
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("6_36bif")
+texture_normal = ExtResource("7_st48h")
+texture_pressed = ExtResource("7_5mabu")
+texture_hover = ExtResource("8_36bif")
 
 [node name="Forward" type="TextureButton" parent="grid_manager/grid_generator (army)/Camera2D"]
 texture_filter = 1
@@ -126,6 +128,7 @@ position = Vector2(31.9767, 0)
 [node name="skill_holder" type="Node2D" parent="."]
 script = ExtResource("5_vexsu")
 
-[connection signal="toggled" from="grid_manager/grid_generator (army)/Camera2D/PlayButton" to="." method="_on_play_button_toggled"]
+[connection signal="pressed" from="grid_manager/grid_generator (army)/Camera2D/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="toggled" from="grid_manager/grid_generator (army)/Camera2D/PauseButton" to="." method="_on_pause_button_toggled"]
+[connection signal="toggled" from="grid_manager/grid_generator (army)/Camera2D/PlayButton" to="." method="_on_play_button_toggled"]
 [connection signal="toggled" from="grid_manager/grid_generator (army)/Camera2D/Forward" to="." method="_on_forward_toggled"]

@@ -60,6 +60,8 @@ func auto_tick():
 	if(!ticker_paused):
 		await get_tree().create_timer(tick_delay).timeout
 		battle_ticker()
+	else:
+		find_child("NextButton").visible = true
 	
 func battle_ticker():
 	#If the battle isn't over, keep the units fighting
@@ -304,6 +306,8 @@ func _on_play_button_toggled(toggled_on):
 func _on_pause_button_toggled(toggled_on):
 	if toggled_on:
 		ticker_paused = true
+	else:
+		find_child("NextButton").visible = false
 
 func _on_forward_toggled(toggled_on):
 	if toggled_on:
@@ -311,3 +315,7 @@ func _on_forward_toggled(toggled_on):
 		if ticker_paused:
 			ticker_paused = false
 			auto_tick()
+
+func _on_next_button_pressed():
+	find_child("NextButton").visible = false
+	battle_ticker()
