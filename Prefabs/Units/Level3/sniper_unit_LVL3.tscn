@@ -54,6 +54,7 @@ shape = SubResource("CircleShape2D_11hi7")
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("3_3v1st")
+offset = Vector2(6, 0)
 
 [connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

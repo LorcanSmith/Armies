@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://fr2rw05wkoyt"]
+[gd_scene load_steps=6 format=3 uid="uid://fr2rw05wkoyt"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_3xlcy"]
 [ext_resource type="PackedScene" uid="uid://j16g2a5ai3sr" path="res://Prefabs/Effects/Projectiles/bullet_projectile.tscn" id="2_5n52r"]
+[ext_resource type="Texture2D" uid="uid://dxw8owu5o4krl" path="res://Sprites/Units/Army/soldier/Soldier_lvl2.png" id="3_tyom5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
@@ -58,6 +59,9 @@ position = Vector2(148, -74)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location6/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_1f732")
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("3_tyom5")
 
 [connection signal="area_entered" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

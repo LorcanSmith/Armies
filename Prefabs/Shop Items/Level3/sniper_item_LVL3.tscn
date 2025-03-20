@@ -13,6 +13,7 @@ sell_cost = 12
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_pxq8h")
+offset = Vector2(6, 0)
 
 [node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_pxq8h")]
 tile_map_data = PackedByteArray("AAABAP//AAAAAAAAAAAlDWC7AAAAAAAAAAACAP//AAAAAAAAAAADAP//AAAAAAAAAAADAP7/AAAAAAAAAAADAAAAAAAAAAAAAAA=")

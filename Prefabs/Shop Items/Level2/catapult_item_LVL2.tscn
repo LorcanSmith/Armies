@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://brpyou4v373bs"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_hdgot"]
-[ext_resource type="Texture2D" uid="uid://cxmhv5kgan1ns" path="res://Sprites/Units/Medieval/Catapult/catapult_sprite.png" id="2_8m75q"]
+[ext_resource type="Texture2D" uid="uid://dopsd0udl48cv" path="res://Sprites/Units/Medieval/Catapult/catapult_sprite_lvl2.png" id="2_ymyad"]
 [ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_ymyad"]
 
 [node name="Catapult" instance=ExtResource("1_hdgot")]
@@ -11,7 +11,7 @@ buy_cost = 13
 sell_cost = 6
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_8m75q")
+texture = ExtResource("2_ymyad")
 
 [node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_ymyad")]
 tile_map_data = PackedByteArray(0, 0, 1, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 37, 13, 96, 187, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0)

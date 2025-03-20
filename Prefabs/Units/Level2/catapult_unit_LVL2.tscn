@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://xn0r1641fcns"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_g20xn"]
-[ext_resource type="Texture2D" uid="uid://cxmhv5kgan1ns" path="res://Sprites/Units/Medieval/Catapult/catapult_sprite.png" id="2_3u0c2"]
 [ext_resource type="PackedScene" uid="uid://c7tp70ujfb3q3" path="res://Prefabs/Effects/Projectiles/rock_projectile.tscn" id="2_u1w2l"]
+[ext_resource type="Texture2D" uid="uid://dopsd0udl48cv" path="res://Sprites/Units/Medieval/Catapult/catapult_sprite_lvl2.png" id="3_u1w2l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
@@ -35,7 +35,7 @@ position = Vector2(222, 0)
 shape = SubResource("CircleShape2D_11hi7")
 
 [node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("2_3u0c2")
+texture = ExtResource("3_u1w2l")
 
 [connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
