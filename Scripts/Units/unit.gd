@@ -145,6 +145,7 @@ func find_movement_tile():
 		combat_manager.unit_to_find_tile += 1
 		combat_manager.find_units_movement_tile()
 
+var mo = false
 #Moves the unit in a desired direction and distance
 func move():
 	if(enemies_in_range.size() == 0 or skill_damage <= 0):
@@ -153,6 +154,11 @@ func move():
 			reparent(tile_to_move_to)
 			#Tell the new tile that this unit is now on it
 			tile_to_move_to.unit_placed_on(self)
+			mo = true
+	if(!mo):
+		var cm = find_parent("combat_manager")
+		cm.w += 1
+		cm.waited_for_move()
 	moved = false
 func skill():
 	#If this unit is the only unit on the tile then they can do their skill
@@ -340,6 +346,11 @@ func _process(delta: float) -> void:
 	if(self.position != Vector2(0,0) and alive):
 		#Moves the unit smoothly
 		self.position = lerp(self.position, Vector2(0,0), delta*5)
+	if(self.position.distance_to(Vector2(0,0)) < 1.8 and mo):
+		mo = false
+		var cm = find_parent("combat_manager")
+		cm.w += 1
+		cm.waited_for_move()
 	if(mouse_over and current_tooltip_time_left < 0):
 		tooltip.set_visible(true)
 	elif(mouse_over and current_tooltip_time_left > 0):
