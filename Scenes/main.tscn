@@ -86,6 +86,50 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/HBoxContainer/heart"]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 290.0
+offset_bottom = 163.0
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/normal_font = ExtResource("5_21xkr")
+theme_override_font_sizes/normal_font_size = 101
+text = "LIFE"
+horizontal_alignment = 1
+
+[node name="dollar" type="TextureRect" parent="UI/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("6_21xkr")
+expand_mode = 2
+
+[node name="COINS" type="RichTextLabel" parent="UI/HBoxContainer/dollar"]
+clip_contents = false
+custom_minimum_size = Vector2(82.795, 0)
+layout_mode = 2
+offset_right = 290.0
+offset_bottom = 290.0
+scale = Vector2(0.2, 0.2)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_21xkr")
+theme_override_font_sizes/normal_font_size = 150
+text = "55"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/HBoxContainer/dollar"]
+offset_left = -1.0
+offset_top = 60.0
+offset_right = 289.0
+offset_bottom = 163.0
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/normal_font = ExtResource("5_21xkr")
+theme_override_font_sizes/normal_font_size = 101
+text = "COINS"
+horizontal_alignment = 1
+
 [node name="Wins" type="TextureRect" parent="UI/HBoxContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(39.28, 0)
@@ -114,27 +158,16 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="dollar" type="TextureRect" parent="UI/HBoxContainer"]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("6_21xkr")
-expand_mode = 2
-
-[node name="COINS" type="RichTextLabel" parent="UI/HBoxContainer/dollar"]
-clip_contents = false
-custom_minimum_size = Vector2(82.795, 0)
-layout_mode = 2
-offset_right = 290.0
-offset_bottom = 290.0
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/HBoxContainer/Wins"]
+offset_left = -5.0
+offset_top = 60.0
+offset_right = 285.0
+offset_bottom = 163.0
 scale = Vector2(0.2, 0.2)
-theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("5_21xkr")
-theme_override_font_sizes/normal_font_size = 150
-text = "55"
-scroll_active = false
-autowrap_mode = 0
+theme_override_font_sizes/normal_font_size = 101
+text = "WINS"
 horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="turn" type="TextureRect" parent="UI/HBoxContainer"]
 texture_filter = 1
@@ -151,12 +184,24 @@ offset_right = 240.0
 offset_bottom = 290.0
 scale = Vector2(0.2, 0.2)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 150
 text = "14"
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/HBoxContainer/turn"]
+offset_left = -5.0
+offset_top = 60.0
+offset_right = 285.0
+offset_bottom = 163.0
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/normal_font = ExtResource("5_21xkr")
+theme_override_font_sizes/normal_font_size = 101
+text = "TURN"
+horizontal_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI"]
 offset_left = 1086.0
