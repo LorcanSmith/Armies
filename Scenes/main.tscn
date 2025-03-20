@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://brgi4h0spiup2"]
+[gd_scene load_steps=24 format=3 uid="uid://brgi4h0spiup2"]
 
 [ext_resource type="Script" uid="uid://ceah7wfd5evx8" path="res://Scripts/Managers/game_manager.gd" id="1_y45oy"]
 [ext_resource type="Script" uid="uid://06xxppo51p7p" path="res://Scripts/DEBUGGER_script.gd" id="2_pa0fo"]
@@ -12,12 +12,164 @@
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="8_ynf5e"]
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="9_hptm8"]
 
-[node name="game_manager" type="Node2D" node_paths=PackedStringArray("health_text", "coin_text", "turn_text", "wins_text")]
+[sub_resource type="Animation" id="Animation_d1ilt"]
+resource_name = "fade_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/heart/HealthCounter:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.819608, 0.301961, 0.301961, 0), Color(0.819608, 0.301961, 0.301961, 1), Color(0.819608, 0.301961, 0.301961, 1), Color(0.819608, 0.301961, 0.301961, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6iyac"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/heart/HealthCounter:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.819608, 0.301961, 0.301961, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fdnlq"]
+_data = {
+&"RESET": SubResource("Animation_6iyac"),
+&"fade_in": SubResource("Animation_d1ilt")
+}
+
+[sub_resource type="Animation" id="Animation_jkdf5"]
+resource_name = "fade_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/dollar/CoinCounter:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.945098, 0.278431, 0), Color(1, 0.945098, 0.278431, 1), Color(1, 0.945098, 0.278431, 1), Color(1, 0.945098, 0.278431, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wsu2k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/dollar/CoinCounter:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.945098, 0.278431, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h1bgf"]
+_data = {
+&"RESET": SubResource("Animation_wsu2k"),
+&"fade_in": SubResource("Animation_jkdf5")
+}
+
+[sub_resource type="Animation" id="Animation_h1bgf"]
+resource_name = "fade_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/Wins/WinCounter:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.882353, 0.85098, 0.172549, 0), Color(0.882353, 0.85098, 0.172549, 1), Color(0.882353, 0.85098, 0.172549, 1), Color(0.882353, 0.85098, 0.172549, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b3802"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/Wins/WinCounter:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.882353, 0.85098, 0.172549, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hibaj"]
+_data = {
+&"RESET": SubResource("Animation_b3802"),
+&"fade_in": SubResource("Animation_h1bgf")
+}
+
+[sub_resource type="Animation" id="Animation_pdsj5"]
+resource_name = "fade_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/turn/TurnCounter:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ee4r6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/turn/TurnCounter:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3pmx8"]
+_data = {
+&"RESET": SubResource("Animation_ee4r6"),
+&"fade_in": SubResource("Animation_pdsj5")
+}
+
+[node name="game_manager" type="Node2D" node_paths=PackedStringArray("health_text", "coin_text", "turn_text", "wins_text", "health_counter", "coin_counter", "turn_counter", "win_counter")]
 script = ExtResource("1_y45oy")
 health_text = NodePath("UI/HBoxContainer/heart/HEALTH")
 coin_text = NodePath("UI/HBoxContainer/dollar/COINS")
 turn_text = NodePath("UI/HBoxContainer/turn/TURN")
 wins_text = NodePath("UI/HBoxContainer/Wins/WINS")
+health_counter = NodePath("UI/HBoxContainer/heart/HealthCounter")
+coin_counter = NodePath("UI/HBoxContainer/dollar/CoinCounter")
+turn_counter = NodePath("UI/HBoxContainer/turn/TurnCounter")
+win_counter = NodePath("UI/HBoxContainer/Wins/WinCounter")
 
 [node name="DEBUGGER" type="Node2D" parent="."]
 visible = false
@@ -86,6 +238,74 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/HBoxContainer/heart"]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 290.0
+offset_bottom = 163.0
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/normal_font = ExtResource("5_21xkr")
+theme_override_font_sizes/normal_font_size = 101
+text = "LIFE"
+horizontal_alignment = 1
+
+[node name="HealthCounter" type="RichTextLabel" parent="UI/HBoxContainer/heart"]
+modulate = Color(0.819608, 0.301961, 0.301961, 0)
+layout_mode = 0
+offset_top = 80.0
+offset_right = 290.0
+offset_bottom = 183.0
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/normal_font = ExtResource("5_21xkr")
+theme_override_font_sizes/normal_font_size = 101
+text = "-0"
+horizontal_alignment = 1
+
+[node name="dollar" type="TextureRect" parent="UI/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("6_21xkr")
+expand_mode = 2
+
+[node name="COINS" type="RichTextLabel" parent="UI/HBoxContainer/dollar"]
+clip_contents = false
+custom_minimum_size = Vector2(82.795, 0)
+layout_mode = 2
+offset_right = 290.0
+offset_bottom = 290.0
+scale = Vector2(0.2, 0.2)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_21xkr")
+theme_override_font_sizes/normal_font_size = 150
+text = "55"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/HBoxContainer/dollar"]
+offset_left = -1.0
+offset_top = 60.0
+offset_right = 289.0
+offset_bottom = 163.0
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/normal_font = ExtResource("5_21xkr")
+theme_override_font_sizes/normal_font_size = 101
+text = "COINS"
+horizontal_alignment = 1
+
+[node name="CoinCounter" type="RichTextLabel" parent="UI/HBoxContainer/dollar"]
+modulate = Color(1, 0.945098, 0.278431, 0)
+offset_left = -1.0
+offset_top = 80.0
+offset_right = 289.0
+offset_bottom = 183.0
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/normal_font = ExtResource("5_21xkr")
+theme_override_font_sizes/normal_font_size = 101
+text = "+0"
+horizontal_alignment = 1
+
 [node name="Wins" type="TextureRect" parent="UI/HBoxContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(39.28, 0)
@@ -114,27 +334,28 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="dollar" type="TextureRect" parent="UI/HBoxContainer"]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("6_21xkr")
-expand_mode = 2
-
-[node name="COINS" type="RichTextLabel" parent="UI/HBoxContainer/dollar"]
-clip_contents = false
-custom_minimum_size = Vector2(82.795, 0)
-layout_mode = 2
-offset_right = 290.0
-offset_bottom = 290.0
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/HBoxContainer/Wins"]
+offset_left = -5.0
+offset_top = 60.0
+offset_right = 285.0
+offset_bottom = 163.0
 scale = Vector2(0.2, 0.2)
-theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("5_21xkr")
-theme_override_font_sizes/normal_font_size = 150
-text = "55"
-scroll_active = false
-autowrap_mode = 0
+theme_override_font_sizes/normal_font_size = 101
+text = "WINS"
 horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="WinCounter" type="RichTextLabel" parent="UI/HBoxContainer/Wins"]
+modulate = Color(0.882353, 0.85098, 0.172549, 0)
+offset_left = -5.0
+offset_top = 81.0
+offset_right = 285.0
+offset_bottom = 184.0
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/normal_font = ExtResource("5_21xkr")
+theme_override_font_sizes/normal_font_size = 101
+text = "+1"
+horizontal_alignment = 1
 
 [node name="turn" type="TextureRect" parent="UI/HBoxContainer"]
 texture_filter = 1
@@ -151,12 +372,36 @@ offset_right = 240.0
 offset_bottom = 290.0
 scale = Vector2(0.2, 0.2)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 150
 text = "14"
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/HBoxContainer/turn"]
+offset_left = -5.0
+offset_top = 60.0
+offset_right = 285.0
+offset_bottom = 163.0
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/normal_font = ExtResource("5_21xkr")
+theme_override_font_sizes/normal_font_size = 101
+text = "TURN"
+horizontal_alignment = 1
+
+[node name="TurnCounter" type="RichTextLabel" parent="UI/HBoxContainer/turn"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -5.0
+offset_top = 81.0
+offset_right = 285.0
+offset_bottom = 184.0
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/normal_font = ExtResource("5_21xkr")
+theme_override_font_sizes/normal_font_size = 101
+text = "+1"
+horizontal_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI"]
 offset_left = 1086.0
@@ -167,6 +412,26 @@ scale = Vector2(0.2, 0.2)
 theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 100
 text = "ver: 0.02"
+
+[node name="Health" type="AnimationPlayer" parent="UI"]
+libraries = {
+&"": SubResource("AnimationLibrary_fdnlq")
+}
+
+[node name="Coins" type="AnimationPlayer" parent="UI"]
+libraries = {
+&"": SubResource("AnimationLibrary_h1bgf")
+}
+
+[node name="Wins" type="AnimationPlayer" parent="UI"]
+libraries = {
+&"": SubResource("AnimationLibrary_hibaj")
+}
+
+[node name="Turns" type="AnimationPlayer" parent="UI"]
+libraries = {
+&"": SubResource("AnimationLibrary_3pmx8")
+}
 
 [node name="game_over_canvas" type="CanvasLayer" parent="."]
 visible = false

@@ -29,6 +29,10 @@ var money_remaining : int = 0
 @export var coin_text : RichTextLabel
 @export var turn_text : RichTextLabel
 @export var wins_text : RichTextLabel
+@export var health_counter : RichTextLabel
+@export var coin_counter : RichTextLabel
+@export var turn_counter : RichTextLabel
+@export var win_counter : RichTextLabel
 
 var game_over_canvas : CanvasLayer
 
@@ -53,6 +57,7 @@ func create_scene():
 		current_scene = combat_scene.instantiate()
 	else:
 		turn_number += 1
+		$UI/Turns.play("fade_in")
 		turn_text.text = str(turn_number)
 		current_scene = shop_scene.instantiate()
 	add_child(current_scene)
@@ -91,6 +96,12 @@ func _input(event):
 		DebuggerScript.create_enemy_armies()
 	
 func money_changed(amount : int):
+	$UI/Coins.stop()
+	if money_remaining > amount:
+		coin_counter.text = str(amount - money_remaining)
+	else:
+		coin_counter.text = "+" + str(amount - money_remaining)
+	$UI/Coins.play("fade_in")
 	coin_text.text = str(amount)
 	money_remaining = amount
 #Called by combat manager when our headquarters is destroyed
@@ -99,6 +110,7 @@ func won_battle(won : bool):
 	if(won):
 		#Add a win
 		wins += 1
+		$UI/Wins.play("fade_in")
 		#If we haven't won the whole game (10 wins)
 		if(wins == 10):
 			show_game_over(true)
@@ -107,14 +119,19 @@ func won_battle(won : bool):
 		#Does a different amount of damage based on the turn number
 		if(turn_number == 1):
 			life_remaining -= 1
+			health_counter.text = "-1"
 		elif(turn_number == 2):
 			life_remaining -= 2
+			health_counter.text = "-2"
 		else:
 			life_remaining -= 3
+			health_counter.text = "-3"
+			
+		$UI/Health.play("fade_in")	
 		#If we no longer have life left, its game over
 		if(life_remaining <= 0):	
 			show_game_over(false)
-	#Updates UI text
+#	Updates UI text
 	health_text.text = str(life_remaining)
 	wins_text.text = str(wins)
 	
