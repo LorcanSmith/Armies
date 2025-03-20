@@ -14,6 +14,7 @@ var current_tooltip_time_left
 var health : int
 var health_bar_remaining : int
 var health_bar : ColorRect
+var ammo_bar : ColorRect
 #Keep track of if the unit has moved this turn
 var moved = false
 #Child node that contains all the locations the unit can move to
@@ -88,6 +89,9 @@ var friendlies_in_range : Array = []
 
 func _ready() -> void:
 	health_bar = find_child("health_bar_color")
+	ammo_bar = find_child("ammo_bar_color")
+	if reload_time > 1:
+		find_child("ammo_bar_background").visible = true
 	tooltip = find_child("Tooltip")
 	current_tooltip_time_left = tooltip_show_time
 	skill_locations_parent = find_child("skill_locations")
@@ -151,10 +155,6 @@ func move():
 			tile_to_move_to.unit_placed_on(self)
 	moved = false
 func skill():
-	if reloading:
-		reloading_counter -= 1
-		if reloading_counter == 0:
-			reloading = false
 	#If this unit is the only unit on the tile then they can do their skill
 	if(get_parent().units_on_tile.size() < 2):
 		#If there is at least one enemy within the units range (in a skill location) and the unit isn't reloading
@@ -230,6 +230,13 @@ func skill():
 	#If there is another unit on this tile then they will brawl
 	else:
 		brawl()
+	
+	if reloading:
+		reloading_counter -= 1
+		var ammo_cooldown = float((reload_time - reloading_counter)-1)/float(reload_time - 1)
+		ammo_bar.scale.x = 1 * ammo_cooldown
+		if reloading_counter == 0:
+			reloading = false
 
 func brawl():
 	#Finds each unit on this unit's current tile
