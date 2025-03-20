@@ -71,9 +71,6 @@ func create_scene():
 	
 	load_complete("scene")
 
-	await get_tree().create_timer(1.5).timeout
-	$UI/Turns.play("fade_out")
-
 func load_complete(element_loaded : String):
 	if(element_loaded == "scene"):
 		GridManager.generate_grids()
@@ -99,6 +96,7 @@ func _input(event):
 		DebuggerScript.create_enemy_armies()
 	
 func money_changed(amount : int):
+	$UI/Coins.stop()
 	if money_remaining > amount:
 		coin_counter.text = str(amount - money_remaining)
 	else:
@@ -106,8 +104,6 @@ func money_changed(amount : int):
 	$UI/Coins.play("fade_in")
 	coin_text.text = str(amount)
 	money_remaining = amount
-	await get_tree().create_timer(1.5).timeout
-	$UI/Coins.play("fade_out")
 #Called by combat manager when our headquarters is destroyed
 func won_battle(won : bool):
 	#If we won
@@ -115,9 +111,6 @@ func won_battle(won : bool):
 		#Add a win
 		wins += 1
 		$UI/Wins.play("fade_in")
-		wins_text.text = str(wins)
-		await get_tree().create_timer(1.5).timeout
-		$UI/Wins.play("fade_out")
 		#If we haven't won the whole game (10 wins)
 		if(wins == 10):
 			show_game_over(true)
@@ -135,12 +128,12 @@ func won_battle(won : bool):
 			health_counter.text = "-3"
 			
 		$UI/Health.play("fade_in")	
-		health_text.text = str(life_remaining)
-		await get_tree().create_timer(1.5).timeout
-		$UI/Health.play("fade_out")
 		#If we no longer have life left, its game over
 		if(life_remaining <= 0):	
 			show_game_over(false)
+#	Updates UI text
+	health_text.text = str(life_remaining)
+	wins_text.text = str(wins)
 	
 func show_game_over(win : bool):
 	game_over_canvas.visible = true

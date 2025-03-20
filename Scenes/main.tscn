@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://brgi4h0spiup2"]
+[gd_scene load_steps=24 format=3 uid="uid://brgi4h0spiup2"]
 
 [ext_resource type="Script" uid="uid://ceah7wfd5evx8" path="res://Scripts/Managers/game_manager.gd" id="1_y45oy"]
 [ext_resource type="Script" uid="uid://06xxppo51p7p" path="res://Scripts/DEBUGGER_script.gd" id="2_pa0fo"]
@@ -14,6 +14,7 @@
 
 [sub_resource type="Animation" id="Animation_d1ilt"]
 resource_name = "fade_in"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -21,10 +22,10 @@ tracks/0/path = NodePath("HBoxContainer/heart/HealthCounter:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.25, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(0.819608, 0.301961, 0.301961, 0), Color(0.819608, 0.301961, 0.301961, 1)]
+"values": [Color(0.819608, 0.301961, 0.301961, 0), Color(0.819608, 0.301961, 0.301961, 1), Color(0.819608, 0.301961, 0.301961, 1), Color(0.819608, 0.301961, 0.301961, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_6iyac"]
@@ -42,30 +43,15 @@ tracks/0/keys = {
 "values": [Color(0.819608, 0.301961, 0.301961, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_fdnlq"]
-resource_name = "fade_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/heart/HealthCounter:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.819608, 0.301961, 0.301961, 1), Color(0.819608, 0.301961, 0.301961, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fdnlq"]
 _data = {
 &"RESET": SubResource("Animation_6iyac"),
-&"fade_in": SubResource("Animation_d1ilt"),
-&"fade_out": SubResource("Animation_fdnlq")
+&"fade_in": SubResource("Animation_d1ilt")
 }
 
 [sub_resource type="Animation" id="Animation_jkdf5"]
 resource_name = "fade_in"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -73,10 +59,10 @@ tracks/0/path = NodePath("HBoxContainer/dollar/CoinCounter:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.25, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 0.945098, 0.278431, 0), Color(1, 0.945098, 0.278431, 1)]
+"values": [Color(1, 0.945098, 0.278431, 0), Color(1, 0.945098, 0.278431, 1), Color(1, 0.945098, 0.278431, 1), Color(1, 0.945098, 0.278431, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_wsu2k"]
@@ -94,30 +80,15 @@ tracks/0/keys = {
 "values": [Color(1, 0.945098, 0.278431, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_k12tt"]
-resource_name = "fade_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/dollar/CoinCounter:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 0.945098, 0.278431, 1), Color(1, 0.945098, 0.278431, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h1bgf"]
 _data = {
 &"RESET": SubResource("Animation_wsu2k"),
-&"fade_in": SubResource("Animation_jkdf5"),
-&"fade_out": SubResource("Animation_k12tt")
+&"fade_in": SubResource("Animation_jkdf5")
 }
 
 [sub_resource type="Animation" id="Animation_h1bgf"]
 resource_name = "fade_in"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -125,10 +96,10 @@ tracks/0/path = NodePath("HBoxContainer/Wins/WinCounter:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.25, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(0.882353, 0.85098, 0.172549, 0), Color(0.882353, 0.85098, 0.172549, 1)]
+"values": [Color(0.882353, 0.85098, 0.172549, 0), Color(0.882353, 0.85098, 0.172549, 1), Color(0.882353, 0.85098, 0.172549, 1), Color(0.882353, 0.85098, 0.172549, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_b3802"]
@@ -146,30 +117,15 @@ tracks/0/keys = {
 "values": [Color(0.882353, 0.85098, 0.172549, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_fevyy"]
-resource_name = "fade_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/Wins/WinCounter:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.882353, 0.85098, 0.172549, 1), Color(0.882353, 0.85098, 0.172549, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hibaj"]
 _data = {
 &"RESET": SubResource("Animation_b3802"),
-&"fade_in": SubResource("Animation_h1bgf"),
-&"fade_out": SubResource("Animation_fevyy")
+&"fade_in": SubResource("Animation_h1bgf")
 }
 
 [sub_resource type="Animation" id="Animation_pdsj5"]
 resource_name = "fade_in"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -177,10 +133,10 @@ tracks/0/path = NodePath("HBoxContainer/turn/TurnCounter:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.25, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ee4r6"]
@@ -198,26 +154,10 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_gt3je"]
-resource_name = "fade_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/turn/TurnCounter:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3pmx8"]
 _data = {
 &"RESET": SubResource("Animation_ee4r6"),
-&"fade_in": SubResource("Animation_pdsj5"),
-&"fade_out": SubResource("Animation_gt3je")
+&"fade_in": SubResource("Animation_pdsj5")
 }
 
 [node name="game_manager" type="Node2D" node_paths=PackedStringArray("health_text", "coin_text", "turn_text", "wins_text", "health_counter", "coin_counter", "turn_counter", "win_counter")]
