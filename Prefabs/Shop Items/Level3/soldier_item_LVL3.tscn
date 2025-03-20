@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://og4mb3d631v7"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_54iqj"]
-[ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="2_2ka7r"]
+[ext_resource type="Texture2D" uid="uid://cuts4xdda3cmf" path="res://Sprites/Units/Army/soldier/Soldier_lvl3.png" id="2_03hvf"]
 [ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_2ka7r"]
 [ext_resource type="Script" uid="uid://bbyqyvnyg3d6s" path="res://Scripts/Skills/buff.gd" id="4_03hvf"]
 
@@ -20,7 +20,7 @@ health_buff = 1
 Soldier = true
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_2ka7r")
+texture = ExtResource("2_03hvf")
 
 [node name="skill_tiles" parent="." index="4"]
 scale = Vector2(1e-05, 1e-05)
