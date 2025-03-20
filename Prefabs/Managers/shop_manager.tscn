@@ -1,17 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=17 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
 [ext_resource type="Texture2D" uid="uid://bdngb6gmlmf0h" path="res://Sprites/UI/sell_location.png" id="3_nu7bh"]
 [ext_resource type="PackedScene" uid="uid://dr2o4nm3x37eu" path="res://Prefabs/Managers/grid_manager.tscn" id="4_2ahac"]
 [ext_resource type="PackedScene" uid="uid://bqgwbmbquy7su" path="res://Prefabs/Grid/grid_generator.tscn" id="6_e3q61"]
-[ext_resource type="Texture2D" uid="uid://bgp4d3tyho0hd" path="res://Sprites/UI/battle.png" id="6_uivje"]
 [ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="6_wk4qg"]
-[ext_resource type="Texture2D" uid="uid://dr2405y3ramn1" path="res://Sprites/UI/battle_pressed.png" id="7_cnpns"]
-[ext_resource type="Texture2D" uid="uid://b4nfucca01mfo" path="res://Sprites/UI/battle_hover.png" id="7_h8oip"]
 [ext_resource type="Texture2D" uid="uid://cboeci24t6dot" path="res://Sprites/UI/re-roll.png" id="7_sr3ik"]
 [ext_resource type="Texture2D" uid="uid://kndito00ykl5" path="res://Sprites/UI/re-roll_pressed.png" id="8_aj6hm"]
+[ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="8_qjc8s"]
 [ext_resource type="Texture2D" uid="uid://8ben0pgeisvw" path="res://Sprites/UI/re-roll_hover.png" id="9_apgq3"]
+[ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="9_vg5hm"]
+[ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="10_1cd4y"]
+[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://font.ttf" id="11_qjc8s"]
 [ext_resource type="Script" uid="uid://dq7gpf703ku0i" path="res://Scripts/Skills/skill_holder.gd" id="12_cnpns"]
 [ext_resource type="Texture2D" uid="uid://8af7s6x54d8a" path="res://Sprites/Units/castle_v2.png" id="14_lxqr3"]
 
@@ -44,10 +45,11 @@ position = Vector2(150, 400)
 
 [node name="re-roll button" type="TextureButton" parent="ShopItemGenerator"]
 texture_filter = 1
-offset_left = 610.0
-offset_top = 370.0
-offset_right = 667.0
-offset_bottom = 410.0
+offset_left = 615.0
+offset_top = 373.0
+offset_right = 672.0
+offset_bottom = 413.0
+scale = Vector2(1.19, 1.19)
 texture_normal = ExtResource("7_sr3ik")
 texture_pressed = ExtResource("8_aj6hm")
 texture_hover = ExtResource("9_apgq3")
@@ -74,15 +76,39 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="RerollText" type="RichTextLabel" parent="ShopItemGenerator/re-roll button"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 13.0
+offset_right = 302.0
+offset_bottom = 148.0
+scale = Vector2(0.115, 0.115)
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("11_qjc8s")
+theme_override_font_sizes/normal_font_size = 100
+text = "RE-ROLL"
+horizontal_alignment = 1
+
 [node name="battle button" type="TextureButton" parent="ShopItemGenerator"]
 texture_filter = 1
 offset_left = 712.0
 offset_top = 382.0
 offset_right = 776.0
 offset_bottom = 409.0
-texture_normal = ExtResource("6_uivje")
-texture_pressed = ExtResource("7_cnpns")
-texture_hover = ExtResource("7_h8oip")
+texture_normal = ExtResource("8_qjc8s")
+texture_pressed = ExtResource("9_vg5hm")
+texture_hover = ExtResource("10_1cd4y")
+
+[node name="BattleText" type="RichTextLabel" parent="ShopItemGenerator/battle button"]
+layout_mode = 0
+offset_right = 281.0
+offset_bottom = 102.0
+scale = Vector2(0.26, 0.26)
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("11_qjc8s")
+theme_override_font_sizes/normal_font_size = 100
+text = "BATTLE"
+horizontal_alignment = 1
 
 [node name="SellLocation" type="Node2D" parent="."]
 position = Vector2(344, 636)
@@ -96,6 +122,18 @@ shape = SubResource("RectangleShape2D_4adb8")
 [node name="Sprite2D" type="Sprite2D" parent="SellLocation"]
 texture_filter = 1
 texture = ExtResource("3_nu7bh")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SellLocation"]
+offset_left = -20.0
+offset_top = -4.0
+offset_right = 190.0
+offset_bottom = 86.0
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/normal_font = ExtResource("11_qjc8s")
+theme_override_font_sizes/normal_font_size = 100
+text = "SELL"
+scroll_active = false
+horizontal_alignment = 1
 
 [node name="grid_manager" parent="." instance=ExtResource("4_2ahac")]
 
@@ -127,5 +165,12 @@ theme_override_font_sizes/normal_font_size = 200
 text = "Enemy base this way >"
 fit_content = true
 
+[connection signal="button_down" from="ShopItemGenerator/re-roll button" to="." method="_on_reroll_button_button_down"]
+[connection signal="mouse_entered" from="ShopItemGenerator/re-roll button" to="." method="_on_reroll_button_mouse_entered"]
+[connection signal="mouse_exited" from="ShopItemGenerator/re-roll button" to="." method="_on_reroll_button_mouse_exited"]
 [connection signal="pressed" from="ShopItemGenerator/re-roll button" to="ShopItemGenerator" method="_on_texture_button_pressed"]
+[connection signal="button_down" from="ShopItemGenerator/battle button" to="." method="_on_battle_button_button_down"]
+[connection signal="button_up" from="ShopItemGenerator/battle button" to="." method="_on_battle_button_button_up"]
+[connection signal="mouse_entered" from="ShopItemGenerator/battle button" to="." method="_on_battle_button_mouse_entered"]
+[connection signal="mouse_exited" from="ShopItemGenerator/battle button" to="." method="_on_battle_button_mouse_exited"]
 [connection signal="pressed" from="ShopItemGenerator/battle button" to="." method="_on_battle_button_pressed"]

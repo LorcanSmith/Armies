@@ -67,3 +67,31 @@ func apply_buffs():
 func no_skills_left():
 	await get_tree().create_timer(1.0).timeout
 	game_manager.swap_scenes()
+
+
+func _on_battle_button_button_down():
+	if find_child("BattleText"):
+		find_child("BattleText").modulate = Color(0, .6, 0, 1)
+
+func _on_battle_button_mouse_entered():
+	if find_child("BattleText"):
+		find_child("BattleText").modulate = Color(0, .8, 0, 1)
+
+func _on_battle_button_mouse_exited():
+	if find_child("BattleText"):
+		find_child("BattleText").modulate = Color(1, 1, 1, 1)
+
+
+func _on_reroll_button_button_down():
+	if find_child("RerollText"):
+		find_child("RerollText").modulate = Color(0.6, 0.6, 0.6, 0.6)
+
+
+func _on_reroll_button_mouse_entered():
+	if find_child("RerollText"):
+		find_child("RerollText").modulate = Color(.8, .8, .8, .8)
+
+
+func _on_reroll_button_mouse_exited():
+	if find_child("RerollText"):
+		find_child("RerollText").modulate = Color(1, 1, 1, 1)
