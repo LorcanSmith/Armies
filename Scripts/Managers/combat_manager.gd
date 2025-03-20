@@ -182,14 +182,18 @@ func find_units_movement_tile():
 		units_to_move[unit_to_find_tile].find_movement_tile()
 	else:
 		auto_tick()
-	
+
 func move_units():
 	var u = 0
 	while u < units_to_move.size():
 		units_to_move[u].move()
-		u += 1
-	auto_tick()
-	
+		u+=1
+		
+var w = 0
+func waited_for_move():
+	if(w == units_to_move.size()):
+		auto_tick()
+		w = 0
 func combat_phase():
 	#If there are still units on the board
 	if(player_army.size() > 0 or enemy_army.size() > 0):
