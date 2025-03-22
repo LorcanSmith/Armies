@@ -12,6 +12,10 @@ var belongs_to_player : bool
 var effective_against : Array = []
 var effectiveness : int
 
+func _process(delta):
+	await get_tree().create_timer(1).timeout
+	queue_free()
+
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	#ENEMY! DO DAMAGE
 	if((belongs_to_player and area.get_parent().is_in_group("enemy")) or (!belongs_to_player and area.get_parent().is_in_group("player")) and (!area.is_in_group("buff_location"))):

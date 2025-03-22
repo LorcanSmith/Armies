@@ -12,6 +12,21 @@
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="8_ynf5e"]
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="9_hptm8"]
 
+[sub_resource type="Animation" id="Animation_6iyac"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/heart/HealthCounter:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.819608, 0.301961, 0.301961, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_d1ilt"]
 resource_name = "fade_in"
 length = 2.0
@@ -28,25 +43,25 @@ tracks/0/keys = {
 "values": [Color(0.819608, 0.301961, 0.301961, 0), Color(0.819608, 0.301961, 0.301961, 1), Color(0.819608, 0.301961, 0.301961, 1), Color(0.819608, 0.301961, 0.301961, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_6iyac"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fdnlq"]
+_data = {
+&"RESET": SubResource("Animation_6iyac"),
+&"fade_in": SubResource("Animation_d1ilt")
+}
+
+[sub_resource type="Animation" id="Animation_wsu2k"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/heart/HealthCounter:modulate")
+tracks/0/path = NodePath("HBoxContainer/dollar/CoinCounter:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.819608, 0.301961, 0.301961, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fdnlq"]
-_data = {
-&"RESET": SubResource("Animation_6iyac"),
-&"fade_in": SubResource("Animation_d1ilt")
+"values": [Color(1, 0.945098, 0.278431, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_jkdf5"]
@@ -65,25 +80,25 @@ tracks/0/keys = {
 "values": [Color(1, 0.945098, 0.278431, 0), Color(1, 0.945098, 0.278431, 1), Color(1, 0.945098, 0.278431, 1), Color(1, 0.945098, 0.278431, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_wsu2k"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h1bgf"]
+_data = {
+&"RESET": SubResource("Animation_wsu2k"),
+&"fade_in": SubResource("Animation_jkdf5")
+}
+
+[sub_resource type="Animation" id="Animation_b3802"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/dollar/CoinCounter:modulate")
+tracks/0/path = NodePath("HBoxContainer/Wins/WinCounter:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 0.945098, 0.278431, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_h1bgf"]
-_data = {
-&"RESET": SubResource("Animation_wsu2k"),
-&"fade_in": SubResource("Animation_jkdf5")
+"values": [Color(0.882353, 0.85098, 0.172549, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_h1bgf"]
@@ -102,25 +117,25 @@ tracks/0/keys = {
 "values": [Color(0.882353, 0.85098, 0.172549, 0), Color(0.882353, 0.85098, 0.172549, 1), Color(0.882353, 0.85098, 0.172549, 1), Color(0.882353, 0.85098, 0.172549, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_b3802"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hibaj"]
+_data = {
+&"RESET": SubResource("Animation_b3802"),
+&"fade_in": SubResource("Animation_h1bgf")
+}
+
+[sub_resource type="Animation" id="Animation_ee4r6"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/Wins/WinCounter:modulate")
+tracks/0/path = NodePath("HBoxContainer/turn/TurnCounter:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.882353, 0.85098, 0.172549, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hibaj"]
-_data = {
-&"RESET": SubResource("Animation_b3802"),
-&"fade_in": SubResource("Animation_h1bgf")
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_pdsj5"]
@@ -137,21 +152,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ee4r6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/turn/TurnCounter:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3pmx8"]
@@ -284,6 +284,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/HBoxContainer/dollar"]
+layout_mode = 0
 offset_left = -1.0
 offset_top = 60.0
 offset_right = 289.0
@@ -296,6 +297,7 @@ horizontal_alignment = 1
 
 [node name="CoinCounter" type="RichTextLabel" parent="UI/HBoxContainer/dollar"]
 modulate = Color(1, 0.945098, 0.278431, 0)
+layout_mode = 0
 offset_left = -1.0
 offset_top = 80.0
 offset_right = 289.0
@@ -335,6 +337,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/HBoxContainer/Wins"]
+layout_mode = 0
 offset_left = -5.0
 offset_top = 60.0
 offset_right = 285.0
@@ -347,6 +350,7 @@ horizontal_alignment = 1
 
 [node name="WinCounter" type="RichTextLabel" parent="UI/HBoxContainer/Wins"]
 modulate = Color(0.882353, 0.85098, 0.172549, 0)
+layout_mode = 0
 offset_left = -5.0
 offset_top = 81.0
 offset_right = 285.0
@@ -381,6 +385,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/HBoxContainer/turn"]
+layout_mode = 0
 offset_left = -5.0
 offset_top = 60.0
 offset_right = 285.0
@@ -393,6 +398,7 @@ horizontal_alignment = 1
 
 [node name="TurnCounter" type="RichTextLabel" parent="UI/HBoxContainer/turn"]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = -5.0
 offset_top = 81.0
 offset_right = 285.0
