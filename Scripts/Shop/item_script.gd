@@ -51,6 +51,10 @@ var mouse_over_item : bool = false
 var follow_mouse : bool = false
 var mouse_pressed : bool = false
 
+#item scale
+var item_hovered_scale = 1.2
+var item_clicked_scale = 1.4
+
 var skill_tiles : Node2D
 var play_skill_popout = false
 
@@ -113,7 +117,7 @@ func _on_area_2d__mouse_collision_mouse_entered() -> void:
 	if(!mouse_pressed):
 		mouse_over_item = true
 		shop_manager.show_potential_upgrades(true,self)
-		sprite.scale = Vector2(1.2,1.2)
+		sprite.scale = Vector2(item_hovered_scale,item_hovered_scale)
 #Called when the mouse stops hovering over
 func _on_area_2d__mouse_collision_mouse_exited() -> void:
 	if(!mouse_pressed):
@@ -138,6 +142,8 @@ func _input(event):
 						tile_currently_over = get_parent()
 			#If the mouse button is lifted up the item should no longer follow the mouse
 			elif(!event.pressed):
+				if(follow_mouse):
+					sprite.scale = Vector2(item_hovered_scale, item_hovered_scale)
 				mouse_pressed = false
 				follow_mouse = false
 				#The item should attempt to be placed when the user lets go of it
@@ -160,6 +166,7 @@ func _process(delta: float) -> void:
 		skill_tiles.global_position = sprite.global_position
 		#Follow the mouse
 		self.global_position = get_global_mouse_position()
+		sprite.scale = Vector2(item_clicked_scale, item_clicked_scale)
 		#If the item is currently over a tile
 		if(tile_currently_over != null):
 			#If the tile is empty 
@@ -203,7 +210,7 @@ func attempt_to_place():
 		sell_item()	
 	
 	#If the item has been bought already
-	if(bought):			
+	if(bought):
 		#If there is an available tile underneath the unit, then we can place it
 		if(tile_currently_over != null and (tile_currently_over.is_empty or unit_currently_over_can_upgrade)):
 			place_item()
