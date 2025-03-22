@@ -24,6 +24,9 @@ var tile_to_move_to : Node2D
 
 ##Damage done when brawling
 @export var brawl_damage : int
+#brawl sprite
+var brawl_effect : PackedScene = preload("res://Prefabs/Effects/brawl_effect.tscn")
+var current_brawl_effect = null
 
 @export_subgroup("Unit Types")
 var unit_types : Array = [
@@ -148,6 +151,9 @@ func find_movement_tile():
 var mo = false
 #Moves the unit in a desired direction and distance
 func move():
+	#Deletes brawl effect if any exists
+	if(current_brawl_effect != null):
+		current_brawl_effect.queue_free()
 	if(enemies_in_range.size() == 0 or skill_damage <= 0):
 		if(tile_to_move_to != null):
 			#Set the parent to be the new tile
@@ -244,7 +250,12 @@ func skill():
 		if reloading_counter == 0:
 			reloading = false
 
+
 func brawl():
+	if(current_brawl_effect == null):
+		current_brawl_effect = brawl_effect.instantiate()
+		self.add_child(current_brawl_effect)
+		current_brawl_effect.position = Vector2(0,0)
 	#Finds each unit on this unit's current tile
 	for unit in get_parent().units_on_tile:
 		#If the unit isnt itself do some brawl damage to it
