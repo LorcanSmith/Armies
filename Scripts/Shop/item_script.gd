@@ -259,7 +259,7 @@ func place_item():
 		get_parent().unit_placed_on(self)
 	#If we are then upgrade it
 	else:
-		tile_currently_over.units_on_tile[0].upgrade_unit(unit_ID)
+		tile_currently_over.units_on_tile[0].upgrade_unit(unit_ID, damage_boost, health_boost)
 		if(get_parent().is_in_group("tile")):
 			#Remove non-upgraded unit (self) from the tile
 			get_parent().units_on_tile.erase(self)
@@ -276,7 +276,7 @@ func sell_item():
 	queue_free()
 
 
-func upgrade_unit(ID):
+func upgrade_unit(ID, dmg_bst, hlth_bst):
 	var dictionary_instance = dictionary.new()
 	var upgraded_unit
 	var new_ID : int
@@ -284,10 +284,6 @@ func upgrade_unit(ID):
 	if(ID == unit_ID):
 		upgraded_unit = dictionary_instance.item_scenes[ID+1].instantiate()
 		new_ID = ID + 1
-	#Two units of different levels
-	else:
-		upgraded_unit = dictionary_instance.item_scenes[ID].instantiate()
-		new_ID = ID
 	#Add the newly upgraded unit to the tile we are on
 	get_parent().add_child(upgraded_unit)
 	#Set the newly upgraded unit's position
@@ -300,6 +296,11 @@ func upgrade_unit(ID):
 	upgraded_unit.unit_ID = new_ID
 	#Sets the unit's types that buffs work against
 	upgraded_unit.set_unit_buff_types()
+	#Adds damage boost and health boost to self and then adds it to the new unit
+	damage_boost += dmg_bst
+	health_boost += hlth_bst
+	upgraded_unit.damage_boost += damage_boost
+	upgraded_unit.health_boost += health_boost
 	#Updates the units labels
 	upgraded_unit.set_labels()
 	#Remove non-upgraded unit (self) from the tile
