@@ -91,9 +91,7 @@ func update_phase_label(phase : String):
 	var counter = 0
 	while counter < letter_spots.size():
 		if counter < letters.size():
-			if letter_spots[counter].get_child(0).text == letters[counter]:
-				print("same letter")
-			else:
+			if letter_spots[counter].get_child(0).text != letters[counter]:
 				letter_spots[counter].get_node("AnimationPlayer").play("letter_close")
 				await get_tree().create_timer(0.03).timeout
 				letter_spots[counter].get_child(0).text = letters[counter]
@@ -228,7 +226,6 @@ func combat_phase():
 	else:
 		game_manager.won_battle(true)
 		end_combat()
-		
 func healing_phase():
 	#Combat is this turn so set the healing phase to be next turn
 	next_phase = "movement"
@@ -260,21 +257,29 @@ func end_combat():
 	
 #Called by the skill_holder child when no skills remain, meaning we can proceed with combat
 func no_skills_left():
+	#Used for checking to see if anyone has won
+	var enemy_headquarter_alive : bool = false
+	var player_headquarter_alive : bool = false
+	var enemy_alive : bool = false
+	var friendly_alive : bool = false
+	
 	#Tells the units to take damage
 	var unit = 0
 	while unit in range(player_army.size()):
 		if(player_army[unit]):
 			player_army[unit].apply_damage()
+		#The unit hasnt died so we know the player still has units
+		if(player_army[unit] != null):
+			friendly_alive = true
 		unit += 1
 	unit = 0
 	while unit in range(enemy_army.size()):
 		if(enemy_army[unit]):
 			enemy_army[unit].apply_damage()
+			#The unit hasnt died so we know the enemy still has units
+			if(enemy_army[unit] != null):
+				enemy_alive = true
 		unit += 1
-	
-	#Used for checking to see if anyone has won
-	var enemy_headquarter_alive : bool = false
-	var player_headquarter_alive : bool = false
 	#Sees if both headquarters are alive
 	if(find_child("player_headquarter")):
 		player_headquarter_alive = true
@@ -296,6 +301,17 @@ func no_skills_left():
 		player_won = true
 		game_manager.won_battle(true)
 		end_combat()
+		
+	#Checks to see if units are alive
+	if(!battle_over and friendly_alive and !enemy_alive):
+		player_won = true
+		game_manager.won_battle(true)
+		end_combat()
+	if(!battle_over and !friendly_alive and enemy_alive):
+		player_won = false
+		game_manager.won_battle(false)
+		end_combat()
+		
 	if(!battle_over):
 		auto_tick()
 
