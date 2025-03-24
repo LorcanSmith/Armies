@@ -111,7 +111,7 @@ texture_filter = 1
 texture = ExtResource("5_1nmpe")
 
 [node name="level_chevrons" type="Node2D" parent="Sprite2D"]
-position = Vector2(-25, -13)
+position = Vector2(-25, -15)
 scale = Vector2(1.815, 1.815)
 
 [node name="lvl1" type="Sprite2D" parent="Sprite2D/level_chevrons"]
