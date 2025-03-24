@@ -104,8 +104,20 @@ func _ready() -> void:
 	movement_locations = find_child("movement_locations").get_children()
 	#Set tooltip
 	find_child("Tooltip").update_tooltip()
+	set_level_chevron()
 	set_unit_types()
 
+func set_level_chevron():
+	var level_chevron_parent = find_child("level_chevrons")
+	if(unit_ID % 3 == 0):
+		level_chevron_parent.get_child(0).visible = true
+	elif(unit_ID % 3 == 1):
+		level_chevron_parent.get_child(0).visible = true
+		level_chevron_parent.get_child(1).visible = true
+	elif(unit_ID % 3 == 2):
+		level_chevron_parent.get_child(0).visible = true
+		level_chevron_parent.get_child(1).visible = true
+		level_chevron_parent.get_child(2).visible = true
 func set_unit_types():
 	effective_against_types = unit_types.duplicate()
 	potential_types = [Soldier, Animal]
@@ -293,11 +305,11 @@ func attack_visuals(enemy : Node2D):
 		var projectile_instance = projectile.instantiate()
 		find_parent("combat_manager").find_child("skill_holder").add_child(projectile_instance)
 		projectile_instance.global_position = self.global_position
-		projectile_instance.target_enemy(enemy)
 		if(skill_damage > 0):
 			projectile_instance.damage = skill_damage
 		elif(skill_heal > 0):
 			projectile_instance.damage = -skill_heal
+		projectile_instance.target_enemy(enemy)
 	else:
 		print(self.name)
 #Does damage to unit

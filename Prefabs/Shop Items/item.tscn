@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d26riwgg0v8nl"]
+[gd_scene load_steps=22 format=3 uid="uid://d26riwgg0v8nl"]
 
 [ext_resource type="Script" uid="uid://bvdq4sn7w35b4" path="res://Scripts/Shop/item_script.gd" id="1_mdv0s"]
 [ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="4_1nmpe"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://doklob2e1xafl" path="res://Sprites/UI/arrow.png" id="7_6sqpo"]
 [ext_resource type="Script" uid="uid://qmo5gtfqa526" path="res://Scripts/UI/start_scale_zero.gd" id="7_awdqk"]
 [ext_resource type="Script" uid="uid://bbyqyvnyg3d6s" path="res://Scripts/Skills/buff.gd" id="10_te1c8"]
+[ext_resource type="Texture2D" uid="uid://djdl8p52grdjd" path="res://Sprites/UI/chevrons/level_chevron.png" id="11_eytbw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1nmpe"]
 radius = 1.41421
@@ -109,6 +110,32 @@ show_tooltip_time = 0.6
 texture_filter = 1
 texture = ExtResource("5_1nmpe")
 
+[node name="level_chevrons" type="Node2D" parent="Sprite2D"]
+position = Vector2(-25, -15)
+scale = Vector2(1.815, 1.815)
+
+[node name="lvl1" type="Sprite2D" parent="Sprite2D/level_chevrons"]
+z_index = 1
+texture_filter = 1
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("11_eytbw")
+
+[node name="lvl2" type="Sprite2D" parent="Sprite2D/level_chevrons"]
+visible = false
+z_index = 1
+texture_filter = 1
+position = Vector2(0, -2)
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("11_eytbw")
+
+[node name="lvl3" type="Sprite2D" parent="Sprite2D/level_chevrons"]
+visible = false
+z_index = 1
+texture_filter = 1
+position = Vector2(0, -4)
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("11_eytbw")
+
 [node name="Item_Info" type="Control" parent="Sprite2D" groups=["item"]]
 layout_mode = 3
 anchors_preset = 0
@@ -116,26 +143,15 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="Level" type="Label" parent="Sprite2D/Item_Info"]
-layout_mode = 0
-offset_left = -170.0
-offset_top = -27.0
-offset_right = 164.0
-offset_bottom = 110.0
-scale = Vector2(0.085, 0.085)
-pivot_offset = Vector2(168, 0)
-theme_override_font_sizes/font_size = 100
-text = "Level 0"
-
 [node name="Cost" type="Label" parent="Sprite2D/Item_Info"]
 z_index = 5
 z_as_relative = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0749998
-anchor_top = 0.2
-anchor_right = 0.0749998
-anchor_bottom = 0.2
+anchor_left = 1.2
+anchor_top = 0.1
+anchor_right = 1.2
+anchor_bottom = 0.1
 offset_left = -33.0
 offset_top = -31.0
 offset_right = 83.27

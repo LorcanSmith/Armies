@@ -18,7 +18,7 @@ func hurt(amount : int):
 
 func projectile_hit(amount : int):
 	if(!dead):
-		health -= damage_to_do
+		health -= amount
 		update_label()
 		if(health <= 0):
 			dead = true
