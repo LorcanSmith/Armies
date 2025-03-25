@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bos864ovdl3jf" path="res://Sprites/UI/heart.png" id="2_ugklp"]
 
 [node name="buff_health" instance=ExtResource("1_e71i7")]
+this_is_health_buff = true
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(-14, 0)
