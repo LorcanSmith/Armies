@@ -277,6 +277,9 @@ func brawl():
 
 func projectile_hit(amount : int):
 	if(alive):
+		var needs_healing = false
+		if health_bar_remaining < max_health:
+			needs_healing = true
 		health_bar_remaining -= amount
 		if(health_bar_remaining < 0):
 			health_bar_remaining = 0
@@ -295,7 +298,7 @@ func projectile_hit(amount : int):
 			if(amount > 0):
 				#Play animation to show the unit has been hurt
 				self.get_node("AnimationPlayer").play("unit_damage")
-			if(amount < 0):
+			if(amount < 0 and needs_healing):
 				#Play animation to show the unit has been healed
 				self.get_node("AnimationPlayer").play("unit_heal")
 	damage_done_to_self = 0
