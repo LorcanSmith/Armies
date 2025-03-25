@@ -59,9 +59,9 @@ func setup_headquarters():
 
 # called from ready() or from game_manager, automatically cycles through battle_ticker()
 func auto_tick():
-##		causes the function to pause, allows an opening for game_manager to pause if necessary
+##	causes the function to pause, allows an opening for game_manager to pause if necessary
 	if(!ticker_paused):
-		await get_tree().create_timer(tick_delay).timeout
+		#await get_tree().create_timer(tick_delay).timeout
 		battle_ticker()
 	else:
 		find_child("NextButton").visible = true
