@@ -65,6 +65,7 @@ func load_units():
 								instance.add_to_group("enemy")
 								instance.scale.x = -instance.scale.x
 								instance.find_child("health_bar_background").scale.x = -instance.find_child("health_bar_background").scale.x
+								instance.find_child("ammo_bar_background").scale.x = -instance.find_child("ammo_bar_background").scale.x
 								instance.find_child("Tooltip").scale.x = -instance.find_child("Tooltip").scale.x
 								instance.find_child("Sprite2D").self_modulate = instance.find_child("Sprite2D").self_modulate + Color(0.2,-0.3,-0.3)
 								reversed_tiles[width][height].add_child(instance)
