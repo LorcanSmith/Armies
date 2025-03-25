@@ -73,6 +73,7 @@ _data = {
 script = ExtResource("1_7kii6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 4
 texture_filter = 1
 position = Vector2(13, 0)
 texture = ExtResource("2_sfbea")
