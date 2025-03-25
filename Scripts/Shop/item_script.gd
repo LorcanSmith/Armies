@@ -93,12 +93,12 @@ func _ready() -> void:
 func set_labels():
 	var level_chevron_parent = find_child("level_chevrons")
 	var normalised_id = unit_ID + 1
-	if(normalised_id % 3 == 1):
+	if(unit_ID % 3 == 0):
 		level_chevron_parent.get_child(0).visible = true
-	elif(normalised_id % 3 == 2):
+	elif(unit_ID % 3 == 1):
 		level_chevron_parent.get_child(0).visible = true
 		level_chevron_parent.get_child(1).visible = true
-	elif(normalised_id % 3 == 3):
+	elif(unit_ID % 3 == 2):
 		level_chevron_parent.get_child(0).visible = true
 		level_chevron_parent.get_child(1).visible = true
 		level_chevron_parent.get_child(2).visible = true

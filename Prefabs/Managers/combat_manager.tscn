@@ -94,6 +94,7 @@ texture_pressed = ExtResource("13_7hp4a")
 texture_hover = ExtResource("14_5jl04")
 
 [node name="Sprite2D" type="Sprite2D" parent="grid_manager/grid_generator (army)/Camera2D"]
+visible = false
 texture_filter = 1
 position = Vector2(-18, -220)
 scale = Vector2(4.34932, 4.07477)
