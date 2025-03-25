@@ -7,8 +7,11 @@ extends Node
 var waiting_for_skills : bool = false
 
 #Delays are so they skill holder doesnt say its empty whilst skills are still being spawned in
-var delay = 0.1
+@export var delay = 0.1
 var current_delay = 0.1
+
+func _ready() -> void:
+	current_delay = delay
 func _process(delta: float) -> void:
 	if(waiting_for_skills):
 		current_delay -= delta
