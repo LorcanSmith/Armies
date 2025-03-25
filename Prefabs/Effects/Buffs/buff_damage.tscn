@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://g4bygrh6v0vd"]
+[gd_scene load_steps=8 format=3 uid="uid://g4bygrh6v0vd"]
 
 [ext_resource type="Script" uid="uid://bx7tk0j2kdn7m" path="res://Scripts/Skills/buff_visual.gd" id="1_7kii6"]
 [ext_resource type="Texture2D" uid="uid://fpwwhqpb42av" path="res://Sprites/UI/sword.png" id="2_sfbea"]
@@ -18,10 +18,22 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_lxqr3"]
 resource_name = "buff_appear"
-length = 0.2
+length = 0.14
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -35,10 +47,26 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_sfbea"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vg5hm"]
 _data = {
 &"RESET": SubResource("Animation_qjc8s"),
-&"buff_appear": SubResource("Animation_lxqr3")
+&"buff_appear": SubResource("Animation_lxqr3"),
+&"fade_out": SubResource("Animation_sfbea")
 }
 
 [node name="buff_damage" type="Node2D"]
@@ -49,16 +77,10 @@ texture_filter = 1
 position = Vector2(13, 0)
 texture = ExtResource("2_sfbea")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_vg5hm")
-}
-autoplay = "buff_appear"
-
-[node name="buff_text" type="RichTextLabel" parent="."]
-offset_left = 4.0
+[node name="buff_text" type="RichTextLabel" parent="Sprite2D"]
+offset_left = -9.0
 offset_top = -11.0
-offset_right = 215.0
+offset_right = 202.0
 offset_bottom = 212.0
 scale = Vector2(0.09, 0.09)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -68,5 +90,11 @@ text = "+1"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vg5hm")
+}
+autoplay = "buff_appear"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
