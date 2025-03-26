@@ -100,6 +100,7 @@ script = ExtResource("1_sy6ln")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.266866, 0.478329, 3.85046e-07, 0.152941)
+texture_filter = 1
 texture = ExtResource("2_xr5xf")
 
 [node name="Area2D" type="Area2D" parent="." groups=["tile"]]
