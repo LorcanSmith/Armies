@@ -29,26 +29,26 @@ position = Vector2(116, 250)
 script = ExtResource("2_v5hhx")
 
 [node name="Unit Locations" type="Node2D" parent="ShopItemGenerator"]
-position = Vector2(393, -7)
+position = Vector2(921, -247)
 
 [node name="Unit 1" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
-position = Vector2(-75, 400)
+position = Vector2(-200, 352)
 
 [node name="Unit 2" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
-position = Vector2(0, 400)
+position = Vector2(-126, 352)
 
 [node name="Unit 3" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
-position = Vector2(75, 400)
+position = Vector2(-200, 432)
 
 [node name="Unit 4" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
-position = Vector2(150, 400)
+position = Vector2(-126, 432)
 
 [node name="re-roll button" type="TextureButton" parent="ShopItemGenerator"]
 texture_filter = 1
-offset_left = 615.0
-offset_top = 373.0
-offset_right = 672.0
-offset_bottom = 413.0
+offset_left = 722.0
+offset_top = 247.0
+offset_right = 779.0
+offset_bottom = 287.0
 scale = Vector2(1.19, 1.19)
 texture_normal = ExtResource("7_sr3ik")
 texture_pressed = ExtResource("8_aj6hm")
@@ -91,10 +91,10 @@ horizontal_alignment = 1
 
 [node name="battle button" type="TextureButton" parent="ShopItemGenerator"]
 texture_filter = 1
-offset_left = 712.0
-offset_top = 382.0
-offset_right = 776.0
-offset_bottom = 409.0
+offset_left = 720.0
+offset_top = 414.0
+offset_right = 793.0
+offset_bottom = 441.0
 texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
@@ -111,7 +111,7 @@ text = "BATTLE"
 horizontal_alignment = 1
 
 [node name="SellLocation" type="Node2D" parent="."]
-position = Vector2(344, 636)
+position = Vector2(870, 599)
 
 [node name="Area2D" type="Area2D" parent="SellLocation" groups=["sell_location"]]
 
@@ -155,10 +155,10 @@ scale = Vector2(3.4, 3.4)
 texture = ExtResource("14_lxqr3")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
-offset_left = 132.353
-offset_top = 2.35295
-offset_right = 1058.35
-offset_bottom = 404.353
+offset_left = 55.2941
+offset_top = 67.9412
+offset_right = 981.291
+offset_bottom = 469.941
 scale = Vector2(0.025, 0.025)
 theme_override_colors/default_color = Color(0.831373, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 200
