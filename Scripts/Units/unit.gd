@@ -1,5 +1,5 @@
 extends Node
-
+var combat_manager : Node2D
 var alive : bool = true
 #Unit ID - SET ID ON THE ITEM COUNTERPART
 var unit_ID : int = -1
@@ -91,11 +91,11 @@ var enemies_in_range : Array = []
 var friendlies_in_range : Array = []
 
 func _ready() -> void:
+	combat_manager = find_parent("combat_manager")
 	health_bar = find_child("health_bar_color")
 	ammo_bar = find_child("ammo_bar_color")
 	if reload_time > 1:
 		find_child("ammo_bar_background").visible = true
-	tooltip = find_child("Tooltip")
 	current_tooltip_time_left = tooltip_show_time
 	skill_locations_parent = find_child("skill_locations")
 
@@ -103,7 +103,8 @@ func _ready() -> void:
 	health_bar_remaining = max_health
 	movement_locations = find_child("movement_locations").get_children()
 	#Set tooltip
-	find_child("Tooltip").update_tooltip()
+	tooltip = combat_manager.find_child("Tooltip")
+	tooltip.update_tooltip(unit_ID)
 	set_level_chevron()
 	set_unit_types()
 
@@ -145,8 +146,6 @@ func find_movement_tile():
 				get_parent().units_on_tile.erase(self)
 			#We have moved one unit
 			moved_distance += 1
-	#combat manager
-	var combat_manager = find_parent("combat_manager")
 	#Tell the combat manager that a unit has finished its "find tile" turn
 	combat_manager.units_moved += 1
 	#If the combat manager has no more units to find tiles for, then tell the manager to move the units
@@ -178,9 +177,8 @@ func move():
 				#get_parent().add_child(current_brawl_effect)
 				#current_brawl_effect.global_position = Vector2(get_parent().global_position.x, get_parent().global_position.y)
 	if(!mo):
-		var cm = find_parent("combat_manager")
-		cm.w += 1
-		cm.waited_for_move()
+		combat_manager.w += 1
+		combat_manager.waited_for_move()
 	moved = false
 func skill():
 	#If this unit is the only unit on the tile then they can do their skill
@@ -344,7 +342,7 @@ func destroy_unit():
 	#SOnce the damage animation plays, it will be destroyed
 	self.get_node("AnimationPlayer").play("unit_damage")
 
-func _on_skill_area_2d_area_entered(area: Area2D) -> void:
+func skill_area_entered(area: Area2D) -> void:
 #	check if skill is meant to be used on allies or enemies
 	if(skill_damage > 0):
 		#If the area on our skill location is a unit of the opposite type
@@ -358,7 +356,7 @@ func _on_skill_area_2d_area_entered(area: Area2D) -> void:
 			friendlies_in_range.append(area.get_parent())
 			
 			
-func _on_skill_area_2d_area_exited(area: Area2D) -> void:
+func skill_area_exited(area: Area2D) -> void:
 	#If the unit was in our range, remove it from our range
 	if(enemies_in_range.has(area.get_parent())):
 		enemies_in_range.erase(area.get_parent())
@@ -378,17 +376,27 @@ func _process(delta: float) -> void:
 		self.position = lerp(self.position, Vector2(0,0), delta*5)
 	if(self.position.distance_to(Vector2(0,0)) < 1.8 and mo):
 		mo = false
-		var cm = find_parent("combat_manager")
-		cm.w += 1
-		cm.waited_for_move()
-	if(mouse_over and current_tooltip_time_left < 0):
-		tooltip.set_visible(true)
-	elif(mouse_over and current_tooltip_time_left > 0):
-		current_tooltip_time_left -= delta
+		combat_manager.w += 1
+		combat_manager.waited_for_move()
+	if(mouse_over):
+		tooltip.update_tooltip(unit_ID)
+		#tooltip.visible = true
+		#Play tooltip appear animation
+		#tooltip.get_node("AnimationPlayer").play("tooltip_appear")
+		#Turns on skill locations
+		var x = 0
+		while x < skill_locations_parent.get_child_count():
+			skill_locations_parent.get_child(x).visible = true
+			skill_locations_parent.get_child(x).get_node("AnimationPlayer").play("location_popin")
+			x += 1
 	if(!mouse_over):
-		current_tooltip_time_left = tooltip_show_time
-		tooltip.set_visible(false)
-
+		#Plays animation to popout tooltip. Once the animation finishes the tooltip turns itself off
+		#tooltip.get_node("AnimationPlayer").play("tooltip_popout")
+		#Turns on skill locations
+		var x = 0
+		while x < skill_locations_parent.get_child_count():
+			skill_locations_parent.get_child(x).get_node("AnimationPlayer").play("location_popout")
+			x += 1
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	#If the unit is dead and the damage animation has played, destroy this unit

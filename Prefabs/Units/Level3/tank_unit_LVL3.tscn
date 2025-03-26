@@ -2,9 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_0e1kp"]
 [ext_resource type="PackedScene" uid="uid://bjsx2iphb4gud" path="res://Prefabs/Effects/Projectiles/shell_projectile.tscn" id="2_d5lbt"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_36mnw"]
 [ext_resource type="Texture2D" uid="uid://dd2nlcrqwe18n" path="res://Sprites/Units/Army/tank/Tank_lvl3.png" id="3_ijajl"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
 
 [node name="Tank" instance=ExtResource("1_0e1kp")]
 max_health = 50
@@ -17,27 +16,15 @@ reload_time = 2
 skill_shooots_closest_enemy = true
 projectile = ExtResource("2_d5lbt")
 
-[node name="location2" type="Node2D" parent="skill_locations" index="1"]
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_36mnw")]
+position = Vector2(74, 0)
+
+[node name="unit_skill_location2" parent="skill_locations" index="1" instance=ExtResource("3_36mnw")]
 position = Vector2(148, 0)
 
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location2" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location2/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_11hi7")
-
-[node name="location3" type="Node2D" parent="skill_locations" index="2"]
+[node name="unit_skill_location3" parent="skill_locations" index="2" instance=ExtResource("3_36mnw")]
 position = Vector2(222, 0)
-
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location3" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location3/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_11hi7")
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("3_ijajl")
 offset = Vector2(3, 7)
-
-[connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
