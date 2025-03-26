@@ -410,10 +410,10 @@ text = "+1"
 horizontal_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI"]
-offset_left = 1086.0
-offset_top = 625.0
-offset_right = 1402.0
-offset_bottom = 729.0
+offset_left = 1201.0
+offset_top = 692.0
+offset_right = 1517.0
+offset_bottom = 796.0
 scale = Vector2(0.2, 0.2)
 theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 100

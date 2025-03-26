@@ -29,7 +29,7 @@ position = Vector2(116, 250)
 script = ExtResource("2_v5hhx")
 
 [node name="Unit Locations" type="Node2D" parent="ShopItemGenerator"]
-position = Vector2(393, -7)
+position = Vector2(380, 29)
 
 [node name="Unit 1" type="Node2D" parent="ShopItemGenerator/Unit Locations"]
 position = Vector2(-75, 400)
@@ -45,10 +45,10 @@ position = Vector2(150, 400)
 
 [node name="re-roll button" type="TextureButton" parent="ShopItemGenerator"]
 texture_filter = 1
-offset_left = 615.0
-offset_top = 373.0
-offset_right = 672.0
-offset_bottom = 413.0
+offset_left = 602.0
+offset_top = 409.0
+offset_right = 659.0
+offset_bottom = 449.0
 scale = Vector2(1.19, 1.19)
 texture_normal = ExtResource("7_sr3ik")
 texture_pressed = ExtResource("8_aj6hm")
@@ -91,10 +91,10 @@ horizontal_alignment = 1
 
 [node name="battle button" type="TextureButton" parent="ShopItemGenerator"]
 texture_filter = 1
-offset_left = 712.0
-offset_top = 382.0
-offset_right = 776.0
-offset_bottom = 409.0
+offset_left = 699.0
+offset_top = 418.0
+offset_right = 772.0
+offset_bottom = 445.0
 texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
@@ -111,7 +111,7 @@ text = "BATTLE"
 horizontal_alignment = 1
 
 [node name="SellLocation" type="Node2D" parent="."]
-position = Vector2(344, 636)
+position = Vector2(331, 672)
 
 [node name="Area2D" type="Area2D" parent="SellLocation" groups=["sell_location"]]
 
