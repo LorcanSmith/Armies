@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://lug4h08m11sb"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_fukew"]
-[ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="2_sboas"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="2_sboas"]
 
 [node name="Item" instance=ExtResource("1_fukew")]
 description = "Great a close quarters and brawling"
@@ -9,8 +9,5 @@ unit_name = "Knight"
 buy_cost = 15
 sell_cost = 7
 
-[node name="skill_tiles" parent="." index="4"]
-scale = Vector2(1e-05, 1e-05)
-
-[node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("2_sboas")]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 37, 13, 96, 187, 0, 0, 0, 0, 0, 0, 0, 0)
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("2_sboas")]
+position = Vector2(74, 0)

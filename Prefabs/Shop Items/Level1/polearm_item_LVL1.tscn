@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_sc67e"]
 [ext_resource type="Texture2D" uid="uid://befn01dmekcw1" path="res://Sprites/Units/Medieval/Polearm/Polearm.png" id="2_wkyxm"]
-[ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_boluk"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_boluk"]
 
 [node name="Item" instance=ExtResource("1_sc67e")]
 description = "Great up close but not good at brawling"
@@ -13,12 +13,5 @@ sell_cost = 4
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_wkyxm")
 
-[node name="Tooltip" parent="." index="3"]
-offset_right = 49.0
-offset_bottom = 80.0
-
-[node name="skill_tiles" parent="." index="4"]
-scale = Vector2(1e-05, 1e-05)
-
-[node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_boluk")]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 37, 13, 96, 187, 0, 0, 0, 0, 0, 0, 0, 0)
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("3_boluk")]
+position = Vector2(74, 0)

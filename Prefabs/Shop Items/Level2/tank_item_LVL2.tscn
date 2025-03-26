@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_0eqnr"]
 [ext_resource type="Texture2D" uid="uid://bp3w3rjodcmlh" path="res://Sprites/Units/Army/tank/Tank_lvl2.png" id="2_jjq5e"]
-[ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_jjq5e"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_jjq5e"]
 
 [node name="Tank" instance=ExtResource("1_0eqnr")]
 description = "Highly armoured vehicle that shoots a heavy hitting projectile. Has to reload after every shot"
@@ -14,5 +14,8 @@ sell_cost = 14
 texture = ExtResource("2_jjq5e")
 offset = Vector2(2, 9)
 
-[node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_jjq5e")]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 37, 13, 96, 187, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0)
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("3_jjq5e")]
+position = Vector2(74, 0)
+
+[node name="skill_location2" parent="skills" index="1" instance=ExtResource("3_jjq5e")]
+position = Vector2(148, 0)

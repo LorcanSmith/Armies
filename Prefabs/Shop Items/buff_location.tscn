@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://cae7lrkh2qneg"]
+
+[ext_resource type="Script" uid="uid://bbyqyvnyg3d6s" path="res://Scripts/Skills/buff.gd" id="1_2kgwh"]
+[ext_resource type="Texture2D" uid="uid://p11annfcahep" path="res://Sprites/Locations/buff_location.png" id="2_lsbku"]
+[ext_resource type="Texture2D" uid="uid://doklob2e1xafl" path="res://Sprites/UI/arrow.png" id="3_8wc4m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6sqpo"]
+radius = 5.09902
+
+[sub_resource type="Animation" id="Animation_8wc4m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("location_sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.45, 0.45)]
+}
+
+[sub_resource type="Animation" id="Animation_lsbku"]
+resource_name = "location_popin"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("location_sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.5, 0.5), Vector2(0.43, 0.43), Vector2(0.45, 0.45)]
+}
+
+[sub_resource type="Animation" id="Animation_vwxop"]
+resource_name = "locaton_popout"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("location_sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.45, 0.45), Vector2(0.43, 0.43), Vector2(0.5, 0.5), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vwxop"]
+_data = {
+&"RESET": SubResource("Animation_8wc4m"),
+&"location_popin": SubResource("Animation_lsbku"),
+&"locaton_popout": SubResource("Animation_vwxop")
+}
+
+[node name="buff_location" type="Node2D"]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_2kgwh")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_6sqpo")
+
+[node name="location_sprite" type="Sprite2D" parent="."]
+z_index = 2
+texture_filter = 1
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_lsbku")
+
+[node name="arrow" type="Sprite2D" parent="location_sprite"]
+position = Vector2(19.4444, 5.55556)
+scale = Vector2(3, 3)
+texture = ExtResource("3_8wc4m")
+
+[node name="shadow" type="Sprite2D" parent="location_sprite/arrow"]
+modulate = Color(0, 0, 0, 0.592157)
+z_index = -1
+position = Vector2(0.925926, 2.77778)
+texture = ExtResource("3_8wc4m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vwxop")
+}
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

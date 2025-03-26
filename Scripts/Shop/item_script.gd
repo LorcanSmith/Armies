@@ -55,8 +55,7 @@ var mouse_pressed : bool = false
 var item_hovered_scale = 1.2
 var item_clicked_scale = 1.4
 
-var skill_tiles : Node2D
-var play_skill_popout = false
+
 
 @export_group("Item buffs")
 ##Is this item a boost item
@@ -64,7 +63,11 @@ var play_skill_popout = false
 @export var damage_buff : int
 @export var health_buff : int
 #locations where buffs happen
-var buff_locations : Array = []
+var buff_location : Node2D
+#locations where skills happen
+var skill_location : Node2D
+var locations_popped_in = false
+
 #Visual that spawns to show a buff being done
 var damage_buff_visual = preload("res://Prefabs/Effects/Buffs/buff_damage.tscn")
 var health_buff_visual = preload("res://Prefabs/Effects/Buffs/buff_health.tscn")
@@ -78,9 +81,9 @@ var buffs_work_against : Array = []
 @export var Animal : bool
 
 func _ready() -> void:
-	buff_locations = find_child("buffs").get_children()
+	buff_location = find_child("buffs")
+	skill_location = find_child("skills")
 	upgrade_arrow = find_child("upgrade_arrow")
-	skill_tiles = find_child("skill_tiles")
 	tooltip = find_child("Tooltip")
 	sprite = find_child("Sprite2D")
 	shop_manager = find_parent("shop_manager")
@@ -116,6 +119,16 @@ func update_label_text():
 	defense_label.text = str(unit.max_health + health_boost)
 	cost_label.text = str(buy_cost)
 	
+	#Sets the skill_locations to be green if they heal friendlies
+	var x = 0
+	while x < skill_location.get_child_count():
+		if(unit.skill_heal > 0):
+			var location_sprite = skill_location.get_child(x).find_child("location_sprite")
+			location_sprite.texture = load("res://Sprites/Locations/heal_location.png")
+			location_sprite.find_child("sword").visible = false
+			location_sprite.find_child("cross").visible = true
+			
+		x+= 1
 #Called when the mouse is hovering over
 func _on_area_2d__mouse_collision_mouse_entered() -> void:
 	if(!mouse_pressed):
@@ -168,11 +181,21 @@ func _process(delta: float) -> void:
 			tooltip.get_node("AnimationPlayer").play("tooltip_popout")
 		current_time_till_tooltip = show_tooltip_time
 	if(follow_mouse):
-		#Turn on the skill location tiles
-		if(!play_skill_popout):
-			play_skill_popout = true
-			skill_tiles.get_node("AnimationPlayer").play("tilemap_popin")
-		skill_tiles.global_position = sprite.global_position
+		#If the locations haven't been popped in yet, then turn them on and play an animation
+		if(!locations_popped_in):
+			#Turn on the buff/skill location tiles
+			var x = 0
+			while x < buff_location.get_child_count():
+				buff_location.get_child(x).visible = true
+				buff_location.get_child(x).get_node("AnimationPlayer").play("location_popin")
+				x += 1
+			x = 0
+			while x < skill_location.get_child_count():
+				skill_location.get_child(x).visible = true
+				skill_location.get_child(x).get_node("AnimationPlayer").play("location_popin")
+				x += 1
+			x = 0
+			locations_popped_in = true
 		#Follow the mouse
 		self.global_position = get_global_mouse_position()
 		sprite.scale = Vector2(item_clicked_scale, item_clicked_scale)
@@ -209,9 +232,20 @@ func _process(delta: float) -> void:
 		self.position = Vector2(0,0)
 		sprite.position = Vector2(0,0)
 		unit_currently_over_can_upgrade = false
-		if(skill_tiles and play_skill_popout):
-			skill_tiles.get_node("AnimationPlayer").play("tilemap_popout")
-			play_skill_popout = false
+		
+		#If the locations are visible and popped in then play animation to pop them out
+		#The locations themselves will set to be invisible when the animation finishes
+		if(locations_popped_in):
+			#Turn off buff/skill location visuals
+			locations_popped_in = false
+			var x = 0
+			while x < buff_location.get_child_count():
+				buff_location.get_child(x).get_node("AnimationPlayer").play("locaton_popout")
+				x += 1
+			x = 0
+			while x < skill_location.get_child_count():
+				skill_location.get_child(x).get_node("AnimationPlayer").play("locaton_popout")
+				x += 1
 #Called when the player attempts to place the item on a tile
 func attempt_to_place():
 	#The player is trying to sell the item and the item has already been bought
@@ -333,8 +367,8 @@ func set_unit_buff_types():
 func buff():
 	if(can_buff):
 		var buff_loc = 0
-		while(buff_loc < buff_locations.size()):
-			var unit = buff_locations[buff_loc].unit_to_buff
+		while(buff_loc < buff_location.get_child_count()):
+			var unit = buff_location.get_child(buff_loc).unit_to_buff
 			if(unit != null and unit.bought):
 				var dictionary_instance = dictionary.new()
 				var unit_dictionary = dictionary_instance.unit_scenes[unit.unit_ID].instantiate()

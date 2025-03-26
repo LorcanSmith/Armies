@@ -259,8 +259,6 @@ func combat_phase():
 			else:
 				game_manager.won_battle(true)
 				end_combat()
-		else:
-			auto_tick()
 	#No units exist, you win
 	else:
 		game_manager.won_battle(true)
