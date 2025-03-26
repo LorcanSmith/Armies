@@ -240,11 +240,11 @@ func _process(delta: float) -> void:
 			locations_popped_in = false
 			var x = 0
 			while x < buff_location.get_child_count():
-				buff_location.get_child(x).get_node("AnimationPlayer").play("locaton_popout")
+				buff_location.get_child(x).get_node("AnimationPlayer").play("location_popout")
 				x += 1
 			x = 0
 			while x < skill_location.get_child_count():
-				skill_location.get_child(x).get_node("AnimationPlayer").play("locaton_popout")
+				skill_location.get_child(x).get_node("AnimationPlayer").play("location_popout")
 				x += 1
 #Called when the player attempts to place the item on a tile
 func attempt_to_place():

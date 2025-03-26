@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwsjsv7i7wfqg"]
+[gd_scene load_steps=5 format=3 uid="uid://dwsjsv7i7wfqg"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_krqdd"]
 [ext_resource type="Texture2D" uid="uid://ca2y0ewqn4yt" path="res://Sprites/Units/Medieval/Knight/knight_sprite.png" id="2_dnap8"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_gluv3"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_jbfh3"]
 
 [node name="Knight" instance=ExtResource("1_krqdd")]
 max_health = 44
@@ -12,6 +13,9 @@ Medieval = true
 Human = true
 skill_damage = 18
 projectile = ExtResource("2_gluv3")
+
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_jbfh3")]
+position = Vector2(74, 0)
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_dnap8")

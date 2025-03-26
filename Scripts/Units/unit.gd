@@ -340,7 +340,7 @@ func destroy_unit():
 	#SOnce the damage animation plays, it will be destroyed
 	self.get_node("AnimationPlayer").play("unit_damage")
 
-func _on_skill_area_2d_area_entered(area: Area2D) -> void:
+func skill_area_entered(area: Area2D) -> void:
 #	check if skill is meant to be used on allies or enemies
 	if(skill_damage > 0):
 		#If the area on our skill location is a unit of the opposite type
@@ -354,7 +354,7 @@ func _on_skill_area_2d_area_entered(area: Area2D) -> void:
 			friendlies_in_range.append(area.get_parent())
 			
 			
-func _on_skill_area_2d_area_exited(area: Area2D) -> void:
+func skill_area_exited(area: Area2D) -> void:
 	#If the unit was in our range, remove it from our range
 	if(enemies_in_range.has(area.get_parent())):
 		enemies_in_range.erase(area.get_parent())
@@ -377,14 +377,27 @@ func _process(delta: float) -> void:
 		var cm = find_parent("combat_manager")
 		cm.w += 1
 		cm.waited_for_move()
-	if(mouse_over and current_tooltip_time_left < 0):
-		tooltip.set_visible(true)
-	elif(mouse_over and current_tooltip_time_left > 0):
+	if(mouse_over and current_tooltip_time_left <= 0 and tooltip.visible == false):
+		tooltip.visible = true
+		#Play tooltip appear animation
+		tooltip.get_node("AnimationPlayer").play("tooltip_appear")
+		#Turns on skill locations
+		var x = 0
+		while x < skill_locations_parent.get_child_count():
+			skill_locations_parent.get_child(x).visible = true
+			skill_locations_parent.get_child(x).get_node("AnimationPlayer").play("location_popin")
+			x += 1
+	elif(mouse_over and current_tooltip_time_left >= 0):
 		current_tooltip_time_left -= delta
-	if(!mouse_over):
+	if(!mouse_over and tooltip.visible == true):
 		current_tooltip_time_left = tooltip_show_time
-		tooltip.set_visible(false)
-
+		#Plays animation to popout tooltip. Once the animation finishes the tooltip turns itself off
+		tooltip.get_node("AnimationPlayer").play("tooltip_popout")
+		#Turns on skill locations
+		var x = 0
+		while x < skill_locations_parent.get_child_count():
+			skill_locations_parent.get_child(x).get_node("AnimationPlayer").play("location_popout")
+			x += 1
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	#If the unit is dead and the damage animation has played, destroy this unit

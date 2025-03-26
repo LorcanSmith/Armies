@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cae7lrkh2qneg"]
+[gd_scene load_steps=8 format=3 uid="uid://cae7lrkh2qneg"]
 
 [ext_resource type="Script" uid="uid://bbyqyvnyg3d6s" path="res://Scripts/Skills/buff.gd" id="1_2kgwh"]
-[ext_resource type="Texture2D" uid="uid://p11annfcahep" path="res://Sprites/Locations/buff_location.png" id="2_lsbku"]
 [ext_resource type="Texture2D" uid="uid://doklob2e1xafl" path="res://Sprites/UI/arrow.png" id="3_8wc4m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6sqpo"]
@@ -39,7 +38,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_vwxop"]
-resource_name = "locaton_popout"
+resource_name = "location_popout"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -58,7 +57,7 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_8wc4m"),
 &"location_popin": SubResource("Animation_lsbku"),
-&"locaton_popout": SubResource("Animation_vwxop")
+&"location_popout": SubResource("Animation_vwxop")
 }
 
 [node name="buff_location" type="Node2D"]
@@ -75,7 +74,6 @@ shape = SubResource("CircleShape2D_6sqpo")
 z_index = 2
 texture_filter = 1
 scale = Vector2(0.45, 0.45)
-texture = ExtResource("2_lsbku")
 
 [node name="arrow" type="Sprite2D" parent="location_sprite"]
 position = Vector2(19.4444, 5.55556)

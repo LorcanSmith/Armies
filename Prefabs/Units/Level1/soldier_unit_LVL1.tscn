@@ -1,11 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl00alav0ft5w"]
+[gd_scene load_steps=4 format=3 uid="uid://bl00alav0ft5w"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_1f732"]
 [ext_resource type="PackedScene" uid="uid://j16g2a5ai3sr" path="res://Prefabs/Effects/Projectiles/bullet_projectile.tscn" id="2_ulbqm"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_11hi7"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_1f732"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_knf1c"]
 
 [node name="Soldier" instance=ExtResource("1_1f732")]
 max_health = 15
@@ -18,33 +15,14 @@ skill_spawn_random = true
 skill_damage = 4
 projectile = ExtResource("2_ulbqm")
 
-[node name="location3" type="Node2D" parent="skill_locations" index="1"]
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_knf1c")]
+position = Vector2(74, 0)
+
+[node name="unit_skill_location2" parent="skill_locations" index="1" instance=ExtResource("3_knf1c")]
 position = Vector2(74, 74)
 
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location3" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location3/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_11hi7")
-
-[node name="location4" type="Node2D" parent="skill_locations" index="2"]
+[node name="unit_skill_location3" parent="skill_locations" index="2" instance=ExtResource("3_knf1c")]
 position = Vector2(74, -74)
 
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location4" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location4/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_11hi7")
-
-[node name="location2" type="Node2D" parent="skill_locations" index="3"]
+[node name="unit_skill_location4" parent="skill_locations" index="3" instance=ExtResource("3_knf1c")]
 position = Vector2(148, 0)
-
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location2" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location2/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_1f732")
-
-[connection signal="area_entered" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location4/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location4/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
