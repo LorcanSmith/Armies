@@ -173,6 +173,10 @@ func move():
 			#Tell the new tile that this unit is now on it
 			tile_to_move_to.unit_placed_on(self)
 			mo = true
+			#if(current_brawl_effect == null && get_parent().units_on_tile.size() == 2):
+				#current_brawl_effect = brawl_effect.instantiate()
+				#get_parent().add_child(current_brawl_effect)
+				#current_brawl_effect.global_position = Vector2(get_parent().global_position.x, get_parent().global_position.y)
 	if(!mo):
 		var cm = find_parent("combat_manager")
 		cm.w += 1
@@ -264,10 +268,10 @@ func skill():
 
 
 func brawl():
-	if(current_brawl_effect == null):
-		current_brawl_effect = brawl_effect.instantiate()
-		self.add_child(current_brawl_effect)
-		current_brawl_effect.position = Vector2(0,0)
+	#if(current_brawl_effect == null):
+		#current_brawl_effect = brawl_effect.instantiate()
+		#self.add_child(current_brawl_effect)
+		#current_brawl_effect.position = Vector2(0,0)
 	#Finds each unit on this unit's current tile
 	for unit in get_parent().units_on_tile:
 		#If the unit isnt itself do some brawl damage to it
