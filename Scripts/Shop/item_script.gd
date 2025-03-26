@@ -9,7 +9,7 @@ var unit_ID : int = -1
 var damage_boost : int
 var health_boost : int
 @export var description : String
-var tooltip : Control
+var tooltip : Node2D
 @export var show_tooltip_time : float = 1.4
 var current_time_till_tooltip : float
 @export_group("Item is a unit")
@@ -158,9 +158,14 @@ func _process(delta: float) -> void:
 		if(current_time_till_tooltip > 0):
 			current_time_till_tooltip -= delta
 		else:
-			tooltip.set_visible(true)
+			if(tooltip.visible == false):
+				tooltip.set_visible(true)
+				#Play tooltip appear animation
+				tooltip.get_node("AnimationPlayer").play("tooltip_appear")
 	elif(tooltip and (!mouse_over_item or follow_mouse)):
-		tooltip.set_visible(false)
+		if(tooltip.visible == true):
+			#Plays animation to popout tooltip. Once the animation finishes the tooltip turns itself off
+			tooltip.get_node("AnimationPlayer").play("tooltip_popout")
 		current_time_till_tooltip = show_tooltip_time
 	if(follow_mouse):
 		#Turn on the skill location tiles
@@ -330,7 +335,7 @@ func buff():
 		var buff_loc = 0
 		while(buff_loc < buff_locations.size()):
 			var unit = buff_locations[buff_loc].unit_to_buff
-			if(unit != null):
+			if(unit != null and unit.bought):
 				var dictionary_instance = dictionary.new()
 				var unit_dictionary = dictionary_instance.unit_scenes[unit.unit_ID].instantiate()
 				var can_buff_unit
@@ -346,16 +351,15 @@ func buff():
 						var buff_instance = damage_buff_visual.instantiate()
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
 						buff_instance.global_position = self.global_position
-						buff_instance.target = unit
+						buff_instance.unit = unit
 						buff_instance.find_child("buff_text").text = str("+",damage_buff)
 					if(health_buff > 0):
 						unit.health_boost += health_buff
 						var buff_instance = health_buff_visual.instantiate()
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
 						buff_instance.global_position = self.global_position
-						buff_instance.target = unit
+						buff_instance.unit = unit
 						buff_instance.find_child("buff_text").text = str("+",health_buff)
-					unit.update_label_text()
 			buff_loc += 1
 
 

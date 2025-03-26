@@ -1,14 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3b48xr2ty14y"]
+[gd_scene load_steps=6 format=3 uid="uid://d3b48xr2ty14y"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_a4ilc"]
 [ext_resource type="Texture2D" uid="uid://c7x0n5de2qo45" path="res://Sprites/Units/Army/Medic/medic_sprite.png" id="2_elbiq"]
 [ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_tyy54"]
+[ext_resource type="Script" uid="uid://bbyqyvnyg3d6s" path="res://Scripts/Skills/buff.gd" id="4_tvar7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6sqpo"]
+radius = 5.09902
 
 [node name="Medic" instance=ExtResource("1_a4ilc")]
-description = "Heals units within range"
+description = "End of shop phase: Gives units above and below +2 health. In battle heals friendlies in range."
 unit_name = "Medic"
 buy_cost = 15
 sell_cost = 7
+can_buff = true
+health_buff = 2
+Medieval = true
+Army = true
+Vehicle = true
+Human = true
+Soldier = true
+Animal = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_elbiq")
@@ -18,3 +30,16 @@ scale = Vector2(1e-05, 1e-05)
 
 [node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_tyy54")]
 tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 1, 0, 0, 0, 0, 0, 37, 13, 96, 187, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0)
+
+[node name="buff_location2" type="Node2D" parent="buffs" index="1"]
+position = Vector2(0, 74)
+script = ExtResource("4_tvar7")
+
+[node name="Area2D" type="Area2D" parent="buffs/buff_location2" index="0"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buffs/buff_location2/Area2D" index="0"]
+shape = SubResource("CircleShape2D_6sqpo")
+
+[connection signal="area_entered" from="buffs/buff_location2/Area2D" to="buffs/buff_location2" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="buffs/buff_location2/Area2D" to="buffs/buff_location2" method="_on_area_2d_area_exited"]

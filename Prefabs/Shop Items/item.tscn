@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d26riwgg0v8nl"]
+[gd_scene load_steps=24 format=3 uid="uid://d26riwgg0v8nl"]
 
 [ext_resource type="Script" uid="uid://bvdq4sn7w35b4" path="res://Scripts/Shop/item_script.gd" id="1_mdv0s"]
 [ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="4_1nmpe"]
@@ -74,6 +74,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(27, -18)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Item_Info/heart_sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.666667, 0.64881)]
+}
 
 [sub_resource type="Animation" id="Animation_te1c8"]
 resource_name = "upgrade_arrow"
@@ -91,9 +103,43 @@ tracks/0/keys = {
 "values": [Vector2(27, -18), Vector2(27, -9.195), Vector2(27, -18)]
 }
 
+[sub_resource type="Animation" id="Animation_pf34d"]
+resource_name = "health_bounce"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Item_Info/heart_sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-1.86265e-09, 0.137866, 0.215552, 0.28334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.666667, 0.64881), Vector2(1.142, 1.111), Vector2(0.572, 0.556), Vector2(0.667, 0.648)]
+}
+
+[sub_resource type="Animation" id="Animation_a7ffy"]
+resource_name = "damage_bounce"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Item_Info/sword_sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.137866, 0.215552, 0.28334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.666667, 0.64881), Vector2(1.142, 1.111), Vector2(0.572, 0.556), Vector2(0.667, 0.648)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pf34d"]
 _data = {
 &"RESET": SubResource("Animation_eytbw"),
+&"damage_bounce": SubResource("Animation_a7ffy"),
+&"health_bounce": SubResource("Animation_pf34d"),
 &"upgrade_arrow": SubResource("Animation_te1c8")
 }
 
@@ -104,7 +150,7 @@ radius = 5.09902
 z_index = 1
 z_as_relative = false
 script = ExtResource("1_mdv0s")
-show_tooltip_time = 0.6
+show_tooltip_time = 0.3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -171,14 +217,14 @@ position = Vector2(58.8235, 70.5882)
 scale = Vector2(4.41176, 4.41177)
 texture = ExtResource("4_1nmpe")
 
-[node name="HeartSprite" type="Sprite2D" parent="Sprite2D/Item_Info"]
+[node name="heart_sprite" type="Sprite2D" parent="Sprite2D/Item_Info"]
 z_index = 3
 texture_filter = 1
 position = Vector2(-25, -1.8125)
 scale = Vector2(0.666667, 0.64881)
 texture = ExtResource("4_awdqk")
 
-[node name="Defense" type="Label" parent="Sprite2D/Item_Info/HeartSprite"]
+[node name="Defense" type="Label" parent="Sprite2D/Item_Info/heart_sprite"]
 z_index = 5
 z_as_relative = false
 anchors_preset = -1
@@ -199,14 +245,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="SwordSprite" type="Sprite2D" parent="Sprite2D/Item_Info"]
+[node name="sword_sprite" type="Sprite2D" parent="Sprite2D/Item_Info"]
 z_index = 3
 texture_filter = 1
 position = Vector2(-26, 13)
 scale = Vector2(0.666667, 0.64881)
 texture = ExtResource("5_opg0c")
 
-[node name="Attack" type="Label" parent="Sprite2D/Item_Info/SwordSprite"]
+[node name="Attack" type="Label" parent="Sprite2D/Item_Info/sword_sprite"]
 z_index = 5
 z_as_relative = false
 anchors_preset = -1
@@ -264,6 +310,13 @@ libraries = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D/upgrade_arrow")
+libraries = {
+&"": SubResource("AnimationLibrary_pf34d")
+}
+autoplay = "upgrade_arrow"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D/upgrade_arrow")
 libraries = {
 &"": SubResource("AnimationLibrary_pf34d")
