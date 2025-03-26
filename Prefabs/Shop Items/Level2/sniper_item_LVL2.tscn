@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_cfgqa"]
 [ext_resource type="Texture2D" uid="uid://v3nlwsuc1f6q" path="res://Sprites/Units/Army/sniper/Sniper_lvl2.png" id="2_87d7p"]
-[ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_87d7p"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_87d7p"]
 
 [node name="Sniper" instance=ExtResource("1_cfgqa")]
 description = "Long range high damage unit"
@@ -13,5 +13,11 @@ sell_cost = 7
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_87d7p")
 
-[node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_87d7p")]
-tile_map_data = PackedByteArray(0, 0, 1, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 37, 13, 96, 187, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0)
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("3_87d7p")]
+position = Vector2(148, 0)
+
+[node name="skill_location2" parent="skills" index="1" instance=ExtResource("3_87d7p")]
+position = Vector2(222, 0)
+
+[node name="skill_location3" parent="skills" index="2" instance=ExtResource("3_87d7p")]
+position = Vector2(296, 0)

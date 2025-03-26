@@ -60,30 +60,6 @@ position = Vector2(148, -74)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location6/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_1f732")
 
-[node name="location7" type="Node2D" parent="skill_locations" index="6"]
-position = Vector2(222, -74)
-
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location7" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location7/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_1f732")
-
-[node name="location8" type="Node2D" parent="skill_locations" index="7"]
-position = Vector2(222, 0)
-
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location8" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location8/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_1f732")
-
-[node name="location9" type="Node2D" parent="skill_locations" index="8"]
-position = Vector2(222, 74)
-
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location9" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location9/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_1f732")
-
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("3_4fa0f")
 
@@ -97,9 +73,3 @@ texture = ExtResource("3_4fa0f")
 [connection signal="area_exited" from="skill_locations/location5/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
 [connection signal="area_entered" from="skill_locations/location6/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location6/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location7/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location7/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location8/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location8/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location9/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location9/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

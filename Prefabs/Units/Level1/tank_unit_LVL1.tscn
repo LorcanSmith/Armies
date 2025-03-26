@@ -13,6 +13,7 @@ Army = true
 Vehicle = true
 skill_damage = 10
 reload_time = 3
+skill_shooots_closest_enemy = true
 projectile = ExtResource("2_inajs")
 
 [node name="location2" type="Node2D" parent="skill_locations" index="1"]
@@ -23,18 +24,8 @@ position = Vector2(148, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location2/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_11hi7")
 
-[node name="location3" type="Node2D" parent="skill_locations" index="2"]
-position = Vector2(222, 0)
-
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location3" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location3/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_11hi7")
-
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_ur0nq")
 
 [connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location3/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d26riwgg0v8nl"]
+[gd_scene load_steps=18 format=3 uid="uid://d26riwgg0v8nl"]
 
 [ext_resource type="Script" uid="uid://bvdq4sn7w35b4" path="res://Scripts/Shop/item_script.gd" id="1_mdv0s"]
 [ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="4_1nmpe"]
@@ -8,8 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="6_7cyn1"]
 [ext_resource type="Texture2D" uid="uid://ccgy3b8l23r0w" path="res://Sprites/Units/shadow.png" id="6_awdqk"]
 [ext_resource type="Texture2D" uid="uid://doklob2e1xafl" path="res://Sprites/UI/arrow.png" id="7_6sqpo"]
-[ext_resource type="Script" uid="uid://qmo5gtfqa526" path="res://Scripts/UI/start_scale_zero.gd" id="7_awdqk"]
-[ext_resource type="Script" uid="uid://bbyqyvnyg3d6s" path="res://Scripts/Skills/buff.gd" id="10_te1c8"]
+[ext_resource type="Script" uid="uid://bxdwjf5tj7s4c" path="res://Scripts/Skills/location_stick_to_sprite.gd" id="10_te1c8"]
 [ext_resource type="Texture2D" uid="uid://djdl8p52grdjd" path="res://Sprites/UI/chevrons/level_chevron.png" id="11_eytbw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1nmpe"]
@@ -17,48 +16,6 @@ radius = 1.41421
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fj8s"]
 size = Vector2(64, 56)
-
-[sub_resource type="Animation" id="Animation_opg0c"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_awdqk"]
-resource_name = "tilemap_popin"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.266666, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1.3, 1.3), Vector2(0.9, 0.9), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_6sqpo"]
-resource_name = "tilemap_popout"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_6sqpo"]
-_data = {
-&"RESET": SubResource("Animation_opg0c"),
-&"tilemap_popin": SubResource("Animation_awdqk"),
-&"tilemap_popout": SubResource("Animation_6sqpo")
-}
 
 [sub_resource type="Animation" id="Animation_eytbw"]
 length = 0.001
@@ -87,20 +44,20 @@ tracks/1/keys = {
 "values": [Vector2(0.666667, 0.64881)]
 }
 
-[sub_resource type="Animation" id="Animation_te1c8"]
-resource_name = "upgrade_arrow"
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_a7ffy"]
+resource_name = "damage_bounce"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("../Item_Info/sword_sprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 0.366021, 0.366022),
+"times": PackedFloat32Array(0, 0.137866, 0.215552, 0.28334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(27, -18), Vector2(27, -9.195), Vector2(27, -18)]
+"values": [Vector2(0.666667, 0.64881), Vector2(1.142, 1.111), Vector2(0.572, 0.556), Vector2(0.667, 0.648)]
 }
 
 [sub_resource type="Animation" id="Animation_pf34d"]
@@ -119,20 +76,20 @@ tracks/0/keys = {
 "values": [Vector2(0.666667, 0.64881), Vector2(1.142, 1.111), Vector2(0.572, 0.556), Vector2(0.667, 0.648)]
 }
 
-[sub_resource type="Animation" id="Animation_a7ffy"]
-resource_name = "damage_bounce"
-length = 0.3
+[sub_resource type="Animation" id="Animation_te1c8"]
+resource_name = "upgrade_arrow"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Item_Info/sword_sprite:scale")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.137866, 0.215552, 0.28334),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 0.366021, 0.366022),
 "update": 0,
-"values": [Vector2(0.666667, 0.64881), Vector2(1.142, 1.111), Vector2(0.572, 0.556), Vector2(0.667, 0.648)]
+"values": [Vector2(27, -18), Vector2(27, -9.195), Vector2(27, -18)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pf34d"]
@@ -142,9 +99,6 @@ _data = {
 &"health_bounce": SubResource("Animation_pf34d"),
 &"upgrade_arrow": SubResource("Animation_te1c8")
 }
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_6sqpo"]
-radius = 5.09902
 
 [node name="Item" type="Node2D" groups=["item", "player"]]
 z_index = 1
@@ -301,13 +255,11 @@ shape = SubResource("RectangleShape2D_8fj8s")
 [node name="Tooltip" parent="." instance=ExtResource("6_7cyn1")]
 visible = false
 
-[node name="skill_tiles" type="Node2D" parent="."]
-script = ExtResource("7_awdqk")
+[node name="buffs" type="Node2D" parent="."]
+script = ExtResource("10_te1c8")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="skill_tiles"]
-libraries = {
-&"": SubResource("AnimationLibrary_6sqpo")
-}
+[node name="skills" type="Node2D" parent="."]
+script = ExtResource("10_te1c8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D/upgrade_arrow")
@@ -323,24 +275,9 @@ libraries = {
 }
 autoplay = "upgrade_arrow"
 
-[node name="buffs" type="Node2D" parent="."]
-
-[node name="buff_location" type="Node2D" parent="buffs"]
-position = Vector2(0, -74)
-script = ExtResource("10_te1c8")
-
-[node name="Area2D" type="Area2D" parent="buffs/buff_location"]
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="buffs/buff_location/Area2D"]
-shape = SubResource("CircleShape2D_6sqpo")
-
 [connection signal="mouse_entered" from="Sprite2D/Item_Info" to="Sprite2D/Item_Info" method="_on_mouse_entered"]
 [connection signal="area_entered" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_exited"]
 [connection signal="mouse_exited" from="Area2D - Tile Collsion" to="." method="_on_area_2d_mouse_exited"]
 [connection signal="mouse_entered" from="Area2D - Mouse Collision" to="." method="_on_area_2d__mouse_collision_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D - Mouse Collision" to="." method="_on_area_2d__mouse_collision_mouse_exited"]
-[connection signal="animation_finished" from="skill_tiles/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="area_entered" from="buffs/buff_location/Area2D" to="buffs/buff_location" method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="buffs/buff_location/Area2D" to="buffs/buff_location" method="_on_area_2d_area_exited"]

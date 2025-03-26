@@ -44,22 +44,6 @@ position = Vector2(148, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location2/skill_area2D" index="0"]
 shape = SubResource("CircleShape2D_1f732")
 
-[node name="location5" type="Node2D" parent="skill_locations" index="4"]
-position = Vector2(148, 74)
-
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location5" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location5/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_1f732")
-
-[node name="location6" type="Node2D" parent="skill_locations" index="5"]
-position = Vector2(148, -74)
-
-[node name="skill_area2D" type="Area2D" parent="skill_locations/location6" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="skill_locations/location6/skill_area2D" index="0"]
-shape = SubResource("CircleShape2D_1f732")
-
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("3_tyom5")
 
@@ -69,7 +53,3 @@ texture = ExtResource("3_tyom5")
 [connection signal="area_exited" from="skill_locations/location4/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
 [connection signal="area_entered" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
 [connection signal="area_exited" from="skill_locations/location2/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location5/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location5/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]
-[connection signal="area_entered" from="skill_locations/location6/skill_area2D" to="." method="_on_skill_area_2d_area_entered"]
-[connection signal="area_exited" from="skill_locations/location6/skill_area2D" to="." method="_on_skill_area_2d_area_exited"]

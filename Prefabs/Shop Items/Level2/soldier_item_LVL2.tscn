@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvi03u8rr7ohq"]
+[gd_scene load_steps=5 format=3 uid="uid://cvi03u8rr7ohq"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_1rdgn"]
 [ext_resource type="Texture2D" uid="uid://dxw8owu5o4krl" path="res://Sprites/Units/Army/soldier/Soldier_lvl2.png" id="2_in1rh"]
-[ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_4r6vu"]
-[ext_resource type="Script" uid="uid://bbyqyvnyg3d6s" path="res://Scripts/Skills/buff.gd" id="4_in1rh"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_6sqpo"]
-radius = 5.09902
+[ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="3_4r6vu"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_in1rh"]
 
 [node name="Soldier" instance=ExtResource("1_1rdgn")]
 description = "Gives other soldiers that are above and below, +1 health and +1 attack at the end of the shop phase"
@@ -21,20 +18,20 @@ Soldier = true
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_in1rh")
 
-[node name="skill_tiles" parent="." index="4"]
-scale = Vector2(1e-05, 1e-05)
-
-[node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_4r6vu")]
-
-[node name="buff_location2" type="Node2D" parent="buffs" index="1"]
+[node name="buff_location" parent="buffs" index="0" instance=ExtResource("3_4r6vu")]
 position = Vector2(0, 74)
-script = ExtResource("4_in1rh")
 
-[node name="Area2D" type="Area2D" parent="buffs/buff_location2" index="0"]
-monitorable = false
+[node name="buff_location2" parent="buffs" index="1" instance=ExtResource("3_4r6vu")]
+position = Vector2(0, -74)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="buffs/buff_location2/Area2D" index="0"]
-shape = SubResource("CircleShape2D_6sqpo")
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("4_in1rh")]
+position = Vector2(74, 0)
 
-[connection signal="area_entered" from="buffs/buff_location2/Area2D" to="buffs/buff_location2" method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="buffs/buff_location2/Area2D" to="buffs/buff_location2" method="_on_area_2d_area_exited"]
+[node name="skill_location3" parent="skills" index="1" instance=ExtResource("4_in1rh")]
+position = Vector2(74, 74)
+
+[node name="skill_location4" parent="skills" index="2" instance=ExtResource("4_in1rh")]
+position = Vector2(74, -74)
+
+[node name="skill_location2" parent="skills" index="3" instance=ExtResource("4_in1rh")]
+position = Vector2(148, 0)

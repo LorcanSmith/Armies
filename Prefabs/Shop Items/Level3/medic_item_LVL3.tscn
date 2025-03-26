@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://creownebmmnxu"]
+[gd_scene load_steps=5 format=3 uid="uid://creownebmmnxu"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_e5h32"]
 [ext_resource type="Texture2D" uid="uid://c7x0n5de2qo45" path="res://Sprites/Units/Army/Medic/medic_sprite.png" id="2_6o6l7"]
-[ext_resource type="PackedScene" uid="uid://5jxuxdnyror0" path="res://Prefabs/Skills/skill_tile_map.tscn" id="3_ie4gh"]
-[ext_resource type="Script" uid="uid://bbyqyvnyg3d6s" path="res://Scripts/Skills/buff.gd" id="4_y5x5v"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_6sqpo"]
-radius = 5.09902
+[ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="3_ie4gh"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_y5x5v"]
 
 [node name="Medic" instance=ExtResource("1_e5h32")]
 description = "End of shop phase: Gives units above and below +3 health. In battle heals friendlies in range."
@@ -26,21 +23,17 @@ Animal = true
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_6o6l7")
 
-[node name="skill_tiles" parent="." index="4"]
-scale = Vector2(1e-05, 1e-05)
-
-[node name="skill_tile_map" parent="skill_tiles" index="0" instance=ExtResource("3_ie4gh")]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 1, 0, 0, 0, 0, 0, 37, 13, 96, 187, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0)
-
-[node name="buff_location2" type="Node2D" parent="buffs" index="1"]
+[node name="buff_location" parent="buffs" index="0" instance=ExtResource("3_ie4gh")]
 position = Vector2(0, 74)
-script = ExtResource("4_y5x5v")
 
-[node name="Area2D" type="Area2D" parent="buffs/buff_location2" index="0"]
-monitorable = false
+[node name="buff_location2" parent="buffs" index="1" instance=ExtResource("3_ie4gh")]
+position = Vector2(0, -74)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="buffs/buff_location2/Area2D" index="0"]
-shape = SubResource("CircleShape2D_6sqpo")
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("4_y5x5v")]
+position = Vector2(74, 0)
 
-[connection signal="area_entered" from="buffs/buff_location2/Area2D" to="buffs/buff_location2" method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="buffs/buff_location2/Area2D" to="buffs/buff_location2" method="_on_area_2d_area_exited"]
+[node name="skill_location2" parent="skills" index="1" instance=ExtResource("4_y5x5v")]
+position = Vector2(74, 74)
+
+[node name="skill_location3" parent="skills" index="2" instance=ExtResource("4_y5x5v")]
+position = Vector2(74, -74)

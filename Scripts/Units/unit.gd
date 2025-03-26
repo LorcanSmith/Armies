@@ -3,7 +3,7 @@ extends Node
 var alive : bool = true
 #Unit ID - SET ID ON THE ITEM COUNTERPART
 var unit_ID : int = -1
-var tooltip : Control
+var tooltip : Node2D
 var mouse_over : bool = false
 @export var tooltip_show_time : float = 0.4
 var current_tooltip_time_left
