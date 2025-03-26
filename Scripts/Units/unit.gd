@@ -1,5 +1,5 @@
 extends Node
-
+var combat_manager : Node2D
 var alive : bool = true
 #Unit ID - SET ID ON THE ITEM COUNTERPART
 var unit_ID : int = -1
@@ -91,11 +91,11 @@ var enemies_in_range : Array = []
 var friendlies_in_range : Array = []
 
 func _ready() -> void:
+	combat_manager = find_parent("combat_manager")
 	health_bar = find_child("health_bar_color")
 	ammo_bar = find_child("ammo_bar_color")
 	if reload_time > 1:
 		find_child("ammo_bar_background").visible = true
-	tooltip = find_child("Tooltip")
 	current_tooltip_time_left = tooltip_show_time
 	skill_locations_parent = find_child("skill_locations")
 
@@ -103,7 +103,8 @@ func _ready() -> void:
 	health_bar_remaining = max_health
 	movement_locations = find_child("movement_locations").get_children()
 	#Set tooltip
-	find_child("Tooltip").update_tooltip()
+	tooltip = combat_manager.find_child("Tooltip")
+	tooltip.update_tooltip(unit_ID)
 	set_level_chevron()
 	set_unit_types()
 
@@ -145,8 +146,6 @@ func find_movement_tile():
 				get_parent().units_on_tile.erase(self)
 			#We have moved one unit
 			moved_distance += 1
-	#combat manager
-	var combat_manager = find_parent("combat_manager")
 	#Tell the combat manager that a unit has finished its "find tile" turn
 	combat_manager.units_moved += 1
 	#If the combat manager has no more units to find tiles for, then tell the manager to move the units
@@ -174,9 +173,8 @@ func move():
 			tile_to_move_to.unit_placed_on(self)
 			mo = true
 	if(!mo):
-		var cm = find_parent("combat_manager")
-		cm.w += 1
-		cm.waited_for_move()
+		combat_manager.w += 1
+		combat_manager.waited_for_move()
 	moved = false
 func skill():
 	#If this unit is the only unit on the tile then they can do their skill
@@ -374,25 +372,22 @@ func _process(delta: float) -> void:
 		self.position = lerp(self.position, Vector2(0,0), delta*5)
 	if(self.position.distance_to(Vector2(0,0)) < 1.8 and mo):
 		mo = false
-		var cm = find_parent("combat_manager")
-		cm.w += 1
-		cm.waited_for_move()
-	if(mouse_over and current_tooltip_time_left <= 0 and tooltip.visible == false):
-		tooltip.visible = true
+		combat_manager.w += 1
+		combat_manager.waited_for_move()
+	if(mouse_over):
+		tooltip.update_tooltip(unit_ID)
+		#tooltip.visible = true
 		#Play tooltip appear animation
-		tooltip.get_node("AnimationPlayer").play("tooltip_appear")
+		#tooltip.get_node("AnimationPlayer").play("tooltip_appear")
 		#Turns on skill locations
 		var x = 0
 		while x < skill_locations_parent.get_child_count():
 			skill_locations_parent.get_child(x).visible = true
 			skill_locations_parent.get_child(x).get_node("AnimationPlayer").play("location_popin")
 			x += 1
-	elif(mouse_over and current_tooltip_time_left >= 0):
-		current_tooltip_time_left -= delta
-	if(!mouse_over and tooltip.visible == true):
-		current_tooltip_time_left = tooltip_show_time
+	if(!mouse_over):
 		#Plays animation to popout tooltip. Once the animation finishes the tooltip turns itself off
-		tooltip.get_node("AnimationPlayer").play("tooltip_popout")
+		#tooltip.get_node("AnimationPlayer").play("tooltip_popout")
 		#Turns on skill locations
 		var x = 0
 		while x < skill_locations_parent.get_child_count():

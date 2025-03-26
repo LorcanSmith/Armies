@@ -1,11 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://d26riwgg0v8nl"]
+[gd_scene load_steps=17 format=3 uid="uid://d26riwgg0v8nl"]
 
 [ext_resource type="Script" uid="uid://bvdq4sn7w35b4" path="res://Scripts/Shop/item_script.gd" id="1_mdv0s"]
 [ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="4_1nmpe"]
 [ext_resource type="Texture2D" uid="uid://bos864ovdl3jf" path="res://Sprites/UI/heart.png" id="4_awdqk"]
 [ext_resource type="Texture2D" uid="uid://ca2y0ewqn4yt" path="res://Sprites/Units/Medieval/Knight/knight_sprite.png" id="5_1nmpe"]
 [ext_resource type="Texture2D" uid="uid://fpwwhqpb42av" path="res://Sprites/UI/sword.png" id="5_opg0c"]
-[ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="6_7cyn1"]
 [ext_resource type="Texture2D" uid="uid://ccgy3b8l23r0w" path="res://Sprites/Units/shadow.png" id="6_awdqk"]
 [ext_resource type="Texture2D" uid="uid://doklob2e1xafl" path="res://Sprites/UI/arrow.png" id="7_6sqpo"]
 [ext_resource type="Script" uid="uid://bxdwjf5tj7s4c" path="res://Scripts/Skills/location_stick_to_sprite.gd" id="10_te1c8"]
@@ -251,9 +250,6 @@ shape = SubResource("CircleShape2D_1nmpe")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - Mouse Collision"]
 position = Vector2(-4, -1)
 shape = SubResource("RectangleShape2D_8fj8s")
-
-[node name="Tooltip" parent="." instance=ExtResource("6_7cyn1")]
-visible = false
 
 [node name="buffs" type="Node2D" parent="."]
 script = ExtResource("10_te1c8")

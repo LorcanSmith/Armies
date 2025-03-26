@@ -84,9 +84,10 @@ func _ready() -> void:
 	buff_location = find_child("buffs")
 	skill_location = find_child("skills")
 	upgrade_arrow = find_child("upgrade_arrow")
-	tooltip = find_child("Tooltip")
+	
 	sprite = find_child("Sprite2D")
 	shop_manager = find_parent("shop_manager")
+	tooltip = shop_manager.find_child("Tooltip")
 	level_label = find_child("Level")
 	cost_label = find_child("Cost")
 	set_labels()
@@ -108,7 +109,7 @@ func set_labels():
 	if(unit_ID != -1):
 		update_label_text()
 	#Set tooltip
-	tooltip.update_tooltip()
+	tooltip.update_tooltip(unit_ID)
 func update_label_text():
 	var attack_label : Label = find_child("Attack")
 	var defense_label : Label = find_child("Defense")
@@ -124,7 +125,6 @@ func update_label_text():
 	while x < skill_location.get_child_count():
 		if(unit.skill_heal > 0):
 			var location_sprite = skill_location.get_child(x).find_child("location_sprite")
-			location_sprite.texture = load("res://Sprites/Locations/heal_location.png")
 			location_sprite.find_child("sword").visible = false
 			location_sprite.find_child("cross").visible = true
 			
@@ -135,6 +135,8 @@ func _on_area_2d__mouse_collision_mouse_entered() -> void:
 		mouse_over_item = true
 		shop_manager.show_potential_upgrades(true,self)
 		sprite.scale = Vector2(item_hovered_scale,item_hovered_scale)
+		#Update tool tip
+		tooltip.update_tooltip(unit_ID)
 #Called when the mouse stops hovering over
 func _on_area_2d__mouse_collision_mouse_exited() -> void:
 	if(!mouse_pressed):
@@ -167,19 +169,6 @@ func _input(event):
 				attempt_to_place()
 		
 func _process(delta: float) -> void:
-	if(tooltip and mouse_over_item and !follow_mouse):
-		if(current_time_till_tooltip > 0):
-			current_time_till_tooltip -= delta
-		else:
-			if(tooltip.visible == false):
-				tooltip.set_visible(true)
-				#Play tooltip appear animation
-				tooltip.get_node("AnimationPlayer").play("tooltip_appear")
-	elif(tooltip and (!mouse_over_item or follow_mouse)):
-		if(tooltip.visible == true):
-			#Plays animation to popout tooltip. Once the animation finishes the tooltip turns itself off
-			tooltip.get_node("AnimationPlayer").play("tooltip_popout")
-		current_time_till_tooltip = show_tooltip_time
 	if(follow_mouse):
 		#If the locations haven't been popped in yet, then turn them on and play an animation
 		if(!locations_popped_in):

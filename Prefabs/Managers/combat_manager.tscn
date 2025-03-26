@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bgv4jk4whdmy6"]
+[gd_scene load_steps=22 format=3 uid="uid://bgv4jk4whdmy6"]
 
 [ext_resource type="Script" uid="uid://ekpmqxviagv3" path="res://Scripts/Managers/combat_manager.gd" id="1_7ijpe"]
 [ext_resource type="PackedScene" uid="uid://cuf4kh851odj1" path="res://Prefabs/Managers/headquarter.tscn" id="2_2r55k"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://86k21d3187fd" path="res://Sprites/UI/next button_hover.png" id="14_l3yi2"]
 [ext_resource type="Texture2D" uid="uid://dhxlfggdx2kxf" path="res://Sprites/UI/departure board empty.png" id="15_yudfw"]
 [ext_resource type="PackedScene" uid="uid://rl8ohk3jx7cd" path="res://Prefabs/Status/letter.tscn" id="16_5jl04"]
+[ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="21_b20ae"]
 
 [node name="combat_manager" type="Node2D"]
 script = ExtResource("1_7ijpe")
@@ -38,7 +39,6 @@ is_battle_grid = true
 distance_between_grids = 2
 
 [node name="Camera2D" type="Camera2D" parent="grid_manager/grid_generator (army)"]
-position = Vector2(271, 1)
 zoom = Vector2(1.3, 1.3)
 
 [node name="NextButton" type="TextureButton" parent="grid_manager/grid_generator (army)/Camera2D"]
@@ -65,6 +65,7 @@ button_group = ExtResource("6_36bif")
 texture_normal = ExtResource("6_7wshk")
 texture_pressed = ExtResource("10_yc1ci")
 texture_hover = ExtResource("11_yudfw")
+metadata/_edit_use_anchors_ = true
 
 [node name="PlayButton" type="TextureButton" parent="grid_manager/grid_generator (army)/Camera2D"]
 texture_filter = 1
@@ -79,6 +80,7 @@ button_group = ExtResource("6_36bif")
 texture_normal = ExtResource("7_st48h")
 texture_pressed = ExtResource("7_5mabu")
 texture_hover = ExtResource("8_36bif")
+metadata/_edit_use_anchors_ = true
 
 [node name="Forward" type="TextureButton" parent="grid_manager/grid_generator (army)/Camera2D"]
 texture_filter = 1
@@ -92,6 +94,7 @@ button_group = ExtResource("6_36bif")
 texture_normal = ExtResource("8_gu5ih")
 texture_pressed = ExtResource("13_7hp4a")
 texture_hover = ExtResource("14_5jl04")
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="grid_manager/grid_generator (army)/Camera2D"]
 visible = false
@@ -125,6 +128,9 @@ position = Vector2(24.1279, 0)
 
 [node name="Letter9" parent="grid_manager/grid_generator (army)/Camera2D/Sprite2D" instance=ExtResource("16_5jl04")]
 position = Vector2(31.9767, 0)
+
+[node name="Tooltip" parent="grid_manager/grid_generator (army)/Camera2D" instance=ExtResource("21_b20ae")]
+position = Vector2(-446, 47)
 
 [node name="skill_holder" type="Node2D" parent="."]
 script = ExtResource("5_vexsu")
