@@ -69,7 +69,8 @@ func generate_grid(turn_number : int, in_combat : bool):
 			
 			if(is_battle_grid):
 				find_child("Camera2D").global_position = Vector2(grid[width/2][0].global_position.x + (offset/2), grid[width][height/2].global_position.y + (offset/2))
-	
+			else:
+				find_parent("shop_manager").find_child("Camera2D").position_camera(grid[width][height/2].global_position.y + (offset/2))
 	return true
 #Called when you want to save the current unit layout of the grid
 func save_current_grid():
