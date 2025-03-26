@@ -335,7 +335,7 @@ func buff():
 		var buff_loc = 0
 		while(buff_loc < buff_locations.size()):
 			var unit = buff_locations[buff_loc].unit_to_buff
-			if(unit != null):
+			if(unit != null and unit.bought):
 				var dictionary_instance = dictionary.new()
 				var unit_dictionary = dictionary_instance.unit_scenes[unit.unit_ID].instantiate()
 				var can_buff_unit
