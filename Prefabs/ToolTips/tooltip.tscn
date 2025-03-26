@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://trk87sgcanig"]
+[gd_scene load_steps=8 format=3 uid="uid://trk87sgcanig"]
 
 [ext_resource type="Script" uid="uid://me4w4b6ct4m7" path="res://Scripts/UI/tooltip.gd" id="1_mtw84"]
 [ext_resource type="Texture2D" uid="uid://chxrixvlx2xmm" path="res://Sprites/UI/tooltip.png" id="2_5ijbp"]
@@ -17,7 +17,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.107958, 0.229719, 0.347879),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(1.05, 1.05), Vector2(0.95, 0.95), Vector2(1, 1)]
+"values": [Vector2(0, 0), Vector2(0.805, 0.805), Vector2(0.75, 0.75), Vector2(0.8, 0.8)]
 }
 
 [sub_resource type="Animation" id="Animation_b1t42"]
@@ -36,14 +36,49 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(0.95, 0.95), Vector2(1.05, 1.05), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_b3iq5"]
+resource_name = "tooltip_refresh"
+length = 0.25
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.0002, 0.0003, 0.0004, 0.0005, 0.0465076, 0.110309, 0.24411),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.01, 0.8), Vector2(0.9, 0.8), Vector2(0.8, 0.8)]
+}
+
+[sub_resource type="Animation" id="Animation_igob6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b1t42"]
 _data = {
+&"RESET": SubResource("Animation_igob6"),
 &"tooltip_appear": SubResource("Animation_5ijbp"),
-&"tooltip_popout": SubResource("Animation_b1t42")
+&"tooltip_popout": SubResource("Animation_b1t42"),
+&"tooltip_refresh": SubResource("Animation_b3iq5")
 }
 
 [node name="Tooltip" type="Node2D"]
 z_index = 7
+scale = Vector2(1e-05, 1e-05)
 script = ExtResource("1_mtw84")
 offset = 200.0
 
@@ -52,10 +87,12 @@ texture_filter = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
+offset_top = -123.75
 offset_right = 200.0
-offset_bottom = 257.0
+offset_bottom = 133.25
 grow_vertical = 0
 scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(0, 123.438)
 size_flags_horizontal = 0
 size_flags_vertical = 8
 texture = ExtResource("2_5ijbp")
@@ -70,7 +107,6 @@ offset_bottom = 138.0
 scale = Vector2(0.287071, 0.287071)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 100
-text = "ARCHER"
 horizontal_alignment = 1
 vertical_alignment = 2
 

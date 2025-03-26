@@ -366,6 +366,12 @@ func skill_area_exited(area: Area2D) -> void:
 #TOOL TIP STUFF
 func _on_area_2d_mouse_entered() -> void:
 	mouse_over = true
+	#Pop tooltip in if the tooltip is hidden
+	if(tooltip.visible == false):
+		tooltip.visible = true
+		tooltip.get_node("AnimationPlayer").play("tooltip_appear")
+	else:
+		tooltip.get_node("AnimationPlayer").play("tooltip_refresh")
 func _on_area_2d_mouse_exited() -> void:
 	mouse_over = false
 
@@ -380,10 +386,6 @@ func _process(delta: float) -> void:
 		combat_manager.waited_for_move()
 	if(mouse_over):
 		tooltip.update_tooltip(unit_ID)
-		#tooltip.visible = true
-		#Play tooltip appear animation
-		#tooltip.get_node("AnimationPlayer").play("tooltip_appear")
-		#Turns on skill locations
 		var x = 0
 		while x < skill_locations_parent.get_child_count():
 			skill_locations_parent.get_child(x).visible = true

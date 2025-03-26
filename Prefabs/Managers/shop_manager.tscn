@@ -147,8 +147,7 @@ position = Vector2(589, 508)
 zoom = Vector2(1.8, 1.8)
 
 [node name="Tooltip" parent="Camera2D" instance=ExtResource("14_vg5hm")]
-position = Vector2(-309, 3)
-scale = Vector2(0.8, 0.8)
+position = Vector2(-340, 98)
 
 [node name="buff_animation_holder" type="Node2D" parent="."]
 script = ExtResource("12_cnpns")
