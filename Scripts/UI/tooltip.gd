@@ -6,6 +6,9 @@ var flipped : bool = false
 var background : TextureRect
 @export var offset : float
 
+#The ID for the unit whos info we are currently showing
+var current_unit_ID
+
 var unit_name : RichTextLabel
 var description : RichTextLabel
 var health : RichTextLabel
@@ -20,7 +23,14 @@ func _ready() -> void:
 	self.scale = Vector2(0,0)
 
 func update_tooltip(u) -> void:
-	if(u != -1):
+	if(u != -1 and u != current_unit_ID):
+		#Pop tooltip in if the tooltip is hidden
+		if(self.visible == false):
+			self.visible = true
+			self.get_node("AnimationPlayer").play("tooltip_appear")
+		else:
+			self.get_node("AnimationPlayer").play("tooltip_refresh")
+		current_unit_ID = u
 		var dictionary_instance = dictionary.new()
 		var unit = dictionary_instance.unit_scenes[u].instantiate()
 		var item = dictionary_instance.item_scenes[u].instantiate()
@@ -45,5 +55,8 @@ var anim_finished : bool = false
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if(anim_name == "tooltip_popout"):
-		#self.set_visible(false)
-		pass
+		self.visible = false
+
+
+func _on_button_pressed() -> void:
+	get_node("AnimationPlayer").play("tooltip_popout")

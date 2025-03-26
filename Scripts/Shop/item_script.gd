@@ -108,8 +108,7 @@ func set_labels():
 		level_chevron_parent.get_child(2).visible = true
 	if(unit_ID != -1):
 		update_label_text()
-	#Set tooltip
-	tooltip.update_tooltip(unit_ID)
+	
 func update_label_text():
 	var attack_label : Label = find_child("Attack")
 	var defense_label : Label = find_child("Defense")
@@ -166,12 +165,6 @@ func _on_area_2d__mouse_collision_mouse_entered() -> void:
 		sprite.scale = Vector2(item_hovered_scale,item_hovered_scale)
 		#Update tool tip
 		tooltip.update_tooltip(unit_ID)
-		#Pop tooltip in if the tooltip is hidden
-		if(tooltip.visible == false):
-			tooltip.visible = true
-			tooltip.get_node("AnimationPlayer").play("tooltip_appear")
-		else:
-			tooltip.get_node("AnimationPlayer").play("tooltip_refresh")
 	#If the locations haven't been popped in yet, then turn them on and play an animation
 	if(bought):
 		toggle_skill_location()

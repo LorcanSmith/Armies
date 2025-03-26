@@ -104,7 +104,6 @@ func _ready() -> void:
 	movement_locations = find_child("movement_locations").get_children()
 	#Set tooltip
 	tooltip = combat_manager.find_child("Tooltip")
-	tooltip.update_tooltip(unit_ID)
 	set_level_chevron()
 	set_unit_types()
 

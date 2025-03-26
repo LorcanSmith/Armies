@@ -24,6 +24,7 @@ size = Vector2(46, 59)
 script = ExtResource("1_0fc1a")
 free_reroll = false
 reroll_cost = 3
+money = 300
 
 [node name="ShopItemGenerator" type="Node2D" parent="."]
 position = Vector2(116, 250)
