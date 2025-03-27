@@ -108,8 +108,7 @@ func set_labels():
 		level_chevron_parent.get_child(2).visible = true
 	if(unit_ID != -1):
 		update_label_text()
-	#Set tooltip
-	tooltip.update_tooltip(unit_ID)
+	
 func update_label_text():
 	var attack_label : Label = find_child("Attack")
 	var defense_label : Label = find_child("Defense")
@@ -127,8 +126,37 @@ func update_label_text():
 			var location_sprite = skill_location.get_child(x).find_child("location_sprite")
 			location_sprite.find_child("sword").visible = false
 			location_sprite.find_child("cross").visible = true
-			
 		x+= 1
+		
+func toggle_skill_location():
+	#If the locations haven't been popped in yet, then turn them on and play an animation
+	if(!locations_popped_in):
+		#Turn on the buff/skill location tiles
+		var x = 0
+		while x < buff_location.get_child_count():
+			buff_location.get_child(x).visible = true
+			buff_location.get_child(x).get_node("AnimationPlayer").play("location_popin")
+			x += 1
+		x = 0
+		while x < skill_location.get_child_count():
+			skill_location.get_child(x).visible = true
+			skill_location.get_child(x).get_node("AnimationPlayer").play("location_popin")
+			x += 1
+		x = 0
+		locations_popped_in = true
+	#If the locations are visible and popped in then play animation to pop them out
+	#The locations themselves will set to be invisible when the animation finishes
+	elif(locations_popped_in):
+		#Turn off buff/skill location visuals
+		locations_popped_in = false
+		var x = 0
+		while x < buff_location.get_child_count():
+			buff_location.get_child(x).get_node("AnimationPlayer").play("location_popout")
+			x += 1
+		x = 0
+		while x < skill_location.get_child_count():
+			skill_location.get_child(x).get_node("AnimationPlayer").play("location_popout")
+			x += 1
 #Called when the mouse is hovering over
 func _on_area_2d__mouse_collision_mouse_entered() -> void:
 	if(!mouse_pressed):
@@ -137,12 +165,17 @@ func _on_area_2d__mouse_collision_mouse_entered() -> void:
 		sprite.scale = Vector2(item_hovered_scale,item_hovered_scale)
 		#Update tool tip
 		tooltip.update_tooltip(unit_ID)
+	#If the locations haven't been popped in yet, then turn them on and play an animation
+	if(bought):
+		toggle_skill_location()
 #Called when the mouse stops hovering over
 func _on_area_2d__mouse_collision_mouse_exited() -> void:
 	if(!mouse_pressed):
 		mouse_over_item = false
 		shop_manager.show_potential_upgrades(false,self)
 		sprite.scale = Vector2(1,1)
+	if(bought):
+		toggle_skill_location()
 	
 #Checks to see if the mouse is clicked. This is so we can check to see if a user
 #has clicked on an item.
@@ -159,32 +192,20 @@ func _input(event):
 					sprite.position = Vector2(0,0)
 					if(get_parent().is_in_group("tile")):
 						tile_currently_over = get_parent()
+					if(!bought and !locations_popped_in):
+						toggle_skill_location()
 			#If the mouse button is lifted up the item should no longer follow the mouse
 			elif(!event.pressed):
 				if(follow_mouse):
 					sprite.scale = Vector2(item_hovered_scale, item_hovered_scale)
 				mouse_pressed = false
 				follow_mouse = false
+				
 				#The item should attempt to be placed when the user lets go of it
 				attempt_to_place()
 		
 func _process(delta: float) -> void:
 	if(follow_mouse):
-		#If the locations haven't been popped in yet, then turn them on and play an animation
-		if(!locations_popped_in):
-			#Turn on the buff/skill location tiles
-			var x = 0
-			while x < buff_location.get_child_count():
-				buff_location.get_child(x).visible = true
-				buff_location.get_child(x).get_node("AnimationPlayer").play("location_popin")
-				x += 1
-			x = 0
-			while x < skill_location.get_child_count():
-				skill_location.get_child(x).visible = true
-				skill_location.get_child(x).get_node("AnimationPlayer").play("location_popin")
-				x += 1
-			x = 0
-			locations_popped_in = true
 		#Follow the mouse
 		self.global_position = get_global_mouse_position()
 		sprite.scale = Vector2(item_clicked_scale, item_clicked_scale)
@@ -221,20 +242,6 @@ func _process(delta: float) -> void:
 		self.position = Vector2(0,0)
 		sprite.position = Vector2(0,0)
 		unit_currently_over_can_upgrade = false
-		
-		#If the locations are visible and popped in then play animation to pop them out
-		#The locations themselves will set to be invisible when the animation finishes
-		if(locations_popped_in):
-			#Turn off buff/skill location visuals
-			locations_popped_in = false
-			var x = 0
-			while x < buff_location.get_child_count():
-				buff_location.get_child(x).get_node("AnimationPlayer").play("location_popout")
-				x += 1
-			x = 0
-			while x < skill_location.get_child_count():
-				skill_location.get_child(x).get_node("AnimationPlayer").play("location_popout")
-				x += 1
 #Called when the player attempts to place the item on a tile
 func attempt_to_place():
 	#The player is trying to sell the item and the item has already been bought
@@ -276,6 +283,8 @@ func attempt_to_place():
 			else:
 				#Resets position back to parent which is the item shop location or 
 				self.position = Vector2(0,0)
+				if(locations_popped_in):
+					toggle_skill_location()
 #Called when an attempt_to_place is sucessful
 func place_item():
 	#Check if we are upgrading the unit below

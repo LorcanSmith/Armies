@@ -24,6 +24,8 @@ var wins = 0
 #How much life are we on
 var life_remaining = 10
 
+@export var auto_create_armies_at_runtime : bool
+
 var money_remaining : int = 0
 @export var health_text : RichTextLabel
 @export var coin_text : RichTextLabel
@@ -40,6 +42,8 @@ func _ready():
 	in_combat = false
 	health_text.text = str(life_remaining)
 	game_over_canvas = find_child("game_over_canvas")
+	if(auto_create_armies_at_runtime):
+		DebuggerScript.create_enemy_armies()
 	create_scene()
 
 

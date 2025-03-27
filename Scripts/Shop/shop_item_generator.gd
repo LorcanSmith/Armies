@@ -69,9 +69,9 @@ func reroll_shop():
 	#The units are parented to the shop location they are at, so we loop over every
 	#shop location and delete their child
 	var reroll_success = false
-	if !get_parent().free_reroll:
-		if get_parent().reroll_cost <= get_parent().money:
-			get_parent().change_money(get_parent().reroll_cost)
+	if !(find_parent("shop_manager").free_reroll):
+		if (find_parent("shop_manager").reroll_cost <= find_parent("shop_manager").money):
+			find_parent("shop_manager").change_money(find_parent("shop_manager").reroll_cost)
 			reroll_success = true
 	else:
 		reroll_success = true

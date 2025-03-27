@@ -72,7 +72,6 @@ func battle_ticker():
 	if(!battle_over):
 		#If movement is next
 		if(next_phase == "movement"):
-			await get_tree().create_timer(tick_delay*2).timeout
 			movement_phase()
 		#If combat is next
 		elif(next_phase == "combat"):
@@ -82,13 +81,11 @@ func battle_ticker():
 				next_phase = "movement"
 				update_phase_label("movement")
 				auto_tick()
-			await get_tree().create_timer(tick_delay*2).timeout
 			combat_phase()
 		#If healing is next
 		elif(next_phase == "healing"):
 			if(healing_unit_alive):
 				update_phase_label("healing")
-			await get_tree().create_timer(tick_delay*2).timeout
 			healing_phase()
 	#If the battle is over then go back to the shop
 	else:

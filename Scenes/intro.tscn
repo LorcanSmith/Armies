@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://hcxci321580j"]
 
 [ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://font.ttf" id="1_b226h"]
-[ext_resource type="Script" uid="uid://ckujhhkmirwqw" path="res://Scripts/Managers/onboarder.gd" id="1_hwjxs"]
+[ext_resource type="Script" path="res://Scripts/Managers/onboarder.gd" id="1_hwjxs"]
 [ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="2_duh1u"]
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="3_geirw"]
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="4_hwjxs"]
@@ -17,18 +17,18 @@ script = ExtResource("1_hwjxs")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 5.0
-offset_top = 145.0
-offset_right = 499.0
-offset_bottom = 566.0
+offset_left = 27.0
+offset_top = 159.0
+offset_right = 585.0
+offset_bottom = 654.0
 color = Color(0.122162, 0.193228, 0.464963, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 577.0
-offset_top = 145.0
-offset_right = 1071.0
-offset_bottom = 566.0
+offset_left = 674.0
+offset_top = 161.0
+offset_right = 1255.0
+offset_bottom = 651.0
 mouse_filter = 2
 color = Color(0.0851379, 0.259224, 0.204702, 1)
 
@@ -46,45 +46,42 @@ fit_content = true
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 27.0
-offset_top = 148.0
-offset_right = 4994.0
-offset_bottom = 4663.0
-scale = Vector2(0.09, 0.09)
+offset_left = 55.0
+offset_top = 185.0
+offset_right = 4528.0
+offset_bottom = 4700.0
+scale = Vector2(0.11, 0.11)
 theme_override_fonts/normal_font = ExtResource("1_b226h")
 theme_override_font_sizes/normal_font_size = 300
-text = "This is a very very early build. We need feedback on all aspects of the game with some key focus areas listed below:
-- How understandable are buttons
-- Does the game work in ways you expect it to
-- Is anything confusing
-- What do you like/dislike
+text = "All feedback is greatly appreciated. We need to know your thoughts on all aspects of the game
 
-Plus any other feedback or suggestions you have!
-"
+AREAS OF FOCUS:
+- How intuitive is everything: UI, tooltips, etc
+- How fun is the loop"
 fit_content = true
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 590.0
-offset_top = 148.0
-offset_right = 5557.0
-offset_bottom = 4663.0
-scale = Vector2(0.09, 0.09)
+offset_left = 701.0
+offset_top = 178.0
+offset_right = 5192.0
+offset_bottom = 4693.0
+scale = Vector2(0.11, 0.11)
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("1_b226h")
 theme_override_font_sizes/normal_font_size = 300
 text = "How our game works:
-Each turn you receive 30 coins to spend on units. You place these units on a grid and then when you are happy with your \"Army\" you go to battle! Fighting an enemy team, you must destroy their base before they destroy yours. 
+Each turn you receive 25 coins to spend on units. You place these units on a grid and then when you are happy with your \"Army\" you go to battle! Fighting an enemy team, you must destroy their base before they destroy yours. 
 You must get 10 wins/draws to beat the game. You lose life every time you lose a battle."
 fit_content = true
 
 [node name="TextureButton" type="TextureButton" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 731.0
-offset_top = 416.0
-offset_right = 804.0
-offset_bottom = 456.0
+offset_left = 1021.0
+offset_top = 545.0
+offset_right = 1094.0
+offset_bottom = 585.0
 scale = Vector2(2.69, 2.69)
 texture_normal = ExtResource("2_duh1u")
 texture_pressed = ExtResource("3_geirw")
