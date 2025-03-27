@@ -22,6 +22,7 @@ func change_money(amount : int):
 
 
 func _on_battle_button_pressed() -> void:
+	find_child("battle_button").visible = false
 	apply_buffs()
 
 func show_potential_upgrades(show : bool, item_who_called : Node2D):

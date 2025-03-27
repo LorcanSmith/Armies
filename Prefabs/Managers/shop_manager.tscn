@@ -99,6 +99,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Re-rollText" type="RichTextLabel" parent="Camera2D/ShopItemGenerator/re-roll button"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 1.0
 offset_top = 2.0
 offset_right = 459.0
@@ -112,7 +113,7 @@ fit_content = true
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="battle button" type="TextureButton" parent="Camera2D/ShopItemGenerator"]
+[node name="battle_button" type="TextureButton" parent="Camera2D/ShopItemGenerator"]
 texture_filter = 1
 offset_left = 703.0
 offset_top = 409.0
@@ -122,7 +123,7 @@ texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
-[node name="BattleText" type="RichTextLabel" parent="Camera2D/ShopItemGenerator/battle button"]
+[node name="BattleText" type="RichTextLabel" parent="Camera2D/ShopItemGenerator/battle_button"]
 layout_mode = 0
 offset_right = 281.0
 offset_bottom = 102.0
@@ -191,8 +192,8 @@ position = Vector2(-340, 98)
 [connection signal="mouse_entered" from="Camera2D/ShopItemGenerator/re-roll button" to="." method="_on_reroll_button_mouse_entered"]
 [connection signal="mouse_exited" from="Camera2D/ShopItemGenerator/re-roll button" to="." method="_on_reroll_button_mouse_exited"]
 [connection signal="pressed" from="Camera2D/ShopItemGenerator/re-roll button" to="Camera2D/ShopItemGenerator" method="_on_texture_button_pressed"]
-[connection signal="button_down" from="Camera2D/ShopItemGenerator/battle button" to="." method="_on_battle_button_button_down"]
-[connection signal="button_up" from="Camera2D/ShopItemGenerator/battle button" to="." method="_on_battle_button_button_up"]
-[connection signal="mouse_entered" from="Camera2D/ShopItemGenerator/battle button" to="." method="_on_battle_button_mouse_entered"]
-[connection signal="mouse_exited" from="Camera2D/ShopItemGenerator/battle button" to="." method="_on_battle_button_mouse_exited"]
-[connection signal="pressed" from="Camera2D/ShopItemGenerator/battle button" to="." method="_on_battle_button_pressed"]
+[connection signal="button_down" from="Camera2D/ShopItemGenerator/battle_button" to="." method="_on_battle_button_button_down"]
+[connection signal="button_up" from="Camera2D/ShopItemGenerator/battle_button" to="." method="_on_battle_button_button_up"]
+[connection signal="mouse_entered" from="Camera2D/ShopItemGenerator/battle_button" to="." method="_on_battle_button_mouse_entered"]
+[connection signal="mouse_exited" from="Camera2D/ShopItemGenerator/battle_button" to="." method="_on_battle_button_mouse_exited"]
+[connection signal="pressed" from="Camera2D/ShopItemGenerator/battle_button" to="." method="_on_battle_button_pressed"]
