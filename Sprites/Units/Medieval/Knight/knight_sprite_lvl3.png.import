@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl51wxccrk8j1"
-path="res://.godot/imported/Heal1.png-d738e26e095cd0a930f5aebc7fcce376.ctex"
+uid="uid://mglfoa66lq88"
+path="res://.godot/imported/knight_sprite_lvl3.png-a4fef7370e27adcb6e19d62b8b69dc20.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Effects/Heal1.png"
-dest_files=["res://.godot/imported/Heal1.png-d738e26e095cd0a930f5aebc7fcce376.ctex"]
+source_file="res://Sprites/Units/Medieval/Knight/knight_sprite_lvl3.png"
+dest_files=["res://.godot/imported/knight_sprite_lvl3.png-a4fef7370e27adcb6e19d62b8b69dc20.ctex"]
 
 [params]
 

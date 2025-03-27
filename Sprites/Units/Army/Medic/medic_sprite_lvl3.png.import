@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl51wxccrk8j1"
-path="res://.godot/imported/Heal1.png-d738e26e095cd0a930f5aebc7fcce376.ctex"
+uid="uid://bapffo6cc3txv"
+path="res://.godot/imported/medic_sprite_lvl3.png-377dce471a4a096d0958d0585136caa3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Effects/Heal1.png"
-dest_files=["res://.godot/imported/Heal1.png-d738e26e095cd0a930f5aebc7fcce376.ctex"]
+source_file="res://Sprites/Units/Army/Medic/medic_sprite_lvl3.png"
+dest_files=["res://.godot/imported/medic_sprite_lvl3.png-377dce471a4a096d0958d0585136caa3.ctex"]
 
 [params]
 

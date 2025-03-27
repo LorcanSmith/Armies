@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d3b48xr2ty14y"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_a4ilc"]
-[ext_resource type="Texture2D" uid="uid://c7x0n5de2qo45" path="res://Sprites/Units/Army/Medic/medic_sprite.png" id="2_elbiq"]
+[ext_resource type="Texture2D" uid="uid://dbf5sgm5ydwpa" path="res://Sprites/Units/Army/Medic/medic_sprite_lvl2.png" id="2_tvar7"]
 [ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="3_tyy54"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_tvar7"]
 
@@ -20,7 +20,7 @@ Soldier = true
 Animal = true
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_elbiq")
+texture = ExtResource("2_tvar7")
 
 [node name="buff_location" parent="buffs" index="0" instance=ExtResource("3_tyy54")]
 position = Vector2(0, 74)
