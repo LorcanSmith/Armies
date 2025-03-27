@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_7ehoi"]
 [ext_resource type="PackedScene" uid="uid://cwefhvoo3dhqh" path="res://Prefabs/Effects/heal_animation.tscn" id="2_cv8jd"]
-[ext_resource type="Texture2D" uid="uid://c7x0n5de2qo45" path="res://Sprites/Units/Army/Medic/medic_sprite.png" id="2_gqaq4"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_5fcw4"]
+[ext_resource type="Texture2D" uid="uid://dbf5sgm5ydwpa" path="res://Sprites/Units/Army/Medic/medic_sprite_lvl2.png" id="4_5fcw4"]
 
 [node name="Medic" instance=ExtResource("1_7ehoi")]
 max_health = 15
@@ -33,4 +33,4 @@ position = Vector2(74, 0)
 monitoring = false
 
 [node name="Sprite2D" parent="." index="4"]
-texture = ExtResource("2_gqaq4")
+texture = ExtResource("4_5fcw4")
