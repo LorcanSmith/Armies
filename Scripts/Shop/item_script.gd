@@ -350,18 +350,23 @@ func upgrade_unit(ID, dmg_bst, hlth_bst):
 	get_parent().unit_placed_on(upgraded_unit)
 	#Delete non-upgraded unit (self)
 	queue_free()
+	
 func set_unit_buff_types():
-	var dictionary_instance = dictionary.new()
 	while unit_ID == -1:
 		return
+	#Spawns an instance of the unit so we can access types
+	var dictionary_instance = dictionary.new()
 	var unit = dictionary_instance.unit_scenes[unit_ID].instantiate()
+	#Copy a list of every potential type
 	buffs_work_against = unit.unit_types.duplicate()
-	var potential_types = [Medieval,Army,Vehicle,Human,Soldier,Animal]
 	var x = 0
-	while(x < (potential_types.size())):
-		if(!potential_types[x]):
+	while(x < (buffs_work_against.size())):
+		#If the bool with the same name as buffs_work_against[x] is equal to false the remove it
+		var buff_bool = get(buffs_work_against[x])
+		if(!buff_bool):
 			buffs_work_against[x] = null
 		x += 1
+	
 func buff():
 	if(can_buff):
 		var buff_loc = 0
