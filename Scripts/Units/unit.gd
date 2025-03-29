@@ -43,7 +43,7 @@ var unit_types : Array = [
 @export var Human : bool
 @export var Soldier : bool
 @export var Animal : bool
-var potential_types : Array
+
 
 #How much damage will be applied to this unit, this turn
 var damage_done_to_self : int = 0
@@ -76,9 +76,8 @@ var reloading_counter : int
 
 @export_subgroup("Skill Effective Against")
 @export var effectiveness : int = 4
-@export var soldier_effective : bool
-@export var animal_effective : bool
-var potential_skill_effective_types : Array
+@export var Soldier_effective : bool
+@export var Animal_effective : bool
 var effective_against_types : Array
 
 #The parent containing all the skill locations
@@ -119,16 +118,20 @@ func set_level_chevron():
 		level_chevron_parent.get_child(1).visible = true
 		level_chevron_parent.get_child(2).visible = true
 func set_unit_types():
+	#Gets all the unit types
 	effective_against_types = unit_types.duplicate()
-	potential_types = [Soldier, Animal]
-	potential_skill_effective_types = [soldier_effective, animal_effective]
 	var x = 0
-	while(x < (potential_types.size())):
-		if(!potential_types[x]):
+	while(x < unit_types.size()):
+		#Finds the boolean with the same name as unit_types[x]
+		var type = get(unit_types[x])
+		var effective_against_type = get(unit_types[x] + "_effective")
+		#If the bool is set to false then it isnt of this type and should be removed from the list
+		if(!type):
 			unit_types[x] = null
-		if(!potential_skill_effective_types[x]):
+		if(!effective_against_type):
 			effective_against_types[x] = null
-		x += 1
+		x+=1
+	
 func find_movement_tile():
 	if(enemies_in_range.size() == 0 or skill_damage <= 0):
 		var moved_distance = 0
