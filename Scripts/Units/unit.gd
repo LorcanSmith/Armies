@@ -27,7 +27,7 @@ var tile_to_move_to : Node2D
 #brawl sprite
 var brawl_effect : PackedScene = preload("res://Prefabs/Effects/brawl_effect.tscn")
 var current_brawl_effect = null
-
+var brawling_grid : Node2D
 @export_subgroup("Unit Types")
 var unit_types : Array = [
 	"Medieval",
@@ -182,69 +182,71 @@ func move():
 		combat_manager.w += 1
 		combat_manager.waited_for_move()
 	moved = false
-func skill():
+	
+func skill(phase : String):
 	#If this unit is the only unit on the tile then they can do their skill
-	if(get_parent().units_on_tile.size() < 2):
-		#If there is at least one enemy within the units range (in a skill location) and the unit isn't reloading
-		if((enemies_in_range.size() > 0 or friendlies_in_range.size() > 0) and !reloading):
-			var skills_spawned = 0
-			#which unit in enemies_in_range/friendlies_in_range are we targeting
-			var unit_number = 0
-			#Spawn an instance of the skill at every skill location
-			while skills_spawned < skill_spawn_amount:
-				if((unit_number > enemies_in_range.size()-1 and skill_damage > 0) or (unit_number > friendlies_in_range.size()-1 and skill_heal > 0)):
-					#If the skill can be spawned on each unit more than once
-					if(!skill_max_once_per_unit):
-						unit_number = 0
+	if(alive and get_parent().units_on_tile.size() < 2):
+		if((phase == "combat_phase" and skill_damage > 0) or (phase == "healing_phase" and skill_heal > 0)):
+			#If there is at least one enemy within the units range (in a skill location) and the unit isn't reloading
+			if((enemies_in_range.size() > 0 or friendlies_in_range.size() > 0) and !reloading):
+				var skills_spawned = 0
+				#which unit in enemies_in_range/friendlies_in_range are we targeting
+				var unit_number = 0
+				#Spawn an instance of the skill at every skill location
+				while skills_spawned < skill_spawn_amount:
+					if((unit_number > enemies_in_range.size()-1 and skill_damage > 0) or (unit_number > friendlies_in_range.size()-1 and skill_heal > 0)):
+						#If the skill can be spawned on each unit more than once
+						if(!skill_max_once_per_unit):
+							unit_number = 0
+						else:
+							break
+					var skill_instance = skill_prefab.instantiate()
+					#Tell the skill how much damage it does
+					skill_instance.damage = skill_damage
+					skill_instance.heal = skill_heal
+					skill_instance.effective_against = effective_against_types
+					skill_instance.effectiveness = effectiveness
+					find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
+					
+					if reload_time > 1:
+						reloading = true
+						reloading_counter = reload_time
+					
+					#If the skill doesnt spawn randomly
+					if(!skill_spawn_random):
+						#Set skills location to be at a random enemy location
+						if spawn_skill_on_self:
+							skill_instance.global_position = self.global_position
+						#Sets skill's location to be at the closest enemy location
+						elif(skill_shooots_closest_enemy):
+							if(skill_damage > 0):
+								skill_instance.global_position = enemies_in_range[0].global_position
+								attack_visuals(enemies_in_range[0])
+							elif(skill_heal > 0):
+								skill_instance.global_position = friendlies_in_range[0].global_position
+								attack_visuals(friendlies_in_range[0])
+						#Loops through all enemies and sets the skill to be there location
+						else:
+							if(skill_damage > 0):
+								skill_instance.global_position = enemies_in_range[unit_number].global_position
+								attack_visuals(enemies_in_range[unit_number])
+							elif(skill_heal > 0):
+								skill_instance.global_position = friendlies_in_range[unit_number].global_position
+								attack_visuals(friendlies_in_range[unit_number])
+					#If the skill spawns at a random location
 					else:
-						break
-				var skill_instance = skill_prefab.instantiate()
-				#Tell the skill how much damage it does
-				skill_instance.damage = skill_damage
-				skill_instance.heal = skill_heal
-				skill_instance.effective_against = effective_against_types
-				skill_instance.effectiveness = effectiveness
-				find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
-				
-				if reload_time > 1:
-					reloading = true
-					reloading_counter = reload_time
-				
-				#If the skill doesnt spawn randomly
-				if(!skill_spawn_random):
-					#Set skills location to be at a random enemy location
-					if spawn_skill_on_self:
-						skill_instance.global_position = self.global_position
-					#Sets skill's location to be at the closest enemy location
-					elif(skill_shooots_closest_enemy):
-						if(skill_damage > 0):
-							skill_instance.global_position = enemies_in_range[0].global_position
-							attack_visuals(enemies_in_range[0])
-						elif(skill_heal > 0):
-							skill_instance.global_position = friendlies_in_range[0].global_position
-							attack_visuals(friendlies_in_range[0])
-					#Loops through all enemies and sets the skill to be there location
+						#Choose a random enemy in range
+						var random_position = randi_range(0, enemies_in_range.size()-1)
+						skill_instance.global_position = enemies_in_range[random_position].global_position
+						attack_visuals(enemies_in_range[random_position])
+					#Tell the skill if it is a friendly or enemy skill
+					if(self.is_in_group("player")):
+						skill_instance.belongs_to_player = true
 					else:
-						if(skill_damage > 0):
-							skill_instance.global_position = enemies_in_range[unit_number].global_position
-							attack_visuals(enemies_in_range[unit_number])
-						elif(skill_heal > 0):
-							skill_instance.global_position = friendlies_in_range[unit_number].global_position
-							attack_visuals(friendlies_in_range[unit_number])
-				#If the skill spawns at a random location
-				else:
-					#Choose a random enemy in range
-					var random_position = randi_range(0, enemies_in_range.size()-1)
-					skill_instance.global_position = enemies_in_range[random_position].global_position
-					attack_visuals(enemies_in_range[random_position])
-				#Tell the skill if it is a friendly or enemy skill
-				if(self.is_in_group("player")):
-					skill_instance.belongs_to_player = true
-				else:
-					skill_instance.belongs_to_player = false
+						skill_instance.belongs_to_player = false
 
-				unit_number += 1
-				skills_spawned += 1
+					unit_number += 1
+					skills_spawned += 1
 		#No units in range or reloading
 		else:
 			#Check if there is a unit in front of you
@@ -266,18 +268,15 @@ func skill():
 		if reloading_counter == 0:
 			reloading = false
 
-
 func brawl():
-	#if(current_brawl_effect == null):
-		#current_brawl_effect = brawl_effect.instantiate()
-		#self.add_child(current_brawl_effect)
-		#current_brawl_effect.position = Vector2(0,0)
+	if(alive):
+		brawling_grid = get_parent()
 	#Finds each unit on this unit's current tile
-	for unit in get_parent().units_on_tile:
+	for unit in brawling_grid.units_on_tile:
 		#If the unit isnt itself do some brawl damage to it
 		if(unit and unit != self):
 			unit.hurt(brawl_damage)
-			attack_visuals(unit)
+			unit.projectile_hit(brawl_damage)
 
 func projectile_hit(amount : int):
 	if(alive):
@@ -339,6 +338,8 @@ func destroy_unit():
 	get_parent().units_on_tile.erase(self)
 	if(get_parent().units_on_tile.size() == 0):
 		get_parent().is_empty = true
+	#Get the grid we are currently on so we can apply damage to brawling units before we die
+	brawling_grid = get_parent()
 	#Reparent to skill holder so the game waits for the unit to die
 	self.reparent(find_parent("combat_manager").find_child("skill_holder"))
 	#SOnce the damage animation plays, it will be destroyed
