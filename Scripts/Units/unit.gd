@@ -66,9 +66,10 @@ var damage_done_to_self : int = 0
 ##The amount of time it takes for a unit to reload
 @export var reload_time : int = 1
 ##skill does splash damage
-@export var skill_does_splash : bool = false
-##splash damage amount
-@export var splash_damage : int = 0
+@export var skill_does_splash : bool
+
+#internal holder for enemies in splash zone
+var enemies_in_splash_zone : Array
 
 #internal timer that keeps track of a unit's current reload
 var reloading_counter : int
@@ -97,6 +98,9 @@ func _ready() -> void:
 	combat_manager = find_parent("combat_manager")
 	health_bar = find_child("health_bar_color")
 	ammo_bar = find_child("ammo_bar_color")
+	if skill_does_splash:
+		skill_prefab = load("res://Prefabs/Skills/splash_skill.tscn")
+		
 	if reload_time > 1:
 		find_child("ammo_bar_background").visible = true
 	current_tooltip_time_left = tooltip_show_time
@@ -210,6 +214,12 @@ func skill():
 				skill_instance.effectiveness = effectiveness
 				find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
 				
+				#Tell the skill if it is a friendly or enemy skill
+				if(self.is_in_group("player")):
+					skill_instance.belongs_to_player = true
+				else:
+					skill_instance.belongs_to_player = false
+				
 				if reload_time > 1:
 					reloading = true
 					reloading_counter = reload_time
@@ -221,12 +231,24 @@ func skill():
 						skill_instance.global_position = self.global_position
 					#Sets skill's location to be at the closest enemy location
 					elif(skill_shooots_closest_enemy):
-						if(skill_damage > 0):
-							skill_instance.global_position = enemies_in_range[0].global_position
-							attack_visuals(enemies_in_range[0])
-						elif(skill_heal > 0):
-							skill_instance.global_position = friendlies_in_range[0].global_position
-							attack_visuals(friendlies_in_range[0])
+						if !skill_does_splash:
+							if(skill_damage > 0):
+								skill_instance.global_position = enemies_in_range[0].global_position
+								attack_visuals(enemies_in_range[0])
+							elif(skill_heal > 0):
+								skill_instance.global_position = friendlies_in_range[0].global_position
+								attack_visuals(friendlies_in_range[0])
+						else:
+							if(skill_damage > 0):
+								skill_instance.global_position = enemies_in_range[0].global_position
+								attack_visuals(enemies_in_range[0])
+							elif(skill_heal > 0):
+								skill_instance.global_position = friendlies_in_range[0].global_position
+								var friendly_areas = skill_instance.get_node("Area2D").get_overlapping_areas()
+								for area in friendly_areas:
+									if (self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy")):
+										enemies_in_splash_zone.append(area.get_parent())
+								attack_visuals(friendlies_in_range[0])
 					#Loops through all enemies and sets the skill to be there location
 					else:
 						if(skill_damage > 0):
@@ -241,11 +263,7 @@ func skill():
 					var random_position = randi_range(0, enemies_in_range.size()-1)
 					skill_instance.global_position = enemies_in_range[random_position].global_position
 					attack_visuals(enemies_in_range[random_position])
-				#Tell the skill if it is a friendly or enemy skill
-				if(self.is_in_group("player")):
-					skill_instance.belongs_to_player = true
-				else:
-					skill_instance.belongs_to_player = false
+				
 
 				unit_number += 1
 				skills_spawned += 1
@@ -321,6 +339,8 @@ func attack_visuals(enemy : Node2D):
 			projectile_instance.damage = skill_damage
 		elif(skill_heal > 0):
 			projectile_instance.damage = -skill_heal
+		if skill_does_splash:
+			projectile_instance.enemies_in_splash_zone = enemies_in_splash_zone
 		projectile_instance.target_enemy(enemy)
 	else:
 		print(self.name)
@@ -411,3 +431,12 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	#If the unit is dead and the damage animation has played, destroy this unit
 	if(!alive and anim_name == "unit_damage"):
 		queue_free()
+
+
+func _on_splash_location_area_entered(area):
+	if (self.is_in_group("player") and area.get_parent().is_in_group("enemy")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
+		enemies_in_splash_zone.append(area.get_parent())
+
+
+func _on_splash_location_area_exited(area):
+	enemies_in_splash_zone.erase(area.get_parent())

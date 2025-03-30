@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dty5jfklpgax3"]
+
+[ext_resource type="PackedScene" uid="uid://bp080ti5p3qme" path="res://Prefabs/Skills/skill.tscn" id="1_3gqli"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_j58lt"]
+points = PackedVector2Array(-37, -111, -37, -37, -111, -37, -111, 37, -37, 37, -37, 111, 37, 111, 37, 37, 111, 37, 111, -37, 37, -37, 37, -111)
+
+[node name="splash_skill" instance=ExtResource("1_3gqli")]
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("ConvexPolygonShape2D_j58lt")

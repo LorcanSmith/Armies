@@ -11,10 +11,9 @@ brawl_damage = 1
 Medieval = true
 Vehicle = true
 skill_spawn_amount = 2
-skill_damage = 25
+skill_damage = 5
 reload_time = 2
 skill_does_splash = true
-splash_damage = 7
 projectile = ExtResource("2_4uu5l")
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_0a4d5")]
