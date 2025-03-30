@@ -65,6 +65,10 @@ var damage_done_to_self : int = 0
 @export var reloading : bool
 ##The amount of time it takes for a unit to reload
 @export var reload_time : int = 1
+##skill does splash damage
+@export var skill_does_splash : bool = false
+##splash damage amount
+@export var splash_damage : int = 0
 
 #internal timer that keeps track of a unit's current reload
 var reloading_counter : int
