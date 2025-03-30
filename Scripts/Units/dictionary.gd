@@ -72,6 +72,6 @@ var item_scenes = {
 	23: preload("res://Prefabs/Shop Items/Level3/sniper_item_LVL3.tscn")
 }
 
-var boost_scenes = {
-	0: preload("res://Prefabs/Shop Items/Boosts/boost_1.tscn")
+var booster_scenes = {
+	0: preload("res://Prefabs/Shop Items/Boosters/booster_medieval.tscn")
 }

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqo7v0ul7wkrn"]
+
+[ext_resource type="PackedScene" uid="uid://coklokvg6mem2" path="res://Prefabs/Shop Items/Boosters/booster.tscn" id="1_6m5sb"]
+
+[node name="booster_medieval" instance=ExtResource("1_6m5sb")]
+potential_units_IDs = [0]

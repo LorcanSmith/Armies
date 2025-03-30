@@ -57,12 +57,17 @@ position = Vector2(-217, 427)
 [node name="Unit 4" type="Node2D" parent="Camera2D/ShopItemGenerator/Unit Locations"]
 position = Vector2(-143, 427)
 
+[node name="booster_locations" type="Node2D" parent="Camera2D/ShopItemGenerator"]
+
+[node name="booster_1" type="Node2D" parent="Camera2D/ShopItemGenerator/booster_locations"]
+position = Vector2(704, 226)
+
 [node name="re-roll button" type="TextureButton" parent="Camera2D/ShopItemGenerator"]
 texture_filter = 1
-offset_left = 704.0
-offset_top = 225.0
-offset_right = 777.0
-offset_bottom = 265.0
+offset_left = 705.0
+offset_top = 250.0
+offset_right = 778.0
+offset_bottom = 290.0
 texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")

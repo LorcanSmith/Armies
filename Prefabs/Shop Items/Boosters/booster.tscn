@@ -1,0 +1,128 @@
+[gd_scene load_steps=9 format=3 uid="uid://coklokvg6mem2"]
+
+[ext_resource type="Script" uid="uid://cwoochls8gut" path="res://Scripts/Shop/booster_script.gd" id="1_mbs64"]
+[ext_resource type="Texture2D" uid="uid://5m1l3yd4xp1e" path="res://Sprites/UI/boost.png" id="2_v8cbh"]
+[ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="3_370lu"]
+[ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="4_rxj7k"]
+[ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="5_ggvnm"]
+[ext_resource type="Script" uid="uid://bepx2dcme27es" path="res://Scripts/Shop/booster_unit_locations.gd" id="6_rxj7k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fj8s"]
+size = Vector2(59, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_370lu"]
+size = Vector2(23.3858, 25.1968)
+
+[node name="booster" type="Node2D" groups=["player"]]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_mbs64")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-9.53674e-07, 1)
+scale = Vector2(1.3125, 1.3125)
+texture = ExtResource("2_v8cbh")
+
+[node name="Area2D - Mouse Collision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - Mouse Collision"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_8fj8s")
+
+[node name="purchase_booster_UI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="purchase_booster_UI"]
+offset_left = 322.0
+offset_top = 256.0
+offset_right = 849.0
+offset_bottom = 594.0
+color = Color(0.114897, 0.114897, 0.114897, 1)
+
+[node name="buy_button" type="TextureButton" parent="purchase_booster_UI"]
+offset_left = 549.0
+offset_top = 528.0
+offset_right = 622.0
+offset_bottom = 568.0
+texture_normal = ExtResource("3_370lu")
+texture_pressed = ExtResource("4_rxj7k")
+texture_hover = ExtResource("5_ggvnm")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="purchase_booster_UI/buy_button"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+text = "BUY"
+
+[node name="close_button" type="TextureButton" parent="purchase_booster_UI"]
+offset_left = 759.0
+offset_top = 272.0
+offset_right = 832.0
+offset_bottom = 312.0
+texture_normal = ExtResource("3_370lu")
+texture_pressed = ExtResource("4_rxj7k")
+texture_hover = ExtResource("5_ggvnm")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="purchase_booster_UI/close_button"]
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 26.0
+mouse_filter = 2
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="choose_unit_UI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="unit_locations" type="Node2D" parent="choose_unit_UI"]
+
+[node name="location_1" type="Node2D" parent="choose_unit_UI/unit_locations"]
+position = Vector2(414, 352)
+script = ExtResource("6_rxj7k")
+
+[node name="Area2D" type="Area2D" parent="choose_unit_UI/unit_locations/location_1"]
+z_index = 14
+z_as_relative = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choose_unit_UI/unit_locations/location_1/Area2D"]
+z_index = 11
+z_as_relative = false
+scale = Vector2(2.54, 2.54)
+shape = SubResource("RectangleShape2D_370lu")
+
+[node name="ColorRect" type="ColorRect" parent="choose_unit_UI"]
+z_index = -1
+z_as_relative = false
+offset_left = 322.0
+offset_top = 256.0
+offset_right = 849.0
+offset_bottom = 594.0
+mouse_filter = 2
+color = Color(0.114897, 0.114897, 0.114897, 1)
+
+[node name="buy_unit_button" type="TextureButton" parent="choose_unit_UI"]
+offset_left = 728.0
+offset_top = 539.0
+offset_right = 801.0
+offset_bottom = 579.0
+texture_normal = ExtResource("3_370lu")
+texture_pressed = ExtResource("4_rxj7k")
+texture_hover = ExtResource("5_ggvnm")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="choose_unit_UI/buy_unit_button"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+text = "BUY"
+
+[connection signal="mouse_entered" from="Area2D - Mouse Collision" to="." method="_on_area_2d__mouse_collision_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D - Mouse Collision" to="." method="_on_area_2d__mouse_collision_mouse_exited"]
+[connection signal="pressed" from="purchase_booster_UI/buy_button" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="purchase_booster_UI/close_button" to="." method="_on_close_button_pressed"]
+[connection signal="mouse_entered" from="choose_unit_UI/unit_locations/location_1/Area2D" to="choose_unit_UI/unit_locations/location_1" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="choose_unit_UI/unit_locations/location_1/Area2D" to="choose_unit_UI/unit_locations/location_1" method="_on_area_2d_mouse_exited"]
+[connection signal="pressed" from="choose_unit_UI/buy_unit_button" to="." method="_on_buy_unit_button_pressed"]

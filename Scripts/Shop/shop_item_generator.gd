@@ -2,6 +2,8 @@ extends Node
 
 #Places where shop units show up
 var unit_locations = []
+#Places where boosters show up
+var booster_locations = []
 #Dictionary containing all units
 var dictionary = load("res://Scripts/Units/dictionary.gd")
 
@@ -14,6 +16,8 @@ func _ready() -> void:
 	#Gets the children and sets them as locations units can spawn at
 	for loc in find_child("Unit Locations").get_children():
 		unit_locations.append(loc)
+	for loc in find_child("booster_locations").get_children():
+		booster_locations.append(loc)
 	show_new_units()
 #Spawns in new shop units
 func show_new_units():
@@ -28,7 +32,16 @@ func show_new_units():
 		unit_locations[location].add_child(new_unit)
 		#Sets the new units' location to be that of its parent (the shop unit location)
 		new_unit.position = Vector2(0,0)
-			
+	
+	for location in booster_locations.size():
+		#Chooses a random unit and loads the unit from the path, gets it unit_ID
+		var chosen_booster = choose_random_booster()
+		#Spawns in the chosen unit as a new unit in the shop
+		var new_booster = chosen_booster.instantiate()
+		#Sets the new units' parent to be the unit location in the shop
+		booster_locations[location].add_child(new_booster)
+		#Sets the new units' location to be that of its parent (the shop unit location)
+		new_booster.position = Vector2(0,0)
 #Chooses a random unit
 func choose_random_unit():
 	var dictionary_instance = dictionary.new()
@@ -58,12 +71,13 @@ func choose_random_unit():
 	#print(random_unit)
 	return [loaded_unit, random_unit]
 	
-func choose_random_boost():
+func choose_random_booster():
 	var dictionary_instance = dictionary.new()
 	#Gets a random unit type
-	var random_boost = randi_range(0,(dictionary_instance.boost_scenes.size())-1)
-	var boost = dictionary_instance.boost_scenes[random_boost]
-	return boost
+	var random_booster = randi_range(0,(dictionary_instance.booster_scenes.size())-1)
+	var booster = dictionary_instance.booster_scenes[random_booster]
+	return booster
+	
 func reroll_shop():
 	#Remove old shop units before showing new units
 	#The units are parented to the shop location they are at, so we loop over every
