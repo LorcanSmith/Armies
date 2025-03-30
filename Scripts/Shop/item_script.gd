@@ -258,7 +258,7 @@ func attempt_to_place():
 		sell_item()	
 	
 	#If the item has been bought already
-	if(bought):
+	if(bought and get_parent().is_in_group("tile")):
 		#If there is an available tile underneath the unit, then we can place it
 		if(tile_currently_over != null and (tile_currently_over.is_empty or unit_currently_over_can_upgrade)):
 			place_item()
