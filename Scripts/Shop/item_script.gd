@@ -164,7 +164,7 @@ func _on_area_2d__mouse_collision_mouse_entered() -> void:
 		shop_manager.show_potential_upgrades(true,self)
 		sprite.scale = Vector2(item_hovered_scale,item_hovered_scale)
 		#Update tool tip
-		tooltip.update_tooltip(unit_ID)
+		tooltip.update_tooltip(unit_ID, damage_boost, health_boost)
 	#If the locations haven't been popped in yet, then turn them on and play an animation
 	if(bought):
 		toggle_skill_location()
@@ -285,6 +285,9 @@ func attempt_to_place():
 				self.position = Vector2(0,0)
 				if(locations_popped_in):
 					toggle_skill_location()
+		else:
+			if(locations_popped_in):
+				toggle_skill_location()
 #Called when an attempt_to_place is sucessful
 func place_item():
 	#Check if we are upgrading the unit below

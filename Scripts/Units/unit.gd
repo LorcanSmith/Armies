@@ -4,6 +4,10 @@ var alive : bool = true
 #Unit ID - SET ID ON THE ITEM COUNTERPART
 var unit_ID : int = -1
 var tooltip : Node2D
+#How much damage and health is "buffed-on" compared to the base unit, used for tooltip
+var damage_boost : int
+var health_boost : int
+
 var mouse_over : bool = false
 @export var tooltip_show_time : float = 0.4
 var current_tooltip_time_left
@@ -98,7 +102,6 @@ func _ready() -> void:
 	current_tooltip_time_left = tooltip_show_time
 	skill_locations_parent = find_child("skill_locations")
 
-	health = max_health
 	health_bar_remaining = max_health
 	movement_locations = find_child("movement_locations").get_children()
 	#Set tooltip
@@ -106,6 +109,13 @@ func _ready() -> void:
 	set_level_chevron()
 	set_unit_types()
 
+func set_damage_and_health(dmg, hlth):
+	damage_boost = dmg
+	health_boost = hlth
+	skill_damage += dmg
+	max_health += hlth
+	health = max_health
+	
 func set_level_chevron():
 	var level_chevron_parent = find_child("level_chevrons")
 	if(unit_ID % 3 == 0):
@@ -388,11 +398,12 @@ func _process(delta: float) -> void:
 		combat_manager.w += 1
 		combat_manager.waited_for_move()
 	if(mouse_over):
-		tooltip.update_tooltip(unit_ID)
+		tooltip.update_tooltip(unit_ID, damage_boost ,health_boost)
 		var x = 0
 		while x < skill_locations_parent.get_child_count():
-			skill_locations_parent.get_child(x).visible = true
-			skill_locations_parent.get_child(x).get_node("AnimationPlayer").play("location_popin")
+			if(skill_locations_parent.get_child(x).visible == false):
+				skill_locations_parent.get_child(x).visible = true
+				skill_locations_parent.get_child(x).get_node("AnimationPlayer").play("location_popin")
 			x += 1
 	if(!mouse_over):
 		#Plays animation to popout tooltip. Once the animation finishes the tooltip turns itself off
