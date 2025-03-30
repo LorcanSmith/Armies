@@ -216,7 +216,7 @@ func skill():
 				
 				#If the skill doesnt spawn randomly
 				if(!skill_spawn_random):
-					#Set skills location to be at a random enemy location
+					#Set skills location to be at current position
 					if spawn_skill_on_self:
 						skill_instance.global_position = self.global_position
 					#Sets skill's location to be at the closest enemy location
@@ -310,6 +310,7 @@ func projectile_hit(amount : int):
 				#Play animation to show the unit has been healed
 				self.get_node("AnimationPlayer").play("unit_heal")
 	damage_done_to_self = 0
+
 func attack_visuals(enemy : Node2D):
 	#Projectile
 	if(projectile):
