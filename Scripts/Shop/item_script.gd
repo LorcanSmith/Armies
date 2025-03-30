@@ -285,6 +285,9 @@ func attempt_to_place():
 				self.position = Vector2(0,0)
 				if(locations_popped_in):
 					toggle_skill_location()
+		else:
+			if(locations_popped_in):
+				toggle_skill_location()
 #Called when an attempt_to_place is sucessful
 func place_item():
 	#Check if we are upgrading the unit below
