@@ -25,6 +25,7 @@ func _ready():
 	purchase_booster_UI = find_child("purchase_booster_UI")
 	choose_unit_UI = find_child("choose_unit_UI")
 	
+	find_child("symbol").texture = booster_image
 	find_child("booster_name").text = booster_name
 	find_child("booster_description").text = booster_description
 	find_child("booster_image").texture = booster_image

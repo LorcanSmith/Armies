@@ -24,6 +24,21 @@
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_njtgo"]
 
+[sub_resource type="Animation" id="Animation_qtm4k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("purchase_booster_UI/Container:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_ocd42"]
 resource_name = "crate_appear"
 length = 0.4
@@ -50,21 +65,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1.1, 1.1), Vector2(0.95, 0.95), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_qtm4k"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("purchase_booster_UI/Container:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_p04f0"]
@@ -117,6 +117,13 @@ offset_bottom = 13.0
 scale = Vector2(1.2, 1.2)
 texture_normal = ExtResource("2_douwv")
 
+[node name="symbol" type="Sprite2D" parent="booster_button"]
+modulate = Color(0, 0, 0, 0.513726)
+texture_filter = 1
+position = Vector2(16.6667, 15.8333)
+scale = Vector2(0.546875, 0.546875)
+texture = ExtResource("2_ri5p7")
+
 [node name="Cost" type="Label" parent="booster_button"]
 z_index = 5
 z_as_relative = false
@@ -165,6 +172,7 @@ pivot_offset = Vector2(586.443, 421.43)
 [node name="crate" type="TextureRect" parent="purchase_booster_UI/Container"]
 modulate = Color(0.255659, 0.255659, 0.255659, 1)
 texture_filter = 1
+layout_mode = 0
 offset_left = 552.741
 offset_top = 399.181
 offset_right = 584.741
@@ -174,6 +182,7 @@ pivot_offset = Vector2(16.0572, 15.3813)
 texture = ExtResource("2_douwv")
 
 [node name="booster_name" type="RichTextLabel" parent="purchase_booster_UI/Container"]
+layout_mode = 0
 offset_left = 429.27
 offset_top = 306.909
 offset_right = 1850.27
@@ -187,6 +196,7 @@ vertical_alignment = 1
 
 [node name="booster_image" type="TextureRect" parent="purchase_booster_UI/Container"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 525.381
 offset_top = 359.007
 offset_right = 565.381
@@ -195,6 +205,7 @@ scale = Vector2(2.2, 2.2)
 texture = ExtResource("2_ri5p7")
 
 [node name="booster_description" type="RichTextLabel" parent="purchase_booster_UI/Container"]
+layout_mode = 0
 offset_left = 429.381
 offset_top = 465.006
 offset_right = 3276.38
@@ -207,6 +218,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="buy_button" type="TextureButton" parent="purchase_booster_UI/Container"]
+layout_mode = 0
 offset_left = 534.048
 offset_top = 517.672
 offset_right = 607.048
@@ -257,6 +269,7 @@ scale = Vector2(4.41176, 4.41177)
 texture = ExtResource("9_douwv")
 
 [node name="close_button" type="TextureButton" parent="purchase_booster_UI/Container"]
+layout_mode = 0
 offset_left = 700.714
 offset_top = 278.339
 offset_right = 727.714
@@ -307,6 +320,7 @@ pivot_offset = Vector2(586.443, 421.43)
 [node name="crate" type="TextureRect" parent="choose_unit_UI/Container"]
 modulate = Color(0.255659, 0.255659, 0.255659, 1)
 texture_filter = 1
+layout_mode = 0
 offset_left = 555.337
 offset_top = 401.557
 offset_right = 587.337
@@ -443,6 +457,7 @@ texture_focused = ExtResource("7_ggvnm")
 
 [node name="buy_unit_button" type="TextureButton" parent="choose_unit_UI/Container"]
 visible = false
+layout_mode = 0
 offset_left = 533.11
 offset_top = 524.763
 offset_right = 606.11
