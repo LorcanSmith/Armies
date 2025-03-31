@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://cw85itxfl6ujy"]
+
+[ext_resource type="PackedScene" uid="uid://coklokvg6mem2" path="res://Prefabs/Shop Items/Boosters/booster.tscn" id="1_e46km"]
+[ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="2_acllk"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_acllk"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_gmrqn"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_gbro3"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_koo3t"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_4aaa3"]
+
+[node name="booster" instance=ExtResource("1_e46km")]
+booster_name = "Army Crate"
+booster_description = "Gives a random selection of 5 army units. Choose one to gain for free."
+booster_image = ExtResource("2_acllk")
+buy_cost = 15
+potential_units_IDs = [9, 12, 15, 21]
+
+[node name="unit_button" parent="choose_unit_UI/unit_locations/location_1" index="0"]
+button_group = SubResource("ButtonGroup_acllk")
+
+[node name="unit_button" parent="choose_unit_UI/unit_locations/location_2" index="0"]
+button_group = SubResource("ButtonGroup_gmrqn")
+
+[node name="unit_button" parent="choose_unit_UI/unit_locations/location_3" index="0"]
+button_group = SubResource("ButtonGroup_gbro3")
+
+[node name="unit_button" parent="choose_unit_UI/unit_locations/location_4" index="0"]
+button_group = SubResource("ButtonGroup_koo3t")
+
+[node name="unit_button" parent="choose_unit_UI/unit_locations/location_6" index="0"]
+button_group = SubResource("ButtonGroup_4aaa3")

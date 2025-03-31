@@ -73,5 +73,6 @@ var item_scenes = {
 }
 
 var booster_scenes = {
-	0: preload("res://Prefabs/Shop Items/Boosters/booster_medieval.tscn")
+	0: preload("res://Prefabs/Shop Items/Boosters/booster_medieval.tscn"),
+	1: preload("res://Prefabs/Shop Items/Boosters/booster_army.tscn")
 }
