@@ -20,11 +20,16 @@ var bought : bool = false
 
 var current_unit_selected : Node2D
 
+#Used to scale the crate when you hover of it
+var crate_sprite : TextureButton
+var crate_starting_size : Vector2
 func _ready():
 	shop_manager = find_parent("shop_manager")
 	purchase_booster_UI = find_child("purchase_booster_UI")
 	choose_unit_UI = find_child("choose_unit_UI")
-	
+	crate_sprite = find_child("booster_button")
+	crate_starting_size = crate_sprite.scale
+
 	find_child("symbol").texture = booster_image
 	find_child("booster_name").text = booster_name
 	find_child("booster_description").text = booster_description
@@ -102,3 +107,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		purchase_booster_UI.visible = false
 		#Turn on booster in the shop
 		find_child("booster_button").visible = true
+
+
+func _on_booster_button_mouse_entered() -> void:
+	crate_sprite.scale = Vector2(crate_starting_size.x * 1.2, crate_starting_size.y * 1.2)
+
+func _on_booster_button_mouse_exited() -> void:
+	crate_sprite.scale = Vector2(crate_starting_size.x, crate_starting_size.y)

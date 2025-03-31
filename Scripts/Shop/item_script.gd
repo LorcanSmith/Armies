@@ -258,12 +258,12 @@ func attempt_to_place():
 		sell_item()	
 	
 	#If the item has been bought already
-	if(bought and get_parent().is_in_group("tile")):
+	if(bought):
 		#If there is an available tile underneath the unit, then we can place it
 		if(tile_currently_over != null and (tile_currently_over.is_empty or unit_currently_over_can_upgrade)):
 			place_item()
 		#If there is a unit on the tile, we can switch position with it
-		elif(tile_currently_over != null and !tile_currently_over.is_empty):
+		elif(tile_currently_over != null and !tile_currently_over.is_empty and get_parent().is_in_group("tile")):
 			#Set other unit to move to our current tile
 			var unit_to_swap_with = tile_currently_over.units_on_tile[0]
 			unit_to_swap_with.reparent(self.get_parent())
