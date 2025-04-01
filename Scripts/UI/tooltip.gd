@@ -22,14 +22,15 @@ func _ready() -> void:
 	self.visible = false
 	self.scale = Vector2(0,0)
 
-func update_tooltip(u) -> void:
-	if(u != -1 and u != current_unit_ID):
-		#Pop tooltip in if the tooltip is hidden
-		if(self.visible == false):
-			self.visible = true
-			self.get_node("AnimationPlayer").play("tooltip_appear")
-		else:
-			self.get_node("AnimationPlayer").play("tooltip_refresh")
+func update_tooltip(u, damage_boost, health_boost) -> void:
+	if(u != -1):
+		if(u != current_unit_ID):
+			#Pop tooltip in if the tooltip is hidden
+			if(self.visible == false):
+				self.visible = true
+				self.get_node("AnimationPlayer").play("tooltip_appear")
+			else:
+				self.get_node("AnimationPlayer").play("tooltip_refresh")
 		current_unit_ID = u
 		var dictionary_instance = dictionary.new()
 		var unit = dictionary_instance.unit_scenes[u].instantiate()
@@ -44,8 +45,8 @@ func update_tooltip(u) -> void:
 		cost = find_child("cost")
 		unit_name.text = unit.name
 		description.text = item.description
-		health.text = str("Health: ", unit.max_health)
-		skill_damage.text = str("Skill Damage: ", unit.skill_damage)
+		health.text = str("Health: ", unit.max_health + health_boost)
+		skill_damage.text = str("Skill Damage: ", unit.skill_damage + damage_boost)
 		skill_heal.text = str("Skill Heal: ", unit.skill_heal)
 		brawl.text = str("Brawl Damage: ", unit.brawl_damage)
 		reload.text = str("Reload Time: ", unit.reload_time)

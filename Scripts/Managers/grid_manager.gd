@@ -51,8 +51,7 @@ func load_units():
 								tiles[width][height].add_child(instance)
 								instance.position = Vector2i(0,0)
 								tiles[width][height].unit_placed_on(instance)
-								instance.skill_damage += unit_IDs[width][height][1]
-								instance.max_health += unit_IDs[width][height][2]
+								instance.set_damage_and_health(unit_IDs[width][height][1],unit_IDs[width][height][2])
 								instance.health = instance.max_health
 							#If a crash happens here, its likely the enemy army doesn't have an army made for the current turn number
 							if(enemy_unit_IDs[width][height] != null):	

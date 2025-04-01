@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl51wxccrk8j1"
-path="res://.godot/imported/heal1.png-bfbe69bb0864f9d110555db793655dac.ctex"
+uid="uid://chl5qvy7eq8wv"
+path="res://.godot/imported/Crate.png-e90b949773b1b7e0224b35ff723ee5f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Effects/heal1.png"
-dest_files=["res://.godot/imported/heal1.png-bfbe69bb0864f9d110555db793655dac.ctex"]
+source_file="res://Sprites/Booster_Packs/Crate.png"
+dest_files=["res://.godot/imported/Crate.png-e90b949773b1b7e0224b35ff723ee5f7.ctex"]
 
 [params]
 

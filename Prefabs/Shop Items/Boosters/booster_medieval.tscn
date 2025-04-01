@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqo7v0ul7wkrn"]
+
+[ext_resource type="PackedScene" uid="uid://coklokvg6mem2" path="res://Prefabs/Shop Items/Boosters/booster.tscn" id="1_6m5sb"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_6m5sb"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_twhhr"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_qmgfn"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_m0wcc"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_rxhvt"]
+
+[node name="booster_medieval" instance=ExtResource("1_6m5sb")]
+booster_name = "Medieval Crate"
+booster_description = "Gives a random selection of 5 medieval units. Choose one to gain for free."
+buy_cost = 15
+potential_units_IDs = [0, 18, 6, 3]
+
+[node name="unit_button" parent="choose_unit_UI/unit_locations/location_1" index="0"]
+button_group = SubResource("ButtonGroup_6m5sb")
+
+[node name="unit_button" parent="choose_unit_UI/unit_locations/location_2" index="0"]
+button_group = SubResource("ButtonGroup_twhhr")
+
+[node name="unit_button" parent="choose_unit_UI/unit_locations/location_3" index="0"]
+button_group = SubResource("ButtonGroup_qmgfn")
+
+[node name="unit_button" parent="choose_unit_UI/unit_locations/location_4" index="0"]
+button_group = SubResource("ButtonGroup_m0wcc")
+
+[node name="unit_button" parent="choose_unit_UI/unit_locations/location_6" index="0"]
+button_group = SubResource("ButtonGroup_rxhvt")

@@ -4,6 +4,10 @@ var alive : bool = true
 #Unit ID - SET ID ON THE ITEM COUNTERPART
 var unit_ID : int = -1
 var tooltip : Node2D
+#How much damage and health is "buffed-on" compared to the base unit, used for tooltip
+var damage_boost : int
+var health_boost : int
+
 var mouse_over : bool = false
 @export var tooltip_show_time : float = 0.4
 var current_tooltip_time_left
@@ -27,7 +31,7 @@ var tile_to_move_to : Node2D
 #brawl sprite
 var brawl_effect : PackedScene = preload("res://Prefabs/Effects/brawl_effect.tscn")
 var current_brawl_effect = null
-
+var brawling_grid : Node2D
 @export_subgroup("Unit Types")
 var unit_types : Array = [
 	"Medieval",
@@ -106,7 +110,6 @@ func _ready() -> void:
 	current_tooltip_time_left = tooltip_show_time
 	skill_locations_parent = find_child("skill_locations")
 
-	health = max_health
 	health_bar_remaining = max_health
 	movement_locations = find_child("movement_locations").get_children()
 	#Set tooltip
@@ -114,6 +117,13 @@ func _ready() -> void:
 	set_level_chevron()
 	set_unit_types()
 
+func set_damage_and_health(dmg, hlth):
+	damage_boost = dmg
+	health_boost = hlth
+	skill_damage += dmg
+	max_health += hlth
+	health = max_health
+	
 func set_level_chevron():
 	var level_chevron_parent = find_child("level_chevrons")
 	if(unit_ID % 3 == 0):
@@ -190,21 +200,23 @@ func move():
 		combat_manager.w += 1
 		combat_manager.waited_for_move()
 	moved = false
-func skill():
+	
+func skill(phase : String):
 	#If this unit is the only unit on the tile then they can do their skill
-	if(get_parent().units_on_tile.size() < 2):
-		#If there is at least one enemy within the units range (in a skill location) and the unit isn't reloading
-		if((enemies_in_range.size() > 0 or friendlies_in_range.size() > 0) and !reloading):
-			var skills_spawned = 0
-			#which unit in enemies_in_range/friendlies_in_range are we targeting
-			var unit_number = 0
-			#Spawn an instance of the skill at every skill location
-			while skills_spawned < skill_spawn_amount:
-				if((unit_number > enemies_in_range.size()-1 and skill_damage > 0) or (unit_number > friendlies_in_range.size()-1 and skill_heal > 0)):
-					#If the skill can be spawned on each unit more than once
-					if(!skill_max_once_per_unit):
-						unit_number = 0
-					else:
+	if(alive and get_parent().units_on_tile.size() < 2):
+		if((phase == "combat_phase" and skill_damage > 0) or (phase == "healing_phase" and skill_heal > 0)):
+			#If there is at least one enemy within the units range (in a skill location) and the unit isn't reloading
+			if((enemies_in_range.size() > 0 or friendlies_in_range.size() > 0) and !reloading):
+				var skills_spawned = 0
+				#which unit in enemies_in_range/friendlies_in_range are we targeting
+				var unit_number = 0
+				#Spawn an instance of the skill at every skill location
+				while skills_spawned < skill_spawn_amount:
+					if((unit_number > enemies_in_range.size()-1 and skill_damage > 0) or (unit_number > friendlies_in_range.size()-1 and skill_heal > 0)):
+						#If the skill can be spawned on each unit more than once
+						if(!skill_max_once_per_unit):
+							unit_number = 0
+						else:
 						break
 				var skill_instance = skill_prefab.instantiate()
 				#Tell the skill how much damage it does
@@ -263,10 +275,8 @@ func skill():
 					var random_position = randi_range(0, enemies_in_range.size()-1)
 					skill_instance.global_position = enemies_in_range[random_position].global_position
 					attack_visuals(enemies_in_range[random_position])
-				
-
-				unit_number += 1
-				skills_spawned += 1
+					unit_number += 1
+					skills_spawned += 1
 		#No units in range or reloading
 		else:
 			#Check if there is a unit in front of you
@@ -288,18 +298,15 @@ func skill():
 		if reloading_counter == 0:
 			reloading = false
 
-
 func brawl():
-	#if(current_brawl_effect == null):
-		#current_brawl_effect = brawl_effect.instantiate()
-		#self.add_child(current_brawl_effect)
-		#current_brawl_effect.position = Vector2(0,0)
+	if(alive):
+		brawling_grid = get_parent()
 	#Finds each unit on this unit's current tile
-	for unit in get_parent().units_on_tile:
+	for unit in brawling_grid.units_on_tile:
 		#If the unit isnt itself do some brawl damage to it
 		if(unit and unit != self):
 			unit.hurt(brawl_damage)
-			attack_visuals(unit)
+			unit.projectile_hit(brawl_damage)
 
 func projectile_hit(amount : int):
 	if(alive):
@@ -364,6 +371,8 @@ func destroy_unit():
 	get_parent().units_on_tile.erase(self)
 	if(get_parent().units_on_tile.size() == 0):
 		get_parent().is_empty = true
+	#Get the grid we are currently on so we can apply damage to brawling units before we die
+	brawling_grid = get_parent()
 	#Reparent to skill holder so the game waits for the unit to die
 	self.reparent(find_parent("combat_manager").find_child("skill_holder"))
 	#SOnce the damage animation plays, it will be destroyed
@@ -412,11 +421,12 @@ func _process(delta: float) -> void:
 		combat_manager.w += 1
 		combat_manager.waited_for_move()
 	if(mouse_over):
-		tooltip.update_tooltip(unit_ID)
+		tooltip.update_tooltip(unit_ID, damage_boost ,health_boost)
 		var x = 0
 		while x < skill_locations_parent.get_child_count():
-			skill_locations_parent.get_child(x).visible = true
-			skill_locations_parent.get_child(x).get_node("AnimationPlayer").play("location_popin")
+			if(skill_locations_parent.get_child(x).visible == false):
+				skill_locations_parent.get_child(x).visible = true
+				skill_locations_parent.get_child(x).get_node("AnimationPlayer").play("location_popin")
 			x += 1
 	if(!mouse_over):
 		#Plays animation to popout tooltip. Once the animation finishes the tooltip turns itself off
