@@ -7,6 +7,9 @@ var damage : int
 var enemies_in_splash_zone : Array
 @export var moves : bool
 @export var speed : float
+
+var shockwave_scene = load("res://Prefabs/Effects/Projectiles/shockwave.tscn")
+
 func target_enemy(unit : Node2D):
 	enemy = unit
 	enemy_position = unit.global_position
@@ -29,8 +32,10 @@ func _process(delta: float) -> void:
 							enemies_in_splash_zone[counter].projectile_hit(damage)
 						counter += 1
 					$Sprite2D.visible = false
-					$AnimatedSprite2D.visible = true
-					$AnimatedSprite2D.play("default")
+					var shockwave = shockwave_scene.instantiate()
+					get_parent().add_child(shockwave)
+					shockwave.position = self.position
+					queue_free()
 				else:
 					if(enemy):
 						enemy.projectile_hit(damage)
