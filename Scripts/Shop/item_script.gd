@@ -133,7 +133,7 @@ func update_label_text():
 		x+= 1
 		
 func toggle_skill_location():
-	if(disabled):
+	if(!disabled):
 		#If the locations haven't been popped in yet, then turn them on and play an animation
 		if(!locations_popped_in):
 			#Turn on the buff/skill location tiles
