@@ -6,15 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://dxw8owu5o4krl" path="res://Sprites/Units/Army/soldier/Soldier_lvl2.png" id="3_tyom5"]
 
 [node name="Soldier" instance=ExtResource("1_3xlcy")]
-max_health = 22
-move_distance = 2
-brawl_damage = 10
+max_health = 7
+brawl_damage = 3
 Army = true
 Human = true
 Soldier = true
-skill_spawn_amount = 5
+skill_spawn_amount = 3
 skill_spawn_random = true
-skill_damage = 6
+skill_damage = 1
 projectile = ExtResource("2_5n52r")
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_leh35")]

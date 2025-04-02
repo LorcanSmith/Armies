@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_m1s20"]
 
 [node name="Catapult" instance=ExtResource("1_mkira")]
-max_health = 18
+max_health = 7
 brawl_damage = 1
 Medieval = true
 Vehicle = true
-skill_damage = 3
-reload_time = 3
+skill_damage = 2
+reload_time = 2
 skill_does_splash = true
 skill_shooots_closest_enemy = true
 projectile = ExtResource("2_8kyy5")

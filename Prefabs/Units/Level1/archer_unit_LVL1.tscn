@@ -6,12 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_n20w6"]
 
 [node name="Archer" instance=ExtResource("1_8dqby")]
-max_health = 20
-brawl_damage = 3
+max_health = 4
+brawl_damage = 2
 Medieval = true
 Human = true
+skill_spawn_amount = 2
 skill_spawn_random = true
-skill_damage = 5
+skill_damage = 1
+skill_shooots_closest_enemy = true
 projectile = ExtResource("2_bx5le")
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_n20w6")]

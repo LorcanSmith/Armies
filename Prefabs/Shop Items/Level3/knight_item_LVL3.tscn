@@ -8,8 +8,8 @@
 description = "Great a close quarters and brawling"
 unit_name = "Knight"
 can_be_upgraded = false
-buy_cost = 20
-sell_cost = 10
+buy_cost = 14
+sell_cost = 7
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_2wkde")

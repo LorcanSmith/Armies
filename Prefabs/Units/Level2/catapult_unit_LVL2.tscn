@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dopsd0udl48cv" path="res://Sprites/Units/Medieval/Catapult/catapult_sprite_lvl2.png" id="3_u1w2l"]
 
 [node name="Catapult" instance=ExtResource("1_g20xn")]
-max_health = 26
+max_health = 9
 brawl_damage = 1
 Medieval = true
 Vehicle = true

@@ -7,11 +7,14 @@
 [node name="Item" instance=ExtResource("1_ljmc8")]
 description = "Great up close but not good at brawling"
 unit_name = "Polearm"
-buy_cost = 12
-sell_cost = 6
+buy_cost = 7
+sell_cost = 3
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_efvey")
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_efvey")]
 position = Vector2(74, 0)
+
+[node name="skill_location2" parent="skills" index="1" instance=ExtResource("3_efvey")]
+position = Vector2(148, 0)

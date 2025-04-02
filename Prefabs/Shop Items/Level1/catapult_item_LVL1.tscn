@@ -7,8 +7,8 @@
 [node name="Catapult" instance=ExtResource("1_oryew")]
 description = "Long range unit. Does splash damage"
 unit_name = "Catapult"
-buy_cost = 10
-sell_cost = 4
+buy_cost = 7
+sell_cost = 3
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(-5, 0)

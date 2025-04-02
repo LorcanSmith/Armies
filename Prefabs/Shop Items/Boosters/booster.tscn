@@ -102,7 +102,7 @@ _data = {
 &"crate_disappear": SubResource("Animation_p04f0")
 }
 
-[node name="booster" type="Node2D" groups=["player"]]
+[node name="booster" type="Node2D" groups=["booster"]]
 z_index = 1
 z_as_relative = false
 script = ExtResource("1_mbs64")

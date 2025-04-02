@@ -9,8 +9,8 @@
 description = "End of shop phase: Gives units above and below +3 health. In battle heals friendlies in range."
 unit_name = "Medic"
 can_be_upgraded = false
-buy_cost = 22
-sell_cost = 11
+buy_cost = 14
+sell_cost = 7
 can_buff = true
 health_buff = 3
 Medieval = true

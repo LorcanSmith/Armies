@@ -6,13 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://dd2nlcrqwe18n" path="res://Sprites/Units/Army/tank/Tank_lvl3.png" id="3_ijajl"]
 
 [node name="Tank" instance=ExtResource("1_0e1kp")]
-max_health = 50
-move_distance = 2
-brawl_damage = 10
+max_health = 16
+brawl_damage = 5
 Army = true
 Vehicle = true
-skill_damage = 28
-reload_time = 2
+skill_damage = 7
+reload_time = 3
 skill_shooots_closest_enemy = true
 projectile = ExtResource("2_d5lbt")
 
