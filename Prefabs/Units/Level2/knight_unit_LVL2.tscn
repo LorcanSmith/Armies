@@ -6,12 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://cf552gmf4r4o4" path="res://Sprites/Units/Medieval/Knight/knight_sprite_lvl2.png" id="4_76282"]
 
 [node name="Knight" instance=ExtResource("1_igas3")]
-max_health = 36
-move_distance = 2
-brawl_damage = 15
+max_health = 9
+brawl_damage = 3
 Medieval = true
 Human = true
-skill_damage = 12
+skill_damage = 3
 projectile = ExtResource("2_723df")
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_76282")]

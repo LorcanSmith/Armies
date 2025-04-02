@@ -6,13 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://bapffo6cc3txv" path="res://Sprites/Units/Army/Medic/medic_sprite_lvl3.png" id="4_baa7v"]
 
 [node name="Medic" instance=ExtResource("1_uqtay")]
-max_health = 20
-brawl_damage = 1
+max_health = 15
+brawl_damage = 2
 Army = true
 Vehicle = true
 skill_spawn_amount = 3
 skill_max_once_per_unit = true
-skill_heal = 8
+skill_heal = 5
 projectile = ExtResource("2_nh42q")
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_baa7v")]

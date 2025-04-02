@@ -6,12 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://v3nlwsuc1f6q" path="res://Sprites/Units/Army/sniper/Sniper_lvl2.png" id="3_sifqi"]
 
 [node name="Sniper" instance=ExtResource("1_u80b0")]
-max_health = 12
-brawl_damage = 5
+max_health = 6
+brawl_damage = 2
 Army = true
 Human = true
-skill_damage = 15
+skill_damage = 4
 reload_time = 2
+skill_shooots_closest_enemy = true
 projectile = ExtResource("2_66xo6")
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_66xo6")]

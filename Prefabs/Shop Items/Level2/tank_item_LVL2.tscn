@@ -7,8 +7,8 @@
 [node name="Tank" instance=ExtResource("1_0eqnr")]
 description = "Highly armoured vehicle that shoots a heavy hitting projectile. Has to reload after every shot"
 unit_name = "Tank"
-buy_cost = 28
-sell_cost = 14
+buy_cost = 9
+sell_cost = 4
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_jjq5e")

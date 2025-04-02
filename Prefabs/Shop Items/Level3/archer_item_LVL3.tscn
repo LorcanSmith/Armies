@@ -8,7 +8,7 @@
 description = "Shoots a couple of arrows at enemies in range"
 unit_name = "Archer"
 can_be_upgraded = false
-buy_cost = 10
+buy_cost = 8
 sell_cost = 4
 
 [node name="Sprite2D" parent="." index="0"]

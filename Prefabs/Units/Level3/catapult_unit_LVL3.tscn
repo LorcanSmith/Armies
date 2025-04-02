@@ -6,13 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://dmypenrivww5g" path="res://Sprites/Units/Medieval/Catapult/catapult_sprite_lvl3.png" id="3_4uu5l"]
 
 [node name="Catapult" instance=ExtResource("1_a8gj2")]
-max_health = 30
-brawl_damage = 1
+max_health = 15
+brawl_damage = 2
 Medieval = true
 Vehicle = true
-skill_spawn_amount = 2
-skill_damage = 5
-reload_time = 2
+skill_damage = 6
+reload_time = 3
 skill_does_splash = true
 projectile = ExtResource("2_4uu5l")
 

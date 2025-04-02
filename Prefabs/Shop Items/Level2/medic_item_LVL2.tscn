@@ -8,8 +8,8 @@
 [node name="Medic" instance=ExtResource("1_a4ilc")]
 description = "End of shop phase: Gives units above and below +2 health. In battle heals friendlies in range."
 unit_name = "Medic"
-buy_cost = 15
-sell_cost = 7
+buy_cost = 9
+sell_cost = 4
 can_buff = true
 health_buff = 2
 Medieval = true

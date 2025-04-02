@@ -8,8 +8,8 @@
 description = "Long range high damage unit"
 unit_name = "Sniper"
 can_be_upgraded = false
-buy_cost = 25
-sell_cost = 12
+buy_cost = 14
+sell_cost = 7
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_pxq8h")

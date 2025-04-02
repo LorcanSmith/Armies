@@ -6,16 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_rsru6"]
 
 [node name="Polearm" instance=ExtResource("1_m7hja")]
-max_health = 34
-move_distance = 3
-brawl_damage = 12
+max_health = 10
+brawl_damage = 2
 Medieval = true
 Human = true
-skill_damage = 22
+skill_spawn_amount = 2
+skill_max_once_per_unit = true
+skill_damage = 4
+skill_shooots_closest_enemy = true
 projectile = ExtResource("2_amgxv")
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_rsru6")]
 position = Vector2(74, 0)
+
+[node name="unit_skill_location2" parent="skill_locations" index="1" instance=ExtResource("3_rsru6")]
+position = Vector2(148, 0)
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("3_amgxv")

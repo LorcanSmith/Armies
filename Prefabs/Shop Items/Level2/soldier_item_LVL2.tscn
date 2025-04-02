@@ -8,8 +8,8 @@
 [node name="Soldier" instance=ExtResource("1_1rdgn")]
 description = "Gives other soldiers that are above and below, +1 health and +1 attack at the end of the shop phase"
 unit_name = "Soldier"
-buy_cost = 12
-sell_cost = 6
+buy_cost = 8
+sell_cost = 4
 can_buff = true
 damage_buff = 1
 health_buff = 1

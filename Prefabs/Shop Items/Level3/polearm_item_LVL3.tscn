@@ -8,11 +8,14 @@
 description = "Great up close but not good at brawling"
 unit_name = "Polearm"
 can_be_upgraded = false
-buy_cost = 16
-sell_cost = 8
+buy_cost = 12
+sell_cost = 6
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_qyatr")
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_qyatr")]
 position = Vector2(74, 0)
+
+[node name="skill_location2" parent="skills" index="1" instance=ExtResource("3_qyatr")]
+position = Vector2(148, 0)

@@ -8,8 +8,8 @@
 [node name="Medic" instance=ExtResource("1_kbpoi")]
 description = "End of shop phase: Gives units above and below +1 health. In battle heals friendlies in range."
 unit_name = "Medic"
-buy_cost = 10
-sell_cost = 5
+buy_cost = 6
+sell_cost = 3
 can_buff = true
 health_buff = 1
 Medieval = true

@@ -6,11 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="4_lnsmn"]
 
 [node name="Sniper" instance=ExtResource("1_keifj")]
-max_health = 8
+max_health = 4
 brawl_damage = 2
 Army = true
 Human = true
-skill_damage = 10
+skill_damage = 2
 reload_time = 2
 skill_shooots_closest_enemy = true
 projectile = ExtResource("2_x5eb8")

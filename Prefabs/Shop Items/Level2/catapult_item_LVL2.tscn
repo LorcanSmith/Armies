@@ -7,8 +7,8 @@
 [node name="Catapult" instance=ExtResource("1_hdgot")]
 description = "Long range unit. Does splash damage"
 unit_name = "Catapult"
-buy_cost = 13
-sell_cost = 6
+buy_cost = 10
+sell_cost = 5
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_ymyad")
