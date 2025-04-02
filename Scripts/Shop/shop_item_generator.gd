@@ -77,6 +77,9 @@ func choose_random_booster():
 	var dictionary_instance = dictionary.new()
 	#Gets a random unit type
 	var random_booster = randi_range(0,(dictionary_instance.booster_scenes.size())-1)
+	
+	
+	
 	var booster = dictionary_instance.booster_scenes[random_booster]
 	return booster
 	

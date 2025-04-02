@@ -8,6 +8,10 @@ var shop_manager : Node2D
 var purchase_booster_UI : CanvasLayer
 var choose_unit_UI : CanvasLayer
 
+#Chance of higher leveled units showing up
+@export var level2_chance : float = 10
+@export var level3_chance : float = 3
+
 @export var booster_name : String
 @export var booster_description : String
 @export var booster_image : Texture2D
@@ -41,8 +45,17 @@ func _ready():
 func select_units():
 	var unit_locations = choose_unit_UI.find_child("unit_locations").get_children()
 	var x = 0
+	
 	while x < unit_locations.size():
 		var random_number = potential_units_IDs[randi_range(0, potential_units_IDs.size()-1)]
+		var random_percentage = randf_range(0, 100)
+		if(random_percentage <= level2_chance):
+			#Sets our unit to be level2
+			random_number += 1
+		if(random_percentage <= level3_chance):
+			#Sets our unit to be level3
+			random_number += 2
+		
 		var dictionary_instance = dictionary.new()
 		#Gets a random unit type
 		var unit = dictionary_instance.item_scenes[random_number]
