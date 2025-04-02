@@ -37,6 +37,7 @@ buff_location=""
 skill=""
 tilemap=""
 item=""
+booster=""
 
 [gui]
 

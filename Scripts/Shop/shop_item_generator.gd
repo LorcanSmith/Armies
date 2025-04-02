@@ -34,14 +34,16 @@ func show_new_units():
 		new_unit.position = Vector2(0,0)
 	
 	for location in booster_locations.size():
-		#Chooses a random unit and loads the unit from the path, gets it unit_ID
-		var chosen_booster = choose_random_booster()
-		#Spawns in the chosen unit as a new unit in the shop
-		var new_booster = chosen_booster.instantiate()
-		#Sets the new units' parent to be the unit location in the shop
-		booster_locations[location].add_child(new_booster)
-		#Sets the new units' location to be that of its parent (the shop unit location)
-		new_booster.position = Vector2(0,0)
+		#If there isnt a unit from a previous pack in the slot
+		if(booster_locations[location].get_child_count() == 0 or booster_locations[location].get_child(0).is_in_group("booster")):
+			#Chooses a random unit and loads the unit from the path, gets it unit_ID
+			var chosen_booster = choose_random_booster()
+			#Spawns in the chosen unit as a new unit in the shop
+			var new_booster = chosen_booster.instantiate()
+			#Sets the new units' parent to be the unit location in the shop
+			booster_locations[location].add_child(new_booster)
+			#Sets the new units' location to be that of its parent (the shop unit location)
+			new_booster.position = Vector2(0,0)
 #Chooses a random unit
 func choose_random_unit():
 	var dictionary_instance = dictionary.new()
@@ -90,14 +92,18 @@ func reroll_shop():
 	else:
 		reroll_success = true
 	if reroll_success:
-		for location in unit_locations:
+		var location = 0
+		while location < unit_locations.size():
 			#If it doesn't have a child no need to delete the child, this if statement
 			#stops crashes
-			if(location.get_child_count() > 0):
-				location.get_child(0).queue_free()
-		for location in booster_locations:
-			if(location.get_child_count() > 0):
-				location.get_child(0).queue_free()
+			if(unit_locations[location].get_child_count() > 0):
+				unit_locations[location].get_child(0).queue_free()
+			location += 1
+		location = 0
+		while location < booster_locations.size():
+			if(booster_locations[location].get_child_count() > 0 and booster_locations[location].get_child(0).is_in_group("booster")):
+				booster_locations[location].get_child(0).queue_free()
+			location += 1
 		#Gets new units for the shop
 		show_new_units()
 	

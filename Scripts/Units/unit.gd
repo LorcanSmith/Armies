@@ -217,7 +217,7 @@ func skill(phase : String):
 						if(!skill_max_once_per_unit):
 							unit_number = 0
 						else:
-						break
+							break
 				var skill_instance = skill_prefab.instantiate()
 				#Tell the skill how much damage it does
 				skill_instance.damage = skill_damage
