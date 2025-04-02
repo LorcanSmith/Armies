@@ -12,8 +12,9 @@ var belongs_to_player : bool
 var effective_against : Array = []
 var effectiveness : int
 
+
 func _process(delta):
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(.1).timeout
 	queue_free()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

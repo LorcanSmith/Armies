@@ -4,8 +4,12 @@ var enemy : Node2D
 var enemy_position : Vector2
 var current_pos
 var damage : int
+var enemies_in_splash_zone : Array
 @export var moves : bool
 @export var speed : float
+
+var shockwave_scene = load("res://Prefabs/Effects/Projectiles/shockwave.tscn")
+
 func target_enemy(unit : Node2D):
 	enemy = unit
 	enemy_position = unit.global_position
@@ -21,9 +25,21 @@ func _process(delta: float) -> void:
 			self.global_position = lerp(self.global_position, enemy_position, t * speed)
 			#If the projectile is close by delete it and apply damage to enemy
 			if(self.global_position.distance_to(enemy_position) < 1):
-				if(enemy):
-					enemy.projectile_hit(damage)
-				queue_free()
+				if(enemies_in_splash_zone):
+					var counter = 0
+					while counter < enemies_in_splash_zone.size():
+						if enemies_in_splash_zone[counter]:
+							enemies_in_splash_zone[counter].projectile_hit(damage)
+						counter += 1
+					$Sprite2D.visible = false
+					var shockwave = shockwave_scene.instantiate()
+					get_parent().add_child(shockwave)
+					shockwave.position = self.position
+					queue_free()
+				else:
+					if(enemy):
+						enemy.projectile_hit(damage)
+					queue_free()
 	else:
 		self.global_position = enemy_position
 		if(enemy):

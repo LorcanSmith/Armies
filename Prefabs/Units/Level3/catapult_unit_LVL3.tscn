@@ -11,12 +11,21 @@ brawl_damage = 1
 Medieval = true
 Vehicle = true
 skill_spawn_amount = 2
-skill_damage = 25
+skill_damage = 5
 reload_time = 2
+skill_does_splash = true
 projectile = ExtResource("2_4uu5l")
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_0a4d5")]
 position = Vector2(222, 0)
 
+[node name="splash_location" type="Area2D" parent="skill_locations/unit_skill_location" index="3"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="skill_locations/unit_skill_location/splash_location" index="0"]
+polygon = PackedVector2Array(-37, -111, -37, -37, -111, -37, -111, 37, -37, 37, -37, 111, 37, 111, 37, 37, 111, 37, 111, -37, 37, -37, 37, -111)
+
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("3_4uu5l")
+
+[connection signal="area_entered" from="skill_locations/unit_skill_location/splash_location" to="." method="_on_splash_location_area_entered"]
+[connection signal="area_exited" from="skill_locations/unit_skill_location/splash_location" to="." method="_on_splash_location_area_exited"]

@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://c0k3slnbtf04s"]
+
+[ext_resource type="Texture2D" uid="uid://dv36k7fljma0e" path="res://Sprites/Effects/Projectiles/splash-Sheet.png" id="1_r0peb"]
+[ext_resource type="Script" uid="uid://4v43scmeinkx" path="res://Prefabs/Effects/Projectiles/shockwave.gd" id="2_smiuo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlo05"]
+atlas = ExtResource("1_r0peb")
+region = Rect2(0, 0, 222, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44h67"]
+atlas = ExtResource("1_r0peb")
+region = Rect2(222, 0, 222, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fg11x"]
+atlas = ExtResource("1_r0peb")
+region = Rect2(444, 0, 222, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bjp0"]
+atlas = ExtResource("1_r0peb")
+region = Rect2(666, 0, 222, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i51tv"]
+atlas = ExtResource("1_r0peb")
+region = Rect2(888, 0, 222, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qc1m"]
+atlas = ExtResource("1_r0peb")
+region = Rect2(1110, 0, 222, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asvtp"]
+atlas = ExtResource("1_r0peb")
+region = Rect2(1332, 0, 222, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wj1f"]
+atlas = ExtResource("1_r0peb")
+region = Rect2(1554, 0, 222, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpwcg"]
+atlas = ExtResource("1_r0peb")
+region = Rect2(1776, 0, 222, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_smiuo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlo05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44h67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fg11x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bjp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i51tv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qc1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asvtp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wj1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpwcg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Shockwave" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_smiuo")
+autoplay = "default"
+frame = 8
+frame_progress = 1.0
+script = ExtResource("2_smiuo")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
