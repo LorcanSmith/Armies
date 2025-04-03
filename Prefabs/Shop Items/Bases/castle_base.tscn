@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckgb2aec4d3hs"]
+
+[ext_resource type="Texture2D" uid="uid://8af7s6x54d8a" path="res://Sprites/Bases/castle.png" id="1_26ikh"]
+[ext_resource type="Script" uid="uid://cc646f6ymc6pf" path="res://Scripts/Shop/base_script.gd" id="1_xddxu"]
+[ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="3_e6837"]
+[ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="4_th0md"]
+[ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="5_bly1q"]
+[ext_resource type="Texture2D" uid="uid://dirtbdn43qwvv" path="res://Sprites/UI/square_button/square.png" id="7_to6h8"]
+[ext_resource type="Texture2D" uid="uid://be0cwtjifif32" path="res://Sprites/UI/square_button/square_pressed.png" id="8_m5xxh"]
+[ext_resource type="Texture2D" uid="uid://bm7qe1w2xsxio" path="res://Sprites/UI/square_button/square_hovered.png" id="9_yc0f8"]
+
+[node name="castle_base" type="Node2D"]
+z_index = 6
+z_as_relative = false
+texture_filter = 1
+script = ExtResource("1_xddxu")
+base_id = 0
+
+[node name="base_button" type="TextureButton" parent="."]
+z_index = 4
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_26ikh")
+
+[node name="set_base_UI" type="Control" parent="."]
+visible = false
+z_index = 5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="base" type="TextureRect" parent="set_base_UI"]
+self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -133.0
+offset_right = -55.0
+offset_bottom = -93.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(8.94, 8.94)
+pivot_offset = Vector2(20.0224, 20.0224)
+texture = ExtResource("1_26ikh")
+
+[node name="Description" type="RichTextLabel" parent="set_base_UI/base"]
+layout_mode = 0
+offset_left = 23.4875
+offset_top = 26.3957
+offset_right = 1811.49
+offset_bottom = 773.395
+scale = Vector2(0.0190368, 0.0190368)
+theme_override_font_sizes/normal_font_size = 150
+text = "DESCRIPTION"
+
+[node name="set_base" type="TextureButton" parent="set_base_UI/base"]
+z_index = 1
+layout_mode = 0
+offset_left = 22.9282
+offset_top = 34.8969
+offset_right = 95.9282
+offset_bottom = 61.8969
+scale = Vector2(0.181973, 0.181973)
+texture_normal = ExtResource("3_e6837")
+texture_pressed = ExtResource("4_th0md")
+texture_hover = ExtResource("5_bly1q")
+
+[node name="close_button" type="TextureButton" parent="set_base_UI/base"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = -2.0
+offset_right = 65.0
+offset_bottom = 26.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("7_to6h8")
+texture_pressed = ExtResource("8_m5xxh")
+texture_hover = ExtResource("9_yc0f8")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="set_base_UI/base/close_button"]
+layout_mode = 0
+offset_right = 274.0
+offset_bottom = 274.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "X"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="shadow" type="TextureRect" parent="set_base_UI/base/close_button"]
+modulate = Color(0, 0, 0, 0.529412)
+z_index = -1
+layout_mode = 0
+offset_left = 2.00004
+offset_top = 1.33333
+offset_right = 29.0
+offset_bottom = 28.3333
+texture = ExtResource("7_to6h8")
+
+[connection signal="pressed" from="base_button" to="." method="_on_base_button_pressed"]
+[connection signal="pressed" from="set_base_UI/base/set_base" to="." method="_on_set_base_pressed"]
+[connection signal="pressed" from="set_base_UI/base/close_button" to="." method="_on_close_button_pressed"]

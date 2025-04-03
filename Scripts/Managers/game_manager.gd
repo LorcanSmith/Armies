@@ -64,6 +64,7 @@ func create_scene():
 		$UI/Turns.play("fade_in")
 		turn_text.text = str(turn_number)
 		current_scene = shop_scene.instantiate()
+		#Tell the base manager to set its base and to do start of turn effects
 	add_child(current_scene)
 	
 	#Sets all the managers to be that of the newly instantiated scene
@@ -71,6 +72,8 @@ func create_scene():
 	ShopManager = get_node_or_null("shop_manager")
 	if(ShopManager != null):
 		ShopManager.game_manager = self
+		if(!in_combat):
+			ShopManager.find_child("base_manager").start_of_turn()
 	GridManager = current_scene.find_child("grid_manager")
 	
 	load_complete("scene")

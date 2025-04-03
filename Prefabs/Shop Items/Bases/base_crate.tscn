@@ -1,0 +1,164 @@
+[gd_scene load_steps=11 format=3 uid="uid://bf3pxhepmlhfx"]
+
+[ext_resource type="Script" uid="uid://mrsc5vs4uclq" path="res://Scripts/Shop/base_crate.gd" id="1_kd1gj"]
+[ext_resource type="Texture2D" uid="uid://chl5qvy7eq8wv" path="res://Sprites/Booster_Packs/Crate.png" id="2_a1l1y"]
+[ext_resource type="Texture2D" uid="uid://8af7s6x54d8a" path="res://Sprites/Bases/castle.png" id="3_ky5i5"]
+[ext_resource type="Texture2D" uid="uid://dirtbdn43qwvv" path="res://Sprites/UI/square_button/square.png" id="7_kd1gj"]
+[ext_resource type="Texture2D" uid="uid://be0cwtjifif32" path="res://Sprites/UI/square_button/square_pressed.png" id="8_a1l1y"]
+[ext_resource type="Texture2D" uid="uid://bm7qe1w2xsxio" path="res://Sprites/UI/square_button/square_hovered.png" id="9_ky5i5"]
+
+[sub_resource type="Animation" id="Animation_qtm4k"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ocd42"]
+resource_name = "crate_appear"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Container:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.86265e-09, 0.140376, 0.246767, 0.359068),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.1, 1.1), Vector2(0.95, 0.95), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p04f0"]
+resource_name = "crate_disappear"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Container:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0930917, 0.184706),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p04f0"]
+_data = {
+&"RESET": SubResource("Animation_qtm4k"),
+&"crate_appear": SubResource("Animation_ocd42"),
+&"crate_disappear": SubResource("Animation_p04f0")
+}
+
+[node name="base_crate" type="Node2D"]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_kd1gj")
+
+[node name="base_button" type="TextureButton" parent="."]
+self_modulate = Color(0, 0.951862, 0.915476, 1)
+texture_filter = 1
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+scale = Vector2(1.2, 1.2)
+pivot_offset = Vector2(15.8333, 15.8333)
+texture_normal = ExtResource("2_a1l1y")
+
+[node name="symbol" type="Sprite2D" parent="base_button"]
+modulate = Color(0, 0, 0, 0.513726)
+texture_filter = 1
+position = Vector2(16.6667, 15.8333)
+scale = Vector2(0.546875, 0.546875)
+texture = ExtResource("3_ky5i5")
+
+[node name="UI" type="CanvasLayer" parent="."]
+visible = false
+offset = Vector2(-231.665, -255.145)
+scale = Vector2(1.5, 1.5)
+transform = Transform2D(1.5, 0, 0, 1.5, -231.665, -255.145)
+
+[node name="Container" type="Control" parent="UI"]
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(586.443, 421.43)
+
+[node name="crate" type="TextureRect" parent="UI/Container"]
+modulate = Color(0.255659, 0.255659, 0.255659, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 555.337
+offset_top = 401.557
+offset_right = 587.337
+offset_bottom = 433.557
+scale = Vector2(8.94, 8.94)
+pivot_offset = Vector2(16.0572, 15.3813)
+texture = ExtResource("2_a1l1y")
+
+[node name="close_button" type="TextureButton" parent="UI/Container/crate"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = -1.0
+offset_right = 57.0
+offset_bottom = 26.0
+scale = Vector2(0.115, 0.115)
+texture_normal = ExtResource("7_kd1gj")
+texture_pressed = ExtResource("8_a1l1y")
+texture_hover = ExtResource("9_ky5i5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Container/crate/close_button"]
+layout_mode = 0
+offset_right = 274.0
+offset_bottom = 274.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "X"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="shadow" type="TextureRect" parent="UI/Container/crate/close_button"]
+modulate = Color(0, 0, 0, 0.529412)
+z_index = -1
+layout_mode = 0
+offset_left = 2.00004
+offset_top = 1.33333
+offset_right = 29.0
+offset_bottom = 28.3333
+texture = ExtResource("7_kd1gj")
+
+[node name="base_locations" type="Node2D" parent="UI/Container"]
+position = Vector2(425.11, 322.241)
+scale = Vector2(1.0119, 1.0119)
+
+[node name="location_1" type="Node2D" parent="UI/Container/base_locations"]
+position = Vector2(50, 50)
+
+[node name="location_2" type="Node2D" parent="UI/Container/base_locations"]
+position = Vector2(142, 50)
+
+[node name="location_3" type="Node2D" parent="UI/Container/base_locations"]
+position = Vector2(236, 50)
+
+[node name="location_4" type="Node2D" parent="UI/Container/base_locations"]
+position = Vector2(92, 119.333)
+
+[node name="location_6" type="Node2D" parent="UI/Container/base_locations"]
+position = Vector2(203.333, 119.333)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p04f0")
+}
+
+[connection signal="mouse_entered" from="base_button" to="." method="_on_booster_button_mouse_entered"]
+[connection signal="mouse_exited" from="base_button" to="." method="_on_booster_button_mouse_exited"]
+[connection signal="pressed" from="base_button" to="." method="_on_base_button_pressed"]
+[connection signal="pressed" from="UI/Container/crate/close_button" to="." method="_on_close_button_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
