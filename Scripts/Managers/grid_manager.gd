@@ -92,34 +92,6 @@ func load_units():
 
 				height += 1
 			width += 1
-
-#Saves a grid
-func save_layout(grid_name : String, grid_data : Array):
-	if grid_name == "army":
-		game_manager.army = grid_data
-	#Saves army as an enemy army
-	if(DebuggerScript.place_enemy and grid_name != "inventory"):
-		grid_name = "enemy"
-	
-	var current_turn_number = str("turn", game_manager.turn_number)
-	
-	var json_string
-	
-	var file_path = game_folder + grid_name + current_turn_number + ".save"
-	var save_file
-	if FileAccess.file_exists(file_path):
-		#This will give you the project directory.
-		save_file = FileAccess.open(file_path, FileAccess.READ_WRITE)
-		# Move the file cursor to the end of the file (just in case it's not already there)
-		save_file.seek_end()
-	else:
-		save_file = FileAccess.open(file_path, FileAccess.WRITE)
-	# JSON provides a static method to serialize the grid_data to a string
-	json_string = JSON.stringify(grid_data)
-	#print(json_string)
-	# Store the save data as a new line in the save file
-	save_file.store_line(json_string)
-	save_file.close()  # Don't forget to close the file after you're done.
 		
 func load_layout(file_to_load : String):
 	var current_turn_number

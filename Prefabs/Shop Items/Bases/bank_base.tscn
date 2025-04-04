@@ -1,111 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmx4frrbry3q5"]
+[gd_scene load_steps=3 format=3 uid="uid://bq1y3dawkskky"]
 
-[ext_resource type="Script" uid="uid://cc646f6ymc6pf" path="res://Scripts/Shop/base_script.gd" id="1_uvii2"]
+[ext_resource type="PackedScene" uid="uid://ckgb2aec4d3hs" path="res://Prefabs/Shop Items/Bases/castle_base.tscn" id="1_hupev"]
 [ext_resource type="Texture2D" uid="uid://dekfrmwbfboj4" path="res://Sprites/Bases/bank.png" id="2_uvii2"]
-[ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="4_w22wg"]
-[ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="5_yjcje"]
-[ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="6_wbr7q"]
-[ext_resource type="Texture2D" uid="uid://dirtbdn43qwvv" path="res://Sprites/UI/square_button/square.png" id="7_mpkqd"]
-[ext_resource type="Texture2D" uid="uid://be0cwtjifif32" path="res://Sprites/UI/square_button/square_pressed.png" id="8_m3t7t"]
-[ext_resource type="Texture2D" uid="uid://bm7qe1w2xsxio" path="res://Sprites/UI/square_button/square_hovered.png" id="9_dobnh"]
 
-[node name="bank_base" type="Node2D"]
-z_index = 6
-z_as_relative = false
-texture_filter = 1
-script = ExtResource("1_uvii2")
+[node name="bank_base" instance=ExtResource("1_hupev")]
 base_id = 1
+base_name = "Bank"
+description = "Start of turn: Gain an extra 8 gold"
 
-[node name="base_button" type="TextureButton" parent="."]
-z_index = 4
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="base_button" parent="." index="0"]
 texture_normal = ExtResource("2_uvii2")
 
-[node name="set_base_UI" type="Control" parent="."]
-visible = false
-z_index = 5
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="base" type="TextureRect" parent="set_base_UI"]
-self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -36.0
-offset_top = -103.0
-offset_right = 4.0
-offset_bottom = -63.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(8.94, 8.94)
-pivot_offset = Vector2(19.009, 24.1723)
+[node name="base" parent="set_base_UI" index="1"]
 texture = ExtResource("2_uvii2")
-
-[node name="Description" type="RichTextLabel" parent="set_base_UI/base"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 18.0
-offset_right = 1580.0
-offset_bottom = 765.0
-scale = Vector2(0.0190368, 0.0190368)
-theme_override_font_sizes/normal_font_size = 150
-text = "DESCRIPTION"
-
-[node name="set_base" type="TextureButton" parent="set_base_UI/base"]
-z_index = 1
-layout_mode = 0
-offset_left = 13.0848
-offset_top = 33.1071
-offset_right = 86.0848
-offset_bottom = 60.1071
-scale = Vector2(0.181973, 0.181973)
-texture_normal = ExtResource("4_w22wg")
-texture_pressed = ExtResource("5_yjcje")
-texture_hover = ExtResource("6_wbr7q")
-
-[node name="close_button" type="TextureButton" parent="set_base_UI/base"]
-layout_mode = 0
-offset_left = 31.7596
-offset_top = 3.57141
-offset_right = 59.7597
-offset_bottom = 31.5714
-scale = Vector2(0.15, 0.15)
-texture_normal = ExtResource("7_mpkqd")
-texture_pressed = ExtResource("8_m3t7t")
-texture_hover = ExtResource("9_dobnh")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="set_base_UI/base/close_button"]
-layout_mode = 0
-offset_right = 274.0
-offset_bottom = 274.0
-scale = Vector2(0.1, 0.1)
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 150
-text = "X"
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="shadow" type="TextureRect" parent="set_base_UI/base/close_button"]
-modulate = Color(0, 0, 0, 0.529412)
-z_index = -1
-layout_mode = 0
-offset_left = 2.00004
-offset_top = 1.33333
-offset_right = 29.0
-offset_bottom = 28.3333
-texture = ExtResource("7_mpkqd")
-
-[connection signal="pressed" from="base_button" to="." method="_on_base_button_pressed"]
-[connection signal="pressed" from="set_base_UI/base/set_base" to="." method="_on_set_base_pressed"]
-[connection signal="pressed" from="set_base_UI/base/close_button" to="." method="_on_close_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=19 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
@@ -19,6 +19,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4adb8"]
 size = Vector2(46, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vg5hm"]
+size = Vector2(136, 134)
 
 [node name="shop_manager" type="Node2D"]
 script = ExtResource("1_0fc1a")
@@ -201,6 +204,12 @@ theme_override_font_sizes/normal_font_size = 200
 text = "Enemy base this way >"
 fit_content = true
 
+[node name="Area2D" type="Area2D" parent="Camera2D/base_manager"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/base_manager/Area2D"]
+position = Vector2(-1, 7)
+shape = SubResource("RectangleShape2D_vg5hm")
+
 [node name="Tooltip" parent="Camera2D" instance=ExtResource("14_vg5hm")]
 position = Vector2(-340, 98)
 
@@ -213,3 +222,4 @@ position = Vector2(-340, 98)
 [connection signal="mouse_entered" from="Camera2D/ShopItemGenerator/battle_button" to="." method="_on_battle_button_mouse_entered"]
 [connection signal="mouse_exited" from="Camera2D/ShopItemGenerator/battle_button" to="." method="_on_battle_button_mouse_exited"]
 [connection signal="pressed" from="Camera2D/ShopItemGenerator/battle_button" to="." method="_on_battle_button_pressed"]
+[connection signal="mouse_entered" from="Camera2D/base_manager/Area2D" to="Camera2D/base_manager" method="_on_area_2d_mouse_entered"]

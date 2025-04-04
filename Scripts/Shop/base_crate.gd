@@ -11,14 +11,15 @@ var current_base_selected : Node2D
 var crate_sprite : TextureButton
 var crate_starting_size : Vector2
 
+var base_locations : Array
 func _ready():
 	UI = find_child("UI")
 	crate_sprite = find_child("base_button")
 	crate_starting_size = crate_sprite.scale
+	base_locations = UI.find_child("base_locations").get_children()
 	select_units()
 	
 func select_units():
-	var base_locations = UI.find_child("base_locations").get_children()
 	var x = 0
 	while x < base_locations.size():
 		var dictionary_instance = dictionary.new()
@@ -52,7 +53,12 @@ func selected_unit(base, id):
 func _on_buy_unit_button_pressed() -> void:
 		#play animation to pop the crate out
 		get_node("AnimationPlayer").play("crate_disappear")
-
+		
+func hide_base_options(hide : bool):
+	var x = 0
+	while x < base_locations.size():
+		base_locations[x].get_child(0).find_child("base_button").visible = hide
+		x+=1
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if(anim_name == "crate_disappear" and UI.visible == true and current_base_selected):

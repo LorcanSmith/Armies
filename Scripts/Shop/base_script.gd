@@ -2,7 +2,7 @@ extends Node2D
 
 var disabled : bool = false
 @export var base_id : int = -1
-
+@export var base_name : String
 @export var description : String
 var tooltip : Node2D
 @export var show_tooltip_time : float = 1.4
@@ -26,9 +26,10 @@ func _ready() -> void:
 	sprite = find_child("Sprite2D")
 	base_manager = find_parent("Camera2D").find_child("base_manager")
 	find_child("set_base_UI").global_position = find_parent("Camera2D").global_position
+	find_child("Description").text = description
 
 func _on_set_base_pressed() -> void:
-	base_manager.set_base(base_id)
+	base_manager.set_base(base_id, base_name, description)
 	#Delete the crate
 	find_parent("base_crate").queue_free()
 
@@ -36,7 +37,11 @@ func _on_set_base_pressed() -> void:
 func _on_base_button_pressed() -> void:
 	find_child("set_base_UI").visible = true
 	find_parent("UI").find_child("crate").visible = false
-
+	get_node("AnimationPlayer").play("base_confirm_appear")
+	find_parent("base_crate").hide_base_options(false)
 func _on_close_button_pressed() -> void:
 	find_child("set_base_UI").visible = false
 	find_parent("UI").find_child("crate").visible = true
+	get_node("AnimationPlayer").play("base_confirm_disappear")
+	find_parent("base_crate").get_node("AnimationPlayer").play("crate_appear")
+	find_parent("base_crate").hide_base_options(true)

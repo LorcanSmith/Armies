@@ -29,6 +29,7 @@ var tick_delay : float
 @export var quick_speed : float
 
 var player_headquarter : Node2D
+var player_base_sprite : Texture2D
 var enemy_headquarter : Node2D
 
 
@@ -39,7 +40,7 @@ func _ready() -> void:
 	enemy_headquarter = self.find_child("enemy_headquarter")
 	auto_tick()
 
-func setup_headquarters():
+func setup_headquarters(base_id):
 	#Gets the current grid so we can find out its size
 	var grid = game_manager.GridManager.get_grid()
 	#Gets the center of the grid in the y axis
@@ -50,6 +51,8 @@ func setup_headquarters():
 	var offset = (find_child("Sprite2D").texture.get_width())+45
 	#Sets the player headquarter to be to the left of the map
 	player_headquarter.global_position = Vector2(-offset, grid_height_center)
+	#Sets the base sprite
+	player_headquarter.find_child("Sprite2D").texture = player_base_sprite
 	#Get enemy child Sprite 2D and flip horizontally
 	var enemy_base = enemy_headquarter.get_node("Sprite2D")  
 	enemy_base.scale.x = -enemy_base.scale.x

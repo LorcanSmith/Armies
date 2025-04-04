@@ -31,3 +31,11 @@ func update_label():
 #Called when the headquater runs out of health
 func destroy_headquarters():
 	queue_free()
+
+
+func _on_area_2d_mouse_entered() -> void:
+	var gm = find_parent("game_manager")
+	var id = gm.base_ID
+	var base_name = gm.base_name
+	var desc = gm.base_description
+	find_parent("combat_manager").find_child("Tooltip").update_base_tooltip(id, base_name, desc)

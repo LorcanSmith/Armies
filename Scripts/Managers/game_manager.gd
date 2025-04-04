@@ -10,7 +10,18 @@ var GridManager : Node2D
 #The current scene we are on
 var current_scene : Node2D
 
+#Base
+@export var bases_appear_on_turn_numbers : Array = [1, 4, 6]
+var base_crate_spawner : Node2D
+var base_ID : int
+var base_name : String
+var base_description : String
+var base_sprite : Texture2D
+
+#Just the unit IDS
 var army : Array
+#The actual units themselves
+var army_units : Array
 
 var shop_scene = preload("res://Prefabs/Managers/shop_manager.tscn")
 var combat_scene = preload("res://Prefabs/Managers/combat_manager.tscn")
@@ -48,6 +59,7 @@ func _ready():
 
 
 func swap_scenes():
+	army_units = []
 	if(!in_combat):
 		for grids in GridManager.get_children():
 				grids.save_current_grid()
@@ -73,9 +85,17 @@ func create_scene():
 	if(ShopManager != null):
 		ShopManager.game_manager = self
 		if(!in_combat):
+			#Tells the base manager what the current base is
+			ShopManager.find_child("base_manager").set_base(base_ID, base_name, base_description)
+			#Calls start of turn actions for the current base
 			ShopManager.find_child("base_manager").start_of_turn()
-	GridManager = current_scene.find_child("grid_manager")
-	
+			base_crate_spawner = ShopManager.find_child("base_spawn_location")
+			#Spawn in base crate if it is the right turn number
+			if(bases_appear_on_turn_numbers.has(turn_number)):
+				base_crate_spawner.spawn_base_crate()
+		elif(in_combat):
+			CombatManager.player_base_sprite = base_sprite
+	GridManager = current_scene.find_child("grid_manager")	
 	load_complete("scene")
 
 func load_complete(element_loaded : String):
@@ -83,8 +103,8 @@ func load_complete(element_loaded : String):
 		GridManager.generate_grids()
 	if(element_loaded == "grids"):
 		if(in_combat):
-			CombatManager.setup_headquarters()
-		
+			CombatManager.setup_headquarters(base_sprite)
+	
 ##USED TO REROLL THE SHOP, WILL EVENTUALLY BE DONE BY A BUTTON
 func _input(event):
 	if Input.is_action_just_pressed("save"):
