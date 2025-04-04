@@ -83,6 +83,7 @@ var reloading_counter : int
 @export_subgroup("Skill Projectile")
 @export var projectile : PackedScene
 
+
 @export_subgroup("Skill Effective Against")
 @export var effectiveness : int = 4
 @export var Soldier_effective : bool
@@ -120,7 +121,6 @@ func _ready() -> void:
 func set_damage_and_health(dmg, hlth):
 	damage_boost = dmg
 	health_boost = hlth
-	skill_damage += dmg
 	max_health += hlth
 	health = max_health
 	
@@ -151,7 +151,7 @@ func set_unit_types():
 		x+=1
 	
 func find_movement_tile():
-	if(enemies_in_range.size() == 0 or skill_damage <= 0):
+	if(enemies_in_range.size() == 0 or skill_damage + damage_boost <= 0):
 		var moved_distance = 0
 		#The unit has already found a tile this turn
 		moved = true
@@ -185,7 +185,7 @@ func move():
 	#Deletes brawl effect if any exists
 	if(current_brawl_effect != null):
 		current_brawl_effect.queue_free()
-	if(enemies_in_range.size() == 0 or skill_damage <= 0):
+	if(enemies_in_range.size() == 0 or skill_damage + damage_boost <= 0):
 		if(tile_to_move_to != null):
 			#Set the parent to be the new tile
 			reparent(tile_to_move_to)
@@ -212,15 +212,17 @@ func skill(phase : String):
 				var unit_number = 0
 				#Spawn an instance of the skill at every skill location
 				while skills_spawned < skill_spawn_amount:
-					if((unit_number > enemies_in_range.size()-1 and skill_damage > 0) or (unit_number > friendlies_in_range.size()-1 and skill_heal > 0)):
+					if((unit_number > enemies_in_range.size()-1 and skill_damage + damage_boost > 0) or (unit_number > friendlies_in_range.size()-1 and skill_heal > 0)):
 						#If the skill can be spawned on each unit more than once
 						if(!skill_max_once_per_unit):
 							unit_number = 0
 						else:
 							break
-					var skill_instance = skill_prefab.instantiate()
+					
+					var skill_instance 
+					skill_instance = skill_prefab.instantiate()
 					#Tell the skill how much damage it does
-					skill_instance.damage = skill_damage
+					skill_instance.damage = skill_damage + damage_boost
 					skill_instance.heal = skill_heal
 					skill_instance.effective_against = effective_against_types
 					skill_instance.effectiveness = effectiveness
@@ -244,14 +246,14 @@ func skill(phase : String):
 						#Sets skill's location to be at the closest enemy location
 						elif(skill_shooots_closest_enemy):
 							if !skill_does_splash:
-								if(skill_damage > 0):
+								if(skill_damage + damage_boost > 0):
 									skill_instance.global_position = enemies_in_range[0].global_position
 									attack_visuals(enemies_in_range[0])
 								elif(skill_heal > 0):
 									skill_instance.global_position = friendlies_in_range[0].global_position
 									attack_visuals(friendlies_in_range[0])
 							else:
-								if(skill_damage > 0):
+								if(skill_damage + damage_boost > 0):
 									skill_instance.global_position = enemies_in_range[0].global_position
 									attack_visuals(enemies_in_range[0])
 								elif(skill_heal > 0):
@@ -263,7 +265,7 @@ func skill(phase : String):
 									attack_visuals(friendlies_in_range[0])
 						#Loops through all enemies and sets the skill to be there location
 						else:
-							if(skill_damage > 0):
+							if(skill_damage + damage_boost > 0):
 								skill_instance.global_position = enemies_in_range[unit_number].global_position
 								attack_visuals(enemies_in_range[unit_number])
 							elif(skill_heal > 0):
@@ -286,7 +288,13 @@ func skill(phase : String):
 				#Check if the unit front of you in an enemy
 				if((unit_in_front and unit_in_front.is_in_group("enemy") and self.is_in_group("player")) or (unit_in_front and unit_in_front.is_in_group("player") and self.is_in_group("enemy"))):
 					#Do brawl damage to the enemy in front of you
-					unit_in_front.hurt(brawl_damage)
+					unit_in_front.hurt(brawl_damage + damage_boost)
+					unit_in_front.projectile_hit(brawl_damage + damage_boost)
+					print("H")
+				else:
+					print("ppop")
+			else:
+				print(movement_locations[0].movement_tile.units_on_tile.size())
 	#If there is another unit on this tile then they will brawl
 	else:
 		brawl()
@@ -342,8 +350,8 @@ func attack_visuals(enemy : Node2D):
 		var projectile_instance = projectile.instantiate()
 		find_parent("combat_manager").find_child("skill_holder").add_child(projectile_instance)
 		projectile_instance.global_position = self.global_position
-		if(skill_damage > 0):
-			projectile_instance.damage = skill_damage
+		if(skill_damage + damage_boost > 0):
+			projectile_instance.damage = skill_damage + damage_boost
 		elif(skill_heal > 0):
 			projectile_instance.damage = -skill_heal
 		if skill_does_splash:
@@ -380,7 +388,7 @@ func destroy_unit():
 
 func skill_area_entered(area: Area2D) -> void:
 #	check if skill is meant to be used on allies or enemies
-	if(skill_damage > 0):
+	if(skill_damage + damage_boost > 0):
 		#If the area on our skill location is a unit of the opposite type
 		if(self.is_in_group("player") and area.get_parent().is_in_group("enemy")):
 			enemies_in_range.append(area.get_parent())

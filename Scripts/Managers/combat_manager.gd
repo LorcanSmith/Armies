@@ -150,7 +150,6 @@ func movement_phase():
 						if(unit.moved == false):
 							units_to_move.append(unit)
 							unit.moved = true
-						
 						#Add this unit to the array as its still alive
 						if(!player_army.has(unit)):
 							player_army.append(unit) 
@@ -205,12 +204,12 @@ func waited_for_move():
 		var u = 0
 		combat_ready_unit_alive = false
 		while u < player_army.size():
-			if(player_army[u].enemies_in_range.size() > 0 or player_army[u].get_parent().units_on_tile.size() > 1):
+			if(player_army[u].enemies_in_range.size() > 0 or player_army[u].get_parent().units_on_tile.size() > 1 or player_army[u].reloading):
 				combat_ready_unit_alive = true
 			u += 1
 		u = 0
 		while u < enemy_army.size():
-			if(enemy_army[u].enemies_in_range.size() > 0 or enemy_army[u].get_parent().units_on_tile.size() > 1):
+			if(enemy_army[u].enemies_in_range.size() > 0 or enemy_army[u].get_parent().units_on_tile.size() > 1 or enemy_army[u].reloading):
 				combat_ready_unit_alive = true
 			u += 1
 		#Makes sure we don't do two sets of movement
@@ -228,7 +227,7 @@ func combat_phase():
 			var unit = 0
 			while unit in range(player_army.size()):
 				#Checks to see if the unit can do damage
-				if(player_army[unit].skill_damage > 0):
+				if(player_army[unit].skill_damage + player_army[unit].damage_boost > 0):
 					damage_unit_alive = true
 				player_army[unit].skill("combat_phase")
 				#Checks to see if the unit does healing
@@ -239,7 +238,7 @@ func combat_phase():
 			#Tell each unit in the enemy army to do their skill
 			unit = 0
 			while unit in range(enemy_army.size()):
-				if(enemy_army[unit].skill_damage > 0):
+				if(enemy_army[unit].skill_damage + enemy_army[unit].damage_boost> 0):
 					damage_unit_alive = true
 				enemy_army[unit].skill("combat_phase")
 				#Checks to see if the unit does healing

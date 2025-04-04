@@ -49,7 +49,7 @@ func select_units():
 	while x < unit_locations.size():
 		var random_number = potential_units_IDs[randi_range(0, potential_units_IDs.size()-1)]
 		var random_percentage = randf_range(0, 100)
-		if(random_percentage <= level2_chance):
+		if(random_percentage <= level2_chance and random_percentage > level3_chance):
 			#Sets our unit to be level2
 			random_number += 1
 		if(random_percentage <= level3_chance):

@@ -22,6 +22,7 @@ var base_sprites : Array = [
 #Booleans for checks
 var medieval_exclusive : bool = true
 var army_exclusive : bool = true
+
 func _ready() -> void:
 	base_sprite = find_child("base_sprite")
 func set_base(id, n, d):
@@ -84,8 +85,8 @@ func end_of_turn():
 func set_bools():
 	var dictionary_instance = dictionary.new()
 	var x = 0
-	var y = 0
 	while x < army.size():
+		var y = 0
 		while y < army[x].size():
 			if(army[x][y].units_on_tile.size() > 0):
 				var unit = dictionary_instance.unit_scenes[army[x][y].units_on_tile[0].unit_ID].instantiate()
@@ -93,8 +94,11 @@ func set_bools():
 					medieval_exclusive = false
 				if(!unit.Army):
 					army_exclusive = false
+				else:
+					print(unit.Army)
 				unit.queue_free()
 			y += 1
+			print("HERE")
 		x+= 1
 
 func _on_area_2d_mouse_entered() -> void:
