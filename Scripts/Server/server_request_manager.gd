@@ -19,6 +19,7 @@ func _init():
 	url_base = "http://127.0.0.1:8000"
 	self.user_logged_in = false
 
+# TODO Right now login is mostly being ignored
 func login(username : String, password : String):
 	var endpoint = "/api/user/login"
 	
@@ -32,6 +33,9 @@ func login(username : String, password : String):
 	var error = self.request_handler.request(self.url_base + endpoint, headers, HTTPClient.METHOD_POST)
 	return error
 	
+	
+# THESE FOLLOING FUNCTIONS ARE FOR EASE OF
+# EARLY WORK. GET USED FOR TEMP UPLOAD LOGIN
 func _login(username : String, password : String):
 	var user_info = await _login_request(username, password)
 	if(user_info == null):
@@ -61,15 +65,11 @@ func _login_request(username : String, password : String):
 ## Parameters [br]
 ## grid_string - the grid as a stringified JSON object [br]
 ## turn - the turn number, [br]
-## response_handler - the function which will recieve the JSON response object. Should take in a single parameter which is a dictionary [br][br]
-##
 ## grid_string is going to be the grid data as a stringified JSON object like we save in the grid_manager.gd
 ## save_layout and load_layout functions
-## They will be associated with the user logged in at startup.
-## Function assumes user is already logged in currently
-## [br]
+## They will be associated with the user logged in within method
 ## 
-## RETURNS a response dictionary with keys "map" being the opponents map as a string, "username" being the name of the opponent
+## RETURNS - See HTTPRequest error codes
 func upload(grid_string : String, turn : int):
 	
 #	TEMP UNTIL PROPER LOGIN
