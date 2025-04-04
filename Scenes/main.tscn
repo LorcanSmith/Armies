@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://brgi4h0spiup2"]
+[gd_scene load_steps=27 format=3 uid="uid://brgi4h0spiup2"]
 
 [ext_resource type="Script" uid="uid://ceah7wfd5evx8" path="res://Scripts/Managers/game_manager.gd" id="1_y45oy"]
 [ext_resource type="Script" uid="uid://06xxppo51p7p" path="res://Scripts/DEBUGGER_script.gd" id="2_pa0fo"]
@@ -160,6 +160,42 @@ _data = {
 &"fade_in": SubResource("Animation_pdsj5")
 }
 
+[sub_resource type="Animation" id="Animation_k12tt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/dollar/COINS:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["55"]
+}
+
+[sub_resource type="Animation" id="Animation_fdnlq"]
+resource_name = "increase"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/dollar/COINS:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["55", "70"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b3802"]
+_data = {
+&"RESET": SubResource("Animation_k12tt"),
+&"increase": SubResource("Animation_fdnlq")
+}
+
 [node name="game_manager" type="Node2D" node_paths=PackedStringArray("health_text", "coin_text", "turn_text", "wins_text", "health_counter", "coin_counter", "turn_counter", "win_counter")]
 script = ExtResource("1_y45oy")
 health_text = NodePath("UI/HBoxContainer/heart/HEALTH")
@@ -231,7 +267,7 @@ scale = Vector2(0.21, 0.21)
 pivot_offset = Vector2(42.8571, 19.0476)
 theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 100
-text = "55
+text = "10
 "
 scroll_active = false
 autowrap_mode = 0
@@ -437,6 +473,11 @@ libraries = {
 [node name="Turns" type="AnimationPlayer" parent="UI"]
 libraries = {
 &"": SubResource("AnimationLibrary_3pmx8")
+}
+
+[node name="CoinIncrease" type="AnimationPlayer" parent="UI"]
+libraries = {
+&"": SubResource("AnimationLibrary_b3802")
 }
 
 [node name="game_over_canvas" type="CanvasLayer" parent="."]

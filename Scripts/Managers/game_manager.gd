@@ -52,6 +52,7 @@ var game_over_canvas : CanvasLayer
 func _ready():
 	in_combat = false
 	health_text.text = str(life_remaining)
+	coin_text.text = str(0)
 	game_over_canvas = find_child("game_over_canvas")
 	if(auto_create_armies_at_runtime):
 		DebuggerScript.create_enemy_armies()
@@ -129,8 +130,13 @@ func money_changed(amount : int):
 	else:
 		coin_counter.text = "+" + str(amount - money_remaining)
 	$UI/Coins.play("fade_in")
-	coin_text.text = str(amount)
+	var tween = coin_text.create_tween()
+	tween.tween_method(set_label_text, money_remaining, amount, 1).set_delay(1)
 	money_remaining = amount
+
+func set_label_text(value: int):
+	coin_text.text = str(value)
+
 #Called by combat manager when our headquarters is destroyed
 func won_battle(won : bool):
 	#If we won
