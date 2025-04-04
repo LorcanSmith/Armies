@@ -227,7 +227,7 @@ func combat_phase():
 			var unit = 0
 			while unit in range(player_army.size()):
 				#Checks to see if the unit can do damage
-				if(player_army[unit].skill_damage > 0):
+				if(player_army[unit].skill_damage + player_army[unit].damage_boost > 0):
 					damage_unit_alive = true
 				player_army[unit].skill("combat_phase")
 				#Checks to see if the unit does healing
@@ -238,7 +238,7 @@ func combat_phase():
 			#Tell each unit in the enemy army to do their skill
 			unit = 0
 			while unit in range(enemy_army.size()):
-				if(enemy_army[unit].skill_damage > 0):
+				if(enemy_army[unit].skill_damage + enemy_army[unit].damage_boost> 0):
 					damage_unit_alive = true
 				enemy_army[unit].skill("combat_phase")
 				#Checks to see if the unit does healing
