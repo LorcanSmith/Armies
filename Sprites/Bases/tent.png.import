@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8af7s6x54d8a"
-path="res://.godot/imported/castle_v2.png-fa1343451ee4b2590f1b681f8a190d0f.ctex"
+uid="uid://bs0be0hqhei8l"
+path="res://.godot/imported/tent.png-db675f725310e22c5b5d871eabb1434d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Units/castle_v2.png"
-dest_files=["res://.godot/imported/castle_v2.png-fa1343451ee4b2590f1b681f8a190d0f.ctex"]
+source_file="res://Sprites/Bases/tent.png"
+dest_files=["res://.godot/imported/tent.png-db675f725310e22c5b5d871eabb1434d.ctex"]
 
 [params]
 

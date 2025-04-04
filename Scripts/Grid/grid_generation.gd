@@ -89,4 +89,5 @@ func save_current_grid():
 				grid_with_unit_IDs[width][height] = null
 	#Tells the manager to save the layout of the grid, includes the name and a list
 	#of all the unit IDs
-	find_parent("grid_manager").save_layout(grid_name, grid_with_unit_IDs)
+	find_parent("game_manager").army = grid_with_unit_IDs
+	find_parent("game_manager").army_units = grid

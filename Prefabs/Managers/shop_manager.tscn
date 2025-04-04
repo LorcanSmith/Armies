@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=19 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
@@ -12,11 +12,16 @@
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="10_1cd4y"]
 [ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://font.ttf" id="11_qjc8s"]
 [ext_resource type="Script" uid="uid://dq7gpf703ku0i" path="res://Scripts/Skills/skill_holder.gd" id="12_cnpns"]
-[ext_resource type="Texture2D" uid="uid://8af7s6x54d8a" path="res://Sprites/Units/castle_v2.png" id="14_lxqr3"]
+[ext_resource type="Script" uid="uid://dut4eyngg2ol1" path="res://Scripts/Shop/base_shop_spawner.gd" id="12_qjc8s"]
+[ext_resource type="Script" uid="uid://b0n7305b0foj2" path="res://Scripts/Managers/base_manager.gd" id="14_1cd4y"]
+[ext_resource type="Texture2D" uid="uid://8af7s6x54d8a" path="res://Sprites/Bases/castle.png" id="14_lxqr3"]
 [ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="14_vg5hm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4adb8"]
 size = Vector2(46, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vg5hm"]
+size = Vector2(136, 134)
 
 [node name="shop_manager" type="Node2D"]
 script = ExtResource("1_0fc1a")
@@ -141,6 +146,10 @@ theme_override_font_sizes/normal_font_size = 100
 text = "BATTLE"
 horizontal_alignment = 1
 
+[node name="base_spawn_location" type="Node2D" parent="Camera2D/ShopItemGenerator"]
+position = Vector2(643, 344)
+script = ExtResource("12_qjc8s")
+
 [node name="SellLocation" type="Node2D" parent="Camera2D"]
 position = Vector2(264, 86)
 
@@ -166,13 +175,16 @@ text = "SELL"
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="BASE" type="Sprite2D" parent="Camera2D"]
-texture_filter = 1
+[node name="base_manager" type="Node2D" parent="Camera2D"]
 position = Vector2(-281, -48)
+script = ExtResource("14_1cd4y")
+
+[node name="base_sprite" type="Sprite2D" parent="Camera2D/base_manager"]
+texture_filter = 1
 scale = Vector2(3.4, 3.4)
 texture = ExtResource("14_lxqr3")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Camera2D/BASE"]
+[node name="Sprite2D2" type="Sprite2D" parent="Camera2D/base_manager/base_sprite"]
 modulate = Color(0, 0, 0, 0.196078)
 z_index = -1
 texture_filter = 1
@@ -181,7 +193,7 @@ scale = Vector2(1, 0.45098)
 texture = ExtResource("14_lxqr3")
 flip_v = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/BASE"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/base_manager/base_sprite"]
 offset_left = 55.0
 offset_top = 61.0
 offset_right = 1831.0
@@ -191,6 +203,12 @@ theme_override_colors/default_color = Color(0.831373, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 200
 text = "Enemy base this way >"
 fit_content = true
+
+[node name="Area2D" type="Area2D" parent="Camera2D/base_manager"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/base_manager/Area2D"]
+position = Vector2(-1, 7)
+shape = SubResource("RectangleShape2D_vg5hm")
 
 [node name="Tooltip" parent="Camera2D" instance=ExtResource("14_vg5hm")]
 position = Vector2(-340, 98)
@@ -204,3 +222,4 @@ position = Vector2(-340, 98)
 [connection signal="mouse_entered" from="Camera2D/ShopItemGenerator/battle_button" to="." method="_on_battle_button_mouse_entered"]
 [connection signal="mouse_exited" from="Camera2D/ShopItemGenerator/battle_button" to="." method="_on_battle_button_mouse_exited"]
 [connection signal="pressed" from="Camera2D/ShopItemGenerator/battle_button" to="." method="_on_battle_button_pressed"]
+[connection signal="mouse_entered" from="Camera2D/base_manager/Area2D" to="Camera2D/base_manager" method="_on_area_2d_mouse_entered"]

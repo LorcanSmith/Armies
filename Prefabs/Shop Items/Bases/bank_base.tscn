@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq1y3dawkskky"]
+
+[ext_resource type="PackedScene" uid="uid://ckgb2aec4d3hs" path="res://Prefabs/Shop Items/Bases/castle_base.tscn" id="1_hupev"]
+[ext_resource type="Texture2D" uid="uid://dekfrmwbfboj4" path="res://Sprites/Bases/bank.png" id="2_uvii2"]
+
+[node name="bank_base" instance=ExtResource("1_hupev")]
+base_id = 1
+base_name = "Bank"
+description = "Start of turn: Gain an extra 8 gold"
+
+[node name="base_button" parent="." index="0"]
+texture_normal = ExtResource("2_uvii2")
+
+[node name="base" parent="set_base_UI" index="1"]
+texture = ExtResource("2_uvii2")
