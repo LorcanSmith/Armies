@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://8vnmsckpyytm"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_3gkwe"]
-[ext_resource type="Texture2D" uid="uid://c73uyed4ispk4" path="res://Sprites/Units/Medieval/Archer/archer_sprite.png" id="2_cfirb"]
 [ext_resource type="PackedScene" uid="uid://blri1w5opv1nm" path="res://Prefabs/Effects/Projectiles/arrow_projectile.tscn" id="2_qc3gl"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_shtax"]
+[ext_resource type="Texture2D" uid="uid://by32sdawvr48u" path="res://Sprites/Units/Medieval/Archer/archer_lvl2.png" id="4_shtax"]
 
 [node name="Archer" instance=ExtResource("1_3gkwe")]
 max_health = 6
@@ -25,4 +25,5 @@ position = Vector2(148, 0)
 position = Vector2(222, 0)
 
 [node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("2_cfirb")
+texture = ExtResource("4_shtax")
+offset = Vector2(6, 0)
