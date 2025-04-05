@@ -20,6 +20,7 @@ var skill_heal : RichTextLabel
 var brawl : RichTextLabel
 var reload : RichTextLabel
 var cost : RichTextLabel
+var type : RichTextLabel
 
 func _ready() -> void:
 	self.visible = false
@@ -32,6 +33,7 @@ func _ready() -> void:
 	brawl = find_child("brawl")
 	reload = find_child("reload")
 	cost = find_child("cost")
+	type = find_child("type")
 
 func update_tooltip(u, damage_boost, health_boost) -> void:
 	if(u != -1):
@@ -55,6 +57,15 @@ func update_tooltip(u, damage_boost, health_boost) -> void:
 		brawl.text = str("Brawl Damage: ", unit.brawl_damage)
 		reload.text = str("Reload Time: ", unit.reload_time)
 		cost.text = str("Buy Cost: ", item.buy_cost, " / Sell Cost: ", item.sell_cost)
+		var x = 0
+		var types = []
+		while(x < unit.unit_types.size()):
+			#Finds the boolean with the same name as unit_types[x]
+			var type = unit.get(unit.unit_types[x])
+			if(type):
+				types.append(unit.unit_types[x])
+			x += 1
+		type.text = str("Unit Type: ", ", ".join(types))
 
 func update_base_tooltip(id, base_name, desc):
 	#Pop tooltip in if the tooltip is hidden
@@ -74,6 +85,7 @@ func update_base_tooltip(id, base_name, desc):
 	brawl.text = str("")
 	reload.text = str("")
 	cost.text = str("")
+	type.text = str("")
 	
 
 var anim_finished : bool = false
