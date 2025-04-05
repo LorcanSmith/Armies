@@ -202,6 +202,7 @@ func move():
 	moved = false
 	
 func skill(phase : String):
+	print("J")
 	#If this unit is the only unit on the tile then they can do their skill
 	if(alive and get_parent().units_on_tile.size() < 2):
 		if((phase == "combat_phase" and skill_damage > 0) or (phase == "healing_phase" and skill_heal > 0)):
@@ -290,11 +291,9 @@ func skill(phase : String):
 					#Do brawl damage to the enemy in front of you
 					unit_in_front.hurt(brawl_damage + damage_boost)
 					unit_in_front.projectile_hit(brawl_damage + damage_boost)
-					print("H")
-				else:
-					print("ppop")
-			else:
-				print(movement_locations[0].movement_tile.units_on_tile.size())
+			elif(movement_locations[0].hq != null):
+				movement_locations[0].hq.hurt(brawl_damage + damage_boost)
+				movement_locations[0].hq.projectile_hit(brawl_damage + damage_boost)
 	#If there is another unit on this tile then they will brawl
 	else:
 		brawl()
@@ -388,7 +387,7 @@ func destroy_unit():
 
 func skill_area_entered(area: Area2D) -> void:
 #	check if skill is meant to be used on allies or enemies
-	if(skill_damage + damage_boost > 0):
+	if(skill_damage > 0):
 		#If the area on our skill location is a unit of the opposite type
 		if(self.is_in_group("player") and area.get_parent().is_in_group("enemy")):
 			enemies_in_range.append(area.get_parent())

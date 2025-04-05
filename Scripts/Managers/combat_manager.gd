@@ -7,8 +7,6 @@ var next_phase = "movement"
 
 #Used to keep track of if any healing units exist, if they dont the phase should be skipped
 var healing_unit_alive : bool = false
-#Used to keep track of if any units can go into combat, or if the phase should be skipped
-var combat_ready_unit_alive : bool = false
 # used to end combat and return to store
 var battle_over : bool = false
 #If the enemy base gets destroyed, this gets set to true
@@ -78,12 +76,7 @@ func battle_ticker():
 			movement_phase()
 		#If combat is next
 		elif(next_phase == "combat"):
-			if(combat_ready_unit_alive):
-				update_phase_label("combat")
-			else:
-				next_phase = "movement"
-				update_phase_label("movement")
-				auto_tick()
+			update_phase_label("combat")
 			combat_phase()
 		#If healing is next
 		elif(next_phase == "healing"):
@@ -201,57 +194,45 @@ func waited_for_move():
 	#therefore all units must have finished moving and we can go to the next phase
 	if(w == units_to_move.size()):
 		w = 0
-		var u = 0
-		combat_ready_unit_alive = false
-		while u < player_army.size():
-			if(player_army[u].enemies_in_range.size() > 0 or player_army[u].get_parent().units_on_tile.size() > 1 or player_army[u].reloading):
-				combat_ready_unit_alive = true
-			u += 1
-		u = 0
-		while u < enemy_army.size():
-			if(enemy_army[u].enemies_in_range.size() > 0 or enemy_army[u].get_parent().units_on_tile.size() > 1 or enemy_army[u].reloading):
-				combat_ready_unit_alive = true
-			u += 1
-		#Makes sure we don't do two sets of movement
+				#Makes sure we don't do two sets of movement
 		next_phase = "combat"
 		auto_tick()
 func combat_phase():
 	#If there are still units on the board
 	if(player_army.size() > 0 or enemy_army.size() > 0):
-		if(combat_ready_unit_alive):
-			#Used to check if any units remain that can do damage
-			var damage_unit_alive = false
-			healing_unit_alive = false
+		#Used to check if any units remain that can do damage
+		var damage_unit_alive = false
+		healing_unit_alive = false
+		
+		#Tell each unit in the player army to do their skill
+		var unit = 0
+		while unit in range(player_army.size()):
+			#Checks to see if the unit can do damage
+			if(player_army[unit].skill_damage + player_army[unit].damage_boost > 0):
+				damage_unit_alive = true
+			player_army[unit].skill("combat_phase")
+			#Checks to see if the unit does healing
+			if(player_army[unit].skill_heal > 0):
+				healing_unit_alive = true
+			unit += 1
 			
-			#Tell each unit in the player army to do their skill
-			var unit = 0
-			while unit in range(player_army.size()):
-				#Checks to see if the unit can do damage
-				if(player_army[unit].skill_damage + player_army[unit].damage_boost > 0):
-					damage_unit_alive = true
-				player_army[unit].skill("combat_phase")
-				#Checks to see if the unit does healing
-				if(player_army[unit].skill_heal > 0):
-					healing_unit_alive = true
-				unit += 1
-				
-			#Tell each unit in the enemy army to do their skill
-			unit = 0
-			while unit in range(enemy_army.size()):
-				if(enemy_army[unit].skill_damage + enemy_army[unit].damage_boost> 0):
-					damage_unit_alive = true
-				enemy_army[unit].skill("combat_phase")
-				#Checks to see if the unit does healing
-				if(enemy_army[unit].skill_heal > 0):
-					healing_unit_alive = true
-				unit += 1
-			if(healing_unit_alive):
-				#Combat is this turn so set the healing phase to be next turn
-				next_phase = "healing"
-			else:
-				next_phase = "movement"
-			#Tell the skill_holder that skills have been spawned and we're waiting for them to be finished
-			find_child("skill_holder").waiting_for_skills = true
+		#Tell each unit in the enemy army to do their skill
+		unit = 0
+		while unit in range(enemy_army.size()):
+			if(enemy_army[unit].skill_damage + enemy_army[unit].damage_boost> 0):
+				damage_unit_alive = true
+			enemy_army[unit].skill("combat_phase")
+			#Checks to see if the unit does healing
+			if(enemy_army[unit].skill_heal > 0):
+				healing_unit_alive = true
+			unit += 1
+		if(healing_unit_alive):
+			#Combat is this turn so set the healing phase to be next turn
+			next_phase = "healing"
+		else:
+			next_phase = "movement"
+		#Tell the skill_holder that skills have been spawned and we're waiting for them to be finished
+		find_child("skill_holder").waiting_for_skills = true
 	#No units exist, you win
 	else:
 		player_won = true

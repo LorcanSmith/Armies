@@ -98,7 +98,6 @@ func set_bools():
 					print(unit.Army)
 				unit.queue_free()
 			y += 1
-			print("HERE")
 		x+= 1
 
 func _on_area_2d_mouse_entered() -> void:
