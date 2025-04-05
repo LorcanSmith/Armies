@@ -30,7 +30,7 @@ offset_top = 161.0
 offset_right = 1255.0
 offset_bottom = 651.0
 mouse_filter = 2
-color = Color(0.0851379, 0.259224, 0.204702, 1)
+color = Color(0.339636, 0.133142, 0.292786, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -57,7 +57,7 @@ text = "All feedback is greatly appreciated. We need to know your thoughts on al
 
 AREAS OF FOCUS:
 - How intuitive is everything: UI, tooltips, etc
-- How fun is the loop"
+- How fun is the gameplay loop"
 fit_content = true
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="."]
@@ -71,7 +71,7 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("1_b226h")
 theme_override_font_sizes/normal_font_size = 300
 text = "How our game works:
-Each turn you receive 25 coins to spend on units. You place these units on a grid and then when you are happy with your \"Army\" you go to battle! Fighting an enemy team, you must destroy their base before they destroy yours. 
+Each turn you receive 15 coins to spend on units. You place these units on a grid and then when you are happy with your \"Army\" you go to battle! Fighting an enemy team, you must destroy their base before they destroy yours. 
 You must get 10 wins/draws to beat the game. You lose life every time you lose a battle."
 fit_content = true
 
