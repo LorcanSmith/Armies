@@ -542,6 +542,17 @@ text = "SELECT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TITLE" type="RichTextLabel" parent="choose_unit_UI/Container"]
+layout_mode = 0
+offset_left = 449.0
+offset_top = 299.667
+offset_right = 1403.0
+offset_bottom = 598.667
+scale = Vector2(0.26, 0.26)
+theme_override_font_sizes/normal_font_size = 150
+text = "SELECT A UNIT"
+horizontal_alignment = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_p04f0")
