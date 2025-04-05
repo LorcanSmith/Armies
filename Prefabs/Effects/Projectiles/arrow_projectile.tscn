@@ -6,7 +6,7 @@
 [node name="basic_projectile" type="Node2D"]
 script = ExtResource("1_e66qq")
 moves = true
-speed = 1.5
+speed = 3.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

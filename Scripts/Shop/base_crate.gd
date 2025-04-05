@@ -32,6 +32,10 @@ func select_units():
 		instance.global_position = base_locations[x].global_position
 		x+=1
 		
+	#Opens the base chooser automatically on the first turn
+	if(find_parent("game_manager").turn_number == 1):
+		_on_base_button_pressed()
+		
 
 func _on_base_button_pressed() -> void:
 	#Checks to see if a pressed event happened whilst the mouse was over the booster 
