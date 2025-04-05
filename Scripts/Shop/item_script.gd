@@ -96,6 +96,7 @@ func _ready() -> void:
 	cost_label = find_child("Cost")
 	set_labels()
 	set_unit_buff_types()
+	get_node("AnimationPlayer").play("item_appear")
 
 #Auto assigns the Level label
 func set_labels():

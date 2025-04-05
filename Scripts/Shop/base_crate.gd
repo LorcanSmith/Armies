@@ -38,14 +38,13 @@ func select_units():
 		
 
 func _on_base_button_pressed() -> void:
-	#Checks to see if a pressed event happened whilst the mouse was over the booster 
-	if(!UI.visible):
-		#Turn on the UI to purchase the booster
-		UI.visible = true
-		#Turn off the booster in the shop
-		find_child("base_button").visible = false
-		#play animation to pop the crate in
-		get_node("AnimationPlayer").play("crate_appear")
+	find_child("Container").scale = Vector2(0,0)
+	#Turn on the UI to purchase the booster
+	UI.visible = true
+	#play animation to pop base crate in shop out
+	get_node("AnimationPlayer2").stop()
+	get_node("AnimationPlayer2").play("base_button_disappear")
+	
 
 func _on_close_button_pressed() -> void:
 	#play animation to pop the crate out
@@ -65,23 +64,31 @@ func hide_base_options(hide : bool):
 		x+=1
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if(anim_name == "base_button_disappear"):
+		#Turn off the booster in the shop
+		crate_sprite.visible = false
+		#play animation to pop the crate in
+		find_child("Container").scale = Vector2(0,0)
+		get_node("AnimationPlayer").play("crate_appear")
+	elif(anim_name == "base_button_appear"):
+		get_node("AnimationPlayer2").play("pulse")
 	if(anim_name == "crate_disappear" and UI.visible == true and current_base_selected):
 		queue_free()
 	elif(anim_name == "crate_disappear" and current_base_selected and current_base_selected.visible == true):
 		current_base_selected.visible = false
-		#Turn on booster in the shop
-		find_child("base_button").visible = true
 		UI.visible = false
 	elif(anim_name == "crate_disappear"):
 		#Turn on booster in the shop
-		find_child("base_button").visible = true
-		get_node("AnimationPlayer").play("pulse")
+		crate_sprite.visible = true
+		crate_sprite.scale = Vector2(0,0)
+		get_node("AnimationPlayer2").play("base_button_appear")
 		UI.visible = false
 
 func _on_booster_button_mouse_entered() -> void:
-	get_node("AnimationPlayer").stop()
+	get_node("AnimationPlayer2").stop()
 	crate_sprite.scale = Vector2(crate_starting_size.x * 1.2, crate_starting_size.y * 1.2)
 
 func _on_booster_button_mouse_exited() -> void:
 	crate_sprite.scale = Vector2(crate_starting_size.x, crate_starting_size.y)
-	get_node("AnimationPlayer").play("pulse")
+	if(!get_node("AnimationPlayer2").is_playing()):
+		get_node("AnimationPlayer2").play("pulse")
