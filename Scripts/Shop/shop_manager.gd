@@ -69,7 +69,6 @@ func apply_buffs():
 	find_child("buff_animation_holder").waiting_for_skills = true
 
 func no_skills_left():
-	#await get_tree().create_timer(0.75).timeout
 	game_manager.swap_scenes()
 
 

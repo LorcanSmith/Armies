@@ -202,7 +202,6 @@ func move():
 	moved = false
 	
 func skill(phase : String):
-	print("J")
 	#If this unit is the only unit on the tile then they can do their skill
 	if(alive and get_parent().units_on_tile.size() < 2):
 		if((phase == "combat_phase" and skill_damage > 0) or (phase == "healing_phase" and skill_heal > 0)):
@@ -213,6 +212,8 @@ func skill(phase : String):
 				var unit_number = 0
 				#Spawn an instance of the skill at every skill location
 				while skills_spawned < skill_spawn_amount:
+					#Delay so the buffs don't all appear at the same time
+					await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
 					if((unit_number > enemies_in_range.size()-1 and skill_damage + damage_boost > 0) or (unit_number > friendlies_in_range.size()-1 and skill_heal > 0)):
 						#If the skill can be spawned on each unit more than once
 						if(!skill_max_once_per_unit):
@@ -273,7 +274,7 @@ func skill(phase : String):
 								skill_instance.global_position = friendlies_in_range[unit_number].global_position
 								attack_visuals(friendlies_in_range[unit_number])
 					#If the skill spawns at a random location
-					else:
+					elif(skill_spawn_random and enemies_in_range.size() > 0):
 						#Choose a random enemy in range
 						var random_position = randi_range(0, enemies_in_range.size()-1)
 						skill_instance.global_position = enemies_in_range[random_position].global_position

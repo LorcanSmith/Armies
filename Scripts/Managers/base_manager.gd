@@ -58,6 +58,8 @@ func end_of_turn():
 				var y = 0
 				while y < army[x].size():
 					if(army[x][y].units_on_tile.size() > 0):
+						#Delay so the buffs don't all appear at the same time
+						await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
 						var instance = health_buff.instantiate()
 						instance.global_position = self.global_position
 						instance.unit = army[x][y].units_on_tile[0]
@@ -74,6 +76,8 @@ func end_of_turn():
 				var y = 0
 				while y < army[x].size():
 					if(army[x][y].units_on_tile.size() > 0):
+						#Delay so the buffs don't all appear at the same time
+						await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
 						var instance = damage_buff.instantiate()
 						instance.global_position = self.global_position
 						instance.unit = army[x][y].units_on_tile[0]

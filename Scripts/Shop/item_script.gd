@@ -397,6 +397,8 @@ func buff():
 					b += 1
 				if(can_buff_unit):
 					if(damage_buff > 0):
+						#Delay so the buffs don't all appear at the same time
+						await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
 						unit.damage_boost += damage_buff
 						var buff_instance = damage_buff_visual.instantiate()
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
@@ -404,6 +406,8 @@ func buff():
 						buff_instance.unit = unit
 						buff_instance.find_child("buff_text").text = str("+",damage_buff)
 					if(health_buff > 0):
+						#Delay so the buffs don't all appear at the same time
+						await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
 						unit.health_boost += health_buff
 						var buff_instance = health_buff_visual.instantiate()
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
