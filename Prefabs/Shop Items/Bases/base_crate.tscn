@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bf3pxhepmlhfx"]
+[gd_scene load_steps=14 format=3 uid="uid://bf3pxhepmlhfx"]
 
 [ext_resource type="Script" uid="uid://mrsc5vs4uclq" path="res://Scripts/Shop/base_crate.gd" id="1_kd1gj"]
 [ext_resource type="Texture2D" uid="uid://chl5qvy7eq8wv" path="res://Sprites/Booster_Packs/Crate.png" id="2_a1l1y"]
@@ -9,6 +9,18 @@
 
 [sub_resource type="Animation" id="Animation_qtm4k"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("base_button:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.2, 1.2)]
+}
 
 [sub_resource type="Animation" id="Animation_ocd42"]
 resource_name = "crate_appear"
@@ -42,11 +54,63 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_sbdr2"]
+resource_name = "pulse"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("base_button:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.666667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1.4, 1.4), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="Animation" id="Animation_r5lyk"]
+resource_name = "base_button_disappear"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("base_button:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i6ft3"]
+resource_name = "base_button_appear"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("base_button:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.3, 1.3), Vector2(1.2, 1.2), Vector2(1.3, 1.3)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p04f0"]
 _data = {
 &"RESET": SubResource("Animation_qtm4k"),
+&"base_button_appear": SubResource("Animation_i6ft3"),
+&"base_button_disappear": SubResource("Animation_r5lyk"),
 &"crate_appear": SubResource("Animation_ocd42"),
-&"crate_disappear": SubResource("Animation_p04f0")
+&"crate_disappear": SubResource("Animation_p04f0"),
+&"pulse": SubResource("Animation_sbdr2")
 }
 
 [node name="base_crate" type="Node2D"]
@@ -72,6 +136,18 @@ position = Vector2(16.6667, 15.8333)
 scale = Vector2(0.546875, 0.546875)
 texture = ExtResource("3_ky5i5")
 
+[node name="crate_shadow" type="TextureRect" parent="base_button"]
+modulate = Color(0, 0, 0, 0.541176)
+z_index = -1
+texture_filter = 1
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 34.0
+offset_bottom = 34.0
+pivot_offset = Vector2(16.0572, 15.3813)
+mouse_filter = 2
+texture = ExtResource("2_a1l1y")
+
 [node name="UI" type="CanvasLayer" parent="."]
 visible = false
 offset = Vector2(-231.665, -255.145)
@@ -89,7 +165,7 @@ grow_vertical = 2
 pivot_offset = Vector2(586.443, 421.43)
 
 [node name="crate" type="TextureRect" parent="UI/Container"]
-modulate = Color(0.255659, 0.255659, 0.255659, 1)
+self_modulate = Color(0.288518, 0.288518, 0.288518, 1)
 texture_filter = 1
 layout_mode = 0
 offset_left = 555.337
@@ -98,6 +174,7 @@ offset_right = 587.337
 offset_bottom = 433.557
 scale = Vector2(8.94, 8.94)
 pivot_offset = Vector2(16.0572, 15.3813)
+mouse_filter = 2
 texture = ExtResource("2_a1l1y")
 
 [node name="close_button" type="TextureButton" parent="UI/Container/crate"]
@@ -131,34 +208,66 @@ offset_left = 2.00004
 offset_top = 1.33333
 offset_right = 29.0
 offset_bottom = 28.3333
+mouse_filter = 2
 texture = ExtResource("7_kd1gj")
 
+[node name="crate_shadow" type="TextureRect" parent="UI/Container/crate"]
+modulate = Color(0, 0, 0, 0.541176)
+z_index = -1
+texture_filter = 1
+layout_mode = 0
+offset_left = 0.738313
+offset_top = 0.522053
+offset_right = 32.7383
+offset_bottom = 32.5221
+scale = Vector2(0.99, 0.99)
+pivot_offset = Vector2(16.0572, 15.3813)
+mouse_filter = 2
+texture = ExtResource("2_a1l1y")
+
+[node name="TITLE" type="RichTextLabel" parent="UI/Container"]
+offset_left = 447.0
+offset_top = 297.0
+offset_right = 1401.0
+offset_bottom = 596.0
+scale = Vector2(0.26, 0.26)
+theme_override_font_sizes/normal_font_size = 150
+text = "SELECT A BASE"
+horizontal_alignment = 1
+
 [node name="base_locations" type="Node2D" parent="UI/Container"]
-position = Vector2(425.11, 322.241)
+position = Vector2(569.11, 417.43)
 scale = Vector2(1.0119, 1.0119)
 
 [node name="location_1" type="Node2D" parent="UI/Container/base_locations"]
-position = Vector2(50, 50)
+position = Vector2(-70, 0)
 
 [node name="location_2" type="Node2D" parent="UI/Container/base_locations"]
-position = Vector2(142, 50)
 
 [node name="location_3" type="Node2D" parent="UI/Container/base_locations"]
-position = Vector2(236, 50)
+position = Vector2(70, 0)
 
 [node name="location_4" type="Node2D" parent="UI/Container/base_locations"]
-position = Vector2(92, 119.333)
+position = Vector2(-35, 70)
 
 [node name="location_6" type="Node2D" parent="UI/Container/base_locations"]
-position = Vector2(203.333, 119.333)
+position = Vector2(35, 70)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_p04f0")
 }
+autoplay = "pulse"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p04f0")
+}
+autoplay = "pulse"
 
 [connection signal="mouse_entered" from="base_button" to="." method="_on_booster_button_mouse_entered"]
 [connection signal="mouse_exited" from="base_button" to="." method="_on_booster_button_mouse_exited"]
 [connection signal="pressed" from="base_button" to="." method="_on_base_button_pressed"]
 [connection signal="pressed" from="UI/Container/crate/close_button" to="." method="_on_close_button_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer2" to="." method="_on_animation_player_animation_finished"]

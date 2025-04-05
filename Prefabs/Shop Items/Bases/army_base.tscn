@@ -9,7 +9,10 @@ base_name = "Tent"
 description = "If all units are army units: Give +1 attack to all units"
 
 [node name="base_button" parent="." index="0"]
+offset_left = -18.0
+offset_right = 22.0
+pivot_offset = Vector2(18, 23)
 texture_normal = ExtResource("2_1n6uu")
 
-[node name="base" parent="set_base_UI" index="1"]
+[node name="base" parent="set_base_UI" index="2"]
 texture = ExtResource("2_1n6uu")

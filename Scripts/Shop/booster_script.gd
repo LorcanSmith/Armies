@@ -41,6 +41,7 @@ func _ready():
 	find_child("Cost").text = str(buy_cost)
 	find_child("cost_on_button").text = str(buy_cost)
 	select_units()
+	get_node("AnimationPlayer").play("booster_appear")
 	
 func select_units():
 	var unit_locations = choose_unit_UI.find_child("unit_locations").get_children()
@@ -74,14 +75,11 @@ func select_units():
 		
 
 func _on_booster_button_pressed() -> void:
-	#Checks to see if a pressed event happened whilst the mouse was over the booster 
-	if(!purchase_booster_UI.visible):
-		#Turn on the UI to purchase the booster
-		purchase_booster_UI.visible = true
-		#Turn off the booster in the shop
-		find_child("booster_button").visible = false
-		#play animation to pop the crate in
-		get_node("AnimationPlayer").play("crate_appear")
+	#Turn on the UI to purchase the booster
+	purchase_booster_UI.visible = true
+	#play animation to pop the crate in
+	get_node("AnimationPlayer").play("crate_appear")
+	get_node("AnimationPlayer2").play("booster_disappear")
 
 func _on_buy_button_pressed() -> void:
 	if(shop_manager.money >= buy_cost):
@@ -89,14 +87,13 @@ func _on_buy_button_pressed() -> void:
 		shop_manager.change_money(buy_cost)
 		#Turn off current UI and turn on UI to select a unit
 		choose_unit_UI.visible = true
-		purchase_booster_UI.visible = false
+		
 		#play animation to pop the crate in
 		get_node("AnimationPlayer").play("crate_appear")
 
 func _on_close_button_pressed() -> void:
 	#play animation to pop the crate out
 	get_node("AnimationPlayer").play("crate_disappear")
-
 func selected_unit(unit, id):
 	current_unit_selected = unit
 	if(find_child("buy_unit_button").visible == false):
@@ -108,6 +105,8 @@ func _on_buy_unit_button_pressed() -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if(anim_name == "booster_disappear"):
+		crate_sprite.visible = false
 	if(anim_name == "crate_disappear" and purchase_booster_UI.visible == false):
 		current_unit_selected.reparent(get_parent())
 		current_unit_selected.disabled = false
@@ -117,10 +116,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		current_unit_selected.cost_label.visible = false
 		queue_free()
 	elif(anim_name == "crate_disappear" and purchase_booster_UI.visible == true):
-		purchase_booster_UI.visible = false
 		#Turn on booster in the shop
-		find_child("booster_button").visible = true
-
+		crate_sprite.visible = true
+		crate_sprite.scale = Vector2(0,0)
+		get_node("AnimationPlayer").play("booster_appear")
 
 func _on_booster_button_mouse_entered() -> void:
 	crate_sprite.scale = Vector2(crate_starting_size.x * 1.2, crate_starting_size.y * 1.2)

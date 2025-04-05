@@ -42,6 +42,7 @@ booster=""
 
 [gui]
 
+common/snap_controls_to_pixels=false
 theme/custom_font="uid://ddl4glfhhwobo"
 
 [input]

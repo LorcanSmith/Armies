@@ -9,7 +9,12 @@ base_name = "Bank"
 description = "Start of turn: Gain an extra 8 gold"
 
 [node name="base_button" parent="." index="0"]
+offset_left = -17.0
+offset_top = -20.0
+offset_right = 23.0
+offset_bottom = 20.0
+pivot_offset = Vector2(17, 20)
 texture_normal = ExtResource("2_uvii2")
 
-[node name="base" parent="set_base_UI" index="1"]
+[node name="base" parent="set_base_UI" index="2"]
 texture = ExtResource("2_uvii2")

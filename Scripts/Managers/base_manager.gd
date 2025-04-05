@@ -10,8 +10,8 @@ var health_buff : PackedScene = preload("res://Prefabs/Effects/Buffs/buff_health
 var current_base_ID : int = -1
 var base_sprite
 
-var base_name : String
-var base_description : String
+var base_name : String = "House"
+var base_description : String = "This base does nothing special but it's a great place to spend the winters!"
 
 var base_sprites : Array = [
 	preload("res://Sprites/Bases/castle.png"),
@@ -26,11 +26,13 @@ var army_exclusive : bool = true
 func _ready() -> void:
 	base_sprite = find_child("base_sprite")
 func set_base(id, n, d):
-	current_base_ID = id
-	base_sprite.texture = base_sprites[id]
-	base_sprite.get_child(0).texture = base_sprites[id]
-	base_name = n
-	base_description = d
+	if(id != -1):
+		current_base_ID = id
+		base_sprite.texture = base_sprites[id]
+		base_sprite.get_child(0).texture = base_sprites[id]
+		base_name = n
+		base_description = d
+		get_node("AnimationPlayer").play("base_appear")
 	
 func start_of_turn():
 	#Bank

@@ -13,7 +13,7 @@ var current_scene : Node2D
 #Base
 @export var bases_appear_on_turn_numbers : Array = [1, 4, 6]
 var base_crate_spawner : Node2D
-var base_ID : int
+var base_ID : int = -1
 var base_name : String
 var base_description : String
 var base_sprite : Texture2D
