@@ -26,6 +26,8 @@ var army_units : Array
 var shop_scene = preload("res://Prefabs/Managers/shop_manager.tscn")
 var combat_scene = preload("res://Prefabs/Managers/combat_manager.tscn")
 
+var coin_counter_scene = preload("res://Prefabs/Effects/UI/coin_counter.tscn")
+
 var in_combat : bool = false
 
 #What turn are we on
@@ -124,12 +126,13 @@ func _input(event):
 		DebuggerScript.create_enemy_armies()
 	
 func money_changed(amount : int):
-	$UI/Coins.stop()
+	var coin_counter = coin_counter_scene.instantiate()
+	$UI/HBoxContainer/dollar/CoinNotifs.add_child(coin_counter)
 	if money_remaining > amount:
 		coin_counter.text = str(amount - money_remaining)
 	else:
 		coin_counter.text = "+" + str(amount - money_remaining)
-	$UI/Coins.play("fade_in")
+	coin_counter.find_child("AnimationPlayer").play("fade_in")
 	var tween = coin_text.create_tween()
 	tween.tween_method(set_label_text, money_remaining, amount, 0.6)
 	money_remaining = amount
