@@ -75,10 +75,13 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	elif(anim_name == "crate_disappear"):
 		#Turn on booster in the shop
 		find_child("base_button").visible = true
+		get_node("AnimationPlayer").play("pulse")
 		UI.visible = false
 
 func _on_booster_button_mouse_entered() -> void:
+	get_node("AnimationPlayer").stop()
 	crate_sprite.scale = Vector2(crate_starting_size.x * 1.2, crate_starting_size.y * 1.2)
 
 func _on_booster_button_mouse_exited() -> void:
 	crate_sprite.scale = Vector2(crate_starting_size.x, crate_starting_size.y)
+	get_node("AnimationPlayer").play("pulse")

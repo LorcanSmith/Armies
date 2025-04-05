@@ -147,7 +147,7 @@ text = "BATTLE"
 horizontal_alignment = 1
 
 [node name="base_spawn_location" type="Node2D" parent="Camera2D/ShopItemGenerator"]
-position = Vector2(643, 344)
+position = Vector2(629, 180)
 script = ExtResource("12_qjc8s")
 
 [node name="SellLocation" type="Node2D" parent="Camera2D"]

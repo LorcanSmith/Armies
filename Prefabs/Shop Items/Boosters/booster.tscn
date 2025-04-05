@@ -153,6 +153,18 @@ position = Vector2(58.8235, 70.5882)
 scale = Vector2(4.41176, 4.41177)
 texture = ExtResource("9_douwv")
 
+[node name="crate_shadow" type="TextureRect" parent="booster_button"]
+modulate = Color(0, 0, 0, 0.541176)
+z_index = -1
+texture_filter = 1
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 34.0
+offset_bottom = 34.0
+pivot_offset = Vector2(16.0572, 15.3813)
+mouse_filter = 2
+texture = ExtResource("2_douwv")
+
 [node name="purchase_booster_UI" type="CanvasLayer" parent="."]
 visible = false
 offset = Vector2(-231.665, -255.145)

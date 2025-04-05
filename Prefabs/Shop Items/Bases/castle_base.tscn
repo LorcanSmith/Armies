@@ -74,8 +74,11 @@ description = "If all units are medieval: give them +1 health at the start of tu
 
 [node name="base_button" type="TextureButton" parent="."]
 z_index = 4
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+offset_bottom = 17.0
+pivot_offset = Vector2(20, 23)
 texture_normal = ExtResource("1_26ikh")
 
 [node name="set_base_UI" type="Control" parent="."]
@@ -85,8 +88,22 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 95.0
+offset_right = 30.0
+offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(-30, -95)
+
+[node name="ColorRect2" type="ColorRect" parent="set_base_UI"]
+layout_mode = 0
+offset_left = -194.0
+offset_top = -228.0
+offset_right = 137.0
+offset_bottom = 49.0001
+mouse_filter = 2
+color = Color(0, 0, 0, 0.356863)
 
 [node name="ColorRect" type="ColorRect" parent="set_base_UI"]
 layout_mode = 0
@@ -95,10 +112,9 @@ offset_top = -232.575
 offset_right = 132.0
 offset_bottom = 44.4251
 mouse_filter = 2
-color = Color(0.0562916, 0.0562916, 0.0562916, 1)
+color = Color(0, 0.162929, 0.0623783, 1)
 
 [node name="base" type="TextureRect" parent="set_base_UI"]
-self_modulate = Color(0.351563, 0.351563, 0.351563, 1)
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
