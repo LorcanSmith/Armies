@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dykmxgj6xkln3"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_op7fb"]
-[ext_resource type="Texture2D" uid="uid://c73uyed4ispk4" path="res://Sprites/Units/Medieval/Archer/archer_sprite.png" id="2_6g2r5"]
+[ext_resource type="Texture2D" uid="uid://by32sdawvr48u" path="res://Sprites/Units/Medieval/Archer/archer_lvl2.png" id="2_3hp6j"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_3hp6j"]
 
 [node name="Item" instance=ExtResource("1_op7fb")]
@@ -11,7 +11,8 @@ buy_cost = 6
 sell_cost = 3
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_6g2r5")
+texture = ExtResource("2_3hp6j")
+offset = Vector2(6, 0)
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_3hp6j")]
 position = Vector2(74, 0)

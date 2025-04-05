@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl51wxccrk8j1"
-path="res://.godot/imported/Heal1.png-d738e26e095cd0a930f5aebc7fcce376.ctex"
+uid="uid://by32sdawvr48u"
+path="res://.godot/imported/archer_lvl2.png-cd45754ba52db340e071911ba87bcd20.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Effects/Heal1.png"
-dest_files=["res://.godot/imported/Heal1.png-d738e26e095cd0a930f5aebc7fcce376.ctex"]
+source_file="res://Sprites/Units/Medieval/Archer/archer_lvl2.png"
+dest_files=["res://.godot/imported/archer_lvl2.png-cd45754ba52db340e071911ba87bcd20.ctex"]
 
 [params]
 
