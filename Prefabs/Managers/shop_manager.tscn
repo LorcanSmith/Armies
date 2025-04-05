@@ -292,8 +292,8 @@ libraries = {
 [node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/base_manager"]
 offset_left = 187.0
 offset_top = 207.0
-offset_right = 3547.0
-offset_bottom = 991.0
+offset_right = 1887.0
+offset_bottom = 408.0
 scale = Vector2(0.13, 0.13)
 theme_override_colors/default_color = Color(0.831373, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 200

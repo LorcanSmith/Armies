@@ -22,6 +22,38 @@ tracks/0/keys = {
 "values": [Vector2(1.2, 1.2)]
 }
 
+[sub_resource type="Animation" id="Animation_i6ft3"]
+resource_name = "base_button_appear"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("base_button:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.3, 1.3), Vector2(1.2, 1.2), Vector2(1.3, 1.3)]
+}
+
+[sub_resource type="Animation" id="Animation_r5lyk"]
+resource_name = "base_button_disappear"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("base_button:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_ocd42"]
 resource_name = "crate_appear"
 length = 0.4
@@ -71,38 +103,6 @@ tracks/0/keys = {
 "values": [Vector2(1.2, 1.2), Vector2(1.4, 1.4), Vector2(1.2, 1.2)]
 }
 
-[sub_resource type="Animation" id="Animation_r5lyk"]
-resource_name = "base_button_disappear"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("base_button:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.166667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_i6ft3"]
-resource_name = "base_button_appear"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("base_button:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.266667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1.3, 1.3), Vector2(1.2, 1.2), Vector2(1.3, 1.3)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p04f0"]
 _data = {
 &"RESET": SubResource("Animation_qtm4k"),
@@ -140,6 +140,7 @@ texture = ExtResource("3_ky5i5")
 modulate = Color(0, 0, 0, 0.541176)
 z_index = -1
 texture_filter = 1
+layout_mode = 0
 offset_left = 2.0
 offset_top = 1.0
 offset_right = 34.0
@@ -226,6 +227,7 @@ mouse_filter = 2
 texture = ExtResource("2_a1l1y")
 
 [node name="TITLE" type="RichTextLabel" parent="UI/Container"]
+layout_mode = 0
 offset_left = 447.0
 offset_top = 297.0
 offset_right = 1401.0

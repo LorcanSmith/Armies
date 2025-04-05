@@ -88,7 +88,6 @@ func _on_buy_button_pressed() -> void:
 		#Turn off current UI and turn on UI to select a unit
 		choose_unit_UI.visible = true
 		purchase_booster_UI.visible = false
-
 		#play animation to pop the crate in
 		get_node("AnimationPlayer").play("crate_appear")
 
