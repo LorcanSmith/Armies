@@ -131,7 +131,7 @@ func money_changed(amount : int):
 		coin_counter.text = "+" + str(amount - money_remaining)
 	$UI/Coins.play("fade_in")
 	var tween = coin_text.create_tween()
-	tween.tween_method(set_label_text, money_remaining, amount, 1).set_delay(1)
+	tween.tween_method(set_label_text, money_remaining, amount, 0.6)
 	money_remaining = amount
 
 func set_label_text(value: int):
