@@ -7,8 +7,8 @@ extends Node
 var waiting_for_skills : bool = false
 
 #Delays are so they skill holder doesnt say its empty whilst skills are still being spawned in
-@export var delay = 0.1
-var current_delay = 0.1
+@export var delay = 0.5
+var current_delay = 0.3
 
 func _ready() -> void:
 	current_delay = delay
@@ -21,3 +21,5 @@ func _process(delta: float) -> void:
 			current_delay = delay
 			#Tell the combat manager to proceed with combat
 			get_parent().no_skills_left()
+		elif(current_delay <= 0 and self.get_child_count() > 0):
+			current_delay = delay

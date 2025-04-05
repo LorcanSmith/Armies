@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 		#Move the heart/sword sprite towards the target
 		find_child("Sprite2D").global_position = lerp(starting_location, target.global_position, t*3)
 		#If the sprite is close enough to the target location
-		if(find_child("Sprite2D").global_position.distance_to(target.global_position) < 1):
+		if(find_child("Sprite2D").global_position.distance_to(target.global_position) < 15):
 			#Tell it to stop moving
 			move = false
 			#Fade out

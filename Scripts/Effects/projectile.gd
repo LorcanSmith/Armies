@@ -22,9 +22,9 @@ func _process(delta: float) -> void:
 		#If the enemy positiion exists
 		if(enemy_position):
 			#Move towards it
-			self.global_position = lerp(self.global_position, enemy_position, t * speed)
+			self.global_position = lerp(current_pos, enemy_position, t * speed)
 			#If the projectile is close by delete it and apply damage to enemy
-			if(self.global_position.distance_to(enemy_position) < 1):
+			if(self.global_position.distance_to(enemy_position) < 10):
 				if(enemies_in_splash_zone):
 					var counter = 0
 					while counter < enemies_in_splash_zone.size():

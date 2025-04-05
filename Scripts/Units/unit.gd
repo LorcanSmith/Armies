@@ -212,6 +212,8 @@ func skill(phase : String):
 				var unit_number = 0
 				#Spawn an instance of the skill at every skill location
 				while skills_spawned < skill_spawn_amount:
+					#Delay so the buffs don't all appear at the same time
+					await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
 					if((unit_number > enemies_in_range.size()-1 and skill_damage + damage_boost > 0) or (unit_number > friendlies_in_range.size()-1 and skill_heal > 0)):
 						#If the skill can be spawned on each unit more than once
 						if(!skill_max_once_per_unit):
@@ -272,7 +274,7 @@ func skill(phase : String):
 								skill_instance.global_position = friendlies_in_range[unit_number].global_position
 								attack_visuals(friendlies_in_range[unit_number])
 					#If the skill spawns at a random location
-					else:
+					elif(skill_spawn_random and enemies_in_range.size() > 0):
 						#Choose a random enemy in range
 						var random_position = randi_range(0, enemies_in_range.size()-1)
 						skill_instance.global_position = enemies_in_range[random_position].global_position
@@ -290,11 +292,9 @@ func skill(phase : String):
 					#Do brawl damage to the enemy in front of you
 					unit_in_front.hurt(brawl_damage + damage_boost)
 					unit_in_front.projectile_hit(brawl_damage + damage_boost)
-					print("H")
-				else:
-					print("ppop")
-			else:
-				print(movement_locations[0].movement_tile.units_on_tile.size())
+			elif(movement_locations[0].hq != null):
+				movement_locations[0].hq.hurt(brawl_damage + damage_boost)
+				movement_locations[0].hq.projectile_hit(brawl_damage + damage_boost)
 	#If there is another unit on this tile then they will brawl
 	else:
 		brawl()
@@ -388,7 +388,7 @@ func destroy_unit():
 
 func skill_area_entered(area: Area2D) -> void:
 #	check if skill is meant to be used on allies or enemies
-	if(skill_damage + damage_boost > 0):
+	if(skill_damage > 0):
 		#If the area on our skill location is a unit of the opposite type
 		if(self.is_in_group("player") and area.get_parent().is_in_group("enemy")):
 			enemies_in_range.append(area.get_parent())
