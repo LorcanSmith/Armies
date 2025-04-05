@@ -401,10 +401,8 @@ func skill_area_entered(area: Area2D) -> void:
 			
 			
 func skill_area_exited(area: Area2D) -> void:
-	#If the unit was in our range, remove it from our range
-	if(enemies_in_range.has(area.get_parent())):
+	if alive:
 		enemies_in_range.erase(area.get_parent())
-	if(friendlies_in_range.has(area.get_parent())):
 		friendlies_in_range.erase(area.get_parent())
 
 #TOOL TIP STUFF
