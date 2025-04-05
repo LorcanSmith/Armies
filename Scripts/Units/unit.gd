@@ -455,4 +455,5 @@ func _on_splash_location_area_entered(area):
 
 
 func _on_splash_location_area_exited(area):
-	enemies_in_splash_zone.erase(area.get_parent())
+	if(alive):
+		enemies_in_splash_zone.erase(area.get_parent())
