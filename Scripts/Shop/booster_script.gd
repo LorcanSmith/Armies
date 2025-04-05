@@ -87,13 +87,15 @@ func _on_buy_button_pressed() -> void:
 		shop_manager.change_money(buy_cost)
 		#Turn off current UI and turn on UI to select a unit
 		choose_unit_UI.visible = true
-		
+		purchase_booster_UI.visible = false
+
 		#play animation to pop the crate in
 		get_node("AnimationPlayer").play("crate_appear")
 
 func _on_close_button_pressed() -> void:
 	#play animation to pop the crate out
 	get_node("AnimationPlayer").play("crate_disappear")
+	
 func selected_unit(unit, id):
 	current_unit_selected = unit
 	if(find_child("buy_unit_button").visible == false):
@@ -114,6 +116,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		current_unit_selected.position = Vector2(0,0)
 		current_unit_selected.scale = Vector2(1,1)
 		current_unit_selected.cost_label.visible = false
+		current_unit_selected.get_node("AnimationPlayer").play("item_appear")
 		queue_free()
 	elif(anim_name == "crate_disappear" and purchase_booster_UI.visible == true):
 		#Turn on booster in the shop

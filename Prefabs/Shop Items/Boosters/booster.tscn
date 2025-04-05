@@ -329,6 +329,7 @@ scale = Vector2(4.41176, 4.41177)
 texture = ExtResource("9_douwv")
 
 [node name="close_button" type="TextureButton" parent="purchase_booster_UI/Container"]
+z_index = 1
 layout_mode = 0
 offset_left = 700.714
 offset_top = 278.339
@@ -373,9 +374,12 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -2.66667
+offset_right = -2.0
+offset_bottom = -2.66669
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(-1.45959e-08, -1.45959e-08)
 pivot_offset = Vector2(586.443, 421.43)
 
 [node name="crate" type="TextureRect" parent="choose_unit_UI/Container"]
