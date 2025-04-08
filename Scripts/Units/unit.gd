@@ -72,13 +72,14 @@ var damage_done_to_self : int = 0
 ##skill does splash damage
 @export var skill_does_splash : bool
 
+@export var skill_shooots_closest_enemy : bool
 #internal holder for enemies in splash zone
 var enemies_in_splash_zone : Array
 
 #internal timer that keeps track of a unit's current reload
 var reloading_counter : int
 
-@export var skill_shooots_closest_enemy : bool
+
 
 @export_subgroup("Skill Projectile")
 @export var projectile : PackedScene
@@ -220,7 +221,6 @@ func skill(phase : String):
 							unit_number = 0
 						else:
 							break
-					
 					var skill_instance 
 					skill_instance = skill_prefab.instantiate()
 					#Tell the skill how much damage it does
@@ -265,7 +265,7 @@ func skill(phase : String):
 										if (self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy")):
 											enemies_in_splash_zone.append(area.get_parent())
 									attack_visuals(friendlies_in_range[0])
-						#Loops through all enemies and sets the skill to be there location
+						#Loops through all enemies and sets the skill to be their location
 						else:
 							if(skill_damage + damage_boost > 0):
 								skill_instance.global_position = enemies_in_range[unit_number].global_position
@@ -398,13 +398,10 @@ func skill_area_entered(area: Area2D) -> void:
 		##If the area on our skill location is a unit of the same type
 		if((self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy"))):
 			friendlies_in_range.append(area.get_parent())
-			
-			
 func skill_area_exited(area: Area2D) -> void:
 	if alive:
 		enemies_in_range.erase(area.get_parent())
 		friendlies_in_range.erase(area.get_parent())
-
 #TOOL TIP STUFF
 func _on_area_2d_mouse_entered() -> void:
 	mouse_over = true
