@@ -247,24 +247,38 @@ func skill(phase : String):
 							skill_instance.global_position = self.global_position
 						#Sets skill's location to be at the closest enemy location
 						elif(skill_shooots_closest_enemy):
+							var closest_enemy : Node2D
+							#Finds closest enemy
+							var z = 0
+							while(z < skill_locations_parent.get_child_count()):
+								if(closest_enemy):
+									break
+								#Loops over all units on the location node
+								var u = 0
+								while(u < skill_locations_parent.get_child(z).units_on_node.size()):
+									if(enemies_in_range.has(skill_locations_parent.get_child(z).units_on_node[u])):
+										closest_enemy = skill_locations_parent.get_child(z).units_on_node[u]
+										break
+									u += 1
+								z+=1
 							if !skill_does_splash:
 								if(skill_damage + damage_boost > 0):
-									skill_instance.global_position = enemies_in_range[0].global_position
-									attack_visuals(enemies_in_range[0])
+									skill_instance.global_position = closest_enemy.global_position
+									attack_visuals(closest_enemy)
 								elif(skill_heal > 0):
-									skill_instance.global_position = friendlies_in_range[0].global_position
-									attack_visuals(friendlies_in_range[0])
+									skill_instance.global_position = closest_enemy.global_position
+									attack_visuals(closest_enemy)
 							else:
 								if(skill_damage + damage_boost > 0):
-									skill_instance.global_position = enemies_in_range[0].global_position
-									attack_visuals(enemies_in_range[0])
+									skill_instance.global_position = closest_enemy.global_position
+									attack_visuals(closest_enemy)
 								elif(skill_heal > 0):
-									skill_instance.global_position = friendlies_in_range[0].global_position
+									skill_instance.global_position = closest_enemy.global_position
 									var friendly_areas = skill_instance.get_node("Area2D").get_overlapping_areas()
 									for area in friendly_areas:
 										if (self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy")):
 											enemies_in_splash_zone.append(area.get_parent())
-									attack_visuals(friendlies_in_range[0])
+									attack_visuals(closest_enemy)
 						#Loops through all enemies and sets the skill to be their location
 						else:
 							if(skill_damage + damage_boost > 0):
