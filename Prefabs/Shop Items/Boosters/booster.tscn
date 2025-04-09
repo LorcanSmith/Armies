@@ -362,12 +362,12 @@ offset_bottom = 28.3333
 texture = ExtResource("7_ocd42")
 
 [node name="choose_unit_UI" type="CanvasLayer" parent="."]
-visible = false
 offset = Vector2(-231.665, -255.145)
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, -231.665, -255.145)
 
 [node name="Container" type="Control" parent="choose_unit_UI"]
+visible = false
 z_index = -2
 z_as_relative = false
 layout_mode = 3
