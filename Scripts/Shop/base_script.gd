@@ -28,17 +28,11 @@ func _ready() -> void:
 	find_child("set_base_UI").global_position = find_parent("Camera2D").global_position
 	find_child("Description").text = description
 
-func _on_set_base_pressed() -> void:
-	base_manager.set_base(base_id, base_name, description)
-	#Delete the crate
-	find_parent("base_crate").queue_free()
-
 
 func _on_base_button_pressed() -> void:
-	find_child("set_base_UI").visible = true
-	find_parent("UI").find_child("crate").visible = false
-	get_node("AnimationPlayer").play("base_confirm_appear")
-	find_parent("base_crate").hide_base_options(false)
+	#Set the tooltip
+	find_parent("shop_manager").find_child("Tooltip").update_base_tooltip(base_id,base_name, description)
+	find_parent("base_crate").set_current_base(base_id,base_name, description)
 func _on_close_button_pressed() -> void:
 	find_child("set_base_UI").visible = false
 	find_parent("UI").find_child("crate").visible = true

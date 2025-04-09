@@ -1,18 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://jorw77h3otoa"]
+[gd_scene load_steps=4 format=3 uid="uid://jorw77h3otoa"]
 
 [ext_resource type="PackedScene" uid="uid://ckgb2aec4d3hs" path="res://Prefabs/Shop Items/Bases/castle_base.tscn" id="1_y5f2a"]
 [ext_resource type="Texture2D" uid="uid://bs0be0hqhei8l" path="res://Sprites/Bases/tent.png" id="2_1n6uu"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_1n6uu"]
 
 [node name="army_base" instance=ExtResource("1_y5f2a")]
 base_id = 2
 base_name = "Tent"
 description = "If all units are army units: Give +1 attack to all units"
 
-[node name="base_button" parent="." index="0"]
-offset_left = -18.0
-offset_right = 22.0
-pivot_offset = Vector2(18, 23)
-texture_normal = ExtResource("2_1n6uu")
+[node name="select_base_button" parent="." index="0"]
+button_group = SubResource("ButtonGroup_1n6uu")
+
+[node name="base_image" parent="." index="1"]
+texture = ExtResource("2_1n6uu")
 
 [node name="base" parent="set_base_UI" index="2"]
 texture = ExtResource("2_1n6uu")

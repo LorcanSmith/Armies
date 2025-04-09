@@ -89,7 +89,7 @@ func create_scene():
 		ShopManager.game_manager = self
 		if(!in_combat):
 			#Tells the base manager what the current base is
-			ShopManager.find_child("base_manager").set_base(base_ID, base_name, base_description)
+			ShopManager.find_child("base_manager").set_base(base_ID, base_name, base_description, false)
 			#Calls start of turn actions for the current base
 			ShopManager.find_child("base_manager").start_of_turn()
 			base_crate_spawner = ShopManager.find_child("base_spawn_location")

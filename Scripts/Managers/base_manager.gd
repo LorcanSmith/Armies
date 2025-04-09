@@ -25,14 +25,15 @@ var army_exclusive : bool = true
 
 func _ready() -> void:
 	base_sprite = find_child("base_sprite")
-func set_base(id, n, d):
+func set_base(id, n, d, play_anim : bool):
 	if(id != -1):
 		current_base_ID = id
 		base_sprite.texture = base_sprites[id]
 		base_sprite.get_child(0).texture = base_sprites[id]
 		base_name = n
 		base_description = d
-		get_node("AnimationPlayer").play("base_appear")
+		if(play_anim):
+			get_node("AnimationPlayer").play("base_appear")
 	
 func start_of_turn():
 	#Bank
