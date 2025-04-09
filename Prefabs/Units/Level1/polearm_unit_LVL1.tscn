@@ -13,7 +13,6 @@ Human = true
 skill_spawn_amount = 2
 skill_max_once_per_unit = true
 skill_damage = 1
-skill_shooots_closest_enemy = true
 projectile = ExtResource("2_ojcuj")
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_8r6wm")]

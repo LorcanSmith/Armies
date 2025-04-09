@@ -132,6 +132,55 @@ position = Vector2(31.9767, 0)
 [node name="Tooltip" parent="grid_manager/grid_generator (army)/Camera2D" instance=ExtResource("21_b20ae")]
 position = Vector2(-454, 153)
 
+[node name="team_names" type="Control" parent="grid_manager/grid_generator (army)/Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="player_team_name" type="RichTextLabel" parent="grid_manager/grid_generator (army)/Camera2D/team_names"]
+layout_mode = 0
+offset_left = -291.0
+offset_top = -276.0
+offset_right = 1832.0
+offset_bottom = 227.0
+scale = Vector2(0.13, 0.13)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 300
+text = "The BLAH BLAHs"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="vs" type="RichTextLabel" parent="grid_manager/grid_generator (army)/Camera2D/team_names"]
+layout_mode = 0
+offset_left = -30.0
+offset_top = -276.0
+offset_right = 455.0
+offset_bottom = 227.0
+scale = Vector2(0.13, 0.13)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 300
+text = "VS"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="enemy_team_name" type="RichTextLabel" parent="grid_manager/grid_generator (army)/Camera2D/team_names"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -276.0
+offset_right = 2139.0
+offset_bottom = 227.0
+scale = Vector2(0.13, 0.13)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 300
+text = "The Enemy Team"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="skill_holder" type="Node2D" parent="."]
 script = ExtResource("5_vexsu")
 

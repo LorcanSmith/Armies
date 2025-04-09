@@ -10,10 +10,13 @@ var enemies_in_splash_zone : Array
 
 var shockwave_scene = load("res://Prefabs/Effects/Projectiles/shockwave.tscn")
 
+var distance : int
+
 func target_enemy(unit : Node2D):
 	enemy = unit
 	enemy_position = unit.global_position
 	current_pos = self.global_position
+	distance = current_pos.distance_to(enemy_position)
 	
 var t = 0
 func _process(delta: float) -> void:
@@ -23,8 +26,11 @@ func _process(delta: float) -> void:
 		if(enemy_position):
 			#Move towards it
 			self.global_position = lerp(current_pos, enemy_position, t * speed)
-			#If the projectile is close by delete it and apply damage to enemy
-			if(self.global_position.distance_to(enemy_position) < 10):
+			#If the projectile is still far away and it hasnt overshot the unit
+			if(self.global_position.distance_to(enemy_position) < distance and self.global_position.distance_to(enemy_position) > 10):
+				#Set the new distance remaining
+				distance = self.global_position.distance_to(enemy_position)
+			else:
 				if(enemies_in_splash_zone):
 					var counter = 0
 					while counter < enemies_in_splash_zone.size():

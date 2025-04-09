@@ -7,6 +7,12 @@ var CombatManager : Node2D
 var ShopManager : Node2D
 var GridManager : Node2D
 
+#Canvas for making team name
+var name_canvas : CanvasLayer
+#Team name words
+var adjective : String
+var noun : String
+
 #The current scene we are on
 var current_scene : Node2D
 
@@ -55,6 +61,7 @@ func _ready():
 	in_combat = false
 	health_text.text = str(life_remaining)
 	coin_text.text = str(0)
+	name_canvas = find_child("name_maker_canvas")
 	game_over_canvas = find_child("game_over_canvas")
 	if(auto_create_armies_at_runtime):
 		DebuggerScript.create_enemy_armies()
@@ -65,11 +72,22 @@ func swap_scenes():
 	army_units = []
 	if(!in_combat):
 		for grids in GridManager.get_children():
-				grids.save_current_grid()
+			grids.save_current_grid()
 	#reverses the value of in_combat boolean
 	in_combat = !in_combat
-	current_scene.queue_free()
-	create_scene()
+	
+	if(turn_number == 1 and name_canvas):
+		#Turn on name maker UI
+		name_canvas.visible = true
+		#Set size to 0 so it can animate in
+		name_canvas.find_child("ColorRect").scale = Vector2(0,0)
+		#Play animation to make the canvas pop in
+		name_canvas.get_node("AnimationPlayer").play("name_maker_appear")
+		#Select random names for selections
+		select_words()
+	else:
+		current_scene.queue_free()
+		create_scene()
 	
 func create_scene():
 	if in_combat:
@@ -89,7 +107,7 @@ func create_scene():
 		ShopManager.game_manager = self
 		if(!in_combat):
 			#Tells the base manager what the current base is
-			ShopManager.find_child("base_manager").set_base(base_ID, base_name, base_description)
+			ShopManager.find_child("base_manager").set_base(base_ID, base_name, base_description, false)
 			#Calls start of turn actions for the current base
 			ShopManager.find_child("base_manager").start_of_turn()
 			base_crate_spawner = ShopManager.find_child("base_spawn_location")
@@ -98,6 +116,7 @@ func create_scene():
 				base_crate_spawner.spawn_base_crate()
 		elif(in_combat):
 			CombatManager.player_base_sprite = base_sprite
+			CombatManager.find_child("player_team_name").text = ("The " + adjective + " " + noun)
 	GridManager = current_scene.find_child("grid_manager")	
 	load_complete("scene")
 
@@ -181,3 +200,72 @@ func show_game_over(win : bool):
 
 func _on_restart_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+
+func select_words():
+	var game_folder = ProjectSettings.globalize_path("res://")
+	# Load the file line by line and process that dictionary to restore
+	# the object it represents.
+	var adjectives_file = FileAccess.open(game_folder + "Adjectives.txt", FileAccess.READ)
+	var nouns_file = FileAccess.open(game_folder + "Nouns.txt", FileAccess.READ)
+	var adjectives = []
+	var nouns = []
+	var json = JSON.new()
+	if not FileAccess.file_exists(game_folder + "Adjectives.txt"):
+		print("ERROR - No data to load", "-ADJECTIVES")
+	else:
+		while adjectives_file.get_position() < adjectives_file.get_length():
+			var json_string = adjectives_file.get_line()
+			adjectives.append(json_string)
+	if not FileAccess.file_exists(game_folder + "Nouns.txt"):
+		print("ERROR - No data to load", "-NOUNS")
+	else:
+		while nouns_file.get_position() < nouns_file.get_length():
+			var json_string = nouns_file.get_line()
+			var parsed = json.parse(json_string)
+			nouns.append(json_string)
+			
+	#Choose random words
+	var random_adjective1 = adjectives[randi_range(0, adjectives.size()-1)]
+	adjectives.erase(random_adjective1)
+	var random_adjective2 = adjectives[randi_range(0, adjectives.size()-1)]
+	adjectives.erase(random_adjective2)
+	var random_adjective3 = adjectives[randi_range(0, adjectives.size()-1)]
+	var chosen_adjectives = [random_adjective1, random_adjective2, random_adjective3]
+	
+	var random_noun1 = nouns[randi_range(0, nouns.size()-1)]
+	nouns.erase(random_noun1)
+	var random_noun2 = nouns[randi_range(0, nouns.size()-1)]
+	nouns.erase(random_adjective2)
+	var random_noun3 = nouns[randi_range(0, nouns.size()-1)]
+	var chosen_nouns = [random_noun1, random_noun2, random_noun3]
+	#Assign words to buttons
+	var adjectives_buttons = name_canvas.find_child("top_words").get_children()
+	var nouns_buttons = name_canvas.find_child("bottom_words").get_children()
+	
+	var x = 0
+	while x < adjectives_buttons.size():
+		adjectives_buttons[x].get_child(0).text = chosen_adjectives[x]
+		adjectives_buttons[x].word = chosen_adjectives[x]
+		x += 1
+	x = 0
+	while x < nouns_buttons.size():
+		nouns_buttons[x].get_child(0).text = chosen_nouns[x]
+		nouns_buttons[x].word = chosen_nouns[x]
+		x+=1
+		
+func word_pressed(is_adjective, word):
+	if(is_adjective):
+		adjective = word
+	else:
+		noun = word
+	#both and adjective and noun has been chosen
+	if(adjective and noun):
+		#Turn on confirm button
+		name_canvas.find_child("confirm_name_button").visible = true
+		#Set team name text
+		name_canvas.find_child("chosen_name").text = ("The " + adjective + " " + noun)
+
+func _on_confirm_name_button_pressed() -> void:
+	current_scene.queue_free()
+	create_scene()
+	name_canvas.queue_free()

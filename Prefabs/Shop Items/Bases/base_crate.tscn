@@ -1,10 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://bf3pxhepmlhfx"]
+[gd_scene load_steps=17 format=3 uid="uid://bf3pxhepmlhfx"]
 
 [ext_resource type="Script" uid="uid://mrsc5vs4uclq" path="res://Scripts/Shop/base_crate.gd" id="1_kd1gj"]
 [ext_resource type="Texture2D" uid="uid://chl5qvy7eq8wv" path="res://Sprites/Booster_Packs/Crate.png" id="2_a1l1y"]
 [ext_resource type="Texture2D" uid="uid://8af7s6x54d8a" path="res://Sprites/Bases/castle.png" id="3_ky5i5"]
+[ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="7_a1l1y"]
 [ext_resource type="Texture2D" uid="uid://dirtbdn43qwvv" path="res://Sprites/UI/square_button/square.png" id="7_kd1gj"]
 [ext_resource type="Texture2D" uid="uid://be0cwtjifif32" path="res://Sprites/UI/square_button/square_pressed.png" id="8_a1l1y"]
+[ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="8_ky5i5"]
+[ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="9_k1bvv"]
 [ext_resource type="Texture2D" uid="uid://bm7qe1w2xsxio" path="res://Sprites/UI/square_button/square_hovered.png" id="9_ky5i5"]
 
 [sub_resource type="Animation" id="Animation_qtm4k"]
@@ -233,6 +236,7 @@ offset_top = 297.0
 offset_right = 1401.0
 offset_bottom = 596.0
 scale = Vector2(0.26, 0.26)
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 150
 text = "SELECT A BASE"
 horizontal_alignment = 1
@@ -255,6 +259,28 @@ position = Vector2(-35, 70)
 [node name="location_6" type="Node2D" parent="UI/Container/base_locations"]
 position = Vector2(35, 70)
 
+[node name="buy_base_button" type="TextureButton" parent="UI/Container"]
+visible = false
+layout_mode = 0
+offset_left = 533.11
+offset_top = 524.763
+offset_right = 606.11
+offset_bottom = 552.763
+texture_normal = ExtResource("7_a1l1y")
+texture_pressed = ExtResource("8_ky5i5")
+texture_hover = ExtResource("9_k1bvv")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Container/buy_base_button"]
+layout_mode = 0
+offset_right = 729.0
+offset_bottom = 259.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "SELECT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_p04f0")
@@ -271,5 +297,6 @@ autoplay = "pulse"
 [connection signal="mouse_exited" from="base_button" to="." method="_on_booster_button_mouse_exited"]
 [connection signal="pressed" from="base_button" to="." method="_on_base_button_pressed"]
 [connection signal="pressed" from="UI/Container/crate/close_button" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="UI/Container/buy_base_button" to="." method="_on_buy_base_button_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer2" to="." method="_on_animation_player_animation_finished"]

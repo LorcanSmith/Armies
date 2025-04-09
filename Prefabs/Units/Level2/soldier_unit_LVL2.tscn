@@ -11,7 +11,6 @@ brawl_damage = 3
 Army = true
 Human = true
 Soldier = true
-skill_spawn_amount = 3
 skill_spawn_random = true
 skill_damage = 1
 projectile = ExtResource("2_5n52r")
