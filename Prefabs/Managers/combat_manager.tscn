@@ -140,6 +140,7 @@ offset_bottom = 40.0
 mouse_filter = 2
 
 [node name="player_team_name" type="RichTextLabel" parent="grid_manager/grid_generator (army)/Camera2D/team_names"]
+layout_mode = 0
 offset_left = -291.0
 offset_top = -276.0
 offset_right = 1832.0
@@ -153,6 +154,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="vs" type="RichTextLabel" parent="grid_manager/grid_generator (army)/Camera2D/team_names"]
+layout_mode = 0
 offset_left = -30.0
 offset_top = -276.0
 offset_right = 455.0
@@ -166,6 +168,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="enemy_team_name" type="RichTextLabel" parent="grid_manager/grid_generator (army)/Camera2D/team_names"]
+layout_mode = 0
 offset_left = 16.0
 offset_top = -276.0
 offset_right = 2139.0

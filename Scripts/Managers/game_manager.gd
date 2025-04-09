@@ -75,10 +75,8 @@ func swap_scenes():
 			grids.save_current_grid()
 	#reverses the value of in_combat boolean
 	in_combat = !in_combat
-	if(turn_number != 1):
-		current_scene.queue_free()
-		create_scene()
-	else:
+	
+	if(turn_number == 1 and name_canvas):
 		#Turn on name maker UI
 		name_canvas.visible = true
 		#Set size to 0 so it can animate in
@@ -87,6 +85,9 @@ func swap_scenes():
 		name_canvas.get_node("AnimationPlayer").play("name_maker_appear")
 		#Select random names for selections
 		select_words()
+	else:
+		current_scene.queue_free()
+		create_scene()
 	
 func create_scene():
 	if in_combat:
