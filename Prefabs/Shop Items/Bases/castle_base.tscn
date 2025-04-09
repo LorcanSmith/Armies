@@ -74,7 +74,7 @@ texture_filter = 1
 script = ExtResource("1_xddxu")
 base_id = 0
 base_name = "Castle"
-description = "If all units are medieval: give them +1 health at the start of turn."
+description = "End of shop phase: Give all medieval units +1 health"
 
 [node name="select_base_button" type="TextureButton" parent="."]
 z_index = 14

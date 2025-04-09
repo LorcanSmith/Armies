@@ -8,7 +8,7 @@
 [node name="army_base" instance=ExtResource("1_y5f2a")]
 base_id = 2
 base_name = "Tent"
-description = "If all units are army units: Give +1 attack to all units"
+description = "End of shop phase: Give all army units +1 attack"
 
 [node name="select_base_button" parent="." index="0"]
 button_group = SubResource("ButtonGroup_1n6uu")

@@ -301,7 +301,7 @@ text = "Enemy base this way >"
 fit_content = true
 
 [node name="Tooltip" parent="Camera2D" instance=ExtResource("14_vg5hm")]
-position = Vector2(-340, 98)
+position = Vector2(-340, 87)
 
 [connection signal="button_down" from="Camera2D/ShopItemGenerator/re-roll button" to="." method="_on_reroll_button_button_down"]
 [connection signal="mouse_entered" from="Camera2D/ShopItemGenerator/re-roll button" to="." method="_on_reroll_button_mouse_entered"]
