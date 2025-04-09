@@ -16,7 +16,8 @@ var base_description : String = "This base does nothing special but it's a great
 var base_sprites : Array = [
 	preload("res://Sprites/Bases/castle.png"),
 	preload("res://Sprites/Bases/bank.png"),
-	preload("res://Sprites/Bases/tent.png")
+	preload("res://Sprites/Bases/tent.png"),
+	preload("res://Sprites/Bases/default.png")
 ]
 
 #Booleans for checks
