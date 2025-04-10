@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=22 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="8_qjc8s"]
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="9_vg5hm"]
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="10_1cd4y"]
-[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://previous_font.ttf" id="11_qjc8s"]
 [ext_resource type="Script" uid="uid://dq7gpf703ku0i" path="res://Scripts/Skills/skill_holder.gd" id="12_cnpns"]
 [ext_resource type="Script" uid="uid://dut4eyngg2ol1" path="res://Scripts/Shop/base_shop_spawner.gd" id="12_qjc8s"]
 [ext_resource type="Script" uid="uid://b0n7305b0foj2" path="res://Scripts/Managers/base_manager.gd" id="14_1cd4y"]
@@ -183,7 +182,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/ShopItemGenerator/re-roll button/TextureRect"]
 clip_contents = false
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.2
+anchor_bottom = 1.55
 offset_right = 200.0
 offset_bottom = 200.0
 scale = Vector2(0.2, 0.2)
@@ -197,14 +199,16 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Re-rollText" type="RichTextLabel" parent="Camera2D/ShopItemGenerator/re-roll button"]
 texture_filter = 1
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 2.17808
+anchor_bottom = 1.45
 offset_left = 1.0
 offset_top = 2.0
 offset_right = 459.0
 offset_bottom = 153.0
-scale = Vector2(0.155, 0.155)
+scale = Vector2(0.115, 0.115)
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("11_qjc8s")
 theme_override_font_sizes/normal_font_size = 150
 text = "RE-ROLL"
 fit_content = true
@@ -223,14 +227,14 @@ texture_hover = ExtResource("10_1cd4y")
 
 [node name="BattleText" type="RichTextLabel" parent="Camera2D/ShopItemGenerator/battle_button"]
 layout_mode = 0
-offset_right = 281.0
-offset_bottom = 102.0
-scale = Vector2(0.26, 0.26)
+offset_right = 384.0
+offset_bottom = 142.0
+scale = Vector2(0.19, 0.19)
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("11_qjc8s")
 theme_override_font_sizes/normal_font_size = 100
 text = "BATTLE"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="base_spawn_location" type="Node2D" parent="Camera2D/ShopItemGenerator"]
 position = Vector2(629, 180)
@@ -249,15 +253,14 @@ shape = SubResource("RectangleShape2D_4adb8")
 texture_filter = 1
 texture = ExtResource("3_nu7bh")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/SellLocation"]
-offset_left = -20.0
-offset_top = -4.0
-offset_right = 190.0
-offset_bottom = 86.0
-scale = Vector2(0.2, 0.2)
-theme_override_fonts/normal_font = ExtResource("11_qjc8s")
-theme_override_font_sizes/normal_font_size = 100
-text = "SELL"
+[node name="sell_text" type="RichTextLabel" parent="Camera2D/SellLocation"]
+offset_left = -22.0
+offset_top = -3.0
+offset_right = 348.0
+offset_bottom = 162.0
+scale = Vector2(0.12, 0.12)
+theme_override_font_sizes/normal_font_size = 150
+text = "Sell"
 scroll_active = false
 horizontal_alignment = 1
 
@@ -305,6 +308,7 @@ fit_content = true
 position = Vector2(-340, 87)
 
 [node name="background" type="TextureRect" parent="Camera2D"]
+visible = false
 z_index = -4
 texture_filter = 1
 anchors_preset = 1
