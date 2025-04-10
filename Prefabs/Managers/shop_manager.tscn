@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=23 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="8_qjc8s"]
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="9_vg5hm"]
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="10_1cd4y"]
+[ext_resource type="Script" uid="uid://bwdgvw5opgre2" path="res://Scripts/Shop/sell_location.gd" id="12_1cd4y"]
 [ext_resource type="Script" uid="uid://dq7gpf703ku0i" path="res://Scripts/Skills/skill_holder.gd" id="12_cnpns"]
 [ext_resource type="Script" uid="uid://dut4eyngg2ol1" path="res://Scripts/Shop/base_shop_spawner.gd" id="12_qjc8s"]
 [ext_resource type="Script" uid="uid://b0n7305b0foj2" path="res://Scripts/Managers/base_manager.gd" id="14_1cd4y"]
@@ -240,20 +241,21 @@ vertical_alignment = 1
 position = Vector2(629, 180)
 script = ExtResource("12_qjc8s")
 
-[node name="SellLocation" type="Node2D" parent="Camera2D"]
+[node name="sell_location" type="Node2D" parent="Camera2D"]
 position = Vector2(264, 86)
+script = ExtResource("12_1cd4y")
 
-[node name="Area2D" type="Area2D" parent="Camera2D/SellLocation" groups=["sell_location"]]
+[node name="Area2D" type="Area2D" parent="Camera2D/sell_location" groups=["sell_location"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/SellLocation/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/sell_location/Area2D"]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_4adb8")
 
-[node name="Sprite2D" type="Sprite2D" parent="Camera2D/SellLocation"]
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/sell_location"]
 texture_filter = 1
 texture = ExtResource("3_nu7bh")
 
-[node name="sell_text" type="RichTextLabel" parent="Camera2D/SellLocation"]
+[node name="sell_text" type="RichTextLabel" parent="Camera2D/sell_location"]
 offset_left = -22.0
 offset_top = -3.0
 offset_right = 348.0
@@ -321,6 +323,9 @@ grow_horizontal = 0
 scale = Vector2(0.38, 0.38)
 mouse_filter = 2
 texture = ExtResource("17_1cd4y")
+
+[node name="coin_pos" type="Node2D" parent="Camera2D"]
+position = Vector2(-309, -176)
 
 [connection signal="button_down" from="Camera2D/ShopItemGenerator/re-roll button" to="." method="_on_reroll_button_button_down"]
 [connection signal="mouse_entered" from="Camera2D/ShopItemGenerator/re-roll button" to="." method="_on_reroll_button_mouse_entered"]

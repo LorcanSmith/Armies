@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://b50tqtb4vba7u"]
+
+[ext_resource type="Script" uid="uid://3unqf16sw13x" path="res://Scripts/Effects/coin_effect.gd" id="1_584u8"]
+[ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="1_ne4e5"]
+
+[sub_resource type="Animation" id="Animation_584u8"]
+resource_name = "coin_appear"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.366667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a1f4t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xcv38"]
+_data = {
+&"RESET": SubResource("Animation_a1f4t"),
+&"coin_appear": SubResource("Animation_584u8")
+}
+
+[node name="CoinEffect" type="Node2D"]
+z_index = 100
+script = ExtResource("1_584u8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("1_ne4e5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xcv38")
+}
+autoplay = "coin_appear"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
