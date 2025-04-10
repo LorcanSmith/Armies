@@ -69,6 +69,13 @@ func report(game_manager : Node2D):
 	
 	json_string = JSON.stringify(game_manager.enemy_army)
 	save_file.store_line(json_string)
+	
+	if game_manager.in_combat:
+		json_string = JSON.stringify(game_manager.turn_number)
+	else:
+		json_string = JSON.stringify(game_manager.turn_number - 1)
+	save_file.store_line(json_string)
+	
 	save_file.close()  # Don't forget to close the file after you're done.
 
 func create_enemy_armies():

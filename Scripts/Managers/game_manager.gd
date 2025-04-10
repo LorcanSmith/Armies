@@ -128,8 +128,7 @@ func load_complete(element_loaded : String):
 	if(element_loaded == "grids"):
 		if(in_combat):
 			CombatManager.setup_headquarters(base_sprite)
-	
-##USED TO REROLL THE SHOP, WILL EVENTUALLY BE DONE BY A BUTTON
+
 func _input(event):
 	if Input.is_action_just_pressed("save"):
 		for grids in GridManager.get_children():
