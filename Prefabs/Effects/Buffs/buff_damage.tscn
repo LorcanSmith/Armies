@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bx7tk0j2kdn7m" path="res://Scripts/Skills/buff_visual.gd" id="1_7kii6"]
 [ext_resource type="Texture2D" uid="uid://fpwwhqpb42av" path="res://Sprites/UI/sword.png" id="2_sfbea"]
-[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://font.ttf" id="3_sfbea"]
+[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://previous_font.ttf" id="3_sfbea"]
 
 [sub_resource type="Animation" id="Animation_qjc8s"]
 length = 0.001

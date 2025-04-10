@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://ckgb2aec4d3hs"]
+[gd_scene load_steps=15 format=3 uid="uid://ckgb2aec4d3hs"]
 
 [ext_resource type="Texture2D" uid="uid://8af7s6x54d8a" path="res://Sprites/Bases/castle.png" id="1_26ikh"]
 [ext_resource type="Script" uid="uid://cc646f6ymc6pf" path="res://Scripts/Shop/base_script.gd" id="1_xddxu"]
-[ext_resource type="Texture2D" uid="uid://bloimqygh2ss0" path="res://Sprites/blank_button.png" id="2_m5xxh"]
 [ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="3_e6837"]
 [ext_resource type="Texture2D" uid="uid://qugs6w1u0f15" path="res://Sprites/UI/selected_ui.png" id="3_yc0f8"]
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="4_th0md"]
@@ -93,10 +92,7 @@ scale = Vector2(0.68, 0.68)
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_1g71s")
-texture_normal = ExtResource("2_m5xxh")
-texture_pressed = ExtResource("2_m5xxh")
-texture_disabled = ExtResource("2_m5xxh")
-texture_focused = ExtResource("3_yc0f8")
+texture_pressed = ExtResource("3_yc0f8")
 metadata/_edit_use_anchors_ = true
 
 [node name="base_image" type="TextureRect" parent="."]

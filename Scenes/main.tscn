@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ceah7wfd5evx8" path="res://Scripts/Managers/game_manager.gd" id="1_y45oy"]
 [ext_resource type="Script" uid="uid://06xxppo51p7p" path="res://Scripts/DEBUGGER_script.gd" id="2_pa0fo"]
 [ext_resource type="PackedScene" uid="uid://by8ndrehnsmpn" path="res://Prefabs/Skills/basic_skill.tscn" id="3_0tvwk"]
-[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://font.ttf" id="5_21xkr"]
+[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://previous_font.ttf" id="5_21xkr"]
 [ext_resource type="Texture2D" uid="uid://bos864ovdl3jf" path="res://Sprites/UI/heart.png" id="5_kry3j"]
 [ext_resource type="Texture2D" uid="uid://dooe83u72qoig" path="res://Sprites/UI/hourglass.png" id="6_6bp64"]
 [ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="6_21xkr"]
@@ -270,7 +270,6 @@ offset_right = 242.0
 offset_bottom = 258.0
 scale = Vector2(0.21, 0.21)
 pivot_offset = Vector2(42.8571, 19.0476)
-theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 100
 text = "10
 "
@@ -282,10 +281,9 @@ vertical_alignment = 1
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/HBoxContainer/heart"]
 layout_mode = 0
 offset_top = 60.0
-offset_right = 290.0
-offset_bottom = 163.0
+offset_right = 275.0
+offset_bottom = 185.0
 scale = Vector2(0.2, 0.2)
-theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 101
 text = "LIFE"
 horizontal_alignment = 1
@@ -297,7 +295,6 @@ offset_top = 80.0
 offset_right = 290.0
 offset_bottom = 183.0
 scale = Vector2(0.2, 0.2)
-theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 101
 text = "-0"
 horizontal_alignment = 1
@@ -316,7 +313,6 @@ offset_right = 290.0
 offset_bottom = 290.0
 scale = Vector2(0.2, 0.2)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 150
 text = "55"
 scroll_active = false
@@ -328,10 +324,9 @@ vertical_alignment = 1
 layout_mode = 0
 offset_left = -1.0
 offset_top = 60.0
-offset_right = 289.0
-offset_bottom = 163.0
+offset_right = 304.0
+offset_bottom = 185.0
 scale = Vector2(0.2, 0.2)
-theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 101
 text = "COINS"
 horizontal_alignment = 1
@@ -359,7 +354,6 @@ offset_right = 187.0
 offset_bottom = 261.0
 scale = Vector2(0.21, 0.21)
 pivot_offset = Vector2(42.8571, 19.0476)
-theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 100
 text = "0
 "
@@ -373,9 +367,8 @@ layout_mode = 0
 offset_left = -5.0
 offset_top = 60.0
 offset_right = 285.0
-offset_bottom = 163.0
+offset_bottom = 185.0
 scale = Vector2(0.2, 0.2)
-theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 101
 text = "WINS"
 horizontal_alignment = 1
@@ -388,7 +381,6 @@ offset_top = 81.0
 offset_right = 285.0
 offset_bottom = 184.0
 scale = Vector2(0.2, 0.2)
-theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 101
 text = "+1"
 horizontal_alignment = 1
@@ -408,7 +400,6 @@ offset_right = 240.0
 offset_bottom = 290.0
 scale = Vector2(0.2, 0.2)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 150
 text = "14"
 scroll_active = false
@@ -420,10 +411,9 @@ vertical_alignment = 1
 layout_mode = 0
 offset_left = -5.0
 offset_top = 60.0
-offset_right = 285.0
-offset_bottom = 163.0
+offset_right = 290.0
+offset_bottom = 185.0
 scale = Vector2(0.2, 0.2)
-theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 101
 text = "TURN"
 horizontal_alignment = 1
@@ -436,20 +426,18 @@ offset_top = 81.0
 offset_right = 285.0
 offset_bottom = 184.0
 scale = Vector2(0.2, 0.2)
-theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 101
 text = "+1"
 horizontal_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI"]
-offset_left = 1215.0
-offset_top = 698.0
-offset_right = 1531.0
-offset_bottom = 802.0
+offset_left = 1199.0
+offset_top = 693.0
+offset_right = 1604.0
+offset_bottom = 828.0
 scale = Vector2(0.2, 0.2)
-theme_override_fonts/normal_font = ExtResource("5_21xkr")
 theme_override_font_sizes/normal_font_size = 100
-text = "ver: 0.03"
+text = "ver: 0.04"
 
 [node name="Health" type="AnimationPlayer" parent="UI"]
 libraries = {

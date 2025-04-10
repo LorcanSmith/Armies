@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://hcxci321580j"]
+[gd_scene load_steps=5 format=3 uid="uid://hcxci321580j"]
 
-[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://font.ttf" id="1_b226h"]
 [ext_resource type="Script" path="res://Scripts/Managers/onboarder.gd" id="1_hwjxs"]
 [ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="2_duh1u"]
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="3_geirw"]
@@ -36,10 +35,9 @@ color = Color(0.339636, 0.133142, 0.292786, 1)
 layout_mode = 0
 offset_left = 23.0
 offset_top = 12.0
-offset_right = 1499.0
+offset_right = 3223.0
 offset_bottom = 614.0
 scale = Vector2(0.2, 0.2)
-theme_override_fonts/normal_font = ExtResource("1_b226h")
 theme_override_font_sizes/normal_font_size = 300
 text = "Welcome to our playtest"
 fit_content = true
@@ -51,7 +49,6 @@ offset_top = 185.0
 offset_right = 4528.0
 offset_bottom = 4700.0
 scale = Vector2(0.11, 0.11)
-theme_override_fonts/normal_font = ExtResource("1_b226h")
 theme_override_font_sizes/normal_font_size = 300
 text = "All feedback is greatly appreciated. We need to know your thoughts on all aspects of the game
 
@@ -68,7 +65,6 @@ offset_right = 5192.0
 offset_bottom = 4693.0
 scale = Vector2(0.11, 0.11)
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("1_b226h")
 theme_override_font_sizes/normal_font_size = 300
 text = "How our game works:
 Each turn you receive 15 coins to spend on units. You place these units on a grid and then when you are happy with your \"Army\" you go to battle! Fighting an enemy team, you must destroy their base before they destroy yours. 
@@ -78,10 +74,10 @@ fit_content = true
 [node name="TextureButton" type="TextureButton" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 1021.0
-offset_top = 545.0
-offset_right = 1094.0
-offset_bottom = 585.0
+offset_left = 1066.0
+offset_top = 609.0
+offset_right = 1139.0
+offset_bottom = 649.0
 scale = Vector2(2.69, 2.69)
 texture_normal = ExtResource("2_duh1u")
 texture_pressed = ExtResource("3_geirw")
@@ -89,26 +85,24 @@ texture_hover = ExtResource("4_hwjxs")
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="TextureButton"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = -3.0
-offset_right = 601.0
-offset_bottom = 298.0
-scale = Vector2(0.11, 0.11)
+offset_left = 14.8699
+offset_top = 2.97398
+offset_right = 994.87
+offset_bottom = 362.974
+scale = Vector2(0.05, 0.05)
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("1_b226h")
 theme_override_font_sizes/normal_font_size = 300
 text = "PLAY!"
 fit_content = true
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 1215.0
-offset_top = 698.0
-offset_right = 1531.0
-offset_bottom = 802.0
+offset_left = 32.0001
+offset_top = 74.0
+offset_right = 502.0
+offset_bottom = 264.0
 scale = Vector2(0.2, 0.2)
-theme_override_fonts/normal_font = ExtResource("1_b226h")
 theme_override_font_sizes/normal_font_size = 100
-text = "ver: 0.03"
+text = "ver: 0.04"
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

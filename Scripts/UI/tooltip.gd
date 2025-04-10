@@ -37,7 +37,7 @@ func _ready() -> void:
 
 func update_tooltip(u, damage_boost, health_boost) -> void:
 	if(u != -1):
-		if(u != current_unit_ID or !currently_showing_unit):
+		if(u != current_unit_ID or !currently_showing_unit  or self.visible == false):
 			#Pop tooltip in if the tooltip is hidden
 			if(self.visible == false):
 				self.visible = true
@@ -49,11 +49,14 @@ func update_tooltip(u, damage_boost, health_boost) -> void:
 		var dictionary_instance = dictionary.new()
 		var unit = dictionary_instance.unit_scenes[u].instantiate()
 		var item = dictionary_instance.item_scenes[u].instantiate()
+		find_child("heart").visible = true
+		find_child("sword").visible = true
+		find_child("cross").visible = true
 		unit_name.text = unit.name
 		description.text = item.description
-		health.text = str("Health: ", unit.max_health + health_boost)
-		skill_damage.text = str("Skill Damage: ", unit.skill_damage + damage_boost)
-		skill_heal.text = str("Skill Heal: ", unit.skill_heal)
+		health.text = str(unit.max_health + health_boost)
+		skill_damage.text = str(unit.skill_damage + damage_boost)
+		skill_heal.text = str(unit.skill_heal)
 		brawl.text = str("Brawl Damage: ", unit.brawl_damage)
 		reload.text = str("Reload Time: ", unit.reload_time)
 		cost.text = str("Buy Cost: ", item.buy_cost, " / Sell Cost: ", item.sell_cost)
@@ -65,11 +68,11 @@ func update_tooltip(u, damage_boost, health_boost) -> void:
 			if(type):
 				types.append(unit.unit_types[x])
 			x += 1
-		type.text = str("Unit Type: ", ", ".join(types))
+		type.text = str("Types: ", ", ".join(types))
 
 func update_base_tooltip(id, base_name, desc):
 	#Pop tooltip in if the tooltip is hidden
-	if(id != current_base_ID or currently_showing_unit):
+	if(id != current_base_ID or currently_showing_unit or self.visible == false):
 		if(self.visible == false):
 			self.visible = true
 			self.get_node("AnimationPlayer").play("tooltip_appear")
@@ -79,6 +82,9 @@ func update_base_tooltip(id, base_name, desc):
 	current_base_ID = id
 	unit_name.text = base_name
 	description.text = desc
+	find_child("heart").visible = false
+	find_child("sword").visible = false
+	find_child("cross").visible = false
 	health.text = str("")
 	skill_damage.text = str("")
 	skill_heal.text = str("")
@@ -94,6 +100,5 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if(anim_name == "tooltip_popout"):
 		self.visible = false
 
-
-func _on_button_pressed() -> void:
+func _on_close_button_pressed() -> void:
 	get_node("AnimationPlayer").play("tooltip_popout")

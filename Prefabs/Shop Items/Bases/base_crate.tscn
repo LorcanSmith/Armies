@@ -164,18 +164,19 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 529.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(586.443, 421.43)
+pivot_offset = Vector2(54.11, 408.763)
 
 [node name="crate" type="TextureRect" parent="UI/Container"]
 self_modulate = Color(0.288518, 0.288518, 0.288518, 1)
 texture_filter = 1
 layout_mode = 0
-offset_left = 555.337
-offset_top = 401.557
-offset_right = 587.337
-offset_bottom = 433.557
+offset_left = 40.2709
+offset_top = 392.891
+offset_right = 72.2709
+offset_bottom = 424.891
 scale = Vector2(8.94, 8.94)
 pivot_offset = Vector2(16.0572, 15.3813)
 mouse_filter = 2
@@ -231,18 +232,18 @@ texture = ExtResource("2_a1l1y")
 
 [node name="TITLE" type="RichTextLabel" parent="UI/Container"]
 layout_mode = 0
-offset_left = 447.0
-offset_top = 297.0
-offset_right = 1401.0
-offset_bottom = 596.0
-scale = Vector2(0.26, 0.26)
+offset_left = -68.0
+offset_top = 288.0
+offset_right = 1044.0
+offset_bottom = 484.0
+scale = Vector2(0.225, 0.225)
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 150
 text = "SELECT A BASE"
 horizontal_alignment = 1
 
 [node name="base_locations" type="Node2D" parent="UI/Container"]
-position = Vector2(569.11, 417.43)
+position = Vector2(54.0439, 408.764)
 scale = Vector2(1.0119, 1.0119)
 
 [node name="location_1" type="Node2D" parent="UI/Container/base_locations"]
@@ -262,10 +263,10 @@ position = Vector2(35, 70)
 [node name="buy_base_button" type="TextureButton" parent="UI/Container"]
 visible = false
 layout_mode = 0
-offset_left = 533.11
-offset_top = 524.763
-offset_right = 606.11
-offset_bottom = 552.763
+offset_left = 18.7767
+offset_top = 506.097
+offset_right = 91.7767
+offset_bottom = 534.097
 texture_normal = ExtResource("7_a1l1y")
 texture_pressed = ExtResource("8_ky5i5")
 texture_hover = ExtResource("9_k1bvv")

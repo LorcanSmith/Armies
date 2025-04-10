@@ -282,13 +282,13 @@ func skill(phase : String):
 						#Loops through all enemies and sets the skill to be their location
 						else:
 							if(skill_damage + damage_boost > 0):
-								#Stops an issue where the base can be destroyed and the unit still tries to attack it
-								if(enemies_in_range[unit_number]):
+								#Stops a crash that probably happens because the enemy is dead
+								if(enemies_in_range.size() > 0):
 									skill_instance.global_position = enemies_in_range[unit_number].global_position
 									attack_visuals(enemies_in_range[unit_number])
 							elif(skill_heal > 0):
-								#Stops an issue where the base can be destroyed and the unit still tries to attack it
-								if(enemies_in_range[unit_number]):
+								#Stops a crash that probably happens because the enemy is dead
+								if(enemies_in_range.size() > 0):
 									skill_instance.global_position = friendlies_in_range[unit_number].global_position
 									attack_visuals(friendlies_in_range[unit_number])
 					#If the skill spawns at a random location

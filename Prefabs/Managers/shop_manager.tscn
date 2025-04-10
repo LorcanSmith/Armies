@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="8_qjc8s"]
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="9_vg5hm"]
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="10_1cd4y"]
-[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://font.ttf" id="11_qjc8s"]
+[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://previous_font.ttf" id="11_qjc8s"]
 [ext_resource type="Script" uid="uid://dq7gpf703ku0i" path="res://Scripts/Skills/skill_holder.gd" id="12_cnpns"]
 [ext_resource type="Script" uid="uid://dut4eyngg2ol1" path="res://Scripts/Shop/base_shop_spawner.gd" id="12_qjc8s"]
 [ext_resource type="Script" uid="uid://b0n7305b0foj2" path="res://Scripts/Managers/base_manager.gd" id="14_1cd4y"]
@@ -120,7 +120,7 @@ script = ExtResource("12_cnpns")
 [node name="grid_manager" parent="." instance=ExtResource("4_2ahac")]
 
 [node name="grid_generator (army)" parent="grid_manager" instance=ExtResource("6_e3q61")]
-position = Vector2(437.5, 386)
+position = Vector2(495, 385)
 grid_name = "army"
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -291,10 +291,10 @@ libraries = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/base_manager"]
-offset_left = 187.0
-offset_top = 207.0
-offset_right = 1887.0
-offset_bottom = 408.0
+offset_left = 153.0
+offset_top = 211.0
+offset_right = 2145.0
+offset_bottom = 451.0
 scale = Vector2(0.13, 0.13)
 theme_override_colors/default_color = Color(0.831373, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 200

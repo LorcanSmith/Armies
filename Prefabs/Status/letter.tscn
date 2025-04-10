@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://rl8ohk3jx7cd"]
 
-[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://font.ttf" id="1_1h4qi"]
+[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://previous_font.ttf" id="1_1h4qi"]
 
 [sub_resource type="Animation" id="Animation_1h4qi"]
 resource_name = "letter_close"
