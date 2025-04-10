@@ -308,7 +308,6 @@ fit_content = true
 position = Vector2(-340, 87)
 
 [node name="background" type="TextureRect" parent="Camera2D"]
-visible = false
 z_index = -4
 texture_filter = 1
 anchors_preset = 1

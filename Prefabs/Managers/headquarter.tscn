@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuf4kh851odj1"]
+[gd_scene load_steps=4 format=3 uid="uid://cuf4kh851odj1"]
 
 [ext_resource type="Script" uid="uid://bjlyw6fhd5y8w" path="res://Scripts/Managers/headquater.gd" id="1_2vm1v"]
 [ext_resource type="Texture2D" uid="uid://8af7s6x54d8a" path="res://Sprites/Bases/castle.png" id="2_41a8y"]
-[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://previous_font.ttf" id="3_i8o0q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awxjh"]
 size = Vector2(156, 253)
@@ -33,7 +32,6 @@ offset_top = -53.0
 offset_right = 232.0
 offset_bottom = 48.0
 scale = Vector2(0.185, 0.185)
-theme_override_fonts/font = ExtResource("3_i8o0q")
 theme_override_font_sizes/font_size = 100
 text = "100/100"
 

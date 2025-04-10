@@ -181,6 +181,7 @@ func _on_area_2d__mouse_collision_mouse_entered() -> void:
 #Called when the mouse stops hovering over
 func _on_area_2d__mouse_collision_mouse_exited() -> void:
 	if(!disabled):
+		tooltip.hide_tooltip = true
 		if(!mouse_pressed):
 			mouse_over_item = false
 			shop_manager.show_potential_upgrades(false,self)

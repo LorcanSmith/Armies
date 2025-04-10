@@ -267,9 +267,9 @@ texture = ExtResource("2_ri5p7")
 [node name="booster_description" type="RichTextLabel" parent="purchase_booster_UI/Container"]
 layout_mode = 0
 offset_left = 447.0
-offset_top = 465.0
-offset_right = 2888.0
-offset_bottom = 646.0
+offset_top = 449.0
+offset_right = 2860.0
+offset_bottom = 630.0
 scale = Vector2(0.1, 0.1)
 theme_override_font_sizes/normal_font_size = 150
 text = "Description"
@@ -279,10 +279,10 @@ vertical_alignment = 1
 
 [node name="buy_button" type="TextureButton" parent="purchase_booster_UI/Container"]
 layout_mode = 0
-offset_left = 534.048
-offset_top = 517.672
-offset_right = 607.048
-offset_bottom = 544.672
+offset_left = 533.777
+offset_top = 531.43
+offset_right = 606.777
+offset_bottom = 558.43
 texture_normal = ExtResource("3_370lu")
 texture_pressed = ExtResource("4_rxj7k")
 texture_hover = ExtResource("5_ggvnm")
@@ -399,7 +399,7 @@ position = Vector2(425.11, 322.241)
 scale = Vector2(1.0119, 1.0119)
 
 [node name="location_1" type="Node2D" parent="choose_unit_UI/Container/unit_locations"]
-position = Vector2(50, 50)
+position = Vector2(65.2238, 92.0931)
 script = ExtResource("6_rxj7k")
 
 [node name="unit_button" type="TextureButton" parent="choose_unit_UI/Container/unit_locations/location_1"]
@@ -427,7 +427,7 @@ texture_focused = ExtResource("7_ggvnm")
 metadata/_edit_use_anchors_ = true
 
 [node name="location_2" type="Node2D" parent="choose_unit_UI/Container/unit_locations"]
-position = Vector2(142, 50)
+position = Vector2(143.624, 92.0931)
 script = ExtResource("6_rxj7k")
 
 [node name="unit_button" type="TextureButton" parent="choose_unit_UI/Container/unit_locations/location_2"]
@@ -452,7 +452,7 @@ texture_pressed = ExtResource("7_r5kke")
 texture_focused = ExtResource("7_ggvnm")
 
 [node name="location_3" type="Node2D" parent="choose_unit_UI/Container/unit_locations"]
-position = Vector2(236, 50)
+position = Vector2(225.978, 92.0931)
 script = ExtResource("6_rxj7k")
 
 [node name="unit_button" type="TextureButton" parent="choose_unit_UI/Container/unit_locations/location_3"]
@@ -477,7 +477,7 @@ texture_pressed = ExtResource("7_r5kke")
 texture_focused = ExtResource("7_ggvnm")
 
 [node name="location_4" type="Node2D" parent="choose_unit_UI/Container/unit_locations"]
-position = Vector2(92, 119.333)
+position = Vector2(100.8, 162.588)
 script = ExtResource("6_rxj7k")
 
 [node name="unit_button" type="TextureButton" parent="choose_unit_UI/Container/unit_locations/location_4"]
@@ -502,7 +502,7 @@ texture_pressed = ExtResource("7_r5kke")
 texture_focused = ExtResource("7_ggvnm")
 
 [node name="location_6" type="Node2D" parent="choose_unit_UI/Container/unit_locations"]
-position = Vector2(203.333, 119.333)
+position = Vector2(193.036, 162.588)
 script = ExtResource("6_rxj7k")
 
 [node name="unit_button" type="TextureButton" parent="choose_unit_UI/Container/unit_locations/location_6"]
@@ -530,9 +530,9 @@ texture_focused = ExtResource("7_ggvnm")
 visible = false
 layout_mode = 0
 offset_left = 533.11
-offset_top = 524.763
+offset_top = 529.43
 offset_right = 606.11
-offset_bottom = 552.763
+offset_bottom = 557.43
 texture_normal = ExtResource("3_370lu")
 texture_pressed = ExtResource("4_rxj7k")
 texture_hover = ExtResource("5_ggvnm")
@@ -551,10 +551,10 @@ vertical_alignment = 1
 [node name="TITLE" type="RichTextLabel" parent="choose_unit_UI/Container"]
 layout_mode = 0
 offset_left = 449.0
-offset_top = 299.667
-offset_right = 1403.0
-offset_bottom = 598.667
-scale = Vector2(0.26, 0.26)
+offset_top = 300.0
+offset_right = 1528.0
+offset_bottom = 490.0
+scale = Vector2(0.225, 0.225)
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 150
 text = "SELECT A UNIT"

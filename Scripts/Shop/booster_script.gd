@@ -103,7 +103,7 @@ func selected_unit(unit, id):
 func _on_buy_unit_button_pressed() -> void:
 		#play animation to pop the crate out
 		get_node("AnimationPlayer").play("crate_disappear")
-
+		find_parent("shop_manager").find_child("Tooltip").get_node("AnimationPlayer").play("tooltip_popout")
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if(anim_name == "booster_disappear"):

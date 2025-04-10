@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dct8tnv8f1a46"]
+
+[ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="1_t7ip8"]
+[ext_resource type="Script" path="res://Scripts/Effects/shadow.gd" id="2_npxgn"]
+
+[node name="shadow" type="Sprite2D"]
+modulate = Color(0, 0, 0, 0.2)
+z_index = 1
+z_as_relative = false
+texture_filter = 1
+scale = Vector2(1, 0.28125)
+texture = ExtResource("1_t7ip8")
+flip_v = true
+script = ExtResource("2_npxgn")

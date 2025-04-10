@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_bdk6m"]
 [ext_resource type="Script" uid="uid://cdc2qqsvqw1rh" path="res://Scripts/Units/move_spot.gd" id="3_lq4h4"]
-[ext_resource type="Script" uid="uid://bxcsvjulqtxt6" path="res://Scripts/Effects/shadow.gd" id="4_mjxsx"]
+[ext_resource type="PackedScene" uid="uid://dct8tnv8f1a46" path="res://Prefabs/Effects/shadow.tscn" id="4_mjxsx"]
 [ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="5_dwjn5"]
 [ext_resource type="Texture2D" uid="uid://djdl8p52grdjd" path="res://Sprites/UI/chevrons/level_chevron.png" id="6_cxn27"]
 
@@ -110,16 +110,8 @@ z_index = 1
 texture_filter = 1
 texture = ExtResource("5_dwjn5")
 
-[node name="shadow" type="Sprite2D" parent="Sprite2D"]
-modulate = Color(0, 0, 0, 0.2)
-z_index = 1
-z_as_relative = false
-texture_filter = 1
+[node name="shadow" parent="Sprite2D" instance=ExtResource("4_mjxsx")]
 position = Vector2(0, 20.5)
-scale = Vector2(1, 0.28125)
-texture = ExtResource("5_dwjn5")
-flip_v = true
-script = ExtResource("4_mjxsx")
 
 [node name="Area2D" type="Area2D" parent="."]
 

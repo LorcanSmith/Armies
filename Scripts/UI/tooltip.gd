@@ -6,7 +6,8 @@ var flipped : bool = false
 var background : TextureRect
 @export var offset : float
 
-@export var time_till_auto_close : float = 4
+var hide_tooltip : bool = false
+@export var time_till_auto_close : float = 0.3
 var current_time_till_close
 
 #The ID for the unit whos info we are currently showing
@@ -75,6 +76,7 @@ func update_tooltip(u, damage_boost, health_boost) -> void:
 		type.text = str("Types: ", ", ".join(types))
 	#Resets the time so the tooltip doesn't auto close
 	current_time_till_close = time_till_auto_close
+	hide_tooltip = false
 func update_base_tooltip(id, base_name, desc):
 	#Pop tooltip in if the tooltip is hidden
 	if(id != current_base_ID or currently_showing_unit or self.visible == false):
@@ -99,7 +101,7 @@ func update_base_tooltip(id, base_name, desc):
 	type.text = str("")
 	#Resets the time so the tooltip doesn't auto close
 	current_time_till_close = time_till_auto_close
-
+	hide_tooltip = false
 var anim_finished : bool = false
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -115,7 +117,7 @@ func _on_close_button_pressed() -> void:
 		base_crate.find_child("buy_base_button").visible = false
 
 func _process(delta: float) -> void:
-	if(self.visible):
+	if(self.visible and hide_tooltip):
 		current_time_till_close -= delta
 		if(current_time_till_close <= 0):
 			get_node("AnimationPlayer").play("tooltip_popout")
