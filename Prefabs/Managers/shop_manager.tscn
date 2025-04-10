@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=23 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://b0n7305b0foj2" path="res://Scripts/Managers/base_manager.gd" id="14_1cd4y"]
 [ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="14_vg5hm"]
 [ext_resource type="Texture2D" uid="uid://dtosfvnq5ioxt" path="res://Sprites/Bases/default.png" id="15_vg5hm"]
+[ext_resource type="Texture2D" uid="uid://bibgq3y5unruc" path="res://Sprites/Backgrounds/background_1.png" id="17_1cd4y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4adb8"]
 size = Vector2(46, 59)
@@ -302,6 +303,21 @@ fit_content = true
 
 [node name="Tooltip" parent="Camera2D" instance=ExtResource("14_vg5hm")]
 position = Vector2(-340, 87)
+
+[node name="background" type="TextureRect" parent="Camera2D"]
+z_index = -4
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -359.0
+offset_top = -200.0
+offset_right = 1561.0
+offset_bottom = 880.0
+grow_horizontal = 0
+scale = Vector2(0.38, 0.38)
+mouse_filter = 2
+texture = ExtResource("17_1cd4y")
 
 [connection signal="button_down" from="Camera2D/ShopItemGenerator/re-roll button" to="." method="_on_reroll_button_button_down"]
 [connection signal="mouse_entered" from="Camera2D/ShopItemGenerator/re-roll button" to="." method="_on_reroll_button_mouse_entered"]
