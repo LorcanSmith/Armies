@@ -92,7 +92,7 @@ scale = Vector2(0.68, 0.68)
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_1g71s")
-texture_pressed = ExtResource("3_yc0f8")
+texture_focused = ExtResource("3_yc0f8")
 metadata/_edit_use_anchors_ = true
 
 [node name="base_image" type="TextureRect" parent="."]
