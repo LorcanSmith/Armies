@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bgv4jk4whdmy6"]
+[gd_scene load_steps=23 format=3 uid="uid://bgv4jk4whdmy6"]
 
 [ext_resource type="Script" uid="uid://ekpmqxviagv3" path="res://Scripts/Managers/combat_manager.gd" id="1_7ijpe"]
 [ext_resource type="PackedScene" uid="uid://cuf4kh851odj1" path="res://Prefabs/Managers/headquarter.tscn" id="2_2r55k"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dhxlfggdx2kxf" path="res://Sprites/UI/departure board empty.png" id="15_yudfw"]
 [ext_resource type="PackedScene" uid="uid://rl8ohk3jx7cd" path="res://Prefabs/Status/letter.tscn" id="16_5jl04"]
 [ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="21_b20ae"]
+[ext_resource type="Texture2D" uid="uid://bibgq3y5unruc" path="res://Sprites/Backgrounds/background_1.png" id="21_l3yi2"]
 
 [node name="combat_manager" type="Node2D"]
 script = ExtResource("1_7ijpe")
@@ -180,6 +181,21 @@ text = "The Enemy Team"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="background" type="TextureRect" parent="grid_manager/grid_generator (army)/Camera2D"]
+z_index = -4
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -493.0
+offset_top = -276.0
+offset_right = 1427.0
+offset_bottom = 804.0
+grow_horizontal = 0
+scale = Vector2(0.52, 0.52)
+mouse_filter = 2
+texture = ExtResource("21_l3yi2")
 
 [node name="skill_holder" type="Node2D" parent="."]
 script = ExtResource("5_vexsu")
