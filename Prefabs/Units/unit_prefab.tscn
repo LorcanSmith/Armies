@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://di2vorbunt4ep"]
+[gd_scene load_steps=12 format=3 uid="uid://di2vorbunt4ep"]
 
 [ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_bdk6m"]
 [ext_resource type="Script" uid="uid://cdc2qqsvqw1rh" path="res://Scripts/Units/move_spot.gd" id="3_lq4h4"]
+[ext_resource type="Script" uid="uid://bxcsvjulqtxt6" path="res://Scripts/Effects/shadow.gd" id="4_mjxsx"]
 [ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="5_dwjn5"]
 [ext_resource type="Texture2D" uid="uid://djdl8p52grdjd" path="res://Sprites/UI/chevrons/level_chevron.png" id="6_cxn27"]
-[ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="7_36wne"]
-[ext_resource type="Texture2D" uid="uid://ccgy3b8l23r0w" path="res://Sprites/Units/shadow.png" id="8_fbpnc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kn7ua"]
 
@@ -111,26 +110,27 @@ z_index = 1
 texture_filter = 1
 texture = ExtResource("5_dwjn5")
 
+[node name="shadow" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0, 0, 0, 0.2)
+z_index = 1
+z_as_relative = false
+texture_filter = 1
+position = Vector2(0, 20.5)
+scale = Vector2(1, 0.28125)
+texture = ExtResource("5_dwjn5")
+flip_v = true
+script = ExtResource("4_mjxsx")
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-1, 1.5)
 shape = SubResource("RectangleShape2D_xy1do")
 
-[node name="Tooltip" parent="." instance=ExtResource("7_36wne")]
-visible = false
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_bcdoc")
 }
-
-[node name="shadow" type="Sprite2D" parent="."]
-z_index = 1
-z_as_relative = false
-texture_filter = 1
-position = Vector2(0, 13)
-texture = ExtResource("8_fbpnc")
 
 [node name="health_bar_background" type="ColorRect" parent="."]
 offset_left = -14.0

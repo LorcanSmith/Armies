@@ -94,6 +94,9 @@ func _ready() -> void:
 	tooltip = shop_manager.find_child("Tooltip")
 	level_label = find_child("Level")
 	cost_label = find_child("Cost")
+	
+	find_child("shadow").texture = find_child("Sprite2D").texture
+	
 	set_labels()
 	set_unit_buff_types()
 	get_node("AnimationPlayer").play("item_appear")
