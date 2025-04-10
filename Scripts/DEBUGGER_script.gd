@@ -34,6 +34,42 @@ func _input(event):
 						instance.global_position = get_global_mouse_position()
 						instance.damage = 8
 						
+						
+func report(game_manager : Node2D):
+	var grid_data = []
+	
+	var game_folder = ProjectSettings.globalize_path("res://")
+	
+	var json_string
+	
+	var counter = 1
+	
+	var save_file
+	
+	var report_exists = true
+	var file_path
+	while (report_exists):
+		file_path = game_folder + "report" + str(counter) + ".save"
+		if FileAccess.file_exists(file_path):
+			counter += 1
+		else:
+			report_exists = false
+		
+		##This will give you the project directory.
+		#save_file = FileAccess.open(file_path, FileAccess.READ_WRITE)
+		## Move the file cursor to the end of the file (just in case it's not already there)
+		#save_file.seek_end()
+
+	save_file = FileAccess.open(file_path, FileAccess.WRITE)
+	# JSON provides a static method to serialize the grid_data to a string
+	json_string = JSON.stringify(game_manager.army)
+	#print(json_string)
+	# Store the save data as a new line in the save file
+	save_file.store_line(json_string)
+	
+	json_string = JSON.stringify(game_manager.enemy_army)
+	save_file.store_line(json_string)
+	save_file.close()  # Don't forget to close the file after you're done.
 
 func create_enemy_armies():
 	var turn_number = 1

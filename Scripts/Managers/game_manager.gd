@@ -28,6 +28,8 @@ var base_sprite : Texture2D
 var army : Array
 #The actual units themselves
 var army_units : Array
+#Just the enemy unit IDS
+var enemy_army : Array
 
 var shop_scene = preload("res://Prefabs/Managers/shop_manager.tscn")
 var combat_scene = preload("res://Prefabs/Managers/combat_manager.tscn")
@@ -143,7 +145,8 @@ func _input(event):
 			CombatManager.battle_ticker()
 	if Input.is_key_pressed(KEY_N):
 		DebuggerScript.create_enemy_armies()
-	
+	if Input.is_key_pressed(KEY_D):
+		DebuggerScript.report(self)
 func money_changed(amount : int):
 	var coin_counter = coin_counter_scene.instantiate()
 	$UI/HBoxContainer/dollar/CoinNotifs.add_child(coin_counter)

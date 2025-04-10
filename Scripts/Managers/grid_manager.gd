@@ -28,6 +28,7 @@ func load_units():
 	var enemy_unit_IDs
 	if game_manager.in_combat:
 		enemy_unit_IDs = load_layout("enemy")
+		game_manager.enemy_army = enemy_unit_IDs
 	if(unit_IDs.size() > 0):
 		var width = 0
 		while width in range(tiles.size()):
