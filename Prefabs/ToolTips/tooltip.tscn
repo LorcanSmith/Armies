@@ -1,7 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://trk87sgcanig"]
+[gd_scene load_steps=14 format=3 uid="uid://trk87sgcanig"]
 
 [ext_resource type="Script" uid="uid://me4w4b6ct4m7" path="res://Scripts/UI/tooltip.gd" id="1_mtw84"]
 [ext_resource type="Texture2D" uid="uid://chxrixvlx2xmm" path="res://Sprites/UI/tooltip.png" id="2_5ijbp"]
+[ext_resource type="Texture2D" uid="uid://dirtbdn43qwvv" path="res://Sprites/UI/square_button/square.png" id="3_igob6"]
+[ext_resource type="Texture2D" uid="uid://bos864ovdl3jf" path="res://Sprites/UI/heart.png" id="3_lc6ab"]
+[ext_resource type="Texture2D" uid="uid://fpwwhqpb42av" path="res://Sprites/UI/sword.png" id="4_b1inx"]
+[ext_resource type="Texture2D" uid="uid://be0cwtjifif32" path="res://Sprites/UI/square_button/square_pressed.png" id="4_lc6ab"]
+[ext_resource type="Texture2D" uid="uid://bm7qe1w2xsxio" path="res://Sprites/UI/square_button/square_hovered.png" id="5_8dy0p"]
+[ext_resource type="Texture2D" uid="uid://bht3oj2lg106d" path="res://Sprites/UI/cross.png" id="5_r303g"]
 
 [sub_resource type="Animation" id="Animation_igob6"]
 length = 0.001
@@ -78,8 +84,9 @@ _data = {
 }
 
 [node name="Tooltip" type="Node2D"]
-z_index = 7
-position = Vector2(3, -44)
+z_index = 14
+z_as_relative = false
+position = Vector2(5, -37)
 scale = Vector2(1e-05, 1e-05)
 script = ExtResource("1_mtw84")
 offset = 200.0
@@ -89,12 +96,12 @@ texture_filter = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -3.0
-offset_top = -96.0
-offset_right = 197.0
-offset_bottom = 161.0
+offset_left = -2.49569
+offset_top = -155.98
+offset_right = 197.504
+offset_bottom = 101.02
 grow_vertical = 0
-scale = Vector2(0.9, 0.8)
+scale = Vector2(1.25, 1.111)
 pivot_offset = Vector2(0, 123.438)
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -119,98 +126,125 @@ size_flags_vertical = 8
 texture = ExtResource("2_5ijbp")
 stretch_mode = 2
 
-[node name="Button" type="Button" parent="background"]
-layout_mode = 0
-offset_top = -2.0
-offset_right = 206.0
-offset_bottom = 263.0
-flat = true
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_b1t42")
 }
 
 [node name="name" type="RichTextLabel" parent="."]
-offset_left = 55.0
-offset_top = -78.75
-offset_right = 390.0
-offset_bottom = 63.25
-scale = Vector2(0.202, 0.202)
+offset_left = -2.0
+offset_top = -173.0
+offset_right = 1032.0
+scale = Vector2(0.242, 0.242)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 100
+text = "CATAPULT"
 horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="description" type="RichTextLabel" parent="."]
 clip_contents = false
-offset_left = 2.5
-offset_top = -40.0
-offset_right = 1056.5
-offset_bottom = 376.0
-scale = Vector2(0.122, 0.122)
+offset_left = 7.0
+offset_top = -125.0
+offset_right = 1274.0
+offset_bottom = 355.0
+scale = Vector2(0.18, 0.18)
 pivot_offset = Vector2(1.84082, 0.826416)
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/bold_italics_font_size = 100
 theme_override_font_sizes/normal_font_size = 100
-text = "Skill Description:"
+theme_override_font_sizes/bold_font_size = 100
+bbcode_enabled = true
+text = "Description, blah blah blah this is something about how the unit works. LOL POOP"
 fit_content = true
+
+[node name="heart" type="TextureRect" parent="description"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 6.54806
+offset_top = 482.74
+offset_right = 46.5481
+offset_bottom = 522.74
+scale = Vector2(3.53, 3.53)
+texture = ExtResource("3_lc6ab")
+
+[node name="sword" type="TextureRect" parent="description"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 472.912
+offset_top = 482.74
+offset_right = 512.912
+offset_bottom = 522.74
+scale = Vector2(3.53, 3.53)
+texture = ExtResource("4_b1inx")
+
+[node name="cross" type="TextureRect" parent="description"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 885.089
+offset_top = 482.706
+offset_right = 925.089
+offset_bottom = 522.706
+scale = Vector2(3.53, 3.53)
+texture = ExtResource("5_r303g")
 
 [node name="health" type="RichTextLabel" parent="description"]
 clip_contents = false
 layout_mode = 2
-offset_left = 3.0
-offset_top = 383.837
-offset_right = 1374.0
-offset_bottom = 520.837
+offset_left = 167.884
+offset_top = 482.706
+offset_right = 1538.88
+offset_bottom = 619.706
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 100
-text = "Health:"
+text = "55"
 fit_content = true
 
 [node name="skill" type="RichTextLabel" parent="description/health"]
 clip_contents = false
 layout_mode = 2
-offset_left = 0.114258
-offset_top = 136.215
-offset_right = 1371.11
-offset_bottom = 273.215
+offset_left = 474.853
+offset_right = 1845.85
+offset_bottom = 137.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 100
-text = "Skill Damage:"
+text = "55"
 fit_content = true
 
 [node name="heal" type="RichTextLabel" parent="description/health/skill"]
 clip_contents = false
 layout_mode = 2
-offset_top = 136.0
-offset_right = 1371.0
-offset_bottom = 273.0
+offset_left = 422.597
+offset_top = 1.52588e-05
+offset_right = 1793.6
+offset_bottom = 137.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 100
-text = "Buy/Sell:"
+text = "55"
 fit_content = true
 
-[node name="brawl" type="RichTextLabel" parent="description/health/skill/heal"]
+[node name="brawl" type="RichTextLabel" parent="description"]
 clip_contents = false
 layout_mode = 2
-offset_top = 136.0
-offset_right = 1371.0
-offset_bottom = 273.0
+offset_left = 1.25237
+offset_top = 704.054
+offset_right = 1277.25
+offset_bottom = 841.054
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 100
 text = "Brawl Damage:"
 fit_content = true
 
-[node name="reload" type="RichTextLabel" parent="description/health/skill/heal/brawl"]
+[node name="reload" type="RichTextLabel" parent="description/brawl"]
 clip_contents = false
 layout_mode = 0
 offset_top = 136.0
-offset_right = 1371.0
+offset_right = 1269.0
 offset_bottom = 273.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -218,11 +252,11 @@ theme_override_font_sizes/normal_font_size = 100
 text = "Reload Time:"
 fit_content = true
 
-[node name="cost" type="RichTextLabel" parent="description/health/skill/heal/brawl/reload"]
+[node name="cost" type="RichTextLabel" parent="description/brawl/reload"]
 clip_contents = false
 layout_mode = 2
 offset_top = 136.0
-offset_right = 1371.0
+offset_right = 1248.0
 offset_bottom = 273.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -230,17 +264,50 @@ theme_override_font_sizes/normal_font_size = 100
 text = "Buy/Sell:"
 fit_content = true
 
-[node name="type" type="RichTextLabel" parent="description/health/skill/heal/brawl/reload/cost"]
+[node name="type" type="RichTextLabel" parent="description/brawl/reload/cost"]
 clip_contents = false
 layout_mode = 2
 offset_top = 136.0
-offset_right = 1371.0
+offset_right = 1269.0
 offset_bottom = 415.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 100
-text = "Unit Types:"
+text = "Types:"
 fit_content = true
 
-[connection signal="pressed" from="background/Button" to="." method="_on_button_pressed"]
+[node name="close_button" type="TextureButton" parent="."]
+z_index = 500
+offset_left = 227.107
+offset_top = -174.698
+offset_right = 254.107
+offset_bottom = -147.698
+texture_normal = ExtResource("3_igob6")
+texture_pressed = ExtResource("4_lc6ab")
+texture_hover = ExtResource("5_8dy0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="close_button"]
+layout_mode = 0
+offset_right = 274.0
+offset_bottom = 274.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "X"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="shadow" type="TextureRect" parent="close_button"]
+modulate = Color(0, 0, 0, 0.529412)
+z_index = -1
+layout_mode = 0
+offset_left = 2.00004
+offset_top = 1.33333
+offset_right = 29.0
+offset_bottom = 28.3333
+mouse_filter = 2
+texture = ExtResource("3_igob6")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="pressed" from="close_button" to="." method="_on_close_button_pressed"]

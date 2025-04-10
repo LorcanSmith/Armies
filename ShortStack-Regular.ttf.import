@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dgt3vhkhqq32o"
-path="res://.godot/imported/font.ttf-7ba3e8c1ec355f88f1af089917a76c36.fontdata"
+uid="uid://cubey8ru1acdd"
+path="res://.godot/imported/ShortStack-Regular.ttf-737fc9377dba7120eabdb17ccb92caa0.fontdata"
 
 [deps]
 
-source_file="res://font.ttf"
-dest_files=["res://.godot/imported/font.ttf-7ba3e8c1ec355f88f1af089917a76c36.fontdata"]
+source_file="res://ShortStack-Regular.ttf"
+dest_files=["res://.godot/imported/ShortStack-Regular.ttf-737fc9377dba7120eabdb17ccb92caa0.fontdata"]
 
 [params]
 
