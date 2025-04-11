@@ -266,17 +266,17 @@ func skill(phase : String):
 									u += 1
 								z+=1
 							if !skill_does_splash:
-								if(skill_damage + damage_boost > 0):
+								if(skill_damage + damage_boost > 0 and enemies_in_range.size() > 0):
 									skill_instance.global_position = closest_unit.global_position
 									attack_visuals(closest_unit)
-								elif(skill_heal > 0):
+								elif(skill_heal > 0 and friendlies_in_range.size() > 0):
 									skill_instance.global_position = closest_unit.global_position
 									attack_visuals(closest_unit)
 							else:
-								if(skill_damage + damage_boost > 0):
+								if(skill_damage + damage_boost > 0 and enemies_in_range.size() > 0):
 									skill_instance.global_position = closest_unit.global_position
 									attack_visuals(closest_unit)
-								elif(skill_heal > 0):
+								elif(skill_heal > 0 and friendlies_in_range.size() > 0):
 									skill_instance.global_position = closest_unit.global_position
 									var friendly_areas = skill_instance.get_node("Area2D").get_overlapping_areas()
 									for area in friendly_areas:

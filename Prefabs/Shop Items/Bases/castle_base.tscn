@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://ckgb2aec4d3hs"]
+[gd_scene load_steps=16 format=3 uid="uid://ckgb2aec4d3hs"]
 
 [ext_resource type="Texture2D" uid="uid://8af7s6x54d8a" path="res://Sprites/Bases/castle.png" id="1_26ikh"]
 [ext_resource type="Script" uid="uid://cc646f6ymc6pf" path="res://Scripts/Shop/base_script.gd" id="1_xddxu"]
 [ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="3_e6837"]
 [ext_resource type="Texture2D" uid="uid://qugs6w1u0f15" path="res://Sprites/UI/selected_ui.png" id="3_yc0f8"]
+[ext_resource type="PackedScene" uid="uid://dct8tnv8f1a46" path="res://Prefabs/Effects/shadow.tscn" id="4_m5xxh"]
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="4_th0md"]
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="5_bly1q"]
 [ext_resource type="Texture2D" uid="uid://dirtbdn43qwvv" path="res://Sprites/UI/square_button/square.png" id="7_to6h8"]
@@ -103,6 +104,12 @@ offset_right = 22.0
 offset_bottom = 17.0
 pivot_offset = Vector2(20, 23)
 mouse_filter = 2
+texture = ExtResource("1_26ikh")
+
+[node name="shadow" parent="base_image" instance=ExtResource("4_m5xxh")]
+modulate = Color(0, 0, 0, 0.6)
+position = Vector2(21.625, 46.3906)
+scale = Vector2(1.23571, 0.440625)
 texture = ExtResource("1_26ikh")
 
 [node name="set_base_UI" type="Control" parent="."]

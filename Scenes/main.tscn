@@ -764,6 +764,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="confirm_name_button" type="TextureButton" parent="name_maker_canvas/Container/ColorRect"]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 334.0
