@@ -110,14 +110,15 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_close_button_pressed() -> void:
 	get_node("AnimationPlayer").play("tooltip_popout")
-	#Turn off select button on crates
-	var base_crate = find_parent("shop_manager").find_child("base_spawn_location").get_child(0)
-	print(base_crate)
-	if(base_crate):
-		base_crate.find_child("buy_base_button").visible = false
+	
+	if(!find_parent("game_manager").in_combat):
+		#Turn off select button on crates
+		var base_crate = find_parent("shop_manager").find_child("base_spawn_location").get_child(0)
+		if(base_crate):
+			base_crate.find_child("buy_base_button").visible = false
 
 func _process(delta: float) -> void:
-	if(self.visible and hide_tooltip):
+	if(self.visible and hide_tooltip or find_parent("game_manager").in_combat):
 		current_time_till_close -= delta
 		if(current_time_till_close <= 0):
 			get_node("AnimationPlayer").play("tooltip_popout")
