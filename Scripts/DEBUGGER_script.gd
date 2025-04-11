@@ -35,7 +35,7 @@ func _input(event):
 						instance.damage = 8
 						
 						
-func report(game_manager : Node2D):
+func save_report(game_manager : Node2D):
 	var grid_data = []
 	
 	var game_folder = ProjectSettings.globalize_path("res://")
@@ -70,6 +70,15 @@ func report(game_manager : Node2D):
 	json_string = JSON.stringify(game_manager.enemy_army)
 	save_file.store_line(json_string)
 	
+	json_string = JSON.stringify(game_manager.life_remaining)
+	save_file.store_line(json_string)
+	
+	json_string = JSON.stringify(game_manager.money_remaining)
+	save_file.store_line(json_string)
+	
+	json_string = JSON.stringify(game_manager.wins)
+	save_file.store_line(json_string)
+	
 	if game_manager.in_combat:
 		json_string = JSON.stringify(game_manager.turn_number)
 	else:
@@ -77,6 +86,9 @@ func report(game_manager : Node2D):
 	save_file.store_line(json_string)
 	
 	save_file.close()  # Don't forget to close the file after you're done.
+	
+func run_report(game_manager : Node2D):
+	pass
 
 func create_enemy_armies():
 	var turn_number = 1

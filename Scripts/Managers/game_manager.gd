@@ -145,7 +145,9 @@ func _input(event):
 	if Input.is_key_pressed(KEY_N):
 		DebuggerScript.create_enemy_armies()
 	if Input.is_key_pressed(KEY_D):
-		DebuggerScript.report(self)
+		DebuggerScript.save_report(self)
+	if Input.is_key_pressed(KEY_R):
+		DebuggerScript.run_report(self)
 func money_changed(amount : int):
 	var coin_counter = coin_counter_scene.instantiate()
 	$UI/HBoxContainer/dollar/CoinNotifs.add_child(coin_counter)
