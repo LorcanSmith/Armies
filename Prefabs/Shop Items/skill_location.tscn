@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cuqtq5diypdpy"]
+[gd_scene load_steps=10 format=3 uid="uid://cuqtq5diypdpy"]
 
-[ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="1_yj4c1"]
+[ext_resource type="Script" uid="uid://euw103v4lswq" path="res://Scripts/Shop/item_skill_locations.gd" id="1_tk7v8"]
 [ext_resource type="Texture2D" uid="uid://fpwwhqpb42av" path="res://Sprites/UI/sword.png" id="3_n7d6n"]
+[ext_resource type="Texture2D" uid="uid://doklob2e1xafl" path="res://Sprites/UI/arrow.png" id="3_tk7v8"]
 [ext_resource type="Texture2D" uid="uid://bht3oj2lg106d" path="res://Sprites/UI/cross.png" id="4_tk7v8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6sqpo"]
@@ -61,36 +62,59 @@ _data = {
 &"location_popout": SubResource("Animation_vwxop")
 }
 
-[node name="skill_location" instance=ExtResource("1_yj4c1")]
+[node name="skill_location" type="Node2D"]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_tk7v8")
 
-[node name="CollisionShape2D" parent="Area2D" index="0"]
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_6sqpo")
 
-[node name="sword" type="Sprite2D" parent="location_sprite" index="0"]
+[node name="location_sprite" type="Sprite2D" parent="."]
+z_index = 2
+texture_filter = 1
+scale = Vector2(0.45, 0.45)
+
+[node name="sword" type="Sprite2D" parent="location_sprite"]
 scale = Vector2(3, 3)
 texture = ExtResource("3_n7d6n")
 
-[node name="shadow" type="Sprite2D" parent="location_sprite/sword" index="0"]
+[node name="shadow" type="Sprite2D" parent="location_sprite/sword"]
 modulate = Color(0, 0, 0, 0.592157)
 z_index = -1
 position = Vector2(0.925926, 2.77778)
 texture = ExtResource("3_n7d6n")
 
-[node name="cross" type="Sprite2D" parent="location_sprite" index="1"]
+[node name="cross" type="Sprite2D" parent="location_sprite"]
 visible = false
 scale = Vector2(3, 3)
 texture = ExtResource("4_tk7v8")
 
-[node name="shadow" type="Sprite2D" parent="location_sprite/cross" index="0"]
+[node name="shadow" type="Sprite2D" parent="location_sprite/cross"]
 modulate = Color(0, 0, 0, 0.592157)
 z_index = -1
 position = Vector2(0.925926, 2.77778)
 texture = ExtResource("4_tk7v8")
 
-[node name="arrow" parent="location_sprite" index="2"]
+[node name="arrow" type="Sprite2D" parent="location_sprite"]
 visible = false
+position = Vector2(19.4444, 5.55556)
+scale = Vector2(3, 3)
+texture = ExtResource("3_tk7v8")
 
-[node name="AnimationPlayer" parent="." index="2"]
+[node name="shadow" type="Sprite2D" parent="location_sprite/arrow"]
+modulate = Color(0, 0, 0, 0.592157)
+z_index = -1
+position = Vector2(0.925926, 2.77778)
+texture = ExtResource("3_tk7v8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_vwxop")
 }
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
