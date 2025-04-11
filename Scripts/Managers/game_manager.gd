@@ -38,6 +38,8 @@ var coin_counter_scene = preload("res://Prefabs/Effects/UI/coin_counter.tscn")
 
 var in_combat : bool = false
 
+var debug_mode : bool = false
+
 #What turn are we on
 var turn_number = 0
 #How many wins do we have
