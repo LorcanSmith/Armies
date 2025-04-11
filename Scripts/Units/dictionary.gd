@@ -38,7 +38,11 @@ var unit_scenes = {
 	#Mechanic
 	24: preload("res://Prefabs/Units/Level1/mechanic_unit_LVL1.tscn"),
 	25: preload("res://Prefabs/Units/Level2/mechanic_unit_LVL2.tscn"),
-	26: preload("res://Prefabs/Units/Level3/mechanic_unit_LVL3.tscn")
+	26: preload("res://Prefabs/Units/Level3/mechanic_unit_LVL3.tscn"),
+	#Plague Doctor
+	27: preload("res://Prefabs/Units/Level1/plague_doctor_unit_LVL1.tscn"),
+	28: preload("res://Prefabs/Units/Level2/plague_doctor_unit_LVL2.tscn"),
+	29: preload("res://Prefabs/Units/Level3/plague_doctor_unit_LVL3.tscn")
 }
 
 var item_scenes = {
@@ -77,7 +81,11 @@ var item_scenes = {
 	#Mechanic
 	24: preload("res://Prefabs/Shop Items/Level1/mechanic_item_LVL1.tscn"),
 	25: preload("res://Prefabs/Shop Items/Level2/mechanic_item_LVL2.tscn"),
-	26: preload("res://Prefabs/Shop Items/Level3/mechanic_item_LVL3.tscn")
+	26: preload("res://Prefabs/Shop Items/Level3/mechanic_item_LVL3.tscn"),
+	#Plague Doctor
+	27: preload("res://Prefabs/Shop Items/Level1/plague_doctor_item_LVL1.tscn"),
+	28: preload("res://Prefabs/Shop Items/Level2/plague_doctor_item_LVL2.tscn"),
+	29: preload("res://Prefabs/Shop Items/Level3/plague_doctor_item_LVL3.tscn")
 }
 
 var booster_scenes = {

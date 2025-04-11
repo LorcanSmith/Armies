@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1awtf6yqnv0p"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_jykpd"]
+[ext_resource type="Texture2D" uid="uid://mj4pomfgqggh" path="res://Sprites/Units/Medieval/Plague_Doctor/plague_doctor_sprite_lvl3.png" id="2_0lfmp"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_bdh8s"]
+
+[node name="PlagueDoctor" instance=ExtResource("1_jykpd")]
+description = "Heals units with the type \"Human\""
+unit_name = "Medic"
+buy_cost = 12
+sell_cost = 6
+health_buff = 1
+Medieval = true
+Army = true
+Vehicle = true
+Human = true
+Soldier = true
+Animal = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_0lfmp")
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("3_bdh8s")]
+position = Vector2(74, 0)
+
+[node name="skill_location2" parent="skills" index="1" instance=ExtResource("3_bdh8s")]
+position = Vector2(148, 0)

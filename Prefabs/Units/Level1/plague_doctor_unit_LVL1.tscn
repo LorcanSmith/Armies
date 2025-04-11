@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://coe67mw201f6k"]
+
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_88sch"]
+[ext_resource type="PackedScene" uid="uid://cwefhvoo3dhqh" path="res://Prefabs/Effects/heal_animation.tscn" id="2_hh30h"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_l4esi"]
+[ext_resource type="Texture2D" uid="uid://tcmvhl3lxfrd" path="res://Sprites/Units/Medieval/Plague_Doctor/plague_doctor_sprite_lvl1.png" id="4_l4esi"]
+[ext_resource type="Texture2D" uid="uid://c73uyed4ispk4" path="res://Sprites/Units/Medieval/Archer/archer_sprite.png" id="4_qa6fd"]
+
+[node name="Plague Doctor" instance=ExtResource("1_88sch")]
+max_health = 7
+brawl_damage = 1
+Medieval = true
+Human = true
+skill_spawn_amount = 2
+skill_max_once_per_unit = true
+skill_heal = 2
+projectile = ExtResource("2_hh30h")
+all = false
+Human_works_against = true
+
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_l4esi")]
+position = Vector2(74, 0)
+
+[node name="unit_skill_location2" parent="skill_locations" index="1" instance=ExtResource("3_l4esi")]
+position = Vector2(148, 0)
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("4_l4esi")
+
+[node name="shadow" parent="Sprite2D" index="0"]
+texture = ExtResource("4_qa6fd")
