@@ -21,7 +21,3 @@ texture = ExtResource("3_lqsp5")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-2, -0.5)
-
-[node name="shadow" parent="." index="6"]
-z_index = 0
-z_as_relative = true

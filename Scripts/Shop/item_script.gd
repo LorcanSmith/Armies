@@ -181,6 +181,7 @@ func _on_area_2d__mouse_collision_mouse_entered() -> void:
 #Called when the mouse stops hovering over
 func _on_area_2d__mouse_collision_mouse_exited() -> void:
 	if(!disabled):
+		tooltip.hide_tooltip = true
 		if(!mouse_pressed):
 			mouse_over_item = false
 			shop_manager.show_potential_upgrades(false,self)
@@ -325,8 +326,8 @@ func place_item():
 	
 #Called when the player sells the item
 func sell_item():
-	#Gives the player money for selling an item
-	shop_manager.change_money(-sell_cost)
+	#Tell the sell location that an item has been sold
+	shop_manager.find_child("sell_location").item_sold(sell_cost)
 	#Deletes the item
 	if(get_parent().is_in_group("tile")):
 		get_parent().is_empty = true
@@ -434,6 +435,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		#Set the cost label to the sell amount so we can see how much money we will get back
 		cost_label.text = str(sell_cost)
 		cost_label.visible = true
+		#Make the sell location slightly bigger
+		area.get_parent().scale = Vector2(1.2,1.2)
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	#If the area we just left is the current tile the sprite is snapping to
 	if(area.get_parent() == tile_currently_over):
@@ -447,3 +450,5 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	elif(area.is_in_group("sell_location") and bought):
 		item_on_sell_location = false
 		cost_label.visible = false
+		#Make the sell location size back to normal
+		area.get_parent().scale = Vector2(1,1)

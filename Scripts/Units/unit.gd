@@ -84,6 +84,9 @@ var reloading_counter : int
 @export_subgroup("Skill Projectile")
 @export var projectile : PackedScene
 
+@export_subgroup("Skill Works Against")
+@export var all : bool = true
+@export var Human_works_against : bool
 
 @export_subgroup("Skill Effective Against")
 @export var effectiveness : int = 4
@@ -247,38 +250,39 @@ func skill(phase : String):
 							skill_instance.global_position = self.global_position
 						#Sets skill's location to be at the closest enemy location
 						elif(skill_shooots_closest_enemy):
-							var closest_enemy : Node2D
+							var closest_unit : Node2D
 							#Finds closest enemy
 							var z = 0
 							while(z < skill_locations_parent.get_child_count()):
-								if(closest_enemy):
+								if(closest_unit):
 									break
 								#Loops over all units on the location node
 								var u = 0
 								while(u < skill_locations_parent.get_child(z).units_on_node.size()):
-									if(enemies_in_range.has(skill_locations_parent.get_child(z).units_on_node[u])):
-										closest_enemy = skill_locations_parent.get_child(z).units_on_node[u]
-										break
+									if(skill_damage > 0 and enemies_in_range.has(skill_locations_parent.get_child(z).units_on_node[u])):
+										closest_unit = skill_locations_parent.get_child(z).units_on_node[u]
+									elif(skill_heal > 0 and friendlies_in_range.has(skill_locations_parent.get_child(z).units_on_node[u])):
+										closest_unit = skill_locations_parent.get_child(z).units_on_node[u]
 									u += 1
 								z+=1
 							if !skill_does_splash:
-								if(skill_damage + damage_boost > 0):
-									skill_instance.global_position = closest_enemy.global_position
-									attack_visuals(closest_enemy)
-								elif(skill_heal > 0):
-									skill_instance.global_position = closest_enemy.global_position
-									attack_visuals(closest_enemy)
+								if(skill_damage + damage_boost > 0 and enemies_in_range.size() > 0):
+									skill_instance.global_position = closest_unit.global_position
+									attack_visuals(closest_unit)
+								elif(skill_heal > 0 and friendlies_in_range.size() > 0):
+									skill_instance.global_position = closest_unit.global_position
+									attack_visuals(closest_unit)
 							else:
-								if(skill_damage + damage_boost > 0):
-									skill_instance.global_position = closest_enemy.global_position
-									attack_visuals(closest_enemy)
-								elif(skill_heal > 0):
-									skill_instance.global_position = closest_enemy.global_position
+								if(skill_damage + damage_boost > 0 and enemies_in_range.size() > 0):
+									skill_instance.global_position = closest_unit.global_position
+									attack_visuals(closest_unit)
+								elif(skill_heal > 0 and friendlies_in_range.size() > 0):
+									skill_instance.global_position = closest_unit.global_position
 									var friendly_areas = skill_instance.get_node("Area2D").get_overlapping_areas()
 									for area in friendly_areas:
 										if (self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy")):
 											enemies_in_splash_zone.append(area.get_parent())
-									attack_visuals(closest_enemy)
+									attack_visuals(closest_unit)
 						#Loops through all enemies and sets the skill to be their location
 						else:
 							if(skill_damage + damage_boost > 0):
@@ -288,7 +292,7 @@ func skill(phase : String):
 									attack_visuals(enemies_in_range[unit_number])
 							elif(skill_heal > 0):
 								#Stops a crash that probably happens because the enemy is dead
-								if(enemies_in_range.size() > 0):
+								if(friendlies_in_range.size() > 0):
 									skill_instance.global_position = friendlies_in_range[unit_number].global_position
 									attack_visuals(friendlies_in_range[unit_number])
 					#If the skill spawns at a random location
@@ -405,17 +409,37 @@ func destroy_unit():
 	self.get_node("AnimationPlayer").play("unit_damage")
 
 func skill_area_entered(area: Area2D) -> void:
-#	check if skill is meant to be used on allies or enemies
-	if(skill_damage > 0):
-		#If the area on our skill location is a unit of the opposite type
-		if(self.is_in_group("player") and area.get_parent().is_in_group("enemy")):
-			enemies_in_range.append(area.get_parent())
-		elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
-			enemies_in_range.append(area.get_parent())
-	if(skill_heal > 0):
-		##If the area on our skill location is a unit of the same type
-		if((self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy"))):
-			friendlies_in_range.append(area.get_parent())
+	#	check if skill is meant to be used on allies or enemies
+		if(skill_damage > 0):
+			#If the area on our skill location is a unit of the opposite type
+			if(self.is_in_group("player") and area.get_parent().is_in_group("enemy")):
+				enemies_in_range.append(area.get_parent())
+				check_if_skill_works_against(area.get_parent())
+			elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
+				enemies_in_range.append(area.get_parent())
+				check_if_skill_works_against(area.get_parent())
+		if(skill_heal > 0):
+			##If the area on our skill location is a unit of the same type
+			if((self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy"))):
+				friendlies_in_range.append(area.get_parent())
+				check_if_skill_works_against(area.get_parent())
+
+func check_if_skill_works_against(u : Node2D):
+	#Skill doesn't work against all units so check for specific types
+	if(!all):
+		var x = 0
+		var remove : bool = true
+		#Checks the unit in range and its types
+		while x < u.unit_types.size():
+			var type_to_string = str(var_to_str(u.unit_types[x]) + "_works_against")
+			type_to_string = type_to_string.replace('"',"")
+			#If the unit type is the same as one of types that the skill works against, we dont need to remove this enemy
+			if(get(type_to_string)):
+				remove = false
+			x+=1
+		if(remove):
+			friendlies_in_range.erase(u)
+			enemies_in_range.erase(u)
 func skill_area_exited(area: Area2D) -> void:
 	if alive:
 		enemies_in_range.erase(area.get_parent())

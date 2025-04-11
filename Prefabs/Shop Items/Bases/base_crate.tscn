@@ -263,10 +263,10 @@ position = Vector2(35, 70)
 [node name="buy_base_button" type="TextureButton" parent="UI/Container"]
 visible = false
 layout_mode = 0
-offset_left = 18.7767
-offset_top = 506.097
-offset_right = 91.7767
-offset_bottom = 534.097
+offset_left = 18.7766
+offset_top = 538.097
+offset_right = 91.7766
+offset_bottom = 566.097
 texture_normal = ExtResource("7_a1l1y")
 texture_pressed = ExtResource("8_ky5i5")
 texture_hover = ExtResource("9_k1bvv")

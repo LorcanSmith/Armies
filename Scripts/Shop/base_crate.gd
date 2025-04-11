@@ -68,7 +68,7 @@ func _on_buy_base_button_pressed() -> void:
 	get_node("AnimationPlayer").play("crate_disappear")
 	base_manager.set_base(base_id, base_name, base_description, true)
 	selected_base = true
-
+	find_parent("shop_manager").find_child("Tooltip").get_node("AnimationPlayer").play("tooltip_popout")
 func set_current_base(id, nm, desc):
 	base_id = id
 	base_name = nm

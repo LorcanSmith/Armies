@@ -18,7 +18,7 @@ booster_name = "Army Crate"
 booster_description = "Gives a random selection of 5 army units. Choose one to gain for free."
 booster_image = ExtResource("2_acllk")
 buy_cost = 8
-potential_units_IDs = [9, 12, 15, 21]
+potential_units_IDs = [9, 12, 15, 21, 24]
 
 [node name="unit_button" parent="choose_unit_UI/Container/unit_locations/location_1" index="0"]
 button_group = SubResource("ButtonGroup_gmrqn")

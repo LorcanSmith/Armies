@@ -5,8 +5,8 @@
 [node name="Round Lost" instance=ExtResource("1_ac7sx")]
 
 [node name="RichTextLabel" parent="." index="0"]
-offset_left = -260.0
+offset_left = -467.0
 offset_top = -193.0
-offset_right = 270.0
-offset_bottom = 209.0
+offset_right = 445.0
+offset_bottom = 287.0
 text = "Round Lost"

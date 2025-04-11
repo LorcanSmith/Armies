@@ -146,7 +146,7 @@ func _input(event):
 	
 func money_changed(amount : int):
 	var coin_counter = coin_counter_scene.instantiate()
-	$UI/HBoxContainer/dollar/CoinNotifs.add_child(coin_counter)
+	$UI/HBoxContainer/dollar_control/CoinNotifs.add_child(coin_counter)
 	if money_remaining > amount:
 		coin_counter.text = str(amount - money_remaining)
 	else:

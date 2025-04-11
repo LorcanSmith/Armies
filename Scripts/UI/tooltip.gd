@@ -6,6 +6,10 @@ var flipped : bool = false
 var background : TextureRect
 @export var offset : float
 
+var hide_tooltip : bool = false
+@export var time_till_auto_close : float = 0.3
+var current_time_till_close
+
 #The ID for the unit whos info we are currently showing
 var current_unit_ID
 var current_base_ID
@@ -23,6 +27,7 @@ var cost : RichTextLabel
 var type : RichTextLabel
 
 func _ready() -> void:
+	current_time_till_close = time_till_auto_close
 	self.visible = false
 	self.scale = Vector2(0,0)
 	unit_name = find_child("name")
@@ -69,7 +74,9 @@ func update_tooltip(u, damage_boost, health_boost) -> void:
 				types.append(unit.unit_types[x])
 			x += 1
 		type.text = str("Types: ", ", ".join(types))
-
+	#Resets the time so the tooltip doesn't auto close
+	current_time_till_close = time_till_auto_close
+	hide_tooltip = false
 func update_base_tooltip(id, base_name, desc):
 	#Pop tooltip in if the tooltip is hidden
 	if(id != current_base_ID or currently_showing_unit or self.visible == false):
@@ -92,8 +99,9 @@ func update_base_tooltip(id, base_name, desc):
 	reload.text = str("")
 	cost.text = str("")
 	type.text = str("")
-	
-
+	#Resets the time so the tooltip doesn't auto close
+	current_time_till_close = time_till_auto_close
+	hide_tooltip = false
 var anim_finished : bool = false
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -102,3 +110,15 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_close_button_pressed() -> void:
 	get_node("AnimationPlayer").play("tooltip_popout")
+	
+	if(!find_parent("game_manager").in_combat):
+		#Turn off select button on crates
+		var base_crate = find_parent("shop_manager").find_child("base_spawn_location").get_child(0)
+		if(base_crate):
+			base_crate.find_child("buy_base_button").visible = false
+
+func _process(delta: float) -> void:
+	if(self.visible and hide_tooltip or find_parent("game_manager").in_combat):
+		current_time_till_close -= delta
+		if(current_time_till_close <= 0):
+			get_node("AnimationPlayer").play("tooltip_popout")

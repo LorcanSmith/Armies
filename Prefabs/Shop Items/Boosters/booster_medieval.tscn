@@ -16,7 +16,7 @@
 booster_name = "Medieval Crate"
 booster_description = "Gives a random selection of 5 medieval units. Choose one to gain for free."
 buy_cost = 8
-potential_units_IDs = [0, 18, 6, 3]
+potential_units_IDs = [0, 18, 6, 3, 27]
 
 [node name="unit_button" parent="choose_unit_UI/Container/unit_locations/location_1" index="0"]
 button_group = SubResource("ButtonGroup_6m5sb")
