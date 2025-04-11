@@ -43,11 +43,11 @@ _data = {
 script = ExtResource("1_adfqu")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = -261.0
+offset_left = -466.0
 offset_top = -204.0
-offset_right = 309.0
+offset_right = 467.0
 offset_bottom = 276.0
-pivot_offset = Vector2(263.5, 201)
+pivot_offset = Vector2(467, 204)
 theme_override_font_sizes/normal_font_size = 200
 text = "Round Won"
 fit_content = true

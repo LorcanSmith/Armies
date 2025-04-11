@@ -34,7 +34,11 @@ var unit_scenes = {
 	#Sniper
 	21: preload("res://Prefabs/Units/Level1/sniper_unit_LVL1.tscn"),
 	22: preload("res://Prefabs/Units/Level2/sniper_unit_LVL2.tscn"),
-	23: preload("res://Prefabs/Units/Level3/sniper_unit_LVL3.tscn")
+	23: preload("res://Prefabs/Units/Level3/sniper_unit_LVL3.tscn"),
+	#Mechanic
+	24: preload("res://Prefabs/Units/Level1/mechanic_unit_LVL1.tscn"),
+	25: preload("res://Prefabs/Units/Level2/mechanic_unit_LVL2.tscn"),
+	26: preload("res://Prefabs/Units/Level3/mechanic_unit_LVL3.tscn")
 }
 
 var item_scenes = {
@@ -69,7 +73,11 @@ var item_scenes = {
 	#Sniper
 	21: preload("res://Prefabs/Shop Items/Level1/sniper_item_LVL1.tscn"),
 	22: preload("res://Prefabs/Shop Items/Level2/sniper_item_LVL2.tscn"),
-	23: preload("res://Prefabs/Shop Items/Level3/sniper_item_LVL3.tscn")
+	23: preload("res://Prefabs/Shop Items/Level3/sniper_item_LVL3.tscn"),
+	#Mechanic
+	24: preload("res://Prefabs/Shop Items/Level1/mechanic_item_LVL1.tscn"),
+	25: preload("res://Prefabs/Shop Items/Level2/mechanic_item_LVL2.tscn"),
+	26: preload("res://Prefabs/Shop Items/Level3/mechanic_item_LVL3.tscn")
 }
 
 var booster_scenes = {

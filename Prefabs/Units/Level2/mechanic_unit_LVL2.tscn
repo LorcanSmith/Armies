@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0ngngqw5xogv"]
+
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_xq3h5"]
+[ext_resource type="PackedScene" uid="uid://j16g2a5ai3sr" path="res://Prefabs/Effects/Projectiles/bullet_projectile.tscn" id="2_fwtqb"]
+[ext_resource type="Texture2D" uid="uid://hj0ldxtfn66k" path="res://Sprites/Units/Army/Mechanic/mechanic_spirte_lvl2.png" id="3_3rpqm"]
+
+[node name="Mechanic" instance=ExtResource("1_xq3h5")]
+max_health = 2
+brawl_damage = 1
+Army = true
+Human = true
+skill_spawn_amount = 0
+skill_spawn_random = true
+projectile = ExtResource("2_fwtqb")
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("3_3rpqm")
