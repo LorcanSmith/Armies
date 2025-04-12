@@ -1,6 +1,6 @@
 extends Node2D
 
-var seed : Array = [90,54,24,8,3]
+var seed : Array = [52,0.5,20,62,15]
 # swaps between the battle and shop scene
 
 #List of all managers
