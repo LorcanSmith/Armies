@@ -6,7 +6,8 @@ var unit_locations = []
 var booster_locations = []
 #Dictionary containing all units
 var dictionary = load("res://Scripts/Units/dictionary.gd")
-
+#Amount of re-rolls taken, used for randomness
+var rerolls_taken : int = 0
 ##Percentage out of 100 for how likely a level 2 unit is to show up
 @export var level2_percentage : float = 7
 @export var level3_percentage : float = 0.5
@@ -45,6 +46,20 @@ func show_new_units():
 			var new_booster = chosen_booster.instantiate()
 			#Sets the new units' parent to be the unit location in the shop
 			booster_locations[x].add_child(new_booster)
+			
+			var seed : Array = find_parent("shop_manager").seed
+			var reversed_seed : Array = seed.duplicate()
+			var new_seed : Array
+			reversed_seed.reverse()
+			#Multiply each element by its reveresed element in the seed and then make sure its not above 100
+			var num = 0
+			while(num < seed.size()-1):
+				new_seed.append(seed[num] * reversed_seed[num] * (rerolls_taken+1))
+				while(new_seed[num] > 100):
+					new_seed[num] -= 100
+				num+=1
+			#Tells it, what crate number it is for "randomness"
+			new_booster.select_units(x * (rerolls_taken+1), new_seed)
 			#Sets the new units' location to be that of its parent (the shop unit location)
 			new_booster.position = Vector2(0,0)
 		x+=1
@@ -54,13 +69,30 @@ func choose_random_unit(loc : int):
 	var x = loc
 	while(x > find_parent("shop_manager").seed.size()-1):
 		x -= find_parent("shop_manager").seed.size()-1
-	var seed_number_as_percentage = float(find_parent("shop_manager").seed[x])/100
-	var random_unit = int(round(((dictionary_instance.item_scenes.size()/3)) * seed_number_as_percentage))
+	#Multiply each element by its reveresed element in the seed and then make sure its not above 100
+	var num = 0
+	var seed : Array = find_parent("shop_manager").seed
+	var reversed_seed : Array = seed.duplicate()
+	var new_seed : Array
+	reversed_seed.reverse()
+	var percentage = reversed_seed[x] * (rerolls_taken+1)
+	while(percentage > 100):
+		percentage -= 100
+	while(num < seed.size()-1):
+		new_seed.append(seed[num] * reversed_seed[num] * (rerolls_taken+1))
+		while(new_seed[num] > 100):
+			new_seed[num] -= 100
+		num+=1
+	var seed_number_as_percentage = float(new_seed[x])/100
+	var random_unit = int(floor((((dictionary_instance.item_scenes.size()-1)/3)) * seed_number_as_percentage))
 	var random_unit_position = random_unit*3
 	var random_level
-	if(seed_number_as_percentage <= level2_percentage):
+	print("Random Unit: ", random_unit)
+	print("Position: ", random_unit_position)
+	print("Percentage: ", percentage)
+	if(percentage <= level2_percentage):
 		random_level = 2
-		if(seed_number_as_percentage <= level3_percentage):
+		if(percentage <= level3_percentage):
 			random_level = 3
 	else:
 		random_level = 1
@@ -115,8 +147,8 @@ func reroll_shop():
 				booster_locations[location].get_child(0).queue_free()
 			location += 1
 		#Gets new units for the shop
+		rerolls_taken += 1
 		show_new_units()
-	
 
 func _on_texture_button_pressed() -> void:
 	reroll_shop()
