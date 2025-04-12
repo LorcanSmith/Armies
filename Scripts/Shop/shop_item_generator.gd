@@ -18,21 +18,21 @@ func _ready() -> void:
 		unit_locations.append(loc)
 	for loc in find_child("booster_locations").get_children():
 		booster_locations.append(loc)
-	show_new_units()
 #Spawns in new shop units
 func show_new_units():
+	var x = 0
 	#Displays a new unit for each shop unit location
-	for location in unit_locations.size():
+	while x < unit_locations.size():
 		#Chooses a random unit and loads the unit from the path, gets it unit_ID
-		var chosen_unit = choose_random_unit()
+		var chosen_unit = choose_random_unit(x)
 		#Spawns in the chosen unit as a new unit in the shop
 		var new_unit = chosen_unit[0].instantiate()
 		new_unit.unit_ID = chosen_unit[1]
 		#Sets the new units' parent to be the unit location in the shop
-		unit_locations[location].add_child(new_unit)
+		unit_locations[x].add_child(new_unit)
 		#Sets the new units' location to be that of its parent (the shop unit location)
 		new_unit.position = Vector2(0,0)
-	
+		x+=1
 	for location in booster_locations.size():
 		#If there isnt a unit from a previous pack in the slot
 		if(booster_locations[location].get_child_count() == 0 or booster_locations[location].get_child(0).is_in_group("booster")):
@@ -45,33 +45,35 @@ func show_new_units():
 			#Sets the new units' location to be that of its parent (the shop unit location)
 			new_booster.position = Vector2(0,0)
 #Chooses a random unit
-func choose_random_unit():
+func choose_random_unit(loc : int):
 	var dictionary_instance = dictionary.new()
-	#Gets a random unit type
-	var random_unit = (randi_range(1,(dictionary_instance.item_scenes.size()/3))*3)
-	#Gets a random number
-	var random_percentage = randf_range(1,100)
+	var x = loc
+	#
+	while(x > find_parent("shop_manager").seed.size()-1):
+		x -= find_parent("shop_manager").seed.size()-1
+	var seed_number_as_percentage = float(find_parent("shop_manager").seed[x])/100
+	var random_unit_position = int(round(((dictionary_instance.item_scenes.size()/3)*3) * seed_number_as_percentage))
 	var random_level
-	if(random_percentage <= level2_percentage):
+	if(seed_number_as_percentage <= level2_percentage):
 		random_level = 2
-		if(random_percentage <= level3_percentage):
+		if(seed_number_as_percentage <= level3_percentage):
 			random_level = 3
 	else:
 		random_level = 1
 	var loaded_unit
 	if(random_level == 1):
-		random_unit = random_unit-3
-		loaded_unit = dictionary_instance.item_scenes[random_unit]
+		random_unit_position -= 3
+		loaded_unit = dictionary_instance.item_scenes[random_unit_position]
 	elif(random_level == 2):
 		#Gets the unit ID
-		random_unit = random_unit-2
-		loaded_unit = dictionary_instance.item_scenes[random_unit]
+		random_unit_position -= 2
+		loaded_unit = dictionary_instance.item_scenes[random_unit_position]
 	elif(random_level == 3):
 		#Gets the unit ID
-		random_unit = random_unit-1
-		loaded_unit = dictionary_instance.item_scenes[random_unit]
+		random_unit_position -= 1
+		loaded_unit = dictionary_instance.item_scenes[random_unit_position]
 	#print(random_unit)
-	return [loaded_unit, random_unit]
+	return [loaded_unit, random_unit_position]
 	
 func choose_random_booster():
 	var dictionary_instance = dictionary.new()

@@ -59,7 +59,7 @@ var money_remaining : int = 0
 var game_over_canvas : CanvasLayer
 
 func _ready():
-	seed = [randi_range(0,100), randi_range(0,100), randi_range(0,100), randi_range(0,100), randi_range(0,100)]
+	#seed = [randi_range(0,100), randi_range(0,100), randi_range(0,100), randi_range(0,100), randi_range(0,100)]
 	in_combat = false
 	health_text.text = str(life_remaining)
 	coin_text.text = str(0)
