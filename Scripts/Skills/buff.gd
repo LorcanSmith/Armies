@@ -8,9 +8,8 @@ func _ready() -> void:
 	self.visible = false
 	
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if(area.get_parent().is_in_group("item") and area.get_parent().bought):
+	if(area.name == "Area2D - Tile Collision" and area.get_parent().bought and self.get_parent().get_parent() != area.get_parent() and !self.get_parent().get_parent().disabled):
 		unit_to_buff = area.get_parent()
-
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if(area.get_parent() == unit_to_buff):
 		unit_to_buff = null
