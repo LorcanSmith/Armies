@@ -1,5 +1,8 @@
 extends Node
 var combat_manager : Node2D
+
+var seed_number_percent : float
+
 var alive : bool = true
 #Unit ID - SET ID ON THE ITEM COUNTERPART
 var unit_ID : int = -1
@@ -216,8 +219,12 @@ func skill(phase : String):
 				var unit_number = 0
 				#Spawn an instance of the skill at every skill location
 				while skills_spawned < skill_spawn_amount:
+					
+					seed_number_percent = combat_manager.current_seed_percentage
+					#Picks a random number for our wait time
+					var wait_time = 0.05 + (0.25 - 0.05) * seed_number_percent
 					#Delay so the buffs don't all appear at the same time
-					await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
+					await get_tree().create_timer(wait_time).timeout
 					if((unit_number > enemies_in_range.size()-1 and skill_damage + damage_boost > 0) or (unit_number > friendlies_in_range.size()-1 and skill_heal > 0)):
 						#If the skill can be spawned on each unit more than once
 						if(!skill_max_once_per_unit):
@@ -297,10 +304,19 @@ func skill(phase : String):
 									attack_visuals(friendlies_in_range[unit_number])
 					#If the skill spawns at a random location
 					elif(skill_spawn_random and enemies_in_range.size() > 0):
-						#Choose a random enemy in range
-						var random_position = randi_range(0, enemies_in_range.size()-1)
-						skill_instance.global_position = enemies_in_range[random_position].global_position
-						attack_visuals(enemies_in_range[random_position])
+						#Gets the current percentage seed
+						seed_number_percent = combat_manager.current_seed_percentage
+						#Randomises the number further based on other factors
+						var further_randomised : float = seed_number_percent + (max_health/2) + (reload_time/2) + (skill_damage/2)
+						#Makes sure the number remains below 100%
+						while(further_randomised > 1):
+							further_randomised -= 1
+						#Picks a random enemy based that is a percentage of the way through the enemies
+						var random_enemy_in_range = (enemies_in_range.size()-1) * further_randomised
+						#Roudns the number to the nearest whole number and converts it to an int
+						var enemy_chosen : int = floor(random_enemy_in_range)
+						skill_instance.global_position = enemies_in_range[enemy_chosen].global_position
+						attack_visuals(enemies_in_range[enemy_chosen])
 					unit_number += 1
 					skills_spawned += 1
 		#No units in range or reloading

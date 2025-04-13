@@ -1,5 +1,8 @@
 extends Node
 
+#Full seed
+var seed : Array
+
 #The Game Manager
 var game_manager
 var status_bar: StatusBar
@@ -15,6 +18,15 @@ func _ready() -> void:
 	game_manager = find_parent("game_manager")
 	money += game_manager.money_remaining
 	game_manager.money_changed(money)
+	#Change seed based on turn number
+	seed = game_manager.seed
+	var x = 0
+	while x > seed.size()-1:
+		seed[x] * game_manager.turn_number
+		while seed[x] > 100:
+			seed[x] -= 100
+		x += 1
+	find_child("shop_item_generator").show_new_units()
 #Called when we want to add or take away money
 func change_money(amount : int):
 	money -= amount

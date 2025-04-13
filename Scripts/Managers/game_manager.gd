@@ -1,5 +1,9 @@
 extends Node2D
 
+var seed : Array = [5.65381424212029, 93.5110775018886, 25.9863535403937, 54.3525283964992, 52.9311289244298, 85.9270065411218, 11.7330306371092, 19.1661141667542, 62.7235925170259, 51.3176128136881]
+
+
+
 # swaps between the battle and shop scene
 
 #List of all managers
@@ -58,6 +62,8 @@ var money_remaining : int = 0
 var game_over_canvas : CanvasLayer
 
 func _ready():
+	seed = [randf_range(0,100), randf_range(0,100), randf_range(0,100), randf_range(0,100), randf_range(0,100), randf_range(0,100),randf_range(0,100),randf_range(0,100),randf_range(0,100),randf_range(0,100)]
+	print(seed)
 	in_combat = false
 	health_text.text = str(life_remaining)
 	coin_text.text = str(0)

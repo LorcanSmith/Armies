@@ -170,35 +170,35 @@ text = "SHOP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShopItemGenerator" type="Node2D" parent="Camera2D"]
+[node name="shop_item_generator" type="Node2D" parent="Camera2D"]
 position = Vector2(-473, -258)
 script = ExtResource("2_v5hhx")
 
-[node name="Unit Locations" type="Node2D" parent="Camera2D/ShopItemGenerator"]
+[node name="Unit Locations" type="Node2D" parent="Camera2D/shop_item_generator"]
 position = Vector2(909, -220)
 
-[node name="Unit 1" type="Node2D" parent="Camera2D/ShopItemGenerator/Unit Locations"]
+[node name="Unit 1" type="Node2D" parent="Camera2D/shop_item_generator/Unit Locations"]
 position = Vector2(-217, 347)
 
-[node name="Unit 2" type="Node2D" parent="Camera2D/ShopItemGenerator/Unit Locations"]
+[node name="Unit 2" type="Node2D" parent="Camera2D/shop_item_generator/Unit Locations"]
 position = Vector2(-143, 347)
 
-[node name="Unit 3" type="Node2D" parent="Camera2D/ShopItemGenerator/Unit Locations"]
+[node name="Unit 3" type="Node2D" parent="Camera2D/shop_item_generator/Unit Locations"]
 position = Vector2(-217, 418)
 
-[node name="Unit 4" type="Node2D" parent="Camera2D/ShopItemGenerator/Unit Locations"]
+[node name="Unit 4" type="Node2D" parent="Camera2D/shop_item_generator/Unit Locations"]
 position = Vector2(-143, 418)
 
-[node name="booster_locations" type="Node2D" parent="Camera2D/ShopItemGenerator"]
+[node name="booster_locations" type="Node2D" parent="Camera2D/shop_item_generator"]
 position = Vector2(-17, 27)
 
-[node name="booster_1" type="Node2D" parent="Camera2D/ShopItemGenerator/booster_locations"]
+[node name="booster_1" type="Node2D" parent="Camera2D/shop_item_generator/booster_locations"]
 position = Vector2(704, 240)
 
-[node name="booster_2" type="Node2D" parent="Camera2D/ShopItemGenerator/booster_locations"]
+[node name="booster_2" type="Node2D" parent="Camera2D/shop_item_generator/booster_locations"]
 position = Vector2(778, 240)
 
-[node name="re-roll button" type="TextureButton" parent="Camera2D/ShopItemGenerator"]
+[node name="re-roll button" type="TextureButton" parent="Camera2D/shop_item_generator"]
 texture_filter = 1
 offset_left = 692.0
 offset_top = 298.0
@@ -209,7 +209,7 @@ texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="Camera2D/ShopItemGenerator/re-roll button"]
+[node name="TextureRect" type="TextureRect" parent="Camera2D/shop_item_generator/re-roll button"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.0136986
@@ -224,7 +224,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_wk4qg")
 metadata/_edit_use_anchors_ = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/ShopItemGenerator/re-roll button/TextureRect"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_item_generator/re-roll button/TextureRect"]
 clip_contents = false
 layout_mode = 1
 anchors_preset = -1
@@ -241,7 +241,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Re-rollText" type="RichTextLabel" parent="Camera2D/ShopItemGenerator/re-roll button"]
+[node name="Re-rollText" type="RichTextLabel" parent="Camera2D/shop_item_generator/re-roll button"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -259,7 +259,7 @@ fit_content = true
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="battle_button" type="TextureButton" parent="Camera2D/ShopItemGenerator"]
+[node name="battle_button" type="TextureButton" parent="Camera2D/shop_item_generator"]
 texture_filter = 1
 offset_left = 690.0
 offset_top = 421.0
@@ -269,7 +269,7 @@ texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
-[node name="BattleText" type="RichTextLabel" parent="Camera2D/ShopItemGenerator/battle_button"]
+[node name="BattleText" type="RichTextLabel" parent="Camera2D/shop_item_generator/battle_button"]
 layout_mode = 0
 offset_right = 384.0
 offset_bottom = 142.0
@@ -280,34 +280,34 @@ text = "BATTLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="base_spawn_location" type="Node2D" parent="Camera2D/ShopItemGenerator"]
+[node name="base_spawn_location" type="Node2D" parent="Camera2D/shop_item_generator"]
 position = Vector2(644, 366)
 script = ExtResource("12_qjc8s")
 
-[node name="pedastals" type="Node2D" parent="Camera2D/ShopItemGenerator"]
+[node name="pedastals" type="Node2D" parent="Camera2D/shop_item_generator"]
 
-[node name="pedestal" type="Sprite2D" parent="Camera2D/ShopItemGenerator/pedastals"]
+[node name="pedestal" type="Sprite2D" parent="Camera2D/shop_item_generator/pedastals"]
 self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
 texture_filter = 1
 position = Vector2(692, 132.32)
 scale = Vector2(1.26, 1.26)
 texture = ExtResource("8_rrq0j")
 
-[node name="pedestal2" type="Sprite2D" parent="Camera2D/ShopItemGenerator/pedastals"]
+[node name="pedestal2" type="Sprite2D" parent="Camera2D/shop_item_generator/pedastals"]
 self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
 texture_filter = 1
 position = Vector2(766, 132.32)
 scale = Vector2(1.26, 1.26)
 texture = ExtResource("8_rrq0j")
 
-[node name="pedestal3" type="Sprite2D" parent="Camera2D/ShopItemGenerator/pedastals"]
+[node name="pedestal3" type="Sprite2D" parent="Camera2D/shop_item_generator/pedastals"]
 self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
 texture_filter = 1
 position = Vector2(692, 203.32)
 scale = Vector2(1.26, 1.26)
 texture = ExtResource("8_rrq0j")
 
-[node name="pedestal4" type="Sprite2D" parent="Camera2D/ShopItemGenerator/pedastals"]
+[node name="pedestal4" type="Sprite2D" parent="Camera2D/shop_item_generator/pedastals"]
 self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
 texture_filter = 1
 position = Vector2(766, 203.32)
@@ -397,13 +397,13 @@ metadata/_edit_lock_ = true
 [node name="coin_pos" type="Node2D" parent="Camera2D"]
 position = Vector2(-309, -176)
 
-[connection signal="button_down" from="Camera2D/ShopItemGenerator/re-roll button" to="." method="_on_reroll_button_button_down"]
-[connection signal="mouse_entered" from="Camera2D/ShopItemGenerator/re-roll button" to="." method="_on_reroll_button_mouse_entered"]
-[connection signal="mouse_exited" from="Camera2D/ShopItemGenerator/re-roll button" to="." method="_on_reroll_button_mouse_exited"]
-[connection signal="pressed" from="Camera2D/ShopItemGenerator/re-roll button" to="Camera2D/ShopItemGenerator" method="_on_texture_button_pressed"]
-[connection signal="button_down" from="Camera2D/ShopItemGenerator/battle_button" to="." method="_on_battle_button_button_down"]
-[connection signal="button_up" from="Camera2D/ShopItemGenerator/battle_button" to="." method="_on_battle_button_button_up"]
-[connection signal="mouse_entered" from="Camera2D/ShopItemGenerator/battle_button" to="." method="_on_battle_button_mouse_entered"]
-[connection signal="mouse_exited" from="Camera2D/ShopItemGenerator/battle_button" to="." method="_on_battle_button_mouse_exited"]
-[connection signal="pressed" from="Camera2D/ShopItemGenerator/battle_button" to="." method="_on_battle_button_pressed"]
+[connection signal="button_down" from="Camera2D/shop_item_generator/re-roll button" to="." method="_on_reroll_button_button_down"]
+[connection signal="mouse_entered" from="Camera2D/shop_item_generator/re-roll button" to="." method="_on_reroll_button_mouse_entered"]
+[connection signal="mouse_exited" from="Camera2D/shop_item_generator/re-roll button" to="." method="_on_reroll_button_mouse_exited"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/re-roll button" to="Camera2D/shop_item_generator" method="_on_texture_button_pressed"]
+[connection signal="button_down" from="Camera2D/shop_item_generator/battle_button" to="." method="_on_battle_button_button_down"]
+[connection signal="button_up" from="Camera2D/shop_item_generator/battle_button" to="." method="_on_battle_button_button_up"]
+[connection signal="mouse_entered" from="Camera2D/shop_item_generator/battle_button" to="." method="_on_battle_button_mouse_entered"]
+[connection signal="mouse_exited" from="Camera2D/shop_item_generator/battle_button" to="." method="_on_battle_button_mouse_exited"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/battle_button" to="." method="_on_battle_button_pressed"]
 [connection signal="mouse_entered" from="Camera2D/base_manager/Area2D" to="Camera2D/base_manager" method="_on_area_2d_mouse_entered"]
