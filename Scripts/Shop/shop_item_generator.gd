@@ -84,7 +84,7 @@ func choose_random_unit(loc : int):
 			new_seed[num] -= 100
 		num+=1
 	var seed_number_as_percentage = float(new_seed[x])/100
-	var random_unit = int(floor((((dictionary_instance.item_scenes.size()-1)/3)) * seed_number_as_percentage))
+	var random_unit = int(floor((((dictionary_instance.item_scenes.size())/3)) * seed_number_as_percentage))
 	var random_unit_position = random_unit*3
 	var random_level
 	print("Random Unit: ", random_unit)
