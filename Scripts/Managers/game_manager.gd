@@ -63,8 +63,9 @@ var money_remaining : int = 0
 var game_over_canvas : CanvasLayer
 
 func _ready():
-	seed = [randf_range(0,100), randf_range(0,100), randf_range(0,100), randf_range(0,100), randf_range(0,100), randf_range(0,100),randf_range(0,100),randf_range(0,100),randf_range(0,100),randf_range(0,100)]
-	print(seed)
+	#Generates a seed and then rounds it to 2 decimal places
+	seed = [round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,]
+	find_child("seed").text = str("seed: ", seed)
 	in_combat = false
 	health_text.text = str(life_remaining)
 	coin_text.text = str(0)
