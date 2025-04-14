@@ -81,6 +81,9 @@ func save_report(game_manager : Node2D):
 	json_string = JSON.stringify(game_manager.wins)
 	save_file.store_line(json_string)
 	
+	json_string = JSON.stringify(game_manager.seed)
+	save_file.store_line(json_string)
+	
 	if game_manager.in_combat:
 		json_string = JSON.stringify(game_manager.turn_number)
 	else:
@@ -119,6 +122,8 @@ func run_report(game_manager : Node2D):
 	parse_result = json.parse(lines[4])
 	game_manager.wins = int(json.data)
 	parse_result = json.parse(lines[5])
+	game_manager.seed = json.data
+	parse_result = json.parse(lines[6])
 	game_manager.turn_number = int(json.data)
 	game_manager.swap_scenes()
 
