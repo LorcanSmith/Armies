@@ -1,6 +1,7 @@
 extends Node2D
 
-var seed : Array = [5.65381424212029, 93.5110775018886, 25.9863535403937, 54.3525283964992, 52.9311289244298, 85.9270065411218, 11.7330306371092, 19.1661141667542, 62.7235925170259, 51.3176128136881]
+var seed : Array = [6.02531810828432, 84.250003181876, 80.7188776177081, 41.1750540816554, 18.2715380446462, 84.8005448483735, 95.4306832806217, 31.4136934717831, 16.9337232163465, 53.368219116341]
+
 
 
 
@@ -62,8 +63,9 @@ var money_remaining : int = 0
 var game_over_canvas : CanvasLayer
 
 func _ready():
-	seed = [randf_range(0,100), randf_range(0,100), randf_range(0,100), randf_range(0,100), randf_range(0,100), randf_range(0,100),randf_range(0,100),randf_range(0,100),randf_range(0,100),randf_range(0,100)]
-	print(seed)
+	#Generates a seed and then rounds it to 2 decimal places
+	seed = [round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,]
+	find_child("seed").text = str("seed: ", seed)
 	in_combat = false
 	health_text.text = str(life_remaining)
 	coin_text.text = str(0)

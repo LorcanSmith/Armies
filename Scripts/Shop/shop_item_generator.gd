@@ -84,7 +84,7 @@ func choose_random_unit(loc : int):
 			new_seed[num] -= 100
 		num+=1
 	var seed_number_as_percentage = float(new_seed[x])/100
-	var random_unit = int(floor((((dictionary_instance.item_scenes.size()-1)/3)) * seed_number_as_percentage))
+	var random_unit = int(floor((((dictionary_instance.item_scenes.size())/3)) * seed_number_as_percentage))
 	var random_unit_position = random_unit*3
 	var random_level
 	print("Random Unit: ", random_unit)
@@ -115,7 +115,21 @@ func choose_random_booster(loc : int):
 	var x = loc
 	while(x > find_parent("shop_manager").seed.size()-1):
 		x -= find_parent("shop_manager").seed.size()-1
-	var seed_number_as_percentage = float(find_parent("shop_manager").seed[x])/100
+	#Multiply each element by its reveresed element in the seed and then make sure its not above 100
+	var num = 0
+	var seed : Array = find_parent("shop_manager").seed
+	var reversed_seed : Array = seed.duplicate()
+	var new_seed : Array
+	reversed_seed.reverse()
+	var percentage = reversed_seed[x] * (rerolls_taken+1)
+	while(percentage > 100):
+		percentage -= 100
+	while(num < seed.size()-1):
+		new_seed.append(seed[num] * reversed_seed[num] * (rerolls_taken+1))
+		while(new_seed[num] > 100):
+			new_seed[num] -= 100
+		num+=1
+	var seed_number_as_percentage = float(new_seed[x])/100
 	#Gets a random unit type
 	var random_booster = int(round((dictionary_instance.booster_scenes.size()-1) * seed_number_as_percentage))
 	

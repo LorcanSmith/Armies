@@ -494,14 +494,23 @@ libraries = {
 &"": SubResource("AnimationLibrary_pdsj5")
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI"]
-offset_left = 1199.0
+[node name="version" type="RichTextLabel" parent="UI"]
+clip_contents = false
+offset_left = 1200.0
 offset_top = 693.0
-offset_right = 1604.0
+offset_right = 1605.0
 offset_bottom = 828.0
 scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/normal_font_size = 100
 text = "ver: 0.04"
+
+[node name="seed" type="RichTextLabel" parent="UI/version"]
+layout_mode = 0
+offset_left = -6000.0
+offset_right = -170.0
+offset_bottom = 135.0
+theme_override_font_sizes/normal_font_size = 100
+text = "seed: 55555555555555555555"
 
 [node name="Health" type="AnimationPlayer" parent="UI"]
 libraries = {
