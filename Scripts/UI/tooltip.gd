@@ -18,6 +18,8 @@ var currently_showing_unit : bool
 
 var unit_name : RichTextLabel
 var description : RichTextLabel
+var start_of_shop : RichTextLabel
+var before_combat : RichTextLabel
 var health : RichTextLabel
 var skill_damage : RichTextLabel
 var skill_heal : RichTextLabel
@@ -32,6 +34,8 @@ func _ready() -> void:
 	self.scale = Vector2(0,0)
 	unit_name = find_child("name")
 	description = find_child("description")
+	start_of_shop = find_child("start_of_shop")
+	before_combat = find_child("before_combat")
 	health = find_child("health")
 	skill_damage = find_child("skill")
 	skill_heal = find_child("heal")
@@ -54,17 +58,29 @@ func update_tooltip(u, damage_boost, health_boost) -> void:
 		var dictionary_instance = dictionary.new()
 		var unit = dictionary_instance.unit_scenes[u].instantiate()
 		var item = dictionary_instance.item_scenes[u].instantiate()
-		find_child("heart").visible = true
-		find_child("sword").visible = true
-		find_child("cross").visible = true
-		unit_name.text = unit.name
-		description.text = item.description
+		find_child("base_stats").visible = true
+		unit_name.text = "[b]" + str(unit.name).to_upper() + "[/b]"
+		if(item.description):
+			description.text = "[b]DESC: [/b]" + item.description
+		else:
+			description.text = ""
+		if(item.start_of_shop_desc):
+			start_of_shop.text = "[b]START OF SHOP: [/b]" + item.start_of_shop_desc
+		else:
+			start_of_shop.text = ""
+		if(item.before_combat_desc):
+			before_combat.text = "[b]BEFORE COMBAT: [/b]" + item.before_combat_desc
+		else:
+			before_combat.text = ""
 		health.text = str(unit.max_health + health_boost)
 		skill_damage.text = str(unit.skill_damage + damage_boost)
 		skill_heal.text = str(unit.skill_heal)
-		brawl.text = str("Brawl Damage: ", unit.brawl_damage)
-		reload.text = str("Reload Time: ", unit.reload_time)
-		cost.text = str("Buy Cost: ", item.buy_cost, " / Sell Cost: ", item.sell_cost)
+		brawl.text = str("[b]BRAWL DAMAGE: [/b]", unit.brawl_damage)
+		if(unit.reload_time > 0):
+			reload.text = str("[b]RELOAD TIME: [/b]", unit.reload_time)
+		else:
+			reload.text = ""
+		cost.text = str("[b]BUY COST: [/b]", item.buy_cost, "[b] / SELL COST: [/b]", item.sell_cost)
 		var x = 0
 		var types = []
 		while(x < unit.unit_types.size()):
@@ -73,10 +89,13 @@ func update_tooltip(u, damage_boost, health_boost) -> void:
 			if(type):
 				types.append(unit.unit_types[x])
 			x += 1
-		type.text = str("Types: ", ", ".join(types))
+		type.text = str("[b]TYPES: [/b] ", ", ".join(types))
+	elif(u == -1 and self.visible == true):
+		self.get_node("AnimationPlayer").play("tooltip_popout")
 	#Resets the time so the tooltip doesn't auto close
 	current_time_till_close = time_till_auto_close
 	hide_tooltip = false
+	find_child("text").update_text()
 func update_base_tooltip(id, base_name, desc):
 	#Pop tooltip in if the tooltip is hidden
 	if(id != current_base_ID or currently_showing_unit or self.visible == false):
@@ -89,9 +108,7 @@ func update_base_tooltip(id, base_name, desc):
 	current_base_ID = id
 	unit_name.text = base_name
 	description.text = desc
-	find_child("heart").visible = false
-	find_child("sword").visible = false
-	find_child("cross").visible = false
+	find_child("base_stats").visible = false
 	health.text = str("")
 	skill_damage.text = str("")
 	skill_heal.text = str("")
@@ -102,20 +119,13 @@ func update_base_tooltip(id, base_name, desc):
 	#Resets the time so the tooltip doesn't auto close
 	current_time_till_close = time_till_auto_close
 	hide_tooltip = false
+	find_child("text").update_text()
 var anim_finished : bool = false
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if(anim_name == "tooltip_popout"):
 		self.visible = false
 
-func _on_close_button_pressed() -> void:
-	get_node("AnimationPlayer").play("tooltip_popout")
-	
-	if(!find_parent("game_manager").in_combat):
-		#Turn off select button on crates
-		var base_crate = find_parent("shop_manager").find_child("base_spawn_location").get_child(0)
-		if(base_crate):
-			base_crate.find_child("buy_base_button").visible = false
 
 func _process(delta: float) -> void:
 	if(self.visible and hide_tooltip or find_parent("game_manager").in_combat):

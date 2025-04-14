@@ -8,15 +8,17 @@ var dictionary = preload("res://Scripts/Units/dictionary.gd")
 var unit_ID : int = -1
 
 var disabled : bool = false
-
+@export var show_tooltip_time : float = 1.4
+var current_time_till_tooltip : float
+var tooltip : Node2D
+@export_group("Unit Info")
 #damage and health gained from buffs
 var damage_boost : int
 var health_boost : int
 @export var description : String
-var tooltip : Node2D
-@export var show_tooltip_time : float = 1.4
-var current_time_till_tooltip : float
-@export_group("Item is a unit")
+@export var before_combat_desc : String
+@export var start_of_shop_desc : String
+
 @export var unit_name : String
 #Can this item be upgraded further?
 @export var can_be_upgraded : bool = true
@@ -101,6 +103,7 @@ func _ready() -> void:
 	set_unit_buff_types()
 	get_node("AnimationPlayer").play("item_appear")
 
+	current_time_till_tooltip = show_tooltip_time
 #Auto assigns the Level label
 func set_labels():
 	var level_chevron_parent = find_child("level_chevrons")
@@ -173,8 +176,6 @@ func _on_area_2d__mouse_collision_mouse_entered() -> void:
 			mouse_over_item = true
 			shop_manager.show_potential_upgrades(true,self)
 			sprite.scale = Vector2(item_hovered_scale,item_hovered_scale)
-			#Update tool tip
-			tooltip.update_tooltip(unit_ID, damage_boost, health_boost)
 		#If the locations haven't been popped in yet, then turn them on and play an animation
 		if(bought):
 			toggle_skill_location()
@@ -188,6 +189,7 @@ func _on_area_2d__mouse_collision_mouse_exited() -> void:
 			sprite.scale = Vector2(1,1)
 		if(bought):
 			toggle_skill_location()
+	current_time_till_tooltip = show_tooltip_time
 	
 #Checks to see if the mouse is clicked. This is so we can check to see if a user
 #has clicked on an item.
@@ -220,6 +222,9 @@ func _input(event):
 func _process(delta: float) -> void:
 	if(!disabled):
 		if(follow_mouse):
+			#Pop tool tip out
+			tooltip.update_tooltip(-1, 0 ,0)
+			current_time_till_tooltip = show_tooltip_time
 			#Follow the mouse
 			self.global_position = get_global_mouse_position()
 			sprite.scale = Vector2(item_clicked_scale, item_clicked_scale)
@@ -256,6 +261,14 @@ func _process(delta: float) -> void:
 			self.position = Vector2(0,0)
 			sprite.position = Vector2(0,0)
 			unit_currently_over_can_upgrade = false
+			if(sprite.scale == Vector2(item_hovered_scale, item_hovered_scale) and current_time_till_tooltip > 0 and tooltip.visible == false):
+				current_time_till_tooltip -= delta
+			elif(sprite.scale == Vector2(item_hovered_scale, item_hovered_scale) and tooltip.visible and tooltip.current_unit_ID != unit_ID):
+				#Update tool tip
+				tooltip.update_tooltip(unit_ID, damage_boost, health_boost)
+			elif(sprite.scale == Vector2(item_hovered_scale, item_hovered_scale) and current_time_till_tooltip <= 0 and tooltip.visible == false):
+				#Update tool tip
+				tooltip.update_tooltip(unit_ID, damage_boost, health_boost)
 #Called when the player attempts to place the item on a tile
 func attempt_to_place():
 	#The player is trying to sell the item and the item has already been bought

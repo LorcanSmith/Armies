@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="3_hkjyp"]
 
 [node name="Mechanic" instance=ExtResource("1_1tcfn")]
-description = "End of shop phase: Give vehicles +1 health"
+before_combat_desc = "Give vehicles +1 health"
 unit_name = "Mechanic"
 buy_cost = 4
 sell_cost = 2
