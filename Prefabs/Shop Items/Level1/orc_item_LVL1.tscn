@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://nfcrehhgw1wj"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_if1s1"]
+[ext_resource type="Texture2D" uid="uid://duqq8x48i1fj" path="res://Sprites/Units/Fantasy/orc.png" id="2_8syg0"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_7473j"]
+
+[node name="Orc" instance=ExtResource("1_if1s1")]
+description = "Big strong boi that uses a club to hit things"
+unit_name = "Orc"
+buy_cost = 6
+sell_cost = 2
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_8syg0")
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("3_7473j")]
+position = Vector2(74, 0)

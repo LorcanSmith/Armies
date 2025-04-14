@@ -42,7 +42,8 @@ var unit_types : Array = [
 	"Vehicle",
 	"Human",
 	"Soldier",
-	"Animal"
+	"Animal",
+	"Fantasy"
 ]
 @export var Medieval : bool
 @export var Army : bool
@@ -50,6 +51,7 @@ var unit_types : Array = [
 @export var Human : bool
 @export var Soldier : bool
 @export var Animal : bool
+@export var Fantasy : bool
 
 
 #How much damage will be applied to this unit, this turn

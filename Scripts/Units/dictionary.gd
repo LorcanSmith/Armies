@@ -42,7 +42,11 @@ var unit_scenes = {
 	#Plague Doctor
 	27: preload("res://Prefabs/Units/Level1/plague_doctor_unit_LVL1.tscn"),
 	28: preload("res://Prefabs/Units/Level2/plague_doctor_unit_LVL2.tscn"),
-	29: preload("res://Prefabs/Units/Level3/plague_doctor_unit_LVL3.tscn")
+	29: preload("res://Prefabs/Units/Level3/plague_doctor_unit_LVL3.tscn"),
+	#Orc
+	30: preload("res://Prefabs/Units/Level1/orc_unit_LVL1.tscn"),
+	31: preload("res://Prefabs/Units/Level2/orc_unit_LVL2.tscn"),
+	32: preload("res://Prefabs/Units/Level3/orc_unit_LVL3.tscn")
 }
 
 var item_scenes = {
@@ -85,7 +89,11 @@ var item_scenes = {
 	#Plague Doctor
 	27: preload("res://Prefabs/Shop Items/Level1/plague_doctor_item_LVL1.tscn"),
 	28: preload("res://Prefabs/Shop Items/Level2/plague_doctor_item_LVL2.tscn"),
-	29: preload("res://Prefabs/Shop Items/Level3/plague_doctor_item_LVL3.tscn")
+	29: preload("res://Prefabs/Shop Items/Level3/plague_doctor_item_LVL3.tscn"),
+	#Orc
+	30: preload("res://Prefabs/Shop Items/Level1/orc_item_LVL1.tscn"),
+	31: preload("res://Prefabs/Shop Items/Level2/orc_item_LVL2.tscn"),
+	32: preload("res://Prefabs/Shop Items/Level3/orc_item_LVL3.tscn")
 }
 
 var booster_scenes = {

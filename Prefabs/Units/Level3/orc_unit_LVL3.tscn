@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cu74gtrrjngkc"]
+
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_el182"]
+[ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_hywth"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_q84t1"]
+[ext_resource type="Texture2D" uid="uid://duqq8x48i1fj" path="res://Sprites/Units/Fantasy/orc.png" id="4_84btx"]
+
+[node name="Orc" instance=ExtResource("1_el182")]
+max_health = 15
+brawl_damage = 6
+Fantasy = true
+skill_max_once_per_unit = true
+skill_damage = 9
+projectile = ExtResource("2_hywth")
+
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_q84t1")]
+position = Vector2(74, 0)
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("4_84btx")
