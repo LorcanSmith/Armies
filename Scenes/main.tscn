@@ -505,6 +505,7 @@ theme_override_font_sizes/normal_font_size = 100
 text = "ver: 0.04"
 
 [node name="seed" type="RichTextLabel" parent="UI/version"]
+layout_mode = 0
 offset_left = -6000.0
 offset_right = -170.0
 offset_bottom = 135.0
