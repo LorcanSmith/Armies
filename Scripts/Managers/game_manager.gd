@@ -33,6 +33,8 @@ var base_sprite : Texture2D
 var army : Array
 #The actual units themselves
 var army_units : Array
+#Just the enemy unit IDS
+var enemy_army : Array
 
 var shop_scene = preload("res://Prefabs/Managers/shop_manager.tscn")
 var combat_scene = preload("res://Prefabs/Managers/combat_manager.tscn")
@@ -40,6 +42,8 @@ var combat_scene = preload("res://Prefabs/Managers/combat_manager.tscn")
 var coin_counter_scene = preload("res://Prefabs/Effects/UI/coin_counter.tscn")
 
 var in_combat : bool = false
+
+var debug_mode : bool = false
 
 #What turn are we on
 var turn_number = 0
@@ -134,8 +138,7 @@ func load_complete(element_loaded : String):
 	if(element_loaded == "grids"):
 		if(in_combat):
 			CombatManager.setup_headquarters(base_sprite)
-	
-##USED TO REROLL THE SHOP, WILL EVENTUALLY BE DONE BY A BUTTON
+
 func _input(event):
 	if Input.is_action_just_pressed("save"):
 		for grids in GridManager.get_children():
@@ -151,7 +154,10 @@ func _input(event):
 			CombatManager.battle_ticker()
 	if Input.is_key_pressed(KEY_N):
 		DebuggerScript.create_enemy_armies()
-	
+	if Input.is_key_pressed(KEY_D):
+		DebuggerScript.save_report(self)
+	if Input.is_key_pressed(KEY_R):
+		DebuggerScript.run_report(self)
 func money_changed(amount : int):
 	var coin_counter = coin_counter_scene.instantiate()
 	$UI/HBoxContainer/dollar_control/CoinNotifs.add_child(coin_counter)

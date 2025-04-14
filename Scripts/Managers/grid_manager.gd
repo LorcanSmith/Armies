@@ -24,10 +24,14 @@ func load_units():
 	var tiles
 	tiles = find_child("grid_generator (army)").grid
 	var unit_IDs = game_manager.army
-	#This needs to be removed, i dont think it does anything
 	var enemy_unit_IDs
 	if game_manager.in_combat:
-		enemy_unit_IDs = load_layout("enemy")
+		if game_manager.debug_mode:
+			enemy_unit_IDs = game_manager.enemy_army
+		else:
+			enemy_unit_IDs = load_layout("enemy")
+			print(enemy_unit_IDs)
+			game_manager.enemy_army = enemy_unit_IDs
 	if(unit_IDs.size() > 0):
 		var width = 0
 		while width in range(tiles.size()):
@@ -43,7 +47,7 @@ func load_units():
 						if(enemy_unit_IDs):
 							if(unit_IDs[width][height] != null):
 								#Spawn in a unit. Reference the UnitDictionary to find out what unit to spawn
-								instance = dictionary_instance.unit_scenes[unit_IDs[width][height][0]].instantiate()
+								instance = dictionary_instance.unit_scenes[int(unit_IDs[width][height][0])].instantiate()
 								#Add unit ID
 								instance.unit_ID = unit_IDs[width][height][0]
 								#Add the unit to either the player or the enemy group
@@ -76,7 +80,7 @@ func load_units():
 					else:
 						if(unit_IDs[width][height] != null):
 							#Spawn an item. Reference the UnitDictionary to find out what item to spawn
-							instance = dictionary_instance.item_scenes[unit_IDs[width][height][0]].instantiate()
+							instance = dictionary_instance.item_scenes[int(unit_IDs[width][height][0])].instantiate()
 							#Add unit ID
 							instance.unit_ID = unit_IDs[width][height][0]
 							tiles[width][height].add_child(instance)
@@ -94,10 +98,10 @@ func load_units():
 		
 func load_layout(file_to_load : String):
 	var current_turn_number
-	#If we're in combat then load this turn nubmer army
+	#If we're in combat then load this turn number army
 	if(game_manager.in_combat):
 		current_turn_number = str("turn", game_manager.turn_number)
-	#If wer'e in the shop, load the last turn's army as this turn's army hasnt been saved yet
+	#If we're in the shop, load the last turn's army as this turn's army hasnt been saved yet
 	else:
 		current_turn_number = str("turn", (game_manager.turn_number-1))
 		

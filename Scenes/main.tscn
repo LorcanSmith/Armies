@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://dnofimlexrv7h" path="res://Scenes/coin_notifs.gd" id="7_6iyac"]
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="8_ynf5e"]
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="9_hptm8"]
-[ext_resource type="Script" uid="uid://b3cnxcvu3kjku" path="res://Scripts/UI/name_selection_buttons.gd" id="13_fdnlq"]
+[ext_resource type="Script" path="res://Scripts/UI/name_selection_buttons.gd" id="13_fdnlq"]
 
 [sub_resource type="Animation" id="Animation_hibaj"]
 length = 0.001

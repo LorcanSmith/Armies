@@ -6,6 +6,9 @@ var place_skill : bool = false
 
 var dictionary = load("res://Scripts/Units/dictionary.gd")
 
+
+var game_folder = ProjectSettings.globalize_path("res://")
+
 #Skill number  to spawn, number is gotten from the canvas "optionbutton"
 var skill_to_place : int = 0
 #List of skills we can spawn
@@ -34,6 +37,90 @@ func _input(event):
 						instance.global_position = get_global_mouse_position()
 						instance.damage = 8
 						
+						
+func save_report(game_manager : Node2D):
+	var grid_data = []
+	
+	var json_string
+	
+	var counter = 1
+	
+	var save_file
+	
+	var report_exists = true
+	var file_path
+	while (report_exists):
+		file_path = game_folder + "report" + str(counter) + ".save"
+		if FileAccess.file_exists(file_path):
+			counter += 1
+		else:
+			report_exists = false
+		
+		##This will give you the project directory.
+		#save_file = FileAccess.open(file_path, FileAccess.READ_WRITE)
+		## Move the file cursor to the end of the file (just in case it's not already there)
+		#save_file.seek_end()
+
+	save_file = FileAccess.open(file_path, FileAccess.WRITE)
+	# JSON provides a static method to serialize the grid_data to a string
+	json_string = JSON.stringify(game_manager.army)
+	#print(json_string)
+	# Store the save data as a new line in the save file
+	save_file.store_line(json_string)
+	
+	#print(game_manager.enemy_army)
+	json_string = JSON.stringify(game_manager.enemy_army)
+	save_file.store_line(json_string)
+	
+	json_string = JSON.stringify(game_manager.life_remaining)
+	save_file.store_line(json_string)
+	
+	json_string = JSON.stringify(game_manager.money_remaining)
+	save_file.store_line(json_string)
+	
+	json_string = JSON.stringify(game_manager.wins)
+	save_file.store_line(json_string)
+	
+	if game_manager.in_combat:
+		json_string = JSON.stringify(game_manager.turn_number)
+	else:
+		json_string = JSON.stringify(game_manager.turn_number - 1)
+	save_file.store_line(json_string)
+	
+	save_file.close()  # Don't forget to close the file after you're done.
+	
+func run_report(game_manager : Node2D):
+	game_manager.debug_mode = true
+		
+	# Load the file line by line and process that dictionary to restore
+	# the object it represents.
+	var save_file = FileAccess.open(game_folder + "report1.save", FileAccess.READ)
+	var lines = []
+	var json = JSON.new()
+	#THIS DOESNT SEEM TO PRINT, CRASHES ELSEWHERE
+	if not FileAccess.file_exists(game_folder + "report1.save"):
+		print("ERROR - No data to load", "report")
+	else:
+		while save_file.get_position() < save_file.get_length():
+			var json_string = save_file.get_line()
+			lines.append(json_string)
+	# Parse the selected line
+	var counter = 0
+	var parse_result
+	parse_result = json.parse(lines[0])
+	game_manager.army = json.data
+	print(game_manager.army)
+	parse_result = json.parse(lines[1])
+	game_manager.enemy_army = json.data
+	parse_result = json.parse(lines[2])
+	game_manager.life_remaining = int(json.data)
+	parse_result = json.parse(lines[3])
+	game_manager.money_remaining = int(json.data)
+	parse_result = json.parse(lines[4])
+	game_manager.wins = int(json.data)
+	parse_result = json.parse(lines[5])
+	game_manager.turn_number = int(json.data)
+	game_manager.swap_scenes()
 
 func create_enemy_armies():
 	var turn_number = 1
