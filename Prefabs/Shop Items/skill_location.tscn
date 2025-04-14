@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cuqtq5diypdpy"]
 
-[ext_resource type="Script" uid="uid://euw103v4lswq" path="res://Scripts/Shop/item_skill_locations.gd" id="1_tk7v8"]
+[ext_resource type="Script" path="res://Scripts/Shop/item_skill_locations.gd" id="1_tk7v8"]
 [ext_resource type="Texture2D" uid="uid://fpwwhqpb42av" path="res://Sprites/UI/sword.png" id="3_n7d6n"]
 [ext_resource type="Texture2D" uid="uid://doklob2e1xafl" path="res://Sprites/UI/arrow.png" id="3_tk7v8"]
 [ext_resource type="Texture2D" uid="uid://bht3oj2lg106d" path="res://Sprites/UI/cross.png" id="4_tk7v8"]

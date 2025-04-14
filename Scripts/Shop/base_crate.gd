@@ -25,14 +25,20 @@ func _ready():
 	crate_sprite = find_child("base_button")
 	crate_starting_size = crate_sprite.scale
 	base_locations = UI.find_child("base_locations").get_children()
-	select_units()
+	select_bases()
 	
-func select_units():
+func select_bases():
 	var x = 0
 	while x < base_locations.size():
 		var dictionary_instance = dictionary.new()
+		var seed : Array = find_parent("shop_manager").seed
+		var turn_number : int = find_parent("game_manager").turn_number
+		var seed_number_as_percentage = float(seed[x]*turn_number)/100
+		while seed_number_as_percentage > 1:
+			seed_number_as_percentage -= 1
+		var base_pos = int(round((dictionary_instance.base_scenes.size()-1) * seed_number_as_percentage))
 		#Gets a random unit type
-		var base = dictionary_instance.base_scenes[randi_range(0, dictionary_instance.base_scenes.size()-1)]
+		var base = dictionary_instance.base_scenes[base_pos]
 		
 		#Instantiate unit
 		var instance = base.instantiate()
