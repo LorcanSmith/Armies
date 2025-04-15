@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://sc3ubpm6v28i"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_g60jw"]
-[ext_resource type="Texture2D" uid="uid://bagi7nuhgat7e" path="res://Sprites/Units/Fantasy/werewolf_human_sprite_lvl1.png" id="2_l3vt7"]
+[ext_resource type="Texture2D" uid="uid://bd6mrafoqdiqr" path="res://Sprites/Units/Fantasy/Werewolf/werewolf_human_sprite_lvl3.png" id="2_p5ixy"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_i0qe6"]
 
 [node name="Werewolf" instance=ExtResource("1_g60jw")]
@@ -13,7 +13,7 @@ health_buff = 1
 Vehicle = true
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_l3vt7")
+texture = ExtResource("2_p5ixy")
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_i0qe6")]
 position = Vector2(74, 0)
