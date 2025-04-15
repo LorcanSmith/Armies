@@ -46,6 +46,8 @@ func _ready() -> void:
 
 func update_tooltip(u, damage_boost, health_boost) -> void:
 	if(u != -1):
+		find_child("base_stats").scale.y = 1
+		find_child("base_stats").text = "This text is hidden and used to space the text below"
 		if(u != current_unit_ID or !currently_showing_unit  or self.visible == false):
 			#Pop tooltip in if the tooltip is hidden
 			if(self.visible == false):
@@ -97,6 +99,8 @@ func update_tooltip(u, damage_boost, health_boost) -> void:
 	hide_tooltip = false
 	find_child("text").update_text()
 func update_base_tooltip(id, base_name, desc):
+	find_child("base_stats").scale.y = 0
+	find_child("base_stats").text = ""
 	#Pop tooltip in if the tooltip is hidden
 	if(id != current_base_ID or currently_showing_unit or self.visible == false):
 		if(self.visible == false):
@@ -107,8 +111,28 @@ func update_base_tooltip(id, base_name, desc):
 	currently_showing_unit = false
 	current_base_ID = id
 	unit_name.text = base_name
-	description.text = desc
+	if(id!=-1):		
+		var dictionary_instance = dictionary.new()
+		var base = dictionary_instance.base_scenes[id].instantiate()
+		if(desc):
+			description.text = "[b]DESCRIPTION: [/b]" + desc
+		else:
+			description.text = ""
+		if(base.start_of_shop_desc):
+			start_of_shop.text = "[b]START OF SHOP: [/b]" + base.start_of_shop_desc
+		else:
+			start_of_shop.text = ""
+		if(base.before_combat_desc):
+			before_combat.text = "[b]BEFORE COMBAT: [/b]" + base.before_combat_desc
+		else:
+			before_combat.text = ""
+	else:
+		description.text = "[b]DESCRIPTION: [/b]" + desc
+		before_combat.text = ""
+		start_of_shop.text = ""
 	find_child("base_stats").visible = false
+	start_of_shop = find_child("start_of_shop")
+	before_combat = find_child("before_combat")
 	health.text = str("")
 	skill_damage.text = str("")
 	skill_heal.text = str("")

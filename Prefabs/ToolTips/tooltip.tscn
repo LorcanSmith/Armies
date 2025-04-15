@@ -108,10 +108,10 @@ grow_vertical = 0
 [node name="background" type="Control" parent="Positioner"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -1.25
-offset_top = 114.25
-offset_right = 38.75
-offset_bottom = 154.25
+offset_left = 2.0
+offset_top = 197.0
+offset_right = 42.0
+offset_bottom = 237.0
 script = ExtResource("2_r303g")
 
 [node name="background_top" type="TextureRect" parent="Positioner/background"]
@@ -212,10 +212,11 @@ size_flags_vertical = 8
 texture = ExtResource("5_bvb60")
 
 [node name="name" type="RichTextLabel" parent="Positioner"]
-offset_left = -0.25
-offset_top = -53.75
-offset_right = 1268.75
-offset_bottom = 190.25
+layout_mode = 0
+offset_left = 3.0
+offset_top = 29.0
+offset_right = 1272.0
+offset_bottom = 273.0
 scale = Vector2(0.16, 0.16)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/bold_italics_font_size = 100
@@ -231,10 +232,10 @@ vertical_alignment = 2
 [node name="text" type="Control" parent="Positioner"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -1.25
-offset_top = 114.25
-offset_right = 38.75
-offset_bottom = 154.25
+offset_left = 2.0
+offset_top = 197.0
+offset_right = 42.0
+offset_bottom = 237.0
 script = ExtResource("7_8dy0p")
 
 [node name="base_stats" type="RichTextLabel" parent="Positioner/text"]
@@ -248,14 +249,13 @@ offset_right = 249.0
 offset_bottom = -83.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 0)
-text = "This text is hidden and used to space the text below
-"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="banner" type="TextureRect" parent="Positioner/text/base_stats"]
 texture_filter = 1
+layout_mode = 0
 offset_left = -21.0
 offset_right = 218.0
 offset_bottom = 40.0
@@ -334,6 +334,7 @@ fit_content = true
 modulate = Color(0, 0, 0, 0.396078)
 z_index = -1
 texture_filter = 1
+layout_mode = 0
 offset_left = -21.0
 offset_top = -2.0
 offset_right = 218.0
@@ -411,6 +412,7 @@ fit_content = true
 
 [node name="description" type="RichTextLabel" parent="Positioner/text"]
 clip_contents = false
+layout_mode = 0
 offset_left = 4.0
 offset_top = -87.0
 offset_right = 1599.0
@@ -427,6 +429,7 @@ fit_content = true
 
 [node name="start_of_shop" type="RichTextLabel" parent="Positioner/text"]
 clip_contents = false
+layout_mode = 0
 offset_left = 4.0
 offset_top = -72.0
 offset_right = 1599.0
@@ -443,6 +446,7 @@ fit_content = true
 
 [node name="before_combat" type="RichTextLabel" parent="Positioner/text"]
 clip_contents = false
+layout_mode = 0
 offset_left = 4.0
 offset_top = -57.0
 offset_right = 1599.0

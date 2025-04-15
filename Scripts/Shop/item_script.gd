@@ -263,7 +263,7 @@ func _process(delta: float) -> void:
 			unit_currently_over_can_upgrade = false
 			if(sprite.scale == Vector2(item_hovered_scale, item_hovered_scale) and current_time_till_tooltip > 0 and tooltip.visible == false):
 				current_time_till_tooltip -= delta
-			elif(sprite.scale == Vector2(item_hovered_scale, item_hovered_scale) and tooltip.visible and tooltip.current_unit_ID != unit_ID):
+			elif(sprite.scale == Vector2(item_hovered_scale, item_hovered_scale) and tooltip.visible and (tooltip.current_unit_ID != unit_ID or !tooltip.currently_showing_unit)):
 				#Update tool tip
 				tooltip.update_tooltip(unit_ID, damage_boost, health_boost)
 			elif(sprite.scale == Vector2(item_hovered_scale, item_hovered_scale) and current_time_till_tooltip <= 0 and tooltip.visible == false):
