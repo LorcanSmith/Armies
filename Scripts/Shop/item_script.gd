@@ -32,7 +32,7 @@ var shop_manager : Node2D
 @export var sell_cost : int = 0
 #Keeps track if the player has bought the unit yet. Stops the player from selling
 #items that haven't been bought yet, as well as making sure the player pays for items
-var bought : bool = false
+var bought : bool = true
 
 var upgrade_arrow : Node2D
 
@@ -86,6 +86,11 @@ var buffs_work_against : Array = []
 @export var Soldier : bool
 @export var Animal : bool
 
+
+var item_has_transformed : bool
+
+var attack_label : Label = find_child("Attack")
+var defense_label : Label = find_child("Defense")
 func _ready() -> void:
 	buff_location = find_child("buffs")
 	skill_location = find_child("skills")
@@ -121,8 +126,8 @@ func set_labels():
 		update_label_text()
 	
 func update_label_text():
-	var attack_label : Label = find_child("Attack")
-	var defense_label : Label = find_child("Defense")
+	attack_label = find_child("Attack")
+	defense_label = find_child("Defense")
 	var dictionary_instance = dictionary.new()
 	cost_label = find_child("Cost")
 	var unit = dictionary_instance.unit_scenes[unit_ID].instantiate()
@@ -138,7 +143,28 @@ func update_label_text():
 			location_sprite.find_child("sword").visible = false
 			location_sprite.find_child("cross").visible = true
 		x+= 1
-		
+	#If the item is in the shop we should check if it needs transforming
+	if(!bought and !item_has_transformed):
+		transform_item(unit)	
+func transform_item(unit):
+	if(!item_has_transformed):
+		#Checks for transforming various items
+		if(unit_name == "Werewolf"):
+			if(find_parent("game_manager").turn_number % 2 == 0):
+				find_child("Sprite2D").texture = unit.transform_sprite
+				var doubled_attack = (unit.skill_damage + damage_boost) * 2
+				var doubled_health = (unit.max_health + health_boost) * 2
+				damage_boost = doubled_attack - unit.skill_damage
+				health_boost = doubled_health - unit.max_health
+				attack_label.text = str(doubled_attack)
+				defense_label.text = str(doubled_health)
+			elif(find_parent("game_manager").turn_number % 2 != 0 and bought):
+				find_child("Sprite2D").texture = unit.regular_sprite
+				damage_boost = (damage_boost - unit.skill_damage) / 2
+				health_boost = (health_boost - unit.max_health) / 2
+				attack_label.text = str(unit.skill_damage + damage_boost)
+				defense_label.text = str(unit.max_health + health_boost)
+		item_has_transformed = true
 func toggle_skill_location():
 	if(!disabled):
 		#If the locations haven't been popped in yet, then turn them on and play an animation

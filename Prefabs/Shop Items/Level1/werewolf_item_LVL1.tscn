@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3bpt05ldygb5"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_nfrem"]
+[ext_resource type="Texture2D" uid="uid://bagi7nuhgat7e" path="res://Sprites/Units/Fantasy/werewolf_human_sprite_lvl1.png" id="2_nfrem"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_nfrem"]
+
+[node name="Werewolf" instance=ExtResource("1_nfrem")]
+description = "If the turn number is even then this unit will transform into a werewolf with double health/attack"
+unit_name = "Werewolf"
+buy_cost = 8
+sell_cost = 4
+health_buff = 1
+Vehicle = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_nfrem")
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("3_nfrem")]
+position = Vector2(74, 0)

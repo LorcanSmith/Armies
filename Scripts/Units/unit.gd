@@ -87,6 +87,11 @@ var reloading_counter : int
 @export_subgroup("Skill Projectile")
 @export var projectile : PackedScene
 
+@export_subgroup("Unit Transforming")
+@export var transform_sprite : Texture2D
+@export var regular_sprite : Texture2D
+var unit_has_transformed : bool
+
 @export_subgroup("Skill Works Against")
 @export var all : bool = true
 @export var Human_works_against : bool
@@ -122,6 +127,12 @@ func _ready() -> void:
 	movement_locations = find_child("movement_locations").get_children()
 	#Set tooltip
 	tooltip = combat_manager.find_child("Tooltip")
+	if(transform_sprite):
+		#WEREWOLF
+		if(unit_ID == 30 or unit_ID == 31 or unit_ID == 32):
+			#Checks for transforming various items
+			if(find_parent("game_manager").turn_number % 2 == 0):
+				find_child("Sprite2D").texture = transform_sprite
 	set_level_chevron()
 	set_unit_types()
 
