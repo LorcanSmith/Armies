@@ -64,7 +64,7 @@ var money_remaining : int = 0
 var game_over_canvas : CanvasLayer
 
 func _ready():
-	#seed = randi_range(0,9999999999)
+	seed = randi_range(0,9999999999)
 	find_child("seed").text = str("seed: ", seed)
 	in_combat = false
 	health_text.text = str(life_remaining)
