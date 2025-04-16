@@ -2,9 +2,6 @@ extends Node2D
 
 var seed : int = "Godot Rocks".hash()
 
-
-
-
 # swaps between the battle and shop scene
 
 #List of all managers
@@ -67,6 +64,7 @@ var money_remaining : int = 0
 var game_over_canvas : CanvasLayer
 
 func _ready():
+	#seed = randi_range(0,9999999999)
 	find_child("seed").text = str("seed: ", seed)
 	in_combat = false
 	health_text.text = str(life_remaining)

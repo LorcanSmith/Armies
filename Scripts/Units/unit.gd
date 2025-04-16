@@ -1,8 +1,6 @@
 extends Node
 var combat_manager : Node2D
 
-var seed_number_percent : float
-
 var alive : bool = true
 #Unit ID - SET ID ON THE ITEM COUNTERPART
 var unit_ID : int = -1
@@ -231,10 +229,10 @@ func skill(phase : String):
 				var unit_number = 0
 				#Spawn an instance of the skill at every skill location
 				while skills_spawned < skill_spawn_amount:
-					
-					seed_number_percent = combat_manager.current_seed_percentage
+					seed(find_parent("game_manager").seed * max_health * (skills_spawned+2)* find_parent("combat_manager").current_round_number)
+					var percentage = randf_range(0,100)/100
 					#Picks a random number for our wait time
-					var wait_time = 0.05 + (0.25 - 0.05) * seed_number_percent
+					var wait_time = 0.05 + (0.25 - 0.05) * percentage
 					#Delay so the buffs don't all appear at the same time
 					await get_tree().create_timer(wait_time).timeout
 					if((unit_number > enemies_in_range.size()-1 and skill_damage + damage_boost > 0) or (unit_number > friendlies_in_range.size()-1 and skill_heal > 0)):
@@ -251,6 +249,9 @@ func skill(phase : String):
 					skill_instance.effective_against = effective_against_types
 					skill_instance.effectiveness = effectiveness
 					skill_instance.owner_of_skill = self
+					skill_instance.projectile = projectile
+					skill_instance.enemies_in_splash_zone = enemies_in_splash_zone
+					skill_instance.skill_does_splash = skill_does_splash
 					find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
 					
 					#Tell the skill if it is a friendly or enemy skill
@@ -314,15 +315,8 @@ func skill(phase : String):
 									skill_instance.target = friendlies_in_range[unit_number]
 					#If the skill spawns at a random location
 					elif(skill_spawn_random and enemies_in_range.size() > 0):
-						#Gets the current percentage seed
-						seed_number_percent = combat_manager.current_seed_percentage
-						#Randomises the number further based on other factors
-						var further_randomised : float = seed_number_percent + (max_health/2) + (reload_time/2) + (skill_damage/2)
-						#Makes sure the number remains below 100%
-						while(further_randomised > 1):
-							further_randomised -= 1
 						#Picks a random enemy based that is a percentage of the way through the enemies
-						var random_enemy_in_range = (enemies_in_range.size()-1) * further_randomised
+						var random_enemy_in_range = (enemies_in_range.size()-1) * percentage
 						#Roudns the number to the nearest whole number and converts it to an int
 						var enemy_chosen : int = floor(random_enemy_in_range)
 						skill_instance.global_position = enemies_in_range[enemy_chosen].global_position
@@ -391,28 +385,6 @@ func projectile_hit(amount : int):
 				#Play animation to show the unit has been healed
 				self.get_node("AnimationPlayer").play("unit_heal")
 	damage_done_to_self = 0
-
-func attack_visuals(enemy : Node2D, double_damage : bool):
-	#Projectile
-	if(projectile):
-		var projectile_instance = projectile.instantiate()
-		find_parent("combat_manager").find_child("skill_holder").add_child(projectile_instance)
-		projectile_instance.global_position = self.global_position
-		if(skill_damage + damage_boost > 0):
-			if(double_damage):	
-				projectile_instance.damage = (skill_damage + damage_boost)*2
-			else:
-				projectile_instance.damage = skill_damage + damage_boost
-		elif(skill_heal > 0):
-			if(double_damage):
-				projectile_instance.damage = -skill_heal*2
-			else:
-				projectile_instance.damage = -skill_heal
-		if skill_does_splash:
-			projectile_instance.enemies_in_splash_zone = enemies_in_splash_zone
-		projectile_instance.target_enemy(enemy)
-	else:
-		print(self.name)
 #Does damage to unit
 func hurt(amount : int):
 	damage_done_to_self += amount
