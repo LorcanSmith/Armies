@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_tvar7"]
 
 [node name="Medic" instance=ExtResource("1_a4ilc")]
-description = "End of shop phase: Gives units above and below +2 health. In battle heals friendlies in range."
+description = "Heals friendlies in range"
+before_combat_desc = "Gives units above and below +2 health"
 unit_name = "Medic"
 buy_cost = 9
 sell_cost = 4

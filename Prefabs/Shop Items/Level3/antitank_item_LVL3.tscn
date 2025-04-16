@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpplstaer716p"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_u5b3g"]
+[ext_resource type="Texture2D" uid="uid://bnhp0203w72sg" path="res://Sprites/Units/Army/Antitank/antitank_sprite_lvl3.png" id="2_i07ks"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_lk8p7"]
+
+[node name="AntiTank" instance=ExtResource("1_u5b3g")]
+description = "Deals double damage against vehicles"
+unit_name = "Anti-Tank"
+buy_cost = 10
+sell_cost = 5
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_i07ks")
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("3_lk8p7")]
+position = Vector2(74, 0)
+
+[node name="skill_location2" parent="skills" index="1" instance=ExtResource("3_lk8p7")]
+position = Vector2(148, 0)

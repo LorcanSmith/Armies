@@ -138,7 +138,7 @@ offset_bottom = -193.0
 mouse_filter = 2
 
 [node name="shop_background" type="TextureRect" parent="Camera2D/shop_visuals"]
-self_modulate = Color(0.272104, 0.264791, 0.220563, 1)
+self_modulate = Color(1, 0.92549, 0.705882, 1)
 layout_mode = 0
 offset_right = 500.0
 offset_bottom = 607.0
@@ -159,6 +159,7 @@ mouse_filter = 2
 texture = ExtResource("6_rrq0j")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_visuals/shop_background"]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_left = 103.0
 offset_top = -11.8571

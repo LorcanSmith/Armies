@@ -8,15 +8,17 @@ var dictionary = preload("res://Scripts/Units/dictionary.gd")
 var unit_ID : int = -1
 
 var disabled : bool = false
-
+@export var show_tooltip_time : float = 1.4
+var current_time_till_tooltip : float
+var tooltip : Node2D
+@export_group("Unit Info")
 #damage and health gained from buffs
 var damage_boost : int
 var health_boost : int
 @export var description : String
-var tooltip : Node2D
-@export var show_tooltip_time : float = 1.4
-var current_time_till_tooltip : float
-@export_group("Item is a unit")
+@export var before_combat_desc : String
+@export var start_of_shop_desc : String
+
 @export var unit_name : String
 #Can this item be upgraded further?
 @export var can_be_upgraded : bool = true
@@ -30,7 +32,7 @@ var shop_manager : Node2D
 @export var sell_cost : int = 0
 #Keeps track if the player has bought the unit yet. Stops the player from selling
 #items that haven't been bought yet, as well as making sure the player pays for items
-var bought : bool = false
+var bought : bool = true
 
 var upgrade_arrow : Node2D
 
@@ -84,6 +86,11 @@ var buffs_work_against : Array = []
 @export var Soldier : bool
 @export var Animal : bool
 
+
+var item_has_transformed : bool
+
+var attack_label : Label = find_child("Attack")
+var defense_label : Label = find_child("Defense")
 func _ready() -> void:
 	buff_location = find_child("buffs")
 	skill_location = find_child("skills")
@@ -101,6 +108,7 @@ func _ready() -> void:
 	set_unit_buff_types()
 	get_node("AnimationPlayer").play("item_appear")
 
+	current_time_till_tooltip = show_tooltip_time
 #Auto assigns the Level label
 func set_labels():
 	var level_chevron_parent = find_child("level_chevrons")
@@ -118,8 +126,8 @@ func set_labels():
 		update_label_text()
 	
 func update_label_text():
-	var attack_label : Label = find_child("Attack")
-	var defense_label : Label = find_child("Defense")
+	attack_label = find_child("Attack")
+	defense_label = find_child("Defense")
 	var dictionary_instance = dictionary.new()
 	cost_label = find_child("Cost")
 	var unit = dictionary_instance.unit_scenes[unit_ID].instantiate()
@@ -135,7 +143,30 @@ func update_label_text():
 			location_sprite.find_child("sword").visible = false
 			location_sprite.find_child("cross").visible = true
 		x+= 1
-		
+	#If the item is in the shop we should check if it needs transforming
+	if(!bought and !item_has_transformed):
+		transform_item(unit)	
+func transform_item(unit):
+	attack_label = find_child("Attack")
+	defense_label = find_child("Defense")
+	if(!item_has_transformed):
+		#Checks for transforming various items
+		if(unit_name == "Werewolf"):
+			if(find_parent("game_manager").turn_number % 2 == 0):
+				find_child("Sprite2D").texture = unit.transform_sprite
+				var doubled_attack = (unit.skill_damage + damage_boost) * 2
+				var doubled_health = (unit.max_health + health_boost) * 2
+				damage_boost = doubled_attack - unit.skill_damage
+				health_boost = doubled_health - unit.max_health
+				attack_label.text = str(doubled_attack)
+				defense_label.text = str(doubled_health)
+			elif(find_parent("game_manager").turn_number % 2 != 0 and bought):
+				find_child("Sprite2D").texture = unit.regular_sprite
+				damage_boost = (damage_boost - unit.skill_damage) / 2
+				health_boost = (health_boost - unit.max_health) / 2
+				attack_label.text = str(unit.skill_damage + damage_boost)
+				defense_label.text = str(unit.max_health + health_boost)
+		item_has_transformed = true
 func toggle_skill_location():
 	if(!disabled):
 		#If the locations haven't been popped in yet, then turn them on and play an animation
@@ -173,8 +204,6 @@ func _on_area_2d__mouse_collision_mouse_entered() -> void:
 			mouse_over_item = true
 			shop_manager.show_potential_upgrades(true,self)
 			sprite.scale = Vector2(item_hovered_scale,item_hovered_scale)
-			#Update tool tip
-			tooltip.update_tooltip(unit_ID, damage_boost, health_boost)
 		#If the locations haven't been popped in yet, then turn them on and play an animation
 		if(bought):
 			toggle_skill_location()
@@ -188,6 +217,7 @@ func _on_area_2d__mouse_collision_mouse_exited() -> void:
 			sprite.scale = Vector2(1,1)
 		if(bought):
 			toggle_skill_location()
+	current_time_till_tooltip = show_tooltip_time
 	
 #Checks to see if the mouse is clicked. This is so we can check to see if a user
 #has clicked on an item.
@@ -220,6 +250,9 @@ func _input(event):
 func _process(delta: float) -> void:
 	if(!disabled):
 		if(follow_mouse):
+			#Pop tool tip out
+			tooltip.update_tooltip(-1, 0 ,0)
+			current_time_till_tooltip = show_tooltip_time
 			#Follow the mouse
 			self.global_position = get_global_mouse_position()
 			sprite.scale = Vector2(item_clicked_scale, item_clicked_scale)
@@ -256,6 +289,14 @@ func _process(delta: float) -> void:
 			self.position = Vector2(0,0)
 			sprite.position = Vector2(0,0)
 			unit_currently_over_can_upgrade = false
+			if(sprite.scale == Vector2(item_hovered_scale, item_hovered_scale) and current_time_till_tooltip > 0 and tooltip.visible == false):
+				current_time_till_tooltip -= delta
+			elif(sprite.scale == Vector2(item_hovered_scale, item_hovered_scale) and tooltip.visible and (tooltip.current_unit_ID != unit_ID or !tooltip.currently_showing_unit)):
+				#Update tool tip
+				tooltip.update_tooltip(unit_ID, damage_boost, health_boost)
+			elif(sprite.scale == Vector2(item_hovered_scale, item_hovered_scale) and current_time_till_tooltip <= 0 and tooltip.visible == false):
+				#Update tool tip
+				tooltip.update_tooltip(unit_ID, damage_boost, health_boost)
 #Called when the player attempts to place the item on a tile
 func attempt_to_place():
 	#The player is trying to sell the item and the item has already been bought
@@ -345,6 +386,9 @@ func upgrade_unit(ID, dmg_bst, hlth_bst):
 		new_ID = ID + 1
 	#Add the newly upgraded unit to the tile we are on
 	get_parent().add_child(upgraded_unit)
+	#Tells the new item to check if it should transform into something else
+	var unit_for_checking_transforming = dictionary_instance.unit_scenes[ID+1].instantiate()
+	upgraded_unit.transform_item(unit_for_checking_transforming)
 	#Set the newly upgraded unit's position
 	upgraded_unit.position = Vector2(0,0)
 	#Purchase the unit

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://sc3ubpm6v28i"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_g60jw"]
+[ext_resource type="Texture2D" uid="uid://bd6mrafoqdiqr" path="res://Sprites/Units/Fantasy/Werewolf/werewolf_human_sprite_lvl3.png" id="2_p5ixy"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_i0qe6"]
+
+[node name="Werewolf" instance=ExtResource("1_g60jw")]
+description = "If the turn nubmer is even then this unit will transform into a werewolf with double health/attack"
+unit_name = "Werewolf"
+buy_cost = 15
+sell_cost = 7
+health_buff = 1
+Vehicle = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_p5ixy")
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("3_i0qe6")]
+position = Vector2(74, 0)

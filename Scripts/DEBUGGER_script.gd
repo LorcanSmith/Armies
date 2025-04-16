@@ -112,7 +112,6 @@ func run_report(game_manager : Node2D):
 	var parse_result
 	parse_result = json.parse(lines[0])
 	game_manager.army = json.data
-	print(game_manager.army)
 	parse_result = json.parse(lines[1])
 	game_manager.enemy_army = json.data
 	parse_result = json.parse(lines[2])

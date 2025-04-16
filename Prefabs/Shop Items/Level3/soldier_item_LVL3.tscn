@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_03hvf"]
 
 [node name="Soldier" instance=ExtResource("1_54iqj")]
-description = "Gives other soldiers that are above and below, +1 health and +1 attack at the end of the shop phase"
+before_combat_desc = "Gives other soldiers that are above and below, +1 health and +1 attack"
 unit_name = "Soldier"
 can_be_upgraded = false
 buy_cost = 12

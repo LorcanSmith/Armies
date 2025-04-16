@@ -8,7 +8,8 @@
 [node name="bank_base" instance=ExtResource("1_hupev")]
 base_id = 1
 base_name = "Bank"
-description = "Start of turn: Gain an extra 5 gold"
+start_of_shop_desc = "Gain an extra 5 gold"
+before_combat_desc = ""
 
 [node name="select_base_button" parent="." index="0"]
 button_group = SubResource("ButtonGroup_b1mkj")
