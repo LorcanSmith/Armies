@@ -31,12 +31,9 @@ func select_bases():
 	var x = 0
 	while x < base_locations.size():
 		var dictionary_instance = dictionary.new()
-		var seed : Array = find_parent("shop_manager").seed
-		var turn_number : int = find_parent("game_manager").turn_number
-		var seed_number_as_percentage = float(seed[x]*turn_number)/100
-		while seed_number_as_percentage > 1:
-			seed_number_as_percentage -= 1
-		var base_pos = int(round((dictionary_instance.base_scenes.size()-1) * seed_number_as_percentage))
+		seed(find_parent("game_manager").seed * find_parent("game_manager").turn_number * (x+1))
+		var random_base_percentage = randf_range(0,100)/100
+		var base_pos = int(round((dictionary_instance.base_scenes.size()-1) * random_base_percentage))
 		#Gets a random unit type
 		var base = dictionary_instance.base_scenes[base_pos]
 		
