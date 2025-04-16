@@ -1,9 +1,6 @@
 extends Node2D
 
-var seed : Array = [6.02531810828432, 84.250003181876, 80.7188776177081, 41.1750540816554, 18.2715380446462, 84.8005448483735, 95.4306832806217, 31.4136934717831, 16.9337232163465, 53.368219116341]
-
-
-
+var seed : int = "Godot Rocks".hash()
 
 # swaps between the battle and shop scene
 
@@ -67,8 +64,7 @@ var money_remaining : int = 0
 var game_over_canvas : CanvasLayer
 
 func _ready():
-	#Generates a seed and then rounds it to 2 decimal places
-	seed = [round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,round(randf_range(0,100) * 100)/100.0,]
+	seed = randi_range(0,9999999999)
 	find_child("seed").text = str("seed: ", seed)
 	in_combat = false
 	health_text.text = str(life_remaining)

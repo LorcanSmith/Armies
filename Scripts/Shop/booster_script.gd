@@ -44,21 +44,19 @@ func _ready():
 	find_child("cost_on_button").text = str(buy_cost)
 	get_node("AnimationPlayer").play("booster_appear")
 	
-func select_units(crate_number : int, seed : Array):
+func select_units(crate_number : int):
 	var unit_locations = choose_unit_UI.find_child("unit_locations").get_children()
 	var x = 0
-	#Used for "random" selection of units
-	var r = crate_number
 	while x < unit_locations.size():
-		while(r > seed.size()-1):
-			r -= seed.size()-1
-		var seed_number_as_percentage = float(seed[r])/100
-		var unit_position = int(round((potential_units_IDs.size()-1) * seed_number_as_percentage))
+		seed(find_parent("game_manager").seed * find_parent("game_manager").turn_number * ((crate_number+1)*2) *((x+1)*2) * ((find_parent("shop_item_generator").rerolls_taken+1)*2))
+		var percentage = randf_range(0,100)/100
+		var random_unit_percentage = randf_range(0,100)/100
+		var unit_position = int(round((potential_units_IDs.size()-1) * random_unit_percentage))
 		var random_number = potential_units_IDs[unit_position]
-		if(seed_number_as_percentage <= level2_chance and seed_number_as_percentage > level3_chance):
+		if(percentage <= level2_chance and percentage > level3_chance):
 			#Sets our unit to be level2
 			random_number += 1
-		if(seed_number_as_percentage <= level3_chance):
+		if(percentage <= level3_chance):
 			#Sets our unit to be level3
 			random_number += 2
 		
@@ -77,7 +75,6 @@ func select_units(crate_number : int, seed : Array):
 		instance.cost_label.visible = false
 		instance._ready()
 		x+=1
-		r+=1
 
 func _on_booster_button_pressed() -> void:
 	#Turn on the UI to purchase the booster

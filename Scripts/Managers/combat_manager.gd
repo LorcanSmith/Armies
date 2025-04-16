@@ -3,11 +3,6 @@ extends Node
 var game_manager : Node2D
 
 var current_round_number : int = 0
-#Full seed
-var seed : Array
-#The current seed number turned into a percentage out of 100
-var current_seed_percentage : float
-
 #Keeps track of which phase we are in
 var next_phase = "movement"
 
@@ -40,7 +35,6 @@ var enemy_headquarter : Node2D
 func _ready() -> void:
 	tick_delay = regular_speed
 	game_manager = find_parent("game_manager")
-	seed = game_manager.seed
 	player_headquarter = self.find_child("player_headquarter")
 	enemy_headquarter = self.find_child("enemy_headquarter")
 	auto_tick()
@@ -80,10 +74,6 @@ func battle_ticker():
 	if(!battle_over):
 		current_round_number += 1
 		var index : int = current_round_number-1
-		while(index >= seed.size()-1):
-			index -= (seed.size()-1)
-		#Gets a current seed based on the round number
-		current_seed_percentage = float(seed[index])/100
 		#If movement is next
 		if(next_phase == "movement"):
 			movement_phase()
