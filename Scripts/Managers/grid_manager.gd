@@ -30,7 +30,6 @@ func load_units():
 			enemy_unit_IDs = game_manager.enemy_army
 		else:
 			enemy_unit_IDs = load_layout("enemy")
-			print(enemy_unit_IDs)
 			game_manager.enemy_army = enemy_unit_IDs
 	if(unit_IDs.size() > 0):
 		var width = 0

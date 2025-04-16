@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxydem58so5yu"]
+
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_jw5x0"]
+[ext_resource type="PackedScene" uid="uid://bjsx2iphb4gud" path="res://Prefabs/Effects/Projectiles/shell_projectile.tscn" id="2_2c5y2"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_nthbl"]
+[ext_resource type="Texture2D" uid="uid://0lxe4edrt2mv" path="res://Sprites/Units/Army/Antitank/antitank_sprite_lvl2.png" id="4_cjr0n"]
+
+[node name="AntiTank" instance=ExtResource("1_jw5x0")]
+max_health = 7
+brawl_damage = 1
+Army = true
+skill_damage = 6
+reload_time = 2
+skill_shooots_closest_enemy = true
+projectile = ExtResource("2_2c5y2")
+Vehicle_effective = true
+
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_nthbl")]
+position = Vector2(74, 0)
+
+[node name="unit_skill_location2" parent="skill_locations" index="1" instance=ExtResource("3_nthbl")]
+position = Vector2(148, 0)
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("4_cjr0n")

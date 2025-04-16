@@ -100,6 +100,7 @@ var unit_has_transformed : bool
 @export var effectiveness : int = 4
 @export var Soldier_effective : bool
 @export var Animal_effective : bool
+@export var Vehicle_effective : bool
 var effective_against_types : Array
 
 #The parent containing all the skill locations
@@ -249,6 +250,7 @@ func skill(phase : String):
 					skill_instance.heal = skill_heal
 					skill_instance.effective_against = effective_against_types
 					skill_instance.effectiveness = effectiveness
+					skill_instance.owner_of_skill = self
 					find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
 					
 					#Tell the skill if it is a friendly or enemy skill
@@ -286,33 +288,28 @@ func skill(phase : String):
 							if !skill_does_splash:
 								if(skill_damage + damage_boost > 0 and enemies_in_range.size() > 0):
 									skill_instance.global_position = closest_unit.global_position
-									attack_visuals(closest_unit)
 								elif(skill_heal > 0 and friendlies_in_range.size() > 0):
 									skill_instance.global_position = closest_unit.global_position
-									attack_visuals(closest_unit)
+
 							else:
 								if(skill_damage + damage_boost > 0 and enemies_in_range.size() > 0):
 									skill_instance.global_position = closest_unit.global_position
-									attack_visuals(closest_unit)
 								elif(skill_heal > 0 and friendlies_in_range.size() > 0):
 									skill_instance.global_position = closest_unit.global_position
 									var friendly_areas = skill_instance.get_node("Area2D").get_overlapping_areas()
 									for area in friendly_areas:
 										if (self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy")):
 											enemies_in_splash_zone.append(area.get_parent())
-									attack_visuals(closest_unit)
 						#Loops through all enemies and sets the skill to be their location
 						else:
 							if(skill_damage + damage_boost > 0):
 								#Stops a crash that probably happens because the enemy is dead
 								if(enemies_in_range.size() > 0):
 									skill_instance.global_position = enemies_in_range[unit_number].global_position
-									attack_visuals(enemies_in_range[unit_number])
 							elif(skill_heal > 0):
 								#Stops a crash that probably happens because the enemy is dead
 								if(friendlies_in_range.size() > 0):
 									skill_instance.global_position = friendlies_in_range[unit_number].global_position
-									attack_visuals(friendlies_in_range[unit_number])
 					#If the skill spawns at a random location
 					elif(skill_spawn_random and enemies_in_range.size() > 0):
 						#Gets the current percentage seed
@@ -327,7 +324,6 @@ func skill(phase : String):
 						#Roudns the number to the nearest whole number and converts it to an int
 						var enemy_chosen : int = floor(random_enemy_in_range)
 						skill_instance.global_position = enemies_in_range[enemy_chosen].global_position
-						attack_visuals(enemies_in_range[enemy_chosen])
 					unit_number += 1
 					skills_spawned += 1
 		#No units in range or reloading
@@ -393,16 +389,22 @@ func projectile_hit(amount : int):
 				self.get_node("AnimationPlayer").play("unit_heal")
 	damage_done_to_self = 0
 
-func attack_visuals(enemy : Node2D):
+func attack_visuals(enemy : Node2D, double_damage : bool):
 	#Projectile
 	if(projectile):
 		var projectile_instance = projectile.instantiate()
 		find_parent("combat_manager").find_child("skill_holder").add_child(projectile_instance)
 		projectile_instance.global_position = self.global_position
 		if(skill_damage + damage_boost > 0):
-			projectile_instance.damage = skill_damage + damage_boost
+			if(double_damage):	
+				projectile_instance.damage = (skill_damage + damage_boost)*2
+			else:
+				projectile_instance.damage = skill_damage + damage_boost
 		elif(skill_heal > 0):
-			projectile_instance.damage = -skill_heal
+			if(double_damage):
+				projectile_instance.damage = -skill_heal*2
+			else:
+				projectile_instance.damage = -skill_heal
 		if skill_does_splash:
 			projectile_instance.enemies_in_splash_zone = enemies_in_splash_zone
 		projectile_instance.target_enemy(enemy)

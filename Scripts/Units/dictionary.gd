@@ -46,7 +46,11 @@ var unit_scenes = {
 	#Werewolf
 	30: preload("res://Prefabs/Units/Level1/werewolf_unit_LVL1.tscn"),
 	31: preload("res://Prefabs/Units/Level2/werewolf_unit_LVL2.tscn"),
-	32: preload("res://Prefabs/Units/Level3/werewolf_unit_LVL3.tscn")
+	32: preload("res://Prefabs/Units/Level3/werewolf_unit_LVL3.tscn"),
+	#Antitank
+	33: preload("res://Prefabs/Units/Level1/antitank_unit_LVL1.tscn"),
+	34: preload("res://Prefabs/Units/Level2/antitank_unit_LVL2.tscn"),
+	35: preload("res://Prefabs/Units/Level3/antitank_unit_LVL3.tscn")
 }
 
 var item_scenes = {
@@ -93,7 +97,11 @@ var item_scenes = {
 	#Werewolf
 	30: preload("res://Prefabs/Shop Items/Level1/werewolf_item_LVL1.tscn"),
 	31: preload("res://Prefabs/Shop Items/Level2/werewolf_item_LVL2.tscn"),
-	32: preload("res://Prefabs/Shop Items/Level3/werewolf_item_LVL3.tscn")
+	32: preload("res://Prefabs/Shop Items/Level3/werewolf_item_LVL3.tscn"),
+	#Antitank
+	33: preload("res://Prefabs/Shop Items/Level1/antitank_item_LVL1.tscn"),
+	34: preload("res://Prefabs/Shop Items/Level2/antitank_item_LVL2.tscn"),
+	35: preload("res://Prefabs/Shop Items/Level3/antitank_item_LVL3.tscn")
 }
 
 var booster_scenes = {

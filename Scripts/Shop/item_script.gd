@@ -147,6 +147,8 @@ func update_label_text():
 	if(!bought and !item_has_transformed):
 		transform_item(unit)	
 func transform_item(unit):
+	attack_label = find_child("Attack")
+	defense_label = find_child("Defense")
 	if(!item_has_transformed):
 		#Checks for transforming various items
 		if(unit_name == "Werewolf"):
@@ -384,6 +386,9 @@ func upgrade_unit(ID, dmg_bst, hlth_bst):
 		new_ID = ID + 1
 	#Add the newly upgraded unit to the tile we are on
 	get_parent().add_child(upgraded_unit)
+	#Tells the new item to check if it should transform into something else
+	var unit_for_checking_transforming = dictionary_instance.unit_scenes[ID+1].instantiate()
+	upgraded_unit.transform_item(unit_for_checking_transforming)
 	#Set the newly upgraded unit's position
 	upgraded_unit.position = Vector2(0,0)
 	#Purchase the unit
