@@ -53,6 +53,8 @@ var unit_types : Array = [
 @export var Animal : bool
 @export var Fantasy : bool
 
+##Does the unit have no weaknesses
+@export var no_weaknesses : bool
 
 #How much damage will be applied to this unit, this turn
 var damage_done_to_self : int = 0

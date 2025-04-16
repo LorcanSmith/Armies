@@ -25,9 +25,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if((belongs_to_player and area.get_parent().is_in_group("enemy")) or (!belongs_to_player and area.get_parent().is_in_group("player")) and (!area.is_in_group("buff_location"))):
 		var effective = false
 		if(!area.get_parent().is_in_group("headquarter")):
-			for type in effective_against:
-				if(type != null and area.get_parent().unit_types.has(type)):
-					effective = true
+			if (!area.get_parent().no_weaknesses):
+				for type in effective_against:
+					if(type != null and area.get_parent().unit_types.has(type)):
+						effective = true
 			if(effective):
 				#Do damage to the enemy
 				target.hurt(damage * 2)

@@ -9,6 +9,7 @@
 max_health = 12
 brawl_damage = 5
 Fantasy = true
+no_weaknesses = true
 skill_max_once_per_unit = true
 skill_damage = 6
 projectile = ExtResource("2_im1nf")
