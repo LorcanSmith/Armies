@@ -81,18 +81,19 @@ func load_units():
 						if(unit_IDs[width][height] != null):
 							#Spawn an item. Reference the UnitDictionary to find out what item to spawn
 							instance = dictionary_instance.item_scenes[int(unit_IDs[width][height][0])].instantiate()
+			
 							#Add unit ID
 							instance.unit_ID = unit_IDs[width][height][0]
 							tiles[width][height].add_child(instance)
 							instance.position = Vector2i(0,0)
 							tiles[width][height].unit_placed_on(instance)
-							#Tell the item it has already been bought
-							instance.bought = true
 							instance.cost_label.visible = false
 							instance.damage_boost += unit_IDs[width][height][1]
 							instance.health_boost += unit_IDs[width][height][2]
 							instance.update_label_text()
-
+							#Gets the unit version so we can check if the item needs to be transformed
+							var unit_version = dictionary_instance.unit_scenes[int(unit_IDs[width][height][0])].instantiate()
+							instance.transform_item(unit_version)
 				height += 1
 			width += 1
 		

@@ -155,7 +155,7 @@ _data = {
 z_index = 1
 z_as_relative = false
 script = ExtResource("1_mdv0s")
-show_tooltip_time = 0.3
+show_tooltip_time = 0.8
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -163,6 +163,7 @@ texture = ExtResource("5_1nmpe")
 
 [node name="shadow" type="Sprite2D" parent="Sprite2D"]
 modulate = Color(0, 0, 0, 0.254902)
+z_index = 2
 z_as_relative = false
 texture_filter = 1
 position = Vector2(0, 22)

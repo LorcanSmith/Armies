@@ -4,6 +4,8 @@ var disabled : bool = false
 @export var base_id : int = -1
 @export var base_name : String
 @export var description : String
+@export var start_of_shop_desc : String
+@export var before_combat_desc : String
 var tooltip : Node2D
 @export var show_tooltip_time : float = 1.4
 var current_time_till_tooltip : float

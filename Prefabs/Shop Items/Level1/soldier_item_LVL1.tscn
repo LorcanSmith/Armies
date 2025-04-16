@@ -10,7 +10,7 @@
 radius = 1.41421
 
 [node name="Soldier" instance=ExtResource("1_akiqe")]
-description = "Gives other soldiers that are above and below, +1 health and +1 attack at the end of the shop phase"
+before_combat_desc = "Gives other soldiers that are above and below, +1 health and +1 attack"
 unit_name = "Soldier"
 buy_cost = 5
 sell_cost = 2

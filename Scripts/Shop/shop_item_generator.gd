@@ -30,6 +30,7 @@ func show_new_units():
 		var chosen_unit = choose_random_unit(x)
 		#Spawns in the chosen unit as a new unit in the shop
 		var new_unit = chosen_unit[0].instantiate()
+		new_unit.bought = false
 		new_unit.unit_ID = chosen_unit[1]
 		#Sets the new units' parent to be the unit location in the shop
 		unit_locations[x].add_child(new_unit)
@@ -87,9 +88,9 @@ func choose_random_unit(loc : int):
 	var random_unit = int(floor((((dictionary_instance.item_scenes.size())/3)) * seed_number_as_percentage))
 	var random_unit_position = random_unit*3
 	var random_level
-	print("Random Unit: ", random_unit)
-	print("Position: ", random_unit_position)
-	print("Percentage: ", percentage)
+	#print("Random Unit: ", random_unit)
+	#print("Position: ", random_unit_position)
+	#print("Percentage: ", percentage)
 	if(percentage <= level2_percentage):
 		random_level = 2
 		if(percentage <= level3_percentage):
