@@ -290,7 +290,6 @@ func skill(phase : String):
 									skill_instance.global_position = closest_unit.global_position
 								elif(skill_heal > 0 and friendlies_in_range.size() > 0):
 									skill_instance.global_position = closest_unit.global_position
-
 							else:
 								if(skill_damage + damage_boost > 0 and enemies_in_range.size() > 0):
 									skill_instance.global_position = closest_unit.global_position
@@ -300,16 +299,19 @@ func skill(phase : String):
 									for area in friendly_areas:
 										if (self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy")):
 											enemies_in_splash_zone.append(area.get_parent())
+							skill_instance.target = closest_unit
 						#Loops through all enemies and sets the skill to be their location
 						else:
 							if(skill_damage + damage_boost > 0):
 								#Stops a crash that probably happens because the enemy is dead
 								if(enemies_in_range.size() > 0):
 									skill_instance.global_position = enemies_in_range[unit_number].global_position
+									skill_instance.target = enemies_in_range[unit_number]
 							elif(skill_heal > 0):
 								#Stops a crash that probably happens because the enemy is dead
 								if(friendlies_in_range.size() > 0):
 									skill_instance.global_position = friendlies_in_range[unit_number].global_position
+									skill_instance.target = friendlies_in_range[unit_number]
 					#If the skill spawns at a random location
 					elif(skill_spawn_random and enemies_in_range.size() > 0):
 						#Gets the current percentage seed
@@ -324,6 +326,7 @@ func skill(phase : String):
 						#Roudns the number to the nearest whole number and converts it to an int
 						var enemy_chosen : int = floor(random_enemy_in_range)
 						skill_instance.global_position = enemies_in_range[enemy_chosen].global_position
+						skill_instance.target = enemies_in_range[enemy_chosen]
 					unit_number += 1
 					skills_spawned += 1
 		#No units in range or reloading
