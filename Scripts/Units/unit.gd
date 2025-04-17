@@ -327,20 +327,22 @@ func skill(phase : String):
 						skill_instance.target = enemies_in_range[enemy_chosen]
 					unit_number += 1
 					skills_spawned += 1
-		#No units in range or reloading
-		else:
-			#Check if there is a unit in front of you
-			if(movement_locations[0].movement_tile != null and movement_locations[0].movement_tile.units_on_tile.size() > 0):
-				#Unit on the tile in front of you
-				var unit_in_front = movement_locations[0].movement_tile.units_on_tile[0]
-				#Check if the unit front of you in an enemy
-				if((unit_in_front and unit_in_front.is_in_group("enemy") and self.is_in_group("player")) or (unit_in_front and unit_in_front.is_in_group("player") and self.is_in_group("enemy"))):
-					#Do brawl damage to the enemy in front of you
-					unit_in_front.hurt(brawl_damage + damage_boost)
-					unit_in_front.projectile_hit(brawl_damage + damage_boost)
-			elif(movement_locations[0].hq != null):
-				movement_locations[0].hq.hurt(brawl_damage + damage_boost)
-				movement_locations[0].hq.projectile_hit(brawl_damage + damage_boost)
+			#No units in range or reloading
+			else:
+				#Check if there is a unit in front of you
+				if(movement_locations[0].movement_tile != null and movement_locations[0].movement_tile.units_on_tile.size() > 0):
+					#Unit on the tile in front of you
+					var unit_in_front = movement_locations[0].movement_tile.units_on_tile[0]
+					#Check if the unit front of you in an enemy
+					if((unit_in_front and unit_in_front.is_in_group("enemy") and self.is_in_group("player")) or (unit_in_front and unit_in_front.is_in_group("player") and self.is_in_group("enemy"))):
+						#Do brawl damage to the enemy in front of you
+						unit_in_front.hurt(brawl_damage + damage_boost)
+						unit_in_front.projectile_hit(brawl_damage + damage_boost)
+
+				elif(movement_locations[0].hq != null):
+					movement_locations[0].hq.hurt(brawl_damage + damage_boost)
+					movement_locations[0].hq.projectile_hit(brawl_damage + damage_boost)
+
 	#If there is another unit on this tile then they will brawl
 	else:
 		brawl()
