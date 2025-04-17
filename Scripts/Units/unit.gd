@@ -71,7 +71,7 @@ var damage_done_to_self : int = 0
 ##The amount of damage the unit's skill does
 @export var skill_heal : int
 ##If a unit is currently reloading
-@export var reloading : bool
+var reloading : bool
 ##The amount of time it takes for a unit to reload
 @export var reload_time : int = 1
 ##skill does splash damage
