@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp42rgjnilwmo"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_tdv0x"]
+[ext_resource type="Texture2D" uid="uid://d23b4hvev5y4w" path="res://Sprites/Units/Animals/chicken_sprite_lvl1.png" id="2_100og"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="2_be7t1"]
+
+[node name="Item" instance=ExtResource("1_tdv0x")]
+description = "Cheep and weak"
+unit_name = "Chicken"
+buy_cost = 2
+sell_cost = 1
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_100og")
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("2_be7t1")]
+position = Vector2(74, 0)
