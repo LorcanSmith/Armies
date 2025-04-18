@@ -11,7 +11,6 @@ brawl_damage = 3
 Army = true
 Vehicle = true
 skill_damage = 5
-reload_time = 2
 skill_shooots_closest_enemy = true
 projectile = ExtResource("2_pbhl7")
 

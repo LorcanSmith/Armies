@@ -11,7 +11,6 @@ brawl_damage = 1
 Medieval = true
 Vehicle = true
 skill_damage = 2
-reload_time = 2
 skill_does_splash = true
 skill_shooots_closest_enemy = true
 projectile = ExtResource("2_8kyy5")
