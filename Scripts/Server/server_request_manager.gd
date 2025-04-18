@@ -15,7 +15,7 @@ signal upload_complete
 func _init():
 	request_handler = HTTPRequest.new()
 	add_child(request_handler)
-	#TODO ENV VARS
+	#TODO CONFIG INSTEAD OF HARDCODING
 	url_base = "http://127.0.0.1:8000"
 	self.user_logged_in = false
 
@@ -32,7 +32,6 @@ func login(username : String, password : String):
 	var request_headers = PackedStringArray(["Content-Type", "application/json"])
 	var error = self.request_handler.request(self.url_base + endpoint, headers, HTTPClient.METHOD_POST)
 	return error
-	
 	
 # THESE FOLLOING FUNCTIONS ARE FOR EASE OF
 # EARLY WORK. GET USED FOR TEMP UPLOAD LOGIN
@@ -63,27 +62,29 @@ func _login_request(username : String, password : String):
 ## This function will upload the grid and the turn number to be stored in the database [br][br]
 ## 
 ## Parameters [br]
-## grid_string - the grid as a stringified JSON object [br]
+## grid - the users unit grid which will be stringified for request [br]
 ## turn - the turn number, [br]
 ## grid_string is going to be the grid data as a stringified JSON object like we save in the grid_manager.gd
 ## save_layout and load_layout functions
 ## They will be associated with the user logged in within method
 ## 
 ## RETURNS - See HTTPRequest error codes
-func upload(grid_string : String, turn : int):
+func upload(grid : Array, turn : int):
 	
 #	TEMP UNTIL PROPER LOGIN
 	if !user_logged_in:
 		await _login("","")
 	
-	print("ENTER upload_and_retrieve")
 	var endpoint = "/api/upload"
 	
 	var _on_upload_and_retrieve = func(result, response_code, headers, body):
 		var json = JSON.parse_string(body.get_string_from_utf8())
+		json["enemy_game_state"] = str_to_var(json["enemy_game_state"])
 		upload_complete.emit(json)
-	
+
 	self.request_handler.request_completed.connect(_on_upload_and_retrieve)
+	
+	var grid_string = JSON.stringify(grid)
 	var request_body = {
 		"game_state": grid_string,
 		"turn" : turn,
@@ -93,6 +94,5 @@ func upload(grid_string : String, turn : int):
 	var headers = ["Content-Type: application/json"]
 	print(self.url_base + endpoint)
 	var error = self.request_handler.request(self.url_base + endpoint, headers, HTTPClient.METHOD_POST, str(request_body))
-	print(error)
 		
 	return error
