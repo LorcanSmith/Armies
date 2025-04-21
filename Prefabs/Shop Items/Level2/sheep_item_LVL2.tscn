@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://qg22x6i83lfe"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_6k7b1"]
+[ext_resource type="Texture2D" uid="uid://b5pnb4gvip5me" path="res://Sprites/Units/Animals/sheep/sheep_sprite_lvl1.png" id="2_tja53"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_7bkee"]
+
+[node name="Sheep" instance=ExtResource("1_6k7b1")]
+before_combat_desc = "Gives + 3 gold"
+unit_name = "Sheep"
+buy_cost = 7
+sell_cost = 3
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_tja53")
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("3_7bkee")]
+position = Vector2(74, 0)

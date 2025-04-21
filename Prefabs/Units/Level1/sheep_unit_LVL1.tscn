@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckfcmt80kwgtj"]
+
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_gumnu"]
+[ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_al3cm"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_5gnp6"]
+[ext_resource type="Texture2D" uid="uid://b5pnb4gvip5me" path="res://Sprites/Units/Animals/sheep/sheep_sprite_lvl1.png" id="4_gumnu"]
+
+[node name="Sheep" instance=ExtResource("1_gumnu")]
+max_health = 5
+brawl_damage = 3
+Animal = true
+Sheep = true
+skill_damage = 2
+projectile = ExtResource("2_al3cm")
+
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_5gnp6")]
+position = Vector2(74, 0)
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("4_gumnu")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-2, -0.5)

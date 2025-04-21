@@ -27,6 +27,7 @@ var army_exclusive : bool = true
 var medieval_units : Array
 var army_units : Array
 
+
 func _ready() -> void:
 	base_sprite = find_child("base_sprite")
 func set_base(id, n, d, play_anim : bool):
@@ -44,7 +45,7 @@ func start_of_turn():
 	if(current_base_ID == 1):
 		#Give 8 gold
 		find_parent("shop_manager").change_money(-5)
-
+	
 func end_of_turn():
 	var current_parent = get_parent()
 	#Tell game manager what the current base is
@@ -54,8 +55,7 @@ func end_of_turn():
 	gm.base_description = base_description
 	gm.base_sprite = base_sprites[current_base_ID]
 	army = gm.army_units
-	set_bools()
-	
+	check_units()
 	#Castle
 	if(current_base_ID == 0):
 		#Give medieval units +1 health
@@ -84,7 +84,7 @@ func end_of_turn():
 				army_units[x].damage_boost += 1
 				x += 1
 				
-func set_bools():
+func check_units():
 	var dictionary_instance = dictionary.new()
 	var x = 0
 	while x < army.size():
@@ -92,14 +92,21 @@ func set_bools():
 		while y < army[x].size():
 			if(army[x][y].units_on_tile.size() > 0):
 				var unit = dictionary_instance.unit_scenes[army[x][y].units_on_tile[0].unit_ID].instantiate()
+				##THEMES
+				#Medieval
 				if(!unit.Medieval):
 					medieval_exclusive = false
 				else:
 					medieval_units.append(army[x][y].units_on_tile[0])
+				#Army
 				if(!unit.Army):
 					army_exclusive = false
 				else:
 					army_units.append(army[x][y].units_on_tile[0])
+				##UNITS
+				#Sheep
+				if(unit.Sheep):
+					army[x][y].units_on_tile[0].spawn_coin(army[x][y].units_on_tile[0].sell_cost)
 				unit.queue_free()
 			y += 1
 		x+= 1

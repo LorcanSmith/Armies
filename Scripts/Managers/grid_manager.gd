@@ -95,7 +95,6 @@ func load_units():
 							instance.transform_item(unit_version)
 				height += 1
 			width += 1
-		
 func load_layout(file_to_load : String):
 	var current_turn_number
 	#If we're in combat then load this turn number army

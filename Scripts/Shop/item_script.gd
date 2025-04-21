@@ -496,3 +496,16 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 		cost_label.visible = false
 		#Make the sell location size back to normal
 		area.get_parent().scale = Vector2(1,1)
+
+
+var coin : PackedScene = preload("res://Prefabs/Effects/UI/coin_effect.tscn")
+func spawn_coin(amount):
+	var coins_left = amount
+	while coins_left > 0:
+		var c = coin.instantiate()
+		find_parent("shop_manager").find_child("buff_animation_holder").add_child(c)
+		c.global_position = self.global_position
+		c.global_position.x += randf_range(-10,10)
+		c.global_position.y += randf_range(-10,10)
+		coins_left -= 1
+		await get_tree().create_timer(0.1).timeout
