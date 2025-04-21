@@ -279,3 +279,6 @@ func _on_confirm_name_button_pressed() -> void:
 	current_scene.queue_free()
 	create_scene()
 	name_canvas.queue_free()
+	
+func set_enemy_name(enemy_name: String):
+	CombatManager.find_child("enemy_team_name").text = enemy_name

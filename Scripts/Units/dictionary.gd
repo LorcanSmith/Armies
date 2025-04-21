@@ -51,7 +51,7 @@ var unit_scenes = {
 	33: preload("res://Prefabs/Units/Level1/antitank_unit_LVL1.tscn"),
 	34: preload("res://Prefabs/Units/Level2/antitank_unit_LVL2.tscn"),
 	35: preload("res://Prefabs/Units/Level3/antitank_unit_LVL3.tscn"),
-  #Orc
+	#Orc
 	36: preload("res://Prefabs/Units/Level1/orc_unit_LVL1.tscn"),
 	37: preload("res://Prefabs/Units/Level2/orc_unit_LVL2.tscn"),
 	38: preload("res://Prefabs/Units/Level3/orc_unit_LVL3.tscn"),
@@ -114,7 +114,7 @@ var item_scenes = {
 	33: preload("res://Prefabs/Shop Items/Level1/antitank_item_LVL1.tscn"),
 	34: preload("res://Prefabs/Shop Items/Level2/antitank_item_LVL2.tscn"),
 	35: preload("res://Prefabs/Shop Items/Level3/antitank_item_LVL3.tscn"),
-  #Orc
+	#Orc
 	36: preload("res://Prefabs/Shop Items/Level1/orc_item_LVL1.tscn"),
 	37: preload("res://Prefabs/Shop Items/Level2/orc_item_LVL2.tscn"),
 	38: preload("res://Prefabs/Shop Items/Level3/orc_item_LVL3.tscn"),
