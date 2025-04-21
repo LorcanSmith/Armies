@@ -62,7 +62,11 @@ var unit_scenes = {
 	#Sheep
 	42: preload("res://Prefabs/Units/Level1/sheep_unit_LVL1.tscn"),
 	43: preload("res://Prefabs/Units/Level2/sheep_unit_LVL2.tscn"),
-	44: preload("res://Prefabs/Units/Level3/sheep_unit_LVL3.tscn")
+	44: preload("res://Prefabs/Units/Level3/sheep_unit_LVL3.tscn"),
+	#Pig
+	45: preload("res://Prefabs/Units/Level1/pig_unit_LVL1.tscn"),
+	46: preload("res://Prefabs/Units/Level2/pig_unit_LVL2.tscn"),
+	47: preload("res://Prefabs/Units/Level3/pig_unit_LVL3.tscn")
 }
 
 var item_scenes = {
@@ -125,7 +129,11 @@ var item_scenes = {
 	#Sheep
 	42: preload("res://Prefabs/Shop Items/Level1/sheep_item_LVL1.tscn"),
 	43: preload("res://Prefabs/Shop Items/Level2/sheep_item_LVL2.tscn"),
-	44: preload("res://Prefabs/Shop Items/Level3/sheep_item_LVL3.tscn")
+	44: preload("res://Prefabs/Shop Items/Level3/sheep_item_LVL3.tscn"),
+	#Pig
+	45: preload("res://Prefabs/Shop Items/Level1/pig_item_LVL1.tscn"),
+	46: preload("res://Prefabs/Shop Items/Level2/pig_item_LVL2.tscn"),
+	47: preload("res://Prefabs/Shop Items/Level3/pig_item_LVL3.tscn")
 }
 
 var booster_scenes = {

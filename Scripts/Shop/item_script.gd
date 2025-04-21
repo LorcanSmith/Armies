@@ -61,7 +61,8 @@ var mouse_pressed : bool = false
 var item_hovered_scale = 1.2
 var item_clicked_scale = 1.4
 
-
+@export_group("Item Abilities")
+@export var increase_higher_level_unit_perecentage : float
 
 @export_group("Item buffs")
 ##Is this item a boost item

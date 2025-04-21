@@ -29,17 +29,17 @@ func load_units():
 		if game_manager.debug_mode:
 			enemy_unit_IDs = game_manager.enemy_army
 		else:
-			var error_code = await ServerRequestManager.upload(unit_IDs, game_manager.turn_number)
-			var enemy_team_info_response = await ServerRequestManager.upload_complete
-			if(error_code == OK and !enemy_team_info_response["error"]):				
-				enemy_unit_IDs = enemy_team_info_response["enemy_game_state"]
-				game_manager.enemy_army = enemy_unit_IDs
-				game_manager.set_enemy_name(enemy_team_info_response["enemy_user"])
-			else:
-#				TODO For now we will just not deal with the error, but in the future we should handle this better
-#				such as with a retry
-				var error_string = enemy_team_info_response["message"] + " SERVER ERROR CODE = " + enemy_team_info_response["code"] if error_code == OK else "Error with request - " + str(error_code)
-				print(error_string)
+			#var error_code = await ServerRequestManager.upload(unit_IDs, game_manager.turn_number)
+			#var enemy_team_info_response = await ServerRequestManager.upload_complete
+			#if(error_code == OK and !enemy_team_info_response["error"]):				
+				#enemy_unit_IDs = enemy_team_info_response["enemy_game_state"]
+				#game_manager.enemy_army = enemy_unit_IDs
+				#game_manager.set_enemy_name(enemy_team_info_response["enemy_user"])
+			#else:
+##				TODO For now we will just not deal with the error, but in the future we should handle this better
+##				such as with a retry
+				#var error_string = enemy_team_info_response["message"] + " SERVER ERROR CODE = " + enemy_team_info_response["code"] if error_code == OK else "Error with request - " + str(error_code)
+				#print(error_string)
 
 #				if we can't get enemy data from the server default to the previous local method 
 				enemy_unit_IDs = load_layout("enemy")
@@ -104,11 +104,18 @@ func load_units():
 							instance.damage_boost += unit_IDs[width][height][1]
 							instance.health_boost += unit_IDs[width][height][2]
 							instance.update_label_text()
+							#Increase shop percentages if the unit can do it
+							get_parent().find_child("shop_item_generator").level2_percentage += instance.increase_higher_level_unit_perecentage/100
+							get_parent().find_child("shop_item_generator").level3_percentage += instance.increase_higher_level_unit_perecentage/100
+							print(find_parent("shop_manager").find_child("shop_item_generator").level2_percentage)
 							#Gets the unit version so we can check if the item needs to be transformed
 							var unit_version = dictionary_instance.unit_scenes[int(unit_IDs[width][height][0])].instantiate()
 							instance.transform_item(unit_version)
 				height += 1
 			width += 1
+	#units have been loaded in
+	if(!game_manager.in_combat):
+		get_parent().find_child("shop_item_generator").show_new_units()
 func load_layout(file_to_load : String):
 	var current_turn_number
 	#If we're in combat then load this turn number army

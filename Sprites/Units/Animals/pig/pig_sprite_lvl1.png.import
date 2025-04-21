@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1vx58dil5tdu"
-path="res://.godot/imported/chicken_sprite_lvl1.png-ce2754b486f2b85d0f3bb8a68c2978f7.ctex"
+uid="uid://vw8ox3yl80lo"
+path="res://.godot/imported/pig_sprite_lvl1.png-e3057956cfaf98c7fadec7eaf9b3ba5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Units/Animals/chicken/chicken_sprite_lvl1.png"
-dest_files=["res://.godot/imported/chicken_sprite_lvl1.png-ce2754b486f2b85d0f3bb8a68c2978f7.ctex"]
+source_file="res://Sprites/Units/Animals/pig/pig_sprite_lvl1.png"
+dest_files=["res://.godot/imported/pig_sprite_lvl1.png-e3057956cfaf98c7fadec7eaf9b3ba5f.ctex"]
 
 [params]
 
