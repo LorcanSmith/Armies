@@ -15,7 +15,6 @@ func _ready() -> void:
 	game_manager = find_parent("game_manager")
 	money += game_manager.money_remaining
 	game_manager.money_changed(money)
-	find_child("shop_item_generator").show_new_units()
 #Called when we want to add or take away money
 func change_money(amount : int):
 	money -= amount

@@ -61,7 +61,8 @@ var mouse_pressed : bool = false
 var item_hovered_scale = 1.2
 var item_clicked_scale = 1.4
 
-
+@export_group("Item Abilities")
+@export var increase_higher_level_unit_perecentage : float
 
 @export_group("Item buffs")
 ##Is this item a boost item
@@ -79,6 +80,7 @@ var damage_buff_visual = preload("res://Prefabs/Effects/Buffs/buff_damage.tscn")
 var health_buff_visual = preload("res://Prefabs/Effects/Buffs/buff_health.tscn")
 var buffs_work_against : Array = []
 @export_subgroup("Buffs work for")
+@export var All : bool
 @export var Medieval : bool
 @export var Army : bool
 @export var Vehicle : bool
@@ -439,13 +441,16 @@ func buff():
 				var unit_dictionary = dictionary_instance.unit_scenes[unit.unit_ID].instantiate()
 				var can_buff_unit
 				var b = 0
-				while b < buffs_work_against.size():
-					if(buffs_work_against[b] != null):
-						if(unit_dictionary.get(buffs_work_against[b])):
-							can_buff_unit = true
-					b += 1
+				if(!All):
+					while b < buffs_work_against.size():
+						if(buffs_work_against[b] != null):
+							if(unit_dictionary.get(buffs_work_against[b])):
+								can_buff_unit = true
+						b += 1
+				else:
+					can_buff_unit = true
 				if(can_buff_unit):
-					if(damage_buff > 0):
+					if(damage_buff > 0 or damage_buff < 0):
 						#Delay so the buffs don't all appear at the same time
 						await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
 						unit.damage_boost += damage_buff
@@ -454,7 +459,7 @@ func buff():
 						buff_instance.global_position = self.global_position
 						buff_instance.unit = unit
 						buff_instance.find_child("buff_text").text = str("+",damage_buff)
-					if(health_buff > 0):
+					if(health_buff > 0 or health_buff < 0):
 						#Delay so the buffs don't all appear at the same time
 						await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
 						unit.health_boost += health_buff
@@ -496,3 +501,16 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 		cost_label.visible = false
 		#Make the sell location size back to normal
 		area.get_parent().scale = Vector2(1,1)
+
+
+var coin : PackedScene = preload("res://Prefabs/Effects/UI/coin_effect.tscn")
+func spawn_coin(amount):
+	var coins_left = amount
+	while coins_left > 0:
+		var c = coin.instantiate()
+		find_parent("shop_manager").find_child("buff_animation_holder").add_child(c)
+		c.global_position = self.global_position
+		c.global_position.x += randf_range(-10,10)
+		c.global_position.y += randf_range(-10,10)
+		coins_left -= 1
+		await get_tree().create_timer(0.1).timeout

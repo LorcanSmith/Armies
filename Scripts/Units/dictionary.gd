@@ -58,7 +58,19 @@ var unit_scenes = {
 	#Chicken
 	39: preload("res://Prefabs/Units/Level1/chicken_unit_LVL1.tscn"),
 	40: preload("res://Prefabs/Units/Level2/chicken_unit_LVL2.tscn"),
-	41: preload("res://Prefabs/Units/Level3/chicken_unit_LVL3.tscn")
+	41: preload("res://Prefabs/Units/Level3/chicken_unit_LVL3.tscn"),
+	#Sheep
+	42: preload("res://Prefabs/Units/Level1/sheep_unit_LVL1.tscn"),
+	43: preload("res://Prefabs/Units/Level2/sheep_unit_LVL2.tscn"),
+	44: preload("res://Prefabs/Units/Level3/sheep_unit_LVL3.tscn"),
+	#Pig
+	45: preload("res://Prefabs/Units/Level1/pig_unit_LVL1.tscn"),
+	46: preload("res://Prefabs/Units/Level2/pig_unit_LVL2.tscn"),
+	47: preload("res://Prefabs/Units/Level3/pig_unit_LVL3.tscn"),
+	#Stegosaurus
+	48: preload("res://Prefabs/Units/Level1/stegosaurus_unit_LVL1.tscn"),
+	49: preload("res://Prefabs/Units/Level2/stegosaurus_unit_LVL2.tscn"),
+	50: preload("res://Prefabs/Units/Level3/stegosaurus_unit_LVL3.tscn")
 }
 
 var item_scenes = {
@@ -114,10 +126,22 @@ var item_scenes = {
 	36: preload("res://Prefabs/Shop Items/Level1/orc_item_LVL1.tscn"),
 	37: preload("res://Prefabs/Shop Items/Level2/orc_item_LVL2.tscn"),
 	38: preload("res://Prefabs/Shop Items/Level3/orc_item_LVL3.tscn"),
-	#Orc
+	#Chicken
 	39: preload("res://Prefabs/Shop Items/Level1/chicken_item_LVL1.tscn"),
 	40: preload("res://Prefabs/Shop Items/Level2/chicken_item_LVL2.tscn"),
-	41: preload("res://Prefabs/Shop Items/Level3/chicken_item_LVL3.tscn")
+	41: preload("res://Prefabs/Shop Items/Level3/chicken_item_LVL3.tscn"),
+	#Sheep
+	42: preload("res://Prefabs/Shop Items/Level1/sheep_item_LVL1.tscn"),
+	43: preload("res://Prefabs/Shop Items/Level2/sheep_item_LVL2.tscn"),
+	44: preload("res://Prefabs/Shop Items/Level3/sheep_item_LVL3.tscn"),
+	#Pig
+	45: preload("res://Prefabs/Shop Items/Level1/pig_item_LVL1.tscn"),
+	46: preload("res://Prefabs/Shop Items/Level2/pig_item_LVL2.tscn"),
+	47: preload("res://Prefabs/Shop Items/Level3/pig_item_LVL3.tscn"),
+	#Stegosaurus
+	48: preload("res://Prefabs/Shop Items/Level1/stegosaurus_item_LVL1.tscn"),
+	49: preload("res://Prefabs/Shop Items/Level2/stegosaurus_item_LVL2.tscn"),
+	50: preload("res://Prefabs/Shop Items/Level3/stegosaurus_item_LVL3.tscn")
 }
 
 var booster_scenes = {

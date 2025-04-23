@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://2fpmnxjeercl"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_e6jqx"]
+[ext_resource type="Texture2D" uid="uid://cs8y5s85d4vxc" path="res://Sprites/Units/Dinosaurs/stegosaurus/stegosaurus_sprite_lvl1.png" id="2_ykicd"]
+[ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="3_ebj87"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_ocv2b"]
+
+[node name="Stegosaurus" instance=ExtResource("1_e6jqx")]
+description = "Look out for that tail!"
+before_combat_desc = "Deals 2 damage to units behind"
+unit_name = "Stegosaurus"
+buy_cost = 5
+sell_cost = 2
+can_buff = true
+health_buff = -2
+All = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_ykicd")
+
+[node name="buff_location" parent="buffs" index="0" instance=ExtResource("3_ebj87")]
+modulate = Color(1, 0.00999999, 0.00999999, 1)
+position = Vector2(-74, 0)
+rotation = 3.14159
+
+[node name="buff_location2" parent="buffs" index="1" instance=ExtResource("3_ebj87")]
+modulate = Color(1, 0.00999999, 0.00999999, 1)
+position = Vector2(-74, 74)
+rotation = 3.14159
+
+[node name="buff_location3" parent="buffs" index="2" instance=ExtResource("3_ebj87")]
+modulate = Color(1, 0.00999999, 0.00999999, 1)
+position = Vector2(-74, -74)
+rotation = 3.14159
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("3_ocv2b")]
+position = Vector2(74, 0)
+
+[node name="skill_location2" parent="skills" index="1" instance=ExtResource("3_ocv2b")]
+position = Vector2(74, 74)
+
+[node name="skill_location3" parent="skills" index="2" instance=ExtResource("3_ocv2b")]
+position = Vector2(74, -74)

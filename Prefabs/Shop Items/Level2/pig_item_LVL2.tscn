@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://nqudsyw6jqf1"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_kkjjq"]
+[ext_resource type="Texture2D" uid="uid://vw8ox3yl80lo" path="res://Sprites/Units/Animals/pig/pig_sprite_lvl1.png" id="2_yjwmd"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_0fjtd"]
+
+[node name="Pig" instance=ExtResource("1_kkjjq")]
+description = "Increase the chance of higher level units by +2%"
+unit_name = "Pig"
+buy_cost = 10
+sell_cost = 5
+increase_higher_level_unit_perecentage = 2.0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_yjwmd")
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("3_0fjtd")]
+position = Vector2(74, 0)

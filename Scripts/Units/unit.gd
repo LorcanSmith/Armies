@@ -41,7 +41,8 @@ var unit_types : Array = [
 	"Human",
 	"Soldier",
 	"Animal",
-	"Fantasy"
+	"Fantasy",
+	"Sheep"
 ]
 @export var Medieval : bool
 @export var Army : bool
@@ -50,6 +51,7 @@ var unit_types : Array = [
 @export var Soldier : bool
 @export var Animal : bool
 @export var Fantasy : bool
+@export var Sheep : bool
 
 ##Does the unit have no weaknesses
 @export var no_weaknesses : bool

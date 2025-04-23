@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://12cegujycmqt"]
+
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_c0ag6"]
+[ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_wrfdc"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_ft4l6"]
+[ext_resource type="Texture2D" uid="uid://vw8ox3yl80lo" path="res://Sprites/Units/Animals/pig/pig_sprite_lvl1.png" id="4_uqvio"]
+
+[node name="Pig" instance=ExtResource("1_c0ag6")]
+max_health = 5
+brawl_damage = 4
+Animal = true
+skill_damage = 3
+projectile = ExtResource("2_wrfdc")
+
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_ft4l6")]
+position = Vector2(74, 0)
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("4_uqvio")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-2, -0.5)
