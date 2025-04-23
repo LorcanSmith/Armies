@@ -37,6 +37,8 @@ var brawling_grid : Node2D
 var unit_types : Array = [
 	"Medieval",
 	"Army",
+	"Dinosaur",
+	"Healer",
 	"Vehicle",
 	"Human",
 	"Soldier",
@@ -46,6 +48,8 @@ var unit_types : Array = [
 ]
 @export var Medieval : bool
 @export var Army : bool
+@export var Dinosaur : bool
+@export var Healer : bool
 @export var Vehicle : bool
 @export var Human : bool
 @export var Soldier : bool
