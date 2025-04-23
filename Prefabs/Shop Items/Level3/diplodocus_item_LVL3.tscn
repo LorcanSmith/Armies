@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgamfykn6ggqm"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_wp4pe"]
+[ext_resource type="Texture2D" uid="uid://crfy5hco2bwgi" path="res://Sprites/Units/Dinosaurs/diplodocus/diplodocus_sprite_lvl1.png" id="2_v6jq2"]
+[ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="3_q5uec"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_u2nqt"]
+
+[node name="Diplodocus" instance=ExtResource("1_wp4pe")]
+description = "Friendly herbivor"
+before_combat_desc = "Gives units in range +3 Health/+3 Attack if they have less health than this unit"
+unit_name = "Diplodocus"
+can_be_upgraded = false
+buy_cost = 10
+sell_cost = 5
+can_buff = true
+damage_buff = 3
+health_buff = 3
+All = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_v6jq2")
+
+[node name="buff_location" parent="buffs" index="0" instance=ExtResource("3_q5uec")]
+position = Vector2(74, 0)
+
+[node name="buff_location7" parent="buffs" index="1" instance=ExtResource("3_q5uec")]
+position = Vector2(0, 74)
+
+[node name="buff_location8" parent="buffs" index="2" instance=ExtResource("3_q5uec")]
+position = Vector2(0, -74)
+
+[node name="buff_location2" parent="buffs" index="3" instance=ExtResource("3_q5uec")]
+position = Vector2(74, 74)
+
+[node name="buff_location3" parent="buffs" index="4" instance=ExtResource("3_q5uec")]
+position = Vector2(74, -74)
+
+[node name="buff_location4" parent="buffs" index="5" instance=ExtResource("3_q5uec")]
+position = Vector2(-74, 0)
+
+[node name="buff_location5" parent="buffs" index="6" instance=ExtResource("3_q5uec")]
+position = Vector2(-74, 74)
+
+[node name="buff_location6" parent="buffs" index="7" instance=ExtResource("3_q5uec")]
+position = Vector2(-74, -74)
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("4_u2nqt")]
+position = Vector2(74, 0)

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bc4a50jyyqr3e"]
+
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_31syq"]
+[ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_c1xcj"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_udu2h"]
+[ext_resource type="Texture2D" uid="uid://crfy5hco2bwgi" path="res://Sprites/Units/Dinosaurs/diplodocus/diplodocus_sprite_lvl1.png" id="4_mxmp0"]
+
+[node name="Diplodocus" instance=ExtResource("1_31syq")]
+max_health = 15
+brawl_damage = 4
+Animal = true
+skill_damage = 1
+projectile = ExtResource("2_c1xcj")
+
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_udu2h")]
+position = Vector2(74, 0)
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("4_mxmp0")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-2, -0.5)
