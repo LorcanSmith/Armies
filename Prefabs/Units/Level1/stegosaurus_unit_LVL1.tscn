@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://de2gc5aaek8vo"]
+
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_7dhe7"]
+[ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_e27eo"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_pg4u0"]
+[ext_resource type="Texture2D" uid="uid://cs8y5s85d4vxc" path="res://Sprites/Units/Dinosaurs/stegosaurus/stegosaurus_sprite_lvl1.png" id="4_7dhe7"]
+
+[node name="Stegosaurus" instance=ExtResource("1_7dhe7")]
+max_health = 8
+brawl_damage = 4
+Animal = true
+skill_spawn_amount = 3
+skill_max_once_per_unit = true
+skill_damage = 3
+projectile = ExtResource("2_e27eo")
+
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_pg4u0")]
+position = Vector2(74, 0)
+
+[node name="unit_skill_location2" parent="skill_locations" index="1" instance=ExtResource("3_pg4u0")]
+position = Vector2(74, 74)
+
+[node name="unit_skill_location3" parent="skill_locations" index="2" instance=ExtResource("3_pg4u0")]
+position = Vector2(74, -74)
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("4_7dhe7")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-2, -0.5)
