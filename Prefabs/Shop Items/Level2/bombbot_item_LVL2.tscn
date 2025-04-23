@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7cde4n5wxmy1"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_5uvs6"]
+[ext_resource type="Texture2D" uid="uid://c2nb5n823lpsa" path="res://Sprites/Units/Sci-fi/Bombbot/bombbot_sprite_lvl1.png" id="2_0esy3"]
+
+[node name="Bomb_bot" instance=ExtResource("1_5uvs6")]
+description = "Explodes on contact with an enemy"
+unit_name = "Bomb Bot"
+buy_cost = 10
+sell_cost = 5
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_0esy3")
