@@ -15,6 +15,8 @@ var tooltip : Node2D
 #damage and health gained from buffs
 var damage_boost : int
 var health_boost : int
+var current_health : int
+var current_damage : int
 @export var description : String
 @export var before_combat_desc : String
 @export var start_of_shop_desc : String
@@ -135,6 +137,8 @@ func update_label_text():
 	var unit = dictionary_instance.unit_scenes[unit_ID].instantiate()
 	attack_label.text = str(unit.skill_damage + damage_boost)
 	defense_label.text = str(unit.max_health + health_boost)
+	current_damage = unit.skill_damage + damage_boost
+	current_health = unit.max_health + health_boost
 	cost_label.text = str(buy_cost)
 	
 	#Sets the skill_locations to be green if they heal friendlies
@@ -162,12 +166,16 @@ func transform_item(unit):
 				health_boost = doubled_health - unit.max_health
 				attack_label.text = str(doubled_attack)
 				defense_label.text = str(doubled_health)
+				current_health = doubled_health
+				current_damage = doubled_attack
 			elif(find_parent("game_manager").turn_number % 2 != 0 and bought):
 				find_child("Sprite2D").texture = unit.regular_sprite
 				damage_boost = (damage_boost - unit.skill_damage) / 2
 				health_boost = (health_boost - unit.max_health) / 2
 				attack_label.text = str(unit.skill_damage + damage_boost)
 				defense_label.text = str(unit.max_health + health_boost)
+				current_health = unit.skill_damage + damage_boost
+				current_damage = unit.max_health + health_boost
 		item_has_transformed = true
 func toggle_skill_location():
 	if(!disabled):
@@ -450,24 +458,30 @@ func buff():
 				else:
 					can_buff_unit = true
 				if(can_buff_unit):
-					if(damage_buff > 0 or damage_buff < 0):
-						#Delay so the buffs don't all appear at the same time
-						await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
-						unit.damage_boost += damage_buff
-						var buff_instance = damage_buff_visual.instantiate()
-						find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
-						buff_instance.global_position = self.global_position
-						buff_instance.unit = unit
-						buff_instance.find_child("buff_text").text = str("+",damage_buff)
-					if(health_buff > 0 or health_buff < 0):
-						#Delay so the buffs don't all appear at the same time
-						await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
-						unit.health_boost += health_buff
-						var buff_instance = health_buff_visual.instantiate()
-						find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
-						buff_instance.global_position = self.global_position
-						buff_instance.unit = unit
-						buff_instance.find_child("buff_text").text = str("+",health_buff)
+					##Checks for specific units
+					#Diplodocus
+					if(unit_ID == 51 or unit_ID == 52 or unit_ID == 53):
+						if(unit_dictionary.max_health + unit.health_boost >= self.current_health):
+							can_buff_unit = false
+					if(can_buff_unit):
+						if(damage_buff > 0 or damage_buff < 0):
+							#Delay so the buffs don't all appear at the same time
+							await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
+							unit.damage_boost += damage_buff
+							var buff_instance = damage_buff_visual.instantiate()
+							find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
+							buff_instance.global_position = self.global_position
+							buff_instance.unit = unit
+							buff_instance.find_child("buff_text").text = str("+",damage_buff)
+						if(health_buff > 0 or health_buff < 0):
+							#Delay so the buffs don't all appear at the same time
+							await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
+							unit.health_boost += health_buff
+							var buff_instance = health_buff_visual.instantiate()
+							find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
+							buff_instance.global_position = self.global_position
+							buff_instance.unit = unit
+							buff_instance.find_child("buff_text").text = str("+",health_buff)
 			buff_loc += 1
 
 

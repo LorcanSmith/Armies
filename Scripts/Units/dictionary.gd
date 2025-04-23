@@ -70,7 +70,11 @@ var unit_scenes = {
 	#Stegosaurus
 	48: preload("res://Prefabs/Units/Level1/stegosaurus_unit_LVL1.tscn"),
 	49: preload("res://Prefabs/Units/Level2/stegosaurus_unit_LVL2.tscn"),
-	50: preload("res://Prefabs/Units/Level3/stegosaurus_unit_LVL3.tscn")
+	50: preload("res://Prefabs/Units/Level3/stegosaurus_unit_LVL3.tscn"),
+	#Diplodocus
+	51: preload("res://Prefabs/Units/Level1/diplodocus_unit_LVL1.tscn"),
+	52: preload("res://Prefabs/Units/Level2/diplodocus_unit_LVL2.tscn"),
+	53: preload("res://Prefabs/Units/Level3/diplodocus_unit_LVL3.tscn")
 }
 
 var item_scenes = {
@@ -141,7 +145,11 @@ var item_scenes = {
 	#Stegosaurus
 	48: preload("res://Prefabs/Shop Items/Level1/stegosaurus_item_LVL1.tscn"),
 	49: preload("res://Prefabs/Shop Items/Level2/stegosaurus_item_LVL2.tscn"),
-	50: preload("res://Prefabs/Shop Items/Level3/stegosaurus_item_LVL3.tscn")
+	50: preload("res://Prefabs/Shop Items/Level3/stegosaurus_item_LVL3.tscn"),
+	#Diplodocus
+	51: preload("res://Prefabs/Shop Items/Level1/diplodocus_item_LVL1.tscn"),
+	52: preload("res://Prefabs/Shop Items/Level2/diplodocus_item_LVL2.tscn"),
+	53: preload("res://Prefabs/Shop Items/Level3/diplodocus_item_LVL3.tscn")
 }
 
 var booster_scenes = {
