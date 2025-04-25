@@ -240,6 +240,7 @@ _data = {
 
 [node name="game_manager" type="Node2D" node_paths=PackedStringArray("health_text", "coin_text", "turn_text", "wins_text", "health_counter", "turn_counter", "win_counter")]
 script = ExtResource("1_y45oy")
+auto_create_armies_at_runtime = true
 health_text = NodePath("UI/HBoxContainer/heart_control/HEALTH")
 coin_text = NodePath("UI/HBoxContainer/dollar_control/COINS")
 turn_text = NodePath("UI/HBoxContainer/turn_control/TURN")

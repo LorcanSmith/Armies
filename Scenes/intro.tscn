@@ -14,29 +14,31 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hwjxs")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 159.0
-offset_right = 585.0
-offset_bottom = 654.0
-color = Color(0.122162, 0.193228, 0.464963, 1)
-
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 674.0
-offset_top = 161.0
-offset_right = 1255.0
-offset_bottom = 651.0
+offset_left = 463.0
+offset_top = -42.0
+offset_right = 1498.0
+offset_bottom = 580.0
+rotation = 0.319723
 mouse_filter = 2
 color = Color(0.339636, 0.133142, 0.292786, 1)
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -192.0
+offset_top = 376.0
+offset_right = 449.0
+offset_bottom = 990.0
+rotation = -0.710953
+color = Color(0.0490807, 0.177297, 0.530594, 1)
+
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 23.0
-offset_top = 12.0
-offset_right = 3223.0
-offset_bottom = 614.0
+offset_left = 625.0
+offset_top = 249.0
+offset_right = 3825.0
+offset_bottom = 851.0
 scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/normal_font_size = 300
 text = "Welcome to our playtest"
@@ -50,11 +52,16 @@ offset_right = 4528.0
 offset_bottom = 4700.0
 scale = Vector2(0.11, 0.11)
 theme_override_font_sizes/normal_font_size = 300
-text = "All feedback is greatly appreciated. We need to know your thoughts on all aspects of the game
+text = "AREAS OF FOCUS:	
+- How fun is the game
+- How fun are the units
+- What units suck
 
-AREAS OF FOCUS:
-- How intuitive is everything: UI, tooltips, etc
-- How fun is the gameplay loop"
+ARES NOT TO WORRY ABOUT:
+- Visuals
+- Lack of unit variety
+- The crash that happens on turn 9
+"
 fit_content = true
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="."]
@@ -66,18 +73,15 @@ offset_bottom = 4693.0
 scale = Vector2(0.11, 0.11)
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 300
-text = "How our game works:
-Each turn you receive 15 coins to spend on units. You place these units on a grid and then when you are happy with your \"Army\" you go to battle! Fighting an enemy team, you must destroy their base before they destroy yours. 
-You must get 10 wins/draws to beat the game. You lose life every time you lose a battle."
 fit_content = true
 
 [node name="TextureButton" type="TextureButton" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 1066.0
-offset_top = 609.0
-offset_right = 1139.0
-offset_bottom = 649.0
+offset_left = 1031.0
+offset_top = 392.0
+offset_right = 1104.0
+offset_bottom = 432.0
 scale = Vector2(2.69, 2.69)
 texture_normal = ExtResource("2_duh1u")
 texture_pressed = ExtResource("3_geirw")
@@ -97,10 +101,10 @@ fit_content = true
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 32.0001
-offset_top = 74.0
-offset_right = 502.0
-offset_bottom = 264.0
+offset_left = 1137.0
+offset_top = 337.0
+offset_right = 1607.0
+offset_bottom = 527.0
 scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/normal_font_size = 100
 text = "ver: 0.04"
