@@ -37,6 +37,8 @@ var brawling_grid : Node2D
 var unit_types : Array = [
 	"Medieval",
 	"Army",
+	"Dinosaur",
+	"Healer",
 	"Vehicle",
 	"Human",
 	"Soldier",
@@ -46,6 +48,8 @@ var unit_types : Array = [
 ]
 @export var Medieval : bool
 @export var Army : bool
+@export var Dinosaur : bool
+@export var Healer : bool
 @export var Vehicle : bool
 @export var Human : bool
 @export var Soldier : bool
@@ -86,7 +90,8 @@ var enemies_in_splash_zone : Array
 #internal timer that keeps track of a unit's current reload
 var reloading_counter : int
 
-
+#Does the unit destroy itself
+@export var self_destruction : bool
 
 @export_subgroup("Skill Projectile")
 @export var projectile : PackedScene
@@ -174,14 +179,14 @@ func set_unit_types():
 		x+=1
 	
 func find_movement_tile():
-	if(enemies_in_range.size() == 0 or skill_damage + damage_boost <= 0):
+	if(enemies_in_range.size() == 0 or skill_damage + damage_boost <= 0 or self_destruction):
 		var moved_distance = 0
 		#The unit has already found a tile this turn
 		moved = true
 		#Moves the unit forward until it has moved its maximum distance
 		while(moved_distance < move_distance):
 			#If the tile it is trying to move to is empty
-			if(movement_locations[0].movement_tile != null and (movement_locations[0].movement_tile.is_empty or movement_locations[0].movement_tile.units_on_tile[0] == null)):
+			if(movement_locations[0].movement_tile != null and (movement_locations[0].movement_tile.is_empty or movement_locations[0].movement_tile.units_on_tile[0] == null) or self_destruction):
 				#Sets the tile it wishes to move to
 				tile_to_move_to = movement_locations[0].movement_tile
 				#Tells the tile we're currently on to be empty
@@ -365,6 +370,10 @@ func brawl():
 		if(unit and unit != self):
 			unit.hurt(brawl_damage)
 			unit.projectile_hit(brawl_damage)
+			#Check for self destruction
+			if(self_destruction):
+				alive = false
+				destroy_unit()
 
 func projectile_hit(amount : int):
 	if(alive):

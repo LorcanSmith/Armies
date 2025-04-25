@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://06ouanydaoo0"]
+
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_agrxf"]
+[ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_ior7b"]
+[ext_resource type="Texture2D" uid="uid://c2nb5n823lpsa" path="res://Sprites/Units/Sci-fi/Bombbot/bombbot_sprite_lvl1.png" id="4_agrxf"]
+
+[node name="Bomb Bot" instance=ExtResource("1_agrxf")]
+max_health = 10
+brawl_damage = 8
+skill_spawn_amount = 0
+self_destruction = true
+projectile = ExtResource("2_ior7b")
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("4_agrxf")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-2, -0.5)
