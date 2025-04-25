@@ -33,6 +33,8 @@ var tile_to_move_to : Node2D
 var brawl_effect : PackedScene = preload("res://Prefabs/Effects/brawl_effect.tscn")
 var current_brawl_effect = null
 var brawling_grid : Node2D
+##Does the unit have no weaknesses
+@export var no_weaknesses : bool
 @export_subgroup("Unit Types")
 var unit_types : Array = [
 	"Medieval",
@@ -44,7 +46,8 @@ var unit_types : Array = [
 	"Soldier",
 	"Animal",
 	"Fantasy",
-	"Sheep"
+	"Sheep",
+	"Velociraptor"
 ]
 @export var Medieval : bool
 @export var Army : bool
@@ -56,9 +59,9 @@ var unit_types : Array = [
 @export var Animal : bool
 @export var Fantasy : bool
 @export var Sheep : bool
+@export var Velociraptor : bool
 
-##Does the unit have no weaknesses
-@export var no_weaknesses : bool
+
 
 #How much damage will be applied to this unit, this turn
 var damage_done_to_self : int = 0

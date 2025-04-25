@@ -89,6 +89,7 @@ var buffs_work_against : Array = []
 @export var Human : bool
 @export var Soldier : bool
 @export var Animal : bool
+@export var Velociraptor : bool
 
 
 var item_has_transformed : bool
