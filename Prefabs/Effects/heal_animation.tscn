@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cwefhvoo3dhqh"]
 
-[ext_resource type="Texture2D" uid="uid://cl51wxccrk8j1" path="res://Sprites/Effects/Heal1.png" id="1_d0xyp"]
+[ext_resource type="Texture2D" uid="uid://cl51wxccrk8j1" path="res://Sprites/Effects/heal1.png" id="1_d0xyp"]
 [ext_resource type="Script" uid="uid://c4cg8tnold5q5" path="res://Scripts/Effects/projectile.gd" id="2_d0xyp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d0xyp"]
