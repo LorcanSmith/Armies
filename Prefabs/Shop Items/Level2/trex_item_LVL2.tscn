@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh6uakd600j6l"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_qspyt"]
+[ext_resource type="Texture2D" uid="uid://bp2jr24mqh5rl" path="res://Sprites/Units/Dinosaurs/Trex/T-rex-lvl2.png" id="2_0wq5s"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_eguhs"]
+
+[node name="Trex" instance=ExtResource("1_qspyt")]
+description = "Look out for that tail!"
+unit_name = "Trex"
+buy_cost = 10
+sell_cost = 5
+All = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_0wq5s")
+
+[node name="shadow" parent="Sprite2D" index="0"]
+texture = ExtResource("2_0wq5s")
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("4_eguhs")]
+position = Vector2(74, 0)

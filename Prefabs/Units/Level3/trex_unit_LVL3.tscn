@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dflydrri0mlk7"]
+
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_bkx32"]
+[ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_juvyl"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_8q0kl"]
+[ext_resource type="Texture2D" uid="uid://cs203hesy7jjg" path="res://Sprites/Units/Dinosaurs/Trex/T-rex-lvl3.png" id="4_jrofk"]
+
+[node name="Trex" instance=ExtResource("1_bkx32")]
+max_health = 20
+move_distance = 3
+brawl_damage = 16
+Animal = true
+skill_max_once_per_unit = true
+skill_damage = 16
+projectile = ExtResource("2_juvyl")
+
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_8q0kl")]
+position = Vector2(74, 0)
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("4_jrofk")
+
+[node name="shadow" parent="Sprite2D" index="0"]
+texture = ExtResource("4_jrofk")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-2, -0.5)
