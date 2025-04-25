@@ -74,7 +74,11 @@ var unit_scenes = {
 	#Diplodocus
 	51: preload("res://Prefabs/Units/Level1/diplodocus_unit_LVL1.tscn"),
 	52: preload("res://Prefabs/Units/Level2/diplodocus_unit_LVL2.tscn"),
-	53: preload("res://Prefabs/Units/Level3/diplodocus_unit_LVL3.tscn")
+	53: preload("res://Prefabs/Units/Level3/diplodocus_unit_LVL3.tscn"),
+	#Trex
+	60: preload("res://Prefabs/Units/Level1/trex_unit_LVL1.tscn"),
+	61: preload("res://Prefabs/Units/Level2/trex_unit_LVL2.tscn"),
+	62: preload("res://Prefabs/Units/Level3/trex_unit_LVL3.tscn")
 }
 
 var item_scenes = {
@@ -149,7 +153,11 @@ var item_scenes = {
 	#Diplodocus
 	51: preload("res://Prefabs/Shop Items/Level1/diplodocus_item_LVL1.tscn"),
 	52: preload("res://Prefabs/Shop Items/Level2/diplodocus_item_LVL2.tscn"),
-	53: preload("res://Prefabs/Shop Items/Level3/diplodocus_item_LVL3.tscn")
+	53: preload("res://Prefabs/Shop Items/Level3/diplodocus_item_LVL3.tscn"),
+	#Trex
+	60: preload("res://Prefabs/Shop Items/Level1/trex_item_LVL1.tscn"),
+	61: preload("res://Prefabs/Shop Items/Level2/trex_item_LVL2.tscn"),
+	62: preload("res://Prefabs/Shop Items/Level3/trex_item_LVL3.tscn")
 }
 
 var booster_scenes = {

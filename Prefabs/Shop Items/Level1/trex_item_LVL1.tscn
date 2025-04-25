@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://de5k3155ugt5p"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_3h762"]
+[ext_resource type="Texture2D" uid="uid://b31avwgtikfkb" path="res://Sprites/Units/Dinosaurs/Trex/T-rex-lvl1.png" id="2_3h762"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_qeb88"]
+
+[node name="Trex" instance=ExtResource("1_3h762")]
+description = "Look out for that jaw!"
+unit_name = "Trex"
+buy_cost = 6
+sell_cost = 3
+All = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_3h762")
+
+[node name="shadow" parent="Sprite2D" index="0"]
+texture = ExtResource("2_3h762")
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("4_qeb88")]
+position = Vector2(74, 0)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl51wxccrk8j1"
-path="res://.godot/imported/Heal1.png-d738e26e095cd0a930f5aebc7fcce376.ctex"
+uid="uid://bp2jr24mqh5rl"
+path="res://.godot/imported/T-rex-lvl2.png-95c57a33ddf33631b6ced2f9a3283263.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Effects/Heal1.png"
-dest_files=["res://.godot/imported/Heal1.png-d738e26e095cd0a930f5aebc7fcce376.ctex"]
+source_file="res://Sprites/Units/Dinosaurs/Trex/T-rex-lvl2.png"
+dest_files=["res://.godot/imported/T-rex-lvl2.png-95c57a33ddf33631b6ced2f9a3283263.ctex"]
 
 [params]
 
