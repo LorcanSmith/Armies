@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmtgn16c2s0u3"]
+
+[ext_resource type="PackedScene" uid="uid://coklokvg6mem2" path="res://Prefabs/Shop Items/Boosters/booster.tscn" id="1_vnedk"]
+[ext_resource type="Texture2D" uid="uid://cs8y5s85d4vxc" path="res://Sprites/Units/Dinosaurs/stegosaurus/stegosaurus_sprite_lvl1.png" id="2_vnedk"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_6m5sb"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_twhhr"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_qmgfn"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_m0wcc"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_g8x8p"]
+
+[node name="booster_dinosaur" instance=ExtResource("1_vnedk")]
+booster_name = "Dinosaur Crate"
+booster_description = "Gives a random selection of 5 dinosaur units. Choose one to gain for free."
+booster_image = ExtResource("2_vnedk")
+buy_cost = 8
+potential_units_IDs = [48, 51]
+
+[node name="symbol" parent="booster_button" index="0"]
+position = Vector2(16, 12.1538)
+texture = ExtResource("2_vnedk")
+
+[node name="unit_button" parent="choose_unit_UI/Container/unit_locations/location_1" index="0"]
+button_group = SubResource("ButtonGroup_6m5sb")
+
+[node name="unit_button" parent="choose_unit_UI/Container/unit_locations/location_2" index="0"]
+button_group = SubResource("ButtonGroup_twhhr")
+
+[node name="unit_button" parent="choose_unit_UI/Container/unit_locations/location_3" index="0"]
+button_group = SubResource("ButtonGroup_qmgfn")
+
+[node name="unit_button" parent="choose_unit_UI/Container/unit_locations/location_4" index="0"]
+button_group = SubResource("ButtonGroup_m0wcc")
+
+[node name="unit_button" parent="choose_unit_UI/Container/unit_locations/location_6" index="0"]
+button_group = SubResource("ButtonGroup_g8x8p")
