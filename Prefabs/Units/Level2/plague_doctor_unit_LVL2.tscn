@@ -10,6 +10,7 @@
 max_health = 7
 brawl_damage = 1
 Medieval = true
+Healer = true
 Human = true
 skill_spawn_amount = 2
 skill_max_once_per_unit = true

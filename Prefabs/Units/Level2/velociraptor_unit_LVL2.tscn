@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bye858n8ty8mc"]
+
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_br58g"]
+[ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_0tt03"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_cqs52"]
+[ext_resource type="Texture2D" uid="uid://cspyn7seap7nm" path="res://Sprites/Units/Dinosaurs/velociraptor/velociraptor_sprite_lvl1.png" id="4_1jo85"]
+
+[node name="Velociraptor" instance=ExtResource("1_br58g")]
+max_health = 4
+brawl_damage = 5
+Dinosaur = true
+Animal = true
+Velociraptor = true
+skill_max_once_per_unit = true
+skill_damage = 6
+projectile = ExtResource("2_0tt03")
+
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_cqs52")]
+position = Vector2(74, 0)
+
+[node name="unit_skill_location2" parent="skill_locations" index="1" instance=ExtResource("3_cqs52")]
+position = Vector2(0, 74)
+
+[node name="unit_skill_location3" parent="skill_locations" index="2" instance=ExtResource("3_cqs52")]
+position = Vector2(0, -74)
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("4_1jo85")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-2, -0.5)

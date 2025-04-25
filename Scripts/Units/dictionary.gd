@@ -75,7 +75,15 @@ var unit_scenes = {
 	51: preload("res://Prefabs/Units/Level1/diplodocus_unit_LVL1.tscn"),
 	52: preload("res://Prefabs/Units/Level2/diplodocus_unit_LVL2.tscn"),
 	53: preload("res://Prefabs/Units/Level3/diplodocus_unit_LVL3.tscn"),
-	#Trex
+	#Bomb bot
+	54: preload("res://Prefabs/Units/Level1/bombbot_unit_LVL1.tscn"),
+	55: preload("res://Prefabs/Units/Level2/bombbot_unit_LVL2.tscn"),
+	56: preload("res://Prefabs/Units/Level3/bombbot_unit_LVL3.tscn"),
+	#Velociraptor
+	57: preload("res://Prefabs/Units/Level1/velociraptor_unit_LVL1.tscn"),
+	58: preload("res://Prefabs/Units/Level2/velociraptor_unit_LVL2.tscn"),
+	59: preload("res://Prefabs/Units/Level3/velociraptor_unit_LVL3.tscn"),
+  #Trex
 	60: preload("res://Prefabs/Units/Level1/trex_unit_LVL1.tscn"),
 	61: preload("res://Prefabs/Units/Level2/trex_unit_LVL2.tscn"),
 	62: preload("res://Prefabs/Units/Level3/trex_unit_LVL3.tscn")
@@ -154,7 +162,15 @@ var item_scenes = {
 	51: preload("res://Prefabs/Shop Items/Level1/diplodocus_item_LVL1.tscn"),
 	52: preload("res://Prefabs/Shop Items/Level2/diplodocus_item_LVL2.tscn"),
 	53: preload("res://Prefabs/Shop Items/Level3/diplodocus_item_LVL3.tscn"),
-	#Trex
+	#Bomb Bot
+	54: preload("res://Prefabs/Shop Items/Level1/bombbot_item_LVL1.tscn"),
+	55: preload("res://Prefabs/Shop Items/Level2/bombbot_item_LVL2.tscn"),
+	56: preload("res://Prefabs/Shop Items/Level3/bombbot_item_LVL3.tscn"),
+	#Velociraptor
+	57: preload("res://Prefabs/Shop Items/Level1/velociraptor_item_LVL1.tscn"),
+	58: preload("res://Prefabs/Shop Items/Level2/velociraptor_item_LVL2.tscn"),
+	59: preload("res://Prefabs/Shop Items/Level3/velociraptor_item_LVL3.tscn"),
+  #Trex
 	60: preload("res://Prefabs/Shop Items/Level1/trex_item_LVL1.tscn"),
 	61: preload("res://Prefabs/Shop Items/Level2/trex_item_LVL2.tscn"),
 	62: preload("res://Prefabs/Shop Items/Level3/trex_item_LVL3.tscn")
@@ -162,11 +178,14 @@ var item_scenes = {
 
 var booster_scenes = {
 	0: preload("res://Prefabs/Shop Items/Boosters/booster_medieval.tscn"),
-	1: preload("res://Prefabs/Shop Items/Boosters/booster_army.tscn")
+	1: preload("res://Prefabs/Shop Items/Boosters/booster_army.tscn"),
+	2: preload("res://Prefabs/Shop Items/Boosters/booster_farm.tscn"),
+	3: preload("res://Prefabs/Shop Items/Boosters/booster_dinosaur.tscn")
 }
 
 var base_scenes = {
 	0: preload("res://Prefabs/Shop Items/Bases/castle_base.tscn"),
 	1: preload("res://Prefabs/Shop Items/Bases/bank_base.tscn"),
-	2: preload("res://Prefabs/Shop Items/Bases/army_base.tscn")
+	2: preload("res://Prefabs/Shop Items/Bases/army_base.tscn"),
+	3: preload("res://Prefabs/Shop Items/Bases/hospital_base.tscn")
 }

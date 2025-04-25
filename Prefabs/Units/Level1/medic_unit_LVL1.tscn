@@ -9,6 +9,7 @@
 max_health = 6
 brawl_damage = 1
 Army = true
+Healer = true
 Vehicle = true
 skill_spawn_amount = 3
 skill_max_once_per_unit = true
