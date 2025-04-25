@@ -12,4 +12,7 @@ func _on_area_2d_pressed() -> void:
 		find_parent("base_crate").selected_unit(unit, unit_ID)
 	else:
 		find_parent("choose_unit_UI").get_parent().selected_unit(unit, unit_ID)
-		tooltip.update_tooltip(unit_ID, 0, 0)
+
+
+func _on_unit_button_mouse_entered() -> void:
+	tooltip.update_tooltip(unit_ID, 0, 0)

@@ -234,6 +234,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_to6h8")
 }
 
+[connection signal="mouse_entered" from="select_base_button" to="." method="_on_select_base_button_mouse_entered"]
 [connection signal="pressed" from="select_base_button" to="." method="_on_base_button_pressed"]
 [connection signal="pressed" from="set_base_UI/set_base" to="." method="_on_set_base_pressed"]
 [connection signal="pressed" from="set_base_UI/close_button" to="." method="_on_close_button_pressed"]

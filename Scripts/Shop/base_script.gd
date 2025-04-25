@@ -32,8 +32,6 @@ func _ready() -> void:
 
 
 func _on_base_button_pressed() -> void:
-	#Set the tooltip
-	find_parent("shop_manager").find_child("Tooltip").update_base_tooltip(base_id,base_name, description)
 	find_parent("base_crate").set_current_base(base_id,base_name, description)
 func _on_close_button_pressed() -> void:
 	find_child("set_base_UI").visible = false
@@ -41,3 +39,9 @@ func _on_close_button_pressed() -> void:
 	get_node("AnimationPlayer").play("base_confirm_disappear")
 	find_parent("base_crate").get_node("AnimationPlayer").play("crate_appear")
 	find_parent("base_crate").hide_base_options(true)
+
+
+func _on_select_base_button_mouse_entered() -> void:
+	#Set the tooltip
+	find_parent("shop_manager").find_child("Tooltip").update_base_tooltip(base_id,base_name, description)
+	
