@@ -254,13 +254,21 @@ func select_words():
 	
 	var x = 0
 	while x < adjectives_buttons.size():
-		adjectives_buttons[x].get_child(0).text = chosen_adjectives[x]
-		adjectives_buttons[x].word = chosen_adjectives[x]
+		if(chosen_adjectives[x]):
+			adjectives_buttons[x].get_child(0).text = chosen_adjectives[x]
+			adjectives_buttons[x].word = chosen_adjectives[x]
+		else:
+			adjectives_buttons[x].get_child(0).text = "test2"
+			adjectives_buttons[x].word = "test2"
 		x += 1
 	x = 0
-	while x < nouns_buttons.size():
-		nouns_buttons[x].get_child(0).text = chosen_nouns[x]
-		nouns_buttons[x].word = chosen_nouns[x]
+	while x < nouns_buttons.size():		
+		if(chosen_nouns[x]):
+			nouns_buttons[x].get_child(0).text = chosen_nouns[x]
+			nouns_buttons[x].word = chosen_nouns[x]
+		else:
+			nouns_buttons[x].get_child(0).text = "test"
+			nouns_buttons[x].word = "test"
 		x+=1
 		
 func word_pressed(is_adjective, word):
