@@ -29,9 +29,6 @@ var tile_to_move_to : Node2D
 
 ##Damage done when brawling
 @export var brawl_damage : int
-#brawl sprite
-var brawl_effect : PackedScene = preload("res://Prefabs/Effects/brawl_effect.tscn")
-var current_brawl_effect = null
 var brawling_grid : Node2D
 ##Does the unit have no weaknesses
 @export var no_weaknesses : bool
@@ -189,7 +186,7 @@ func find_movement_tile():
 		#Moves the unit forward until it has moved its maximum distance
 		while(moved_distance < move_distance):
 			#If the tile it is trying to move to is empty
-			if(movement_locations[0].movement_tile != null and (movement_locations[0].movement_tile.is_empty or movement_locations[0].movement_tile.units_on_tile[0] == null) or self_destruction):
+			if(movement_locations[0].movement_tile != null and (movement_locations[0].movement_tile.is_empty or movement_locations[0].movement_tile.units_on_tile[0] == null) or (self_destruction and movement_locations[0].movement_tile.units_on_tile.size() < 2 and (movement_locations[0].movement_tile.is_empty or (movement_locations[0].movement_tile.units_on_tile[0].is_in_group("enemy") and self.is_in_group("player")) or (movement_locations[0].movement_tile.units_on_tile[0].is_in_group("player") and self.is_in_group("enemy"))))):
 				#Sets the tile it wishes to move to
 				tile_to_move_to = movement_locations[0].movement_tile
 				#Tells the tile we're currently on to be empty
@@ -213,9 +210,6 @@ func find_movement_tile():
 var mo = false
 #Moves the unit in a desired direction and distance
 func move():
-	#Deletes brawl effect if any exists
-	if(current_brawl_effect != null):
-		current_brawl_effect.queue_free()
 	if(enemies_in_range.size() == 0 or skill_damage + damage_boost <= 0):
 		if(tile_to_move_to != null):
 			#Set the parent to be the new tile
@@ -223,10 +217,6 @@ func move():
 			#Tell the new tile that this unit is now on it
 			tile_to_move_to.unit_placed_on(self)
 			mo = true
-			#if(current_brawl_effect == null && get_parent().units_on_tile.size() == 2):
-				#current_brawl_effect = brawl_effect.instantiate()
-				#get_parent().add_child(current_brawl_effect)
-				#current_brawl_effect.global_position = Vector2(get_parent().global_position.x, get_parent().global_position.y)
 	if(!mo):
 		combat_manager.w += 1
 		combat_manager.waited_for_move()

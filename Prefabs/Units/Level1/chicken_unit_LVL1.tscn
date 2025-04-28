@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_24xuw"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_88ne0"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_usf70"]
-[ext_resource type="Texture2D" uid="uid://d23b4hvev5y4w" path="res://Sprites/Units/Animals/chicken_sprite_lvl1.png" id="4_24xuw"]
+[ext_resource type="Texture2D" uid="uid://d1vx58dil5tdu" path="res://Sprites/Units/Animals/chicken/chicken_sprite_lvl1.png" id="4_24xuw"]
 
 [node name="Chicken" instance=ExtResource("1_24xuw")]
 max_health = 3
