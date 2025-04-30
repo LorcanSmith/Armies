@@ -66,6 +66,7 @@ var game_over_canvas : CanvasLayer
 func _ready():
 	seed = randi_range(0,9999999999)
 	update_seed_label_text()
+	update_tick_label_text(0)
 	in_combat = false
 	health_text.text = str(life_remaining)
 	coin_text.text = str(0)
@@ -293,3 +294,6 @@ func set_enemy_name(enemy_name: String):
 	
 func update_seed_label_text():
 	find_child("seed").text = str("seed: ", seed)
+	
+func update_tick_label_text(tick: int):
+	find_child("tick").text = str("tick: ", tick)
