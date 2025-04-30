@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://brgi4h0spiup2"]
+[gd_scene load_steps=34 format=3 uid="uid://brgi4h0spiup2"]
 
 [ext_resource type="Script" uid="uid://ceah7wfd5evx8" path="res://Scripts/Managers/game_manager.gd" id="1_y45oy"]
 [ext_resource type="Script" uid="uid://06xxppo51p7p" path="res://Scripts/DEBUGGER_script.gd" id="2_pa0fo"]
@@ -10,8 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="7_6bp64"]
 [ext_resource type="Script" uid="uid://dnofimlexrv7h" path="res://Scenes/coin_notifs.gd" id="7_6iyac"]
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="8_ynf5e"]
+[ext_resource type="FontFile" uid="uid://cubey8ru1acdd" path="res://ShortStack-Regular.ttf" id="9_fdnlq"]
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="9_hptm8"]
-[ext_resource type="Script" path="res://Scripts/UI/name_selection_buttons.gd" id="13_fdnlq"]
+[ext_resource type="Script" uid="uid://b3cnxcvu3kjku" path="res://Scripts/UI/name_selection_buttons.gd" id="13_fdnlq"]
 
 [sub_resource type="Animation" id="Animation_hibaj"]
 length = 0.001
@@ -512,6 +513,17 @@ offset_right = -170.0
 offset_bottom = 135.0
 theme_override_font_sizes/normal_font_size = 100
 text = "seed: 55555555555555555555"
+
+[node name="tick" type="RichTextLabel" parent="UI/version"]
+layout_mode = 0
+offset_left = -3615.0
+offset_top = -10.0
+offset_right = -2145.0
+offset_bottom = 90.0
+theme_override_fonts/normal_font = ExtResource("9_fdnlq")
+theme_override_font_sizes/normal_font_size = 100
+text = "tick:"
+scroll_active = false
 
 [node name="Health" type="AnimationPlayer" parent="UI"]
 libraries = {
