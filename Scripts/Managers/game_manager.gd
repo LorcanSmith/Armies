@@ -189,22 +189,25 @@ func won_battle(won : bool):
 		else:
 			life_remaining -= 3
 			
-		
 	#Update wins/life UI visuals
 	var n = 0
 	while n < wins:
+		if(wins_UI.get_child(n).visible == false):
+			wins_UI.get_child(n).find_child("trophy_gain_anim_player").play("trophy_gain")
 		wins_UI.get_child(n).visible = true
 		n += 1
 	n = 10
 	while n > life_remaining:
-		health_UI.get_child(n-1).visible = false
+		if(health_UI.get_child(n-1).visible == true):
+			health_UI.get_child(n-1).find_child("life_lose_anim_player").play("lose_life")
+			await get_tree().create_timer(.5).timeout
 		n-=1
 			
 			
-		$UI/Health.play("fade_in")	
-		#If we no longer have life left, its game over
-		if(life_remaining <= 0):	
-			show_game_over(false)
+	$UI/Health.play("fade_in")	
+	#If we no longer have life left, its game over
+	if(life_remaining <= 0):	
+		show_game_over(false)
  	
 func show_game_over(win : bool):
 	game_over_canvas.visible = true

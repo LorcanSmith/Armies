@@ -5,8 +5,7 @@
 [node name="Round Lost" instance=ExtResource("1_ac7sx")]
 
 [node name="RichTextLabel" parent="." index="0"]
-offset_left = -467.0
-offset_top = -193.0
-offset_right = 445.0
-offset_bottom = 287.0
+offset_top = 0.0
+offset_right = 442.0
+pivot_offset = Vector2(467, 182)
 text = "Round Lost"
