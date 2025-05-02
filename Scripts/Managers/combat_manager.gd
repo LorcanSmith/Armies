@@ -6,6 +6,8 @@ var current_round_number : int = 0
 #Keeps track of which phase we are in
 var next_phase = "movement"
 
+var tick_counter: int = 0
+
 #Used to keep track of if any healing units exist, if they dont the phase should be skipped
 var healing_unit_alive : bool = false
 # used to end combat and return to store
@@ -71,6 +73,8 @@ func auto_tick():
 	
 func battle_ticker():
 	#If the battle isn't over, keep the units fighting
+	tick_counter += 1
+	game_manager.update_tick_label_text(tick_counter)
 	if(!battle_over):
 		current_round_number += 1
 		var index : int = current_round_number-1
@@ -88,6 +92,7 @@ func battle_ticker():
 			healing_phase()
 	#If the battle is over then go back to the shop
 	else:
+		game_manager.update_tick_label_text(0)
 		game_manager.swap_scenes()
 		
 func update_phase_label(phase : String):

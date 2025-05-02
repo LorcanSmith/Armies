@@ -290,6 +290,8 @@ func skill(phase : String):
 										closest_unit = skill_locations_parent.get_child(z).units_on_node[u]
 									u += 1
 								z+=1
+							if(!closest_unit):
+								closest_unit = enemies_in_range[0]
 							if !skill_does_splash:
 								if(skill_damage + damage_boost > 0 and enemies_in_range.size() > 0):
 									skill_instance.global_position = closest_unit.global_position
@@ -411,6 +413,7 @@ func apply_damage():
 
 #Called when the unit is destroyed
 func destroy_unit():
+	print(self.name , " killed")
 	#Tells parent to remove this unit from its list of units on it
 	get_parent().units_on_tile.erase(self)
 	if(get_parent().units_on_tile.size() == 0):
@@ -419,7 +422,7 @@ func destroy_unit():
 	brawling_grid = get_parent()
 	#Reparent to skill holder so the game waits for the unit to die
 	self.reparent(find_parent("combat_manager").find_child("skill_holder"))
-	#SOnce the damage animation plays, it will be destroyed
+	#Once the damage animation plays, it will be destroyed
 	self.get_node("AnimationPlayer").play("unit_damage")
 
 func skill_area_entered(area: Area2D) -> void:

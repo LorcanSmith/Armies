@@ -122,6 +122,7 @@ func run_report(game_manager : Node2D):
 	game_manager.wins = int(json.data)
 	parse_result = json.parse(lines[5])
 	game_manager.seed = json.data
+	game_manager.update_seed_label_text()
 	parse_result = json.parse(lines[6])
 	game_manager.turn_number = int(json.data)
 	game_manager.swap_scenes()
