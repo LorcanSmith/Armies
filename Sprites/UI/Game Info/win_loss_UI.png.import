@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl51wxccrk8j1"
-path="res://.godot/imported/heal1.png-bfbe69bb0864f9d110555db793655dac.ctex"
+uid="uid://bai14b7ylhbxq"
+path="res://.godot/imported/win_loss_UI.png-3498e8300572190538bc7255bbbf23ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Effects/heal1.png"
-dest_files=["res://.godot/imported/heal1.png-bfbe69bb0864f9d110555db793655dac.ctex"]
+source_file="res://Sprites/UI/Game Info/win_loss_UI.png"
+dest_files=["res://.godot/imported/win_loss_UI.png-3498e8300572190538bc7255bbbf23ba.ctex"]
 
 [params]
 
