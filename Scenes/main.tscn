@@ -1,18 +1,219 @@
-[gd_scene load_steps=34 format=3 uid="uid://brgi4h0spiup2"]
+[gd_scene load_steps=45 format=3 uid="uid://brgi4h0spiup2"]
 
 [ext_resource type="Script" uid="uid://ceah7wfd5evx8" path="res://Scripts/Managers/game_manager.gd" id="1_y45oy"]
 [ext_resource type="Script" uid="uid://06xxppo51p7p" path="res://Scripts/DEBUGGER_script.gd" id="2_pa0fo"]
 [ext_resource type="PackedScene" uid="uid://by8ndrehnsmpn" path="res://Prefabs/Skills/basic_skill.tscn" id="3_0tvwk"]
-[ext_resource type="Texture2D" uid="uid://bos864ovdl3jf" path="res://Sprites/UI/heart.png" id="5_kry3j"]
+[ext_resource type="Texture2D" uid="uid://bai14b7ylhbxq" path="res://Sprites/UI/Game Info/win_loss_UI.png" id="4_jkdf5"]
+[ext_resource type="Texture2D" uid="uid://cy3xxn8wr7x75" path="res://Sprites/UI/Game Info/tab.png" id="5_wsu2k"]
 [ext_resource type="Texture2D" uid="uid://dooe83u72qoig" path="res://Sprites/UI/hourglass.png" id="6_6bp64"]
 [ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="6_21xkr"]
 [ext_resource type="Texture2D" uid="uid://d2avhff76ftql" path="res://Sprites/UI/trohpy.png" id="6_d1ilt"]
+[ext_resource type="Texture2D" uid="uid://dq1uka4twrufg" path="res://Sprites/UI/tooltip/heart.png" id="6_h1bgf"]
+[ext_resource type="Texture2D" uid="uid://c3oes3f56l3w5" path="res://Sprites/UI/top_bar.png" id="6_k12tt"]
 [ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="7_6bp64"]
 [ext_resource type="Script" uid="uid://dnofimlexrv7h" path="res://Scenes/coin_notifs.gd" id="7_6iyac"]
+[ext_resource type="Texture2D" uid="uid://tdmm2wd1rnps" path="res://Sprites/UI/Game Info/win_loss_UI_top.png" id="8_h1bgf"]
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="8_ynf5e"]
 [ext_resource type="FontFile" uid="uid://cubey8ru1acdd" path="res://ShortStack-Regular.ttf" id="9_fdnlq"]
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="9_hptm8"]
 [ext_resource type="Script" uid="uid://b3cnxcvu3kjku" path="res://Scripts/UI/name_selection_buttons.gd" id="13_fdnlq"]
+
+[sub_resource type="Animation" id="Animation_3pmx8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CPUParticles2D:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gt3je"]
+resource_name = "lose_life"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CPUParticles2D:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0333333, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u50mg"]
+_data = {
+&"RESET": SubResource("Animation_3pmx8"),
+&"lose_life": SubResource("Animation_gt3je")
+}
+
+[sub_resource type="Curve" id="Curve_b3802"]
+_limits = [-0.280899, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 0.165257), 0.0, 0.0, 0, 0, Vector2(1, -0.0794092), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_u50mg"]
+resource_name = "trophy_gain"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_cbgmd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1w6v2"]
+_data = {
+&"RESET": SubResource("Animation_cbgmd"),
+&"trophy_gain": SubResource("Animation_u50mg")
+}
 
 [sub_resource type="Animation" id="Animation_hibaj"]
 length = 0.001
@@ -53,34 +254,10 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_6iyac"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/heart_control/HealthCounter:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.819608, 0.301961, 0.301961, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_d1ilt"]
 resource_name = "fade_in"
 length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/heart_control/HealthCounter:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 1.75, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.819608, 0.301961, 0.301961, 0), Color(0.819608, 0.301961, 0.301961, 1), Color(0.819608, 0.301961, 0.301961, 1), Color(0.819608, 0.301961, 0.301961, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fdnlq"]
 _data = {
@@ -90,34 +267,10 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_b3802"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/wins_control/WinCounter:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.882353, 0.85098, 0.172549, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_h1bgf"]
 resource_name = "fade_in"
 length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/wins_control/WinCounter:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 1.75, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.882353, 0.85098, 0.172549, 0), Color(0.882353, 0.85098, 0.172549, 1), Color(0.882353, 0.85098, 0.172549, 1), Color(0.882353, 0.85098, 0.172549, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hibaj"]
 _data = {
@@ -239,16 +392,16 @@ _data = {
 &"name_maker_appear": SubResource("Animation_jkdf5")
 }
 
-[node name="game_manager" type="Node2D" node_paths=PackedStringArray("health_text", "coin_text", "turn_text", "wins_text", "health_counter", "turn_counter", "win_counter")]
+[node name="game_manager" type="Node2D" node_paths=PackedStringArray("health_UI", "wins_UI", "coin_text", "turn_text", "health_counter", "turn_counter", "win_counter")]
 script = ExtResource("1_y45oy")
 auto_create_armies_at_runtime = true
-health_text = NodePath("UI/HBoxContainer/heart_control/HEALTH")
+health_UI = NodePath("UI/heart_trophy_UI/life_bg/life")
+wins_UI = NodePath("UI/heart_trophy_UI/wins_bg/wins")
 coin_text = NodePath("UI/HBoxContainer/dollar_control/COINS")
 turn_text = NodePath("UI/HBoxContainer/turn_control/TURN")
-wins_text = NodePath("UI/HBoxContainer/wins_control/WINS")
-health_counter = NodePath("UI/HBoxContainer/heart_control/HealthCounter")
+health_counter = NodePath("")
 turn_counter = NodePath("UI/HBoxContainer/turn_control/TurnCounter")
-win_counter = NodePath("UI/HBoxContainer/wins_control/WinCounter")
+win_counter = NodePath("")
 
 [node name="DEBUGGER" type="Node2D" parent="."]
 visible = false
@@ -280,6 +433,851 @@ popup/item_0/id = 0
 
 [node name="UI" type="CanvasLayer" parent="."]
 
+[node name="top_bar" type="TextureRect" parent="UI"]
+visible = false
+self_modulate = Color(0.141176, 0.141176, 0.141176, 1)
+z_index = -500
+z_as_relative = false
+offset_left = 313.0
+offset_top = 650.0
+offset_right = 955.0
+offset_bottom = 734.0
+texture = ExtResource("6_k12tt")
+expand_mode = 1
+
+[node name="heart_trophy_UI" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 53.0
+offset_top = 679.0
+offset_right = 53.0
+offset_bottom = 679.0
+grow_horizontal = 2
+
+[node name="life_bg" type="TextureRect" parent="UI/heart_trophy_UI"]
+self_modulate = Color(0.179104, 0.181889, 0.168866, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -329.0
+offset_top = 1.99994
+offset_right = -56.0
+offset_bottom = 37.9999
+grow_horizontal = 2
+texture = ExtResource("4_jkdf5")
+
+[node name="life_fg" type="TextureRect" parent="UI/heart_trophy_UI/life_bg"]
+self_modulate = Color(0.0962048, 0.0962047, 0.0962047, 1)
+z_index = 11
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.5
+offset_top = -6.10352e-05
+offset_right = 136.5
+offset_bottom = 35.9999
+grow_horizontal = 2
+pivot_offset = Vector2(-8, 7)
+texture = ExtResource("8_h1bgf")
+
+[node name="heart" type="TextureRect" parent="UI/heart_trophy_UI/life_bg"]
+z_index = 12
+layout_mode = 0
+offset_left = -19.0
+offset_top = -4.00006
+offset_right = 21.0
+offset_bottom = 35.9999
+texture = ExtResource("6_h1bgf")
+
+[node name="life" type="Control" parent="UI/heart_trophy_UI/life_bg"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -493.0
+offset_top = -35.0
+offset_right = -453.0
+offset_bottom = 5.0
+
+[node name="1" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
+modulate = Color(0.879194, 0.145925, 0, 1)
+z_index = 10
+texture_filter = 1
+offset_left = 497.0
+offset_top = 37.9999
+offset_right = 534.0
+offset_bottom = 67.9999
+texture = ExtResource("5_wsu2k")
+expand_mode = 1
+
+[node name="life_lose_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/life_bg/life/1"]
+libraries = {
+&"": SubResource("AnimationLibrary_u50mg")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/life_bg/life/1"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="2" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
+modulate = Color(0.879194, 0.145925, 0, 1)
+z_index = 10
+texture_filter = 1
+offset_left = 522.0
+offset_top = 37.9999
+offset_right = 559.0
+offset_bottom = 67.9999
+texture = ExtResource("5_wsu2k")
+expand_mode = 1
+
+[node name="life_lose_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/life_bg/life/2"]
+libraries = {
+&"": SubResource("AnimationLibrary_u50mg")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/life_bg/life/2"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="3" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
+modulate = Color(0.879194, 0.145925, 0, 1)
+z_index = 10
+texture_filter = 1
+offset_left = 547.0
+offset_top = 37.9999
+offset_right = 584.0
+offset_bottom = 67.9999
+texture = ExtResource("5_wsu2k")
+expand_mode = 1
+
+[node name="life_lose_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/life_bg/life/3"]
+libraries = {
+&"": SubResource("AnimationLibrary_u50mg")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/life_bg/life/3"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="4" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
+modulate = Color(0.879194, 0.145925, 0, 1)
+z_index = 10
+texture_filter = 1
+offset_left = 572.0
+offset_top = 37.9999
+offset_right = 609.0
+offset_bottom = 67.9999
+texture = ExtResource("5_wsu2k")
+expand_mode = 1
+
+[node name="life_lose_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/life_bg/life/4"]
+libraries = {
+&"": SubResource("AnimationLibrary_u50mg")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/life_bg/life/4"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="5" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
+modulate = Color(0.879194, 0.145925, 0, 1)
+z_index = 10
+texture_filter = 1
+offset_left = 597.0
+offset_top = 37.9999
+offset_right = 634.0
+offset_bottom = 67.9999
+texture = ExtResource("5_wsu2k")
+expand_mode = 1
+
+[node name="life_lose_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/life_bg/life/5"]
+libraries = {
+&"": SubResource("AnimationLibrary_u50mg")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/life_bg/life/5"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="6" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
+modulate = Color(0.879194, 0.145925, 0, 1)
+z_index = 10
+texture_filter = 1
+offset_left = 622.0
+offset_top = 37.9999
+offset_right = 659.0
+offset_bottom = 67.9999
+texture = ExtResource("5_wsu2k")
+expand_mode = 1
+
+[node name="life_lose_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/life_bg/life/6"]
+libraries = {
+&"": SubResource("AnimationLibrary_u50mg")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/life_bg/life/6"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="7" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
+modulate = Color(0.879194, 0.145925, 0, 1)
+z_index = 10
+texture_filter = 1
+offset_left = 647.0
+offset_top = 37.9999
+offset_right = 684.0
+offset_bottom = 67.9999
+texture = ExtResource("5_wsu2k")
+expand_mode = 1
+
+[node name="life_lose_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/life_bg/life/7"]
+libraries = {
+&"": SubResource("AnimationLibrary_u50mg")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/life_bg/life/7"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="8" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
+modulate = Color(0.879194, 0.145925, 0, 1)
+z_index = 10
+texture_filter = 1
+offset_left = 672.0
+offset_top = 37.9999
+offset_right = 709.0
+offset_bottom = 67.9999
+texture = ExtResource("5_wsu2k")
+expand_mode = 1
+
+[node name="life_lose_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/life_bg/life/8"]
+libraries = {
+&"": SubResource("AnimationLibrary_u50mg")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/life_bg/life/8"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="9" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
+modulate = Color(0.879194, 0.145925, 0, 1)
+z_index = 10
+texture_filter = 1
+offset_left = 697.0
+offset_top = 37.9999
+offset_right = 734.0
+offset_bottom = 67.9999
+texture = ExtResource("5_wsu2k")
+expand_mode = 1
+
+[node name="life_lose_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/life_bg/life/9"]
+libraries = {
+&"": SubResource("AnimationLibrary_u50mg")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/life_bg/life/9"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="10" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
+modulate = Color(0.879194, 0.145925, 0, 1)
+z_index = 10
+texture_filter = 1
+offset_left = 722.0
+offset_top = 37.9999
+offset_right = 759.0
+offset_bottom = 67.9999
+texture = ExtResource("5_wsu2k")
+expand_mode = 1
+
+[node name="life_lose_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/life_bg/life/10"]
+libraries = {
+&"": SubResource("AnimationLibrary_u50mg")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/life_bg/life/10"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="wins_bg" type="TextureRect" parent="UI/heart_trophy_UI"]
+self_modulate = Color(0.179104, 0.181889, 0.168866, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 1.99994
+offset_right = 233.0
+offset_bottom = 37.9999
+grow_horizontal = 2
+texture = ExtResource("4_jkdf5")
+
+[node name="wins_fg" type="TextureRect" parent="UI/heart_trophy_UI/wins_bg"]
+self_modulate = Color(0.0962048, 0.0962047, 0.0962047, 1)
+z_index = 2
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.5
+offset_top = -6.10352e-05
+offset_right = 136.5
+offset_bottom = 35.9999
+grow_horizontal = 2
+pivot_offset = Vector2(-8, 7)
+texture = ExtResource("8_h1bgf")
+
+[node name="wins" type="Control" parent="UI/heart_trophy_UI/wins_bg"]
+anchors_preset = 0
+offset_left = -493.5
+offset_right = -453.5
+offset_bottom = 40.0
+
+[node name="1" type="TextureRect" parent="UI/heart_trophy_UI/wins_bg/wins"]
+visible = false
+modulate = Color(0.997394, 0.862578, 0, 1)
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 497.5
+offset_top = 2.99994
+offset_right = 534.5
+offset_bottom = 32.9999
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(1, 28)
+texture = ExtResource("5_wsu2k")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/wins_bg/wins/1"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="trophy_gain_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/wins_bg/wins/1"]
+libraries = {
+&"": SubResource("AnimationLibrary_1w6v2")
+}
+
+[node name="2" type="TextureRect" parent="UI/heart_trophy_UI/wins_bg/wins"]
+visible = false
+modulate = Color(0.997394, 0.862578, 0, 1)
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 522.5
+offset_top = 2.99994
+offset_right = 559.5
+offset_bottom = 32.9999
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(1, 28)
+texture = ExtResource("5_wsu2k")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/wins_bg/wins/2"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="trophy_gain_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/wins_bg/wins/2"]
+libraries = {
+&"": SubResource("AnimationLibrary_1w6v2")
+}
+
+[node name="3" type="TextureRect" parent="UI/heart_trophy_UI/wins_bg/wins"]
+visible = false
+modulate = Color(0.997394, 0.862578, 0, 1)
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 547.5
+offset_top = 2.99994
+offset_right = 584.5
+offset_bottom = 32.9999
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(1, 28)
+texture = ExtResource("5_wsu2k")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/wins_bg/wins/3"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="trophy_gain_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/wins_bg/wins/3"]
+libraries = {
+&"": SubResource("AnimationLibrary_1w6v2")
+}
+
+[node name="4" type="TextureRect" parent="UI/heart_trophy_UI/wins_bg/wins"]
+visible = false
+modulate = Color(0.997394, 0.862578, 0, 1)
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 572.5
+offset_top = 2.99994
+offset_right = 609.5
+offset_bottom = 32.9999
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(1, 28)
+texture = ExtResource("5_wsu2k")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/wins_bg/wins/4"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="trophy_gain_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/wins_bg/wins/4"]
+libraries = {
+&"": SubResource("AnimationLibrary_1w6v2")
+}
+
+[node name="5" type="TextureRect" parent="UI/heart_trophy_UI/wins_bg/wins"]
+visible = false
+modulate = Color(0.997394, 0.862578, 0, 1)
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 596.5
+offset_top = 2.99994
+offset_right = 633.5
+offset_bottom = 32.9999
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(1, 28)
+texture = ExtResource("5_wsu2k")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/wins_bg/wins/5"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="trophy_gain_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/wins_bg/wins/5"]
+libraries = {
+&"": SubResource("AnimationLibrary_1w6v2")
+}
+
+[node name="6" type="TextureRect" parent="UI/heart_trophy_UI/wins_bg/wins"]
+visible = false
+modulate = Color(0.997394, 0.862578, 0, 1)
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 622.5
+offset_top = 2.99994
+offset_right = 659.5
+offset_bottom = 32.9999
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(1, 28)
+texture = ExtResource("5_wsu2k")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/wins_bg/wins/6"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="trophy_gain_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/wins_bg/wins/6"]
+libraries = {
+&"": SubResource("AnimationLibrary_1w6v2")
+}
+
+[node name="7" type="TextureRect" parent="UI/heart_trophy_UI/wins_bg/wins"]
+visible = false
+modulate = Color(0.997394, 0.862578, 0, 1)
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 647.5
+offset_top = 2.99994
+offset_right = 684.5
+offset_bottom = 32.9999
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(1, 28)
+texture = ExtResource("5_wsu2k")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/wins_bg/wins/7"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="trophy_gain_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/wins_bg/wins/7"]
+libraries = {
+&"": SubResource("AnimationLibrary_1w6v2")
+}
+
+[node name="8" type="TextureRect" parent="UI/heart_trophy_UI/wins_bg/wins"]
+visible = false
+modulate = Color(0.997394, 0.862578, 0, 1)
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 672.5
+offset_top = 2.99994
+offset_right = 709.5
+offset_bottom = 32.9999
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(1, 28)
+texture = ExtResource("5_wsu2k")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/wins_bg/wins/8"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="trophy_gain_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/wins_bg/wins/8"]
+libraries = {
+&"": SubResource("AnimationLibrary_1w6v2")
+}
+
+[node name="9" type="TextureRect" parent="UI/heart_trophy_UI/wins_bg/wins"]
+visible = false
+modulate = Color(0.997394, 0.862578, 0, 1)
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 697.5
+offset_top = 2.99994
+offset_right = 734.5
+offset_bottom = 32.9999
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(1, 28)
+texture = ExtResource("5_wsu2k")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/wins_bg/wins/9"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="trophy_gain_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/wins_bg/wins/9"]
+libraries = {
+&"": SubResource("AnimationLibrary_1w6v2")
+}
+
+[node name="10" type="TextureRect" parent="UI/heart_trophy_UI/wins_bg/wins"]
+visible = false
+modulate = Color(0.997394, 0.862578, 0, 1)
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 722.5
+offset_top = 2.99994
+offset_right = 759.5
+offset_bottom = 32.9999
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(1, 28)
+texture = ExtResource("5_wsu2k")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/heart_trophy_UI/wins_bg/wins/10"]
+z_as_relative = false
+position = Vector2(30, 16)
+rotation = 0.504794
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 17.88)
+spread = 0.0
+gravity = Vector2(130.03, 0)
+linear_accel_min = -8.11
+linear_accel_max = 18.92
+scale_amount_max = 2.0
+hue_variation_min = -0.14
+hue_variation_max = -0.01
+hue_variation_curve = SubResource("Curve_b3802")
+
+[node name="trophy_gain_anim_player" type="AnimationPlayer" parent="UI/heart_trophy_UI/wins_bg/wins/10"]
+libraries = {
+&"": SubResource("AnimationLibrary_1w6v2")
+}
+
+[node name="trophy" type="TextureRect" parent="UI/heart_trophy_UI/wins_bg"]
+z_index = 2
+layout_mode = 0
+offset_left = -10.0
+offset_top = -4.00006
+offset_right = 30.0
+offset_bottom = 35.9999
+pivot_offset = Vector2(21, 20)
+texture = ExtResource("6_d1ilt")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 anchors_preset = 10
 anchor_right = 1.0
@@ -289,58 +1287,6 @@ offset_right = 10.0
 offset_bottom = 68.0
 grow_horizontal = 2
 mouse_filter = 2
-
-[node name="heart_control" type="Control" parent="UI/HBoxContainer"]
-custom_minimum_size = Vector2(63.945, 0)
-layout_mode = 2
-
-[node name="heart" type="TextureRect" parent="UI/HBoxContainer/heart_control"]
-texture_filter = 1
-layout_mode = 0
-offset_right = 58.0
-offset_bottom = 58.0
-texture = ExtResource("5_kry3j")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="HEALTH" type="RichTextLabel" parent="UI/HBoxContainer/heart_control"]
-clip_contents = false
-custom_minimum_size = Vector2(82.795, 0)
-layout_mode = 2
-offset_left = -34.0
-offset_top = -18.0
-offset_right = 242.0
-offset_bottom = 258.0
-scale = Vector2(0.21, 0.21)
-pivot_offset = Vector2(42.8571, 19.0476)
-theme_override_font_sizes/normal_font_size = 100
-text = "10
-"
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/HBoxContainer/heart_control"]
-layout_mode = 0
-offset_top = 60.0
-offset_right = 275.0
-offset_bottom = 185.0
-scale = Vector2(0.2, 0.2)
-theme_override_font_sizes/normal_font_size = 101
-text = "LIFE"
-horizontal_alignment = 1
-
-[node name="HealthCounter" type="RichTextLabel" parent="UI/HBoxContainer/heart_control"]
-modulate = Color(0.819608, 0.301961, 0.301961, 0)
-layout_mode = 0
-offset_top = 80.0
-offset_right = 290.0
-offset_bottom = 183.0
-scale = Vector2(0.2, 0.2)
-theme_override_font_sizes/normal_font_size = 101
-text = "-0"
-horizontal_alignment = 1
 
 [node name="dollar_control" type="Control" parent="UI/HBoxContainer"]
 custom_minimum_size = Vector2(63.945, 0)
@@ -384,61 +1330,6 @@ horizontal_alignment = 1
 [node name="CoinNotifs" type="Node2D" parent="UI/HBoxContainer/dollar_control"]
 position = Vector2(0, 82)
 script = ExtResource("7_6iyac")
-
-[node name="wins_control" type="Control" parent="UI/HBoxContainer"]
-custom_minimum_size = Vector2(63.945, 0)
-layout_mode = 2
-
-[node name="Wins" type="TextureRect" parent="UI/HBoxContainer/wins_control"]
-texture_filter = 1
-layout_mode = 0
-offset_right = 58.0
-offset_bottom = 58.0
-texture = ExtResource("6_d1ilt")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="WINS" type="RichTextLabel" parent="UI/HBoxContainer/wins_control"]
-modulate = Color(0, 0, 0, 1)
-clip_contents = false
-custom_minimum_size = Vector2(82.795, 0)
-layout_mode = 2
-offset_left = -32.0
-offset_top = -15.0
-offset_right = 187.0
-offset_bottom = 261.0
-scale = Vector2(0.21, 0.21)
-pivot_offset = Vector2(42.8571, 19.0476)
-theme_override_font_sizes/normal_font_size = 100
-text = "0
-"
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/HBoxContainer/wins_control"]
-layout_mode = 0
-offset_left = -5.0
-offset_top = 60.0
-offset_right = 285.0
-offset_bottom = 185.0
-scale = Vector2(0.2, 0.2)
-theme_override_font_sizes/normal_font_size = 101
-text = "WINS"
-horizontal_alignment = 1
-
-[node name="WinCounter" type="RichTextLabel" parent="UI/HBoxContainer/wins_control"]
-modulate = Color(0.882353, 0.85098, 0.172549, 0)
-layout_mode = 0
-offset_left = -5.0
-offset_top = 81.0
-offset_right = 285.0
-offset_bottom = 184.0
-scale = Vector2(0.2, 0.2)
-theme_override_font_sizes/normal_font_size = 101
-text = "+1"
-horizontal_alignment = 1
 
 [node name="turn_control" type="Control" parent="UI/HBoxContainer"]
 custom_minimum_size = Vector2(63.945, 0)
@@ -516,10 +1407,10 @@ text = "seed: 55555555555555555555"
 
 [node name="tick" type="RichTextLabel" parent="UI/version"]
 layout_mode = 0
-offset_left = -3615.0
-offset_top = -10.0
-offset_right = -2145.0
-offset_bottom = 90.0
+offset_left = -6000.0
+offset_top = -160.0
+offset_right = -4530.0
+offset_bottom = -60.0
 theme_override_fonts/normal_font = ExtResource("9_fdnlq")
 theme_override_font_sizes/normal_font_size = 100
 text = "tick:"

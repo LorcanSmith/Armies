@@ -52,10 +52,10 @@ var life_remaining = 10
 @export var auto_create_armies_at_runtime : bool
 
 var money_remaining : int = 0
-@export var health_text : RichTextLabel
+@export var health_UI : Control
+@export var wins_UI : Control
 @export var coin_text : RichTextLabel
 @export var turn_text : RichTextLabel
-@export var wins_text : RichTextLabel
 @export var health_counter : RichTextLabel
 @export var coin_counter : RichTextLabel
 @export var turn_counter : RichTextLabel
@@ -68,7 +68,6 @@ func _ready():
 	update_seed_label_text()
 	update_tick_label_text(0)
 	in_combat = false
-	health_text.text = str(life_remaining)
 	coin_text.text = str(0)
 	name_canvas = find_child("name_maker_canvas")
 	game_over_canvas = find_child("game_over_canvas")
@@ -185,22 +184,31 @@ func won_battle(won : bool):
 		#Does a different amount of damage based on the turn number
 		if(turn_number == 1):
 			life_remaining -= 1
-			health_counter.text = "-1"
 		elif(turn_number == 2):
 			life_remaining -= 2
-			health_counter.text = "-2"
 		else:
 			life_remaining -= 3
-			health_counter.text = "-3"
 			
-		$UI/Health.play("fade_in")	
-		#If we no longer have life left, its game over
-		if(life_remaining <= 0):	
-			show_game_over(false)
-#	Updates UI text
-	health_text.text = str(life_remaining)
-	wins_text.text = str(wins)
-	
+	#Update wins/life UI visuals
+	var n = 0
+	while n < wins:
+		if(wins_UI.get_child(n).visible == false):
+			wins_UI.get_child(n).find_child("trophy_gain_anim_player").play("trophy_gain")
+		wins_UI.get_child(n).visible = true
+		n += 1
+	n = 10
+	while n > life_remaining:
+		if(health_UI.get_child(n-1).visible == true):
+			health_UI.get_child(n-1).find_child("life_lose_anim_player").play("lose_life")
+			await get_tree().create_timer(.5).timeout
+		n-=1
+			
+			
+	$UI/Health.play("fade_in")	
+	#If we no longer have life left, its game over
+	if(life_remaining <= 0):	
+		show_game_over(false)
+ 	
 func show_game_over(win : bool):
 	game_over_canvas.visible = true
 	if(win):

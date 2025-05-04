@@ -9,7 +9,7 @@
 max_health = 5
 brawl_damage = 1
 Army = true
-skill_damage = 4
+skill_damage = 3
 skill_shooots_closest_enemy = true
 projectile = ExtResource("2_4iijl")
 Vehicle_effective = true

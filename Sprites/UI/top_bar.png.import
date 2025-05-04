@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl51wxccrk8j1"
-path="res://.godot/imported/heal1.png-bfbe69bb0864f9d110555db793655dac.ctex"
+uid="uid://c3oes3f56l3w5"
+path="res://.godot/imported/top_bar.png-8f00d3cfb905296529ce7b04ffe88c08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Effects/heal1.png"
-dest_files=["res://.godot/imported/heal1.png-bfbe69bb0864f9d110555db793655dac.ctex"]
+source_file="res://Sprites/UI/top_bar.png"
+dest_files=["res://.godot/imported/top_bar.png-8f00d3cfb905296529ce7b04ffe88c08.ctex"]
 
 [params]
 
