@@ -181,7 +181,7 @@ func transform_item(unit):
 func toggle_skill_location():
 	if(!disabled):
 		#If the locations haven't been popped in yet, then turn them on and play an animation
-		if(!locations_popped_in):
+		if(!locations_popped_in and shop_manager.find_child("battle_button").visible):
 			#Turn on the buff/skill location tiles
 			var x = 0
 			while x < buff_location.get_child_count():
@@ -211,7 +211,7 @@ func toggle_skill_location():
 #Called when the mouse is hovering over
 func _on_area_2d__mouse_collision_mouse_entered() -> void:
 	if(!disabled):
-		if(!mouse_pressed):
+		if(!mouse_pressed and shop_manager.find_child("battle_button").visible):
 			mouse_over_item = true
 			shop_manager.show_potential_upgrades(true,self)
 			sprite.scale = Vector2(item_hovered_scale,item_hovered_scale)
