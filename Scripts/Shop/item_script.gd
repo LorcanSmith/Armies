@@ -240,7 +240,7 @@ func _input(event):
 				#Checks to see if a pressed event happened whilst the mouse was over the item 
 				if(event.pressed):
 					mouse_pressed = true
-					if(mouse_over_item):
+					if(mouse_over_item and shop_manager.find_child("battle_button").visible):
 						#Follow the mouse
 						follow_mouse = true
 						sprite.position = Vector2(0,0)
@@ -296,7 +296,7 @@ func _process(delta: float) -> void:
 				#The parent is either following the mouse or set to the shop item location
 				sprite.position = Vector2(0,0)
 				unit_currently_over_can_upgrade = false
-		else:
+		if(!follow_mouse and shop_manager.find_child("battle_button").visible):
 			self.position = Vector2(0,0)
 			sprite.position = Vector2(0,0)
 			unit_currently_over_can_upgrade = false
