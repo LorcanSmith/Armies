@@ -155,33 +155,6 @@ _limits = [-0.280899, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 0.165257), 0.0, 0.0, 0, 0, Vector2(1, -0.0794092), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Animation" id="Animation_u50mg"]
-resource_name = "trophy_gain"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 1), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CPUParticles2D:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="Animation" id="Animation_cbgmd"]
 length = 0.001
 tracks/0/type = "value"
@@ -207,6 +180,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_u50mg"]
+resource_name = "trophy_gain"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1w6v2"]
@@ -392,16 +392,14 @@ _data = {
 &"name_maker_appear": SubResource("Animation_jkdf5")
 }
 
-[node name="game_manager" type="Node2D" node_paths=PackedStringArray("health_UI", "wins_UI", "coin_text", "turn_text", "health_counter", "turn_counter", "win_counter")]
+[node name="game_manager" type="Node2D" node_paths=PackedStringArray("health_UI", "wins_UI", "coin_text", "turn_text", "turn_counter")]
 script = ExtResource("1_y45oy")
 auto_create_armies_at_runtime = true
 health_UI = NodePath("UI/heart_trophy_UI/life_bg/life")
 wins_UI = NodePath("UI/heart_trophy_UI/wins_bg/wins")
 coin_text = NodePath("UI/HBoxContainer/dollar_control/COINS")
 turn_text = NodePath("UI/HBoxContainer/turn_control/TURN")
-health_counter = NodePath("")
 turn_counter = NodePath("UI/HBoxContainer/turn_control/TurnCounter")
-win_counter = NodePath("")
 
 [node name="DEBUGGER" type="Node2D" parent="."]
 visible = false
@@ -506,6 +504,7 @@ offset_bottom = 5.0
 modulate = Color(0.879194, 0.145925, 0, 1)
 z_index = 10
 texture_filter = 1
+layout_mode = 0
 offset_left = 497.0
 offset_top = 37.9999
 offset_right = 534.0
@@ -541,6 +540,7 @@ hue_variation_curve = SubResource("Curve_b3802")
 modulate = Color(0.879194, 0.145925, 0, 1)
 z_index = 10
 texture_filter = 1
+layout_mode = 0
 offset_left = 522.0
 offset_top = 37.9999
 offset_right = 559.0
@@ -576,6 +576,7 @@ hue_variation_curve = SubResource("Curve_b3802")
 modulate = Color(0.879194, 0.145925, 0, 1)
 z_index = 10
 texture_filter = 1
+layout_mode = 0
 offset_left = 547.0
 offset_top = 37.9999
 offset_right = 584.0
@@ -611,6 +612,7 @@ hue_variation_curve = SubResource("Curve_b3802")
 modulate = Color(0.879194, 0.145925, 0, 1)
 z_index = 10
 texture_filter = 1
+layout_mode = 0
 offset_left = 572.0
 offset_top = 37.9999
 offset_right = 609.0
@@ -646,6 +648,7 @@ hue_variation_curve = SubResource("Curve_b3802")
 modulate = Color(0.879194, 0.145925, 0, 1)
 z_index = 10
 texture_filter = 1
+layout_mode = 0
 offset_left = 597.0
 offset_top = 37.9999
 offset_right = 634.0
@@ -681,6 +684,7 @@ hue_variation_curve = SubResource("Curve_b3802")
 modulate = Color(0.879194, 0.145925, 0, 1)
 z_index = 10
 texture_filter = 1
+layout_mode = 0
 offset_left = 622.0
 offset_top = 37.9999
 offset_right = 659.0
@@ -716,6 +720,7 @@ hue_variation_curve = SubResource("Curve_b3802")
 modulate = Color(0.879194, 0.145925, 0, 1)
 z_index = 10
 texture_filter = 1
+layout_mode = 0
 offset_left = 647.0
 offset_top = 37.9999
 offset_right = 684.0
@@ -751,6 +756,7 @@ hue_variation_curve = SubResource("Curve_b3802")
 modulate = Color(0.879194, 0.145925, 0, 1)
 z_index = 10
 texture_filter = 1
+layout_mode = 0
 offset_left = 672.0
 offset_top = 37.9999
 offset_right = 709.0
@@ -786,6 +792,7 @@ hue_variation_curve = SubResource("Curve_b3802")
 modulate = Color(0.879194, 0.145925, 0, 1)
 z_index = 10
 texture_filter = 1
+layout_mode = 0
 offset_left = 697.0
 offset_top = 37.9999
 offset_right = 734.0
@@ -821,6 +828,7 @@ hue_variation_curve = SubResource("Curve_b3802")
 modulate = Color(0.879194, 0.145925, 0, 1)
 z_index = 10
 texture_filter = 1
+layout_mode = 0
 offset_left = 722.0
 offset_top = 37.9999
 offset_right = 759.0
