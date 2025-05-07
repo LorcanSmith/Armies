@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ukyj78dy3leh"]
+[gd_scene load_steps=6 format=3 uid="uid://ukyj78dy3leh"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_jw30q"]
 [ext_resource type="PackedScene" uid="uid://bjsx2iphb4gud" path="res://Prefabs/Effects/Projectiles/shell_projectile.tscn" id="2_pbhl7"]
 [ext_resource type="Texture2D" uid="uid://bp3w3rjodcmlh" path="res://Sprites/Units/Army/tank/Tank_lvl2.png" id="3_pbhl7"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_pgba7"]
+[ext_resource type="Texture2D" uid="uid://dd2nlcrqwe18n" path="res://Sprites/Units/Army/tank/Tank_lvl3.png" id="5_381mf"]
 
 [node name="Tank" instance=ExtResource("1_jw30q")]
 max_health = 12
@@ -22,8 +23,8 @@ position = Vector2(148, 0)
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("3_pbhl7")
-offset = Vector2(3, 8)
 
 [node name="shadow" parent="Sprite2D" index="0"]
-position = Vector2(0, 29.125)
+position = Vector2(0, 21)
 scale = Vector2(1, 0.320312)
+texture = ExtResource("5_381mf")

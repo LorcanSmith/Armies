@@ -7,6 +7,7 @@
 [node name="PlagueDoctor" instance=ExtResource("1_jykpd")]
 description = "Heals units with the type \"Human\""
 unit_name = "Medic"
+can_be_upgraded = false
 buy_cost = 12
 sell_cost = 6
 health_buff = 1

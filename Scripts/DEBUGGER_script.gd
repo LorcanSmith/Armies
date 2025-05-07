@@ -39,7 +39,7 @@ func _input(event):
 						
 						
 func save_report(game_manager : Node2D):
-	var grid_data = []
+	var _grid_data = []
 	
 	var json_string
 	
@@ -108,22 +108,22 @@ func run_report(game_manager : Node2D):
 			var json_string = save_file.get_line()
 			lines.append(json_string)
 	# Parse the selected line
-	var counter = 0
-	var parse_result
-	parse_result = json.parse(lines[0])
+	var _counter = 0
+	var _parse_result
+	_parse_result = json.parse(lines[0])
 	game_manager.army = json.data
-	parse_result = json.parse(lines[1])
+	_parse_result = json.parse(lines[1])
 	game_manager.enemy_army = json.data
-	parse_result = json.parse(lines[2])
+	_parse_result = json.parse(lines[2])
 	game_manager.life_remaining = int(json.data)
-	parse_result = json.parse(lines[3])
+	_parse_result = json.parse(lines[3])
 	game_manager.money_remaining = int(json.data)
-	parse_result = json.parse(lines[4])
+	_parse_result = json.parse(lines[4])
 	game_manager.wins = int(json.data)
-	parse_result = json.parse(lines[5])
+	_parse_result = json.parse(lines[5])
 	game_manager.seed = json.data
 	game_manager.update_seed_label_text()
-	parse_result = json.parse(lines[6])
+	_parse_result = json.parse(lines[6])
 	game_manager.turn_number = int(json.data)
 	game_manager.swap_scenes()
 
@@ -205,7 +205,6 @@ func create_enemy_armies():
 		while counter < total_units:
 			grid_data.append(units.slice(counter, counter + grid_height))
 			counter += grid_height
-		var game_folder = ProjectSettings.globalize_path("res://")
 		
 		var	grid_name = "enemy"
 		

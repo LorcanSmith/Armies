@@ -117,7 +117,6 @@ func _ready() -> void:
 #Auto assigns the Level label
 func set_labels():
 	var level_chevron_parent = find_child("level_chevrons")
-	var normalised_id = unit_ID + 1
 	if(unit_ID % 3 == 0):
 		level_chevron_parent.get_child(0).visible = true
 	elif(unit_ID % 3 == 1):

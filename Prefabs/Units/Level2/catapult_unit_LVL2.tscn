@@ -10,7 +10,7 @@ max_health = 9
 brawl_damage = 1
 Medieval = true
 Vehicle = true
-skill_damage = 4
+skill_damage = 2
 skill_does_splash = true
 projectile = ExtResource("2_u1w2l")
 
