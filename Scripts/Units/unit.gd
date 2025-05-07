@@ -413,10 +413,11 @@ func apply_damage():
 
 #Called when the unit is destroyed
 func destroy_unit():
-	#Tells parent to remove this unit from its list of units on it
-	get_parent().units_on_tile.erase(self)
-	if(get_parent().units_on_tile.size() == 0):
-		get_parent().is_empty = true
+	if(get_parent().name != "skill_holder"):
+		#Tells parent to remove this unit from its list of units on it
+		get_parent().units_on_tile.erase(self)
+		if(get_parent().units_on_tile.size() == 0):
+			get_parent().is_empty = true
 	#Get the grid we are currently on so we can apply damage to brawling units before we die
 	if(!brawling_grid):
 		brawling_grid = get_parent()
