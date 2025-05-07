@@ -306,7 +306,8 @@ func skill(phase : String):
 									for area in friendly_areas:
 										if (self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy")):
 											enemies_in_splash_zone.append(area.get_parent())
-							skill_instance.target = closest_unit
+							if(closest_unit):
+								skill_instance.target = closest_unit
 						#Loops through all enemies and sets the skill to be their location
 						else:
 							if(skill_damage + damage_boost > 0):

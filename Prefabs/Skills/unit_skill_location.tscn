@@ -62,7 +62,6 @@ _data = {
 }
 
 [node name="unit_skill_location" type="Node2D"]
-scale = Vector2(0.8, 0.8)
 script = ExtResource("1_lfsfg")
 
 [node name="Area2D" type="Area2D" parent="."]

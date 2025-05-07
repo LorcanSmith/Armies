@@ -51,6 +51,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 				spawned_visual_already = true
 	#FRIENDLY DO HEALS
 	if((belongs_to_player and area.get_parent().is_in_group("player")) or (!belongs_to_player and area.get_parent().is_in_group("enemy")) and (!area.is_in_group("buff_location"))):
+		print("area: ", area.get_parent(), ", self: ", self, ", owner: ", owner_of_skill)
 		var effective = false
 		target_is_friendly = true
 		if(!area.get_parent().is_in_group("headquarter")):
