@@ -290,7 +290,7 @@ func skill(phase : String):
 										closest_unit = skill_locations_parent.get_child(z).units_on_node[u]
 									u += 1
 								z+=1
-							if(!closest_unit):
+							if(!closest_unit and enemies_in_range.size() > 0):
 								closest_unit = enemies_in_range[0]
 							if !skill_does_splash:
 								if(skill_damage + damage_boost > 0 and enemies_in_range.size() > 0):
