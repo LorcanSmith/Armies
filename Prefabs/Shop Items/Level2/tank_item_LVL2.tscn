@@ -12,10 +12,9 @@ sell_cost = 4
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_jjq5e")
-offset = Vector2(2, 9)
 
 [node name="shadow" parent="Sprite2D" index="0"]
-position = Vector2(0, 31)
+position = Vector2(0, 22)
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_jjq5e")]
 position = Vector2(74, 0)

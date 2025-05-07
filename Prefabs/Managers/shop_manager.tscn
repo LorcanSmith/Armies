@@ -377,7 +377,7 @@ libraries = {
 }
 
 [node name="Tooltip" parent="Camera2D" instance=ExtResource("14_vg5hm")]
-position = Vector2(-258, 183)
+position = Vector2(-261, 173)
 
 [node name="background" type="TextureRect" parent="Camera2D"]
 z_index = -4
