@@ -63,7 +63,7 @@ func _on_close_button_pressed() -> void:
 	find_child("buy_base_button").visible = false
 	find_parent("shop_manager").find_child("Tooltip").get_node("AnimationPlayer").play("tooltip_popout")
 
-func selected_unit(base, id):
+func selected_unit(base):
 	current_base_selected = base
 
 func _on_buy_base_button_pressed() -> void:
