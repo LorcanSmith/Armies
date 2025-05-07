@@ -413,17 +413,18 @@ func apply_damage():
 
 #Called when the unit is destroyed
 func destroy_unit():
-	print(self.name , " killed")
-	#Tells parent to remove this unit from its list of units on it
-	get_parent().units_on_tile.erase(self)
-	if(get_parent().units_on_tile.size() == 0):
-		get_parent().is_empty = true
-	#Get the grid we are currently on so we can apply damage to brawling units before we die
-	brawling_grid = get_parent()
-	#Reparent to skill holder so the game waits for the unit to die
-	self.reparent(find_parent("combat_manager").find_child("skill_holder"))
-	#Once the damage animation plays, it will be destroyed
-	self.get_node("AnimationPlayer").play("unit_damage")
+	#Ensures the unit hasnt already been destroyed
+	if(!brawling_grid):
+		#Tells parent to remove this unit from its list of units on it
+		get_parent().units_on_tile.erase(self)
+		if(get_parent().units_on_tile.size() == 0):
+			get_parent().is_empty = true
+		#Get the grid we are currently on so we can apply damage to brawling units before we die
+		brawling_grid = get_parent()
+		#Reparent to skill holder so the game waits for the unit to die
+		self.reparent(find_parent("combat_manager").find_child("skill_holder"))
+		#Once the damage animation plays, it will be destroyed
+		self.get_node("AnimationPlayer").play("unit_damage")
 
 func skill_area_entered(area: Area2D) -> void:
 	#	check if skill is meant to be used on allies or enemies

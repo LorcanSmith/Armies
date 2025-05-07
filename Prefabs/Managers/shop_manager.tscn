@@ -121,7 +121,7 @@ script = ExtResource("12_cnpns")
 [node name="grid_manager" parent="." instance=ExtResource("4_2ahac")]
 
 [node name="grid_generator (army)" parent="grid_manager" instance=ExtResource("6_e3q61")]
-position = Vector2(411, 436)
+position = Vector2(411, 423)
 grid_name = "army"
 
 [node name="Camera2D" type="Camera2D" parent="."]
