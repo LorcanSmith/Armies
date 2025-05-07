@@ -132,7 +132,7 @@ position = Vector2(24.1279, 0)
 position = Vector2(31.9767, 0)
 
 [node name="Tooltip" parent="grid_manager/grid_generator (army)/Camera2D" instance=ExtResource("21_b20ae")]
-position = Vector2(-480, 90)
+position = Vector2(-381, 255)
 
 [node name="team_names" type="Control" parent="grid_manager/grid_generator (army)/Camera2D"]
 layout_mode = 3

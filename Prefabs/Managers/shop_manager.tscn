@@ -121,7 +121,7 @@ script = ExtResource("12_cnpns")
 [node name="grid_manager" parent="." instance=ExtResource("4_2ahac")]
 
 [node name="grid_generator (army)" parent="grid_manager" instance=ExtResource("6_e3q61")]
-position = Vector2(411, 423)
+position = Vector2(411, 409)
 grid_name = "army"
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -348,7 +348,7 @@ scroll_active = false
 horizontal_alignment = 1
 
 [node name="base_manager" type="Node2D" parent="Camera2D"]
-position = Vector2(-281, -48)
+position = Vector2(-281, -31)
 script = ExtResource("14_1cd4y")
 
 [node name="base_sprite" type="Sprite2D" parent="Camera2D/base_manager"]
