@@ -97,7 +97,7 @@ func _on_close_button_pressed() -> void:
 	#play animation to pop the crate out
 	get_node("AnimationPlayer").play("crate_disappear")
 	
-func selected_unit(unit, id):
+func selected_unit(unit):
 	current_unit_selected = unit
 	if(find_child("buy_unit_button").visible == false):
 		find_child("buy_unit_button").visible = true

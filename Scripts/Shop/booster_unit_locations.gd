@@ -9,7 +9,7 @@ func _ready() -> void:
 	
 func _on_area_2d_pressed() -> void:
 	if(get_parent().name == "base_locations"):
-		find_parent("base_crate").selected_unit(unit, unit_ID)
+		find_parent("base_crate").selected_unit(unit)
 	else:
 		find_parent("choose_unit_UI").get_parent().selected_unit(unit, unit_ID)
 

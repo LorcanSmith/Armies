@@ -108,10 +108,10 @@ grow_vertical = 0
 [node name="background" type="Control" parent="Positioner"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 2.0
-offset_top = 197.0
-offset_right = 42.0
-offset_bottom = 237.0
+offset_left = -98.0
+offset_top = 40.0
+offset_right = -58.0
+offset_bottom = 80.0
 script = ExtResource("2_r303g")
 
 [node name="background_top" type="TextureRect" parent="Positioner/background"]
@@ -185,10 +185,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -1.25
-offset_top = -50.5
-offset_right = 208.75
-offset_bottom = -44.5
+offset_left = -3.0
+offset_top = -93.0
+offset_right = 207.0
+offset_bottom = -87.0
 grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -213,10 +213,10 @@ texture = ExtResource("5_bvb60")
 
 [node name="name" type="RichTextLabel" parent="Positioner"]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 29.0
-offset_right = 1272.0
-offset_bottom = 273.0
+offset_left = -97.0
+offset_top = -128.0
+offset_right = 1172.0
+offset_bottom = 116.0
 scale = Vector2(0.16, 0.16)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/bold_italics_font_size = 100
@@ -232,10 +232,10 @@ vertical_alignment = 2
 [node name="text" type="Control" parent="Positioner"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 2.0
-offset_top = 197.0
-offset_right = 42.0
-offset_bottom = 237.0
+offset_left = -98.0
+offset_top = 40.0
+offset_right = -58.0
+offset_bottom = 80.0
 script = ExtResource("7_8dy0p")
 
 [node name="base_stats" type="RichTextLabel" parent="Positioner/text"]

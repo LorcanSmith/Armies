@@ -121,7 +121,7 @@ script = ExtResource("12_cnpns")
 [node name="grid_manager" parent="." instance=ExtResource("4_2ahac")]
 
 [node name="grid_generator (army)" parent="grid_manager" instance=ExtResource("6_e3q61")]
-position = Vector2(411, 436)
+position = Vector2(415, 476)
 grid_name = "army"
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -348,7 +348,7 @@ scroll_active = false
 horizontal_alignment = 1
 
 [node name="base_manager" type="Node2D" parent="Camera2D"]
-position = Vector2(-281, -48)
+position = Vector2(-281, -14)
 script = ExtResource("14_1cd4y")
 
 [node name="base_sprite" type="Sprite2D" parent="Camera2D/base_manager"]
@@ -365,9 +365,9 @@ scale = Vector2(1, 0.45098)
 texture = ExtResource("15_vg5hm")
 flip_v = true
 
-[node name="Area2D" type="Area2D" parent="Camera2D/base_manager"]
+[node name="base_Area2D" type="Area2D" parent="Camera2D/base_manager"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/base_manager/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/base_manager/base_Area2D"]
 position = Vector2(-1, 7)
 shape = SubResource("RectangleShape2D_vg5hm")
 
@@ -377,7 +377,7 @@ libraries = {
 }
 
 [node name="Tooltip" parent="Camera2D" instance=ExtResource("14_vg5hm")]
-position = Vector2(-340, 87)
+position = Vector2(-261, 173)
 
 [node name="background" type="TextureRect" parent="Camera2D"]
 z_index = -4
@@ -407,4 +407,4 @@ position = Vector2(-309, -176)
 [connection signal="mouse_entered" from="Camera2D/shop_item_generator/battle_button" to="." method="_on_battle_button_mouse_entered"]
 [connection signal="mouse_exited" from="Camera2D/shop_item_generator/battle_button" to="." method="_on_battle_button_mouse_exited"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/battle_button" to="." method="_on_battle_button_pressed"]
-[connection signal="mouse_entered" from="Camera2D/base_manager/Area2D" to="Camera2D/base_manager" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_entered" from="Camera2D/base_manager/base_Area2D" to="Camera2D/base_manager" method="_on_base_area_2d_mouse_entered"]

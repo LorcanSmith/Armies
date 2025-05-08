@@ -127,5 +127,5 @@ func check_units():
 			y += 1
 		x+= 1
 
-func _on_area_2d_mouse_entered() -> void:
+func _on_base_area_2d_mouse_entered() -> void:
 	get_parent().find_child("Tooltip").update_base_tooltip(current_base_ID,base_name, base_description)
