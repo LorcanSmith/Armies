@@ -10,8 +10,6 @@ var target : Node2D
 
 var target_is_friendly : bool
 
-var enemies_in_splash_zone
-var skill_does_splash : bool
 #Does this skill belong to the player or enemy
 var belongs_to_player : bool
 var owner_of_skill : Node2D
@@ -80,7 +78,5 @@ func attack_visuals():
 		projectile_instance.damage = damage
 	if(target_is_friendly):
 		projectile_instance.damage = -heal
-	if skill_does_splash:
-		projectile_instance.enemies_in_splash_zone = enemies_in_splash_zone
 	projectile_instance.target_enemy(target)
 	queue_free()
