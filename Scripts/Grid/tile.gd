@@ -35,3 +35,9 @@ func unit_placed_on(unit):
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if(area.is_in_group("tilemap")):
 		area.get_parent().visiblity(false)
+
+func play_tile_appear():
+	find_child("Sprite2D").scale = Vector2(0,0)
+	#Delay so the tiles don't all appear at the same time
+	await get_tree().create_timer(randf_range(0, 0.75)).timeout
+	get_node("AnimationPlayer").play("tile_appear")

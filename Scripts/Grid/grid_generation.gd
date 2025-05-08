@@ -74,8 +74,8 @@ func generate_grid(turn_number : int, in_combat : bool):
 			elif(!is_battle_grid):
 				#If the width or height position are bigger than last turns max width/height then this is a new tile
 				if(width+1 > width_per_turn[turn_number - 2] or height+1 > height_per_turn[turn_number - 2]):
-					pass
-	
+					new_tile.play_tile_appear()
+					
 	if(!is_battle_grid):
 		self.position.y -= 40 * (grid_height - height_per_turn[0])
 		
