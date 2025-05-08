@@ -468,7 +468,7 @@ func buff():
 						if(damage_buff > 0 or damage_buff < 0):
 							#Delay so the buffs don't all appear at the same time
 							await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
-							unit.damage_boost += damage_buff
+							unit.buff_unit_damage(damage_buff)
 							var buff_instance = damage_buff_visual.instantiate()
 							find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
 							buff_instance.global_position = self.global_position
@@ -477,7 +477,7 @@ func buff():
 						if(health_buff > 0 or health_buff < 0):
 							#Delay so the buffs don't all appear at the same time
 							await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
-							unit.health_boost += health_buff
+							unit.buff_unit_health(health_buff)
 							var buff_instance = health_buff_visual.instantiate()
 							find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
 							buff_instance.global_position = self.global_position
@@ -485,8 +485,22 @@ func buff():
 							buff_instance.find_child("buff_text").text = str("+",health_buff)
 			buff_loc += 1
 
-
-
+var last_health_change : int
+var last_damage_change : int
+func buff_unit_health(amount : int):
+	health_boost += amount
+	last_health_change = amount
+func buff_unit_damage(amount : int):
+	damage_boost += amount
+	last_damage_change = amount
+func _on_animation_player_animation_started(anim_name: StringName) -> void:
+	if(anim_name == "health_bounce"):
+			#Unit specific abilities that happen on damage gain/loss
+			if(unit_name == "Ankylosaurus"):
+				if(last_health_change < 0):
+					damage_boost += damage_buff
+					update_label_text()
+					self.get_node("AnimationPlayer2").play("damage_bounce")
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	#If the area is a tile and the item is picked up, following the mouse
 	if(area.is_in_group("tile") and follow_mouse):

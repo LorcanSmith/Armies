@@ -27,9 +27,17 @@ func _process(delta: float) -> void:
 			get_node("AnimationPlayer").play("fade_out")
 			#Make the heart/sword on the unit bounce a little for visual feedback
 			if(this_is_health_buff):
-				unit.get_node("AnimationPlayer").play("health_bounce")
+				var anim_player = unit.get_node("AnimationPlayer")
+				if(anim_player.is_playing()):
+					anim_player.queue("health_bounce")
+				else:
+					anim_player.play("health_bounce")
 			else:
-				unit.get_node("AnimationPlayer2").play("damage_bounce")
+				var anim_player = unit.get_node("AnimationPlayer2")
+				if(anim_player.is_playing()):
+					anim_player.queue("damage_bounce")
+				else:
+					anim_player.play("damage_bounce")
 			#Update the text on the unit health/damage label
 			unit.update_label_text()
 

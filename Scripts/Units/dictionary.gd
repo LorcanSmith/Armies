@@ -83,10 +83,14 @@ var unit_scenes = {
 	57: preload("res://Prefabs/Units/Level1/velociraptor_unit_LVL1.tscn"),
 	58: preload("res://Prefabs/Units/Level2/velociraptor_unit_LVL2.tscn"),
 	59: preload("res://Prefabs/Units/Level3/velociraptor_unit_LVL3.tscn"),
-  #Trex
+   #Trex
 	60: preload("res://Prefabs/Units/Level1/trex_unit_LVL1.tscn"),
 	61: preload("res://Prefabs/Units/Level2/trex_unit_LVL2.tscn"),
-	62: preload("res://Prefabs/Units/Level3/trex_unit_LVL3.tscn")
+	62: preload("res://Prefabs/Units/Level3/trex_unit_LVL3.tscn"),
+	#Ankylosaurus
+	63: preload("res://Prefabs/Units/Level1/ankylosaurus_unit_LVL1.tscn"),
+	64: preload("res://Prefabs/Units/Level2/ankylosaurus_unit_LVL2.tscn"),
+	65: preload("res://Prefabs/Units/Level3/ankylosaurus_unit_LVL3.tscn")
 }
 
 var item_scenes = {
@@ -173,7 +177,11 @@ var item_scenes = {
   #Trex
 	60: preload("res://Prefabs/Shop Items/Level1/trex_item_LVL1.tscn"),
 	61: preload("res://Prefabs/Shop Items/Level2/trex_item_LVL2.tscn"),
-	62: preload("res://Prefabs/Shop Items/Level3/trex_item_LVL3.tscn")
+	62: preload("res://Prefabs/Shop Items/Level3/trex_item_LVL3.tscn"),
+	#Ankylosaurus
+	63: preload("res://Prefabs/Shop Items/Level1/ankylosaurus_item_LVL1.tscn"),
+	64: preload("res://Prefabs/Shop Items/Level2/ankylosaurus_item_LVL2.tscn"),
+	65: preload("res://Prefabs/Shop Items/Level3/ankylosaurus_item_LVL3.tscn")
 }
 
 var booster_scenes = {
