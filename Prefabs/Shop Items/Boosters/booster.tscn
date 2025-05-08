@@ -380,6 +380,7 @@ offset_right = -2.0
 offset_bottom = -2.66669
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(-1.45959e-08, -1.45959e-08)
 pivot_offset = Vector2(586.443, 421.43)
 
 [node name="crate" type="TextureRect" parent="choose_unit_UI/Container"]

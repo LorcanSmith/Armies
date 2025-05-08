@@ -12,8 +12,13 @@ var rerolls_taken : int = 0
 @export var level2_percentage : float = 7
 @export var level3_percentage : float = 0.5
 ##Percentage out of 100 for how likely a level 3 unit is to show up
+
+#reroll menu UI
+var reroll_UI : CanvasLayer
+
 #Loads new units and then shows new units in the shop
 func _ready() -> void:
+	reroll_UI = find_child("reroll_UI")
 	level2_percentage = level2_percentage/100
 	level3_percentage = level3_percentage/100
 	#Gets the children and sets them as locations units can spawn at
@@ -121,5 +126,9 @@ func reroll_shop():
 		rerolls_taken += 1
 		show_new_units()
 
-func _on_texture_button_pressed() -> void:
+func _on_reroll_button_pressed():
+	reroll_UI.visible = true
+
+func _on_reroll_confirm_pressed():
+	reroll_UI.visible = false
 	reroll_shop()
