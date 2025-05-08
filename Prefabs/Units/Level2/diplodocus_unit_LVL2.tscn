@@ -8,6 +8,7 @@
 [node name="Diplodocus" instance=ExtResource("1_31syq")]
 max_health = 15
 brawl_damage = 4
+Dinosaur = true
 Animal = true
 skill_damage = 1
 projectile = ExtResource("2_c1xcj")

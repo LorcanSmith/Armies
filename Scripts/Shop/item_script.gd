@@ -485,14 +485,15 @@ func buff():
 							buff_instance.find_child("buff_text").text = str("+",health_buff)
 			buff_loc += 1
 
-var last_health_change : int
-var last_damage_change : int
+var last_health_change : int = 0
+var last_damage_change : int = 0
 func buff_unit_health(amount : int):
 	health_boost += amount
 	last_health_change = amount
 func buff_unit_damage(amount : int):
 	damage_boost += amount
 	last_damage_change = amount
+	
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
 	if(anim_name == "health_bounce"):
 			#Unit specific abilities that happen on damage gain/loss
@@ -500,7 +501,11 @@ func _on_animation_player_animation_started(anim_name: StringName) -> void:
 				if(last_health_change < 0):
 					damage_boost += damage_buff
 					update_label_text()
-					self.get_node("AnimationPlayer2").play("damage_bounce")
+					var anim_player = get_node("AnimationPlayer2")
+					if(anim_player.is_playing()):
+						anim_player.queue("damage_bounce")
+					else:
+						anim_player.play("damage_bounce")
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	#If the area is a tile and the item is picked up, following the mouse
 	if(area.is_in_group("tile") and follow_mouse):

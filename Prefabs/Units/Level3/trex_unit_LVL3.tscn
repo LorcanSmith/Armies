@@ -9,6 +9,7 @@
 max_health = 20
 move_distance = 3
 brawl_damage = 16
+Dinosaur = true
 Animal = true
 skill_max_once_per_unit = true
 skill_damage = 16

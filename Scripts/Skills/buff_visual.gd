@@ -33,11 +33,12 @@ func _process(delta: float) -> void:
 				else:
 					anim_player.play("health_bounce")
 			else:
-				var anim_player = unit.get_node("AnimationPlayer2")
-				if(anim_player.is_playing()):
-					anim_player.queue("damage_bounce")
+				var anim_player2 = unit.get_node("AnimationPlayer2")
+				if(anim_player2.is_playing()):
+					anim_player2.queue("damage_bounce")
+					print(anim_player2.current_animation)
 				else:
-					anim_player.play("damage_bounce")
+					anim_player2.play("damage_bounce")
 			#Update the text on the unit health/damage label
 			unit.update_label_text()
 

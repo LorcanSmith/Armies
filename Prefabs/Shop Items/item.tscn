@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d26riwgg0v8nl"]
+[gd_scene load_steps=19 format=3 uid="uid://d26riwgg0v8nl"]
 
 [ext_resource type="Script" uid="uid://bvdq4sn7w35b4" path="res://Scripts/Shop/item_script.gd" id="1_mdv0s"]
 [ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="4_1nmpe"]
@@ -8,6 +8,26 @@
 [ext_resource type="Texture2D" uid="uid://doklob2e1xafl" path="res://Sprites/UI/arrow.png" id="7_6sqpo"]
 [ext_resource type="Script" uid="uid://bxdwjf5tj7s4c" path="res://Scripts/Skills/location_stick_to_sprite.gd" id="10_te1c8"]
 [ext_resource type="Texture2D" uid="uid://djdl8p52grdjd" path="res://Sprites/UI/chevrons/level_chevron.png" id="11_eytbw"]
+
+[sub_resource type="Animation" id="Animation_opg0c"]
+resource_name = "upgrade_arrow"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 0.366021, 0.366022),
+"update": 0,
+"values": [Vector2(27, -18), Vector2(27, -9.195), Vector2(27, -18)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6sqpo"]
+_data = {
+&"upgrade_arrow": SubResource("Animation_opg0c")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1nmpe"]
 radius = 1.41421
@@ -176,6 +196,12 @@ visible = false
 texture_filter = 1
 position = Vector2(27, -18)
 texture = ExtResource("7_6sqpo")
+
+[node name="anim_player_arrow" type="AnimationPlayer" parent="Sprite2D/upgrade_arrow"]
+libraries = {
+&"": SubResource("AnimationLibrary_6sqpo")
+}
+autoplay = "upgrade_arrow"
 
 [node name="level_chevrons" type="Node2D" parent="Sprite2D"]
 position = Vector2(-25, -15)
@@ -360,7 +386,6 @@ root_node = NodePath("../Sprite2D/upgrade_arrow")
 libraries = {
 &"": SubResource("AnimationLibrary_pf34d")
 }
-autoplay = "upgrade_arrow"
 
 [connection signal="mouse_entered" from="Sprite2D/Item_Info" to="Sprite2D/Item_Info" method="_on_mouse_entered"]
 [connection signal="area_entered" from="Area2D - Tile Collision" to="." method="_on_area_2d_area_entered"]

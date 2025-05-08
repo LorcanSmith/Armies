@@ -69,8 +69,16 @@ func generate_grid(turn_number : int, in_combat : bool):
 			
 			if(is_battle_grid):
 				find_child("Camera2D").global_position = Vector2(grid[width/2][0].global_position.x + (offset/2), grid[width][height/2].global_position.y + (offset/2))
+			
+			#Play animation for grid spots that are new
+			elif(!is_battle_grid):
+				#If the width or height position are bigger than last turns max width/height then this is a new tile
+				if(width+1 > width_per_turn[turn_number - 2] or height+1 > height_per_turn[turn_number - 2]):
+					pass
+	
 	if(!is_battle_grid):
 		self.position.y -= 40 * (grid_height - height_per_turn[0])
+		
 	return true
 #Called when you want to save the current unit layout of the grid
 func save_current_grid():
