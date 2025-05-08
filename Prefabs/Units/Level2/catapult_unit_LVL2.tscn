@@ -10,30 +10,14 @@ max_health = 9
 brawl_damage = 1
 Medieval = true
 Vehicle = true
-skill_damage = 2
-skill_does_splash = true
+skill_damage = 4
 projectile = ExtResource("2_u1w2l")
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_s3dqy")]
 position = Vector2(222, 0)
 
-[node name="splash_location" type="Area2D" parent="skill_locations/unit_skill_location" index="3"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="skill_locations/unit_skill_location/splash_location" index="0"]
-polygon = PackedVector2Array(-37, -111, -37, -37, -111, -37, -111, 37, -37, 37, -37, 111, 37, 111, 37, 37, 111, 37, 111, -37, 37, -37, 37, -111)
-
 [node name="unit_skill_location2" parent="skill_locations" index="1" instance=ExtResource("3_s3dqy")]
 position = Vector2(148, 0)
 
-[node name="splash_location2" type="Area2D" parent="skill_locations/unit_skill_location2" index="3"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="skill_locations/unit_skill_location2/splash_location2" index="0"]
-polygon = PackedVector2Array(-37, -111, -37, -37, -111, -37, -111, 37, -37, 37, -37, 111, 37, 111, 37, 37, 111, 37, 111, -37, 37, -37, 37, -111)
-
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("3_u1w2l")
-
-[connection signal="area_entered" from="skill_locations/unit_skill_location/splash_location" to="." method="_on_splash_location_area_entered"]
-[connection signal="area_exited" from="skill_locations/unit_skill_location/splash_location" to="." method="_on_splash_location_area_exited"]
-[connection signal="area_entered" from="skill_locations/unit_skill_location2/splash_location2" to="." method="_on_splash_location_area_entered"]
-[connection signal="area_exited" from="skill_locations/unit_skill_location2/splash_location2" to="." method="_on_splash_location_area_exited"]

@@ -4,7 +4,6 @@ var enemy : Node2D
 var enemy_position : Vector2
 var current_pos
 var damage : int
-var enemies_in_splash_zone : Array
 @export var moves : bool
 @export var speed : float
 
@@ -31,21 +30,9 @@ func _process(delta: float) -> void:
 				#Set the new distance remaining
 				distance = self.global_position.distance_to(enemy_position)
 			else:
-				if(enemies_in_splash_zone):
-					var counter = 0
-					while counter < enemies_in_splash_zone.size():
-						if enemies_in_splash_zone[counter]:
-							enemies_in_splash_zone[counter].projectile_hit(damage)
-						counter += 1
-					$Sprite2D.visible = false
-					var shockwave = shockwave_scene.instantiate()
-					get_parent().add_child(shockwave)
-					shockwave.position = self.position
-					queue_free()
-				else:
-					if(enemy):
-						enemy.projectile_hit(damage)
-					queue_free()
+				if(enemy):
+					enemy.projectile_hit(damage)
+				queue_free()
 	else:
 		self.global_position = enemy_position
 		if(enemy):

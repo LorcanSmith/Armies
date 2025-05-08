@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dty5jfklpgax3"]
+[gd_scene load_steps=4 format=3 uid="uid://dty5jfklpgax3"]
 
 [ext_resource type="PackedScene" uid="uid://bp080ti5p3qme" path="res://Prefabs/Skills/skill.tscn" id="1_3gqli"]
+[ext_resource type="Texture2D" uid="uid://br2accdv0hss4" path="res://Sprites/UI/splat.png" id="2_j58lt"]
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_j58lt"]
-points = PackedVector2Array(-37, -111, -37, -37, -111, -37, -111, 37, -37, 37, -37, 111, 37, 111, 37, 37, 111, 37, 111, -37, 37, -37, 37, -111)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j58lt"]
 
 [node name="splash_skill" instance=ExtResource("1_3gqli")]
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-shape = SubResource("ConvexPolygonShape2D_j58lt")
+shape = SubResource("RectangleShape2D_j58lt")
+
+[node name="Sprite2D" parent="." index="1"]
+visible = false
+texture = ExtResource("2_j58lt")

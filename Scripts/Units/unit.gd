@@ -80,12 +80,8 @@ var damage_done_to_self : int = 0
 var reloading : bool
 ##The amount of time it takes for a unit to reload
 @export var reload_time : int = 1
-##skill does splash damage
-@export var skill_does_splash : bool
 
 @export var skill_shooots_closest_enemy : bool
-#internal holder for enemies in splash zone
-var enemies_in_splash_zone : Array
 
 #internal timer that keeps track of a unit's current reload
 var reloading_counter : int
@@ -125,8 +121,6 @@ func _ready() -> void:
 	combat_manager = find_parent("combat_manager")
 	health_bar = find_child("health_bar_color")
 	ammo_bar = find_child("ammo_bar_color")
-	if skill_does_splash:
-		skill_prefab = load("res://Prefabs/Skills/splash_skill.tscn")
 		
 	if reload_time > 1:
 		find_child("ammo_bar_background").visible = true
@@ -186,6 +180,7 @@ func find_movement_tile():
 		#Moves the unit forward until it has moved its maximum distance
 		while(moved_distance < move_distance):
 			#If the tile it is trying to move to is empty
+			#This handles self-destruct robot from destroying teammates as well as jumping into an already occurring brawl
 			if(movement_locations[0].movement_tile != null and (movement_locations[0].movement_tile.is_empty or movement_locations[0].movement_tile.units_on_tile[0] == null) or (self_destruction and movement_locations[0].movement_tile.units_on_tile.size() < 2 and (movement_locations[0].movement_tile.is_empty or (movement_locations[0].movement_tile.units_on_tile[0].is_in_group("enemy") and self.is_in_group("player")) or (movement_locations[0].movement_tile.units_on_tile[0].is_in_group("player") and self.is_in_group("enemy"))))):
 				#Sets the tile it wishes to move to
 				tile_to_move_to = movement_locations[0].movement_tile
@@ -254,8 +249,6 @@ func skill(phase : String):
 					skill_instance.effectiveness = effectiveness
 					skill_instance.owner_of_skill = self
 					skill_instance.projectile = projectile
-					skill_instance.enemies_in_splash_zone = enemies_in_splash_zone
-					skill_instance.skill_does_splash = skill_does_splash
 					find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
 					
 					#Tell the skill if it is a friendly or enemy skill
@@ -292,21 +285,12 @@ func skill(phase : String):
 								z+=1
 							if(!closest_unit and enemies_in_range.size() > 0):
 								closest_unit = enemies_in_range[0]
-							if !skill_does_splash:
-								if(skill_damage + damage_boost > 0 and enemies_in_range.size() > 0):
-									skill_instance.global_position = closest_unit.global_position
-								elif(skill_heal > 0 and friendlies_in_range.size() > 0):
-									skill_instance.global_position = closest_unit.global_position
-							else:
-								if(skill_damage + damage_boost > 0 and enemies_in_range.size() > 0):
-									skill_instance.global_position = closest_unit.global_position
-								elif(skill_heal > 0 and friendlies_in_range.size() > 0):
-									skill_instance.global_position = closest_unit.global_position
-									var friendly_areas = skill_instance.get_node("Area2D").get_overlapping_areas()
-									for area in friendly_areas:
-										if (self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy")):
-											enemies_in_splash_zone.append(area.get_parent())
-							skill_instance.target = closest_unit
+							if(skill_damage + damage_boost > 0 and enemies_in_range.size() > 0):
+								skill_instance.global_position = closest_unit.global_position
+							elif(skill_heal > 0 and friendlies_in_range.size() > 0):
+								skill_instance.global_position = closest_unit.global_position
+							if(closest_unit):
+								skill_instance.target = closest_unit
 						#Loops through all enemies and sets the skill to be their location
 						else:
 							if(skill_damage + damage_boost > 0):
@@ -503,13 +487,3 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	#If the unit is dead and the damage animation has played, destroy this unit
 	if(!alive and anim_name == "unit_damage"):
 		queue_free()
-
-
-func _on_splash_location_area_entered(area):
-	if (self.is_in_group("player") and area.get_parent().is_in_group("enemy")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
-		enemies_in_splash_zone.append(area.get_parent())
-
-
-func _on_splash_location_area_exited(area):
-	if(alive):
-		enemies_in_splash_zone.erase(area.get_parent())

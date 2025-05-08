@@ -10,8 +10,6 @@ var target : Node2D
 
 var target_is_friendly : bool
 
-var enemies_in_splash_zone
-var skill_does_splash : bool
 #Does this skill belong to the player or enemy
 var belongs_to_player : bool
 var owner_of_skill : Node2D
@@ -51,6 +49,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 				spawned_visual_already = true
 	#FRIENDLY DO HEALS
 	if((belongs_to_player and area.get_parent().is_in_group("player")) or (!belongs_to_player and area.get_parent().is_in_group("enemy")) and (!area.is_in_group("buff_location"))):
+		print("area: ", area.get_parent(), ", self: ", self, ", owner: ", owner_of_skill)
 		var effective = false
 		target_is_friendly = true
 		if(!area.get_parent().is_in_group("headquarter")):
@@ -79,7 +78,5 @@ func attack_visuals():
 		projectile_instance.damage = damage
 	if(target_is_friendly):
 		projectile_instance.damage = -heal
-	if skill_does_splash:
-		projectile_instance.enemies_in_splash_zone = enemies_in_splash_zone
 	projectile_instance.target_enemy(target)
 	queue_free()
