@@ -173,7 +173,7 @@ func set_unit_types():
 		x+=1
 	
 func find_movement_tile():
-	if(enemies_in_range.size() == 0 or skill_damage + damage_boost <= 0 or self_destruction):
+	if((enemies_in_range.size() == 0 or skill_damage + damage_boost <= 0 or self_destruction) and (!movement_locations[0].hq)):
 		var moved_distance = 0
 		#The unit has already found a tile this turn
 		moved = true
@@ -189,6 +189,9 @@ func find_movement_tile():
 				get_parent().units_on_tile.erase(self)
 			#We have moved one unit
 			moved_distance += 1
+	#If the unit is in front of the headquarters and self destruction is true
+	elif(movement_locations[0].hq and self_destruction):
+		enemies_in_range.append(movement_locations[0].movement_tile)
 	#Tell the combat manager that a unit has finished its "find tile" turn
 	combat_manager.units_moved += 1
 	#If the combat manager has no more units to find tiles for, then tell the manager to move the units
@@ -328,7 +331,13 @@ func skill(phase : String):
 				elif(movement_locations[0].hq != null):
 					movement_locations[0].hq.hurt(brawl_damage + damage_boost)
 					movement_locations[0].hq.projectile_hit(brawl_damage + damage_boost)
-
+		#If we're in the combat phase, we can self destruct and there is an enemy in range
+		#For self destruction units, the only time enemies in range > 0, whilst not brawling, is if its in range of the HQ
+		elif(phase == "combat_phase" and self_destruction and enemies_in_range.size() > 0):
+			movement_locations[0].hq.hurt(brawl_damage + damage_boost)
+			movement_locations[0].hq.projectile_hit(brawl_damage + damage_boost)
+			alive = false
+			destroy_unit()
 	#If there is another unit on this tile then they will brawl
 	else:
 		brawl()

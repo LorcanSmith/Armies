@@ -7,7 +7,7 @@
 
 [node name="Diplodocus" instance=ExtResource("1_wp4pe")]
 description = "Friendly herbivor"
-before_combat_desc = "Gives units in range +3 Health/+3 Attack if they have less health than this unit"
+before_combat_desc = "Gives other dinosaur units in range +3 Health/+3 Attack if they have less health than this unit"
 unit_name = "Diplodocus"
 can_be_upgraded = false
 buy_cost = 10
@@ -15,7 +15,7 @@ sell_cost = 5
 can_buff = true
 damage_buff = 3
 health_buff = 3
-All = true
+Dinosaur = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_v6jq2")

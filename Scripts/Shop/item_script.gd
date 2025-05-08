@@ -85,6 +85,7 @@ var buffs_work_against : Array = []
 @export var All : bool
 @export var Medieval : bool
 @export var Army : bool
+@export var Dinosaur : bool
 @export var Vehicle : bool
 @export var Human : bool
 @export var Soldier : bool
