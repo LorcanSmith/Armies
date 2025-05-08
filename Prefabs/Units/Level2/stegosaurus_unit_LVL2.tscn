@@ -8,6 +8,7 @@
 [node name="Stegosaurus" instance=ExtResource("1_j1wjo")]
 max_health = 10
 brawl_damage = 4
+Dinosaur = true
 Animal = true
 skill_spawn_amount = 3
 skill_max_once_per_unit = true

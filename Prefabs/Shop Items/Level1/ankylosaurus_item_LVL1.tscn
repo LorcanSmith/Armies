@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cllth155fp6fv"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_vjyh6"]
+[ext_resource type="Texture2D" uid="uid://cxhgfj7y2uodp" path="res://Sprites/Units/Dinosaurs/ankylosaurus/ankylosaurus_sprite_lvl1-export.png" id="2_if6yj"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_bq846"]
+
+[node name="Ankylosaurus" instance=ExtResource("1_vjyh6")]
+description = "If this unit takes damage in the shop phase it gains +1 attack"
+unit_name = "Ankylosaurus"
+buy_cost = 5
+sell_cost = 2
+damage_buff = 1
+All = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_if6yj")
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("4_bq846")]
+position = Vector2(74, 0)
+
+[node name="skill_location2" parent="skills" index="1" instance=ExtResource("4_bq846")]
+position = Vector2(74, 74)
+
+[node name="skill_location3" parent="skills" index="2" instance=ExtResource("4_bq846")]
+position = Vector2(74, -74)

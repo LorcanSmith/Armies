@@ -368,3 +368,4 @@ autoplay = "upgrade_arrow"
 [connection signal="mouse_exited" from="Area2D - Tile Collision" to="." method="_on_area_2d_mouse_exited"]
 [connection signal="mouse_entered" from="Area2D - Mouse Collision" to="." method="_on_area_2d__mouse_collision_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D - Mouse Collision" to="." method="_on_area_2d__mouse_collision_mouse_exited"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
