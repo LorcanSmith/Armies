@@ -83,13 +83,16 @@ var health_buff_visual = preload("res://Prefabs/Effects/Buffs/buff_health.tscn")
 var buffs_work_against : Array = []
 @export_subgroup("Buffs work for")
 @export var All : bool
+@export_subgroup("Themes")
 @export var Medieval : bool
 @export var Army : bool
 @export var Dinosaur : bool
+@export_subgroup("Types")
 @export var Vehicle : bool
 @export var Human : bool
-@export var Soldier : bool
 @export var Animal : bool
+@export_subgroup("Names")
+@export var Soldier : bool
 @export var Velociraptor : bool
 
 

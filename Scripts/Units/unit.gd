@@ -46,15 +46,18 @@ var unit_types : Array = [
 	"Sheep",
 	"Velociraptor"
 ]
+@export_subgroup("Themes")
 @export var Medieval : bool
 @export var Army : bool
 @export var Dinosaur : bool
+@export var Fantasy : bool
+@export_subgroup("Types")
 @export var Healer : bool
 @export var Vehicle : bool
 @export var Human : bool
-@export var Soldier : bool
 @export var Animal : bool
-@export var Fantasy : bool
+@export_subgroup("Names")
+@export var Soldier : bool
 @export var Sheep : bool
 @export var Velociraptor : bool
 
