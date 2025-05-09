@@ -53,6 +53,8 @@ var life_remaining = 10
 var shop_upgrades : int = 0
 #shop buff that increases chance for better units in shop
 var higher_level_unit_chance : float = 0
+#shop buff that keeps track of number of slots available in the shop
+var shop_slots : int = 4
 
 
 @export var auto_create_armies_at_runtime : bool

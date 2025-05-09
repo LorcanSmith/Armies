@@ -26,8 +26,12 @@ func _ready() -> void:
 	level3_percentage = (level3_percentage + game_manager.higher_level_unit_chance) /100
 	print("lvl2: ", level2_percentage, ", lvl3: ", level3_percentage)
 	#Gets the children and sets them as locations units can spawn at
-	for loc in find_child("Unit Locations").get_children():
-		unit_locations.append(loc)
+	var counter = 0
+	var location
+	while (counter < game_manager.shop_slots):
+		counter += 1
+		location = find_child("unit" + str(counter))
+		unit_locations.append(location)
 	for loc in find_child("booster_locations").get_children():
 		booster_locations.append(loc)
 #Spawns in new shop units
@@ -144,3 +148,11 @@ func _on_unit_chance_button_pressed():
 			game_manager.higher_level_unit_chance += 1
 			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5))
 			game_manager.shop_upgrades += 1
+
+
+func _on_shop_slot_button_pressed():
+	reroll_UI.visible = false
+	game_manager.shop_slots += 1
+	unit_locations.append(find_child("unit" + str(game_manager.shop_slots)))
+	find_child("pedestal" + str(game_manager.shop_slots)).visible = true
+	reroll_shop()
