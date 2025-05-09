@@ -13,14 +13,18 @@ var rerolls_taken : int = 0
 @export var level3_percentage : float = 0.5
 ##Percentage out of 100 for how likely a level 3 unit is to show up
 
+var game_manager : Node2D
+
 #reroll menu UI
 var reroll_UI : CanvasLayer
 
 #Loads new units and then shows new units in the shop
 func _ready() -> void:
+	game_manager = find_parent("game_manager")
 	reroll_UI = find_child("reroll_UI")
-	level2_percentage = level2_percentage/100
-	level3_percentage = level3_percentage/100
+	level2_percentage = (level2_percentage + game_manager.higher_level_unit_chance) /100
+	level3_percentage = (level3_percentage + game_manager.higher_level_unit_chance) /100
+	print("lvl2: ", level2_percentage, ", lvl3: ", level3_percentage)
 	#Gets the children and sets them as locations units can spawn at
 	for loc in find_child("Unit Locations").get_children():
 		unit_locations.append(loc)
@@ -132,3 +136,7 @@ func _on_reroll_button_pressed():
 func _on_reroll_confirm_pressed():
 	reroll_UI.visible = false
 	reroll_shop()
+
+func _on_unit_chance_button_pressed():
+	reroll_UI.visible = false
+	game_manager.higher_level_unit_chance += 1
