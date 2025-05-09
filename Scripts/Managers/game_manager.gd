@@ -49,8 +49,11 @@ var wins = 0
 #How much life are we on
 var life_remaining = 10
 
+#number of shop upgrades purchased
+var shop_upgrades : int = 0
 #shop buff that increases chance for better units in shop
 var higher_level_unit_chance : float = 0
+
 
 @export var auto_create_armies_at_runtime : bool
 

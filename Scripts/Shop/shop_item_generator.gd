@@ -138,5 +138,9 @@ func _on_reroll_confirm_pressed():
 	reroll_shop()
 
 func _on_unit_chance_button_pressed():
-	reroll_UI.visible = false
-	game_manager.higher_level_unit_chance += 1
+	if !(find_parent("shop_manager").free_reroll):
+		if (((game_manager.shop_upgrades + 1) * 5) <= find_parent("shop_manager").money):
+			reroll_UI.visible = false
+			game_manager.higher_level_unit_chance += 1
+			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5))
+			game_manager.shop_upgrades += 1
