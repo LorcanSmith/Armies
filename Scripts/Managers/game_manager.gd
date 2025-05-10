@@ -49,6 +49,16 @@ var wins = 0
 #How much life are we on
 var life_remaining = 10
 
+#number of shop upgrades purchased
+var shop_upgrades : int = 0
+#shop buff that increases chance for better units in shop
+var higher_level_unit_chance : float = 0
+#shop buff that keeps track of number of slots available in the shop
+var shop_slots : int = 4
+#maximum number of shop slots the game supports
+const MAX_SHOP_SLOTS = 6
+
+
 @export var auto_create_armies_at_runtime : bool
 
 var money_remaining : int = 0

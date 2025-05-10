@@ -50,24 +50,26 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	#FRIENDLY DO HEALS
 	if((belongs_to_player and area.get_parent().is_in_group("player")) or (!belongs_to_player and area.get_parent().is_in_group("enemy")) and (!area.is_in_group("buff_location"))):
 		print("area: ", area.get_parent(), ", self: ", self, ", owner: ", owner_of_skill)
-		var effective = false
-		target_is_friendly = true
-		if(!area.get_parent().is_in_group("headquarter")):
-			for type in effective_against:
-				if(type != null and area.get_parent().unit_types.has(type)):
-					effective = true
-			if(effective):
-				heal = heal*2
-				#Do heal to friendly
-				target.heal(heal)
-				if(!spawned_visual_already):
-					attack_visuals()
-					spawned_visual_already = true
-			else:
-				target.heal(heal)
-				if(!spawned_visual_already):
-					attack_visuals()
-					spawned_visual_already = true
+		#deals with target.heal() bug where that functionality is null, may need to change in case of hybrid skills in future but as discussed, this is unlikely
+		if (area.get_parent() == target):
+			var effective = false
+			target_is_friendly = true
+			if(!area.get_parent().is_in_group("headquarter")):
+				for type in effective_against:
+					if(type != null and area.get_parent().unit_types.has(type)):
+						effective = true
+				if(effective):
+					heal = heal*2
+					#Do heal to friendly
+					target.heal(heal)
+					if(!spawned_visual_already):
+						attack_visuals()
+						spawned_visual_already = true
+				else:
+					target.heal(heal)
+					if(!spawned_visual_already):
+						attack_visuals()
+						spawned_visual_already = true
 	
 
 func attack_visuals():
