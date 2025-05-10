@@ -98,3 +98,7 @@ func _on_reroll_button_mouse_entered():
 func _on_reroll_button_mouse_exited():
 	if find_child("RerollText"):
 		find_child("RerollText").modulate = Color(1, 1, 1, 1)
+
+
+func _on_upgrade_button_pressed():
+	pass # Replace with function body.

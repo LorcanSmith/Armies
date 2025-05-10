@@ -34,6 +34,8 @@ func _ready() -> void:
 		unit_locations.append(location)
 	for loc in find_child("booster_locations").get_children():
 		booster_locations.append(loc)
+	update_upgrade_cost_labels()
+
 #Spawns in new shop units
 func show_new_units():
 	var x = 0
@@ -135,10 +137,6 @@ func reroll_shop():
 		show_new_units()
 
 func _on_reroll_button_pressed():
-	reroll_UI.visible = true
-
-func _on_reroll_confirm_pressed():
-	reroll_UI.visible = false
 	reroll_shop()
 
 func _on_unit_chance_button_pressed():
@@ -146,13 +144,40 @@ func _on_unit_chance_button_pressed():
 		if (((game_manager.shop_upgrades + 1) * 5) <= find_parent("shop_manager").money):
 			reroll_UI.visible = false
 			game_manager.higher_level_unit_chance += 1
-			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5))
+			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
 			game_manager.shop_upgrades += 1
-
+			update_upgrade_cost_labels()
+			reroll_shop()
 
 func _on_shop_slot_button_pressed():
+	if !(find_parent("shop_manager").free_reroll):
+		if (((game_manager.shop_upgrades + 1) * 5)  <= find_parent("shop_manager").money):
+			reroll_UI.visible = false
+			game_manager.shop_slots += 1
+			unit_locations.append(find_child("unit" + str(game_manager.shop_slots)))
+			find_child("pedestal" + str(game_manager.shop_slots)).visible = true
+			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
+			game_manager.shop_upgrades += 1
+			update_upgrade_cost_labels()
+			reroll_shop()
+
+
+func _on_upgrade_button_pressed():
+	reroll_UI.visible = true
+
+
+func _on_close_button_pressed():
 	reroll_UI.visible = false
-	game_manager.shop_slots += 1
-	unit_locations.append(find_child("unit" + str(game_manager.shop_slots)))
-	find_child("pedestal" + str(game_manager.shop_slots)).visible = true
-	reroll_shop()
+	
+func update_upgrade_cost_labels():
+	var counter = 4
+	while (counter < game_manager.shop_slots):
+		counter += 1
+		find_child("pedestal" + str(counter)).visible = true
+	find_child("unit_chance_cost").text = str((game_manager.shop_upgrades + 1) * 5)
+	if game_manager.shop_slots < game_manager.MAX_SHOP_SLOTS:
+		find_child("shop_slot_cost").text = str((game_manager.shop_upgrades + 1) * 5)
+	else:
+		find_child("shop_slot_cost").text = "X"
+		find_child("shop_slot_button_text").text = "FULL"
+		find_child("shop_slot_button").disabled = true

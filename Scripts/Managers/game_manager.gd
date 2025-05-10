@@ -55,6 +55,8 @@ var shop_upgrades : int = 0
 var higher_level_unit_chance : float = 0
 #shop buff that keeps track of number of slots available in the shop
 var shop_slots : int = 4
+#maximum number of shop slots the game supports
+const MAX_SHOP_SLOTS = 6
 
 
 @export var auto_create_armies_at_runtime : bool
