@@ -94,10 +94,10 @@ func swap_scenes():
 		#Select random names for selections
 		select_words()
 	else:
-		current_scene.queue_free()
-		create_scene()
+		find_child("scene_transitions").get_node("scene_transition_animation_player").play("transition_in")
 	
 func create_scene():
+	
 	if in_combat:
 		current_scene = combat_scene.instantiate()
 	else:
@@ -293,9 +293,8 @@ func word_pressed(is_adjective, word):
 		name_canvas.find_child("chosen_name").text = ("The " + adjective + " " + noun)
 
 func _on_confirm_name_button_pressed() -> void:
-	current_scene.queue_free()
-	create_scene()
 	name_canvas.queue_free()
+	find_child("scene_transitions").get_node("scene_transition_animation_player").play("transition_in")
 	
 func set_enemy_name(enemy_name: String):
 	CombatManager.find_child("enemy_team_name").text = enemy_name
@@ -305,3 +304,10 @@ func update_seed_label_text():
 	
 func update_tick_label_text(tick: int):
 	find_child("tick").text = str("tick: ", tick)
+
+
+func _on_scene_transition_animation_player_animation_finished(anim_name: StringName) -> void:
+	if(anim_name == "transition_in"):
+		find_child("scene_transitions").get_node("scene_transition_animation_player").play("transition_out")
+		current_scene.queue_free()
+		create_scene()
