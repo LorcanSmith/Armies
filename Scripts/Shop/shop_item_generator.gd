@@ -72,30 +72,47 @@ func show_new_units():
 func choose_random_unit(loc : int):
 	var dictionary_instance = dictionary.new()
 	seed((loc + 1) * (rerolls_taken + 1) * find_parent("game_manager").seed * find_parent("game_manager").turn_number)
-	var percentage = randf_range(0,100)/100
-	var random_unit_percentage = randf_range(0,100)/100
-	var random_unit = int(((dictionary_instance.item_scenes.size()/3) * random_unit_percentage))
-	var random_unit_position = random_unit*3
+	var percentage
+	var random_unit_percentage
+	var random_unit
+	var random_unit_position
 	var random_level
-
-	if(percentage <= level2_percentage):
-		random_level = 2
-		if(percentage <= level3_percentage):
-			random_level = 3
-	else:
-		random_level = 1
 	var loaded_unit
-	if(random_level == 1):
-		loaded_unit = dictionary_instance.item_scenes[random_unit_position]
-	elif(random_level == 2):
-		#Gets the unit ID
-		random_unit_position += 1
-		loaded_unit = dictionary_instance.item_scenes[random_unit_position]
-	elif(random_level == 3):
-		#Gets the unit ID
-		random_unit_position += 2
-		loaded_unit = dictionary_instance.item_scenes[random_unit_position]
-	#print(random_unit)
+	var unit_not_found = true
+	
+	while unit_not_found:
+		percentage = randf_range(0,100)/100
+		random_unit_percentage = randf_range(0,100)/100
+		random_unit = int(((dictionary_instance.item_scenes.size()/3) * random_unit_percentage))
+		random_unit_position = random_unit*3
+		if(percentage <= level2_percentage):
+			if(percentage <= level3_percentage):
+				random_level = 3
+			else:
+				random_level = 2
+		else:
+			random_level = 1
+		if(random_level == 2):
+			#Gets the unit ID
+			random_unit_position += 1
+		elif(random_level == 3):
+			#Gets the unit ID
+			random_unit_position += 2
+		var unit = dictionary_instance.unit_scenes[random_unit_position]
+		var x = 0
+		var types = []
+	#	only set to false if player removed a unit from the shop pool
+		var unit_allowed = true
+		while(x < game_manager.blocked_types.size()):
+			#Finds the boolean with the same name as unit_types[x]
+			var type = unit.get(game_manager.blocked_types[x])
+			if(type):
+				unit_allowed = false
+				break
+			x += 1
+		if unit_allowed:
+			loaded_unit = dictionary_instance.item_scenes[random_unit_position]
+			unit_not_found = false
 	return [loaded_unit, random_unit_position]
 	
 func choose_random_booster(loc : int):
