@@ -65,4 +65,5 @@ tick={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 environment/defaults/default_clear_color=Color(0.239828, 0.313396, 0.345682, 1)

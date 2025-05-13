@@ -107,7 +107,8 @@ func _ready() -> void:
 	
 	sprite = find_child("Sprite2D")
 	shop_manager = find_parent("shop_manager")
-	tooltip = shop_manager.find_child("Tooltip")
+	if(shop_manager):
+		tooltip = shop_manager.find_child("Tooltip")
 	level_label = find_child("Level")
 	cost_label = find_child("Cost")
 	

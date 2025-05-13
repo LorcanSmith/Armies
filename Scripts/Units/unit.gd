@@ -10,8 +10,9 @@ var damage_boost : int
 var health_boost : int
 
 var mouse_over : bool = false
-@export var tooltip_show_time : float = 0.4
+var tooltip_show_time : float = 0.4
 var current_tooltip_time_left
+@export var attack_animation_length : float = 0
 @export_group("Unit Properties")
 #Units max health 
 @export var max_health : int
@@ -248,15 +249,18 @@ func skill(phase : String):
 							break
 					var skill_instance 
 					skill_instance = skill_prefab.instantiate()
+					#Play skill animation
+					get_node("sprite_animator").play("skill")
+					get_node("AnimatedSprite2D").play("skill")
+					skill_instance.anim_time = attack_animation_length
 					#Tell the skill how much damage it does
 					skill_instance.damage = skill_damage + damage_boost
 					skill_instance.heal = skill_heal
 					skill_instance.effective_against = effective_against_types
 					skill_instance.effectiveness = effectiveness
-					skill_instance.owner_of_skill = self
+					skill_instance.owner_of_skill = self.global_position
 					skill_instance.projectile = projectile
 					find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
-					
 					#Tell the skill if it is a friendly or enemy skill
 					if(self.is_in_group("player")):
 						skill_instance.belongs_to_player = true
@@ -499,3 +503,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	#If the unit is dead and the damage animation has played, destroy this unit
 	if(!alive and anim_name == "unit_damage"):
 		queue_free()
+
+#When a sprite animation finishes we should play the default animation
+func _on_sprite_animator_animation_finished(anim_name: StringName) -> void:
+	get_node("sprite_animator").play("idle")
+	get_node("AnimatedSprite2D").play("idle")

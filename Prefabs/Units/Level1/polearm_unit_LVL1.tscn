@@ -1,11 +1,179 @@
-[gd_scene load_steps=5 format=3 uid="uid://cg10egubicfsp"]
+[gd_scene load_steps=26 format=3 uid="uid://cg10egubicfsp"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_ky5rb"]
 [ext_resource type="Texture2D" uid="uid://befn01dmekcw1" path="res://Sprites/Units/Medieval/Polearm/Polearm.png" id="2_ky5rb"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_ojcuj"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_8r6wm"]
+[ext_resource type="Texture2D" uid="uid://rs1455p70y5n" path="res://Sprites/Units/Medieval/Polearm/lvl1/Polearm_lvl1_attack.png" id="4_28cos"]
+[ext_resource type="Texture2D" uid="uid://b3m1joyu4ucc0" path="res://Sprites/Units/Medieval/Polearm/lvl1/Polearm_lv1_idle.png" id="5_kaplc"]
+
+[sub_resource type="Animation" id="Animation_wx6cc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+
+[sub_resource type="Animation" id="Animation_8r6wm"]
+resource_name = "idle"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+
+[sub_resource type="Animation" id="Animation_28cos"]
+resource_name = "skill"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"skill"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_28cos"]
+_data = {
+&"RESET": SubResource("Animation_wx6cc"),
+&"idle": SubResource("Animation_8r6wm"),
+&"skill": SubResource("Animation_28cos")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j45a2"]
+atlas = ExtResource("5_kaplc")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4o1w"]
+atlas = ExtResource("5_kaplc")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wx6cc"]
+atlas = ExtResource("4_28cos")
+region = Rect2(0, 0, 76, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28cos"]
+atlas = ExtResource("4_28cos")
+region = Rect2(76, 0, 76, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kaplc"]
+atlas = ExtResource("4_28cos")
+region = Rect2(152, 0, 76, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnpnn"]
+atlas = ExtResource("4_28cos")
+region = Rect2(228, 0, 76, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4rw8"]
+atlas = ExtResource("4_28cos")
+region = Rect2(304, 0, 76, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jepxl"]
+atlas = ExtResource("4_28cos")
+region = Rect2(380, 0, 76, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22yss"]
+atlas = ExtResource("4_28cos")
+region = Rect2(456, 0, 76, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6brd"]
+atlas = ExtResource("4_28cos")
+region = Rect2(532, 0, 76, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocvy0"]
+atlas = ExtResource("4_28cos")
+region = Rect2(608, 0, 76, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwuqd"]
+atlas = ExtResource("4_28cos")
+region = Rect2(684, 0, 76, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ur31"]
+atlas = ExtResource("4_28cos")
+region = Rect2(760, 0, 76, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha653"]
+atlas = ExtResource("4_28cos")
+region = Rect2(836, 0, 76, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kaplc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j45a2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4o1w")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wx6cc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28cos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kaplc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnpnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4rw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jepxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22yss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6brd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocvy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwuqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ur31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha653")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 16.0
+}]
 
 [node name="Polearm" instance=ExtResource("1_ky5rb")]
+attack_animation_length = 0.6
 max_health = 5
 brawl_damage = 1
 Medieval = true
@@ -22,7 +190,17 @@ position = Vector2(74, 0)
 position = Vector2(148, 0)
 
 [node name="Sprite2D" parent="." index="2"]
+visible = false
 texture = ExtResource("2_ky5rb")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-2, -0.5)
+
+[node name="sprite_animator" parent="." index="8"]
+libraries = {
+&"": SubResource("AnimationLibrary_28cos")
+}
+
+[node name="AnimatedSprite2D" parent="." index="9"]
+sprite_frames = SubResource("SpriteFrames_kaplc")
+autoplay = "idle"
