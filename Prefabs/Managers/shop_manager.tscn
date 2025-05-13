@@ -25,7 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://dtosfvnq5ioxt" path="res://Sprites/Bases/default.png" id="15_vg5hm"]
 [ext_resource type="Texture2D" uid="uid://bm7qe1w2xsxio" path="res://Sprites/UI/square_button/square_hovered.png" id="15_ywfir"]
 [ext_resource type="Texture2D" uid="uid://bibgq3y5unruc" path="res://Sprites/Backgrounds/background_1.png" id="17_1cd4y"]
-[ext_resource type="Texture2D" path="res://Prefabs/Units/Level1/soldier_sprite.png" id="21_hxbdf"]
+[ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="21_hxbdf"]
 [ext_resource type="Texture2D" uid="uid://cspyn7seap7nm" path="res://Sprites/Units/Dinosaurs/velociraptor/velociraptor_sprite_lvl1.png" id="22_kga0f"]
 [ext_resource type="Texture2D" uid="uid://duqq8x48i1fj" path="res://Sprites/Units/Fantasy/orc.png" id="23_3ljtq"]
 
@@ -379,6 +379,7 @@ scale = Vector2(1.26, 1.26)
 texture = ExtResource("8_rrq0j")
 
 [node name="reroll_UI" type="CanvasLayer" parent="Camera2D/shop_item_generator"]
+visible = false
 offset = Vector2(-231.665, -255.145)
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, -231.665, -255.145)
@@ -705,7 +706,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="remove_units" type="Control" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu"]
-visible = false
 anchors_preset = 0
 offset_left = 81.3333
 offset_top = 96.0
@@ -804,6 +804,7 @@ offset_bottom = 28.3333
 texture = ExtResource("13_pjqx2")
 
 [node name="remove_units_UI" type="CanvasLayer" parent="Camera2D/shop_item_generator"]
+visible = false
 offset = Vector2(-231.665, -255.145)
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, -231.665, -255.145)
@@ -815,10 +816,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1007.78
-offset_top = 58.7633
-offset_right = 1007.78
-offset_bottom = 58.7633
+offset_left = -74.223
+offset_top = 52.097
+offset_right = -74.2229
+offset_bottom = 52.097
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(586.443, 421.43)
@@ -1305,5 +1306,11 @@ position = Vector2(-309, -176)
 [connection signal="pressed" from="Camera2D/shop_item_generator/battle_button" to="." method="_on_battle_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/reroll_UI/Container/Menu/unit_chance/unit_chance_button" to="Camera2D/shop_item_generator" method="_on_unit_chance_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/reroll_UI/Container/Menu/shop_slot/shop_slot_button" to="Camera2D/shop_item_generator" method="_on_shop_slot_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/reroll_UI/Container/Menu/remove_units/remove_units_button" to="Camera2D/shop_item_generator" method="_on_remove_units_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/reroll_UI/Container/Menu/close_button" to="Camera2D/shop_item_generator" method="_on_close_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval/remove_medieval_button" to="Camera2D/shop_item_generator" method="_on_remove_medieval_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_army/remove_army_button" to="Camera2D/shop_item_generator" method="_on_remove_army_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur/remove_dinosaur_button" to="Camera2D/shop_item_generator" method="_on_remove_dinosaur_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy/remove_fantasy_button" to="Camera2D/shop_item_generator" method="_on_remove_fantasy_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/close_button" to="Camera2D/shop_item_generator" method="_on_remove_UI_close_button_pressed"]
 [connection signal="mouse_entered" from="Camera2D/base_manager/base_Area2D" to="Camera2D/base_manager" method="_on_base_area_2d_mouse_entered"]

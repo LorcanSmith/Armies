@@ -15,13 +15,15 @@ var rerolls_taken : int = 0
 
 var game_manager : Node2D
 
-#reroll menu UI
 var reroll_UI : CanvasLayer
+
+var remove_units_UI : CanvasLayer
 
 #Loads new units and then shows new units in the shop
 func _ready() -> void:
 	game_manager = find_parent("game_manager")
 	reroll_UI = find_child("reroll_UI")
+	remove_units_UI = find_child("remove_units_UI")
 	level2_percentage = (level2_percentage + game_manager.higher_level_unit_chance) /100
 	level3_percentage = (level3_percentage + game_manager.higher_level_unit_chance) /100
 	print("lvl2: ", level2_percentage, ", lvl3: ", level3_percentage)
@@ -98,7 +100,7 @@ func choose_random_unit(loc : int):
 		elif(random_level == 3):
 			#Gets the unit ID
 			random_unit_position += 2
-		var unit = dictionary_instance.unit_scenes[random_unit_position]
+		var unit = dictionary_instance.unit_scenes[random_unit_position].instantiate()
 		var x = 0
 		var types = []
 	#	only set to false if player removed a unit from the shop pool
@@ -198,3 +200,56 @@ func update_upgrade_cost_labels():
 		find_child("shop_slot_cost").text = "X"
 		find_child("shop_slot_button_text").text = "FULL"
 		find_child("shop_slot_button").disabled = true
+
+func _on_remove_units_button_pressed():
+	reroll_UI.visible = false
+	remove_units_UI.visible = true
+
+
+func _on_remove_UI_close_button_pressed():
+	remove_units_UI.visible = false
+	reroll_UI.visible = true
+
+
+func _on_remove_medieval_button_pressed():
+	if !(find_parent("shop_manager").free_reroll):
+		if (((game_manager.shop_upgrades + 1) * 5)  <= find_parent("shop_manager").money):
+			remove_units_UI.visible = false
+			game_manager.blocked_types.append("Medieval")
+			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
+			game_manager.shop_upgrades += 1
+			update_upgrade_cost_labels()
+			reroll_shop()
+
+
+func _on_remove_army_button_pressed():
+	if !(find_parent("shop_manager").free_reroll):
+		if (((game_manager.shop_upgrades + 1) * 5)  <= find_parent("shop_manager").money):
+			remove_units_UI.visible = false
+			game_manager.blocked_types.append("Army")
+			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
+			game_manager.shop_upgrades += 1
+			update_upgrade_cost_labels()
+			reroll_shop()
+
+
+func _on_remove_dinosaur_button_pressed():
+	if !(find_parent("shop_manager").free_reroll):
+		if (((game_manager.shop_upgrades + 1) * 5)  <= find_parent("shop_manager").money):
+			remove_units_UI.visible = false
+			game_manager.blocked_types.append("Dinosaur")
+			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
+			game_manager.shop_upgrades += 1
+			update_upgrade_cost_labels()
+			reroll_shop()
+
+
+func _on_remove_fantasy_button_pressed():
+	if !(find_parent("shop_manager").free_reroll):
+		if (((game_manager.shop_upgrades + 1) * 5)  <= find_parent("shop_manager").money):
+			remove_units_UI.visible = false
+			game_manager.blocked_types.append("Fantasy")
+			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
+			game_manager.shop_upgrades += 1
+			update_upgrade_cost_labels()
+			reroll_shop()
