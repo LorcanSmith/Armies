@@ -135,8 +135,8 @@ position = Vector2(415, 476)
 grid_name = "army"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(589, 508)
-zoom = Vector2(1.8, 1.8)
+position = Vector2(590, 508)
+zoom = Vector2(2, 2)
 
 [node name="shop_visuals" type="Control" parent="Camera2D"]
 layout_mode = 3
