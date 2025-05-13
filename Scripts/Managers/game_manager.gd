@@ -55,6 +55,8 @@ var shop_upgrades : int = 0
 var higher_level_unit_chance : float = 0
 #shop buff that keeps track of number of slots available in the shop
 var shop_slots : int = 4
+#list of unit types that have been removed from the shop pool
+var blocked_types = []
 #maximum number of shop slots the game supports
 const MAX_SHOP_SLOTS = 6
 

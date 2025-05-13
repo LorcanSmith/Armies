@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=34 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
@@ -25,6 +25,9 @@
 [ext_resource type="Texture2D" uid="uid://dtosfvnq5ioxt" path="res://Sprites/Bases/default.png" id="15_vg5hm"]
 [ext_resource type="Texture2D" uid="uid://bm7qe1w2xsxio" path="res://Sprites/UI/square_button/square_hovered.png" id="15_ywfir"]
 [ext_resource type="Texture2D" uid="uid://bibgq3y5unruc" path="res://Sprites/Backgrounds/background_1.png" id="17_1cd4y"]
+[ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="21_hxbdf"]
+[ext_resource type="Texture2D" uid="uid://cspyn7seap7nm" path="res://Sprites/Units/Dinosaurs/velociraptor/velociraptor_sprite_lvl1.png" id="22_kga0f"]
+[ext_resource type="Texture2D" uid="uid://duqq8x48i1fj" path="res://Sprites/Units/Fantasy/orc.png" id="23_3ljtq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4adb8"]
 size = Vector2(46, 59)
@@ -703,7 +706,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="remove_units" type="Control" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu"]
-visible = false
 anchors_preset = 0
 offset_left = 81.3333
 offset_top = 96.0
@@ -792,6 +794,414 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="shadow" type="TextureRect" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/close_button"]
+modulate = Color(0, 0, 0, 0.529412)
+z_index = -1
+layout_mode = 0
+offset_left = 2.00004
+offset_top = 1.33333
+offset_right = 29.0
+offset_bottom = 28.3333
+texture = ExtResource("13_pjqx2")
+
+[node name="remove_units_UI" type="CanvasLayer" parent="Camera2D/shop_item_generator"]
+visible = false
+offset = Vector2(-231.665, -255.145)
+scale = Vector2(1.5, 1.5)
+transform = Transform2D(1.5, 0, 0, 1.5, -231.665, -255.145)
+
+[node name="Container" type="Control" parent="Camera2D/shop_item_generator/remove_units_UI"]
+z_index = -2
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -74.223
+offset_top = 52.097
+offset_right = -74.2229
+offset_bottom = 52.097
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(586.443, 421.43)
+metadata/_edit_use_anchors_ = true
+
+[node name="Menu" type="Control" parent="Camera2D/shop_item_generator/remove_units_UI/Container"]
+anchors_preset = 0
+offset_left = 637.333
+offset_top = 352.667
+offset_right = 637.333
+offset_bottom = 352.667
+metadata/_edit_use_anchors_ = true
+
+[node name="crate" type="TextureRect" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu"]
+modulate = Color(0.255659, 0.255659, 0.255659, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = -15.8392
+offset_top = -15.2058
+offset_right = 16.1608
+offset_bottom = 16.7942
+scale = Vector2(9, 9)
+pivot_offset = Vector2(16.0572, 15.3813)
+texture = ExtResource("11_hwvrm")
+
+[node name="menu_title" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu"]
+layout_mode = 0
+offset_left = -140.0
+offset_top = -140.667
+offset_right = 1281.0
+offset_bottom = 40.3333
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/normal_font_size = 150
+text = "REMOVE UNITS"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="remove_medieval" type="Control" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu"]
+anchors_preset = 0
+offset_left = -81.9998
+offset_top = -45.3336
+offset_right = -81.9998
+offset_bottom = -45.3336
+
+[node name="unit_image" type="TextureRect" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -16.6665
+offset_top = -45.3336
+offset_right = 15.3335
+offset_bottom = -13.3336
+texture = ExtResource("12_uptcy")
+stretch_mode = 3
+
+[node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval"]
+layout_mode = 0
+offset_left = -42.0
+offset_top = -12.0
+offset_right = 785.0
+offset_bottom = 498.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/normal_font_size = 100
+text = "Medieval"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="remove_medieval_button" type="TextureButton" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval"]
+layout_mode = 0
+offset_left = -35.3331
+offset_top = 8.66638
+offset_right = 37.6669
+offset_bottom = 35.6664
+texture_normal = ExtResource("8_qjc8s")
+texture_pressed = ExtResource("9_vg5hm")
+texture_hover = ExtResource("10_1cd4y")
+
+[node name="remove_medieval_button_text" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval/remove_medieval_button"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 740.0
+offset_bottom = 305.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "REMOVE"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="remove_medieval_cost" type="Label" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval/remove_medieval_button"]
+z_index = 5
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.39269
+anchor_top = 0.876556
+anchor_right = 1.39269
+anchor_bottom = 0.876556
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 83.27
+offset_bottom = 109.0
+scale = Vector2(0.105, 0.105)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 95
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval/remove_medieval_button/remove_medieval_cost"]
+z_index = 1
+z_as_relative = false
+position = Vector2(58.8235, 70.5882)
+scale = Vector2(4.41176, 4.41177)
+texture = ExtResource("6_wk4qg")
+
+[node name="remove_army" type="Control" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu"]
+anchors_preset = 0
+offset_left = 67.3335
+offset_top = -46.0003
+offset_right = 67.3335
+offset_bottom = -46.0003
+
+[node name="unit_image" type="TextureRect" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_army"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -16.6665
+offset_top = -45.3336
+offset_right = 15.3335
+offset_bottom = -13.3336
+texture = ExtResource("21_hxbdf")
+stretch_mode = 3
+
+[node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_army"]
+layout_mode = 0
+offset_left = -42.0
+offset_top = -12.0
+offset_right = 785.0
+offset_bottom = 498.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/normal_font_size = 100
+text = "Army"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="remove_army_button" type="TextureButton" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_army"]
+layout_mode = 0
+offset_left = -35.3331
+offset_top = 8.66638
+offset_right = 37.6669
+offset_bottom = 35.6664
+texture_normal = ExtResource("8_qjc8s")
+texture_pressed = ExtResource("9_vg5hm")
+texture_hover = ExtResource("10_1cd4y")
+
+[node name="remove_army_button_text" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_army/remove_army_button"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 740.0
+offset_bottom = 305.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "REMOVE"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="remove_army_cost" type="Label" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_army/remove_army_button"]
+z_index = 5
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.39269
+anchor_top = 0.876556
+anchor_right = 1.39269
+anchor_bottom = 0.876556
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 83.27
+offset_bottom = 109.0
+scale = Vector2(0.105, 0.105)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 95
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_army/remove_army_button/remove_army_cost"]
+z_index = 1
+z_as_relative = false
+position = Vector2(58.8235, 70.5882)
+scale = Vector2(4.41176, 4.41177)
+texture = ExtResource("6_wk4qg")
+
+[node name="remove_dinosaur" type="Control" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu"]
+anchors_preset = 0
+offset_left = -81.9998
+offset_top = 68.6664
+offset_right = -81.9998
+offset_bottom = 68.6664
+
+[node name="unit_image" type="TextureRect" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -16.6665
+offset_top = -45.3336
+offset_right = 15.3335
+offset_bottom = -13.3336
+texture = ExtResource("22_kga0f")
+stretch_mode = 3
+
+[node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur"]
+layout_mode = 0
+offset_left = -42.0
+offset_top = -12.0
+offset_right = 785.0
+offset_bottom = 498.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/normal_font_size = 100
+text = "Dinosaur"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="remove_dinosaur_button" type="TextureButton" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur"]
+layout_mode = 0
+offset_left = -35.3331
+offset_top = 8.66638
+offset_right = 37.6669
+offset_bottom = 35.6664
+texture_normal = ExtResource("8_qjc8s")
+texture_pressed = ExtResource("9_vg5hm")
+texture_hover = ExtResource("10_1cd4y")
+
+[node name="remove_dinosaur_button_text" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur/remove_dinosaur_button"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 740.0
+offset_bottom = 305.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "REMOVE"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="remove_dinosaur_cost" type="Label" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur/remove_dinosaur_button"]
+z_index = 5
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.39269
+anchor_top = 0.876556
+anchor_right = 1.39269
+anchor_bottom = 0.876556
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 83.27
+offset_bottom = 109.0
+scale = Vector2(0.105, 0.105)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 95
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur/remove_dinosaur_button/remove_dinosaur_cost"]
+z_index = 1
+z_as_relative = false
+position = Vector2(58.8235, 70.5882)
+scale = Vector2(4.41176, 4.41177)
+texture = ExtResource("6_wk4qg")
+
+[node name="remove_fantasy" type="Control" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu"]
+anchors_preset = 0
+offset_left = 65.3335
+offset_top = 69.333
+offset_right = 65.3335
+offset_bottom = 69.333
+
+[node name="unit_image" type="TextureRect" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -16.6665
+offset_top = -45.3336
+offset_right = 15.3335
+offset_bottom = -13.3336
+texture = ExtResource("23_3ljtq")
+stretch_mode = 3
+
+[node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy"]
+layout_mode = 0
+offset_left = -42.0
+offset_top = -12.0
+offset_right = 785.0
+offset_bottom = 498.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/normal_font_size = 100
+text = "Fantasy"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="remove_fantasy_button" type="TextureButton" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy"]
+layout_mode = 0
+offset_left = -35.3331
+offset_top = 8.66638
+offset_right = 37.6669
+offset_bottom = 35.6664
+texture_normal = ExtResource("8_qjc8s")
+texture_pressed = ExtResource("9_vg5hm")
+texture_hover = ExtResource("10_1cd4y")
+
+[node name="remove_fantasy_button_text" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy/remove_fantasy_button"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 740.0
+offset_bottom = 305.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "REMOVE"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="remove_fantasy_cost" type="Label" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy/remove_fantasy_button"]
+z_index = 5
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.39269
+anchor_top = 0.876556
+anchor_right = 1.39269
+anchor_bottom = 0.876556
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 83.27
+offset_bottom = 109.0
+scale = Vector2(0.105, 0.105)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 95
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy/remove_fantasy_button/remove_fantasy_cost"]
+z_index = 1
+z_as_relative = false
+position = Vector2(58.8235, 70.5882)
+scale = Vector2(4.41176, 4.41177)
+texture = ExtResource("6_wk4qg")
+
+[node name="close_button" type="TextureButton" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu"]
+z_index = 1
+layout_mode = 0
+offset_left = 132.0
+offset_top = -136.667
+offset_right = 159.0
+offset_bottom = -109.667
+texture_normal = ExtResource("13_pjqx2")
+texture_pressed = ExtResource("14_l5wyo")
+texture_hover = ExtResource("15_ywfir")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/close_button"]
+layout_mode = 0
+offset_right = 274.0
+offset_bottom = 274.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "X"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="shadow" type="TextureRect" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/close_button"]
 modulate = Color(0, 0, 0, 0.529412)
 z_index = -1
 layout_mode = 0
@@ -896,5 +1306,11 @@ position = Vector2(-309, -176)
 [connection signal="pressed" from="Camera2D/shop_item_generator/battle_button" to="." method="_on_battle_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/reroll_UI/Container/Menu/unit_chance/unit_chance_button" to="Camera2D/shop_item_generator" method="_on_unit_chance_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/reroll_UI/Container/Menu/shop_slot/shop_slot_button" to="Camera2D/shop_item_generator" method="_on_shop_slot_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/reroll_UI/Container/Menu/remove_units/remove_units_button" to="Camera2D/shop_item_generator" method="_on_remove_units_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/reroll_UI/Container/Menu/close_button" to="Camera2D/shop_item_generator" method="_on_close_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval/remove_medieval_button" to="Camera2D/shop_item_generator" method="_on_remove_medieval_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_army/remove_army_button" to="Camera2D/shop_item_generator" method="_on_remove_army_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur/remove_dinosaur_button" to="Camera2D/shop_item_generator" method="_on_remove_dinosaur_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy/remove_fantasy_button" to="Camera2D/shop_item_generator" method="_on_remove_fantasy_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/close_button" to="Camera2D/shop_item_generator" method="_on_remove_UI_close_button_pressed"]
 [connection signal="mouse_entered" from="Camera2D/base_manager/base_Area2D" to="Camera2D/base_manager" method="_on_base_area_2d_mouse_entered"]

@@ -1793,6 +1793,7 @@ scale = Vector2(0.08, 0.08)
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 150
 text = "Confirm Name"
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
