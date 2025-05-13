@@ -6,6 +6,21 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62j2u"]
 size = Vector2(97.561, 99.187)
 
+[sub_resource type="Animation" id="Animation_jlgaw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_54ony"]
 resource_name = "tile_appear"
 length = 0.6
@@ -22,21 +37,6 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_jlgaw"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mk7sy"]
 _data = {
 &"RESET": SubResource("Animation_jlgaw"),
@@ -48,11 +48,12 @@ script = ExtResource("1_87l63")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, 16)
+position = Vector2(0.00037, 34)
 texture = ExtResource("2_54ony")
 offset = Vector2(0, -31.3308)
 
 [node name="Area2D" type="Area2D" parent="." groups=["tile"]]
+position = Vector2(0.00037, 18)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-3.57628e-07, 0)

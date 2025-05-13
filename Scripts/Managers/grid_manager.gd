@@ -107,7 +107,6 @@ func load_units():
 							#Increase shop percentages if the unit can do it
 							get_parent().find_child("shop_item_generator").level2_percentage += instance.increase_higher_level_unit_perecentage/100
 							get_parent().find_child("shop_item_generator").level3_percentage += instance.increase_higher_level_unit_perecentage/100
-							print(find_parent("shop_manager").find_child("shop_item_generator").level2_percentage)
 							#Gets the unit version so we can check if the item needs to be transformed
 							var unit_version = dictionary_instance.unit_scenes[int(unit_IDs[width][height][0])].instantiate()
 							instance.transform_item(unit_version)

@@ -205,49 +205,45 @@ autoplay = "upgrade_arrow"
 
 [node name="level_chevrons" type="Node2D" parent="Sprite2D"]
 position = Vector2(-25, -15)
-scale = Vector2(1.815, 1.815)
 
 [node name="lvl1" type="Sprite2D" parent="Sprite2D/level_chevrons"]
 z_index = 1
 texture_filter = 1
-scale = Vector2(0.11, 0.11)
 texture = ExtResource("11_eytbw")
 
 [node name="lvl1_shadow" type="Sprite2D" parent="Sprite2D/level_chevrons/lvl1"]
-modulate = Color(0, 0, 0, 0.627451)
+modulate = Color(0, 0, 0, 0.313726)
 z_as_relative = false
 texture_filter = 1
-position = Vector2(1.46494, 3.78475)
+position = Vector2(1, 1)
 texture = ExtResource("11_eytbw")
 
 [node name="lvl2" type="Sprite2D" parent="Sprite2D/level_chevrons"]
 visible = false
 z_index = 1
 texture_filter = 1
-position = Vector2(0, -2)
-scale = Vector2(0.11, 0.11)
+position = Vector2(-0.254821, -6)
 texture = ExtResource("11_eytbw")
 
 [node name="lvl2_shadow" type="Sprite2D" parent="Sprite2D/level_chevrons/lvl2"]
-modulate = Color(0, 0, 0, 0.627451)
+modulate = Color(0, 0, 0, 0.313726)
 z_as_relative = false
 texture_filter = 1
-position = Vector2(1.46494, 3.78475)
+position = Vector2(0.75482, 1.5)
 texture = ExtResource("11_eytbw")
 
 [node name="lvl3" type="Sprite2D" parent="Sprite2D/level_chevrons"]
 visible = false
 z_index = 1
 texture_filter = 1
-position = Vector2(0, -4)
-scale = Vector2(0.11, 0.11)
+position = Vector2(-8.64267e-07, -12)
 texture = ExtResource("11_eytbw")
 
 [node name="lvl3_shadow" type="Sprite2D" parent="Sprite2D/level_chevrons/lvl3"]
-modulate = Color(0, 0, 0, 0.627451)
+modulate = Color(0, 0, 0, 0.313726)
 z_as_relative = false
 texture_filter = 1
-position = Vector2(1.46494, 3.78475)
+position = Vector2(0.5, 1.5)
 texture = ExtResource("11_eytbw")
 
 [node name="Item_Info" type="Control" parent="Sprite2D"]

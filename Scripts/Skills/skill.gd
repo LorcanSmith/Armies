@@ -10,16 +10,15 @@ var target : Node2D
 
 var target_is_friendly : bool
 
+#How long should the skill wait before doing the damage (how long does the animation take)
+var anim_time : float = 0
 #Does this skill belong to the player or enemy
 var belongs_to_player : bool
-var owner_of_skill : Node2D
+var owner_of_skill : Vector2
 var effective_against : Array = []
 var effectiveness : int
 
 var spawned_visual_already : bool
-func _process(delta):
-	await get_tree().create_timer(.1).timeout
-	queue_free()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	#ENEMY! DO DAMAGE
@@ -70,15 +69,15 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 					if(!spawned_visual_already):
 						attack_visuals()
 						spawned_visual_already = true
-	
-
 func attack_visuals():
+	await get_tree().create_timer(anim_time).timeout
 	var projectile_instance = projectile.instantiate()
 	find_parent("combat_manager").find_child("skill_holder").add_child(projectile_instance)
-	projectile_instance.global_position = owner_of_skill.global_position
+	projectile_instance.global_position = owner_of_skill
 	if(!target_is_friendly):
 		projectile_instance.damage = damage
 	if(target_is_friendly):
 		projectile_instance.damage = -heal
-	projectile_instance.target_enemy(target)
+	if(target):
+		projectile_instance.target_enemy(target)
 	queue_free()
