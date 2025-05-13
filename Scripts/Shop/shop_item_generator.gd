@@ -12,15 +12,30 @@ var rerolls_taken : int = 0
 @export var level2_percentage : float = 7
 @export var level3_percentage : float = 0.5
 ##Percentage out of 100 for how likely a level 3 unit is to show up
+
+var game_manager : Node2D
+
+#reroll menu UI
+var reroll_UI : CanvasLayer
+
 #Loads new units and then shows new units in the shop
 func _ready() -> void:
-	level2_percentage = level2_percentage/100
-	level3_percentage = level3_percentage/100
+	game_manager = find_parent("game_manager")
+	reroll_UI = find_child("reroll_UI")
+	level2_percentage = (level2_percentage + game_manager.higher_level_unit_chance) /100
+	level3_percentage = (level3_percentage + game_manager.higher_level_unit_chance) /100
+	print("lvl2: ", level2_percentage, ", lvl3: ", level3_percentage)
 	#Gets the children and sets them as locations units can spawn at
-	for loc in find_child("Unit Locations").get_children():
-		unit_locations.append(loc)
+	var counter = 0
+	var location
+	while (counter < game_manager.shop_slots):
+		counter += 1
+		location = find_child("unit" + str(counter))
+		unit_locations.append(location)
 	for loc in find_child("booster_locations").get_children():
 		booster_locations.append(loc)
+	update_upgrade_cost_labels()
+
 #Spawns in new shop units
 func show_new_units():
 	var x = 0
@@ -121,5 +136,48 @@ func reroll_shop():
 		rerolls_taken += 1
 		show_new_units()
 
-func _on_texture_button_pressed() -> void:
+func _on_reroll_button_pressed():
 	reroll_shop()
+
+func _on_unit_chance_button_pressed():
+	if !(find_parent("shop_manager").free_reroll):
+		if (((game_manager.shop_upgrades + 1) * 5) <= find_parent("shop_manager").money):
+			reroll_UI.visible = false
+			game_manager.higher_level_unit_chance += 1
+			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
+			game_manager.shop_upgrades += 1
+			update_upgrade_cost_labels()
+			reroll_shop()
+
+func _on_shop_slot_button_pressed():
+	if !(find_parent("shop_manager").free_reroll):
+		if (((game_manager.shop_upgrades + 1) * 5)  <= find_parent("shop_manager").money):
+			reroll_UI.visible = false
+			game_manager.shop_slots += 1
+			unit_locations.append(find_child("unit" + str(game_manager.shop_slots)))
+			find_child("pedestal" + str(game_manager.shop_slots)).visible = true
+			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
+			game_manager.shop_upgrades += 1
+			update_upgrade_cost_labels()
+			reroll_shop()
+
+
+func _on_upgrade_button_pressed():
+	reroll_UI.visible = true
+
+
+func _on_close_button_pressed():
+	reroll_UI.visible = false
+	
+func update_upgrade_cost_labels():
+	var counter = 4
+	while (counter < game_manager.shop_slots):
+		counter += 1
+		find_child("pedestal" + str(counter)).visible = true
+	find_child("unit_chance_cost").text = str((game_manager.shop_upgrades + 1) * 5)
+	if game_manager.shop_slots < game_manager.MAX_SHOP_SLOTS:
+		find_child("shop_slot_cost").text = str((game_manager.shop_upgrades + 1) * 5)
+	else:
+		find_child("shop_slot_cost").text = "X"
+		find_child("shop_slot_button_text").text = "FULL"
+		find_child("shop_slot_button").disabled = true
