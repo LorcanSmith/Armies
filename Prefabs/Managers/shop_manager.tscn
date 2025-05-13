@@ -897,7 +897,7 @@ texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval/remove_medieval_button"]
+[node name="remove_medieval_button_text" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval/remove_medieval_button"]
 layout_mode = 0
 offset_top = -2.0
 offset_right = 740.0
@@ -977,7 +977,7 @@ texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_army/remove_army_button"]
+[node name="remove_army_button_text" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_army/remove_army_button"]
 layout_mode = 0
 offset_top = -2.0
 offset_right = 740.0
@@ -1057,7 +1057,7 @@ texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur/remove_dinosaur_button"]
+[node name="remove_dinosaur_button_text" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur/remove_dinosaur_button"]
 layout_mode = 0
 offset_top = -2.0
 offset_right = 740.0
@@ -1137,7 +1137,7 @@ texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy/remove_fantasy_button"]
+[node name="remove_fantasy_button_text" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy/remove_fantasy_button"]
 layout_mode = 0
 offset_top = -2.0
 offset_right = 740.0

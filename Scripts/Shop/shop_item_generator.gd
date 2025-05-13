@@ -19,6 +19,13 @@ var reroll_UI : CanvasLayer
 
 var remove_units_UI : CanvasLayer
 
+var unit_themes : Array = [
+	"Medieval",
+	"Army",
+	"Dinosaur",
+	"Fantasy"
+	]
+
 #Loads new units and then shows new units in the shop
 func _ready() -> void:
 	game_manager = find_parent("game_manager")
@@ -200,6 +207,18 @@ func update_upgrade_cost_labels():
 		find_child("shop_slot_cost").text = "X"
 		find_child("shop_slot_button_text").text = "FULL"
 		find_child("shop_slot_button").disabled = true
+	counter = 0
+	var theme
+	while counter < unit_themes.size():
+		theme = unit_themes[counter].to_lower()
+		if game_manager.blocked_types.has(unit_themes[counter]):
+			find_child("remove_{theme}_cost".format({"theme": theme})).text = "X"
+			find_child("remove_{theme}_button_text".format({"theme": theme})).text = "REMOVED"
+			find_child("remove_{theme}_button".format({"theme": theme})).disabled = true
+		else:
+			find_child("remove_{theme}_cost".format({"theme": theme})).text = str((game_manager.shop_upgrades + 1) * 5)
+		counter += 1
+	
 
 func _on_remove_units_button_pressed():
 	reroll_UI.visible = false
