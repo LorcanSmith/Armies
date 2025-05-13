@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://brgi4h0spiup2"]
+[gd_scene load_steps=49 format=3 uid="uid://brgi4h0spiup2"]
 
 [ext_resource type="Script" uid="uid://ceah7wfd5evx8" path="res://Scripts/Managers/game_manager.gd" id="1_y45oy"]
 [ext_resource type="Script" uid="uid://06xxppo51p7p" path="res://Scripts/DEBUGGER_script.gd" id="2_pa0fo"]
@@ -390,6 +390,94 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_wsu2k"),
 &"name_maker_appear": SubResource("Animation_jkdf5")
+}
+
+[sub_resource type="Animation" id="Animation_1w6v2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2040, -1496)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1846, -198)]
+}
+
+[sub_resource type="Animation" id="Animation_ueoa1"]
+resource_name = "transition_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2040, -1496), Vector2(-1051, -1281)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1846, -198), Vector2(973, -401)]
+}
+
+[sub_resource type="Animation" id="Animation_6vcvc"]
+resource_name = "transition_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1051, -1281), Vector2(-2040, -1496)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(973, -401), Vector2(1846, -198)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7k868"]
+_data = {
+&"RESET": SubResource("Animation_1w6v2"),
+&"transition_in": SubResource("Animation_ueoa1"),
+&"transition_out": SubResource("Animation_6vcvc")
 }
 
 [node name="game_manager" type="Node2D" node_paths=PackedStringArray("health_UI", "wins_UI", "coin_text", "turn_text", "turn_counter")]
@@ -1725,6 +1813,31 @@ libraries = {
 &"": SubResource("AnimationLibrary_k12tt")
 }
 
+[node name="scene_transitions" type="CanvasLayer" parent="."]
+
+[node name="scene_transition_animation_player" type="AnimationPlayer" parent="scene_transitions"]
+libraries = {
+&"": SubResource("AnimationLibrary_7k868")
+}
+
+[node name="ColorRect" type="ColorRect" parent="scene_transitions"]
+z_index = 22
+offset_left = -2040.0
+offset_top = -1496.0
+offset_right = 193.0
+offset_bottom = 528.0
+rotation = 0.385657
+color = Color(0.118581, 0.118581, 0.118581, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="scene_transitions"]
+z_index = 22
+offset_left = 1846.0
+offset_top = -198.0
+offset_right = 4079.0
+offset_bottom = 1826.0
+rotation = 0.385657
+color = Color(0.118581, 0.118581, 0.118581, 1)
+
 [connection signal="toggled" from="DEBUGGER/CanvasLayer/place_enemy_button" to="DEBUGGER" method="_on_place_enemy_button_toggled"]
 [connection signal="toggled" from="DEBUGGER/CanvasLayer/CheckButton" to="DEBUGGER" method="_on_check_button_toggled"]
 [connection signal="item_selected" from="DEBUGGER/CanvasLayer/OptionButton" to="DEBUGGER" method="_on_option_button_item_selected"]
@@ -1738,3 +1851,4 @@ libraries = {
 [connection signal="pressed" from="name_maker_canvas/Container/ColorRect/bottom_words/word2" to="name_maker_canvas/Container/ColorRect/bottom_words/word2" method="_on_pressed"]
 [connection signal="pressed" from="name_maker_canvas/Container/ColorRect/bottom_words/word3" to="name_maker_canvas/Container/ColorRect/bottom_words/word3" method="_on_pressed"]
 [connection signal="pressed" from="name_maker_canvas/Container/ColorRect/confirm_name_button" to="." method="_on_confirm_name_button_pressed"]
+[connection signal="animation_finished" from="scene_transitions/scene_transition_animation_player" to="." method="_on_scene_transition_animation_player_animation_finished"]
