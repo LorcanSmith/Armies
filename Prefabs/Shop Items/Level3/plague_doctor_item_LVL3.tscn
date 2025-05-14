@@ -8,15 +8,15 @@
 description = "Heals units with the type \"Human\""
 unit_name = "Medic"
 can_be_upgraded = false
-buy_cost = 12
-sell_cost = 6
+buy_cost = 6
+sell_cost = 3
 health_buff = 1
 Medieval = true
 Army = true
 Vehicle = true
 Human = true
-Soldier = true
 Animal = true
+Soldier = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_0lfmp")

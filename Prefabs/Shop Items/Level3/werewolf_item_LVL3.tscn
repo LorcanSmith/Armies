@@ -8,8 +8,8 @@
 description = "If the turn nubmer is even then this unit will transform into a werewolf with double health/attack"
 unit_name = "Werewolf"
 can_be_upgraded = false
-buy_cost = 15
-sell_cost = 7
+buy_cost = 8
+sell_cost = 4
 health_buff = 1
 Vehicle = true
 

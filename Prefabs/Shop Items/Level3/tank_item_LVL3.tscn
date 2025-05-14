@@ -8,8 +8,8 @@
 description = "Highly armoured vehicle that shoots a heavy hitting projectile. Has to reload after every shot"
 unit_name = "Tank"
 can_be_upgraded = false
-buy_cost = 16
-sell_cost = 8
+buy_cost = 6
+sell_cost = 3
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_kjjmh")

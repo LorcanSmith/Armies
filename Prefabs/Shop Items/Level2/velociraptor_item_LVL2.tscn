@@ -9,8 +9,8 @@
 description = "A pack hunter"
 before_combat_desc = "Gives other velociraptors +3 attack"
 unit_name = "Velociraptor"
-buy_cost = 8
-sell_cost = 4
+buy_cost = 5
+sell_cost = 2
 can_buff = true
 damage_buff = 3
 Velociraptor = true

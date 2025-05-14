@@ -8,8 +8,8 @@
 description = "Cheep and weak"
 unit_name = "Chicken"
 can_be_upgraded = false
-buy_cost = 5
-sell_cost = 2
+buy_cost = 2
+sell_cost = 1
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_fdid4")

@@ -8,14 +8,14 @@
 description = "Look out for that tail!"
 unit_name = "Trex"
 can_be_upgraded = false
-buy_cost = 15
-sell_cost = 7
+buy_cost = 6
+sell_cost = 3
 All = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_hvn7t")
 
-[node name="shadow" parent="Sprite2D" index="0"]
+[node name="shadow" parent="Sprite2D" index="1"]
 texture = ExtResource("2_hvn7t")
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("4_dq8xf")]

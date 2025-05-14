@@ -7,8 +7,8 @@
 [node name="Sniper" instance=ExtResource("1_cfgqa")]
 description = "Long range high damage unit"
 unit_name = "Sniper"
-buy_cost = 8
-sell_cost = 4
+buy_cost = 5
+sell_cost = 2
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_87d7p")

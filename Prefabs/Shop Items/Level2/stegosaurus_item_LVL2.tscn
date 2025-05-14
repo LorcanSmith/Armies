@@ -9,8 +9,8 @@
 description = "Look out for that tail!"
 before_combat_desc = "Deals 2 damage to units behind"
 unit_name = "Stegosaurus"
-buy_cost = 7
-sell_cost = 3
+buy_cost = 5
+sell_cost = 2
 can_buff = true
 health_buff = -2
 All = true

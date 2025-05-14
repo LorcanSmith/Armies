@@ -8,8 +8,8 @@
 description = "Increase the chance of higher level units by +5%"
 unit_name = "Pig"
 can_be_upgraded = false
-buy_cost = 14
-sell_cost = 7
+buy_cost = 6
+sell_cost = 3
 increase_higher_level_unit_perecentage = 5.0
 
 [node name="Sprite2D" parent="." index="0"]

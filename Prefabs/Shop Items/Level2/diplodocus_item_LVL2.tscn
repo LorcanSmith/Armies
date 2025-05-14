@@ -9,8 +9,8 @@
 description = "Friendly herbivor"
 before_combat_desc = "Gives other dinosaur units in range +2 Health/+2 Attack if they have less health than this unit"
 unit_name = "Diplodocus"
-buy_cost = 8
-sell_cost = 4
+buy_cost = 6
+sell_cost = 3
 can_buff = true
 damage_buff = 2
 health_buff = 2

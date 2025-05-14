@@ -7,15 +7,15 @@
 [node name="PlagueDoctor" instance=ExtResource("1_j2i5f")]
 description = "Heals units with the type \"Human\""
 unit_name = "Medic"
-buy_cost = 8
-sell_cost = 4
+buy_cost = 6
+sell_cost = 3
 health_buff = 1
 Medieval = true
 Army = true
 Vehicle = true
 Human = true
-Soldier = true
 Animal = true
+Soldier = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_o04ly")

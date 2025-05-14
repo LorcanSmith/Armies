@@ -7,14 +7,14 @@
 [node name="Trex" instance=ExtResource("1_qspyt")]
 description = "Look out for that tail!"
 unit_name = "Trex"
-buy_cost = 10
-sell_cost = 5
+buy_cost = 6
+sell_cost = 3
 All = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_0wq5s")
 
-[node name="shadow" parent="Sprite2D" index="0"]
+[node name="shadow" parent="Sprite2D" index="1"]
 texture = ExtResource("2_0wq5s")
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("4_eguhs")]

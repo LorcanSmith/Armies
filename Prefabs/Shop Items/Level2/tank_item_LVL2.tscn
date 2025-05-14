@@ -7,14 +7,11 @@
 [node name="Tank" instance=ExtResource("1_0eqnr")]
 description = "Highly armoured vehicle that shoots a heavy hitting projectile. Has to reload after every shot"
 unit_name = "Tank"
-buy_cost = 9
-sell_cost = 4
+buy_cost = 6
+sell_cost = 3
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_jjq5e")
-
-[node name="shadow" parent="Sprite2D" index="0"]
-position = Vector2(0, 22)
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_jjq5e")]
 position = Vector2(74, 0)
