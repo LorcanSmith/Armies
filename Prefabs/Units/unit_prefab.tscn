@@ -1,10 +1,71 @@
-[gd_scene load_steps=15 format=3 uid="uid://di2vorbunt4ep"]
+[gd_scene load_steps=17 format=3 uid="uid://di2vorbunt4ep"]
 
 [ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_bdk6m"]
 [ext_resource type="Script" uid="uid://cdc2qqsvqw1rh" path="res://Scripts/Units/move_spot.gd" id="3_lq4h4"]
 [ext_resource type="PackedScene" uid="uid://dct8tnv8f1a46" path="res://Prefabs/Effects/shadow.tscn" id="4_mjxsx"]
 [ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="5_dwjn5"]
 [ext_resource type="Texture2D" uid="uid://djdl8p52grdjd" path="res://Sprites/UI/chevrons/level_chevron.png" id="6_cxn27"]
+
+[sub_resource type="Animation" id="Animation_bcdoc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+
+[sub_resource type="Animation" id="Animation_cxn27"]
+resource_name = "default"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+
+[sub_resource type="Animation" id="Animation_r5o3j"]
+resource_name = "skill"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"skill"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r5o3j"]
+_data = {
+&"RESET": SubResource("Animation_bcdoc"),
+&"default": SubResource("Animation_cxn27"),
+&"skill": SubResource("Animation_r5o3j")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mjxsx"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"skill",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kn7ua"]
 
@@ -88,46 +149,18 @@ _data = {
 &"unit_heal": SubResource("Animation_mjxsx")
 }
 
-[sub_resource type="Animation" id="Animation_bcdoc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"default"]
-}
-
-[sub_resource type="Animation" id="Animation_cxn27"]
-resource_name = "default"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"default"]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_r5o3j"]
-_data = {
-&"RESET": SubResource("Animation_bcdoc"),
-&"default": SubResource("Animation_cxn27")
-}
-
 [node name="unit_prefab" type="Node2D"]
 script = ExtResource("1_bdk6m")
 reload_time = 0
+
+[node name="sprite_animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_r5o3j")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_mjxsx")
 
 [node name="skill_locations" type="Node2D" parent="."]
 
@@ -214,14 +247,7 @@ texture_filter = 1
 position = Vector2(0, -6.75482)
 texture = ExtResource("6_cxn27")
 
-[node name="sprite_animator" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_r5o3j")
-}
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-
+[connection signal="animation_finished" from="sprite_animator" to="." method="_on_sprite_animator_animation_finished"]
 [connection signal="area_entered" from="movement_locations/move_spot/Area2D" to="movement_locations/move_spot" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="movement_locations/move_spot/Area2D" to="movement_locations/move_spot" method="_on_area_2d_area_exited"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
@@ -229,4 +255,3 @@ texture_filter = 1
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="animation_finished" from="sprite_animator" to="." method="_on_sprite_animator_animation_finished"]
