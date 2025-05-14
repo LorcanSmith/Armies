@@ -4,22 +4,22 @@
 [ext_resource type="Texture2D" uid="uid://b3m1joyu4ucc0" path="res://Sprites/Units/Medieval/Polearm/lvl1/Polearm_lv1_idle.png" id="2_3guce"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_boluk"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d35ym"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_boluk"]
 atlas = ExtResource("2_3guce")
 region = Rect2(0, 0, 48, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8hfj6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3guce"]
 atlas = ExtResource("2_3guce")
 region = Rect2(48, 0, 48, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_irvxe"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_d35ym"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d35ym")
+"texture": SubResource("AtlasTexture_boluk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8hfj6")
+"texture": SubResource("AtlasTexture_3guce")
 }],
 "loop": true,
 "name": &"default",
@@ -32,14 +32,12 @@ unit_name = "Polearm"
 buy_cost = 5
 sell_cost = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_irvxe")
-autoplay = "default"
-frame_progress = 0.454396
-
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="0"]
 texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_d35ym")
+autoplay = "default"
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_boluk")]
 position = Vector2(74, 0)

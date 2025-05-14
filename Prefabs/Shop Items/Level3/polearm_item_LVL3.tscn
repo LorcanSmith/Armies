@@ -1,8 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkt06anmdlcyi"]
+[gd_scene load_steps=7 format=3 uid="uid://bkt06anmdlcyi"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_bub1e"]
-[ext_resource type="Texture2D" uid="uid://dj5mmhix3uapt" path="res://Sprites/Units/Medieval/Polearm/Polearm_lvl3.png" id="2_qyatr"]
+[ext_resource type="Texture2D" uid="uid://da0ai0bmyawjp" path="res://Sprites/Units/Medieval/Polearm/lvl3/Polearm_lv3_idle.png" id="2_qyatr"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_qyatr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd2ax"]
+atlas = ExtResource("2_qyatr")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scp61"]
+atlas = ExtResource("2_qyatr")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_npoeh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cd2ax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scp61")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
 
 [node name="Item" instance=ExtResource("1_bub1e")]
 description = "Great up close but not good at brawling"
@@ -12,7 +34,12 @@ buy_cost = 12
 sell_cost = 6
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_qyatr")
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_npoeh")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_qyatr")]
 position = Vector2(74, 0)
