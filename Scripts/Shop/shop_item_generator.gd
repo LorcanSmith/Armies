@@ -166,26 +166,36 @@ func _on_reroll_button_pressed():
 	reroll_shop()
 
 func _on_unit_chance_button_pressed():
-	if !(find_parent("shop_manager").free_reroll):
-		if (((game_manager.shop_upgrades + 1) * 5) <= find_parent("shop_manager").money):
-			reroll_UI.visible = false
-			game_manager.higher_level_unit_chance += 1
-			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
-			game_manager.shop_upgrades += 1
-			update_upgrade_cost_labels()
-			reroll_shop()
-
-func _on_shop_slot_button_pressed():
+	var success = false
 	if !(find_parent("shop_manager").free_reroll):
 		if (((game_manager.shop_upgrades + 1) * 5)  <= find_parent("shop_manager").money):
-			reroll_UI.visible = false
-			game_manager.shop_slots += 1
-			unit_locations.append(find_child("unit" + str(game_manager.shop_slots)))
-			find_child("pedestal" + str(game_manager.shop_slots)).visible = true
+			success = true
 			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
-			game_manager.shop_upgrades += 1
-			update_upgrade_cost_labels()
-			reroll_shop()
+	else:
+		success = true
+	if success:
+		reroll_UI.visible = false
+		game_manager.higher_level_unit_chance += 1
+		game_manager.shop_upgrades += 1
+		update_upgrade_cost_labels()
+		reroll_shop()
+
+func _on_shop_slot_button_pressed():
+	var success = false
+	if !(find_parent("shop_manager").free_reroll):
+		if (((game_manager.shop_upgrades + 1) * 5)  <= find_parent("shop_manager").money):
+			success = true
+			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
+	else:
+		success = true
+	if success:
+		reroll_UI.visible = false
+		game_manager.shop_slots += 1
+		unit_locations.append(find_child("unit" + str(game_manager.shop_slots)))
+		find_child("pedestal" + str(game_manager.shop_slots)).visible = true
+		game_manager.shop_upgrades += 1
+		update_upgrade_cost_labels()
+		reroll_shop()
 
 
 func _on_upgrade_button_pressed():
@@ -231,44 +241,64 @@ func _on_remove_UI_close_button_pressed():
 
 
 func _on_remove_medieval_button_pressed():
+	var success = false
 	if !(find_parent("shop_manager").free_reroll):
 		if (((game_manager.shop_upgrades + 1) * 5)  <= find_parent("shop_manager").money):
-			remove_units_UI.visible = false
-			game_manager.blocked_types.append("Medieval")
+			success = true
 			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
-			game_manager.shop_upgrades += 1
-			update_upgrade_cost_labels()
-			reroll_shop()
+	else:
+		success = true
+	if success:
+		remove_units_UI.visible = false
+		game_manager.blocked_types.append("Medieval")
+		game_manager.shop_upgrades += 1
+		update_upgrade_cost_labels()
+		reroll_shop()
 
 
 func _on_remove_army_button_pressed():
+	var success = false
 	if !(find_parent("shop_manager").free_reroll):
 		if (((game_manager.shop_upgrades + 1) * 5)  <= find_parent("shop_manager").money):
-			remove_units_UI.visible = false
-			game_manager.blocked_types.append("Army")
+			success = true
 			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
-			game_manager.shop_upgrades += 1
-			update_upgrade_cost_labels()
-			reroll_shop()
+	else:
+		success = true
+	if success:
+		remove_units_UI.visible = false
+		game_manager.blocked_types.append("Army")
+		game_manager.shop_upgrades += 1
+		update_upgrade_cost_labels()
+		reroll_shop()
 
 
 func _on_remove_dinosaur_button_pressed():
+	var success = false
 	if !(find_parent("shop_manager").free_reroll):
 		if (((game_manager.shop_upgrades + 1) * 5)  <= find_parent("shop_manager").money):
-			remove_units_UI.visible = false
-			game_manager.blocked_types.append("Dinosaur")
+			success = true
 			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
-			game_manager.shop_upgrades += 1
-			update_upgrade_cost_labels()
-			reroll_shop()
+	else:
+		success = true
+	if success:
+		remove_units_UI.visible = false
+		game_manager.blocked_types.append("Dinosaur")
+		game_manager.shop_upgrades += 1
+		update_upgrade_cost_labels()
+		reroll_shop()
 
 
 func _on_remove_fantasy_button_pressed():
+	var success = false
 	if !(find_parent("shop_manager").free_reroll):
 		if (((game_manager.shop_upgrades + 1) * 5)  <= find_parent("shop_manager").money):
-			remove_units_UI.visible = false
-			game_manager.blocked_types.append("Fantasy")
+			success = true
 			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
-			game_manager.shop_upgrades += 1
-			update_upgrade_cost_labels()
-			reroll_shop()
+	else:
+		success = true
+	if success:
+		remove_units_UI.visible = false
+		game_manager.blocked_types.append("Fantasy")
+		game_manager.shop_upgrades += 1
+		update_upgrade_cost_labels()
+		reroll_shop()
