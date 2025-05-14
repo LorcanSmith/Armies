@@ -9,16 +9,16 @@
 description = "Heals friendlies in range"
 before_combat_desc = "Gives units above and below +2 health"
 unit_name = "Medic"
-buy_cost = 9
-sell_cost = 4
+buy_cost = 6
+sell_cost = 3
 can_buff = true
 health_buff = 2
 Medieval = true
 Army = true
 Vehicle = true
 Human = true
-Soldier = true
 Animal = true
+Soldier = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_tvar7")

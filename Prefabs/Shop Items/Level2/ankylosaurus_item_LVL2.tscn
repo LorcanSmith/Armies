@@ -7,8 +7,8 @@
 [node name="Ankylosaurus" instance=ExtResource("1_wtor4")]
 description = "If this unit takes damage in the shop phase it gains +2 attack"
 unit_name = "Ankylosaurus"
-buy_cost = 7
-sell_cost = 3
+buy_cost = 5
+sell_cost = 2
 damage_buff = 2
 All = true
 

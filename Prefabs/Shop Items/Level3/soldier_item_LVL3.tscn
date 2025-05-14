@@ -9,8 +9,8 @@
 before_combat_desc = "Gives other soldiers that are above and below, +1 health and +1 attack"
 unit_name = "Soldier"
 can_be_upgraded = false
-buy_cost = 12
-sell_cost = 6
+buy_cost = 5
+sell_cost = 2
 can_buff = true
 damage_buff = 1
 health_buff = 1

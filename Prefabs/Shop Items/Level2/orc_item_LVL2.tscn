@@ -7,8 +7,8 @@
 [node name="Orc" instance=ExtResource("1_b2sg3")]
 description = "Big strong boi that uses a club to hit things"
 unit_name = "Orc"
-buy_cost = 8
-sell_cost = 3
+buy_cost = 6
+sell_cost = 2
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_tk5gr")

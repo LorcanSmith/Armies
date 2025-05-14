@@ -7,8 +7,8 @@
 [node name="Mechanic" instance=ExtResource("1_80vpq")]
 before_combat_desc = "Give vehicles +3 health"
 unit_name = "Mechanic"
-buy_cost = 6
-sell_cost = 3
+buy_cost = 4
+sell_cost = 2
 can_buff = true
 health_buff = 1
 Vehicle = true

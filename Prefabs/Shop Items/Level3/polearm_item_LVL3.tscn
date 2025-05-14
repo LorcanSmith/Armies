@@ -30,8 +30,8 @@ animations = [{
 description = "Great up close but not good at brawling"
 unit_name = "Polearm"
 can_be_upgraded = false
-buy_cost = 12
-sell_cost = 6
+buy_cost = 5
+sell_cost = 2
 
 [node name="Sprite2D" parent="." index="0"]
 texture = null
