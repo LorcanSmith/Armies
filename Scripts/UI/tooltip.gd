@@ -77,7 +77,7 @@ func update_tooltip(u, damage_boost, health_boost) -> void:
 		health.text = str(unit.max_health + health_boost)
 		skill_damage.text = str(unit.skill_damage + damage_boost)
 		skill_heal.text = str(unit.skill_heal)
-		brawl.text = str("[b]BRAWL DAMAGE: [/b]", unit.brawl_damage)
+		brawl.text = str(unit.brawl_damage)
 		if(unit.reload_time > 0):
 			reload.text = str("[b]RELOAD TIME: [/b]", unit.reload_time)
 		else:
