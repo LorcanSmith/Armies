@@ -502,9 +502,14 @@ func _process(delta: float) -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	#If the unit is dead and the damage animation has played, destroy this unit
 	if(!alive and anim_name == "unit_damage"):
-		queue_free()
+		get_node("sprite_animator").play("death")
+		get_node("AnimatedSprite2D").play("death")
 
 #When a sprite animation finishes we should play the default animation
 func _on_sprite_animator_animation_finished(anim_name: StringName) -> void:
-	get_node("sprite_animator").play("idle")
-	get_node("AnimatedSprite2D").play("idle")
+	if(anim_name == "death"):
+		#Fade sprite out
+		queue_free()
+	else:
+		get_node("sprite_animator").play("idle")
+		get_node("AnimatedSprite2D").play("idle")

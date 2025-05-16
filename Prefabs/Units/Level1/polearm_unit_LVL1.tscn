@@ -1,10 +1,35 @@
-[gd_scene load_steps=21 format=3 uid="uid://cg10egubicfsp"]
+[gd_scene load_steps=28 format=3 uid="uid://cg10egubicfsp"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_ky5rb"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_ojcuj"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_8r6wm"]
+[ext_resource type="Texture2D" uid="uid://dbqtdh2xfkic5" path="res://Sprites/Units/Medieval/Polearm/lvl1/Polearm_lv1_death.png" id="3_28cos"]
 [ext_resource type="Texture2D" uid="uid://rs1455p70y5n" path="res://Sprites/Units/Medieval/Polearm/lvl1/Polearm_lvl1_attack.png" id="4_28cos"]
 [ext_resource type="Texture2D" uid="uid://b3m1joyu4ucc0" path="res://Sprites/Units/Medieval/Polearm/lvl1/Polearm_lv1_idle.png" id="5_kaplc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4o1w"]
+atlas = ExtResource("3_28cos")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjgfs"]
+atlas = ExtResource("3_28cos")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee564"]
+atlas = ExtResource("3_28cos")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c58hw"]
+atlas = ExtResource("3_28cos")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk6cn"]
+atlas = ExtResource("3_28cos")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2k4s"]
+atlas = ExtResource("3_28cos")
+region = Rect2(240, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8r6wm"]
 atlas = ExtResource("5_kaplc")
@@ -64,6 +89,29 @@ region = Rect2(836, 0, 76, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_28cos"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4o1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjgfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee564")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c58hw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sk6cn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2k4s")
+}],
+"loop": false,
+"name": &"death",
+"speed": 15.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8r6wm")

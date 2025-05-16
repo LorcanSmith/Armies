@@ -14,8 +14,10 @@ var healing_unit_alive : bool = false
 var battle_over : bool = false
 #If the enemy base gets destroyed, this gets set to true
 var player_won : bool = false
+var round_draw : bool = false
 var round_won_ui = preload("res://Prefabs/Effects/UI/round_won.tscn")
 var round_lost_ui = preload("res://Prefabs/Effects/UI/round_lost.tscn")
+var round_draw_ui = preload("res://Prefabs/Effects/UI/round_draw.tscn")
 #army belonging to the user
 var player_army : Array = []
 #army belonging to the opponent
@@ -241,10 +243,11 @@ func combat_phase():
 			next_phase = "movement"
 		#Tell the skill_holder that skills have been spawned and we're waiting for them to be finished
 		find_child("skill_holder").waiting_for_skills = true
-	#No units exist, you win
+	#No units exist, the round is a draw
 	else:
-		player_won = true
-		game_manager.won_battle(true)
+		player_won = false
+		round_draw = true
+		game_manager.won_battle(false, true)
 		end_combat()
 func healing_phase():
 	#Healing is this turn so set the movement phase to be next turn
@@ -273,8 +276,12 @@ func end_combat():
 	var round_end_visuals
 	if(player_won):
 		round_end_visuals = round_won_ui.instantiate()
-	else:
+	#Enemy Won
+	elif(!player_won and !round_draw):
 		round_end_visuals = round_lost_ui.instantiate()
+	#Round draw
+	elif (!player_won and round_draw):
+		round_end_visuals = round_draw_ui.instantiate()
 	self.add_child(round_end_visuals)
 	round_end_visuals.global_position = find_child("Camera2D").global_position
 	
@@ -312,27 +319,31 @@ func no_skills_left():
 	#Player wins
 	if(player_headquarter_alive and !enemy_headquarter_alive):
 		player_won = true
-		game_manager.won_battle(true)
+		game_manager.won_battle(true, false)
 		end_combat()
+		return
 	#Enemy wins
 	elif(!player_headquarter_alive and enemy_headquarter_alive):
 		player_won = false
-		game_manager.won_battle(false)
+		game_manager.won_battle(false, false)
 		end_combat()
-	#Its a draw, so counts as a win
+		return
+	#Its a draw
 	elif(!player_headquarter_alive and !enemy_headquarter_alive):
-		player_won = true
-		game_manager.won_battle(true)
+		player_won = false
+		round_draw = true
+		game_manager.won_battle(false, true)
 		end_combat()
+		return
 		
 	#Checks to see if units are alive
 	if(!battle_over and friendly_alive and !enemy_alive):
 		player_won = true
-		game_manager.won_battle(true)
+		game_manager.won_battle(true, false)
 		end_combat()
 	if(!battle_over and !friendly_alive and enemy_alive):
 		player_won = false
-		game_manager.won_battle(false)
+		game_manager.won_battle(false, false)
 		end_combat()
 	if(!battle_over):
 		auto_tick()
