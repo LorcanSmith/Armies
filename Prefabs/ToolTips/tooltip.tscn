@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://trk87sgcanig"]
+[gd_scene load_steps=23 format=3 uid="uid://trk87sgcanig"]
 
 [ext_resource type="Script" uid="uid://me4w4b6ct4m7" path="res://Scripts/UI/tooltip.gd" id="1_mtw84"]
 [ext_resource type="Texture2D" uid="uid://bpb7f8gqmxfef" path="res://Sprites/UI/tooltip/tooltip_top.png" id="2_b1inx"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d1p5wfmbli355" path="res://Sprites/UI/tooltip/tooltip_bottom.png" id="5_bvb60"]
 [ext_resource type="Texture2D" uid="uid://bht3oj2lg106d" path="res://Sprites/UI/cross.png" id="5_r303g"]
 [ext_resource type="Script" uid="uid://bbshckrgfl10p" path="res://Scripts/UI/position_tooltip_text.gd" id="7_8dy0p"]
+[ext_resource type="Texture2D" uid="uid://c7m63rg4pj231" path="res://Sprites/Effects/brawl-Sheet.png" id="10_s3bxp"]
 
 [sub_resource type="Animation" id="Animation_igob6"]
 length = 0.001
@@ -84,6 +85,49 @@ _data = {
 &"tooltip_popout": SubResource("Animation_b1t42"),
 &"tooltip_refresh": SubResource("Animation_b3iq5")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qid7g"]
+atlas = ExtResource("10_s3bxp")
+region = Rect2(0, 0, 74, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8dxl"]
+atlas = ExtResource("10_s3bxp")
+region = Rect2(74, 0, 74, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieh28"]
+atlas = ExtResource("10_s3bxp")
+region = Rect2(148, 0, 74, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gt7sq"]
+atlas = ExtResource("10_s3bxp")
+region = Rect2(222, 0, 74, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00f5t"]
+atlas = ExtResource("10_s3bxp")
+region = Rect2(296, 0, 74, 74)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o5o8l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qid7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8dxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieh28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gt7sq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00f5t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
 
 [node name="Tooltip" type="Node2D"]
 z_index = 14
@@ -264,9 +308,9 @@ texture = ExtResource("3_lc6ab")
 [node name="heart" type="TextureRect" parent="Positioner/text/base_stats/banner"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 27.0
+offset_left = 9.0
 offset_top = 10.0
-offset_right = 67.0
+offset_right = 49.0
 offset_bottom = 50.0
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("3_igob6")
@@ -274,19 +318,27 @@ texture = ExtResource("3_igob6")
 [node name="sword" type="TextureRect" parent="Positioner/text/base_stats/banner"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 94.0
+offset_left = 67.0
 offset_top = 7.0
-offset_right = 134.0
+offset_right = 107.0
 offset_bottom = 47.0
 scale = Vector2(0.69, 0.69)
 texture = ExtResource("4_b1inx")
 
+[node name="brawl_sprite" type="AnimatedSprite2D" parent="Positioner/text/base_stats/banner"]
+texture_filter = 1
+position = Vector2(140, 21)
+scale = Vector2(0.33, 0.33)
+sprite_frames = SubResource("SpriteFrames_o5o8l")
+autoplay = "default"
+frame_progress = 0.0287787
+
 [node name="cross" type="TextureRect" parent="Positioner/text/base_stats/banner"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 161.0
+offset_left = 183.0
 offset_top = 10.0
-offset_right = 201.0
+offset_right = 223.0
 offset_bottom = 50.0
 scale = Vector2(0.485, 0.485)
 texture = ExtResource("5_r303g")
@@ -294,9 +346,9 @@ texture = ExtResource("5_r303g")
 [node name="health" type="RichTextLabel" parent="Positioner/text/base_stats/banner"]
 clip_contents = false
 layout_mode = 2
-offset_left = 51.0
+offset_left = 33.0
 offset_top = 6.0
-offset_right = 1422.0
+offset_right = 1404.0
 offset_bottom = 143.0
 scale = Vector2(0.23, 0.23)
 mouse_filter = 2
@@ -308,8 +360,8 @@ fit_content = true
 [node name="skill" type="RichTextLabel" parent="Positioner/text/base_stats/banner/health"]
 clip_contents = false
 layout_mode = 2
-offset_left = 304.348
-offset_right = 1675.34
+offset_left = 256.522
+offset_right = 1627.51
 offset_bottom = 137.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -317,13 +369,25 @@ theme_override_font_sizes/normal_font_size = 100
 text = "55"
 fit_content = true
 
-[node name="heal" type="RichTextLabel" parent="Positioner/text/base_stats/banner/health/skill"]
+[node name="brawl" type="RichTextLabel" parent="Positioner/text/base_stats/banner/health/skill"]
 clip_contents = false
 layout_mode = 2
 offset_left = 265.217
-offset_top = 1.52588e-05
-offset_right = 1636.22
+offset_right = 1636.21
 offset_bottom = 137.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 100
+text = "55"
+fit_content = true
+
+[node name="heal" type="RichTextLabel" parent="Positioner/text/base_stats/banner/health/skill/brawl"]
+clip_contents = false
+layout_mode = 2
+offset_left = 221.739
+offset_top = -4.34781
+offset_right = 1592.74
+offset_bottom = 132.652
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 100
@@ -354,9 +418,9 @@ texture = ExtResource("3_igob6")
 [node name="sword" type="TextureRect" parent="Positioner/text/base_stats/shadow_banner"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 94.0
+offset_left = 75.0
 offset_top = 7.0
-offset_right = 134.0
+offset_right = 115.0
 offset_bottom = 47.0
 scale = Vector2(0.69, 0.69)
 texture = ExtResource("4_b1inx")
@@ -370,45 +434,6 @@ offset_right = 201.0
 offset_bottom = 50.0
 scale = Vector2(0.485, 0.485)
 texture = ExtResource("5_r303g")
-
-[node name="health" type="RichTextLabel" parent="Positioner/text/base_stats/shadow_banner"]
-clip_contents = false
-layout_mode = 2
-offset_left = 51.0
-offset_top = 6.0
-offset_right = 1422.0
-offset_bottom = 143.0
-scale = Vector2(0.23, 0.23)
-mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 100
-text = "77"
-fit_content = true
-
-[node name="skill" type="RichTextLabel" parent="Positioner/text/base_stats/shadow_banner/health"]
-clip_contents = false
-layout_mode = 2
-offset_left = 304.348
-offset_right = 1675.34
-offset_bottom = 137.0
-mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 100
-text = "55"
-fit_content = true
-
-[node name="heal" type="RichTextLabel" parent="Positioner/text/base_stats/shadow_banner/health/skill"]
-clip_contents = false
-layout_mode = 2
-offset_left = 265.217
-offset_top = 1.52588e-05
-offset_right = 1636.22
-offset_bottom = 137.0
-mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 100
-text = "55"
-fit_content = true
 
 [node name="description" type="RichTextLabel" parent="Positioner/text"]
 clip_contents = false
@@ -459,22 +484,6 @@ theme_override_font_sizes/normal_font_size = 100
 theme_override_font_sizes/bold_font_size = 100
 bbcode_enabled = true
 text = "[b]BEFORE COMBAT:[/b]"
-fit_content = true
-
-[node name="brawl" type="RichTextLabel" parent="Positioner/text"]
-clip_contents = false
-layout_mode = 2
-offset_left = 4.0
-offset_top = -41.0
-offset_right = 1280.0
-offset_bottom = 96.0
-scale = Vector2(0.125, 0.125)
-mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 100
-theme_override_font_sizes/bold_font_size = 100
-bbcode_enabled = true
-text = "Brawl Damage:"
 fit_content = true
 
 [node name="reload" type="RichTextLabel" parent="Positioner/text"]

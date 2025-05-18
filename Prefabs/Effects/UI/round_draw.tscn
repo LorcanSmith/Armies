@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq25puw8cnwdj"]
+
+[ext_resource type="PackedScene" uid="uid://y642uwgblpda" path="res://Prefabs/Effects/UI/round_won.tscn" id="1_jy6go"]
+
+[node name="Round Draw" instance=ExtResource("1_jy6go")]
+
+[node name="RichTextLabel" parent="." index="0"]
+text = "Round Draw"

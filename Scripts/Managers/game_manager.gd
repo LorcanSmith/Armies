@@ -182,7 +182,7 @@ func set_label_text(value: int):
 	coin_text.text = str(value)
 
 #Called by combat manager when our headquarters is destroyed
-func won_battle(won : bool):
+func won_battle(won : bool, draw : bool):
 	#If we won
 	if(won):
 		#Add a win
@@ -192,7 +192,7 @@ func won_battle(won : bool):
 		if(wins == 10):
 			show_game_over(true)
 	#A round was lost
-	else:
+	elif(!won and !draw):
 		#Does a different amount of damage based on the turn number
 		if(turn_number == 1):
 			life_remaining -= 1
@@ -200,7 +200,9 @@ func won_battle(won : bool):
 			life_remaining -= 2
 		else:
 			life_remaining -= 3
-			
+	#Round draw
+	elif(!won and draw):
+		pass
 	#Update wins/life UI visuals
 	var n = 0
 	while n < wins:
