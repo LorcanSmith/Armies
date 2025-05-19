@@ -1,8 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://c06dypr73wuf0"]
+[gd_scene load_steps=7 format=3 uid="uid://c06dypr73wuf0"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_cfgqa"]
-[ext_resource type="Texture2D" uid="uid://v3nlwsuc1f6q" path="res://Sprites/Units/Army/sniper/Sniper_lvl2.png" id="2_87d7p"]
+[ext_resource type="Texture2D" uid="uid://b65cyrhwxqddh" path="res://Sprites/Units/Army/sniper/lvl2/sniper_idle_lvl2.png" id="2_87d7p"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_87d7p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kn74"]
+atlas = ExtResource("2_87d7p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oopex"]
+atlas = ExtResource("2_87d7p")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1vwn2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kn74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oopex")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
 
 [node name="Sniper" instance=ExtResource("1_cfgqa")]
 description = "Long range high damage unit"
@@ -11,7 +33,12 @@ buy_cost = 5
 sell_cost = 2
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_87d7p")
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_1vwn2")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_87d7p")]
 position = Vector2(148, 0)
