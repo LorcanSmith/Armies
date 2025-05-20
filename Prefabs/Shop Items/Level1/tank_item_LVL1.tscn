@@ -1,8 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://c512up22nh8vk"]
+[gd_scene load_steps=7 format=3 uid="uid://c512up22nh8vk"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_lfipk"]
-[ext_resource type="Texture2D" uid="uid://blbt32wdlfngh" path="res://Sprites/Units/Army/tank/tank_sprite.png" id="2_8o2rq"]
+[ext_resource type="Texture2D" uid="uid://bmh5en35bau06" path="res://Sprites/Units/Army/tank/lvl1/tank_idle_lvl1.png" id="2_8o2rq"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_8o2rq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoh5w"]
+atlas = ExtResource("2_8o2rq")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stsb4"]
+atlas = ExtResource("2_8o2rq")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j58j8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoh5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stsb4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="Tank" instance=ExtResource("1_lfipk")]
 description = "Highly armoured vehicle that shoots a heavy hitting projectile. Has to reload after every shot"
@@ -11,7 +33,13 @@ buy_cost = 6
 sell_cost = 3
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_8o2rq")
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_j58j8")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.423024
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_8o2rq")]
 position = Vector2(74, 0)

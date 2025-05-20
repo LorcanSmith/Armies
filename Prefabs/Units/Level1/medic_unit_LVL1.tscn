@@ -1,11 +1,123 @@
-[gd_scene load_steps=5 format=3 uid="uid://bafq0ubjun4sc"]
+[gd_scene load_steps=21 format=3 uid="uid://bafq0ubjun4sc"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_oiijl"]
 [ext_resource type="PackedScene" uid="uid://cwefhvoo3dhqh" path="res://Prefabs/Effects/heal_animation.tscn" id="2_eq8xu"]
-[ext_resource type="Texture2D" uid="uid://c7x0n5de2qo45" path="res://Sprites/Units/Army/Medic/medic_sprite.png" id="2_t6osg"]
+[ext_resource type="Texture2D" uid="uid://drnfqlv2qkhqn" path="res://Sprites/Units/Army/Medic/lvl1/medic_death_lvl1.png" id="3_0ii7l"]
+[ext_resource type="Texture2D" uid="uid://cjtbm41dg21wu" path="res://Sprites/Units/Army/Medic/lvl1/medic_idle_lvl1.png" id="3_2ohf8"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_eq8xu"]
+[ext_resource type="Texture2D" uid="uid://b3wjm21magw3d" path="res://Sprites/Units/Army/Medic/lvl1/medic_skill_lvl1.png" id="4_2ohf8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x108u"]
+atlas = ExtResource("3_0ii7l")
+region = Rect2(0, 0, 43, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ms3yy"]
+atlas = ExtResource("3_0ii7l")
+region = Rect2(43, 0, 43, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_282sb"]
+atlas = ExtResource("3_0ii7l")
+region = Rect2(86, 0, 43, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15he5"]
+atlas = ExtResource("3_0ii7l")
+region = Rect2(129, 0, 43, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odtng"]
+atlas = ExtResource("3_0ii7l")
+region = Rect2(172, 0, 43, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7v2p"]
+atlas = ExtResource("3_0ii7l")
+region = Rect2(215, 0, 43, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjflp"]
+atlas = ExtResource("3_0ii7l")
+region = Rect2(258, 0, 43, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ii7l"]
+atlas = ExtResource("3_2ohf8")
+region = Rect2(0, 0, 43, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fju1w"]
+atlas = ExtResource("3_2ohf8")
+region = Rect2(43, 0, 43, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0w33a"]
+atlas = ExtResource("4_2ohf8")
+region = Rect2(0, 0, 43, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlmlu"]
+atlas = ExtResource("4_2ohf8")
+region = Rect2(43, 0, 43, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8oaf"]
+atlas = ExtResource("4_2ohf8")
+region = Rect2(86, 0, 43, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ivb0"]
+atlas = ExtResource("4_2ohf8")
+region = Rect2(129, 0, 43, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0w33a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x108u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ms3yy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_282sb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15he5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odtng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7v2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjflp")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ii7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fju1w")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0w33a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlmlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8oaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ivb0")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 12.0
+}]
 
 [node name="Medic" instance=ExtResource("1_oiijl")]
+attack_animation_length = 0.5
 max_health = 6
 brawl_damage = 1
 Army = true
@@ -16,6 +128,10 @@ skill_max_once_per_unit = true
 skill_heal = 1
 projectile = ExtResource("2_eq8xu")
 
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_0w33a")
+autoplay = "idle"
+
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_eq8xu")]
 position = Vector2(74, 0)
 
@@ -25,5 +141,5 @@ position = Vector2(74, 74)
 [node name="unit_skill_location3" parent="skill_locations" index="2" instance=ExtResource("3_eq8xu")]
 position = Vector2(74, -74)
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("2_t6osg")
+[node name="Sprite2D" parent="." index="4"]
+texture = null

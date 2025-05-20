@@ -1,11 +1,98 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbsfppjrwvje3"]
+[gd_scene load_steps=17 format=3 uid="uid://dbsfppjrwvje3"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_te73g"]
 [ext_resource type="PackedScene" uid="uid://j16g2a5ai3sr" path="res://Prefabs/Effects/Projectiles/bullet_projectile.tscn" id="2_3v1st"]
-[ext_resource type="Texture2D" uid="uid://dq47fqjwewhb0" path="res://Sprites/Units/Army/sniper/Sniper_lvl3.png" id="3_3v1st"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_033vh"]
+[ext_resource type="Texture2D" uid="uid://iaar1r3711sf" path="res://Sprites/Units/Army/sniper/lvl3/sniper_idle_lvl3.png" id="3_hbgx5"]
+[ext_resource type="Texture2D" uid="uid://spq6kr5r7g6w" path="res://Sprites/Units/Army/sniper/lvl3/sniper_death_lvl3.png" id="3_ju5qn"]
+[ext_resource type="Texture2D" uid="uid://c2ri2cx271ftc" path="res://Sprites/Units/Army/sniper/lvl3/sniper_skill_lvl3.png" id="4_hbgx5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqsij"]
+atlas = ExtResource("3_ju5qn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3xb2"]
+atlas = ExtResource("3_ju5qn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcd4e"]
+atlas = ExtResource("3_ju5qn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_beorm"]
+atlas = ExtResource("3_ju5qn")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_csd14"]
+atlas = ExtResource("3_ju5qn")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ju5qn"]
+atlas = ExtResource("3_hbgx5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejbuk"]
+atlas = ExtResource("3_hbgx5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqr1o"]
+atlas = ExtResource("4_hbgx5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ndw4"]
+atlas = ExtResource("4_hbgx5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wqr1o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqsij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3xb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcd4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_beorm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_csd14")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ju5qn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejbuk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqr1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ndw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqr1o")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 6.0
+}]
 
 [node name="Sniper" instance=ExtResource("1_te73g")]
+attack_animation_length = 0.3
 max_health = 8
 brawl_damage = 3
 Army = true
@@ -14,6 +101,10 @@ skill_damage = 6
 skill_shooots_closest_enemy = true
 projectile = ExtResource("2_3v1st")
 effectiveness = 5
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_wqr1o")
+autoplay = "idle"
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_033vh")]
 position = Vector2(148, 0)
@@ -24,6 +115,6 @@ position = Vector2(222, 0)
 [node name="unit_skill_location3" parent="skill_locations" index="2" instance=ExtResource("3_033vh")]
 position = Vector2(296, 0)
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("3_3v1st")
+[node name="Sprite2D" parent="." index="4"]
+texture = null
 offset = Vector2(6, 0)
