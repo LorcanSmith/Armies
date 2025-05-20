@@ -343,6 +343,7 @@ func skill(phase : String):
 		elif(phase == "combat_phase" and self_destruction and enemies_in_range.size() > 0):
 			movement_locations[0].hq.hurt(brawl_damage + damage_boost)
 			movement_locations[0].hq.projectile_hit(brawl_damage + damage_boost)
+			get_node("sprite_animator").play("skill")
 			alive = false
 			destroy_unit()
 	#If there is another unit on this tile then they will brawl
@@ -423,8 +424,12 @@ func destroy_unit():
 		brawling_grid = get_parent()
 	#Reparent to skill holder so the game waits for the unit to die
 	self.reparent(find_parent("combat_manager").find_child("skill_holder"))
-	#Once the damage animation plays, it will be destroyed
-	self.get_node("AnimationPlayer").play("unit_damage")
+	if(self_destruction):
+		get_node("sprite_animator").play("skill")
+		get_node("AnimatedSprite2D").play("skill")
+	elif(!self_destruction):
+		get_node("sprite_animator").play("death")
+		get_node("AnimatedSprite2D").play("death")
 func skill_area_entered(area: Area2D) -> void:
 	#	check if skill is meant to be used on allies or enemies
 		if(skill_damage > 0):
@@ -507,7 +512,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 #When a sprite animation finishes we should play the default animation
 func _on_sprite_animator_animation_finished(anim_name: StringName) -> void:
-	if(anim_name == "death"):
+	if(anim_name == "death" or (self_destruction and anim_name == "skill")):
 		#Fade sprite out
 		queue_free()
 	else:

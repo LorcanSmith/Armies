@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://06ouanydaoo0"]
+[gd_scene load_steps=24 format=3 uid="uid://06ouanydaoo0"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_agrxf"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_ior7b"]
 [ext_resource type="Texture2D" uid="uid://dqautsnnoj1qa" path="res://Sprites/Units/Sci-fi/Bombbot/lvl1/bombbot_death_lvl1.png" id="3_agrxf"]
 [ext_resource type="Texture2D" uid="uid://d4k175onyjib7" path="res://Sprites/Units/Sci-fi/Bombbot/lvl1/bombbot_idle_lvl1.png" id="4_ior7b"]
+[ext_resource type="Texture2D" uid="uid://twceagq6xy8c" path="res://Sprites/Units/Sci-fi/Bombbot/lvl1/bombbot_skill_lvl1.png" id="5_ior7b"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="6_1lold"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1lold"]
 atlas = ExtResource("3_agrxf")
@@ -44,6 +46,30 @@ region = Rect2(64, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_1b350"]
 atlas = ExtResource("4_ior7b")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rt2l6"]
+atlas = ExtResource("5_ior7b")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdrcy"]
+atlas = ExtResource("5_ior7b")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhx8p"]
+atlas = ExtResource("5_ior7b")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_st16s"]
+atlas = ExtResource("5_ior7b")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r33kd"]
+atlas = ExtResource("5_ior7b")
+region = Rect2(384, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jygcd"]
+atlas = ExtResource("5_ior7b")
+region = Rect2(480, 0, 96, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rt2l6"]
 animations = [{
@@ -86,6 +112,29 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rt2l6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdrcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhx8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_st16s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r33kd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jygcd")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 18.0
 }]
 
 [node name="Bomb Bot" instance=ExtResource("1_agrxf")]
@@ -98,6 +147,8 @@ projectile = ExtResource("2_ior7b")
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_rt2l6")
 autoplay = "idle"
+
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("6_1lold")]
 
 [node name="Sprite2D" parent="." index="4"]
 texture = null
