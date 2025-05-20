@@ -1,8 +1,92 @@
-[gd_scene load_steps=4 format=3 uid="uid://06ouanydaoo0"]
+[gd_scene load_steps=16 format=3 uid="uid://06ouanydaoo0"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_agrxf"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_ior7b"]
-[ext_resource type="Texture2D" uid="uid://c2nb5n823lpsa" path="res://Sprites/Units/Sci-fi/Bombbot/bombbot_sprite_lvl1.png" id="4_agrxf"]
+[ext_resource type="Texture2D" uid="uid://dqautsnnoj1qa" path="res://Sprites/Units/Sci-fi/Bombbot/lvl1/bombbot_death_lvl1.png" id="3_agrxf"]
+[ext_resource type="Texture2D" uid="uid://d4k175onyjib7" path="res://Sprites/Units/Sci-fi/Bombbot/lvl1/bombbot_idle_lvl1.png" id="4_ior7b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1lold"]
+atlas = ExtResource("3_agrxf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdlrx"]
+atlas = ExtResource("3_agrxf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reo8u"]
+atlas = ExtResource("3_agrxf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7iqg"]
+atlas = ExtResource("3_agrxf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgwsu"]
+atlas = ExtResource("3_agrxf")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36e1m"]
+atlas = ExtResource("3_agrxf")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbcrr"]
+atlas = ExtResource("4_ior7b")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8l32"]
+atlas = ExtResource("4_ior7b")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stcyw"]
+atlas = ExtResource("4_ior7b")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1b350"]
+atlas = ExtResource("4_ior7b")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rt2l6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1lold")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdlrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reo8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7iqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgwsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36e1m")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbcrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8l32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stcyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1b350")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
 
 [node name="Bomb Bot" instance=ExtResource("1_agrxf")]
 max_health = 10
@@ -11,8 +95,12 @@ skill_spawn_amount = 0
 self_destruction = true
 projectile = ExtResource("2_ior7b")
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("4_agrxf")
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_rt2l6")
+autoplay = "idle"
+
+[node name="Sprite2D" parent="." index="4"]
+texture = null
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-2, -0.5)
