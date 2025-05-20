@@ -1,7 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://h8pm5crjdqdd"]
+[gd_scene load_steps=8 format=3 uid="uid://h8pm5crjdqdd"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_swge8"]
-[ext_resource type="Texture2D" uid="uid://c2nb5n823lpsa" path="res://Sprites/Units/Sci-fi/Bombbot/bombbot_sprite_lvl1.png" id="2_6kqa3"]
+[ext_resource type="Texture2D" uid="uid://bb785pb8jwu08" path="res://Sprites/Units/Sci-fi/Bombbot/lvl3/bombbot_idle_lvl3.png" id="2_mcmyq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n62ws"]
+atlas = ExtResource("2_mcmyq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fqoo"]
+atlas = ExtResource("2_mcmyq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc3p2"]
+atlas = ExtResource("2_mcmyq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgn5b"]
+atlas = ExtResource("2_mcmyq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oxnsp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n62ws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fqoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc3p2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgn5b")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
 
 [node name="Bomb_bot" instance=ExtResource("1_swge8")]
 description = "Explodes on contact with an enemy"
@@ -11,4 +47,10 @@ buy_cost = 8
 sell_cost = 4
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_6kqa3")
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_oxnsp")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.698566

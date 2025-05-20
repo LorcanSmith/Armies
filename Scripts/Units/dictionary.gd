@@ -174,7 +174,7 @@ var item_scenes = {
 	57: preload("res://Prefabs/Shop Items/Level1/velociraptor_item_LVL1.tscn"),
 	58: preload("res://Prefabs/Shop Items/Level2/velociraptor_item_LVL2.tscn"),
 	59: preload("res://Prefabs/Shop Items/Level3/velociraptor_item_LVL3.tscn"),
-  #Trex
+  	#Trex
 	60: preload("res://Prefabs/Shop Items/Level1/trex_item_LVL1.tscn"),
 	61: preload("res://Prefabs/Shop Items/Level2/trex_item_LVL2.tscn"),
 	62: preload("res://Prefabs/Shop Items/Level3/trex_item_LVL3.tscn"),
