@@ -1,9 +1,52 @@
-[gd_scene load_steps=5 format=3 uid="uid://cq3bgorikhcjb"]
+[gd_scene load_steps=11 format=3 uid="uid://cq3bgorikhcjb"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_nssie"]
-[ext_resource type="Texture2D" uid="uid://crfy5hco2bwgi" path="res://Sprites/Units/Dinosaurs/diplodocus/diplodocus_sprite_lvl1.png" id="2_r1n0n"]
+[ext_resource type="Texture2D" uid="uid://bbrmbqro06f7n" path="res://Sprites/Units/Dinosaurs/diplodocus/lvl2/diplodocus_idle_lvl2.png" id="2_dcl3n"]
 [ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="3_6negj"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_gwm3g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_op5n2"]
+atlas = ExtResource("2_dcl3n")
+region = Rect2(0, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgvtk"]
+atlas = ExtResource("2_dcl3n")
+region = Rect2(42, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnueq"]
+atlas = ExtResource("2_dcl3n")
+region = Rect2(84, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juwew"]
+atlas = ExtResource("2_dcl3n")
+region = Rect2(126, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdks1"]
+atlas = ExtResource("2_dcl3n")
+region = Rect2(168, 0, 42, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_13rnw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_op5n2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgvtk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnueq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juwew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdks1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
 [node name="Diplodocus" instance=ExtResource("1_nssie")]
 description = "Friendly herbivor"
@@ -17,7 +60,13 @@ health_buff = 2
 Dinosaur = true
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_r1n0n")
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_13rnw")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0951324
 
 [node name="buff_location" parent="buffs" index="0" instance=ExtResource("3_6negj")]
 position = Vector2(74, 0)
