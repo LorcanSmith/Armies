@@ -1,8 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://dt8uefsonwvns"]
+[gd_scene load_steps=7 format=3 uid="uid://dt8uefsonwvns"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_nkhuq"]
-[ext_resource type="Texture2D" uid="uid://b40d827guvhqu" path="res://Sprites/Units/Army/Mechanic/mechanic_spirte_lvl3.png" id="2_px4v7"]
+[ext_resource type="Texture2D" uid="uid://bd35s4ts3obph" path="res://Sprites/Units/Army/Mechanic/lvl3/mechanic_idle_lvl3.png" id="2_px4v7"]
 [ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="3_mfd78"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8uak"]
+atlas = ExtResource("2_px4v7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b73gg"]
+atlas = ExtResource("2_px4v7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ixix5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8uak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b73gg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
 
 [node name="Mechanic" instance=ExtResource("1_nkhuq")]
 before_combat_desc = "Give vehicles +4 health"
@@ -15,7 +37,12 @@ health_buff = 4
 Vehicle = true
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_px4v7")
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_ixix5")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="buff_location" parent="buffs" index="0" instance=ExtResource("3_mfd78")]
 position = Vector2(74, 0)

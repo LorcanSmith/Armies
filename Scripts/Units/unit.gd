@@ -515,6 +515,7 @@ func _on_sprite_animator_animation_finished(anim_name: StringName) -> void:
 	if(anim_name == "death" or (self_destruction and anim_name == "skill")):
 		#Fade sprite out
 		queue_free()
-	else:
+	elif(anim_name == "skill"):
+		await get_tree().create_timer(attack_animation_length).timeout
 		get_node("sprite_animator").play("idle")
 		get_node("AnimatedSprite2D").play("idle")
