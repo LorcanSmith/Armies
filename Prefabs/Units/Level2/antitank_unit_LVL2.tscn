@@ -1,11 +1,130 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxydem58so5yu"]
+[gd_scene load_steps=22 format=3 uid="uid://dxydem58so5yu"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_jw5x0"]
 [ext_resource type="PackedScene" uid="uid://bjsx2iphb4gud" path="res://Prefabs/Effects/Projectiles/shell_projectile.tscn" id="2_2c5y2"]
+[ext_resource type="Texture2D" uid="uid://bsm08gmrpfe1o" path="res://Sprites/Units/Army/Antitank/lvl2/antitank_idle_lvl2.png" id="3_cjr0n"]
+[ext_resource type="Texture2D" uid="uid://e1cr4fj2ijb2" path="res://Sprites/Units/Army/Antitank/lvl2/antitank_death_lvl2.png" id="3_inej5"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_nthbl"]
-[ext_resource type="Texture2D" uid="uid://0lxe4edrt2mv" path="res://Sprites/Units/Army/Antitank/antitank_sprite_lvl2.png" id="4_cjr0n"]
+[ext_resource type="Texture2D" uid="uid://jjh2qpskche3" path="res://Sprites/Units/Army/Antitank/lvl2/antitank_skill_lvl2.png" id="4_33knl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wdba"]
+atlas = ExtResource("3_inej5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk6tj"]
+atlas = ExtResource("3_inej5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7ges"]
+atlas = ExtResource("3_inej5")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7q034"]
+atlas = ExtResource("3_inej5")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_441ln"]
+atlas = ExtResource("3_inej5")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xctda"]
+atlas = ExtResource("3_inej5")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3p0h"]
+atlas = ExtResource("3_inej5")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33knl"]
+atlas = ExtResource("3_cjr0n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inej5"]
+atlas = ExtResource("3_cjr0n")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3q36r"]
+atlas = ExtResource("4_33knl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n11ua"]
+atlas = ExtResource("4_33knl")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyufw"]
+atlas = ExtResource("4_33knl")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6imaa"]
+atlas = ExtResource("4_33knl")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk7lq"]
+atlas = ExtResource("4_33knl")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3q36r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wdba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk6tj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7ges")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7q034")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_441ln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xctda")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3p0h")
+}],
+"loop": false,
+"name": &"death",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33knl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inej5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3q36r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n11ua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyufw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6imaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pk7lq")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 12.0
+}]
 
 [node name="AntiTank" instance=ExtResource("1_jw5x0")]
+attack_animation_length = 0.4
 max_health = 7
 brawl_damage = 1
 Army = true
@@ -14,11 +133,15 @@ skill_shooots_closest_enemy = true
 projectile = ExtResource("2_2c5y2")
 Vehicle_effective = true
 
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_3q36r")
+autoplay = "idle"
+
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_nthbl")]
 position = Vector2(74, 0)
 
 [node name="unit_skill_location2" parent="skill_locations" index="1" instance=ExtResource("3_nthbl")]
 position = Vector2(148, 0)
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("4_cjr0n")
+[node name="Sprite2D" parent="." index="4"]
+texture = null

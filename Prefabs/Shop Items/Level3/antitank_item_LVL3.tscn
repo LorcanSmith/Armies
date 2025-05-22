@@ -1,8 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpplstaer716p"]
+[gd_scene load_steps=7 format=3 uid="uid://cpplstaer716p"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_u5b3g"]
-[ext_resource type="Texture2D" uid="uid://bnhp0203w72sg" path="res://Sprites/Units/Army/Antitank/antitank_sprite_lvl3.png" id="2_i07ks"]
+[ext_resource type="Texture2D" uid="uid://pr2y40ik8h2d" path="res://Sprites/Units/Army/Antitank/lvl3/antitank_idle_lvl3.png" id="2_i07ks"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_lk8p7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnm0d"]
+atlas = ExtResource("2_i07ks")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0nko"]
+atlas = ExtResource("2_i07ks")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tqlev"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnm0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0nko")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
 
 [node name="AntiTank" instance=ExtResource("1_u5b3g")]
 description = "Deals double damage against vehicles"
@@ -12,7 +34,12 @@ buy_cost = 6
 sell_cost = 3
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_i07ks")
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_tqlev")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_lk8p7")]
 position = Vector2(74, 0)
