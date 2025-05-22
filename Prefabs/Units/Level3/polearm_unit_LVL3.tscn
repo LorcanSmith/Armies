@@ -166,7 +166,7 @@ animations = [{
 }]
 
 [node name="Polearm" instance=ExtResource("1_m7hja")]
-attack_animation_length = 0.55
+attack_animation_length = 0.7
 max_health = 10
 brawl_damage = 2
 Medieval = true

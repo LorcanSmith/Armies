@@ -166,7 +166,7 @@ animations = [{
 }]
 
 [node name="Polearm" instance=ExtResource("1_wmsdo")]
-attack_animation_length = 0.55
+attack_animation_length = 0.7
 max_health = 6
 brawl_damage = 1
 Medieval = true
