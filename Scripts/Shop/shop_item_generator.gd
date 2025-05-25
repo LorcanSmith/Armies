@@ -127,11 +127,28 @@ func choose_random_unit(loc : int):
 func choose_random_booster(loc : int):
 	var dictionary_instance = dictionary.new()
 	seed(find_parent("game_manager").seed * (1+loc) * (rerolls_taken+1))
-	var random_booster_percentage = randf_range(0,100)/100
-	#Gets a random unit type
-	var random_booster = int(round((dictionary_instance.booster_scenes.size()-1) * random_booster_percentage))
-	
-	var booster = dictionary_instance.booster_scenes[random_booster]
+	var booster_not_found = true
+	var booster_instance
+	var booster
+	while booster_not_found:
+		var random_booster_percentage = randf_range(0,100)/100
+		#Gets a random unit type
+		
+		var random_booster = int(round((dictionary_instance.booster_scenes.size()-1) * random_booster_percentage))
+		booster_instance = dictionary_instance.booster_scenes[random_booster].instantiate()
+		var booster_name = booster_instance.booster_name
+		
+		#if booster_instance.booster_name.contains
+		var x = 0
+		var booster_allowed = true
+		while(x < game_manager.blocked_types.size()):
+			if(booster_name.contains(game_manager.blocked_types[x])):
+				booster_allowed = false
+				break
+			x += 1
+		if booster_allowed:
+			booster = dictionary_instance.booster_scenes[random_booster]
+			booster_not_found = false
 	return booster
 	
 func reroll_shop():
