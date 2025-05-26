@@ -1,22 +1,166 @@
-[gd_scene load_steps=5 format=3 uid="uid://rvyep3ydd8kt"]
+[gd_scene load_steps=25 format=3 uid="uid://rvyep3ydd8kt"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_f47qt"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_y0spo"]
+[ext_resource type="Texture2D" uid="uid://ohi6y1odna4q" path="res://Sprites/Units/Animals/chicken/lvl2/chicken_idle_lvl2.png" id="3_4cxby"]
+[ext_resource type="Texture2D" uid="uid://ciw1xhccj34ok" path="res://Sprites/Units/Animals/chicken/lvl2/chicken_death_lvl2.png" id="3_hn6d0"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_xtuci"]
-[ext_resource type="Texture2D" uid="uid://gw3ikqf4kh23" path="res://Sprites/Units/Animals/chicken/chicken_sprite_lvl2.png" id="4_4cxby"]
+[ext_resource type="Texture2D" uid="uid://bp7rta8ahpwv2" path="res://Sprites/Units/Animals/chicken/lvl2/chicken_skill_lvl2.png" id="4_tflk7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pysp6"]
+atlas = ExtResource("3_hn6d0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxnmu"]
+atlas = ExtResource("3_hn6d0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eyww"]
+atlas = ExtResource("3_hn6d0")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0157r"]
+atlas = ExtResource("3_hn6d0")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rwkn"]
+atlas = ExtResource("3_hn6d0")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mxym"]
+atlas = ExtResource("3_hn6d0")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qub86"]
+atlas = ExtResource("3_hn6d0")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tflk7"]
+atlas = ExtResource("3_4cxby")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hn6d0"]
+atlas = ExtResource("3_4cxby")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_782pt"]
+atlas = ExtResource("3_4cxby")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8w3ak"]
+atlas = ExtResource("4_tflk7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onkkr"]
+atlas = ExtResource("4_tflk7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcyeg"]
+atlas = ExtResource("4_tflk7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbunh"]
+atlas = ExtResource("4_tflk7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5ioj"]
+atlas = ExtResource("4_tflk7")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0e80s"]
+atlas = ExtResource("4_tflk7")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5fji"]
+atlas = ExtResource("4_tflk7")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8w3ak"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pysp6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxnmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6eyww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0157r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rwkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mxym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qub86")
+}],
+"loop": false,
+"name": &"death",
+"speed": 13.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tflk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hn6d0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_782pt")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8w3ak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onkkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcyeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbunh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5ioj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0e80s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5fji")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 10.0
+}]
 
 [node name="Chicken" instance=ExtResource("1_f47qt")]
+attack_animation_length = 0.5
 max_health = 4
 brawl_damage = 2
 Animal = true
 skill_damage = 3
 projectile = ExtResource("2_y0spo")
 
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_8w3ak")
+autoplay = "idle"
+
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_xtuci")]
 position = Vector2(74, 0)
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("4_4cxby")
+[node name="Sprite2D" parent="." index="4"]
+texture = null
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-2, -0.5)

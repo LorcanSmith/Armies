@@ -1,8 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcbh1rg3blo2r"]
+[gd_scene load_steps=8 format=3 uid="uid://bcbh1rg3blo2r"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_qytsd"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="2_r3psn"]
-[ext_resource type="Texture2D" uid="uid://gw3ikqf4kh23" path="res://Sprites/Units/Animals/chicken/chicken_sprite_lvl2.png" id="2_u14pc"]
+[ext_resource type="Texture2D" uid="uid://ohi6y1odna4q" path="res://Sprites/Units/Animals/chicken/lvl2/chicken_idle_lvl2.png" id="2_u14pc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0ii2"]
+atlas = ExtResource("2_u14pc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcv1d"]
+atlas = ExtResource("2_u14pc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2x4cb"]
+atlas = ExtResource("2_u14pc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xliry"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0ii2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcv1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2x4cb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
 [node name="Item" instance=ExtResource("1_qytsd")]
 description = "Cheep and weak"
@@ -11,7 +40,13 @@ buy_cost = 2
 sell_cost = 1
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_u14pc")
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_xliry")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0164516
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("2_r3psn")]
 position = Vector2(74, 0)
