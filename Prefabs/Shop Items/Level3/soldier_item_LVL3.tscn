@@ -1,9 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://og4mb3d631v7"]
+[gd_scene load_steps=8 format=3 uid="uid://og4mb3d631v7"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_54iqj"]
-[ext_resource type="Texture2D" uid="uid://cuts4xdda3cmf" path="res://Sprites/Units/Army/soldier/Soldier_lvl3.png" id="2_03hvf"]
+[ext_resource type="Texture2D" uid="uid://8bfb7ng0kkvb" path="res://Sprites/Units/Army/soldier/lvl3/soldier_idle_lvl3.png" id="2_03hvf"]
 [ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="3_2ka7r"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_03hvf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q21pc"]
+atlas = ExtResource("2_03hvf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xs0s3"]
+atlas = ExtResource("2_03hvf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a472t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q21pc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xs0s3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="Soldier" instance=ExtResource("1_54iqj")]
 before_combat_desc = "Gives other soldiers that are above and below, +1 health and +1 attack"
@@ -17,7 +39,12 @@ health_buff = 1
 Soldier = true
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_03hvf")
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_a472t")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="buff_location" parent="buffs" index="0" instance=ExtResource("3_2ka7r")]
 position = Vector2(0, 74)

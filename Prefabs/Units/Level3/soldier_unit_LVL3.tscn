@@ -1,9 +1,99 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7e8fe1ry54xg"]
+[gd_scene load_steps=18 format=3 uid="uid://b7e8fe1ry54xg"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_gxtp8"]
 [ext_resource type="PackedScene" uid="uid://j16g2a5ai3sr" path="res://Prefabs/Effects/Projectiles/bullet_projectile.tscn" id="2_1gvfd"]
-[ext_resource type="Texture2D" uid="uid://cuts4xdda3cmf" path="res://Sprites/Units/Army/soldier/Soldier_lvl3.png" id="3_4fa0f"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_65kc4"]
+[ext_resource type="Texture2D" uid="uid://2kgjrl4k818m" path="res://Sprites/Units/Army/soldier/lvl3/soldier_death_lvl3.png" id="3_x5ui8"]
+[ext_resource type="Texture2D" uid="uid://8bfb7ng0kkvb" path="res://Sprites/Units/Army/soldier/lvl3/soldier_idle_lvl3.png" id="4_2ohpe"]
+[ext_resource type="Texture2D" uid="uid://4gxk34iew1no" path="res://Sprites/Units/Army/soldier/lvl3/soldier_skill_lvl3.png" id="5_wfvwj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0bpm"]
+atlas = ExtResource("3_x5ui8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbn4h"]
+atlas = ExtResource("3_x5ui8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxokh"]
+atlas = ExtResource("3_x5ui8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wp37n"]
+atlas = ExtResource("3_x5ui8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inxhy"]
+atlas = ExtResource("3_x5ui8")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klg7p"]
+atlas = ExtResource("3_x5ui8")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtsff"]
+atlas = ExtResource("4_2ohpe")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djiav"]
+atlas = ExtResource("4_2ohpe")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2aee"]
+atlas = ExtResource("5_wfvwj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5tsa"]
+atlas = ExtResource("5_wfvwj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_664f6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0bpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbn4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxokh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wp37n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inxhy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klg7p")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtsff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djiav")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2aee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5tsa")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 10.0
+}]
 
 [node name="Soldier" instance=ExtResource("1_gxtp8")]
 max_health = 12
@@ -14,6 +104,10 @@ Soldier = true
 skill_spawn_random = true
 skill_damage = 1
 projectile = ExtResource("2_1gvfd")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_664f6")
+autoplay = "idle"
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_65kc4")]
 position = Vector2(74, 0)
@@ -33,5 +127,5 @@ position = Vector2(148, 74)
 [node name="unit_skill_location6" parent="skill_locations" index="5" instance=ExtResource("3_65kc4")]
 position = Vector2(148, -74)
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("3_4fa0f")
+[node name="Sprite2D" parent="." index="4"]
+texture = null
