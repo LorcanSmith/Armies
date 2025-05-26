@@ -1,11 +1,137 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckfcmt80kwgtj"]
+[gd_scene load_steps=23 format=3 uid="uid://ckfcmt80kwgtj"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_gumnu"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_al3cm"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_5gnp6"]
-[ext_resource type="Texture2D" uid="uid://b5pnb4gvip5me" path="res://Sprites/Units/Animals/sheep/sheep_sprite_lvl1.png" id="4_gumnu"]
+[ext_resource type="Texture2D" uid="uid://b6kduwqscl8o7" path="res://Sprites/Units/Animals/sheep/lvl1/sheep_idle_lvl1.png" id="3_gumnu"]
+[ext_resource type="Texture2D" uid="uid://13631ut36fjv" path="res://Sprites/Units/Animals/sheep/lvl1/sheep_death_lvl1.png" id="3_nnya2"]
+[ext_resource type="Texture2D" uid="uid://bwtxha1ni7xn5" path="res://Sprites/Units/Animals/sheep/lvl1/sheep_skill_lvl1.png" id="4_al3cm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ofoi"]
+atlas = ExtResource("3_nnya2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xhkl"]
+atlas = ExtResource("3_nnya2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llvtm"]
+atlas = ExtResource("3_nnya2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vnyk"]
+atlas = ExtResource("3_nnya2")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fou2"]
+atlas = ExtResource("3_nnya2")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_al3cm"]
+atlas = ExtResource("3_gumnu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gnp6"]
+atlas = ExtResource("3_gumnu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnya2"]
+atlas = ExtResource("3_gumnu")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu11x"]
+atlas = ExtResource("3_gumnu")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vr6a7"]
+atlas = ExtResource("4_al3cm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cihei"]
+atlas = ExtResource("4_al3cm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syl5c"]
+atlas = ExtResource("4_al3cm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_taqik"]
+atlas = ExtResource("4_al3cm")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm5iv"]
+atlas = ExtResource("4_al3cm")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7luhq"]
+atlas = ExtResource("4_al3cm")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vr6a7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ofoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xhkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llvtm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vnyk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fou2")
+}],
+"loop": false,
+"name": &"death",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_al3cm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gnp6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnya2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu11x")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vr6a7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cihei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syl5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_taqik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm5iv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7luhq")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 11.0
+}]
 
 [node name="Sheep" instance=ExtResource("1_gumnu")]
+attack_animation_length = 0.45
 max_health = 5
 brawl_damage = 3
 Animal = true
@@ -13,11 +139,15 @@ Sheep = true
 skill_damage = 2
 projectile = ExtResource("2_al3cm")
 
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_vr6a7")
+autoplay = "idle"
+
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_5gnp6")]
 position = Vector2(74, 0)
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("4_gumnu")
+[node name="Sprite2D" parent="." index="4"]
+texture = null
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-2, -0.5)
