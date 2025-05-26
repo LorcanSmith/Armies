@@ -1,22 +1,159 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnr6pcfyrp7g4"]
+[gd_scene load_steps=24 format=3 uid="uid://bnr6pcfyrp7g4"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_24xuw"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_88ne0"]
+[ext_resource type="Texture2D" uid="uid://cwgqvitsau2eu" path="res://Sprites/Units/Animals/chicken/lvl1/chicken_death_lvl1.png" id="3_e62ui"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_usf70"]
-[ext_resource type="Texture2D" uid="uid://d1vx58dil5tdu" path="res://Sprites/Units/Animals/chicken/chicken_sprite_lvl1.png" id="4_24xuw"]
+[ext_resource type="Texture2D" uid="uid://cmas46f8dqki4" path="res://Sprites/Units/Animals/chicken/lvl1/chicken_idle_lvl1.png" id="4_ssp4p"]
+[ext_resource type="Texture2D" uid="uid://dr5cto4pwqa5q" path="res://Sprites/Units/Animals/chicken/lvl1/chicken_skill_lvl1.png" id="5_q3272"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80dl8"]
+atlas = ExtResource("3_e62ui")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2aejf"]
+atlas = ExtResource("3_e62ui")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5afb"]
+atlas = ExtResource("3_e62ui")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysmd0"]
+atlas = ExtResource("3_e62ui")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0hss"]
+atlas = ExtResource("3_e62ui")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75l1b"]
+atlas = ExtResource("3_e62ui")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3tly"]
+atlas = ExtResource("3_e62ui")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahv8p"]
+atlas = ExtResource("4_ssp4p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cl4mu"]
+atlas = ExtResource("4_ssp4p")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajlky"]
+atlas = ExtResource("4_ssp4p")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pattp"]
+atlas = ExtResource("5_q3272")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnhj6"]
+atlas = ExtResource("5_q3272")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7swk"]
+atlas = ExtResource("5_q3272")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xtc5"]
+atlas = ExtResource("5_q3272")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifetx"]
+atlas = ExtResource("5_q3272")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4ebk"]
+atlas = ExtResource("5_q3272")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0pau"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80dl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2aejf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5afb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysmd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0hss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75l1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3tly")
+}],
+"loop": false,
+"name": &"death",
+"speed": 13.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahv8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cl4mu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajlky")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pattp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnhj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7swk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xtc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifetx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4ebk")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 10.0
+}]
 
 [node name="Chicken" instance=ExtResource("1_24xuw")]
+attack_animation_length = 0.5
 max_health = 3
 brawl_damage = 2
 Animal = true
 skill_damage = 1
 projectile = ExtResource("2_88ne0")
 
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_m0pau")
+autoplay = "idle"
+
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_usf70")]
 position = Vector2(74, 0)
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("4_24xuw")
+[node name="Sprite2D" parent="." index="4"]
+texture = null
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-2, -0.5)

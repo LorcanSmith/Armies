@@ -1,8 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://djukuirbnc4pr"]
+[gd_scene load_steps=9 format=3 uid="uid://djukuirbnc4pr"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_p4t42"]
-[ext_resource type="Texture2D" uid="uid://b5pnb4gvip5me" path="res://Sprites/Units/Animals/sheep/sheep_sprite_lvl1.png" id="2_p4t42"]
+[ext_resource type="Texture2D" uid="uid://dqlxwbarh7eyd" path="res://Sprites/Units/Animals/sheep/lvl3/sheep_idle_lvl3.png" id="2_p4t42"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_ayv5e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kd6f"]
+atlas = ExtResource("2_p4t42")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ayv5e"]
+atlas = ExtResource("2_p4t42")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2mkv"]
+atlas = ExtResource("2_p4t42")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgyx1"]
+atlas = ExtResource("2_p4t42")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7suqc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kd6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ayv5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2mkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgyx1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
 
 [node name="Sheep" instance=ExtResource("1_p4t42")]
 before_combat_desc = "Gives +5 gold"
@@ -12,7 +48,12 @@ buy_cost = 5
 sell_cost = 2
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_p4t42")
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_7suqc")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_ayv5e")]
 position = Vector2(74, 0)
