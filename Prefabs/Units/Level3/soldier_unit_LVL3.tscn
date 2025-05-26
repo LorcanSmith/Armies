@@ -96,6 +96,7 @@ animations = [{
 }]
 
 [node name="Soldier" instance=ExtResource("1_gxtp8")]
+attack_animation_length = 0.2
 max_health = 12
 brawl_damage = 4
 Army = true

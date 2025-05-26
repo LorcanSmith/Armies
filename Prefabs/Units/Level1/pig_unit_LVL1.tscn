@@ -1,22 +1,103 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8rulm8us5rsc"]
+[gd_scene load_steps=16 format=3 uid="uid://c8rulm8us5rsc"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_fxu3u"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_v6fio"]
+[ext_resource type="Texture2D" uid="uid://ig6xsqtb5t45" path="res://Sprites/Units/Animals/pig/lvl1/pig_death_lvl1.png" id="3_4g5aj"]
+[ext_resource type="Texture2D" uid="uid://mmbtqshopihg" path="res://Sprites/Units/Animals/pig/lvl1/pig_idle_lvl1.png" id="3_v6fio"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_wswqx"]
-[ext_resource type="Texture2D" uid="uid://vw8ox3yl80lo" path="res://Sprites/Units/Animals/pig/pig_sprite_lvl1.png" id="4_fxu3u"]
+[ext_resource type="Texture2D" uid="uid://dv3a8015it0vk" path="res://Sprites/Units/Animals/pig/lvl1/pig_skill_lvl1.png" id="4_wswqx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vq3cx"]
+atlas = ExtResource("3_4g5aj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oihcm"]
+atlas = ExtResource("3_4g5aj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5nc7"]
+atlas = ExtResource("3_4g5aj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g5aj"]
+atlas = ExtResource("3_v6fio")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_riai0"]
+atlas = ExtResource("3_v6fio")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgkre"]
+atlas = ExtResource("4_wswqx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xyyf"]
+atlas = ExtResource("4_wswqx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlt8v"]
+atlas = ExtResource("4_wswqx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vq3cx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vq3cx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oihcm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5nc7")
+}],
+"loop": false,
+"name": &"death",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g5aj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_riai0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgkre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xyyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlt8v")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 7.0
+}]
 
 [node name="Pig" instance=ExtResource("1_fxu3u")]
+attack_animation_length = 0.4
 max_health = 4
 brawl_damage = 3
 Animal = true
 skill_damage = 2
 projectile = ExtResource("2_v6fio")
 
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_vq3cx")
+autoplay = "idle"
+
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_wswqx")]
 position = Vector2(74, 0)
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("4_fxu3u")
+[node name="Sprite2D" parent="." index="4"]
+texture = null
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-2, -0.5)
