@@ -1,8 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://cllth155fp6fv"]
+[gd_scene load_steps=7 format=3 uid="uid://cllth155fp6fv"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_vjyh6"]
-[ext_resource type="Texture2D" uid="uid://cxhgfj7y2uodp" path="res://Sprites/Units/Dinosaurs/ankylosaurus/ankylosaurus_sprite_lvl1-export.png" id="2_if6yj"]
+[ext_resource type="Texture2D" uid="uid://cfrmol4s8dj6x" path="res://Sprites/Units/Dinosaurs/ankylosaurus/lvl1/ankylosaurus_idle_lvl1.png" id="2_if6yj"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_bq846"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjyh6"]
+atlas = ExtResource("2_if6yj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbooe"]
+atlas = ExtResource("2_if6yj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6kb3i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjyh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbooe")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
 
 [node name="Ankylosaurus" instance=ExtResource("1_vjyh6")]
 description = "If this unit takes damage in the shop phase it gains +1 attack"
@@ -13,7 +35,13 @@ damage_buff = 1
 All = true
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_if6yj")
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_6kb3i")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.853495
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("4_bq846")]
 position = Vector2(74, 0)

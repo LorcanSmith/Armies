@@ -414,6 +414,7 @@ func apply_damage():
 
 #Called when the unit is destroyed
 func destroy_unit():
+	alive = false
 	if(get_parent().name != "skill_holder"):
 		#Tells parent to remove this unit from its list of units on it
 		get_parent().units_on_tile.erase(self)
@@ -513,9 +514,11 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 #When a sprite animation finishes we should play the default animation
 func _on_sprite_animator_animation_finished(anim_name: StringName) -> void:
 	if(anim_name == "death" or (self_destruction and anim_name == "skill")):
-		#Fade sprite out
 		queue_free()
-	elif(anim_name == "skill"):
+	elif(anim_name == "skill" and alive):
 		await get_tree().create_timer(attack_animation_length).timeout
 		get_node("sprite_animator").play("idle")
 		get_node("AnimatedSprite2D").play("idle")
+	elif(anim_name == "skill" and !alive):
+		get_node("sprite_animator").play("death")
+		get_node("AnimatedSprite2D").play("death")
