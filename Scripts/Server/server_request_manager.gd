@@ -3,61 +3,61 @@ extends Node
 
 var url_base : String
 var request_handler : HTTPRequest
+var user_request_handler : HTTPRequest
 
 #Thinking these can just be stored in this class since it will be a AutoLoaded in anyway
 var user_id : int
 var user_name : String
 var user_logged_in : bool
 
+var _user_name_cache: String
+
 signal login_complete
 signal upload_complete
+signal create_guest_complete
 
 func _init():
 	request_handler = HTTPRequest.new()
+	user_request_handler = HTTPRequest.new()
 	add_child(request_handler)
+	add_child(user_request_handler)
 	#TODO CONFIG INSTEAD OF HARDCODING
 	url_base = "http://127.0.0.1:8000"
 	self.user_logged_in = false
 
-# TODO Right now login is mostly being ignored
-func login(username : String, password : String):
-	var endpoint = "/api/user/login"
-	
+func create_guest(username : String):
+	var endpoint = "/api/user/guest/create"
+	self._user_name_cache = username
 	var _on_complete = func(result, response_code, headers, body):
-		var json = JSON.parse_string(body.get_string_from_utf8())
-		login_complete.emit(json)
+		var body_content = body.get_string_from_utf8()
+		if(body_content != ''):
+			var json = JSON.parse_string(body.get_string_from_utf8())
+			self.user_id = int(json["user_id"])
+			self.user_name = json["user_name"]
+			self.user_logged_in = true
 		
-	self.request_handler.request_completed.connect(_on_complete)
+			create_guest_complete.emit(json)
+		else:
+			create_guest_complete.emit({
+				"error": true,
+				"message": "No Response From Server",
+				"code": "SERVER_NOT_FOUND"
+			})
+
+	self.user_request_handler.request_completed.connect(_on_complete)
+	var request_body = {
+		"user_name": username
+	}
 	var headers = ["Content-Type: application/json"]
-	var request_headers = PackedStringArray(["Content-Type", "application/json"])
-	var error = self.request_handler.request(self.url_base + endpoint, headers, HTTPClient.METHOD_POST)
+	var error = self.user_request_handler.request(self.url_base + endpoint, headers, HTTPClient.METHOD_POST, str(request_body))
+		
 	return error
-	
-# THESE FOLLOING FUNCTIONS ARE FOR EASE OF
-# EARLY WORK. GET USED FOR TEMP UPLOAD LOGIN
-func _login(username : String, password : String):
-	var user_info = await _login_request(username, password)
-	if(user_info == null):
-		assert(false, "ERROR WITH LOGIN")
-	self.user_id = user_info["id"]
-	self.user_name = user_info["user_name"]
-	self.user_logged_in = true
-	
-func _login_request(username : String, password : String):
-	var endpoint = "/api/user/login"
-	
-	var _on_complete = func(result, response_code, headers, body):
-		var json = JSON.parse_string(body.get_string_from_utf8())
-		login_complete.emit(json)
-		
-	self.request_handler.request_completed.connect(_on_complete)
-	var headers = ["Content-Type: application/json"]
-	var error = self.request_handler.request(self.url_base + endpoint, headers, HTTPClient.METHOD_POST)
-	
-	if error == OK:
-		return login_complete
+
+func retry_create_guest():
+	if(self._user_name_cache != ""):
+		return self.create_guest(self._user_name_cache)
 	else:
-		return null
+		return FAILED
 		
 ## This function will upload the grid and the turn number to be stored in the database [br][br]
 ## 
@@ -71,16 +71,24 @@ func _login_request(username : String, password : String):
 ## RETURNS - See HTTPRequest error codes
 func upload(grid : Array, turn : int):
 	
-#	TEMP UNTIL PROPER LOGIN
 	if !user_logged_in:
-		await _login("","")
+		return FAILED
 	
 	var endpoint = "/api/upload"
 	
+	var error
 	var _on_upload_and_retrieve = func(result, response_code, headers, body):
-		var json = JSON.parse_string(body.get_string_from_utf8())
-		json["enemy_game_state"] = str_to_var(json["enemy_game_state"])
-		upload_complete.emit(json)
+		var body_content = body.get_string_from_utf8()
+		if(body_content != ''):
+			var json = JSON.parse_string(body_content)
+			json["enemy_game_state"] = str_to_var(json["enemy_game_state"])
+			upload_complete.emit(json)
+		else:
+			upload_complete.emit({
+				"error": true,
+				"message": "No Response From Server",
+				"code": "SERVER_NOT_FOUND"
+			})
 
 	self.request_handler.request_completed.connect(_on_upload_and_retrieve)
 	
@@ -93,6 +101,6 @@ func upload(grid : Array, turn : int):
 	
 	var headers = ["Content-Type: application/json"]
 	print(self.url_base + endpoint)
-	var error = self.request_handler.request(self.url_base + endpoint, headers, HTTPClient.METHOD_POST, str(request_body))
+	error = self.request_handler.request(self.url_base + endpoint, headers, HTTPClient.METHOD_POST, str(request_body))
 		
 	return error
