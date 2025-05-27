@@ -37,11 +37,10 @@ func login(username : String, password : String):
 # EARLY WORK. GET USED FOR TEMP UPLOAD LOGIN
 func _login(username : String, password : String):
 	var user_info = await _login_request(username, password)
-	if(user_info == null):
-		assert(false, "ERROR WITH LOGIN")
-	self.user_id = user_info["id"]
-	self.user_name = user_info["user_name"]
-	self.user_logged_in = true
+	if(user_info != null):
+		self.user_id = user_info["id"]
+		self.user_name = user_info["user_name"]
+		self.user_logged_in = true
 	
 func _login_request(username : String, password : String):
 	var endpoint = "/api/user/login"
@@ -77,6 +76,7 @@ func upload(grid : Array, turn : int):
 	
 	var endpoint = "/api/upload"
 	
+	var error
 	var _on_upload_and_retrieve = func(result, response_code, headers, body):
 		var json = JSON.parse_string(body.get_string_from_utf8())
 		json["enemy_game_state"] = str_to_var(json["enemy_game_state"])
@@ -93,6 +93,6 @@ func upload(grid : Array, turn : int):
 	
 	var headers = ["Content-Type: application/json"]
 	print(self.url_base + endpoint)
-	var error = self.request_handler.request(self.url_base + endpoint, headers, HTTPClient.METHOD_POST, str(request_body))
+	error = self.request_handler.request(self.url_base + endpoint, headers, HTTPClient.METHOD_POST, str(request_body))
 		
 	return error
