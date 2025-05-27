@@ -78,9 +78,17 @@ func upload(grid : Array, turn : int):
 	
 	var error
 	var _on_upload_and_retrieve = func(result, response_code, headers, body):
-		var json = JSON.parse_string(body.get_string_from_utf8())
-		json["enemy_game_state"] = str_to_var(json["enemy_game_state"])
-		upload_complete.emit(json)
+		var body_content = body.get_string_from_utf8()
+		if(body_content != ''):
+			var json = JSON.parse_string(body_content)
+			json["enemy_game_state"] = str_to_var(json["enemy_game_state"])
+			upload_complete.emit(json)
+		else:
+			upload_complete.emit({
+				"error": true,
+				"message": "No Response From Server",
+				"code": "SERVER_NOT_FOUND"
+			})
 
 	self.request_handler.request_completed.connect(_on_upload_and_retrieve)
 	

@@ -29,18 +29,18 @@ func load_units():
 		if game_manager.debug_mode:
 			enemy_unit_IDs = game_manager.enemy_army
 		else:
-			#var error_code = await ServerRequestManager.upload(unit_IDs, game_manager.turn_number)
-			#var enemy_team_info_response = await ServerRequestManager.upload_complete
-			#if(error_code == OK and !enemy_team_info_response["error"]):				
-				#enemy_unit_IDs = enemy_team_info_response["enemy_game_state"]
-				#game_manager.enemy_army = enemy_unit_IDs
-				#game_manager.set_enemy_name(enemy_team_info_response["enemy_user"])
-			#else:
+			var message_sent_status = await ServerRequestManager.upload(unit_IDs, game_manager.turn_number)
+			var enemy_team_info_response = await ServerRequestManager.upload_complete
+			if(message_sent_status == OK and !enemy_team_info_response["error"]):				
+				enemy_unit_IDs = enemy_team_info_response["enemy_game_state"]
+				game_manager.enemy_army = enemy_unit_IDs
+				game_manager.set_enemy_name(enemy_team_info_response["enemy_user"])
+			else:
 ##				TODO For now we will just not deal with the error, but in the future we should handle this better
 ##				such as with a retry
-				#var error_string = enemy_team_info_response["message"] + " SERVER ERROR CODE = " + enemy_team_info_response["code"] if error_code == OK else "Error with request - " + str(error_code)
-				#print(error_string)
-
+				var error_string = enemy_team_info_response["message"] + " SERVER ERROR CODE = " + enemy_team_info_response["code"] if message_sent_status == OK else "Error with request - " + str(message_sent_status);
+				print(error_string)
+				
 #				if we can't get enemy data from the server default to the previous local method 
 				enemy_unit_IDs = load_layout("enemy")
 				game_manager.enemy_army = enemy_unit_IDs
