@@ -1,11 +1,130 @@
-[gd_scene load_steps=5 format=3 uid="uid://c60b7fbw7q1el"]
+[gd_scene load_steps=22 format=3 uid="uid://c60b7fbw7q1el"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_pipwa"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_pjta7"]
+[ext_resource type="Texture2D" uid="uid://dw1iibtqdb0bb" path="res://Sprites/Units/Dinosaurs/ankylosaurus/lvl1/ankylosaurus_death_lvl1.png" id="3_ak6ll"]
+[ext_resource type="Texture2D" uid="uid://cfrmol4s8dj6x" path="res://Sprites/Units/Dinosaurs/ankylosaurus/lvl1/ankylosaurus_idle_lvl1.png" id="3_pjta7"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_v5jmm"]
-[ext_resource type="Texture2D" uid="uid://cxhgfj7y2uodp" path="res://Sprites/Units/Dinosaurs/ankylosaurus/ankylosaurus_sprite_lvl1-export.png" id="4_pipwa"]
+[ext_resource type="Texture2D" uid="uid://biuregeg53iqy" path="res://Sprites/Units/Dinosaurs/ankylosaurus/lvl1/ankylosaurus_skill_lvl1.png" id="4_v5jmm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpwgm"]
+atlas = ExtResource("3_ak6ll")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7i8u"]
+atlas = ExtResource("3_ak6ll")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8bvd"]
+atlas = ExtResource("3_ak6ll")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5j6os"]
+atlas = ExtResource("3_ak6ll")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ak6ll"]
+atlas = ExtResource("3_pjta7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pxys"]
+atlas = ExtResource("3_pjta7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oho4r"]
+atlas = ExtResource("4_v5jmm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0isr"]
+atlas = ExtResource("4_v5jmm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxw7h"]
+atlas = ExtResource("4_v5jmm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_076ck"]
+atlas = ExtResource("4_v5jmm")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73k6n"]
+atlas = ExtResource("4_v5jmm")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alk3q"]
+atlas = ExtResource("4_v5jmm")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wof7f"]
+atlas = ExtResource("4_v5jmm")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbd4m"]
+atlas = ExtResource("4_v5jmm")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vpwgm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpwgm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7i8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8bvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5j6os")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ak6ll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pxys")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oho4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0isr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxw7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_076ck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73k6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alk3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wof7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbd4m")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 12.0
+}]
 
 [node name="Ankylosaurus" instance=ExtResource("1_pipwa")]
+attack_animation_length = 0.6
 max_health = 15
 brawl_damage = 3
 Dinosaur = true
@@ -14,6 +133,10 @@ skill_spawn_amount = 3
 skill_max_once_per_unit = true
 skill_damage = 1
 projectile = ExtResource("2_pjta7")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_vpwgm")
+autoplay = "idle"
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_v5jmm")]
 position = Vector2(74, 0)
@@ -24,8 +147,8 @@ position = Vector2(74, 74)
 [node name="unit_skill_location3" parent="skill_locations" index="2" instance=ExtResource("3_v5jmm")]
 position = Vector2(74, -74)
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("4_pipwa")
+[node name="Sprite2D" parent="." index="4"]
+texture = null
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-2, -0.5)
