@@ -1,11 +1,131 @@
-[gd_scene load_steps=5 format=3 uid="uid://de2vowk1pywui"]
+[gd_scene load_steps=23 format=3 uid="uid://de2vowk1pywui"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_3qguq"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_e5mg5"]
+[ext_resource type="Texture2D" uid="uid://d26k1cr7bkv5o" path="res://Sprites/Units/Dinosaurs/Trex/lvl2/trex_death_lvl2.png" id="3_itcxg"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_vo7ag"]
+[ext_resource type="Texture2D" uid="uid://crhgwp3xwobp7" path="res://Sprites/Units/Dinosaurs/Trex/lvl2/trex_idle_lvl2.png" id="4_hotef"]
 [ext_resource type="Texture2D" uid="uid://bp2jr24mqh5rl" path="res://Sprites/Units/Dinosaurs/Trex/T-rex-lvl2.png" id="4_tpy3l"]
+[ext_resource type="Texture2D" uid="uid://bxmw42vybtq3m" path="res://Sprites/Units/Dinosaurs/Trex/lvl2/trex_skill_lvl2.png" id="5_hyype"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipuou"]
+atlas = ExtResource("3_itcxg")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x4vl"]
+atlas = ExtResource("3_itcxg")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gukw"]
+atlas = ExtResource("3_itcxg")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvrgb"]
+atlas = ExtResource("3_itcxg")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv8ds"]
+atlas = ExtResource("3_itcxg")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8f8w"]
+atlas = ExtResource("3_itcxg")
+region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6xx1"]
+atlas = ExtResource("4_hotef")
+region = Rect2(0, 0, 44, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7hwm"]
+atlas = ExtResource("4_hotef")
+region = Rect2(44, 0, 44, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4eal"]
+atlas = ExtResource("5_hyype")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jg2c"]
+atlas = ExtResource("5_hyype")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7w1m"]
+atlas = ExtResource("5_hyype")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cte8e"]
+atlas = ExtResource("5_hyype")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pyff"]
+atlas = ExtResource("5_hyype")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_leejq"]
+atlas = ExtResource("5_hyype")
+region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nivra"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipuou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7x4vl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gukw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvrgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tv8ds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8f8w")
+}],
+"loop": false,
+"name": &"death",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6xx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7hwm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4eal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jg2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7w1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cte8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pyff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_leejq")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 9.0
+}]
 
 [node name="Trex" instance=ExtResource("1_3qguq")]
+attack_animation_length = 0.66
 max_health = 15
 move_distance = 2
 brawl_damage = 12
@@ -15,11 +135,15 @@ skill_max_once_per_unit = true
 skill_damage = 12
 projectile = ExtResource("2_e5mg5")
 
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_nivra")
+autoplay = "idle"
+
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_vo7ag")]
 position = Vector2(74, 0)
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("4_tpy3l")
+[node name="Sprite2D" parent="." index="4"]
+texture = null
 
 [node name="shadow" parent="Sprite2D" index="0"]
 texture = ExtResource("4_tpy3l")

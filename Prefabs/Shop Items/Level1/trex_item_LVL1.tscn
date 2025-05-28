@@ -1,8 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://de5k3155ugt5p"]
+[gd_scene load_steps=8 format=3 uid="uid://de5k3155ugt5p"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_3h762"]
 [ext_resource type="Texture2D" uid="uid://b31avwgtikfkb" path="res://Sprites/Units/Dinosaurs/Trex/T-rex-lvl1.png" id="2_3h762"]
+[ext_resource type="Texture2D" uid="uid://chtg2u7hc3gx2" path="res://Sprites/Units/Dinosaurs/Trex/lvl1/trex_idle_lvl1.png" id="2_87fli"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_qeb88"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otr0r"]
+atlas = ExtResource("2_87fli")
+region = Rect2(0, 0, 44, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qeb88"]
+atlas = ExtResource("2_87fli")
+region = Rect2(44, 0, 44, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y3uqk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otr0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qeb88")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]
 
 [node name="Trex" instance=ExtResource("1_3h762")]
 description = "Look out for that jaw!"
@@ -12,9 +35,14 @@ sell_cost = 3
 All = true
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_3h762")
+texture = null
 
-[node name="shadow" parent="Sprite2D" index="0"]
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_y3uqk")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="shadow" parent="Sprite2D" index="1"]
 texture = ExtResource("2_3h762")
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("4_qeb88")]
