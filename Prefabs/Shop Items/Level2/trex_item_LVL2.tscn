@@ -1,8 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh6uakd600j6l"]
+[gd_scene load_steps=8 format=3 uid="uid://dh6uakd600j6l"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_qspyt"]
 [ext_resource type="Texture2D" uid="uid://bp2jr24mqh5rl" path="res://Sprites/Units/Dinosaurs/Trex/T-rex-lvl2.png" id="2_0wq5s"]
+[ext_resource type="Texture2D" uid="uid://crhgwp3xwobp7" path="res://Sprites/Units/Dinosaurs/Trex/lvl2/trex_idle_lvl2.png" id="2_agx41"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_eguhs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv5ry"]
+atlas = ExtResource("2_agx41")
+region = Rect2(0, 0, 44, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t05x3"]
+atlas = ExtResource("2_agx41")
+region = Rect2(44, 0, 44, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3c5qk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv5ry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t05x3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]
 
 [node name="Trex" instance=ExtResource("1_qspyt")]
 description = "Look out for that tail!"
@@ -12,7 +35,12 @@ sell_cost = 3
 All = true
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_0wq5s")
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_3c5qk")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="shadow" parent="Sprite2D" index="1"]
 texture = ExtResource("2_0wq5s")
