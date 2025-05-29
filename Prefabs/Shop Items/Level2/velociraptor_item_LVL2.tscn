@@ -1,9 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://6vmudoj3rqcy"]
+[gd_scene load_steps=8 format=3 uid="uid://6vmudoj3rqcy"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_nat7s"]
-[ext_resource type="Texture2D" uid="uid://cspyn7seap7nm" path="res://Sprites/Units/Dinosaurs/velociraptor/velociraptor_sprite_lvl1.png" id="2_bfvdb"]
+[ext_resource type="Texture2D" uid="uid://ccl2oeu1klwjj" path="res://Sprites/Units/Dinosaurs/velociraptor/lvl2/velociraptor_idle_lvl2.png" id="2_5lluf"]
 [ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="3_u2hwq"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_bd20d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fox7l"]
+atlas = ExtResource("2_5lluf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5sgh"]
+atlas = ExtResource("2_5lluf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3pnwn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fox7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5sgh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
 
 [node name="Velociraptor" instance=ExtResource("1_nat7s")]
 description = "A pack hunter"
@@ -16,7 +38,12 @@ damage_buff = 3
 Velociraptor = true
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_bfvdb")
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_3pnwn")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="buff_location" parent="buffs" index="0" instance=ExtResource("3_u2hwq")]
 position = Vector2(74, 0)
