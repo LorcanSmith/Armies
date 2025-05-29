@@ -1,8 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1awtf6yqnv0p"]
+[gd_scene load_steps=7 format=3 uid="uid://b1awtf6yqnv0p"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_jykpd"]
-[ext_resource type="Texture2D" uid="uid://mj4pomfgqggh" path="res://Sprites/Units/Medieval/Plague_Doctor/plague_doctor_sprite_lvl3.png" id="2_0lfmp"]
+[ext_resource type="Texture2D" uid="uid://b0s8ssr2wf24b" path="res://Sprites/Units/Medieval/Plague_Doctor/lvl3/plaguedoctor_idle_lvl3.png" id="2_0lfmp"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_bdh8s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ie1p"]
+atlas = ExtResource("2_0lfmp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2prlu"]
+atlas = ExtResource("2_0lfmp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rt5wh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ie1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2prlu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]
 
 [node name="PlagueDoctor" instance=ExtResource("1_jykpd")]
 description = "Heals units with the type \"Human\""
@@ -19,7 +41,12 @@ Animal = true
 Soldier = true
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_0lfmp")
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_rt5wh")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_bdh8s")]
 position = Vector2(74, 0)
