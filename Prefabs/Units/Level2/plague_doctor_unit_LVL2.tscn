@@ -1,12 +1,117 @@
-[gd_scene load_steps=6 format=3 uid="uid://bn5e47nxetn3t"]
+[gd_scene load_steps=21 format=3 uid="uid://bn5e47nxetn3t"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_j7vsu"]
 [ext_resource type="PackedScene" uid="uid://cwefhvoo3dhqh" path="res://Prefabs/Effects/heal_animation.tscn" id="2_50s22"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_3cryd"]
-[ext_resource type="Texture2D" uid="uid://bgxqjtlmx3mc5" path="res://Sprites/Units/Medieval/Plague_Doctor/plague_doctor_sprite_lvl2.png" id="4_gwjki"]
+[ext_resource type="Texture2D" uid="uid://bny1ggnidley2" path="res://Sprites/Units/Medieval/Plague_Doctor/lvl2/plaguedoctor_idle_lvl2.png" id="3_gwjki"]
+[ext_resource type="Texture2D" uid="uid://hr4teabqof4h" path="res://Sprites/Units/Medieval/Plague_Doctor/lvl2/plaguedoctor_death_lvl2.png" id="3_nh1ak"]
+[ext_resource type="Texture2D" uid="uid://bjh43awx1o0ac" path="res://Sprites/Units/Medieval/Plague_Doctor/lvl2/plaguedoctor_skill_lvl2.png" id="4_o5m77"]
 [ext_resource type="Texture2D" uid="uid://c73uyed4ispk4" path="res://Sprites/Units/Medieval/Archer/archer_sprite.png" id="5_42kuo"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wl31y"]
+atlas = ExtResource("3_nh1ak")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_embop"]
+atlas = ExtResource("3_nh1ak")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uxfn"]
+atlas = ExtResource("3_nh1ak")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x14g3"]
+atlas = ExtResource("3_nh1ak")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1gsp"]
+atlas = ExtResource("3_nh1ak")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5m77"]
+atlas = ExtResource("3_gwjki")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nh1ak"]
+atlas = ExtResource("3_gwjki")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qu72j"]
+atlas = ExtResource("4_o5m77")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptcvy"]
+atlas = ExtResource("4_o5m77")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebyrc"]
+atlas = ExtResource("4_o5m77")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vn34"]
+atlas = ExtResource("4_o5m77")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtce1"]
+atlas = ExtResource("4_o5m77")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qu72j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wl31y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_embop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0uxfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x14g3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1gsp")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5m77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nh1ak")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qu72j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptcvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebyrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vn34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtce1")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 8.0
+}]
+
 [node name="Plague Doctor" instance=ExtResource("1_j7vsu")]
+attack_animation_length = 0.7
 max_health = 7
 brawl_damage = 1
 Medieval = true
@@ -19,14 +124,18 @@ projectile = ExtResource("2_50s22")
 all = false
 Human_works_against = true
 
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_qu72j")
+autoplay = "idle"
+
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_3cryd")]
 position = Vector2(74, 0)
 
 [node name="unit_skill_location2" parent="skill_locations" index="1" instance=ExtResource("3_3cryd")]
 position = Vector2(148, 0)
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("4_gwjki")
+[node name="Sprite2D" parent="." index="4"]
+texture = null
 
 [node name="shadow" parent="Sprite2D" index="0"]
 texture = ExtResource("5_42kuo")
