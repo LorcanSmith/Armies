@@ -1,20 +1,129 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7e71vetwdcai"]
+[gd_scene load_steps=21 format=3 uid="uid://c7e71vetwdcai"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_8dqby"]
 [ext_resource type="Texture2D" uid="uid://c73uyed4ispk4" path="res://Sprites/Units/Medieval/Archer/archer_sprite.png" id="2_402ld"]
 [ext_resource type="PackedScene" uid="uid://blri1w5opv1nm" path="res://Prefabs/Effects/Projectiles/arrow_projectile.tscn" id="2_bx5le"]
+[ext_resource type="Texture2D" uid="uid://q4fyqphnulrm" path="res://Sprites/Units/Medieval/Archer/lvl1/archer_death_lvl1.png" id="3_f8xrn"]
+[ext_resource type="Texture2D" uid="uid://i16k8frojcky" path="res://Sprites/Units/Medieval/Archer/lvl1/archer_idle_lvl1.png" id="3_hyr58"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_n20w6"]
+[ext_resource type="Texture2D" uid="uid://73ic7anij742" path="res://Sprites/Units/Medieval/Archer/lvl1/archer_skill_lvl1.png" id="4_f8xrn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qybkl"]
+atlas = ExtResource("3_f8xrn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef75e"]
+atlas = ExtResource("3_f8xrn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8v45d"]
+atlas = ExtResource("3_f8xrn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wci7m"]
+atlas = ExtResource("3_f8xrn")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnwin"]
+atlas = ExtResource("3_f8xrn")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur8wn"]
+atlas = ExtResource("3_hyr58")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i552x"]
+atlas = ExtResource("3_hyr58")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3osxo"]
+atlas = ExtResource("4_f8xrn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltigy"]
+atlas = ExtResource("4_f8xrn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_324e0"]
+atlas = ExtResource("4_f8xrn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vdrw"]
+atlas = ExtResource("4_f8xrn")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poact"]
+atlas = ExtResource("4_f8xrn")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qybkl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qybkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ef75e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8v45d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wci7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnwin")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur8wn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i552x")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3osxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltigy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_324e0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vdrw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poact")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 5.0
+}]
 
 [node name="Archer" instance=ExtResource("1_8dqby")]
+attack_animation_length = 1.0
 max_health = 4
 brawl_damage = 2
 Medieval = true
 Human = true
-skill_spawn_amount = 2
 skill_spawn_random = true
 skill_damage = 1
 skill_shooots_closest_enemy = true
 projectile = ExtResource("2_bx5le")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_qybkl")
+autoplay = "idle"
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_n20w6")]
 position = Vector2(74, 0)
@@ -22,8 +131,8 @@ position = Vector2(74, 0)
 [node name="unit_skill_location2" parent="skill_locations" index="1" instance=ExtResource("3_n20w6")]
 position = Vector2(148, 0)
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("2_402ld")
+[node name="Sprite2D" parent="." index="4"]
+texture = null
 
 [node name="shadow" parent="Sprite2D" index="0"]
 texture = ExtResource("2_402ld")
