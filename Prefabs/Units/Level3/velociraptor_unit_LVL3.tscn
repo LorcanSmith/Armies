@@ -1,11 +1,144 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdio5v50tdanv"]
+[gd_scene load_steps=24 format=3 uid="uid://cdio5v50tdanv"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_ua0tj"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_0dfpo"]
+[ext_resource type="Texture2D" uid="uid://q4vdccp5sed1" path="res://Sprites/Units/Dinosaurs/velociraptor/lvl3/velociraptor_idle_lvl3.png" id="3_g6b6u"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_kh5f6"]
-[ext_resource type="Texture2D" uid="uid://cspyn7seap7nm" path="res://Sprites/Units/Dinosaurs/velociraptor/velociraptor_sprite_lvl1.png" id="4_qjnkd"]
+[ext_resource type="Texture2D" uid="uid://xrjyft0bta5k" path="res://Sprites/Units/Dinosaurs/velociraptor/lvl3/velociraptor_death_lvl3.png" id="3_parl2"]
+[ext_resource type="Texture2D" uid="uid://7gbs424o7ogy" path="res://Sprites/Units/Dinosaurs/velociraptor/lvl3/velociraptor_skill_lvl3.png" id="4_k8du3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qurc7"]
+atlas = ExtResource("3_parl2")
+region = Rect2(0, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mkpw"]
+atlas = ExtResource("3_parl2")
+region = Rect2(42, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qysy8"]
+atlas = ExtResource("3_parl2")
+region = Rect2(84, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyr6r"]
+atlas = ExtResource("3_parl2")
+region = Rect2(126, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jq7a"]
+atlas = ExtResource("3_parl2")
+region = Rect2(168, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vx5hf"]
+atlas = ExtResource("3_parl2")
+region = Rect2(210, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8du3"]
+atlas = ExtResource("3_g6b6u")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_parl2"]
+atlas = ExtResource("3_g6b6u")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_miqqm"]
+atlas = ExtResource("4_k8du3")
+region = Rect2(0, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6ykh"]
+atlas = ExtResource("4_k8du3")
+region = Rect2(42, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi7o2"]
+atlas = ExtResource("4_k8du3")
+region = Rect2(84, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqcba"]
+atlas = ExtResource("4_k8du3")
+region = Rect2(126, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ormvp"]
+atlas = ExtResource("4_k8du3")
+region = Rect2(168, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbbn1"]
+atlas = ExtResource("4_k8du3")
+region = Rect2(210, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_650is"]
+atlas = ExtResource("4_k8du3")
+region = Rect2(252, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qoth"]
+atlas = ExtResource("4_k8du3")
+region = Rect2(294, 0, 42, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_miqqm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qurc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mkpw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qysy8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyr6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jq7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vx5hf")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8du3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_parl2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_miqqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6ykh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi7o2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqcba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ormvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbbn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_650is")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qoth")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 12.0
+}]
 
 [node name="Velociraptor" instance=ExtResource("1_ua0tj")]
+attack_animation_length = 0.7
 max_health = 6
 brawl_damage = 5
 Dinosaur = true
@@ -14,6 +147,10 @@ Velociraptor = true
 skill_max_once_per_unit = true
 skill_damage = 6
 projectile = ExtResource("2_0dfpo")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_miqqm")
+autoplay = "idle"
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_kh5f6")]
 position = Vector2(74, 0)
@@ -24,8 +161,8 @@ position = Vector2(0, 74)
 [node name="unit_skill_location3" parent="skill_locations" index="2" instance=ExtResource("3_kh5f6")]
 position = Vector2(0, -74)
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("4_qjnkd")
+[node name="Sprite2D" parent="." index="4"]
+texture = null
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-2, -0.5)
