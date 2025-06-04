@@ -140,7 +140,8 @@ func _ready() -> void:
 		if(unit_ID == 30 or unit_ID == 31 or unit_ID == 32):
 			#Checks for transforming various items
 			if(find_parent("game_manager").turn_number % 2 == 0):
-				find_child("Sprite2D").texture = transform_sprite
+				unit_has_transformed = true
+				get_node("AnimatedSprite2D").play("idle_transformed")
 	set_level_chevron()
 	set_unit_types()
 
@@ -250,8 +251,12 @@ func skill(phase : String):
 					var skill_instance 
 					skill_instance = skill_prefab.instantiate()
 					#Play skill animation
-					get_node("sprite_animator").play("skill")
-					get_node("AnimatedSprite2D").play("skill")
+					if(!unit_has_transformed):
+						get_node("sprite_animator").play("skill")
+						get_node("AnimatedSprite2D").play("skill")
+					elif(unit_has_transformed):
+						get_node("sprite_animator").play("skill_transformed")
+						get_node("AnimatedSprite2D").play("skill_transformed")
 					skill_instance.anim_time = attack_animation_length
 					#Tell the skill how much damage it does
 					skill_instance.damage = skill_damage + damage_boost
@@ -343,7 +348,10 @@ func skill(phase : String):
 		elif(phase == "combat_phase" and self_destruction and enemies_in_range.size() > 0):
 			movement_locations[0].hq.hurt(brawl_damage + damage_boost)
 			movement_locations[0].hq.projectile_hit(brawl_damage + damage_boost)
-			get_node("sprite_animator").play("skill")
+			if(!unit_has_transformed):
+				get_node("sprite_animator").play("skill")
+			elif(unit_has_transformed):
+				get_node("sprite_animator").play("skill_transformed")
 			alive = false
 			destroy_unit()
 	#If there is another unit on this tile then they will brawl
@@ -429,8 +437,12 @@ func destroy_unit():
 		get_node("sprite_animator").play("skill")
 		get_node("AnimatedSprite2D").play("skill")
 	elif(!self_destruction):
-		get_node("sprite_animator").play("death")
-		get_node("AnimatedSprite2D").play("death")
+		if(!unit_has_transformed):
+			get_node("sprite_animator").play("death")
+			get_node("AnimatedSprite2D").play("death")
+		elif(unit_has_transformed):
+			get_node("sprite_animator").play("death_transformed")
+			get_node("AnimatedSprite2D").play("death_transformed")
 func skill_area_entered(area: Area2D) -> void:
 	#	check if skill is meant to be used on allies or enemies
 		if(skill_damage > 0):
@@ -508,17 +520,29 @@ func _process(delta: float) -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	#If the unit is dead and the damage animation has played, destroy this unit
 	if(!alive and anim_name == "unit_damage"):
-		get_node("sprite_animator").play("death")
-		get_node("AnimatedSprite2D").play("death")
+		if(!unit_has_transformed):
+			get_node("sprite_animator").play("death")
+			get_node("AnimatedSprite2D").play("death")
+		elif(unit_has_transformed):
+			get_node("sprite_animator").play("death_transformed")
+			get_node("AnimatedSprite2D").play("death_transformed")
 
 #When a sprite animation finishes we should play the default animation
 func _on_sprite_animator_animation_finished(anim_name: StringName) -> void:
-	if(anim_name == "death" or (self_destruction and anim_name == "skill")):
+	if((anim_name == "death" or anim_name == "death_transformed") or (self_destruction and (anim_name == "skill" or anim_name == "skill_transformed"))):
 		queue_free()
-	elif(anim_name == "skill" and alive):
+	elif((anim_name == "skill" or anim_name == "skill_transformed") and alive):
 		await get_tree().create_timer(attack_animation_length).timeout
-		get_node("sprite_animator").play("idle")
-		get_node("AnimatedSprite2D").play("idle")
+		if(!unit_has_transformed):
+			get_node("sprite_animator").play("idle")
+			get_node("AnimatedSprite2D").play("idle")
+		elif(unit_has_transformed):
+			get_node("sprite_animator").play("idle_transformed")
+			get_node("AnimatedSprite2D").play("idle_transformed")
 	elif(anim_name == "skill" and !alive):
-		get_node("sprite_animator").play("death")
-		get_node("AnimatedSprite2D").play("death")
+		if(!unit_has_transformed):
+			get_node("sprite_animator").play("death")
+			get_node("AnimatedSprite2D").play("death")
+		elif(unit_has_transformed):
+			get_node("sprite_animator").play("death_transformed")
+			get_node("AnimatedSprite2D").play("death_transformed")

@@ -163,8 +163,8 @@ func transform_item(unit):
 	if(!item_has_transformed):
 		#Checks for transforming various items
 		if(unit_name == "Werewolf"):
+			#Unit is a werewolf
 			if(find_parent("game_manager").turn_number % 2 == 0):
-				find_child("Sprite2D").texture = unit.transform_sprite
 				var doubled_attack = (unit.skill_damage + damage_boost) * 2
 				var doubled_health = (unit.max_health + health_boost) * 2
 				damage_boost = doubled_attack - unit.skill_damage
@@ -173,8 +173,9 @@ func transform_item(unit):
 				defense_label.text = str(doubled_health)
 				current_health = doubled_health
 				current_damage = doubled_attack
+				get_node("Sprite2D/AnimatedSprite2D").play("idle_transformed")
+			#unit is a human
 			elif(find_parent("game_manager").turn_number % 2 != 0 and bought):
-				find_child("Sprite2D").texture = unit.regular_sprite
 				damage_boost = (damage_boost - unit.skill_damage) / 2
 				health_boost = (health_boost - unit.max_health) / 2
 				attack_label.text = str(unit.skill_damage + damage_boost)

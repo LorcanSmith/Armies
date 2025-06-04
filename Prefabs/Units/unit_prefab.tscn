@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://di2vorbunt4ep"]
+[gd_scene load_steps=21 format=3 uid="uid://di2vorbunt4ep"]
 
 [ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_bdk6m"]
 [ext_resource type="Script" uid="uid://cdc2qqsvqw1rh" path="res://Scripts/Units/move_spot.gd" id="3_lq4h4"]
@@ -92,12 +92,72 @@ tracks/0/keys = {
 "values": [&"skill"]
 }
 
+[sub_resource type="Animation" id="Animation_j1ctf"]
+resource_name = "death_transformed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"death_transformed"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4m5no"]
+resource_name = "skill_transformed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"skill_transformed"]
+}
+
+[sub_resource type="Animation" id="Animation_chv4m"]
+resource_name = "idle_transformed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle_transformed"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r5o3j"]
 _data = {
 &"RESET": SubResource("Animation_bcdoc"),
 &"death": SubResource("Animation_vewm0"),
+&"death_transformed": SubResource("Animation_j1ctf"),
 &"default": SubResource("Animation_cxn27"),
-&"skill": SubResource("Animation_r5o3j")
+&"idle_transformed": SubResource("Animation_chv4m"),
+&"skill": SubResource("Animation_r5o3j"),
+&"skill_transformed": SubResource("Animation_4m5no")
 }
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mjxsx"]
@@ -109,7 +169,22 @@ animations = [{
 }, {
 "frames": [],
 "loop": true,
+"name": &"death_transformed",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle_transformed",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
 "name": &"skill",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"skill_transformed",
 "speed": 5.0
 }]
 
