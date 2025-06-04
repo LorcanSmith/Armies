@@ -15,9 +15,21 @@ var rerolls_taken : int = 0
 
 var game_manager : Node2D
 
+var base_manager : Node2D
+
 var reroll_UI : CanvasLayer
 
 var remove_units_UI : CanvasLayer
+
+var buy_bases_UI : CanvasLayer
+
+var base_locations : Array
+
+var current_base_selected : Node2D
+
+var base_id
+var base_name
+var base_desc
 
 var unit_themes : Array = [
 	"Medieval",
@@ -29,8 +41,11 @@ var unit_themes : Array = [
 #Loads new units and then shows new units in the shop
 func _ready() -> void:
 	game_manager = find_parent("game_manager")
+	base_manager = find_parent("Camera2D").find_child("base_manager")
 	reroll_UI = find_child("reroll_UI")
 	remove_units_UI = find_child("remove_units_UI")
+	buy_bases_UI = find_child("buy_bases_UI")
+	base_locations = find_child("upgraded_base_locations").get_children()
 	level2_percentage = (level2_percentage + game_manager.higher_level_unit_chance) /100
 	level3_percentage = (level3_percentage + game_manager.higher_level_unit_chance) /100
 	print("lvl2: ", level2_percentage, ", lvl3: ", level3_percentage)
@@ -319,3 +334,45 @@ func _on_remove_fantasy_button_pressed():
 		game_manager.shop_upgrades += 1
 		update_upgrade_cost_labels()
 		reroll_shop()
+		
+
+func setup_base_shop() -> void:
+	var x = 0
+	while x < base_locations.size():
+		var dictionary_instance = dictionary.new()
+		seed(find_parent("game_manager").seed * find_parent("game_manager").turn_number * (x+1))
+		var random_base_percentage = randf_range(0,100)/100
+		var base_pos = int(round((dictionary_instance.base_scenes.size()-1) * random_base_percentage))
+		#Gets a random unit type
+		var base = dictionary_instance.base_scenes[base_pos]
+		
+		#Instantiate unit
+		var instance = base.instantiate()
+		base_locations[x].add_child(instance)
+		instance.global_position = base_locations[x].global_position
+		x+=1
+
+
+func _on_base_upgrade_button_pressed():
+	reroll_UI.visible = false
+	buy_bases_UI.visible = true
+	setup_base_shop()
+
+func _on_buy_bases_close_button_pressed():
+	buy_bases_UI.visible = false
+	reroll_UI.visible = true
+
+func _on_buy_base_button_pressed():
+	buy_bases_UI.visible = false
+	base_manager.set_base(base_id, base_name, base_desc, true)
+	find_child("buy_base_button").visible = false
+	
+func selected_unit(base):
+	print("this has been called")
+	current_base_selected = base
+	
+func set_current_base(id, b_name, desc):
+	base_id = id
+	base_name = b_name
+	base_desc = desc
+	find_child("buy_base_button").visible = true
