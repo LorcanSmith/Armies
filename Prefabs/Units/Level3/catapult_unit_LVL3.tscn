@@ -197,5 +197,5 @@ position = Vector2(148, 0)
 
 [node name="Sprite2D" parent="." index="4"]
 
-texture = ExtResource("3_4uu5l")
+texture = null
 
