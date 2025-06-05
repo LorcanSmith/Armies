@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
 [ext_resource type="Texture2D" uid="uid://bdngb6gmlmf0h" path="res://Sprites/UI/sell_location.png" id="3_nu7bh"]
 [ext_resource type="PackedScene" uid="uid://dr2o4nm3x37eu" path="res://Prefabs/Managers/grid_manager.tscn" id="4_2ahac"]
+[ext_resource type="Texture2D" uid="uid://d4lfjh33e35ci" path="res://Sprites/UI/shop/box_wide.png" id="5_kga0f"]
 [ext_resource type="PackedScene" uid="uid://bqgwbmbquy7su" path="res://Prefabs/Grid/grid_generator.tscn" id="6_e3q61"]
-[ext_resource type="Texture2D" uid="uid://dyhvmhr15ssmo" path="res://Sprites/UI/box.png" id="6_rrq0j"]
 [ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="6_wk4qg"]
 [ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="8_qjc8s"]
 [ext_resource type="Texture2D" uid="uid://csdafwihqevfx" path="res://Sprites/UI/outline.png" id="8_rrq0j"]
@@ -150,12 +150,12 @@ mouse_filter = 2
 [node name="shop_background" type="TextureRect" parent="Camera2D/shop_visuals"]
 self_modulate = Color(1, 0.92549, 0.705882, 1)
 layout_mode = 0
-offset_left = -59.0
-offset_right = 610.0
+offset_left = -64.0
+offset_right = 636.0
 offset_bottom = 679.0
 scale = Vector2(0.35, 0.35)
 mouse_filter = 2
-texture = ExtResource("6_rrq0j")
+texture = ExtResource("5_kga0f")
 
 [node name="shop_shadow" type="TextureRect" parent="Camera2D/shop_visuals/shop_background"]
 modulate = Color(0, 0, 0, 0.403922)
@@ -167,15 +167,15 @@ offset_top = 8.57143
 offset_right = 514.286
 offset_bottom = 687.571
 mouse_filter = 2
-texture = ExtResource("6_rrq0j")
+texture = ExtResource("5_kga0f")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_visuals/shop_background"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 185.714
-offset_top = -14.2857
-offset_right = 846.714
-offset_bottom = 185.714
+offset_left = 106.0
+offset_top = -11.0
+offset_right = 1210.0
+offset_bottom = 189.0
 scale = Vector2(0.445, 0.445)
 theme_override_font_sizes/normal_font_size = 150
 text = "SHOP"
@@ -190,42 +190,51 @@ script = ExtResource("2_v5hhx")
 position = Vector2(909, -220)
 
 [node name="unit1" type="Node2D" parent="Camera2D/shop_item_generator/Unit Locations"]
-position = Vector2(-217, 347)
+position = Vector2(-284, 346)
 
 [node name="unit2" type="Node2D" parent="Camera2D/shop_item_generator/Unit Locations"]
-position = Vector2(-143, 347)
+position = Vector2(-210, 346)
 
 [node name="unit3" type="Node2D" parent="Camera2D/shop_item_generator/Unit Locations"]
-position = Vector2(-217, 418)
+position = Vector2(-284, 417)
 
 [node name="unit4" type="Node2D" parent="Camera2D/shop_item_generator/Unit Locations"]
-position = Vector2(-143, 418)
+position = Vector2(-210, 417)
 
 [node name="unit5" type="Node2D" parent="Camera2D/shop_item_generator/Unit Locations"]
-position = Vector2(-285, 349)
+position = Vector2(-135, 347)
 
 [node name="unit6" type="Node2D" parent="Camera2D/shop_item_generator/Unit Locations"]
-position = Vector2(-285, 418)
+position = Vector2(-135, 416)
 
 [node name="booster_locations" type="Node2D" parent="Camera2D/shop_item_generator"]
 position = Vector2(-17, 27)
 
 [node name="booster_1" type="Node2D" parent="Camera2D/shop_item_generator/booster_locations"]
-position = Vector2(704, 240)
+position = Vector2(682, 244)
 
 [node name="booster_2" type="Node2D" parent="Camera2D/shop_item_generator/booster_locations"]
-position = Vector2(778, 240)
+position = Vector2(756, 244)
 
 [node name="re-roll button" type="TextureButton" parent="Camera2D/shop_item_generator"]
+z_index = 1
 texture_filter = 1
-offset_left = 615.0
-offset_top = 299.0
-offset_right = 688.0
-offset_bottom = 339.0
+offset_left = 585.0
+offset_top = 327.0
+offset_right = 658.0
+offset_bottom = 367.0
 texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 metadata/_edit_use_anchors_ = true
+
+[node name="shadow" type="Sprite2D" parent="Camera2D/shop_item_generator/re-roll button"]
+self_modulate = Color(0, 0, 0, 0.376471)
+z_as_relative = false
+texture_filter = 1
+position = Vector2(37.5, 15.5)
+scale = Vector2(1.0274, 1)
+texture = ExtResource("8_qjc8s")
 
 [node name="TextureRect" type="TextureRect" parent="Camera2D/shop_item_generator/re-roll button"]
 layout_mode = 1
@@ -278,11 +287,12 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="upgrade button" type="TextureButton" parent="Camera2D/shop_item_generator"]
+z_index = 1
 texture_filter = 1
-offset_left = 712.0
-offset_top = 299.0
-offset_right = 785.0
-offset_bottom = 339.0
+offset_left = 665.0
+offset_top = 327.0
+offset_right = 738.0
+offset_bottom = 367.0
 texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
@@ -307,6 +317,14 @@ scroll_active = false
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="shadow" type="Sprite2D" parent="Camera2D/shop_item_generator/upgrade button"]
+self_modulate = Color(0, 0, 0, 0.376471)
+z_as_relative = false
+texture_filter = 1
+position = Vector2(37.5, 15.5)
+scale = Vector2(1.0274, 1)
+texture = ExtResource("8_qjc8s")
+
 [node name="battle_button" type="TextureButton" parent="Camera2D/shop_item_generator"]
 texture_filter = 1
 offset_left = 690.0
@@ -329,7 +347,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="base_spawn_location" type="Node2D" parent="Camera2D/shop_item_generator"]
-position = Vector2(644, 366)
+position = Vector2(607, 401)
 script = ExtResource("12_qjc8s")
 
 [node name="pedastals" type="Node2D" parent="Camera2D/shop_item_generator"]
@@ -337,44 +355,44 @@ script = ExtResource("12_qjc8s")
 [node name="pedestal" type="Sprite2D" parent="Camera2D/shop_item_generator/pedastals"]
 self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
 texture_filter = 1
-position = Vector2(692, 132.32)
+position = Vector2(625.32, 129.32)
 scale = Vector2(1.26, 1.26)
 texture = ExtResource("8_rrq0j")
 
 [node name="pedestal2" type="Sprite2D" parent="Camera2D/shop_item_generator/pedastals"]
 self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
 texture_filter = 1
-position = Vector2(766, 132.32)
+position = Vector2(699.32, 129.32)
 scale = Vector2(1.26, 1.26)
 texture = ExtResource("8_rrq0j")
 
 [node name="pedestal3" type="Sprite2D" parent="Camera2D/shop_item_generator/pedastals"]
 self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
 texture_filter = 1
-position = Vector2(692, 203.32)
+position = Vector2(625.32, 200.32)
 scale = Vector2(1.26, 1.26)
 texture = ExtResource("8_rrq0j")
 
 [node name="pedestal4" type="Sprite2D" parent="Camera2D/shop_item_generator/pedastals"]
 self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
 texture_filter = 1
-position = Vector2(766, 203.32)
+position = Vector2(699.32, 200.32)
 scale = Vector2(1.26, 1.26)
 texture = ExtResource("8_rrq0j")
 
 [node name="pedestal5" type="Sprite2D" parent="Camera2D/shop_item_generator/pedastals"]
-visible = false
+modulate = Color(1, 1, 1, 0.392157)
 self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
 texture_filter = 1
-position = Vector2(623, 133)
+position = Vector2(773.32, 130.32)
 scale = Vector2(1.26, 1.26)
 texture = ExtResource("8_rrq0j")
 
 [node name="pedestal6" type="Sprite2D" parent="Camera2D/shop_item_generator/pedastals"]
-visible = false
+modulate = Color(1, 1, 1, 0.392157)
 self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
 texture_filter = 1
-position = Vector2(623, 203)
+position = Vector2(773.32, 200.32)
 scale = Vector2(1.26, 1.26)
 texture = ExtResource("8_rrq0j")
 
@@ -1351,7 +1369,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="sell_location" type="Node2D" parent="Camera2D"]
-position = Vector2(255, 103)
+position = Vector2(307, 66)
 script = ExtResource("12_1cd4y")
 
 [node name="Area2D" type="Area2D" parent="Camera2D/sell_location" groups=["sell_location"]]
@@ -1361,17 +1379,19 @@ position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_4adb8")
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D/sell_location"]
+z_index = 1
 texture_filter = 1
 texture = ExtResource("3_nu7bh")
 
 [node name="shadow" type="Sprite2D" parent="Camera2D/sell_location/Sprite2D"]
-self_modulate = Color(0, 0, 0, 0.266667)
-z_index = -1
+self_modulate = Color(0, 0, 0, 0.376471)
+z_as_relative = false
 texture_filter = 1
-position = Vector2(4, 2)
+position = Vector2(3, 1)
 texture = ExtResource("3_nu7bh")
 
 [node name="sell_text" type="RichTextLabel" parent="Camera2D/sell_location"]
+z_index = 1
 offset_left = -22.0
 offset_top = -3.0
 offset_right = 348.0
