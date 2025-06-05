@@ -1,13 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://cffn8vbj6ve42"]
+[gd_scene load_steps=7 format=3 uid="uid://cffn8vbj6ve42"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_88a6c"]
+[ext_resource type="Texture2D" uid="uid://dca8t10ldaxlg" path="res://Sprites/Units/Medieval/Knight/lvl1/knight_idle_lvl1.png" id="2_1xafa"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="2_7akr0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yieq2"]
+atlas = ExtResource("2_1xafa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvhfq"]
+atlas = ExtResource("2_1xafa")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nc70n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yieq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvhfq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="Item" instance=ExtResource("1_88a6c")]
 description = "Great a close quarters and brawling"
 unit_name = "Knight"
 buy_cost = 6
 sell_cost = 3
+
+[node name="Sprite2D" parent="." index="0"]
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_nc70n")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.704833
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("2_7akr0")]
 position = Vector2(74, 0)

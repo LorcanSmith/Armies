@@ -195,5 +195,7 @@ var base_scenes = {
 	0: preload("res://Prefabs/Shop Items/Bases/castle_base.tscn"),
 	1: preload("res://Prefabs/Shop Items/Bases/bank_base.tscn"),
 	2: preload("res://Prefabs/Shop Items/Bases/army_base.tscn"),
-	3: preload("res://Prefabs/Shop Items/Bases/hospital_base.tscn")
+	3: preload("res://Prefabs/Shop Items/Bases/hospital_base.tscn"),
+	4: preload("res://Prefabs/Shop Items/Bases/upgraded_army_base.tscn")
+	
 }

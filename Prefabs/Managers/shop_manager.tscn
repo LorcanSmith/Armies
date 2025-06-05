@@ -643,7 +643,6 @@ scale = Vector2(4.41176, 4.41177)
 texture = ExtResource("6_wk4qg")
 
 [node name="base_upgrade" type="Control" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu"]
-visible = false
 anchors_preset = 0
 offset_left = -84.0
 offset_top = 95.3333
@@ -1211,6 +1210,146 @@ offset_right = 29.0
 offset_bottom = 28.3333
 texture = ExtResource("13_pjqx2")
 
+[node name="buy_bases_UI" type="CanvasLayer" parent="Camera2D/shop_item_generator"]
+visible = false
+offset = Vector2(-231.665, -255.145)
+scale = Vector2(1.5, 1.5)
+transform = Transform2D(1.5, 0, 0, 1.5, -231.665, -255.145)
+
+[node name="Container" type="Control" parent="Camera2D/shop_item_generator/buy_bases_UI"]
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 521.11
+offset_top = 2.09667
+offset_right = -7.89001
+offset_bottom = 2.09668
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(54.11, 408.763)
+metadata/_edit_use_anchors_ = true
+
+[node name="crate" type="TextureRect" parent="Camera2D/shop_item_generator/buy_bases_UI/Container"]
+self_modulate = Color(0.288518, 0.288518, 0.288518, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 40.2709
+offset_top = 392.891
+offset_right = 72.2709
+offset_bottom = 424.891
+scale = Vector2(8.94, 8.94)
+pivot_offset = Vector2(16.0572, 15.3813)
+mouse_filter = 2
+texture = ExtResource("11_hwvrm")
+metadata/_edit_use_anchors_ = true
+
+[node name="close_button" type="TextureButton" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/crate"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = -1.0
+offset_right = 57.0
+offset_bottom = 26.0
+scale = Vector2(0.115, 0.115)
+texture_normal = ExtResource("13_pjqx2")
+texture_pressed = ExtResource("14_l5wyo")
+texture_hover = ExtResource("15_ywfir")
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/crate/close_button"]
+layout_mode = 0
+offset_right = 274.0
+offset_bottom = 274.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "X"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="shadow" type="TextureRect" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/crate/close_button"]
+modulate = Color(0, 0, 0, 0.529412)
+z_index = -1
+layout_mode = 0
+offset_left = 2.00004
+offset_top = 1.33333
+offset_right = 29.0
+offset_bottom = 28.3333
+mouse_filter = 2
+texture = ExtResource("13_pjqx2")
+metadata/_edit_use_anchors_ = true
+
+[node name="crate_shadow" type="TextureRect" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/crate"]
+modulate = Color(0, 0, 0, 0.541176)
+z_index = -1
+texture_filter = 1
+layout_mode = 0
+offset_left = 0.738313
+offset_top = 0.522053
+offset_right = 32.7383
+offset_bottom = 32.5221
+scale = Vector2(0.99, 0.99)
+pivot_offset = Vector2(16.0572, 15.3813)
+mouse_filter = 2
+texture = ExtResource("11_hwvrm")
+metadata/_edit_use_anchors_ = true
+
+[node name="TITLE" type="RichTextLabel" parent="Camera2D/shop_item_generator/buy_bases_UI/Container"]
+layout_mode = 0
+offset_left = -68.0
+offset_top = 288.0
+offset_right = 1044.0
+offset_bottom = 484.0
+scale = Vector2(0.225, 0.225)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "SELECT A BASE"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="upgraded_base_locations" type="Node2D" parent="Camera2D/shop_item_generator/buy_bases_UI/Container"]
+position = Vector2(54.0439, 408.764)
+scale = Vector2(1.0119, 1.0119)
+
+[node name="location_1" type="Node2D" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/upgraded_base_locations"]
+position = Vector2(-70, 0)
+
+[node name="location_2" type="Node2D" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/upgraded_base_locations"]
+
+[node name="location_3" type="Node2D" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/upgraded_base_locations"]
+position = Vector2(70, 0)
+
+[node name="location_4" type="Node2D" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/upgraded_base_locations"]
+position = Vector2(-35, 70)
+
+[node name="location_5" type="Node2D" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/upgraded_base_locations"]
+position = Vector2(35, 70)
+
+[node name="buy_base_button" type="TextureButton" parent="Camera2D/shop_item_generator/buy_bases_UI/Container"]
+visible = false
+layout_mode = 0
+offset_left = 18.7766
+offset_top = 538.097
+offset_right = 91.7766
+offset_bottom = 566.097
+texture_normal = ExtResource("8_qjc8s")
+texture_pressed = ExtResource("9_vg5hm")
+texture_hover = ExtResource("10_1cd4y")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/buy_base_button"]
+layout_mode = 0
+offset_right = 729.0
+offset_bottom = 259.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "SELECT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="sell_location" type="Node2D" parent="Camera2D"]
 position = Vector2(255, 103)
 script = ExtResource("12_1cd4y")
@@ -1306,6 +1445,7 @@ position = Vector2(-309, -176)
 [connection signal="pressed" from="Camera2D/shop_item_generator/battle_button" to="." method="_on_battle_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/reroll_UI/Container/Menu/unit_chance/unit_chance_button" to="Camera2D/shop_item_generator" method="_on_unit_chance_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/reroll_UI/Container/Menu/shop_slot/shop_slot_button" to="Camera2D/shop_item_generator" method="_on_shop_slot_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/reroll_UI/Container/Menu/base_upgrade/base_upgrade_button" to="Camera2D/shop_item_generator" method="_on_base_upgrade_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/reroll_UI/Container/Menu/remove_units/remove_units_button" to="Camera2D/shop_item_generator" method="_on_remove_units_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/reroll_UI/Container/Menu/close_button" to="Camera2D/shop_item_generator" method="_on_close_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval/remove_medieval_button" to="Camera2D/shop_item_generator" method="_on_remove_medieval_button_pressed"]
@@ -1313,4 +1453,6 @@ position = Vector2(-309, -176)
 [connection signal="pressed" from="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur/remove_dinosaur_button" to="Camera2D/shop_item_generator" method="_on_remove_dinosaur_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy/remove_fantasy_button" to="Camera2D/shop_item_generator" method="_on_remove_fantasy_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/close_button" to="Camera2D/shop_item_generator" method="_on_remove_UI_close_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/buy_bases_UI/Container/crate/close_button" to="Camera2D/shop_item_generator" method="_on_buy_bases_close_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_item_generator/buy_bases_UI/Container/buy_base_button" to="Camera2D/shop_item_generator" method="_on_buy_base_button_pressed"]
 [connection signal="mouse_entered" from="Camera2D/base_manager/base_Area2D" to="Camera2D/base_manager" method="_on_base_area_2d_mouse_entered"]

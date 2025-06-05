@@ -10,6 +10,8 @@ func _ready() -> void:
 func _on_area_2d_pressed() -> void:
 	if(get_parent().name == "base_locations"):
 		find_parent("base_crate").selected_unit(unit)
+	elif (get_parent().name == "upgraded_base_locations"):
+		find_parent("shop_item_generator").selected_unit(unit)
 	else:
 		find_parent("choose_unit_UI").get_parent().selected_unit(unit)
 
