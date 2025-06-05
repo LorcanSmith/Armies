@@ -27,10 +27,6 @@ var base_locations : Array
 
 var current_base_selected : Node2D
 
-var base_id
-var base_name
-var base_desc
-
 var unit_themes : Array = [
 	"Medieval",
 	"Army",
@@ -364,15 +360,13 @@ func _on_buy_bases_close_button_pressed():
 
 func _on_buy_base_button_pressed():
 	buy_bases_UI.visible = false
-	base_manager.set_base(base_id, base_name, base_desc, true)
+	base_manager.set_base(current_base_selected.base_id, current_base_selected.base_name, current_base_selected.description, true)
 	find_child("buy_base_button").visible = false
 	
 func selected_unit(base):
 	print("this has been called")
 	current_base_selected = base
 	
-func set_current_base(id, b_name, desc):
-	base_id = id
-	base_name = b_name
-	base_desc = desc
+func set_current_base(base):
+	current_base_selected = base
 	find_child("buy_base_button").visible = true

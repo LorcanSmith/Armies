@@ -32,10 +32,10 @@ func _ready() -> void:
 
 
 func _on_base_button_pressed() -> void:
-	if(get_parent().get_parent().get_parent().get_parent().get_parent().name == "base_crate"):
-		find_parent("base_crate").set_current_base(base_id,base_name, description)
+	if(find_parent("base_crate") != null):
+		find_parent("base_crate").set_current_base(self)
 	else:
-		find_parent("shop_item_generator").set_current_base(base_id,base_name, description)
+		find_parent("shop_item_generator").set_current_base(self)
 func _on_close_button_pressed() -> void:
 	find_child("set_base_UI").visible = false
 	find_parent("UI").find_child("crate").visible = true

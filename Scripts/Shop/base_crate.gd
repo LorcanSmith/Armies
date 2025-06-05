@@ -8,9 +8,6 @@ var dictionary = load("res://Scripts/Units/dictionary.gd")
 var UI : CanvasLayer
 
 var current_base_selected : Node2D
-var base_id : int
-var base_name : String
-var base_description : String
 
 #Used to scale the crate when you hover of it
 var crate_sprite : TextureButton
@@ -63,19 +60,15 @@ func _on_close_button_pressed() -> void:
 	find_child("buy_base_button").visible = false
 	find_parent("shop_manager").find_child("Tooltip").get_node("AnimationPlayer").play("tooltip_popout")
 
-func selected_unit(base):
-	current_base_selected = base
-
 func _on_buy_base_button_pressed() -> void:
 	#play animation to pop the crate out
 	get_node("AnimationPlayer").play("crate_disappear")
-	base_manager.set_base(base_id, base_name, base_description, true)
+	base_manager.set_base(current_base_selected.base_id, current_base_selected.base_name, current_base_selected.description, true)
 	selected_base = true
 	find_parent("shop_manager").find_child("Tooltip").get_node("AnimationPlayer").play("tooltip_popout")
-func set_current_base(id, nm, desc):
-	base_id = id
-	base_name = nm
-	base_description = desc
+
+func set_current_base(base):
+	current_base_selected = base
 	find_child("buy_base_button").visible = true
 	
 func hide_base_options(hide : bool):
