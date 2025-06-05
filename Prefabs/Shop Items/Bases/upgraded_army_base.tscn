@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddeb4auxmd7h6"]
+
+[ext_resource type="PackedScene" uid="uid://ckgb2aec4d3hs" path="res://Prefabs/Shop Items/Bases/castle_base.tscn" id="1_jne3x"]
+[ext_resource type="Texture2D" uid="uid://evgibo0bafay" path="res://Sprites/Bases/military_base_upgrade.png" id="2_w7sio"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_w7sio"]
+
+[node name="upgraded_army_base" instance=ExtResource("1_jne3x")]
+base_id = 4
+base_name = "Barracks"
+before_combat_desc = "Give army units +2 damage and health"
+
+[node name="select_base_button" parent="." index="0"]
+button_group = SubResource("ButtonGroup_w7sio")
+
+[node name="base_image" parent="." index="1"]
+texture = ExtResource("2_w7sio")
