@@ -1,8 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvrmv0tiaboud"]
+[gd_scene load_steps=9 format=3 uid="uid://cvrmv0tiaboud"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_b2sg3"]
-[ext_resource type="Texture2D" uid="uid://duqq8x48i1fj" path="res://Sprites/Units/Fantasy/orc.png" id="2_tk5gr"]
+[ext_resource type="Texture2D" uid="uid://b5d21dccw5ybs" path="res://Sprites/Units/Fantasy/orc/lvl2/orc_idle_lvl2.png" id="2_i0jgk"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_1g7wa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25wu2"]
+atlas = ExtResource("2_i0jgk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iaek7"]
+atlas = ExtResource("2_i0jgk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g22bl"]
+atlas = ExtResource("2_i0jgk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4udig"]
+atlas = ExtResource("2_i0jgk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sblp1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25wu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iaek7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g22bl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4udig")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="Orc" instance=ExtResource("1_b2sg3")]
 description = "Big strong boi that uses a club to hit things"
@@ -11,7 +47,12 @@ buy_cost = 6
 sell_cost = 2
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_tk5gr")
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_sblp1")
+autoplay = "default"
+frame_progress = 0.589671
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_1g7wa")]
 position = Vector2(74, 0)
