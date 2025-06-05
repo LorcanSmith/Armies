@@ -154,6 +154,7 @@ z_as_relative = false
 scale = Vector2(1.3, 1.3)
 script = ExtResource("1_mbs64")
 booster_image = ExtResource("2_ri5p7")
+buy_cost = 7
 
 [node name="booster_button" type="TextureButton" parent="."]
 texture_filter = 1

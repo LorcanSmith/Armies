@@ -135,6 +135,7 @@ position = Vector2(31.9767, 0)
 position = Vector2(-367, 248)
 
 [node name="team_names" type="Control" parent="grid_manager/grid_generator (army)/Camera2D"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_top = -70.0

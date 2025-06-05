@@ -49,7 +49,7 @@ animations = [{
 }]
 
 [node name="Diplodocus" instance=ExtResource("1_nssie")]
-description = "Friendly herbivor"
+description = "Friendly herbivore"
 before_combat_desc = "Gives other dinosaur units in range +2 Health/+2 Attack if they have less health than this unit"
 unit_name = "Diplodocus"
 buy_cost = 6

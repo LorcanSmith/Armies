@@ -123,7 +123,7 @@ _data = {
 [node name="shop_manager" type="Node2D"]
 script = ExtResource("1_0fc1a")
 free_reroll = false
-money = 300
+money = 15
 
 [node name="buff_animation_holder" type="Node2D" parent="."]
 script = ExtResource("12_cnpns")

@@ -21,18 +21,19 @@ debug_color = Color(0, 0.599853, 0.700848, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-15, 2)
+position = Vector2(-12, 0)
 scale = Vector2(4, 4)
 texture = ExtResource("2_41a8y")
-offset = Vector2(-4.25, -1)
+offset = Vector2(-1.25, -1)
 
 [node name="Label" type="Label" parent="."]
-offset_left = -24.0
-offset_top = -53.0
-offset_right = 232.0
-offset_bottom = 48.0
-scale = Vector2(0.185, 0.185)
+offset_left = -85.0
+offset_top = 58.0
+offset_right = 296.0
+offset_bottom = 178.0
+scale = Vector2(0.36, 0.36)
 theme_override_font_sizes/font_size = 100
-text = "100/100"
+text = "20/20"
+horizontal_alignment = 1
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
