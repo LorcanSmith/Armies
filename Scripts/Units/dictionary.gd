@@ -1,7 +1,7 @@
 extends Node
 
 
-# Dictionary to store unit IDs and their corresponding scene paths 
+# Dictionary to store unit IDs and their corresponding scene paths
 var unit_scenes = {
 	#KNIGHT
 	0: preload("res://Prefabs/Units/Level1/knight_unit_LVL1.tscn"),
