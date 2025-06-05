@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://bafq0ubjun4sc"]
+[gd_scene load_steps=22 format=3 uid="uid://bafq0ubjun4sc"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_oiijl"]
 [ext_resource type="PackedScene" uid="uid://cwefhvoo3dhqh" path="res://Prefabs/Effects/heal_animation.tscn" id="2_eq8xu"]
+[ext_resource type="PackedScene" uid="uid://2hyjmc51gou7" path="res://Prefabs/Effects/spark_splatter.tscn" id="2_fju1w"]
 [ext_resource type="Texture2D" uid="uid://drnfqlv2qkhqn" path="res://Sprites/Units/Army/Medic/lvl1/medic_death_lvl1.png" id="3_0ii7l"]
 [ext_resource type="Texture2D" uid="uid://cjtbm41dg21wu" path="res://Sprites/Units/Army/Medic/lvl1/medic_idle_lvl1.png" id="3_2ohf8"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_eq8xu"]
@@ -120,6 +121,8 @@ animations = [{
 attack_animation_length = 0.5
 max_health = 6
 brawl_damage = 1
+leaves_blood_on_ground = false
+particle_effect = ExtResource("2_fju1w")
 Army = true
 Healer = true
 Vehicle = true

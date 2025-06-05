@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://di2vorbunt4ep"]
+[gd_scene load_steps=25 format=3 uid="uid://di2vorbunt4ep"]
 
 [ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_bdk6m"]
+[ext_resource type="PackedScene" uid="uid://c471dbwx6ct34" path="res://Prefabs/Effects/blood_splatter.tscn" id="2_5f33s"]
 [ext_resource type="Script" uid="uid://gxhb8tebdv5j" path="res://Scripts/Effects/animated_shadow.gd" id="2_mjxsx"]
 [ext_resource type="Texture2D" uid="uid://ca2y0ewqn4yt" path="res://Sprites/Units/Medieval/Knight/knight_sprite.png" id="3_cxn27"]
 [ext_resource type="Script" uid="uid://cdc2qqsvqw1rh" path="res://Scripts/Units/move_spot.gd" id="3_lq4h4"]
@@ -312,6 +313,7 @@ _data = {
 
 [node name="unit_prefab" type="Node2D"]
 script = ExtResource("1_bdk6m")
+particle_effect = ExtResource("2_5f33s")
 reload_time = 0
 
 [node name="sprite_animator" type="AnimationPlayer" parent="."]

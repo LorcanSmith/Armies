@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://cesxabo5u7ar8"]
+[gd_scene load_steps=27 format=3 uid="uid://cesxabo5u7ar8"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_r74ut"]
+[ext_resource type="PackedScene" uid="uid://2hyjmc51gou7" path="res://Prefabs/Effects/spark_splatter.tscn" id="2_elr0t"]
 [ext_resource type="PackedScene" uid="uid://bjsx2iphb4gud" path="res://Prefabs/Effects/Projectiles/shell_projectile.tscn" id="2_inajs"]
 [ext_resource type="Texture2D" uid="uid://cj5s605lnv25y" path="res://Sprites/Units/Army/tank/lvl1/tank_death_lvl1.png" id="3_3i8kj"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_inajs"]
@@ -155,6 +156,8 @@ animations = [{
 attack_animation_length = 0.25
 max_health = 8
 brawl_damage = 2
+leaves_blood_on_ground = false
+particle_effect = ExtResource("2_elr0t")
 Army = true
 Vehicle = true
 skill_damage = 3
