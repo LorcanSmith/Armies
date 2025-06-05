@@ -1,7 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://jsn5ec8macl1"]
+[gd_scene load_steps=27 format=3 uid="uid://jsn5ec8macl1"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_0e1kp"]
-[ext_resource type="PackedScene" uid="uid://2hyjmc51gou7" path="res://Prefabs/Effects/spark_splatter.tscn" id="2_7twe4"]
 [ext_resource type="PackedScene" uid="uid://bjsx2iphb4gud" path="res://Prefabs/Effects/Projectiles/shell_projectile.tscn" id="2_d5lbt"]
 [ext_resource type="Texture2D" uid="uid://dlgfavonplm1p" path="res://Sprites/Units/Army/tank/lvl3/tank_death_lvl3.png" id="3_6xcj4"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_36mnw"]
@@ -163,8 +162,6 @@ animations = [{
 attack_animation_length = 0.25
 max_health = 16
 brawl_damage = 5
-leaves_blood_on_ground = false
-particle_effect = ExtResource("2_7twe4")
 Army = true
 Vehicle = true
 skill_damage = 7
@@ -186,3 +183,7 @@ position = Vector2(222, 0)
 
 [node name="Sprite2D" parent="." index="4"]
 texture = null
+
+[node name="shadow" parent="Sprite2D" index="0"]
+position = Vector2(0, 20)
+scale = Vector2(1, 0.265625)

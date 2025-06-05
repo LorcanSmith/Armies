@@ -75,6 +75,7 @@ func load_units():
 								instance.scale.x = -instance.scale.x
 								instance.find_child("health_bar_background").scale.x = -instance.find_child("health_bar_background").scale.x
 								instance.find_child("ammo_bar_background").scale.x = -instance.find_child("ammo_bar_background").scale.x
+								instance.find_child("Sprite2D").self_modulate = instance.find_child("Sprite2D").self_modulate + Color(0.2,-0.3,-0.3)
 								reversed_tiles[width][height].add_child(instance)
 								instance.position = Vector2i(0,0)
 								reversed_tiles[width][height].unit_placed_on(instance)

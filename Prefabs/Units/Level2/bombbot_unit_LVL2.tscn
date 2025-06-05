@@ -1,8 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://v1by52b6ihp3"]
+[gd_scene load_steps=23 format=3 uid="uid://v1by52b6ihp3"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_41mwr"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_idgo1"]
-[ext_resource type="PackedScene" uid="uid://2hyjmc51gou7" path="res://Prefabs/Effects/spark_splatter.tscn" id="2_nixqj"]
 [ext_resource type="Texture2D" uid="uid://c4xuh70immfcq" path="res://Sprites/Units/Sci-fi/Bombbot/lvl2/bombbot_death_lvl2.png" id="3_a00u5"]
 [ext_resource type="Texture2D" uid="uid://b6biputtvdcaq" path="res://Sprites/Units/Sci-fi/Bombbot/lvl2/bombbot_idle_lvl2.png" id="4_ohwhk"]
 [ext_resource type="Texture2D" uid="uid://ddse2c1tmf13c" path="res://Sprites/Units/Sci-fi/Bombbot/lvl2/bombbot_skill_lvl2.png" id="5_ohwhk"]
@@ -140,8 +139,6 @@ animations = [{
 [node name="Bomb Bot" instance=ExtResource("1_41mwr")]
 max_health = 12
 brawl_damage = 10
-leaves_blood_on_ground = false
-particle_effect = ExtResource("2_nixqj")
 skill_spawn_amount = 0
 self_destruction = true
 projectile = ExtResource("2_idgo1")
