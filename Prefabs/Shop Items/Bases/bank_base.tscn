@@ -19,5 +19,3 @@ texture = ExtResource("2_uvii2")
 
 [node name="base" parent="set_base_UI" index="2"]
 texture = ExtResource("2_uvii2")
-
-[connection signal="mouse_entered" from="select_base_button" to="." method="_on_select_base_button_mouse_entered"]
