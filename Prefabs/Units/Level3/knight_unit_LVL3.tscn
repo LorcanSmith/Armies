@@ -1,11 +1,109 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwsjsv7i7wfqg"]
+[gd_scene load_steps=19 format=3 uid="uid://dwsjsv7i7wfqg"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_krqdd"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_gluv3"]
+[ext_resource type="Texture2D" uid="uid://ct571vktc148h" path="res://Sprites/Units/Medieval/Knight/lvl3/knight_death_lvl3.png" id="3_53msr"]
+[ext_resource type="Texture2D" uid="uid://brquni2l43ebw" path="res://Sprites/Units/Medieval/Knight/lvl3/knight_idle_lvl3.png" id="3_71pmm"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_jbfh3"]
-[ext_resource type="Texture2D" uid="uid://mglfoa66lq88" path="res://Sprites/Units/Medieval/Knight/knight_sprite_lvl3.png" id="4_jbfh3"]
+[ext_resource type="Texture2D" uid="uid://dkn4yufc2711g" path="res://Sprites/Units/Medieval/Knight/lvl3/knight_skill_lvl3.png" id="4_71pmm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4srjo"]
+atlas = ExtResource("3_53msr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ceked"]
+atlas = ExtResource("3_53msr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g7t3"]
+atlas = ExtResource("3_53msr")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2bny"]
+atlas = ExtResource("3_53msr")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x8av"]
+atlas = ExtResource("3_53msr")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53msr"]
+atlas = ExtResource("3_71pmm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxluw"]
+atlas = ExtResource("3_71pmm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kdbn"]
+atlas = ExtResource("4_71pmm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxesb"]
+atlas = ExtResource("4_71pmm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ioy6c"]
+atlas = ExtResource("4_71pmm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqlpm"]
+atlas = ExtResource("4_71pmm")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4kdbn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4srjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ceked")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g7t3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2bny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0x8av")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53msr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxluw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kdbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxesb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ioy6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqlpm")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 8.0
+}]
 
 [node name="Knight" instance=ExtResource("1_krqdd")]
+attack_animation_length = 0.5
 max_health = 13
 brawl_damage = 6
 Medieval = true
@@ -13,15 +111,15 @@ Human = true
 skill_damage = 6
 projectile = ExtResource("2_gluv3")
 
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_4kdbn")
+autoplay = "idle"
+
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_jbfh3")]
 position = Vector2(74, 0)
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("4_jbfh3")
+[node name="Sprite2D" parent="." index="4"]
+texture = null
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-2, -0.5)
-
-[node name="shadow" parent="." index="6"]
-z_index = 0
-z_as_relative = true

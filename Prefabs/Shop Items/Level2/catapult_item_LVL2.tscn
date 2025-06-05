@@ -1,8 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://brpyou4v373bs"]
+[gd_scene load_steps=7 format=3 uid="uid://brpyou4v373bs"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_hdgot"]
-[ext_resource type="Texture2D" uid="uid://dopsd0udl48cv" path="res://Sprites/Units/Medieval/Catapult/catapult_sprite_lvl2.png" id="2_ymyad"]
+[ext_resource type="Texture2D" uid="uid://bhev3sarjhymb" path="res://Sprites/Units/Medieval/Catapult/lvl2/catapult_idle_lvl2.png" id="2_ymyad"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_ymyad"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omlpo"]
+atlas = ExtResource("2_ymyad")
+region = Rect2(0, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ga0n3"]
+atlas = ExtResource("2_ymyad")
+region = Rect2(42, 0, 42, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8nnjx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omlpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ga0n3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
 
 [node name="Catapult" instance=ExtResource("1_hdgot")]
 description = "Long range unit. Does splash damage"
@@ -11,7 +33,12 @@ buy_cost = 7
 sell_cost = 3
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_ymyad")
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_8nnjx")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_ymyad")]
 position = Vector2(148, 0)
