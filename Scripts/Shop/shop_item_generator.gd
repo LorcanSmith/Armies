@@ -337,8 +337,7 @@ func setup_base_shop() -> void:
 	while x < base_locations.size():
 		var dictionary_instance = dictionary.new()
 		seed(find_parent("game_manager").seed * find_parent("game_manager").turn_number * (x+1))
-		var random_base_percentage = randf_range(0,100)/100
-		var base_pos = int(round((dictionary_instance.base_scenes.size()-1) * random_base_percentage))
+		var base_pos = randi_range(4, dictionary_instance.base_scenes.size()-1)
 		#Gets a random unit type
 		var base = dictionary_instance.base_scenes[base_pos]
 		
