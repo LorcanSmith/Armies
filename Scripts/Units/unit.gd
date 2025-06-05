@@ -33,6 +33,14 @@ var tile_to_move_to : Node2D
 var brawling_grid : Node2D
 ##Does the unit have no weaknesses
 @export var no_weaknesses : bool
+
+##Does the unit leave blood on the ground
+@export var leaves_blood_on_ground : bool = true
+var blood_stain : Array = [preload("res://Prefabs/Effects/Stains/blood/blood_1.tscn")]
+var explosion_stain : Array = [preload("res://Prefabs/Effects/Stains/residue/residue_1.tscn")]
+##What particle effect does it use when it dies?
+@export var particle_effect : PackedScene
+
 @export_subgroup("Unit Types")
 var unit_types : Array = [
 	"Medieval",
@@ -423,11 +431,29 @@ func apply_damage():
 #Called when the unit is destroyed
 func destroy_unit():
 	alive = false
-	if(get_parent().name != "skill_holder"):
-		#Tells parent to remove this unit from its list of units on it
-		get_parent().units_on_tile.erase(self)
-		if(get_parent().units_on_tile.size() == 0):
-			get_parent().is_empty = true
+	
+	#SPAWN PARTICLES
+	if(particle_effect):
+		var particles = particle_effect.instantiate()
+		particles.global_position = self.global_position
+		if(self.is_in_group("enemy")):
+			particles.scale.x = -1
+		find_parent("combat_manager").find_child("skill_holder").add_child(particles)
+	#Leaving stains on the ground
+	if(leaves_blood_on_ground):
+		var random_stain = randi_range(0, blood_stain.size()-1)
+		var stain = blood_stain[random_stain].instantiate()
+		stain.global_position = self.global_position
+		find_parent("combat_manager").add_child(stain)
+	elif(!leaves_blood_on_ground):
+		var random_stain = randi_range(0, explosion_stain.size()-1)
+		var stain = explosion_stain[random_stain].instantiate()
+		stain.global_position = self.global_position
+		find_parent("combat_manager").add_child(stain)
+	#Tells parent to remove this unit from its list of units on it
+	get_parent().units_on_tile.erase(self)
+	if(get_parent().units_on_tile.size() == 0):
+		get_parent().is_empty = true
 	#Get the grid we are currently on so we can apply damage to brawling units before we die
 	if(!brawling_grid):
 		brawling_grid = get_parent()

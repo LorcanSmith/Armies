@@ -98,6 +98,7 @@ animations = [{
 attack_animation_length = 0.4
 max_health = 2
 brawl_damage = 1
+leaves_blood_on_ground = false
 Army = true
 Human = true
 skill_spawn_amount = 0
