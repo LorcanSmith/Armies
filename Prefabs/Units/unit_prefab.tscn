@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://di2vorbunt4ep"]
+[gd_scene load_steps=24 format=3 uid="uid://di2vorbunt4ep"]
 
 [ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_bdk6m"]
+[ext_resource type="Script" uid="uid://gxhb8tebdv5j" path="res://Scripts/Effects/animated_shadow.gd" id="2_mjxsx"]
+[ext_resource type="Texture2D" uid="uid://ca2y0ewqn4yt" path="res://Sprites/Units/Medieval/Knight/knight_sprite.png" id="3_cxn27"]
 [ext_resource type="Script" uid="uid://cdc2qqsvqw1rh" path="res://Scripts/Units/move_spot.gd" id="3_lq4h4"]
-[ext_resource type="PackedScene" uid="uid://dct8tnv8f1a46" path="res://Prefabs/Effects/shadow.tscn" id="4_mjxsx"]
 [ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="5_dwjn5"]
 [ext_resource type="Texture2D" uid="uid://djdl8p52grdjd" path="res://Sprites/UI/chevrons/level_chevron.png" id="6_cxn27"]
 
@@ -60,38 +61,6 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_cxn27"]
-resource_name = "default"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"default"]
-}
-
-[sub_resource type="Animation" id="Animation_r5o3j"]
-resource_name = "skill"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"skill"]
-}
-
 [sub_resource type="Animation" id="Animation_j1ctf"]
 resource_name = "death_transformed"
 tracks/0/type = "value"
@@ -119,8 +88,9 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_4m5no"]
-resource_name = "skill_transformed"
+[sub_resource type="Animation" id="Animation_cxn27"]
+resource_name = "default"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -131,7 +101,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"skill_transformed"]
+"values": [&"default"]
 }
 
 [sub_resource type="Animation" id="Animation_chv4m"]
@@ -147,6 +117,37 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"idle_transformed"]
+}
+
+[sub_resource type="Animation" id="Animation_r5o3j"]
+resource_name = "skill"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"skill"]
+}
+
+[sub_resource type="Animation" id="Animation_4m5no"]
+resource_name = "skill_transformed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"skill_transformed"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r5o3j"]
@@ -185,6 +186,21 @@ animations = [{
 "frames": [],
 "loop": true,
 "name": &"skill_transformed",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sqpo"]
+atlas = ExtResource("3_cxn27")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5f33s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sqpo")
+}],
+"loop": true,
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -306,6 +322,18 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_mjxsx")
+script = ExtResource("2_mjxsx")
+
+[node name="shadow_animated" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+modulate = Color(0, 0, 0, 0.454902)
+z_index = 1
+z_as_relative = false
+position = Vector2(0, 22)
+scale = Vector2(1, 0.40625)
+sprite_frames = SubResource("SpriteFrames_5f33s")
+animation = &"idle"
+autoplay = "idle"
+flip_v = true
 
 [node name="skill_locations" type="Node2D" parent="."]
 
@@ -324,9 +352,6 @@ shape = SubResource("CircleShape2D_kn7ua")
 z_index = 1
 texture_filter = 1
 texture = ExtResource("5_dwjn5")
-
-[node name="shadow" parent="Sprite2D" instance=ExtResource("4_mjxsx")]
-position = Vector2(0, 20.5)
 
 [node name="Area2D" type="Area2D" parent="."]
 
