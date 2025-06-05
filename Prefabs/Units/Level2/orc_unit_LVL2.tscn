@@ -1,21 +1,144 @@
-[gd_scene load_steps=5 format=3 uid="uid://ba1g0oqrbch88"]
+[gd_scene load_steps=22 format=3 uid="uid://ba1g0oqrbch88"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_lqyot"]
 [ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_im1nf"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_54c40"]
-[ext_resource type="Texture2D" uid="uid://duqq8x48i1fj" path="res://Sprites/Units/Fantasy/orc.png" id="4_qkjej"]
+[ext_resource type="Texture2D" uid="uid://bw7bfd0cxnmx" path="res://Sprites/Units/Fantasy/orc/lvl2/orc_death_lvl2.png" id="3_mxnhh"]
+[ext_resource type="Texture2D" uid="uid://b5d21dccw5ybs" path="res://Sprites/Units/Fantasy/orc/lvl2/orc_idle_lvl2.png" id="3_w4kyf"]
+[ext_resource type="Texture2D" uid="uid://r2acqueq2kmc" path="res://Sprites/Units/Fantasy/orc/lvl2/orc_skill_lvl2.png" id="4_mxnhh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epidg"]
+atlas = ExtResource("3_mxnhh")
+region = Rect2(0, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7du81"]
+atlas = ExtResource("3_mxnhh")
+region = Rect2(42, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwkco"]
+atlas = ExtResource("3_mxnhh")
+region = Rect2(84, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_066ml"]
+atlas = ExtResource("3_mxnhh")
+region = Rect2(126, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxy8k"]
+atlas = ExtResource("3_mxnhh")
+region = Rect2(168, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n645m"]
+atlas = ExtResource("3_w4kyf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omsbn"]
+atlas = ExtResource("3_w4kyf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_huyph"]
+atlas = ExtResource("3_w4kyf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43f4b"]
+atlas = ExtResource("3_w4kyf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xhhe"]
+atlas = ExtResource("4_mxnhh")
+region = Rect2(0, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dh1cj"]
+atlas = ExtResource("4_mxnhh")
+region = Rect2(52, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_popm6"]
+atlas = ExtResource("4_mxnhh")
+region = Rect2(104, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kli8h"]
+atlas = ExtResource("4_mxnhh")
+region = Rect2(156, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnvsg"]
+atlas = ExtResource("4_mxnhh")
+region = Rect2(208, 0, 52, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_epidg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epidg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7du81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwkco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_066ml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxy8k")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n645m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omsbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huyph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43f4b")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xhhe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dh1cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_popm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kli8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnvsg")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 8.0
+}]
 
 [node name="Orc" instance=ExtResource("1_lqyot")]
+attack_animation_length = 0.6
 max_health = 12
 brawl_damage = 5
-Fantasy = true
 no_weaknesses = true
+Fantasy = true
 skill_max_once_per_unit = true
 skill_damage = 6
 projectile = ExtResource("2_im1nf")
 
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_epidg")
+autoplay = "idle"
+
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_54c40")]
 position = Vector2(74, 0)
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("4_qkjej")
+[node name="Sprite2D" parent="." index="4"]
+texture = null

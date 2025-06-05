@@ -1,11 +1,179 @@
-[gd_scene load_steps=5 format=3 uid="uid://bycrh5sdvj48e"]
+[gd_scene load_steps=29 format=3 uid="uid://bycrh5sdvj48e"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_a8gj2"]
 [ext_resource type="PackedScene" uid="uid://c7tp70ujfb3q3" path="res://Prefabs/Effects/Projectiles/rock_projectile.tscn" id="2_4uu5l"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_0a4d5"]
-[ext_resource type="Texture2D" uid="uid://dmypenrivww5g" path="res://Sprites/Units/Medieval/Catapult/catapult_sprite_lvl3.png" id="3_4uu5l"]
+[ext_resource type="Texture2D" uid="uid://dmknv7eb6cjc2" path="res://Sprites/Units/Medieval/Catapult/lvl3/catapult_idle_lvl3.png" id="3_giv61"]
+[ext_resource type="Texture2D" uid="uid://be0y5thl2f3w4" path="res://Sprites/Units/Medieval/Catapult/lvl3/catapult_death_lvl3.png" id="3_qapl7"]
+[ext_resource type="Texture2D" uid="uid://cuqxota0fogah" path="res://Sprites/Units/Medieval/Catapult/lvl3/catapult_skill_lvl3.png" id="4_qapl7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xt8ju"]
+atlas = ExtResource("3_qapl7")
+region = Rect2(0, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4efy"]
+atlas = ExtResource("3_qapl7")
+region = Rect2(42, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1og5"]
+atlas = ExtResource("3_qapl7")
+region = Rect2(84, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfypv"]
+atlas = ExtResource("3_qapl7")
+region = Rect2(126, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yrmo"]
+atlas = ExtResource("3_giv61")
+region = Rect2(0, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p54pe"]
+atlas = ExtResource("3_giv61")
+region = Rect2(42, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f7jh"]
+atlas = ExtResource("4_qapl7")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqnlw"]
+atlas = ExtResource("4_qapl7")
+region = Rect2(42, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg1qs"]
+atlas = ExtResource("4_qapl7")
+region = Rect2(84, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bltqx"]
+atlas = ExtResource("4_qapl7")
+region = Rect2(126, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvcac"]
+atlas = ExtResource("4_qapl7")
+region = Rect2(168, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mm2mw"]
+atlas = ExtResource("4_qapl7")
+region = Rect2(210, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_naabn"]
+atlas = ExtResource("4_qapl7")
+region = Rect2(252, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bsi7"]
+atlas = ExtResource("4_qapl7")
+region = Rect2(294, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vpbo"]
+atlas = ExtResource("4_qapl7")
+region = Rect2(336, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p763w"]
+atlas = ExtResource("4_qapl7")
+region = Rect2(378, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jumhc"]
+atlas = ExtResource("4_qapl7")
+region = Rect2(420, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcnfh"]
+atlas = ExtResource("4_qapl7")
+region = Rect2(462, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jo2jt"]
+atlas = ExtResource("4_qapl7")
+region = Rect2(504, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jj58"]
+atlas = ExtResource("4_qapl7")
+region = Rect2(546, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y84l5"]
+atlas = ExtResource("4_qapl7")
+region = Rect2(588, 0, 42, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xt8ju"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xt8ju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4efy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1og5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfypv")
+}],
+"loop": false,
+"name": &"death",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6yrmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p54pe")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4f7jh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqnlw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tg1qs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bltqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvcac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mm2mw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_naabn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bsi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vpbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p763w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jumhc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcnfh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jo2jt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jj58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y84l5")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 10.0
+}]
 
 [node name="Catapult" instance=ExtResource("1_a8gj2")]
+attack_animation_length = 1.5
 max_health = 15
 brawl_damage = 2
 Medieval = true
@@ -13,11 +181,15 @@ Vehicle = true
 skill_damage = 6
 projectile = ExtResource("2_4uu5l")
 
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_xt8ju")
+autoplay = "idle"
+
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_0a4d5")]
 position = Vector2(222, 0)
 
 [node name="unit_skill_location2" parent="skill_locations" index="1" instance=ExtResource("3_0a4d5")]
 position = Vector2(148, 0)
 
-[node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("3_4uu5l")
+[node name="Sprite2D" parent="." index="4"]
+texture = null
