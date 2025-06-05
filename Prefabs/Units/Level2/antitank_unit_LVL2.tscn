@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://dxydem58so5yu"]
+[gd_scene load_steps=23 format=3 uid="uid://dxydem58so5yu"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_jw5x0"]
 [ext_resource type="PackedScene" uid="uid://bjsx2iphb4gud" path="res://Prefabs/Effects/Projectiles/shell_projectile.tscn" id="2_2c5y2"]
+[ext_resource type="PackedScene" uid="uid://2hyjmc51gou7" path="res://Prefabs/Effects/spark_splatter.tscn" id="2_3q36r"]
 [ext_resource type="Texture2D" uid="uid://bsm08gmrpfe1o" path="res://Sprites/Units/Army/Antitank/lvl2/antitank_idle_lvl2.png" id="3_cjr0n"]
 [ext_resource type="Texture2D" uid="uid://e1cr4fj2ijb2" path="res://Sprites/Units/Army/Antitank/lvl2/antitank_death_lvl2.png" id="3_inej5"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_nthbl"]
@@ -127,6 +128,8 @@ animations = [{
 attack_animation_length = 0.4
 max_health = 7
 brawl_damage = 1
+leaves_blood_on_ground = false
+particle_effect = ExtResource("2_3q36r")
 Army = true
 skill_damage = 6
 skill_shooots_closest_enemy = true

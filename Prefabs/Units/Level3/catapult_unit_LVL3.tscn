@@ -1,7 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://bycrh5sdvj48e"]
+[gd_scene load_steps=6 format=3 uid="uid://bycrh5sdvj48e"]
+
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_a8gj2"]
 [ext_resource type="PackedScene" uid="uid://c7tp70ujfb3q3" path="res://Prefabs/Effects/Projectiles/rock_projectile.tscn" id="2_4uu5l"]
+[ext_resource type="PackedScene" uid="uid://2hyjmc51gou7" path="res://Prefabs/Effects/spark_splatter.tscn" id="2_giv61"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_0a4d5"]
 [ext_resource type="Texture2D" uid="uid://dmknv7eb6cjc2" path="res://Sprites/Units/Medieval/Catapult/lvl3/catapult_idle_lvl3.png" id="3_giv61"]
 [ext_resource type="Texture2D" uid="uid://be0y5thl2f3w4" path="res://Sprites/Units/Medieval/Catapult/lvl3/catapult_death_lvl3.png" id="3_qapl7"]
@@ -176,6 +178,8 @@ animations = [{
 attack_animation_length = 1.5
 max_health = 15
 brawl_damage = 2
+leaves_blood_on_ground = false
+particle_effect = ExtResource("2_giv61")
 Medieval = true
 Vehicle = true
 skill_damage = 6
@@ -192,4 +196,6 @@ position = Vector2(222, 0)
 position = Vector2(148, 0)
 
 [node name="Sprite2D" parent="." index="4"]
-texture = null
+
+texture = ExtResource("3_4uu5l")
+
