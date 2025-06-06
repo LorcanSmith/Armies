@@ -1,7 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://d26riwgg0v8nl"]
+[gd_scene load_steps=24 format=3 uid="uid://d26riwgg0v8nl"]
 
 [ext_resource type="Script" uid="uid://bvdq4sn7w35b4" path="res://Scripts/Shop/item_script.gd" id="1_mdv0s"]
-[ext_resource type="Script" uid="uid://gxhb8tebdv5j" path="res://Scripts/Effects/animated_shadow.gd" id="3_6sqpo"]
+[ext_resource type="Script" path="res://Scripts/Effects/animated_shadow.gd" id="3_6sqpo"]
 [ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="4_1nmpe"]
 [ext_resource type="Texture2D" uid="uid://bos864ovdl3jf" path="res://Sprites/UI/heart.png" id="4_awdqk"]
 [ext_resource type="Texture2D" uid="uid://ca2y0ewqn4yt" path="res://Sprites/Units/Medieval/Knight/knight_sprite.png" id="5_1nmpe"]
@@ -185,6 +185,38 @@ _data = {
 &"health_bounce": SubResource("Animation_pf34d"),
 &"item_appear": SubResource("Animation_6sqpo"),
 &"upgrade_arrow": SubResource("Animation_te1c8")
+}
+
+[sub_resource type="Animation" id="Animation_rb8ex"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.166666, 0.433333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.961518, 5.29438e-06, 5.77569e-07, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.139626, 0.0698132, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lg7m4"]
+_data = {
+&"hurt": SubResource("Animation_rb8ex")
 }
 
 [node name="Item" type="Node2D" groups=["item", "player"]]
@@ -402,6 +434,11 @@ autoplay = "upgrade_arrow"
 root_node = NodePath("../Sprite2D/upgrade_arrow")
 libraries = {
 &"": SubResource("AnimationLibrary_pf34d")
+}
+
+[node name="item_hurt_anim_player" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lg7m4")
 }
 
 [connection signal="mouse_entered" from="Sprite2D/Item_Info" to="Sprite2D/Item_Info" method="_on_mouse_entered"]
