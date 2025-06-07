@@ -37,7 +37,7 @@ func load_units():
 			else:
 				enemy_unit_IDs = upload_success["enemy_unit_IDs"]
 				game_manager.set_enemy_name(upload_success["enemy_name"])
-				
+			game_manager.enemy_army = enemy_unit_IDs
 	if(unit_IDs.size() > 0):
 		var width = 0
 		while width in range(tiles.size()):
