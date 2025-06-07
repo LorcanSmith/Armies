@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://50084nvc7a4n"]
 
 [ext_resource type="Script" uid="uid://chijbcrpogxhx" path="res://Scripts/Grid/tile.gd" id="1_87l63"]
-[ext_resource type="Texture2D" uid="uid://chwhd0fwr0s2l" path="res://Sprites/UI/grid_outline.png" id="2_54ony"]
+[ext_resource type="Texture2D" uid="uid://bnb662be6om1a" path="res://Sprites/Locations/tile_location.png" id="2_54ony"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62j2u"]
 size = Vector2(97.561, 99.187)
@@ -48,7 +48,7 @@ script = ExtResource("1_87l63")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0.00037, 34)
+position = Vector2(1, 28)
 texture = ExtResource("2_54ony")
 offset = Vector2(0, -31.3308)
 

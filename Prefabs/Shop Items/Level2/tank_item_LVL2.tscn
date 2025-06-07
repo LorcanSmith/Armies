@@ -27,7 +27,6 @@ animations = [{
 }]
 
 [node name="Tank" instance=ExtResource("1_0eqnr")]
-description = "Highly armoured vehicle that shoots a heavy hitting projectile. Has to reload after every shot"
 unit_name = "Tank"
 buy_cost = 6
 sell_cost = 3

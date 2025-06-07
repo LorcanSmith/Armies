@@ -26,8 +26,8 @@ func projectile_hit(amount : int):
 		damage_to_do = 0
 		
 func update_label():
-	$Label.text = str(health) + "/" + str(max_health)
-
+	find_child("Label").text = str(health) + "/" + str(max_health)
+	
 #Called when the headquater runs out of health
 func destroy_headquarters():
 	queue_free()

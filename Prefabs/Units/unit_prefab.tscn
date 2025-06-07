@@ -1,8 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://di2vorbunt4ep"]
+[gd_scene load_steps=26 format=3 uid="uid://di2vorbunt4ep"]
 
 [ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_bdk6m"]
 [ext_resource type="PackedScene" uid="uid://c471dbwx6ct34" path="res://Prefabs/Effects/blood_splatter.tscn" id="2_5f33s"]
-[ext_resource type="Script" uid="uid://gxhb8tebdv5j" path="res://Scripts/Effects/animated_shadow.gd" id="2_mjxsx"]
+[ext_resource type="Script" path="res://Scripts/Effects/animated_shadow.gd" id="2_mjxsx"]
 [ext_resource type="Texture2D" uid="uid://ca2y0ewqn4yt" path="res://Sprites/Units/Medieval/Knight/knight_sprite.png" id="3_cxn27"]
 [ext_resource type="Script" uid="uid://cdc2qqsvqw1rh" path="res://Scripts/Units/move_spot.gd" id="3_lq4h4"]
 [ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="5_dwjn5"]
@@ -34,6 +34,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("health_bar_background:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_vewm0"]
 resource_name = "death"
@@ -60,6 +72,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("health_bar_background:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_j1ctf"]
@@ -103,6 +127,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"default"]
+}
+
+[sub_resource type="Animation" id="Animation_4giar"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
 }
 
 [sub_resource type="Animation" id="Animation_chv4m"]
@@ -157,6 +196,7 @@ _data = {
 &"death": SubResource("Animation_vewm0"),
 &"death_transformed": SubResource("Animation_j1ctf"),
 &"default": SubResource("Animation_cxn27"),
+&"idle": SubResource("Animation_4giar"),
 &"idle_transformed": SubResource("Animation_chv4m"),
 &"skill": SubResource("Animation_r5o3j"),
 &"skill_transformed": SubResource("Animation_4m5no")
@@ -172,6 +212,11 @@ animations = [{
 "frames": [],
 "loop": true,
 "name": &"death_transformed",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [],
@@ -324,6 +369,7 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_mjxsx")
+autoplay = "idle"
 script = ExtResource("2_mjxsx")
 
 [node name="shadow_animated" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
@@ -398,6 +444,7 @@ pivot_offset = Vector2(0, 1)
 color = Color(0.878431, 0.729412, 0, 1)
 
 [node name="level_chevrons" type="Node2D" parent="."]
+visible = false
 position = Vector2(-22, -8)
 
 [node name="lvl1" type="Sprite2D" parent="level_chevrons"]

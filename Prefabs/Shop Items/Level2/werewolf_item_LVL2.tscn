@@ -47,7 +47,7 @@ animations = [{
 }]
 
 [node name="Werewolf" instance=ExtResource("1_pnhyx")]
-description = "If the turn nubmer is even then this unit will transform into a werewolf with double health/attack"
+description = "If the turn number is even then this unit will transform into a werewolf with double health/attack. If the turn number is odd this unit will transform into a human."
 unit_name = "Werewolf"
 buy_cost = 8
 sell_cost = 4

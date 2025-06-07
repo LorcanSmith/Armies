@@ -486,6 +486,10 @@ func buff():
 							buff_instance.global_position = self.global_position
 							buff_instance.unit = unit
 							buff_instance.find_child("buff_text").text = str("+",health_buff)
+							#Set buff sprite to be a sword if it hurts a unit
+							if(health_buff < 0):
+								var sword : CompressedTexture2D = preload("res://Sprites/UI/sword.png")
+								buff_instance.get_node("Sprite2D").texture = sword
 			buff_loc += 1
 
 var last_health_change : int = 0
@@ -493,6 +497,9 @@ var last_damage_change : int = 0
 func buff_unit_health(amount : int):
 	health_boost += amount
 	last_health_change = amount
+	#Play damage animation
+	if(amount < 0):
+		get_node("item_hurt_anim_player").play("hurt")
 func buff_unit_damage(amount : int):
 	damage_boost += amount
 	last_damage_change = amount
