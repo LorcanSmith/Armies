@@ -14,9 +14,16 @@ before_combat_desc = "Give army units +1 attack"
 button_group = SubResource("ButtonGroup_1n6uu")
 
 [node name="base_image" parent="." index="1"]
+offset_left = -17.0
+offset_right = 17.0
+offset_bottom = 6.0
+pivot_offset = Vector2(17, 23)
 texture = ExtResource("2_1n6uu")
+
+[node name="shadow" parent="base_image" index="0"]
+position = Vector2(17, 33)
+texture = ExtResource("2_1n6uu")
+script = null
 
 [node name="base" parent="set_base_UI" index="2"]
 texture = ExtResource("2_1n6uu")
-
-[connection signal="mouse_entered" from="select_base_button" to="." method="_on_select_base_button_mouse_entered"]

@@ -99,19 +99,18 @@ metadata/_edit_use_anchors_ = true
 
 [node name="base_image" type="TextureRect" parent="."]
 z_index = 4
-offset_left = -21.0
+offset_left = -14.0
 offset_top = -23.0
-offset_right = 22.0
-offset_bottom = 17.0
-pivot_offset = Vector2(20, 23)
+offset_right = 14.0
+offset_bottom = 7.0
+pivot_offset = Vector2(14, 21)
 mouse_filter = 2
 texture = ExtResource("3_vltly")
 
 [node name="shadow" parent="base_image" instance=ExtResource("4_1tfch")]
 modulate = Color(0, 0, 0, 0.6)
-position = Vector2(21.625, 46.3906)
-scale = Vector2(1.23571, 0.440625)
-texture = ExtResource("3_wo7wh")
+position = Vector2(14, 34)
+texture = ExtResource("3_vltly")
 
 [node name="set_base_UI" type="Control" parent="."]
 visible = false

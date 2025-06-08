@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuf4kh851odj1"]
+[gd_scene load_steps=5 format=3 uid="uid://cuf4kh851odj1"]
 
 [ext_resource type="Script" uid="uid://bjlyw6fhd5y8w" path="res://Scripts/Managers/headquater.gd" id="1_2vm1v"]
-[ext_resource type="Texture2D" uid="uid://8af7s6x54d8a" path="res://Sprites/Bases/castle.png" id="2_41a8y"]
+[ext_resource type="Texture2D" uid="uid://dqommt8d3gj85" path="res://Sprites/Bases/hospital.png" id="2_i8o0q"]
+[ext_resource type="PackedScene" uid="uid://dct8tnv8f1a46" path="res://Prefabs/Effects/shadow.tscn" id="3_i8o0q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awxjh"]
 size = Vector2(156, 253)
@@ -21,16 +22,21 @@ debug_color = Color(0, 0.599853, 0.700848, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-12, 0)
+position = Vector2(-33, 34)
 scale = Vector2(4, 4)
-texture = ExtResource("2_41a8y")
-offset = Vector2(-1.25, -1)
+texture = ExtResource("2_i8o0q")
+offset = Vector2(0, -13)
+
+[node name="shadow" parent="Sprite2D" instance=ExtResource("3_i8o0q")]
+position = Vector2(0, 2)
+texture = ExtResource("2_i8o0q")
+offset = Vector2(0, 15.1111)
 
 [node name="Label" type="Label" parent="."]
-offset_left = -85.0
-offset_top = 58.0
-offset_right = 296.0
-offset_bottom = 178.0
+offset_left = -101.0
+offset_top = 64.0
+offset_right = 280.0
+offset_bottom = 184.0
 scale = Vector2(0.36, 0.36)
 theme_override_font_sizes/font_size = 100
 text = "20/20"
