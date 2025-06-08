@@ -7,6 +7,8 @@
 
 [node name="upgraded_medieval_base" instance=ExtResource("1_tnfsa")]
 base_id = 5
+base_name = "Dragon's Den"
+before_combat_desc = "Give medieval units +2 health and damage"
 
 [node name="select_base_button" parent="." index="0"]
 button_group = SubResource("ButtonGroup_k1e5w")
