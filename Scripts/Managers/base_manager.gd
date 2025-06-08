@@ -19,6 +19,7 @@ var base_sprites : Array = [
 	preload("res://Sprites/Bases/tent.png"),
 	preload("res://Sprites/Bases/hospital.png"),
 	preload("res://Sprites/Bases/military_base_upgrade.png"),
+	preload("res://Sprites/Bases/dragon_den_lowres.png"),
 	preload("res://Sprites/Bases/default.png")
 ]
 
@@ -118,6 +119,25 @@ func end_of_turn():
 				find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
 				instance.find_child("buff_text").text = str("+",2)
 				army_units[x].health_boost += 2
+				x += 1
+	if(current_base_ID == 5):
+		#Give medieval units +2 attack and +2 health
+			var x = 0
+			while x < medieval_units.size():
+				#Delay so the buffs don't all appear at the same time
+				await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
+				var instance = damage_buff.instantiate()
+				instance.global_position = self.global_position
+				instance.unit = medieval_units[x]
+				find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
+				instance.find_child("buff_text").text = str("+",2)
+				medieval_units[x].damage_boost += 2
+				instance = health_buff.instantiate()
+				instance.global_position = self.global_position
+				instance.unit = medieval_units[x]
+				find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
+				instance.find_child("buff_text").text = str("+",2)
+				medieval_units[x].health_boost += 2
 				x += 1
 func check_units():
 	var dictionary_instance = dictionary.new()
