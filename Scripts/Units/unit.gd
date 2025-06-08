@@ -337,7 +337,9 @@ func skill(phase : String):
 						skill_instance.target = enemies_in_range[enemy_chosen]
 					unit_number += 1
 					skills_spawned += 1
-			#No units in range or reloading
+					if(skill_instance.target == null):
+						skill_instance.queue_free()
+			#No units in range
 			else:
 				#Check if there is a unit in front of you
 				if(movement_locations[0].movement_tile != null and movement_locations[0].movement_tile.units_on_tile.size() > 0):
