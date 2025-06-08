@@ -33,6 +33,8 @@ var unit_themes : Array = [
 	"Dinosaur",
 	"Fantasy"
 	]
+	
+var base_purchased : bool = false
 
 #Loads new units and then shows new units in the shop
 func _ready() -> void:
@@ -256,6 +258,9 @@ func update_upgrade_cost_labels():
 		else:
 			find_child("remove_{theme}_cost".format({"theme": theme})).text = str((game_manager.shop_upgrades + 1) * 5)
 		counter += 1
+	if base_purchased == true:
+		find_child("base_upgrade_button_text").text = "BOUGHT"
+		find_child("base_upgrade_button").disabled = true
 	
 
 func _on_remove_units_button_pressed():
@@ -358,9 +363,19 @@ func _on_buy_bases_close_button_pressed():
 	reroll_UI.visible = true
 
 func _on_buy_base_button_pressed():
-	buy_bases_UI.visible = false
-	base_manager.set_base(current_base_selected.base_id, current_base_selected.base_name, current_base_selected.description, true)
-	find_child("buy_base_button").visible = false
+	var success = false
+	if !(find_parent("shop_manager").free_reroll):
+		if (5  <= find_parent("shop_manager").money):
+			success = true
+			find_parent("shop_manager").change_money(5)
+	else:
+		success = true
+	if success:
+		buy_bases_UI.visible = false
+		base_manager.set_base(current_base_selected.base_id, current_base_selected.base_name, current_base_selected.description, true)
+		find_child("buy_base_button").visible = false
+		base_purchased = true
+		update_upgrade_cost_labels()
 	
 func selected_unit(base):
 	print("this has been called")

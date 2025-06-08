@@ -709,7 +709,7 @@ texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/base_upgrade/base_upgrade_button"]
+[node name="base_upgrade_button_text" type="RichTextLabel" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/base_upgrade/base_upgrade_button"]
 layout_mode = 0
 offset_top = -2.0
 offset_right = 740.0
@@ -1367,6 +1367,35 @@ theme_override_font_sizes/normal_font_size = 150
 text = "SELECT"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="base_cost" type="Label" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/buy_base_button"]
+z_index = 5
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.39269
+anchor_top = 0.876556
+anchor_right = 1.39269
+anchor_bottom = 0.876556
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 83.27
+offset_bottom = 109.0
+scale = Vector2(0.105, 0.105)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 95
+text = "5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/buy_base_button/base_cost"]
+z_index = 1
+z_as_relative = false
+position = Vector2(58.8235, 70.5882)
+scale = Vector2(4.41176, 4.41177)
+texture = ExtResource("6_wk4qg")
 
 [node name="sell_location" type="Node2D" parent="Camera2D"]
 position = Vector2(307, 66)
