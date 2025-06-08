@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwqgbrn653yx2"]
+
+[ext_resource type="PackedScene" uid="uid://ckgb2aec4d3hs" path="res://Prefabs/Shop Items/Bases/castle_base.tscn" id="1_tnfsa"]
+[ext_resource type="Texture2D" uid="uid://dpm537tkmege1" path="res://Sprites/Bases/dragon_den_lowres.png" id="2_rpk8f"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_k1e5w"]
+
+[node name="upgraded_medieval_base" instance=ExtResource("1_tnfsa")]
+base_id = 5
+
+[node name="select_base_button" parent="." index="0"]
+button_group = SubResource("ButtonGroup_k1e5w")
+
+[node name="base_image" parent="." index="1"]
+offset_top = -12.0
+offset_bottom = 18.0
+texture = ExtResource("2_rpk8f")

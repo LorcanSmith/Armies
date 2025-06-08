@@ -14,4 +14,10 @@ before_combat_desc = "Give army units +2 damage and health"
 button_group = SubResource("ButtonGroup_w7sio")
 
 [node name="base_image" parent="." index="1"]
+offset_right = 22.0
+offset_bottom = 17.0
 texture = ExtResource("2_w7sio")
+
+[node name="shadow" parent="base_image" index="0"]
+position = Vector2(21.625, 46.3906)
+scale = Vector2(1.23571, 0.440625)
