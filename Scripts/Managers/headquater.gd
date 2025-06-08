@@ -39,3 +39,7 @@ func _on_area_2d_mouse_entered() -> void:
 	var base_name = gm.base_name
 	var desc = gm.base_description
 	find_parent("combat_manager").find_child("Tooltip").update_base_tooltip(id, base_name, desc)
+
+
+func set_base_shadow():
+	find_child("shadow").change_shadow()

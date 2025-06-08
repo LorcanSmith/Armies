@@ -51,19 +51,22 @@ func setup_headquarters(base_id):
 	#Gets the tile which is the furthest to the right
 	var grid_width = grid[-1]
 	#Offsets our headquarters by its sprite size
-	var offset = (find_child("Sprite2D").texture.get_width())+45
+	var offset = (find_child("Sprite2D").texture.get_width())+80
 	#Sets the player headquarter to be to the left of the map
-	player_headquarter.global_position = Vector2(-offset, grid_height_center)
+	player_headquarter.global_position = Vector2(grid[0][0].global_position.x-offset, grid_height_center)
 	#Sets the base sprite
 	player_headquarter.find_child("Sprite2D").texture = player_base_sprite
+	#Sets the shadow
+	player_headquarter.set_base_shadow()
 	#Get enemy child Sprite 2D and flip horizontally
 	var enemy_base = enemy_headquarter.get_node("Sprite2D")  
 	enemy_base.scale.x = -enemy_base.scale.x
 	#enemy_base.get_parent().find_child("Label").position.x -= offset
 	var enemy_base_width = enemy_base.texture.get_width()
 	#Sets the player headquarter to be to the right of the map
-	enemy_headquarter.global_position = Vector2(grid_width[0].global_position.x+enemy_base_width+offset, grid_height_center)
-
+	enemy_headquarter.global_position = Vector2(grid_width[0].global_position.x+offset+50, grid_height_center)
+	#Sets the enemy base shadow
+	enemy_headquarter.set_base_shadow()
 # called from ready() or from game_manager, automatically cycles through battle_ticker()
 func auto_tick():
 ##		causes the function to pause, allows an opening for game_manager to pause if necessary

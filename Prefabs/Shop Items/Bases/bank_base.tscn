@@ -15,7 +15,15 @@ before_combat_desc = ""
 button_group = SubResource("ButtonGroup_b1mkj")
 
 [node name="base_image" parent="." index="1"]
+offset_left = -17.0
+offset_right = 18.0
+pivot_offset = Vector2(17, 23)
 texture = ExtResource("2_uvii2")
+
+[node name="shadow" parent="base_image" index="0"]
+position = Vector2(17.495, 34.225)
+texture = ExtResource("2_uvii2")
+script = null
 
 [node name="base" parent="set_base_UI" index="2"]
 texture = ExtResource("2_uvii2")
