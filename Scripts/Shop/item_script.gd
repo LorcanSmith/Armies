@@ -500,6 +500,8 @@ func buff_unit_health(amount : int):
 	#Play damage animation
 	if(amount < 0):
 		get_node("item_hurt_anim_player").play("hurt")
+		if current_health + last_health_change <= 0:
+			find_parent("shop_manager").units_to_delete.append(self)
 func buff_unit_damage(amount : int):
 	damage_boost += amount
 	last_damage_change = amount
