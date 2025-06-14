@@ -16,29 +16,29 @@ script = ExtResource("1_hwjxs")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 463.0
-offset_top = -42.0
-offset_right = 1498.0
-offset_bottom = 580.0
+offset_left = 574.0
+offset_top = -272.0
+offset_right = 1609.0
+offset_bottom = 639.0
 rotation = 0.319723
 mouse_filter = 2
 color = Color(0.339636, 0.133142, 0.292786, 1)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = -192.0
-offset_top = 376.0
-offset_right = 449.0
-offset_bottom = 990.0
+offset_left = -548.0
+offset_top = 328.0
+offset_right = 636.0
+offset_bottom = 1588.0
 rotation = -0.710953
-color = Color(0.0490807, 0.177297, 0.530594, 1)
+color = Color(0.291235, 0.10736, 0.448158, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 625.0
-offset_top = 249.0
-offset_right = 3825.0
-offset_bottom = 851.0
+offset_left = 29.0001
+offset_top = 21.0
+offset_right = 3229.0
+offset_bottom = 623.0
 scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/normal_font_size = 300
 text = "Welcome to our playtest"
@@ -52,24 +52,18 @@ offset_right = 4528.0
 offset_bottom = 4700.0
 scale = Vector2(0.11, 0.11)
 theme_override_font_sizes/normal_font_size = 300
-text = "AREAS OF FOCUS:	
-- How fun is the game
-- How fun are the units
-- What units suck
+text = "SHOP UPDATE:
 
-ARES NOT TO WORRY ABOUT:
-- Visuals
-- Lack of unit variety
-- The crash that happens on turn 9
+We have added some upgrades to our shop, we would love feedback on these changes.
 "
 fit_content = true
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 701.0
-offset_top = 178.0
-offset_right = 5192.0
-offset_bottom = 4693.0
+offset_left = 741.0
+offset_top = 163.0
+offset_right = 5232.0
+offset_bottom = 4678.0
 scale = Vector2(0.11, 0.11)
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 300
@@ -78,10 +72,10 @@ fit_content = true
 [node name="TextureButton" type="TextureButton" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 1031.0
-offset_top = 392.0
-offset_right = 1104.0
-offset_bottom = 432.0
+offset_left = 1062.0
+offset_top = 615.0
+offset_right = 1135.0
+offset_bottom = 655.0
 scale = Vector2(2.69, 2.69)
 texture_normal = ExtResource("2_duh1u")
 texture_pressed = ExtResource("3_geirw")
@@ -101,12 +95,12 @@ fit_content = true
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 1137.0
-offset_top = 337.0
-offset_right = 1607.0
-offset_bottom = 527.0
+offset_left = 1182.0
+offset_top = 9.00003
+offset_right = 1652.0
+offset_bottom = 199.0
 scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/normal_font_size = 100
-text = "ver: 0.04"
+text = "ver: 0.05"
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
