@@ -210,6 +210,7 @@ animations = [{
 attack_animation_length = 0.5
 max_health = 6
 brawl_damage = 3
+Fantasy = true
 Human = true
 skill_damage = 5
 projectile = ExtResource("2_kntnc")
@@ -218,7 +219,6 @@ regular_sprite = ExtResource("4_cxm3d")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_myccf")
-autoplay = "idle"
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("4_sjq10")]
 position = Vector2(74, 0)
