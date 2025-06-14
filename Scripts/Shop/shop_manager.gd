@@ -10,6 +10,7 @@ var status_bar: StatusBar
 #Amount of money the player can spend each turn
 @export var money : int = 30
 var same_units = []
+var units_to_delete = []
 
 func _ready() -> void:
 	game_manager = find_parent("game_manager")
@@ -24,7 +25,6 @@ func change_money(amount : int):
 
 func _on_battle_button_pressed() -> void:
 	#Tell the base manager to do end of turn effects
-	find_child("grid_generator (army)").save_current_grid()
 	find_child("base_manager").end_of_turn()
 	find_child("battle_button").visible = false
 	apply_buffs()
@@ -70,6 +70,15 @@ func apply_buffs():
 	find_child("buff_animation_holder").waiting_for_skills = true
 
 func no_skills_left():
+	if units_to_delete.size() > 0:
+		var x = 0
+		while x < units_to_delete.size():
+			if(units_to_delete[x].get_parent().is_in_group("tile")):
+				units_to_delete[x].get_parent().is_empty = true
+				units_to_delete[x].get_parent().units_on_tile.erase(units_to_delete[x])
+			units_to_delete[x].queue_free()
+			x += 1
+	find_child("grid_generator (army)").save_current_grid()
 	game_manager.swap_scenes()
 
 
