@@ -1,9 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://qxcb1qtaeijs"]
+[gd_scene load_steps=13 format=3 uid="uid://qxcb1qtaeijs"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_5skx2"]
 [ext_resource type="Texture2D" uid="uid://c3db254k10i3u" path="res://Sprites/Units/Dinosaurs/stegosaurus/lvl2/stegosaurus_idle_lvl2.png" id="2_kyvur"]
+[ext_resource type="Texture2D" uid="uid://ch3dkkgr146sd" path="res://Sprites/Units/Dinosaurs/stegosaurus/lvl2/stegosaurus_death_lvl2.png" id="2_w2gqi"]
 [ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="3_e288t"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_sfeg2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfinv"]
+atlas = ExtResource("2_w2gqi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu41g"]
+atlas = ExtResource("2_w2gqi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgmyd"]
+atlas = ExtResource("2_w2gqi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pn4ft"]
+atlas = ExtResource("2_w2gqi")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w2gqi"]
 atlas = ExtResource("2_kyvur")
@@ -15,6 +32,23 @@ region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lfinv"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfinv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu41g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgmyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pn4ft")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w2gqi")
@@ -42,7 +76,7 @@ texture = null
 
 [node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
 sprite_frames = SubResource("SpriteFrames_lfinv")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
 
 [node name="buff_location" parent="buffs" index="0" instance=ExtResource("3_e288t")]

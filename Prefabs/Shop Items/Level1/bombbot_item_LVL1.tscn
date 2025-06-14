@@ -1,7 +1,32 @@
-[gd_scene load_steps=8 format=3 uid="uid://drykhq3ogv6rg"]
+[gd_scene load_steps=15 format=3 uid="uid://drykhq3ogv6rg"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_0qkuh"]
 [ext_resource type="Texture2D" uid="uid://d4k175onyjib7" path="res://Sprites/Units/Sci-fi/Bombbot/lvl1/bombbot_idle_lvl1.png" id="2_0qkuh"]
+[ext_resource type="Texture2D" uid="uid://dqautsnnoj1qa" path="res://Sprites/Units/Sci-fi/Bombbot/lvl1/bombbot_death_lvl1.png" id="2_ghhu1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlyul"]
+atlas = ExtResource("2_ghhu1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prp7j"]
+atlas = ExtResource("2_ghhu1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abpie"]
+atlas = ExtResource("2_ghhu1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y34gi"]
+atlas = ExtResource("2_ghhu1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xapn5"]
+atlas = ExtResource("2_ghhu1")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdu0q"]
+atlas = ExtResource("2_ghhu1")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ghhu1"]
 atlas = ExtResource("2_0qkuh")
@@ -21,6 +46,29 @@ region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mlyul"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlyul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prp7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abpie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y34gi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xapn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdu0q")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ghhu1")
@@ -50,5 +98,5 @@ texture = null
 
 [node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
 sprite_frames = SubResource("SpriteFrames_mlyul")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"

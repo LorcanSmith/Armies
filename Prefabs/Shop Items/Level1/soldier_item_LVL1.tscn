@@ -1,10 +1,35 @@
-[gd_scene load_steps=10 format=3 uid="uid://mx4husssotyf"]
+[gd_scene load_steps=17 format=3 uid="uid://mx4husssotyf"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_akiqe"]
+[ext_resource type="Texture2D" uid="uid://d14v0vkfcdqwe" path="res://Sprites/Units/Army/soldier/lvl1/soldier_death_lvl1.png" id="2_bkskw"]
 [ext_resource type="Texture2D" uid="uid://byiuh32mw8i4o" path="res://Sprites/Units/Army/soldier/lvl1/soldier_idle_lvl1.png" id="2_vki68"]
 [ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="3_avp1i"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_x8atn"]
 [ext_resource type="Script" uid="uid://bbyqyvnyg3d6s" path="res://Scripts/Skills/buff.gd" id="5_vki68"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7lqm"]
+atlas = ExtResource("2_bkskw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0tcq"]
+atlas = ExtResource("2_bkskw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbnxh"]
+atlas = ExtResource("2_bkskw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74w64"]
+atlas = ExtResource("2_bkskw")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qshen"]
+atlas = ExtResource("2_bkskw")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3qyc"]
+atlas = ExtResource("2_bkskw")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bkskw"]
 atlas = ExtResource("2_vki68")
@@ -16,6 +41,29 @@ region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m7lqm"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7lqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0tcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbnxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74w64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qshen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3qyc")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bkskw")
@@ -46,11 +94,10 @@ texture = null
 
 [node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
 sprite_frames = SubResource("SpriteFrames_m7lqm")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
-frame_progress = 0.808046
 
-[node name="Item_Info" parent="Sprite2D" index="4" groups=["item"]]
+[node name="Item_Info" parent="Sprite2D" index="3" groups=["item"]]
 
 [node name="Area2D - Tile Collsion" type="Area2D" parent="." index="1"]
 input_pickable = false

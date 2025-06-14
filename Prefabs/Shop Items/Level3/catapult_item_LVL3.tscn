@@ -1,8 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://ce1hr6d55jndy"]
+[gd_scene load_steps=12 format=3 uid="uid://ce1hr6d55jndy"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_v6nuh"]
+[ext_resource type="Texture2D" uid="uid://be0y5thl2f3w4" path="res://Sprites/Units/Medieval/Catapult/lvl3/catapult_death_lvl3.png" id="2_kpok1"]
 [ext_resource type="Texture2D" uid="uid://dmknv7eb6cjc2" path="res://Sprites/Units/Medieval/Catapult/lvl3/catapult_idle_lvl3.png" id="2_lhrf4"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_lhrf4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xeupl"]
+atlas = ExtResource("2_kpok1")
+region = Rect2(0, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajv71"]
+atlas = ExtResource("2_kpok1")
+region = Rect2(42, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntm2r"]
+atlas = ExtResource("2_kpok1")
+region = Rect2(84, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r00p"]
+atlas = ExtResource("2_kpok1")
+region = Rect2(126, 0, 42, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kpok1"]
 atlas = ExtResource("2_lhrf4")
@@ -14,6 +31,23 @@ region = Rect2(42, 0, 42, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xeupl"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xeupl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajv71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntm2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r00p")
+}],
+"loop": false,
+"name": &"death",
+"speed": 7.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kpok1")
@@ -38,9 +72,8 @@ texture = null
 
 [node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
 sprite_frames = SubResource("SpriteFrames_xeupl")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
-frame_progress = 0.886175
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_lhrf4")]
 position = Vector2(148, 0)

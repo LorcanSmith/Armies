@@ -1,8 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7o231xnogik7"]
+[gd_scene load_steps=11 format=3 uid="uid://c7o231xnogik7"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_gfj3s"]
 [ext_resource type="Texture2D" uid="uid://mmbtqshopihg" path="res://Sprites/Units/Animals/pig/lvl1/pig_idle_lvl1.png" id="2_gfj3s"]
+[ext_resource type="Texture2D" uid="uid://ig6xsqtb5t45" path="res://Sprites/Units/Animals/pig/lvl1/pig_death_lvl1.png" id="2_i5dt6"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_tsil1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ugoi"]
+atlas = ExtResource("2_i5dt6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bivuo"]
+atlas = ExtResource("2_i5dt6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbsg3"]
+atlas = ExtResource("2_i5dt6")
+region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i5dt6"]
 atlas = ExtResource("2_gfj3s")
@@ -14,6 +27,20 @@ region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4ugoi"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ugoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bivuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbsg3")
+}],
+"loop": false,
+"name": &"death",
+"speed": 7.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_i5dt6")
@@ -38,9 +65,8 @@ texture = null
 
 [node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
 sprite_frames = SubResource("SpriteFrames_4ugoi")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
-frame_progress = 0.418592
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_tsil1")]
 position = Vector2(74, 0)

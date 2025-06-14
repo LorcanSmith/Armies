@@ -96,7 +96,7 @@ var buffs_work_against : Array = []
 @export var Velociraptor : bool
 
 
-var item_has_transformed : bool
+var item_has_transformed : bool = false
 
 var attack_label : Label = find_child("Attack")
 var defense_label : Label = find_child("Defense")
@@ -153,34 +153,34 @@ func update_label_text():
 			location_sprite.find_child("cross").visible = true
 		x+= 1
 	#If the item is in the shop we should check if it needs transforming
-	if(!bought and !item_has_transformed):
+	if(!bought):
 		transform_item(unit)	
 func transform_item(unit):
 	attack_label = find_child("Attack")
 	defense_label = find_child("Defense")
-	if(!item_has_transformed):
-		#Checks for transforming various items
-		if(unit_name == "Werewolf"):
-			#Unit is a werewolf
-			if(find_parent("game_manager").turn_number % 2 == 0):
-				var doubled_attack = (unit.skill_damage + damage_boost) * 2
-				var doubled_health = (unit.max_health + health_boost) * 2
-				damage_boost = doubled_attack - unit.skill_damage
-				health_boost = doubled_health - unit.max_health
-				attack_label.text = str(doubled_attack)
-				defense_label.text = str(doubled_health)
-				current_health = doubled_health
-				current_damage = doubled_attack
-				get_node("Sprite2D/AnimatedSprite2D").play("idle_transformed")
-			#unit is a human
-			elif(find_parent("game_manager").turn_number % 2 != 0 and bought):
-				damage_boost = (damage_boost - unit.skill_damage) / 2
-				health_boost = (health_boost - unit.max_health) / 2
-				attack_label.text = str(unit.skill_damage + damage_boost)
-				defense_label.text = str(unit.max_health + health_boost)
-				current_health = unit.skill_damage + damage_boost
-				current_damage = unit.max_health + health_boost
-		item_has_transformed = true
+	#Checks for transforming various items
+	if(unit_name == "Werewolf"):
+		#Unit is a werewolf
+		if(find_parent("game_manager").turn_number % 2 == 0):
+			var doubled_attack = (unit.skill_damage + damage_boost) * 2
+			var doubled_health = (unit.max_health + health_boost) * 2
+			damage_boost = doubled_attack - unit.skill_damage
+			health_boost = doubled_health - unit.max_health
+			attack_label.text = str(doubled_attack)
+			defense_label.text = str(doubled_health)
+			current_health = doubled_health
+			current_damage = doubled_attack
+			get_node("Sprite2D/AnimatedSprite2D").play("idle_transformed")
+			item_has_transformed = true
+		#unit is a human
+		elif(find_parent("game_manager").turn_number % 2 != 0 and bought):
+			damage_boost = (damage_boost - unit.skill_damage) / 2
+			health_boost = (health_boost - unit.max_health) / 2
+			attack_label.text = str(unit.skill_damage + damage_boost)
+			defense_label.text = str(unit.max_health + health_boost)
+			current_health = unit.skill_damage + damage_boost
+			current_damage = unit.max_health + health_boost
+			item_has_transformed = false
 func toggle_skill_location():
 	if(!disabled):
 		#If the locations haven't been popped in yet, then turn them on and play an animation
@@ -500,7 +500,12 @@ func buff_unit_health(amount : int):
 	#Play damage animation
 	if(amount < 0):
 		get_node("item_hurt_anim_player").play("hurt")
-		if current_health + last_health_change <= 0:
+		if current_health + health_boost + last_health_change <= 0:
+			get_node("item_hurt_anim_player").queue("death")
+			if(!item_has_transformed):
+				get_node("Sprite2D/AnimatedSprite2D").play("death")
+			elif(item_has_transformed):
+				get_node("Sprite2D/AnimatedSprite2D").play("death_transformed")
 			find_parent("shop_manager").units_to_delete.append(self)
 func buff_unit_damage(amount : int):
 	damage_boost += amount

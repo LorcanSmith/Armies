@@ -1,8 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://brpyou4v373bs"]
+[gd_scene load_steps=12 format=3 uid="uid://brpyou4v373bs"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_hdgot"]
+[ext_resource type="Texture2D" uid="uid://cxgqcss65dfrt" path="res://Sprites/Units/Medieval/Catapult/lvl2/catapult_death_lvl2.png" id="2_omlpo"]
 [ext_resource type="Texture2D" uid="uid://bhev3sarjhymb" path="res://Sprites/Units/Medieval/Catapult/lvl2/catapult_idle_lvl2.png" id="2_ymyad"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_ymyad"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nnjx"]
+atlas = ExtResource("2_omlpo")
+region = Rect2(0, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr66n"]
+atlas = ExtResource("2_omlpo")
+region = Rect2(42, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhrhc"]
+atlas = ExtResource("2_omlpo")
+region = Rect2(84, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ui00t"]
+atlas = ExtResource("2_omlpo")
+region = Rect2(126, 0, 42, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omlpo"]
 atlas = ExtResource("2_ymyad")
@@ -14,6 +31,23 @@ region = Rect2(42, 0, 42, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8nnjx"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nnjx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qr66n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhrhc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ui00t")
+}],
+"loop": false,
+"name": &"death",
+"speed": 7.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_omlpo")
@@ -37,7 +71,7 @@ texture = null
 
 [node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
 sprite_frames = SubResource("SpriteFrames_8nnjx")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_ymyad")]

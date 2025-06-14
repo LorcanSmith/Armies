@@ -1,8 +1,33 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkt06anmdlcyi"]
+[gd_scene load_steps=14 format=3 uid="uid://bkt06anmdlcyi"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_bub1e"]
+[ext_resource type="Texture2D" uid="uid://byblauf6x1ksg" path="res://Sprites/Units/Medieval/Polearm/lvl3/Polearm_lv3_death.png" id="2_cd2ax"]
 [ext_resource type="Texture2D" uid="uid://da0ai0bmyawjp" path="res://Sprites/Units/Medieval/Polearm/lvl3/Polearm_lv3_idle.png" id="2_qyatr"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_qyatr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npoeh"]
+atlas = ExtResource("2_cd2ax")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xq4h1"]
+atlas = ExtResource("2_cd2ax")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rf3j3"]
+atlas = ExtResource("2_cd2ax")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oasvo"]
+atlas = ExtResource("2_cd2ax")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu1vg"]
+atlas = ExtResource("2_cd2ax")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6k8ql"]
+atlas = ExtResource("2_cd2ax")
+region = Rect2(240, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cd2ax"]
 atlas = ExtResource("2_qyatr")
@@ -14,6 +39,29 @@ region = Rect2(48, 0, 48, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_npoeh"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npoeh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xq4h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rf3j3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oasvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu1vg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6k8ql")
+}],
+"loop": false,
+"name": &"death",
+"speed": 15.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cd2ax")
@@ -38,7 +86,7 @@ texture = null
 
 [node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
 sprite_frames = SubResource("SpriteFrames_npoeh")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_qyatr")]

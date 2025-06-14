@@ -1,8 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfksecqqf70kk"]
+[gd_scene load_steps=13 format=3 uid="uid://cfksecqqf70kk"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_j2i5f"]
 [ext_resource type="Texture2D" uid="uid://bny1ggnidley2" path="res://Sprites/Units/Medieval/Plague_Doctor/lvl2/plaguedoctor_idle_lvl2.png" id="2_o04ly"]
+[ext_resource type="Texture2D" uid="uid://hr4teabqof4h" path="res://Sprites/Units/Medieval/Plague_Doctor/lvl2/plaguedoctor_death_lvl2.png" id="2_suyd4"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_xe1l7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7137c"]
+atlas = ExtResource("2_suyd4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3chb"]
+atlas = ExtResource("2_suyd4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1tsk"]
+atlas = ExtResource("2_suyd4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k378v"]
+atlas = ExtResource("2_suyd4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f737s"]
+atlas = ExtResource("2_suyd4")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_suyd4"]
 atlas = ExtResource("2_o04ly")
@@ -14,6 +35,26 @@ region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7137c"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7137c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3chb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1tsk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k378v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f737s")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_suyd4")
@@ -44,7 +85,7 @@ texture = null
 
 [node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
 sprite_frames = SubResource("SpriteFrames_7137c")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_xe1l7")]
