@@ -1,9 +1,33 @@
-[gd_scene load_steps=8 format=3 uid="uid://de5k3155ugt5p"]
+[gd_scene load_steps=14 format=3 uid="uid://de5k3155ugt5p"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_3h762"]
-[ext_resource type="Texture2D" uid="uid://b31avwgtikfkb" path="res://Sprites/Units/Dinosaurs/Trex/T-rex-lvl1.png" id="2_3h762"]
+[ext_resource type="Texture2D" uid="uid://ctf3t7ahv34c7" path="res://Sprites/Units/Dinosaurs/Trex/lvl1/trex_death_lvl1.png" id="2_3h762"]
 [ext_resource type="Texture2D" uid="uid://chtg2u7hc3gx2" path="res://Sprites/Units/Dinosaurs/Trex/lvl1/trex_idle_lvl1.png" id="2_87fli"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_qeb88"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87fli"]
+atlas = ExtResource("2_3h762")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3uqk"]
+atlas = ExtResource("2_3h762")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efy3w"]
+atlas = ExtResource("2_3h762")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8x2bc"]
+atlas = ExtResource("2_3h762")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtoxj"]
+atlas = ExtResource("2_3h762")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmesf"]
+atlas = ExtResource("2_3h762")
+region = Rect2(240, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otr0r"]
 atlas = ExtResource("2_87fli")
@@ -15,6 +39,29 @@ region = Rect2(44, 0, 44, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y3uqk"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87fli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3uqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efy3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8x2bc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtoxj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmesf")
+}],
+"loop": false,
+"name": &"death",
+"speed": 9.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_otr0r")
@@ -39,11 +86,8 @@ texture = null
 
 [node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
 sprite_frames = SubResource("SpriteFrames_y3uqk")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
-
-[node name="shadow" parent="Sprite2D" index="1"]
-texture = ExtResource("2_3h762")
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("4_qeb88")]
 position = Vector2(74, 0)

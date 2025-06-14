@@ -1,9 +1,51 @@
-[gd_scene load_steps=10 format=3 uid="uid://qffefp3iqt6j"]
+[gd_scene load_steps=22 format=3 uid="uid://qffefp3iqt6j"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_pnhyx"]
 [ext_resource type="Texture2D" uid="uid://ccqoeavfmq2sp" path="res://Sprites/Units/Fantasy/Werewolf/lvl2/werewolf_human_idle_lvl2.png" id="2_dgpe3"]
+[ext_resource type="Texture2D" uid="uid://1m4651icr71p" path="res://Sprites/Units/Fantasy/Werewolf/lvl2/werewolf_human_death_lvl2.png" id="2_f86k4"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_4ug5b"]
+[ext_resource type="Texture2D" uid="uid://duxiihweeqmmm" path="res://Sprites/Units/Fantasy/Werewolf/lvl2/werewolf_wolf_death_lvl2.png" id="3_8qiry"]
 [ext_resource type="Texture2D" uid="uid://7p4yaq4qp8ko" path="res://Sprites/Units/Fantasy/Werewolf/lvl2/werewolf_wolf_idle_lvl2.png" id="3_783wf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pcnj"]
+atlas = ExtResource("2_f86k4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mct7a"]
+atlas = ExtResource("2_f86k4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi47c"]
+atlas = ExtResource("2_f86k4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jh3uy"]
+atlas = ExtResource("2_f86k4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pcny"]
+atlas = ExtResource("2_f86k4")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2uls"]
+atlas = ExtResource("3_8qiry")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnqs8"]
+atlas = ExtResource("3_8qiry")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t07e6"]
+atlas = ExtResource("3_8qiry")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pao2"]
+atlas = ExtResource("3_8qiry")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nc5ey"]
+atlas = ExtResource("3_8qiry")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f86k4"]
 atlas = ExtResource("2_dgpe3")
@@ -23,6 +65,46 @@ region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4pcnj"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pcnj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mct7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fi47c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jh3uy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pcny")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2uls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnqs8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t07e6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pao2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nc5ey")
+}],
+"loop": false,
+"name": &"death_transformed",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_f86k4")
@@ -46,7 +128,7 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="Werewolf" instance=ExtResource("1_pnhyx")]
+[node name="Werewolf2" instance=ExtResource("1_pnhyx")]
 description = "If the turn number is even then this unit will transform into a werewolf with double health/attack. If the turn number is odd this unit will transform into a human."
 unit_name = "Werewolf"
 buy_cost = 8
@@ -59,9 +141,8 @@ texture = null
 
 [node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
 sprite_frames = SubResource("SpriteFrames_4pcnj")
-animation = &"idle_transformed"
+animation = &"death"
 autoplay = "idle"
-frame_progress = 0.609838
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_4ug5b")]
 position = Vector2(74, 0)

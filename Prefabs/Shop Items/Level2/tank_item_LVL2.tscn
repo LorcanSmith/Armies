@@ -1,8 +1,45 @@
-[gd_scene load_steps=7 format=3 uid="uid://ciufbc6ncrv15"]
+[gd_scene load_steps=17 format=3 uid="uid://ciufbc6ncrv15"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_0eqnr"]
+[ext_resource type="Texture2D" uid="uid://dwpkmrxykvydc" path="res://Sprites/Units/Army/tank/lvl2/tank_death_lvl2.png" id="2_4bwsk"]
 [ext_resource type="Texture2D" uid="uid://def6jifjplfj5" path="res://Sprites/Units/Army/tank/lvl2/Tank_idle_lvl2.png" id="2_jjq5e"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="3_jjq5e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g16xn"]
+atlas = ExtResource("2_4bwsk")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7ikc"]
+atlas = ExtResource("2_4bwsk")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fij0d"]
+atlas = ExtResource("2_4bwsk")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xck64"]
+atlas = ExtResource("2_4bwsk")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8xvs"]
+atlas = ExtResource("2_4bwsk")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfyrq"]
+atlas = ExtResource("2_4bwsk")
+region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xiq0"]
+atlas = ExtResource("2_4bwsk")
+region = Rect2(288, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqs5b"]
+atlas = ExtResource("2_4bwsk")
+region = Rect2(336, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swwdy"]
+atlas = ExtResource("2_4bwsk")
+region = Rect2(384, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4bwsk"]
 atlas = ExtResource("2_jjq5e")
@@ -14,6 +51,38 @@ region = Rect2(48, 0, 48, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g16xn"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g16xn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7ikc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fij0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xck64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8xvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfyrq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xiq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqs5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swwdy")
+}],
+"loop": false,
+"name": &"death",
+"speed": 14.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4bwsk")
@@ -36,7 +105,7 @@ texture = null
 
 [node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
 sprite_frames = SubResource("SpriteFrames_g16xn")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("3_jjq5e")]

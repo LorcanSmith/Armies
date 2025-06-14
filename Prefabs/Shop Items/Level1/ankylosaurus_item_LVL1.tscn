@@ -1,8 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://cllth155fp6fv"]
+[gd_scene load_steps=12 format=3 uid="uid://cllth155fp6fv"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_vjyh6"]
 [ext_resource type="Texture2D" uid="uid://cfrmol4s8dj6x" path="res://Sprites/Units/Dinosaurs/ankylosaurus/lvl1/ankylosaurus_idle_lvl1.png" id="2_if6yj"]
+[ext_resource type="Texture2D" uid="uid://dw1iibtqdb0bb" path="res://Sprites/Units/Dinosaurs/ankylosaurus/lvl1/ankylosaurus_death_lvl1.png" id="2_vjyh6"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_bq846"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kb3i"]
+atlas = ExtResource("2_vjyh6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bq846"]
+atlas = ExtResource("2_vjyh6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntnsm"]
+atlas = ExtResource("2_vjyh6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh6eq"]
+atlas = ExtResource("2_vjyh6")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vjyh6"]
 atlas = ExtResource("2_if6yj")
@@ -14,6 +31,23 @@ region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6kb3i"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kb3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bq846")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntnsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh6eq")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vjyh6")
@@ -39,9 +73,8 @@ texture = null
 
 [node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
 sprite_frames = SubResource("SpriteFrames_6kb3i")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
-frame_progress = 0.853495
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("4_bq846")]
 position = Vector2(74, 0)
