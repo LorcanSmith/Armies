@@ -500,7 +500,7 @@ func buff_unit_health(amount : int):
 	#Play damage animation
 	if(amount < 0):
 		get_node("item_hurt_anim_player").play("hurt")
-		if current_health + health_boost + last_health_change <= 0:
+		if current_health + health_boost <= 0:
 			get_node("item_hurt_anim_player").queue("death")
 			if(!item_has_transformed):
 				get_node("Sprite2D/AnimatedSprite2D").play("death")

@@ -20,6 +20,13 @@ var effectiveness : int
 
 var spawned_visual_already : bool
 
+var t = 1
+func _process(delta: float) -> void:
+	t -= delta
+	if(t <= 0):
+		if(!target):
+			queue_free()
+
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	#ENEMY! DO DAMAGE
 	if((belongs_to_player and area.get_parent().is_in_group("enemy")) or (!belongs_to_player and area.get_parent().is_in_group("player")) and (!area.is_in_group("buff_location"))):
