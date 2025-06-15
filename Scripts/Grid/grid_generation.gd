@@ -11,8 +11,8 @@ var grid_width : int = 1
 var grid_height : int = 1
 
 @export var distance_between_grids : int
-@export var width_per_turn = [3,3,4,4]
-@export var height_per_turn = [2,3,3,4]
+@export var width_per_turn : Array
+@export var height_per_turn : Array
 
 #Tile that is placed at each grid position
 var tile : PackedScene
@@ -72,9 +72,10 @@ func generate_grid(turn_number : int, in_combat : bool):
 			
 			#Play animation for grid spots that are new
 			elif(!is_battle_grid):
-				#If the width or height position are bigger than last turns max width/height then this is a new tile
-				if(width+1 > width_per_turn[turn_number - 2] or height+1 > height_per_turn[turn_number - 2]):
-					new_tile.play_tile_appear()
+				if (turn_number - 2) < width_per_turn.size():
+					#If the width or height position are bigger than last turns max width/height then this is a new tile
+					if(width+1 > width_per_turn[turn_number - 2] or height+1 > height_per_turn[turn_number - 2]):
+						new_tile.play_tile_appear()
 					
 	if(!is_battle_grid):
 		self.position.y -= 40 * (grid_height - height_per_turn[0])
