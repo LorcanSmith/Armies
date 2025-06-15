@@ -117,7 +117,7 @@ func _unit_upload(unit_IDs):
 #	If we ae unable to, then we will get a local generated user later on
 	if(!ServerRequestManager.user_logged_in):
 		var message_sent_status = ServerRequestManager.retry_create_guest()
-		if(message_sent_status):
+		if(message_sent_status == OK):
 			await ServerRequestManager.create_guest_complete
 		else:
 			print("Unable to create guest")
