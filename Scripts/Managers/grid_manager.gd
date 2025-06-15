@@ -112,16 +112,17 @@ func _unit_upload(unit_IDs):
 	var enemy_unit_IDs
 	var load_from_local = false
 	var enemy_name
+	
 	#We will attempt to retry guest creation each turn
 #	If we ae unable to, then we will get a local generated user later on
 	if(!ServerRequestManager.user_logged_in):
-		var message_sent_status = await ServerRequestManager.retry_create_guest()
+		var message_sent_status = ServerRequestManager.retry_create_guest()
 		if(message_sent_status):
 			await ServerRequestManager.create_guest_complete
 		else:
 			print("Unable to create guest")
 			
-	var message_sent_status = await ServerRequestManager.upload(unit_IDs, game_manager.turn_number)
+	var message_sent_status = ServerRequestManager.upload(unit_IDs, game_manager.turn_number)
 	if(message_sent_status == OK):
 		var enemy_team_info_response = await ServerRequestManager.upload_complete
 		if(!enemy_team_info_response["error"]):

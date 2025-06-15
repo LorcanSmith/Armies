@@ -52,9 +52,7 @@ func create_guest(username : String):
 		"user_name": username
 	}
 	var headers = ["Content-Type: application/json"]
-	var error = self.user_request_handler.request(self.url_base + endpoint, headers, HTTPClient.METHOD_POST, str(request_body))
-		
-	return error
+	return self.user_request_handler.request(self.url_base + endpoint, headers, HTTPClient.METHOD_POST, str(request_body))
 
 func retry_create_guest():
 	if(self._user_name_cache):
@@ -111,6 +109,4 @@ func upload(grid : Array, turn : int):
 	
 	var headers = ["Content-Type: application/json"]
 	print(self.url_base + endpoint)
-	error = self.request_handler.request(self.url_base + endpoint, headers, HTTPClient.METHOD_POST, str(request_body))
-		
-	return error
+	return self.request_handler.request(self.url_base + endpoint, headers, HTTPClient.METHOD_POST, str(request_body))
