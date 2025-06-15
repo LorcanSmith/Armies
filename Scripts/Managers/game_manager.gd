@@ -311,15 +311,9 @@ func _on_confirm_name_button_pressed() -> void:
 
 #	Create User with Name
 	var team_name = name_canvas.find_child("chosen_name").text
-	#var message_sent_status = await ServerRequestManager.create_guest(team_name)
-	#if(message_sent_status != OK):
-		#var error_string = "Error with request - " + str(message_sent_status)
-		#print(error_string)	
-	#else:
-		#var create_guest_info_response = await ServerRequestManager.create_guest_complete
-		#if(create_guest_info_response["error"]):
-			#var error_string = create_guest_info_response["message"] + " SERVER ERROR CODE = " + create_guest_info_response["code"]
-			#print(error_string)	
+	
+#	This will get used later on for the request for enemy team
+	ServerRequestManager.start_with_new_team(team_name)
 	
 	name_canvas.queue_free()
 	find_child("scene_transitions").get_node("scene_transition_animation_player").play("transition_in")

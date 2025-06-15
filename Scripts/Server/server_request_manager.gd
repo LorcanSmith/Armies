@@ -24,6 +24,9 @@ func _init():
 	#TODO CONFIG INSTEAD OF HARDCODING
 	url_base = "http://127.0.0.1:8000"
 	self.user_logged_in = false
+	self.user_name = ""
+	self.user_id = 0
+	self._user_name_cache = ""
 
 func create_guest(username : String):
 	var endpoint = "/api/user/guest/create"
@@ -54,10 +57,17 @@ func create_guest(username : String):
 	return error
 
 func retry_create_guest():
-	if(self._user_name_cache != ""):
+	if(self._user_name_cache):
 		return self.create_guest(self._user_name_cache)
 	else:
 		return FAILED
+		
+#Running this fucntion effectly resets the user at the start of a new run.
+func start_with_new_team(teamname : String):
+	self._user_name_cache = teamname
+	self.user_logged_in = false
+	self.user_name = ""
+	self.user_id = 0
 		
 ## This function will upload the grid and the turn number to be stored in the database [br][br]
 ## 
