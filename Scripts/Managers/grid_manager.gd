@@ -29,14 +29,14 @@ func load_units():
 		if game_manager.debug_mode:
 			enemy_unit_IDs = game_manager.enemy_army
 		else:
-			var upload_success = await _unit_upload(unit_IDs)
+			#var upload_success = await _unit_upload(unit_IDs)
 			#	if we can't get enemy data from the server default to the previous local method 
-			if(upload_success["load_from_local"]):
-				enemy_unit_IDs = load_layout("enemy")
-				game_manager.set_enemy_name("The Enemy Team")
-			else:
-				enemy_unit_IDs = upload_success["enemy_unit_IDs"]
-				game_manager.set_enemy_name(upload_success["enemy_name"])
+			#if(upload_success["load_from_local"]):
+			enemy_unit_IDs = load_layout("enemy")
+			game_manager.set_enemy_name("The Enemy Team")
+			#else:
+				#enemy_unit_IDs = upload_success["enemy_unit_IDs"]
+				#game_manager.set_enemy_name(upload_success["enemy_name"])
 			game_manager.enemy_army = enemy_unit_IDs
 	if(unit_IDs.size() > 0):
 		var width = 0
