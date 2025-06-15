@@ -75,17 +75,17 @@ func end_of_turn():
 			x += 1
 	if(current_base_ID == 2):
 		#Give army units +1 attack
-			var x = 0
-			while x < army_units.size():
-				#Delay so the buffs don't all appear at the same time
-				await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
-				var instance = damage_buff.instantiate()
-				instance.global_position = self.global_position
-				instance.unit = army_units[x]
-				find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
-				instance.find_child("buff_text").text = str("+",1)
-				army_units[x].damage_boost += 1
-				x += 1
+		var x = 0
+		while x < army_units.size():
+			#Delay so the buffs don't all appear at the same time
+			await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
+			var instance = damage_buff.instantiate()
+			instance.global_position = self.global_position
+			instance.unit = army_units[x]
+			find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
+			instance.find_child("buff_text").text = str("+",1)
+			army_units[x].damage_boost += 1
+			x += 1
 	#Hospital
 	if(current_base_ID == 3):
 		#Give healers +2 health

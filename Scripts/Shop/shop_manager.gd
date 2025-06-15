@@ -24,8 +24,6 @@ func change_money(amount : int):
 
 
 func _on_battle_button_pressed() -> void:
-	#Tell the base manager to do end of turn effects
-	find_child("base_manager").end_of_turn()
 	find_child("battle_button").visible = false
 	apply_buffs()
 
@@ -53,6 +51,9 @@ func show_potential_upgrades(show : bool, item_who_called : Node2D):
 			same_units = []
 			
 func apply_buffs():	
+	find_child("grid_generator (army)").save_current_grid()
+	#Tell the base manager to do end of turn effects
+	find_child("base_manager").end_of_turn()
 	var tiles = find_child("grid_manager").find_child("grid_generator (army)").get_children()
 	var x = 0
 	#Loops over all tiles
