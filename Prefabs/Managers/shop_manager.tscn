@@ -1460,6 +1460,105 @@ libraries = {
 &"": SubResource("AnimationLibrary_1cd4y")
 }
 
+[node name="base_upgrade_button" type="TextureButton" parent="Camera2D/base_manager"]
+offset_left = -38.0
+offset_top = -39.0
+offset_right = 35.0
+offset_bottom = -12.0
+texture_normal = ExtResource("8_qjc8s")
+texture_pressed = ExtResource("9_vg5hm")
+texture_hover = ExtResource("10_1cd4y")
+
+[node name="base_upgrade_options" type="TextureRect" parent="Camera2D/base_manager"]
+visible = false
+z_index = 4
+offset_left = 124.0
+offset_top = -142.0
+offset_right = 437.0
+offset_bottom = 171.0
+texture = ExtResource("11_hwvrm")
+
+[node name="tier_text" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options"]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 38.0
+offset_right = 398.0
+offset_bottom = 156.0
+scale = Vector2(0.395, 0.395)
+theme_override_font_sizes/normal_font_size = 91
+text = "TIER 0"
+
+[node name="path_1" type="TextureButton" parent="Camera2D/base_manager/base_upgrade_options"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 101.0
+offset_right = 73.0
+offset_bottom = 133.0
+scale = Vector2(2.755, 2.755)
+texture_normal = ExtResource("11_hwvrm")
+
+[node name="path_1_text" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/path_1"]
+layout_mode = 0
+offset_left = 2.90381
+offset_top = 2.17786
+offset_right = 302.904
+offset_bottom = 120.178
+scale = Vector2(0.09, 0.09)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 91
+text = "PATH 1"
+
+[node name="path_1_desc" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/path_1"]
+layout_mode = 0
+offset_left = 2.90381
+offset_top = 12.3412
+offset_right = 302.904
+offset_bottom = 130.341
+scale = Vector2(0.09, 0.09)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 91
+text = "PATH 1"
+
+[node name="path_2" type="TextureButton" parent="Camera2D/base_manager/base_upgrade_options"]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 97.0
+offset_right = 212.0
+offset_bottom = 129.0
+scale = Vector2(2.755, 2.755)
+texture_normal = ExtResource("11_hwvrm")
+
+[node name="path_2_text" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/path_2"]
+layout_mode = 0
+offset_left = 3.2668
+offset_top = 3.26678
+offset_right = 303.267
+offset_bottom = 121.267
+scale = Vector2(0.09, 0.09)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 91
+text = "PATH 2"
+
+[node name="path_2_desc" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/path_2"]
+layout_mode = 0
+offset_left = 3.2668
+offset_top = 12.3412
+offset_right = 303.267
+offset_bottom = 130.341
+scale = Vector2(0.09, 0.09)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 91
+text = "PATH 2"
+
+[node name="confirm_base_upgrade" type="TextureButton" parent="Camera2D/base_manager/base_upgrade_options"]
+offset_left = 121.0
+offset_top = 255.0
+offset_right = 194.0
+offset_bottom = 282.0
+texture_normal = ExtResource("8_qjc8s")
+texture_pressed = ExtResource("9_vg5hm")
+texture_hover = ExtResource("10_1cd4y")
+
 [node name="Tooltip" parent="Camera2D" instance=ExtResource("14_vg5hm")]
 position = Vector2(-261, 173)
 
@@ -1505,3 +1604,7 @@ position = Vector2(-309, -176)
 [connection signal="pressed" from="Camera2D/shop_item_generator/buy_bases_UI/Container/crate/close_button" to="Camera2D/shop_item_generator" method="_on_buy_bases_close_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/buy_bases_UI/Container/buy_base_button" to="Camera2D/shop_item_generator" method="_on_buy_base_button_pressed"]
 [connection signal="mouse_entered" from="Camera2D/base_manager/base_Area2D" to="Camera2D/base_manager" method="_on_base_area_2d_mouse_entered"]
+[connection signal="pressed" from="Camera2D/base_manager/base_upgrade_button" to="Camera2D/base_manager" method="_on_base_upgrade_button_pressed"]
+[connection signal="pressed" from="Camera2D/base_manager/base_upgrade_options/path_1" to="Camera2D/base_manager" method="_on_path_1_pressed"]
+[connection signal="pressed" from="Camera2D/base_manager/base_upgrade_options/path_2" to="Camera2D/base_manager" method="_on_path_2_pressed"]
+[connection signal="pressed" from="Camera2D/base_manager/base_upgrade_options/confirm_base_upgrade" to="Camera2D/base_manager" method="_on_confirm_base_upgrade_pressed"]

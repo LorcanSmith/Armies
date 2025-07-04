@@ -31,6 +31,32 @@ var medieval_units : Array
 var army_units : Array
 var healer_units : Array
 
+##Upgrading Bases
+var tier : int = 0
+var path_selected : int = 0
+var upgrade_name_1 : String
+var upgrade_name_2 : String
+
+#Themes
+var medieval_health : int = 0
+var medieval_attack : int = 0
+var army_health : int = 0
+var army_attack : int = 0
+var dinosaur_health : int = 0
+#Types
+var vehicle_health : int = 0
+var vehicle_attack : int = 0
+var human_health : int = 0
+var human_attack : int = 0
+var animal_health : int = 0
+var animal_attack : int = 0
+
+#Names
+var soldier_health : int = 0
+var soldier_attack : int = 0
+var velociraptor_health : int = 0
+var velociraptor_attack : int = 0
+
 func _ready() -> void:
 	base_sprite = find_child("base_sprite")
 func set_base(id, n, d, play_anim : bool):
@@ -59,86 +85,7 @@ func end_of_turn():
 	gm.base_sprite = base_sprites[current_base_ID]
 	army = gm.army_units
 	check_units()
-	#Castle
-	if(current_base_ID == 0):
-		#Give medieval units +1 health
-		var x = 0
-		while x < medieval_units.size():
-			#Delay so the buffs don't all appear at the same time
-			await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
-			var instance = health_buff.instantiate()
-			instance.global_position = self.global_position
-			instance.unit = medieval_units[x]
-			find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
-			instance.find_child("buff_text").text = str("+",1)
-			medieval_units[x].health_boost += 1
-			x += 1
-	if(current_base_ID == 2):
-		#Give army units +1 attack
-		var x = 0
-		while x < army_units.size():
-			#Delay so the buffs don't all appear at the same time
-			await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
-			var instance = damage_buff.instantiate()
-			instance.global_position = self.global_position
-			instance.unit = army_units[x]
-			find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
-			instance.find_child("buff_text").text = str("+",1)
-			army_units[x].damage_boost += 1
-			x += 1
-	#Hospital
-	if(current_base_ID == 3):
-		#Give healers +2 health
-		var x = 0
-		while x < healer_units.size():
-			#Delay so the buffs don't all appear at the same time
-			await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
-			var instance = health_buff.instantiate()
-			instance.global_position = self.global_position
-			instance.unit = healer_units[x]
-			find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
-			instance.find_child("buff_text").text = str("+",2)
-			healer_units[x].health_boost += 2
-			x += 1
-#	Barracks
-	if(current_base_ID == 4):
-		#Give army units +2 attack and +2 health
-			var x = 0
-			while x < army_units.size():
-				#Delay so the buffs don't all appear at the same time
-				await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
-				var instance = damage_buff.instantiate()
-				instance.global_position = self.global_position
-				instance.unit = army_units[x]
-				find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
-				instance.find_child("buff_text").text = str("+",2)
-				army_units[x].damage_boost += 2
-				instance = health_buff.instantiate()
-				instance.global_position = self.global_position
-				instance.unit = army_units[x]
-				find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
-				instance.find_child("buff_text").text = str("+",2)
-				army_units[x].health_boost += 2
-				x += 1
-	if(current_base_ID == 5):
-		#Give medieval units +2 attack and +2 health
-			var x = 0
-			while x < medieval_units.size():
-				#Delay so the buffs don't all appear at the same time
-				await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
-				var instance = damage_buff.instantiate()
-				instance.global_position = self.global_position
-				instance.unit = medieval_units[x]
-				find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
-				instance.find_child("buff_text").text = str("+",2)
-				medieval_units[x].damage_boost += 2
-				instance = health_buff.instantiate()
-				instance.global_position = self.global_position
-				instance.unit = medieval_units[x]
-				find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
-				instance.find_child("buff_text").text = str("+",2)
-				medieval_units[x].health_boost += 2
-				x += 1
+	
 func check_units():
 	var dictionary_instance = dictionary.new()
 	var x = 0
@@ -170,3 +117,49 @@ func check_units():
 
 func _on_base_area_2d_mouse_entered() -> void:
 	get_parent().find_child("Tooltip").update_base_tooltip(current_base_ID,base_name, base_description)
+
+#SHOW BASE UPGRADES
+func _on_base_upgrade_button_pressed() -> void:
+	#turn on upgrade UI
+	find_child("base_upgrade_options").visible = true
+	#turn off upgrade button
+	find_child("base_upgrade_button").visible = false
+	var upgrade_path_1_text = find_child("path_1_text")
+	var upgrade_path_1_desc = find_child("path_1_desc")
+	var upgrade_path_2_text = find_child("path_2_text")
+	var upgrade_path_2_desc = find_child("path_2_desc")
+	#set upgrade path names
+	#Castle
+	if(current_base_ID == 0):
+		var castle_path_1_names = ["Shields", "Fortifications"]
+		var castle_path_1_descs = ["+1 health to medieval units", "+2 health to medieval units"]
+		var castle_path_2_names = ["Blacksmith Training", "Formation Training"]
+		var castle_path_2_descs = ["+1 attack to medieval units", "+2 attack to medieval units"]
+		
+		upgrade_path_1_text.text = castle_path_1_names[tier]
+		upgrade_path_1_desc.text = castle_path_1_descs[tier]
+		upgrade_path_2_text.text = castle_path_2_names[tier]
+		upgrade_path_2_desc.text = castle_path_2_descs[tier]
+#SET BASE UPGRADE
+func _on_confirm_base_upgrade_pressed() -> void:
+	#Path 1
+	if(path_selected == 1):
+		#Tier 0
+		if(tier == 0):
+			#Castle
+			if(current_base_ID == 0):
+				medieval_health += 1
+		#Tier 1
+		elif(tier == 1):
+			#Castle
+			if(current_base_ID == 0):
+				medieval_health += 2
+				
+	#Turn off UI
+	find_child("base_upgrade_options").visible = false
+	#Turn on upgrade_button
+	find_child("base_upgrade_button").visible = true
+func _on_path_1_pressed() -> void:
+	path_selected = 1
+func _on_path_2_pressed() -> void:
+	path_selected = 2
