@@ -23,9 +23,11 @@ var current_scene : Node2D
 var base_crate_spawner : Node2D
 var base_ID : int = -1
 var base_name : String
-var base_description : String
 var base_sprite : Texture2D
 #Base stats
+#Special
+var base_description : String
+var extra_money : int = 0
 #Themes
 var medieval_health : int = 0
 var medieval_attack : int = 0
@@ -39,7 +41,8 @@ var human_health : int = 0
 var human_attack : int = 0
 var animal_health : int = 0
 var animal_attack : int = 0
-
+var healer_health : int = 0
+var healer_attack : int = 0
 #Names
 var soldier_health : int = 0
 var soldier_attack : int = 0

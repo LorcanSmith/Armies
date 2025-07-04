@@ -107,6 +107,7 @@ max_health = 2
 brawl_damage = 1
 Army = true
 Human = true
+Healer = true
 skill_spawn_amount = 0
 skill_spawn_random = true
 skill_damage = 1
@@ -114,7 +115,6 @@ projectile = ExtResource("2_gd2ik")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_fw0qi")
-autoplay = "idle"
 
 [node name="Sprite2D" parent="." index="4"]
 texture = null

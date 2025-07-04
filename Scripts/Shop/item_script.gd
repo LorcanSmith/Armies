@@ -91,6 +91,7 @@ var buffs_work_against : Array = []
 @export var Vehicle : bool
 @export var Human : bool
 @export var Animal : bool
+@export var Healer : bool
 @export_subgroup("Names")
 @export var Soldier : bool
 @export var Velociraptor : bool

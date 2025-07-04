@@ -74,7 +74,7 @@ texture_filter = 1
 script = ExtResource("1_xddxu")
 base_id = 0
 base_name = "Castle"
-before_combat_desc = "Give medieval units +1 health"
+description = "Can be upgraded to provide bonuses to Medieval units"
 
 [node name="select_base_button" type="TextureButton" parent="."]
 z_index = 14

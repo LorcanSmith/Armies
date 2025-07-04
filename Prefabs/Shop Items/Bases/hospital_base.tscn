@@ -75,7 +75,7 @@ texture_filter = 1
 script = ExtResource("1_btknk")
 base_id = 3
 base_name = "Hospital"
-before_combat_desc = "Give healing units +2 health"
+description = "Can be upgraded to provide bonuses to Healer units"
 
 [node name="select_base_button" type="TextureButton" parent="."]
 z_index = 14
