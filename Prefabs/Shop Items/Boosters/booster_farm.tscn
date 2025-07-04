@@ -17,7 +17,7 @@
 booster_name = "Farm Crate"
 booster_description = "Gives a random selection of 5 farm units. Choose one to gain for free."
 booster_image = ExtResource("2_xwgs6")
-potential_units_IDs = [39, 42, 45]
+potential_units_IDs = [13, 14, 15]
 
 [node name="symbol" parent="booster_button" index="0"]
 position = Vector2(16, 12.1538)

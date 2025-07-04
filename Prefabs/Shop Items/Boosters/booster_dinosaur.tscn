@@ -17,7 +17,7 @@
 booster_name = "Dinosaur Crate"
 booster_description = "Gives a random selection of 5 dinosaur units. Choose one to gain for free."
 booster_image = ExtResource("2_vnedk")
-potential_units_IDs = [48, 51, 57, 60, 63]
+potential_units_IDs = [16, 17, 19, 20, 21]
 
 [node name="symbol" parent="booster_button" index="0"]
 position = Vector2(16, 12.1538)
