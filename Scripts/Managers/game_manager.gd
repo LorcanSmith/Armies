@@ -25,6 +25,7 @@ var base_ID : int = -1
 var base_name : String
 var base_sprite : Texture2D
 #Base stats
+var tier : int = 0
 #Special
 var base_description : String
 var extra_money : int = 0

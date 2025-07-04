@@ -72,7 +72,7 @@ func set_base(id, n, d, play_anim : bool):
 		base_sprite.get_child(0).texture = base_sprites[id]
 		base_name = n
 		var gm = find_parent("game_manager")
-		
+		tier = gm.tier
 		#Special
 		base_description = d
 		extra_money = gm.extra_money
@@ -112,6 +112,7 @@ func end_of_turn():
 	var current_parent = get_parent()
 	#Tell game manager what the current base is
 	var gm = find_parent("game_manager")
+	gm.tier = tier
 	gm.base_ID = current_base_ID
 	gm.base_name = base_name
 	gm.base_description = base_description
