@@ -57,7 +57,6 @@ var item_hovered_scale = 1.2
 var item_clicked_scale = 1.4
 
 @export_group("Item Abilities")
-@export var increase_higher_level_unit_perecentage : float
 
 @export_group("Item buffs")
 ##Is this item a boost item
@@ -108,7 +107,7 @@ func _ready() -> void:
 	get_node("AnimationPlayer").play("item_appear")
 
 	current_time_till_tooltip = show_tooltip_time
-#Auto assigns the Level label
+
 func set_labels():
 	if(unit_ID != -1):
 		update_label_text()
@@ -353,44 +352,6 @@ func sell_item():
 	if(get_parent().is_in_group("tile")):
 		get_parent().is_empty = true
 		get_parent().units_on_tile.erase(self)
-	queue_free()
-
-
-func upgrade_unit(ID, dmg_bst, hlth_bst):
-	var dictionary_instance = dictionary.new()
-	var upgraded_unit
-	var new_ID : int
-	#Two units on the same level
-	if(ID == unit_ID):
-		upgraded_unit = dictionary_instance.item_scenes[ID+1].instantiate()
-		new_ID = ID + 1
-	#Add the newly upgraded unit to the tile we are on
-	get_parent().add_child(upgraded_unit)
-	#Tells the new item to check if it should transform into something else
-	var unit_for_checking_transforming = dictionary_instance.unit_scenes[ID+1].instantiate()
-	upgraded_unit.transform_item(unit_for_checking_transforming)
-	#Set the newly upgraded unit's position
-	upgraded_unit.position = Vector2(0,0)
-	#Purchase the unit
-	upgraded_unit.bought = true
-	#Turn off the coin visual
-	upgraded_unit.cost_label.visible = false
-	#Give the unit an ID
-	upgraded_unit.unit_ID = new_ID
-	#Sets the unit's types that buffs work against
-	upgraded_unit.set_unit_buff_types()
-	#Adds damage boost and health boost to self and then adds it to the new unit
-	damage_boost += dmg_bst
-	health_boost += hlth_bst
-	upgraded_unit.damage_boost += damage_boost
-	upgraded_unit.health_boost += health_boost
-	#Updates the units labels
-	upgraded_unit.set_labels()
-	#Remove non-upgraded unit (self) from the tile
-	get_parent().units_on_tile.erase(self)
-	#Tell the tile that the upgraded unit has been placed on it
-	get_parent().unit_placed_on(upgraded_unit)
-	#Delete non-upgraded unit (self)
 	queue_free()
 	
 func set_unit_buff_types():
