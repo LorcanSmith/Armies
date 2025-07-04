@@ -207,7 +207,6 @@ func update_upgrade_cost_labels():
 	while (counter < game_manager.shop_slots):
 		counter += 1
 		find_child("pedestal" + str(counter)).modulate = Color("#ffffff")
-	find_child("unit_chance_cost").text = str((game_manager.shop_upgrades + 1) * 5)
 	if game_manager.shop_slots < game_manager.MAX_SHOP_SLOTS:
 		find_child("shop_slot_cost").text = str((game_manager.shop_upgrades + 1) * 5)
 	else:

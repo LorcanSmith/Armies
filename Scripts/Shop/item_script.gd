@@ -196,7 +196,6 @@ func _on_area_2d__mouse_collision_mouse_entered() -> void:
 	if(!disabled):
 		if(!mouse_pressed and shop_manager.find_child("battle_button").visible):
 			mouse_over_item = true
-			shop_manager.show_potential_upgrades(true,self)
 			sprite.scale = Vector2(item_hovered_scale,item_hovered_scale)
 		#If the locations haven't been popped in yet, then turn them on and play an animation
 		if(bought):
@@ -207,7 +206,6 @@ func _on_area_2d__mouse_collision_mouse_exited() -> void:
 		tooltip.hide_tooltip = true
 		if(!mouse_pressed):
 			mouse_over_item = false
-			shop_manager.show_potential_upgrades(false,self)
 			sprite.scale = Vector2(1,1)
 		if(bought):
 			toggle_skill_location()
@@ -257,11 +255,6 @@ func _process(delta: float) -> void:
 					#Snap to the tile location
 					sprite.global_position = tile_currently_over.global_position
 				#If the tile isnt empty 			
-				#Check if its a unit which we can upgrade and is of the same type
-				elif(!tile_currently_over.is_empty and tile_currently_over.units_on_tile[0].can_be_upgraded and tile_currently_over.units_on_tile[0].unit_ID == unit_ID):
-					if(tile_currently_over.units_on_tile[0] != self):
-						#Snap to the tile location
-						sprite.global_position = tile_currently_over.global_position
 				elif (tile_currently_over == self.get_parent()):
 					if(tile_currently_over.units_on_tile[0] != self):
 						#Snap to the tile location

@@ -130,7 +130,7 @@ func run_report(game_manager : Node2D):
 func create_enemy_armies():
 	var turn_number = 1
 	var dictionary_instance = dictionary.new()
-	var base_money : int = 30
+	var base_money : int = 15
 	var base_threshold : int = 7
 	var money : int
 	var threshold : int
