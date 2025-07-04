@@ -1,5 +1,6 @@
 [gd_scene load_steps=33 format=3 uid="uid://d4h2dufyod7as"]
 
+
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
 [ext_resource type="Texture2D" uid="uid://bdngb6gmlmf0h" path="res://Sprites/UI/sell_location.png" id="3_nu7bh"]
@@ -26,7 +27,11 @@
 [ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="21_hxbdf"]
 [ext_resource type="Texture2D" uid="uid://cspyn7seap7nm" path="res://Sprites/Units/Dinosaurs/velociraptor/velociraptor_sprite_lvl1.png" id="22_kga0f"]
 [ext_resource type="Texture2D" uid="uid://duqq8x48i1fj" path="res://Sprites/Units/Fantasy/orc.png" id="23_3ljtq"]
+[ext_resource type="Texture2D" uid="uid://dnktsvr37mygq" path="res://Sprites/UI/shop/base_upgrade_bg.png" id="27_kga0f"]
+[ext_resource type="Texture2D" uid="uid://dnmlrb05mdhr" path="res://Sprites/UI/shop/path.png" id="28_3ljtq"]
 [ext_resource type="Texture2D" uid="uid://coon5hqrkq71r" path="res://Sprites/Backgrounds/bg.png" id="28_hxbdf"]
+[ext_resource type="Texture2D" uid="uid://bd8mbqamio3hi" path="res://Sprites/UI/shop/path_clicked.png" id="29_i4wjb"]
+[ext_resource type="Texture2D" uid="uid://b8d2lpa5njmui" path="res://Sprites/UI/shop/path_hovered.png" id="30_uug8p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4adb8"]
 size = Vector2(46, 59)
@@ -119,6 +124,122 @@ _data = {
 &"base_appear": SubResource("Animation_vg5hm")
 }
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_i4wjb"]
+
+[sub_resource type="Animation" id="Animation_52y88"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../shop_stuff:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3ljtq"]
+resource_name = "popin"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../shop_stuff:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../base_upgrade_control_node:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i4wjb"]
+resource_name = "popout"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../shop_stuff:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../base_upgrade_control_node:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i4wjb"]
+_data = {
+&"RESET": SubResource("Animation_52y88"),
+&"popin": SubResource("Animation_3ljtq"),
+&"popout": SubResource("Animation_i4wjb")
+}
+
 [node name="shop_manager" type="Node2D"]
 script = ExtResource("1_0fc1a")
 free_reroll = false
@@ -137,16 +258,25 @@ grid_name = "army"
 position = Vector2(590, 508)
 zoom = Vector2(1.8, 1.8)
 
-[node name="shop_visuals" type="Control" parent="Camera2D"]
+[node name="shop_stuff" type="Control" parent="Camera2D"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 167.0
-offset_top = -193.0
-offset_right = 167.0
-offset_bottom = -193.0
+offset_left = 226.0
+offset_top = -62.0
+offset_right = 266.0
+offset_bottom = -22.0
+pivot_offset = Vector2(110, 28)
+
+[node name="shop_visuals" type="Control" parent="Camera2D/shop_stuff"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -59.0
+offset_top = -131.0
+offset_right = -59.0
+offset_bottom = -131.0
 mouse_filter = 2
 
-[node name="shop_background" type="TextureRect" parent="Camera2D/shop_visuals"]
+[node name="shop_background" type="TextureRect" parent="Camera2D/shop_stuff/shop_visuals"]
 self_modulate = Color(1, 0.92549, 0.705882, 1)
 layout_mode = 0
 offset_left = -64.0
@@ -156,7 +286,7 @@ scale = Vector2(0.35, 0.35)
 mouse_filter = 2
 texture = ExtResource("5_kga0f")
 
-[node name="shop_shadow" type="TextureRect" parent="Camera2D/shop_visuals/shop_background"]
+[node name="shop_shadow" type="TextureRect" parent="Camera2D/shop_stuff/shop_visuals/shop_background"]
 modulate = Color(0, 0, 0, 0.403922)
 self_modulate = Color(0.272104, 0.264791, 0.220563, 1)
 z_index = -1
@@ -168,7 +298,7 @@ offset_bottom = 687.571
 mouse_filter = 2
 texture = ExtResource("5_kga0f")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_visuals/shop_background"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_visuals/shop_background"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_left = 106.0
@@ -181,41 +311,41 @@ text = "SHOP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="shop_item_generator" type="Node2D" parent="Camera2D"]
-position = Vector2(-473, -258)
+[node name="shop_item_generator" type="Node2D" parent="Camera2D/shop_stuff"]
+position = Vector2(-699, -196)
 script = ExtResource("2_v5hhx")
 
-[node name="Unit Locations" type="Node2D" parent="Camera2D/shop_item_generator"]
+[node name="Unit Locations" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator"]
 position = Vector2(909, -220)
 
-[node name="unit1" type="Node2D" parent="Camera2D/shop_item_generator/Unit Locations"]
+[node name="unit1" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator/Unit Locations"]
 position = Vector2(-284, 346)
 
-[node name="unit2" type="Node2D" parent="Camera2D/shop_item_generator/Unit Locations"]
+[node name="unit2" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator/Unit Locations"]
 position = Vector2(-210, 346)
 
-[node name="unit3" type="Node2D" parent="Camera2D/shop_item_generator/Unit Locations"]
+[node name="unit3" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator/Unit Locations"]
 position = Vector2(-284, 417)
 
-[node name="unit4" type="Node2D" parent="Camera2D/shop_item_generator/Unit Locations"]
+[node name="unit4" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator/Unit Locations"]
 position = Vector2(-210, 417)
 
-[node name="unit5" type="Node2D" parent="Camera2D/shop_item_generator/Unit Locations"]
+[node name="unit5" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator/Unit Locations"]
 position = Vector2(-135, 347)
 
-[node name="unit6" type="Node2D" parent="Camera2D/shop_item_generator/Unit Locations"]
+[node name="unit6" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator/Unit Locations"]
 position = Vector2(-135, 416)
 
-[node name="booster_locations" type="Node2D" parent="Camera2D/shop_item_generator"]
+[node name="booster_locations" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator"]
 position = Vector2(-17, 27)
 
-[node name="booster_1" type="Node2D" parent="Camera2D/shop_item_generator/booster_locations"]
+[node name="booster_1" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator/booster_locations"]
 position = Vector2(682, 244)
 
-[node name="booster_2" type="Node2D" parent="Camera2D/shop_item_generator/booster_locations"]
+[node name="booster_2" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator/booster_locations"]
 position = Vector2(756, 244)
 
-[node name="re-roll button" type="TextureButton" parent="Camera2D/shop_item_generator"]
+[node name="re-roll button" type="TextureButton" parent="Camera2D/shop_stuff/shop_item_generator"]
 z_index = 1
 texture_filter = 1
 offset_left = 585.0
@@ -227,7 +357,7 @@ texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 metadata/_edit_use_anchors_ = true
 
-[node name="shadow" type="Sprite2D" parent="Camera2D/shop_item_generator/re-roll button"]
+[node name="shadow" type="Sprite2D" parent="Camera2D/shop_stuff/shop_item_generator/re-roll button"]
 self_modulate = Color(0, 0, 0, 0.376471)
 z_as_relative = false
 texture_filter = 1
@@ -235,7 +365,7 @@ position = Vector2(37.5, 15.5)
 scale = Vector2(1.0274, 1)
 texture = ExtResource("8_qjc8s")
 
-[node name="TextureRect" type="TextureRect" parent="Camera2D/shop_item_generator/re-roll button"]
+[node name="TextureRect" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/re-roll button"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.0136986
@@ -250,7 +380,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_wk4qg")
 metadata/_edit_use_anchors_ = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_item_generator/re-roll button/TextureRect"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/re-roll button/TextureRect"]
 clip_contents = false
 layout_mode = 1
 anchors_preset = -1
@@ -267,7 +397,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Re-rollText" type="RichTextLabel" parent="Camera2D/shop_item_generator/re-roll button"]
+[node name="Re-rollText" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/re-roll button"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -285,7 +415,7 @@ fit_content = true
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="upgrade button" type="TextureButton" parent="Camera2D/shop_item_generator"]
+[node name="upgrade button" type="TextureButton" parent="Camera2D/shop_stuff/shop_item_generator"]
 z_index = 1
 texture_filter = 1
 offset_left = 665.0
@@ -297,7 +427,7 @@ texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 metadata/_edit_use_anchors_ = true
 
-[node name="UpgradeText" type="RichTextLabel" parent="Camera2D/shop_item_generator/upgrade button"]
+[node name="UpgradeText" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/upgrade button"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -316,7 +446,7 @@ scroll_active = false
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="shadow" type="Sprite2D" parent="Camera2D/shop_item_generator/upgrade button"]
+[node name="shadow" type="Sprite2D" parent="Camera2D/shop_stuff/shop_item_generator/upgrade button"]
 self_modulate = Color(0, 0, 0, 0.376471)
 z_as_relative = false
 texture_filter = 1
@@ -324,7 +454,7 @@ position = Vector2(37.5, 15.5)
 scale = Vector2(1.0274, 1)
 texture = ExtResource("8_qjc8s")
 
-[node name="battle_button" type="TextureButton" parent="Camera2D/shop_item_generator"]
+[node name="battle_button" type="TextureButton" parent="Camera2D/shop_stuff/shop_item_generator"]
 texture_filter = 1
 offset_left = 690.0
 offset_top = 421.0
@@ -334,7 +464,7 @@ texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
-[node name="BattleText" type="RichTextLabel" parent="Camera2D/shop_item_generator/battle_button"]
+[node name="BattleText" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/battle_button"]
 layout_mode = 0
 offset_right = 384.0
 offset_bottom = 142.0
@@ -345,41 +475,41 @@ text = "BATTLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="base_spawn_location" type="Node2D" parent="Camera2D/shop_item_generator"]
+[node name="base_spawn_location" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator"]
 position = Vector2(607, 401)
 script = ExtResource("12_qjc8s")
 
-[node name="pedastals" type="Node2D" parent="Camera2D/shop_item_generator"]
+[node name="pedastals" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator"]
 
-[node name="pedestal" type="Sprite2D" parent="Camera2D/shop_item_generator/pedastals"]
+[node name="pedestal" type="Sprite2D" parent="Camera2D/shop_stuff/shop_item_generator/pedastals"]
 self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
 texture_filter = 1
 position = Vector2(625.32, 129.32)
 scale = Vector2(1.26, 1.26)
 texture = ExtResource("8_rrq0j")
 
-[node name="pedestal2" type="Sprite2D" parent="Camera2D/shop_item_generator/pedastals"]
+[node name="pedestal2" type="Sprite2D" parent="Camera2D/shop_stuff/shop_item_generator/pedastals"]
 self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
 texture_filter = 1
 position = Vector2(699.32, 129.32)
 scale = Vector2(1.26, 1.26)
 texture = ExtResource("8_rrq0j")
 
-[node name="pedestal3" type="Sprite2D" parent="Camera2D/shop_item_generator/pedastals"]
+[node name="pedestal3" type="Sprite2D" parent="Camera2D/shop_stuff/shop_item_generator/pedastals"]
 self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
 texture_filter = 1
 position = Vector2(625.32, 200.32)
 scale = Vector2(1.26, 1.26)
 texture = ExtResource("8_rrq0j")
 
-[node name="pedestal4" type="Sprite2D" parent="Camera2D/shop_item_generator/pedastals"]
+[node name="pedestal4" type="Sprite2D" parent="Camera2D/shop_stuff/shop_item_generator/pedastals"]
 self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
 texture_filter = 1
 position = Vector2(699.32, 200.32)
 scale = Vector2(1.26, 1.26)
 texture = ExtResource("8_rrq0j")
 
-[node name="pedestal5" type="Sprite2D" parent="Camera2D/shop_item_generator/pedastals"]
+[node name="pedestal5" type="Sprite2D" parent="Camera2D/shop_stuff/shop_item_generator/pedastals"]
 modulate = Color(1, 1, 1, 0.392157)
 self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
 texture_filter = 1
@@ -387,7 +517,7 @@ position = Vector2(773.32, 130.32)
 scale = Vector2(1.26, 1.26)
 texture = ExtResource("8_rrq0j")
 
-[node name="pedestal6" type="Sprite2D" parent="Camera2D/shop_item_generator/pedastals"]
+[node name="pedestal6" type="Sprite2D" parent="Camera2D/shop_stuff/shop_item_generator/pedastals"]
 modulate = Color(1, 1, 1, 0.392157)
 self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
 texture_filter = 1
@@ -395,13 +525,13 @@ position = Vector2(773.32, 200.32)
 scale = Vector2(1.26, 1.26)
 texture = ExtResource("8_rrq0j")
 
-[node name="reroll_UI" type="CanvasLayer" parent="Camera2D/shop_item_generator"]
+[node name="reroll_UI" type="CanvasLayer" parent="Camera2D/shop_stuff/shop_item_generator"]
 visible = false
 offset = Vector2(-231.665, -255.145)
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, -231.665, -255.145)
 
-[node name="Container" type="Control" parent="Camera2D/shop_item_generator/reroll_UI"]
+[node name="Container" type="Control" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI"]
 z_index = -2
 z_as_relative = false
 layout_mode = 3
@@ -417,7 +547,7 @@ grow_vertical = 2
 pivot_offset = Vector2(586.443, 421.43)
 metadata/_edit_use_anchors_ = true
 
-[node name="Menu" type="Control" parent="Camera2D/shop_item_generator/reroll_UI/Container"]
+[node name="Menu" type="Control" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container"]
 anchors_preset = 0
 offset_left = 637.333
 offset_top = 352.667
@@ -425,7 +555,7 @@ offset_right = 637.333
 offset_bottom = 352.667
 metadata/_edit_use_anchors_ = true
 
-[node name="crate" type="TextureRect" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu"]
+[node name="crate" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu"]
 modulate = Color(0.255659, 0.255659, 0.255659, 1)
 texture_filter = 1
 layout_mode = 0
@@ -437,7 +567,7 @@ scale = Vector2(9, 9)
 pivot_offset = Vector2(16.0572, 15.3813)
 texture = ExtResource("11_hwvrm")
 
-[node name="booster_name" type="RichTextLabel" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu"]
+[node name="booster_name" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu"]
 layout_mode = 0
 offset_left = -140.0
 offset_top = -140.667
@@ -451,13 +581,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="shop_slot" type="Control" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu"]
+
 anchors_preset = 0
 offset_left = 80.0
 offset_top = -64.6667
 offset_right = 80.0
 offset_bottom = -64.6667
 
-[node name="booster_image" type="TextureRect" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/shop_slot"]
+[node name="booster_image" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/shop_slot"]
 texture_filter = 1
 layout_mode = 0
 offset_left = -33.3332
@@ -467,7 +598,7 @@ offset_bottom = 2.00001
 scale = Vector2(0.875, 0.875)
 texture = ExtResource("8_rrq0j")
 
-[node name="booster_image2" type="TextureRect" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/shop_slot"]
+[node name="booster_image2" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/shop_slot"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 14.6668
@@ -477,7 +608,7 @@ offset_bottom = 25.3333
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("13_l5wyo")
 
-[node name="booster_description" type="RichTextLabel" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/shop_slot"]
+[node name="booster_description" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/shop_slot"]
 layout_mode = 0
 offset_left = -35.3332
 offset_top = -7.33331
@@ -489,7 +620,7 @@ text = "Increase number of slots in the shop"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="shop_slot_button" type="TextureButton" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/shop_slot"]
+[node name="shop_slot_button" type="TextureButton" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/shop_slot"]
 layout_mode = 0
 offset_left = -34.0002
 offset_top = 26.0465
@@ -499,7 +630,7 @@ texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
-[node name="shop_slot_button_text" type="RichTextLabel" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/shop_slot/shop_slot_button"]
+[node name="shop_slot_button_text" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/shop_slot/shop_slot_button"]
 layout_mode = 0
 offset_top = -2.0
 offset_right = 740.0
@@ -512,7 +643,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="shop_slot_cost" type="Label" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/shop_slot/shop_slot_button"]
+[node name="shop_slot_cost" type="Label" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/shop_slot/shop_slot_button"]
 z_index = 5
 z_as_relative = false
 layout_mode = 1
@@ -534,21 +665,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/shop_slot/shop_slot_button/shop_slot_cost"]
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/shop_slot/shop_slot_button/shop_slot_cost"]
 z_index = 1
 z_as_relative = false
 position = Vector2(58.8235, 70.5882)
 scale = Vector2(4.41176, 4.41177)
 texture = ExtResource("6_wk4qg")
 
-[node name="base_upgrade" type="Control" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu"]
+[node name="base_upgrade" type="Control" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu"]
 anchors_preset = 0
 offset_left = -84.0
 offset_top = 95.3333
 offset_right = -84.0
 offset_bottom = 95.3333
 
-[node name="booster_image" type="TextureRect" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/base_upgrade"]
+[node name="booster_image" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/base_upgrade"]
 texture_filter = 1
 layout_mode = 0
 offset_left = -24.0
@@ -558,7 +689,7 @@ offset_bottom = -20.0
 texture = ExtResource("15_vg5hm")
 stretch_mode = 4
 
-[node name="booster_image2" type="TextureRect" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/base_upgrade"]
+[node name="booster_image2" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/base_upgrade"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 8.33329
@@ -568,7 +699,7 @@ offset_bottom = -12.0
 texture = ExtResource("13_l5wyo")
 stretch_mode = 4
 
-[node name="booster_description" type="RichTextLabel" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/base_upgrade"]
+[node name="booster_description" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/base_upgrade"]
 layout_mode = 0
 offset_left = -41.3333
 offset_top = -15.3333
@@ -580,7 +711,7 @@ text = "Base Upgrades"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="base_upgrade_button" type="TextureButton" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/base_upgrade"]
+[node name="base_upgrade_button" type="TextureButton" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/base_upgrade"]
 layout_mode = 0
 offset_left = -37.3333
 offset_top = 10.0
@@ -590,7 +721,7 @@ texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
-[node name="base_upgrade_button_text" type="RichTextLabel" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/base_upgrade/base_upgrade_button"]
+[node name="base_upgrade_button_text" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/base_upgrade/base_upgrade_button"]
 layout_mode = 0
 offset_top = -2.0
 offset_right = 740.0
@@ -603,14 +734,14 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="remove_units" type="Control" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu"]
+[node name="remove_units" type="Control" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu"]
 anchors_preset = 0
 offset_left = 81.3333
 offset_top = 96.0
 offset_right = 81.3333
 offset_bottom = 96.0
 
-[node name="booster_image" type="TextureRect" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/remove_units"]
+[node name="booster_image" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/remove_units"]
 self_modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 layout_mode = 0
@@ -620,7 +751,7 @@ offset_right = 20.6667
 offset_bottom = -23.3333
 texture = ExtResource("12_uptcy")
 
-[node name="booster_image2" type="TextureRect" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/remove_units/booster_image"]
+[node name="booster_image2" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/remove_units/booster_image"]
 modulate = Color(1, 0, 0, 1)
 self_modulate = Color(1, 0, 0, 1)
 show_behind_parent = true
@@ -633,7 +764,7 @@ offset_bottom = 37.3333
 scale = Vector2(1.15, 1.15)
 texture = ExtResource("12_uptcy")
 
-[node name="booster_description" type="RichTextLabel" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/remove_units"]
+[node name="booster_description" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/remove_units"]
 layout_mode = 0
 offset_left = -48.6667
 offset_top = -18.0
@@ -645,7 +776,7 @@ text = "Remove types of units from shop pool"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="remove_units_button" type="TextureButton" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/remove_units"]
+[node name="remove_units_button" type="TextureButton" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/remove_units"]
 layout_mode = 0
 offset_left = -36.0
 offset_top = 8.6667
@@ -655,7 +786,7 @@ texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/remove_units/remove_units_button"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/remove_units/remove_units_button"]
 layout_mode = 0
 offset_top = -2.0
 offset_right = 740.0
@@ -668,7 +799,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="close_button" type="TextureButton" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu"]
+[node name="close_button" type="TextureButton" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu"]
 z_index = 1
 layout_mode = 0
 offset_left = 132.0
@@ -679,7 +810,7 @@ texture_normal = ExtResource("13_pjqx2")
 texture_pressed = ExtResource("14_l5wyo")
 texture_hover = ExtResource("15_ywfir")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/close_button"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/close_button"]
 layout_mode = 0
 offset_right = 274.0
 offset_bottom = 274.0
@@ -691,7 +822,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="shadow" type="TextureRect" parent="Camera2D/shop_item_generator/reroll_UI/Container/Menu/close_button"]
+[node name="shadow" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/reroll_UI/Container/Menu/close_button"]
 modulate = Color(0, 0, 0, 0.529412)
 z_index = -1
 layout_mode = 0
@@ -701,13 +832,13 @@ offset_right = 29.0
 offset_bottom = 28.3333
 texture = ExtResource("13_pjqx2")
 
-[node name="remove_units_UI" type="CanvasLayer" parent="Camera2D/shop_item_generator"]
+[node name="remove_units_UI" type="CanvasLayer" parent="Camera2D/shop_stuff/shop_item_generator"]
 visible = false
 offset = Vector2(-231.665, -255.145)
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, -231.665, -255.145)
 
-[node name="Container" type="Control" parent="Camera2D/shop_item_generator/remove_units_UI"]
+[node name="Container" type="Control" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI"]
 z_index = -2
 z_as_relative = false
 layout_mode = 3
@@ -723,7 +854,7 @@ grow_vertical = 2
 pivot_offset = Vector2(586.443, 421.43)
 metadata/_edit_use_anchors_ = true
 
-[node name="Menu" type="Control" parent="Camera2D/shop_item_generator/remove_units_UI/Container"]
+[node name="Menu" type="Control" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container"]
 anchors_preset = 0
 offset_left = 637.333
 offset_top = 352.667
@@ -731,7 +862,7 @@ offset_right = 637.333
 offset_bottom = 352.667
 metadata/_edit_use_anchors_ = true
 
-[node name="crate" type="TextureRect" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu"]
+[node name="crate" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu"]
 modulate = Color(0.255659, 0.255659, 0.255659, 1)
 texture_filter = 1
 layout_mode = 0
@@ -743,7 +874,7 @@ scale = Vector2(9, 9)
 pivot_offset = Vector2(16.0572, 15.3813)
 texture = ExtResource("11_hwvrm")
 
-[node name="menu_title" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu"]
+[node name="menu_title" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu"]
 layout_mode = 0
 offset_left = -140.0
 offset_top = -140.667
@@ -756,14 +887,14 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="remove_medieval" type="Control" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu"]
+[node name="remove_medieval" type="Control" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu"]
 anchors_preset = 0
 offset_left = -81.9998
 offset_top = -45.3336
 offset_right = -81.9998
 offset_bottom = -45.3336
 
-[node name="unit_image" type="TextureRect" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval"]
+[node name="unit_image" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval"]
 texture_filter = 1
 layout_mode = 0
 offset_left = -16.6665
@@ -773,7 +904,7 @@ offset_bottom = -13.3336
 texture = ExtResource("12_uptcy")
 stretch_mode = 3
 
-[node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval"]
+[node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval"]
 layout_mode = 0
 offset_left = -42.0
 offset_top = -12.0
@@ -785,7 +916,7 @@ text = "Medieval"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="remove_medieval_button" type="TextureButton" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval"]
+[node name="remove_medieval_button" type="TextureButton" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval"]
 layout_mode = 0
 offset_left = -35.3331
 offset_top = 8.66638
@@ -795,7 +926,7 @@ texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
-[node name="remove_medieval_button_text" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval/remove_medieval_button"]
+[node name="remove_medieval_button_text" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval/remove_medieval_button"]
 layout_mode = 0
 offset_top = -2.0
 offset_right = 740.0
@@ -808,7 +939,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="remove_medieval_cost" type="Label" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval/remove_medieval_button"]
+[node name="remove_medieval_cost" type="Label" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval/remove_medieval_button"]
 z_index = 5
 z_as_relative = false
 layout_mode = 1
@@ -829,21 +960,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval/remove_medieval_button/remove_medieval_cost"]
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_medieval/remove_medieval_button/remove_medieval_cost"]
 z_index = 1
 z_as_relative = false
 position = Vector2(58.8235, 70.5882)
 scale = Vector2(4.41176, 4.41177)
 texture = ExtResource("6_wk4qg")
 
-[node name="remove_army" type="Control" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu"]
+[node name="remove_army" type="Control" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu"]
 anchors_preset = 0
 offset_left = 67.3335
 offset_top = -46.0003
 offset_right = 67.3335
 offset_bottom = -46.0003
 
-[node name="unit_image" type="TextureRect" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_army"]
+[node name="unit_image" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_army"]
 texture_filter = 1
 layout_mode = 0
 offset_left = -16.6665
@@ -853,7 +984,7 @@ offset_bottom = -13.3336
 texture = ExtResource("21_hxbdf")
 stretch_mode = 3
 
-[node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_army"]
+[node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_army"]
 layout_mode = 0
 offset_left = -42.0
 offset_top = -12.0
@@ -865,7 +996,7 @@ text = "Army"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="remove_army_button" type="TextureButton" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_army"]
+[node name="remove_army_button" type="TextureButton" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_army"]
 layout_mode = 0
 offset_left = -35.3331
 offset_top = 8.66638
@@ -875,7 +1006,7 @@ texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
-[node name="remove_army_button_text" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_army/remove_army_button"]
+[node name="remove_army_button_text" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_army/remove_army_button"]
 layout_mode = 0
 offset_top = -2.0
 offset_right = 740.0
@@ -888,7 +1019,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="remove_army_cost" type="Label" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_army/remove_army_button"]
+[node name="remove_army_cost" type="Label" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_army/remove_army_button"]
 z_index = 5
 z_as_relative = false
 layout_mode = 1
@@ -909,21 +1040,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_army/remove_army_button/remove_army_cost"]
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_army/remove_army_button/remove_army_cost"]
 z_index = 1
 z_as_relative = false
 position = Vector2(58.8235, 70.5882)
 scale = Vector2(4.41176, 4.41177)
 texture = ExtResource("6_wk4qg")
 
-[node name="remove_dinosaur" type="Control" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu"]
+[node name="remove_dinosaur" type="Control" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu"]
 anchors_preset = 0
 offset_left = -81.9998
 offset_top = 68.6664
 offset_right = -81.9998
 offset_bottom = 68.6664
 
-[node name="unit_image" type="TextureRect" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur"]
+[node name="unit_image" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur"]
 texture_filter = 1
 layout_mode = 0
 offset_left = -16.6665
@@ -933,7 +1064,7 @@ offset_bottom = -13.3336
 texture = ExtResource("22_kga0f")
 stretch_mode = 3
 
-[node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur"]
+[node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur"]
 layout_mode = 0
 offset_left = -42.0
 offset_top = -12.0
@@ -945,7 +1076,7 @@ text = "Dinosaur"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="remove_dinosaur_button" type="TextureButton" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur"]
+[node name="remove_dinosaur_button" type="TextureButton" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur"]
 layout_mode = 0
 offset_left = -35.3331
 offset_top = 8.66638
@@ -955,7 +1086,7 @@ texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
-[node name="remove_dinosaur_button_text" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur/remove_dinosaur_button"]
+[node name="remove_dinosaur_button_text" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur/remove_dinosaur_button"]
 layout_mode = 0
 offset_top = -2.0
 offset_right = 740.0
@@ -968,7 +1099,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="remove_dinosaur_cost" type="Label" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur/remove_dinosaur_button"]
+[node name="remove_dinosaur_cost" type="Label" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur/remove_dinosaur_button"]
 z_index = 5
 z_as_relative = false
 layout_mode = 1
@@ -989,21 +1120,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur/remove_dinosaur_button/remove_dinosaur_cost"]
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_dinosaur/remove_dinosaur_button/remove_dinosaur_cost"]
 z_index = 1
 z_as_relative = false
 position = Vector2(58.8235, 70.5882)
 scale = Vector2(4.41176, 4.41177)
 texture = ExtResource("6_wk4qg")
 
-[node name="remove_fantasy" type="Control" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu"]
+[node name="remove_fantasy" type="Control" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu"]
 anchors_preset = 0
 offset_left = 65.3335
 offset_top = 69.333
 offset_right = 65.3335
 offset_bottom = 69.333
 
-[node name="unit_image" type="TextureRect" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy"]
+[node name="unit_image" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy"]
 texture_filter = 1
 layout_mode = 0
 offset_left = -16.6665
@@ -1013,7 +1144,7 @@ offset_bottom = -13.3336
 texture = ExtResource("23_3ljtq")
 stretch_mode = 3
 
-[node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy"]
+[node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy"]
 layout_mode = 0
 offset_left = -42.0
 offset_top = -12.0
@@ -1025,7 +1156,7 @@ text = "Fantasy"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="remove_fantasy_button" type="TextureButton" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy"]
+[node name="remove_fantasy_button" type="TextureButton" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy"]
 layout_mode = 0
 offset_left = -35.3331
 offset_top = 8.66638
@@ -1035,7 +1166,7 @@ texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
-[node name="remove_fantasy_button_text" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy/remove_fantasy_button"]
+[node name="remove_fantasy_button_text" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy/remove_fantasy_button"]
 layout_mode = 0
 offset_top = -2.0
 offset_right = 740.0
@@ -1048,7 +1179,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="remove_fantasy_cost" type="Label" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy/remove_fantasy_button"]
+[node name="remove_fantasy_cost" type="Label" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy/remove_fantasy_button"]
 z_index = 5
 z_as_relative = false
 layout_mode = 1
@@ -1069,14 +1200,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy/remove_fantasy_button/remove_fantasy_cost"]
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/remove_fantasy/remove_fantasy_button/remove_fantasy_cost"]
 z_index = 1
 z_as_relative = false
 position = Vector2(58.8235, 70.5882)
 scale = Vector2(4.41176, 4.41177)
 texture = ExtResource("6_wk4qg")
 
-[node name="close_button" type="TextureButton" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu"]
+[node name="close_button" type="TextureButton" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu"]
 z_index = 1
 layout_mode = 0
 offset_left = 132.0
@@ -1087,7 +1218,7 @@ texture_normal = ExtResource("13_pjqx2")
 texture_pressed = ExtResource("14_l5wyo")
 texture_hover = ExtResource("15_ywfir")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/close_button"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/close_button"]
 layout_mode = 0
 offset_right = 274.0
 offset_bottom = 274.0
@@ -1099,7 +1230,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="shadow" type="TextureRect" parent="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/close_button"]
+[node name="shadow" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/remove_units_UI/Container/Menu/close_button"]
 modulate = Color(0, 0, 0, 0.529412)
 z_index = -1
 layout_mode = 0
@@ -1109,13 +1240,13 @@ offset_right = 29.0
 offset_bottom = 28.3333
 texture = ExtResource("13_pjqx2")
 
-[node name="buy_bases_UI" type="CanvasLayer" parent="Camera2D/shop_item_generator"]
+[node name="buy_bases_UI" type="CanvasLayer" parent="Camera2D/shop_stuff/shop_item_generator"]
 visible = false
 offset = Vector2(-231.665, -255.145)
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, -231.665, -255.145)
 
-[node name="Container" type="Control" parent="Camera2D/shop_item_generator/buy_bases_UI"]
+[node name="Container" type="Control" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI"]
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
@@ -1130,7 +1261,7 @@ grow_vertical = 2
 pivot_offset = Vector2(54.11, 408.763)
 metadata/_edit_use_anchors_ = true
 
-[node name="crate" type="TextureRect" parent="Camera2D/shop_item_generator/buy_bases_UI/Container"]
+[node name="crate" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI/Container"]
 self_modulate = Color(0.288518, 0.288518, 0.288518, 1)
 texture_filter = 1
 layout_mode = 0
@@ -1144,7 +1275,7 @@ mouse_filter = 2
 texture = ExtResource("11_hwvrm")
 metadata/_edit_use_anchors_ = true
 
-[node name="close_button" type="TextureButton" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/crate"]
+[node name="close_button" type="TextureButton" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI/Container/crate"]
 layout_mode = 0
 offset_left = 30.0
 offset_top = -1.0
@@ -1156,7 +1287,7 @@ texture_pressed = ExtResource("14_l5wyo")
 texture_hover = ExtResource("15_ywfir")
 metadata/_edit_use_anchors_ = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/crate/close_button"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI/Container/crate/close_button"]
 layout_mode = 0
 offset_right = 274.0
 offset_bottom = 274.0
@@ -1169,7 +1300,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="shadow" type="TextureRect" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/crate/close_button"]
+[node name="shadow" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI/Container/crate/close_button"]
 modulate = Color(0, 0, 0, 0.529412)
 z_index = -1
 layout_mode = 0
@@ -1181,7 +1312,7 @@ mouse_filter = 2
 texture = ExtResource("13_pjqx2")
 metadata/_edit_use_anchors_ = true
 
-[node name="crate_shadow" type="TextureRect" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/crate"]
+[node name="crate_shadow" type="TextureRect" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI/Container/crate"]
 modulate = Color(0, 0, 0, 0.541176)
 z_index = -1
 texture_filter = 1
@@ -1196,7 +1327,7 @@ mouse_filter = 2
 texture = ExtResource("11_hwvrm")
 metadata/_edit_use_anchors_ = true
 
-[node name="TITLE" type="RichTextLabel" parent="Camera2D/shop_item_generator/buy_bases_UI/Container"]
+[node name="TITLE" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI/Container"]
 layout_mode = 0
 offset_left = -68.0
 offset_top = 288.0
@@ -1209,25 +1340,25 @@ text = "SELECT A BASE"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="upgraded_base_locations" type="Node2D" parent="Camera2D/shop_item_generator/buy_bases_UI/Container"]
+[node name="upgraded_base_locations" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI/Container"]
 position = Vector2(54.0439, 408.764)
 scale = Vector2(1.0119, 1.0119)
 
-[node name="location_1" type="Node2D" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/upgraded_base_locations"]
+[node name="location_1" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI/Container/upgraded_base_locations"]
 position = Vector2(-70, 0)
 
-[node name="location_2" type="Node2D" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/upgraded_base_locations"]
+[node name="location_2" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI/Container/upgraded_base_locations"]
 
-[node name="location_3" type="Node2D" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/upgraded_base_locations"]
+[node name="location_3" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI/Container/upgraded_base_locations"]
 position = Vector2(70, 0)
 
-[node name="location_4" type="Node2D" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/upgraded_base_locations"]
+[node name="location_4" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI/Container/upgraded_base_locations"]
 position = Vector2(-35, 70)
 
-[node name="location_5" type="Node2D" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/upgraded_base_locations"]
+[node name="location_5" type="Node2D" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI/Container/upgraded_base_locations"]
 position = Vector2(35, 70)
 
-[node name="buy_base_button" type="TextureButton" parent="Camera2D/shop_item_generator/buy_bases_UI/Container"]
+[node name="buy_base_button" type="TextureButton" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI/Container"]
 visible = false
 layout_mode = 0
 offset_left = 18.7766
@@ -1238,7 +1369,7 @@ texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/buy_base_button"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI/Container/buy_base_button"]
 layout_mode = 0
 offset_right = 729.0
 offset_bottom = 259.0
@@ -1249,7 +1380,7 @@ text = "SELECT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="base_cost" type="Label" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/buy_base_button"]
+[node name="base_cost" type="Label" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI/Container/buy_base_button"]
 z_index = 5
 z_as_relative = false
 layout_mode = 1
@@ -1271,36 +1402,36 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_item_generator/buy_bases_UI/Container/buy_base_button/base_cost"]
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_stuff/shop_item_generator/buy_bases_UI/Container/buy_base_button/base_cost"]
 z_index = 1
 z_as_relative = false
 position = Vector2(58.8235, 70.5882)
 scale = Vector2(4.41176, 4.41177)
 texture = ExtResource("6_wk4qg")
 
-[node name="sell_location" type="Node2D" parent="Camera2D"]
-position = Vector2(307, 66)
+[node name="sell_location" type="Node2D" parent="Camera2D/shop_stuff"]
+position = Vector2(81, 128)
 script = ExtResource("12_1cd4y")
 
-[node name="Area2D" type="Area2D" parent="Camera2D/sell_location" groups=["sell_location"]]
+[node name="Area2D" type="Area2D" parent="Camera2D/shop_stuff/sell_location" groups=["sell_location"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/sell_location/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/shop_stuff/sell_location/Area2D"]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_4adb8")
 
-[node name="Sprite2D" type="Sprite2D" parent="Camera2D/sell_location"]
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_stuff/sell_location"]
 z_index = 1
 texture_filter = 1
 texture = ExtResource("3_nu7bh")
 
-[node name="shadow" type="Sprite2D" parent="Camera2D/sell_location/Sprite2D"]
+[node name="shadow" type="Sprite2D" parent="Camera2D/shop_stuff/sell_location/Sprite2D"]
 self_modulate = Color(0, 0, 0, 0.376471)
 z_as_relative = false
 texture_filter = 1
 position = Vector2(3, 1)
 texture = ExtResource("3_nu7bh")
 
-[node name="sell_text" type="RichTextLabel" parent="Camera2D/sell_location"]
+[node name="sell_text" type="RichTextLabel" parent="Camera2D/shop_stuff/sell_location"]
 z_index = 1
 offset_left = -22.0
 offset_top = -3.0
@@ -1341,6 +1472,272 @@ libraries = {
 &"": SubResource("AnimationLibrary_1cd4y")
 }
 
+[node name="base_upgrade_control_node" type="Control" parent="Camera2D/base_manager"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -37.0
+offset_top = -56.0
+offset_right = 3.0
+offset_bottom = -16.0
+pivot_offset = Vector2(38, 14)
+
+[node name="base_upgrade_button" type="TextureButton" parent="Camera2D/base_manager/base_upgrade_control_node"]
+offset_right = 73.0
+offset_bottom = 27.0
+texture_normal = ExtResource("8_qjc8s")
+texture_pressed = ExtResource("9_vg5hm")
+texture_hover = ExtResource("10_1cd4y")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_control_node/base_upgrade_button"]
+layout_mode = 0
+offset_right = 695.0
+offset_bottom = 257.0
+scale = Vector2(0.105, 0.105)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 151
+text = "UPGRADE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="base_upgrade_options" type="TextureRect" parent="Camera2D/base_manager"]
+visible = false
+self_modulate = Color(0.855695, 0.771361, 0.423878, 1)
+z_index = 4
+offset_left = 72.0
+offset_top = -172.0
+offset_right = 540.0
+offset_bottom = 174.0
+pivot_offset = Vector2(237, 192)
+texture = ExtResource("27_kga0f")
+
+[node name="TITLE" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options"]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 11.0
+offset_right = 756.0
+offset_bottom = 120.0
+scale = Vector2(0.34, 0.34)
+theme_override_font_sizes/normal_font_size = 91
+text = "Base Upgrades"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="tier_text" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 60.0
+offset_right = 738.0
+offset_bottom = 169.0
+scale = Vector2(0.395, 0.395)
+theme_override_font_sizes/normal_font_size = 91
+text = "Current Tier: 0"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="path_1" type="TextureButton" parent="Camera2D/base_manager/base_upgrade_options"]
+self_modulate = Color(0.19334, 0.547819, 0.449156, 1)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 106.0
+offset_right = 232.0
+offset_bottom = 267.0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_i4wjb")
+texture_normal = ExtResource("28_3ljtq")
+texture_pressed = ExtResource("29_i4wjb")
+texture_hover = ExtResource("30_uug8p")
+
+[node name="path_1_text" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/path_1"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 1133.0
+offset_bottom = 195.0
+scale = Vector2(0.175, 0.175)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "PATH 1"
+horizontal_alignment = 1
+
+[node name="path_1_desc" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/path_1"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 38.0
+offset_right = 1724.0
+offset_bottom = 751.0
+scale = Vector2(0.115, 0.115)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "PATH 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="path_2" type="TextureButton" parent="Camera2D/base_manager/base_upgrade_options"]
+self_modulate = Color(0.730499, 0.313291, 0.468274, 1)
+layout_mode = 0
+offset_left = 243.0
+offset_top = 106.0
+offset_right = 445.0
+offset_bottom = 267.0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_i4wjb")
+texture_normal = ExtResource("28_3ljtq")
+texture_pressed = ExtResource("29_i4wjb")
+texture_hover = ExtResource("30_uug8p")
+
+[node name="path_2_text" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/path_2"]
+layout_mode = 0
+offset_left = 2.00001
+offset_top = 3.0
+offset_right = 1133.0
+offset_bottom = 195.0
+scale = Vector2(0.175, 0.175)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "PATH 2"
+horizontal_alignment = 1
+
+[node name="path_2_desc" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/path_2"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 38.0
+offset_right = 1724.0
+offset_bottom = 751.0
+scale = Vector2(0.115, 0.115)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "PATH 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="max_tier" type="TextureRect" parent="Camera2D/base_manager/base_upgrade_options"]
+visible = false
+self_modulate = Color(0.75889, 0.311138, 0.313611, 1)
+layout_mode = 0
+offset_left = 126.0
+offset_top = 106.0
+offset_right = 328.0
+offset_bottom = 267.0
+texture = ExtResource("28_3ljtq")
+
+[node name="max_tier_text" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/max_tier"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 1133.0
+offset_bottom = 195.0
+scale = Vector2(0.175, 0.175)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "MAX TIER"
+horizontal_alignment = 1
+
+[node name="max_tier_desc" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/max_tier"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 38.0
+offset_right = 1724.0
+offset_bottom = 751.0
+scale = Vector2(0.115, 0.115)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "PATH 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="confirm_base_upgrade" type="TextureButton" parent="Camera2D/base_manager/base_upgrade_options"]
+layout_mode = 0
+offset_left = 197.0
+offset_top = 285.0
+offset_right = 270.0
+offset_bottom = 312.0
+texture_normal = ExtResource("8_qjc8s")
+texture_pressed = ExtResource("9_vg5hm")
+texture_hover = ExtResource("10_1cd4y")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/confirm_base_upgrade"]
+layout_mode = 0
+offset_right = 667.0
+offset_bottom = 245.0
+scale = Vector2(0.11, 0.11)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "CONFIRM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Camera2D/base_manager/base_upgrade_options/confirm_base_upgrade"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0136986
+anchor_top = -0.25926
+anchor_right = -0.0136986
+anchor_bottom = -0.25926
+offset_left = -21.0
+offset_top = 10.0
+offset_right = 19.0
+offset_bottom = 50.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_wk4qg")
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/confirm_base_upgrade/coin"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.2
+anchor_bottom = 1.55
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.2, 0.2)
+theme_override_colors/default_color = Color(0.133333, 0.137255, 0, 1)
+theme_override_font_sizes/normal_font_size = 200
+text = "8"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="close_button" type="TextureButton" parent="Camera2D/base_manager/base_upgrade_options"]
+z_index = 1
+layout_mode = 0
+offset_left = 451.0
+offset_top = 25.0
+offset_right = 478.0
+offset_bottom = 52.0
+texture_normal = ExtResource("13_pjqx2")
+texture_pressed = ExtResource("14_l5wyo")
+texture_hover = ExtResource("15_ywfir")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/close_button"]
+layout_mode = 0
+offset_right = 274.0
+offset_bottom = 274.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "X"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="shadow" type="TextureRect" parent="Camera2D/base_manager/base_upgrade_options/close_button"]
+modulate = Color(0, 0, 0, 0.529412)
+z_index = -1
+layout_mode = 0
+offset_left = 2.00004
+offset_top = 1.33333
+offset_right = 29.0
+offset_bottom = 28.3333
+texture = ExtResource("13_pjqx2")
+
+[node name="base_anim_player" type="AnimationPlayer" parent="Camera2D/base_manager/base_upgrade_options"]
+libraries = {
+&"": SubResource("AnimationLibrary_i4wjb")
+}
+
 [node name="Tooltip" parent="Camera2D" instance=ExtResource("14_vg5hm")]
 position = Vector2(-261, 173)
 
@@ -1363,6 +1760,7 @@ metadata/_edit_lock_ = true
 [node name="coin_pos" type="Node2D" parent="Camera2D"]
 position = Vector2(-309, -176)
 
+
 [connection signal="button_down" from="Camera2D/shop_item_generator/re-roll button" to="." method="_on_reroll_button_button_down"]
 [connection signal="mouse_entered" from="Camera2D/shop_item_generator/re-roll button" to="." method="_on_reroll_button_mouse_entered"]
 [connection signal="mouse_exited" from="Camera2D/shop_item_generator/re-roll button" to="." method="_on_reroll_button_mouse_exited"]
@@ -1384,4 +1782,11 @@ position = Vector2(-309, -176)
 [connection signal="pressed" from="Camera2D/shop_item_generator/remove_units_UI/Container/Menu/close_button" to="Camera2D/shop_item_generator" method="_on_remove_UI_close_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/buy_bases_UI/Container/crate/close_button" to="Camera2D/shop_item_generator" method="_on_buy_bases_close_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_item_generator/buy_bases_UI/Container/buy_base_button" to="Camera2D/shop_item_generator" method="_on_buy_base_button_pressed"]
+
 [connection signal="mouse_entered" from="Camera2D/base_manager/base_Area2D" to="Camera2D/base_manager" method="_on_base_area_2d_mouse_entered"]
+[connection signal="pressed" from="Camera2D/base_manager/base_upgrade_control_node/base_upgrade_button" to="Camera2D/base_manager" method="_on_base_upgrade_button_pressed"]
+[connection signal="pressed" from="Camera2D/base_manager/base_upgrade_options/path_1" to="Camera2D/base_manager" method="_on_path_1_pressed"]
+[connection signal="pressed" from="Camera2D/base_manager/base_upgrade_options/path_2" to="Camera2D/base_manager" method="_on_path_2_pressed"]
+[connection signal="pressed" from="Camera2D/base_manager/base_upgrade_options/confirm_base_upgrade" to="Camera2D/base_manager" method="_on_confirm_base_upgrade_pressed"]
+[connection signal="pressed" from="Camera2D/base_manager/base_upgrade_options/close_button" to="Camera2D/base_manager" method="_on_close_button_pressed"]
+[connection signal="animation_finished" from="Camera2D/base_manager/base_upgrade_options/base_anim_player" to="Camera2D/base_manager" method="_on_base_anim_player_animation_finished"]

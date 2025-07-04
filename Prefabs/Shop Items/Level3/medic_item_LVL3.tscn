@@ -84,6 +84,7 @@ buy_cost = 6
 sell_cost = 3
 can_buff = true
 health_buff = 3
+All = true
 Medieval = true
 Army = true
 Vehicle = true
