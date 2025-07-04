@@ -75,9 +75,7 @@ sell_cost = 3
 health_buff = 1
 Medieval = true
 Army = true
-Vehicle = true
 Human = true
-Animal = true
 Soldier = true
 
 [node name="Sprite2D" parent="." index="0"]

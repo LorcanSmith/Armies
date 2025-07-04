@@ -51,6 +51,7 @@ var unit_types : Array = [
 	"Human",
 	"Soldier",
 	"Animal",
+	"Healer",
 	"Fantasy",
 	"Sheep",
 	"Velociraptor"
@@ -61,10 +62,10 @@ var unit_types : Array = [
 @export var Dinosaur : bool
 @export var Fantasy : bool
 @export_subgroup("Types")
-@export var Healer : bool
 @export var Vehicle : bool
 @export var Human : bool
 @export var Animal : bool
+@export var Healer : bool
 @export_subgroup("Names")
 @export var Soldier : bool
 @export var Sheep : bool
