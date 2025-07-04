@@ -54,10 +54,11 @@ animations = [{
 }]
 
 [node name="Pig" instance=ExtResource("1_gfj3s")]
-description = "oink"
+description = "Increase the chance of higher level units by +1%"
 unit_name = "Pig"
 buy_cost = 6
 sell_cost = 3
+increase_higher_level_unit_perecentage = 1.0
 
 [node name="Sprite2D" parent="." index="0"]
 texture = null
