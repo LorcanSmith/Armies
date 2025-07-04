@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=40 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
@@ -27,6 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="21_hxbdf"]
 [ext_resource type="Texture2D" uid="uid://cspyn7seap7nm" path="res://Sprites/Units/Dinosaurs/velociraptor/velociraptor_sprite_lvl1.png" id="22_kga0f"]
 [ext_resource type="Texture2D" uid="uid://duqq8x48i1fj" path="res://Sprites/Units/Fantasy/orc.png" id="23_3ljtq"]
+[ext_resource type="Texture2D" uid="uid://dnktsvr37mygq" path="res://Sprites/UI/shop/base_upgrade_bg.png" id="27_kga0f"]
+[ext_resource type="Texture2D" uid="uid://dnmlrb05mdhr" path="res://Sprites/UI/shop/path.png" id="28_3ljtq"]
 [ext_resource type="Texture2D" uid="uid://coon5hqrkq71r" path="res://Sprites/Backgrounds/bg.png" id="28_hxbdf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4adb8"]
@@ -118,6 +120,60 @@ tracks/2/keys = {
 _data = {
 &"RESET": SubResource("Animation_1cd4y"),
 &"base_appear": SubResource("Animation_vg5hm")
+}
+
+[sub_resource type="Animation" id="Animation_3ljtq"]
+resource_name = "popin"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_52y88"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_i4wjb"]
+resource_name = "popout"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i4wjb"]
+_data = {
+&"RESET": SubResource("Animation_52y88"),
+&"popin": SubResource("Animation_3ljtq"),
+&"popout": SubResource("Animation_i4wjb")
 }
 
 [node name="shop_manager" type="Node2D"]
@@ -1462,102 +1518,218 @@ libraries = {
 
 [node name="base_upgrade_button" type="TextureButton" parent="Camera2D/base_manager"]
 offset_left = -38.0
-offset_top = -39.0
+offset_top = -32.0
 offset_right = 35.0
-offset_bottom = -12.0
+offset_bottom = -5.0
 texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_button"]
+layout_mode = 0
+offset_right = 695.0
+offset_bottom = 257.0
+scale = Vector2(0.105, 0.105)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 151
+text = "UPGRADE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="base_upgrade_options" type="TextureRect" parent="Camera2D/base_manager"]
-visible = false
+self_modulate = Color(0.855695, 0.771361, 0.423878, 1)
 z_index = 4
-offset_left = 124.0
-offset_top = -142.0
-offset_right = 437.0
-offset_bottom = 171.0
-texture = ExtResource("11_hwvrm")
+offset_left = 72.0
+offset_top = -172.0
+offset_right = 540.0
+offset_bottom = 174.0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(237, 192)
+texture = ExtResource("27_kga0f")
+
+[node name="TITLE" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options"]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 11.0
+offset_right = 756.0
+offset_bottom = 120.0
+scale = Vector2(0.34, 0.34)
+theme_override_font_sizes/normal_font_size = 91
+text = "Base Upgrades"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="tier_text" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options"]
 layout_mode = 0
-offset_left = 98.0
-offset_top = 38.0
-offset_right = 398.0
-offset_bottom = 156.0
+offset_left = 108.0
+offset_top = 60.0
+offset_right = 738.0
+offset_bottom = 169.0
 scale = Vector2(0.395, 0.395)
 theme_override_font_sizes/normal_font_size = 91
-text = "TIER 0"
+text = "Current Tier: 0"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="path_1" type="TextureButton" parent="Camera2D/base_manager/base_upgrade_options"]
+self_modulate = Color(0.19334, 0.547819, 0.449156, 1)
 layout_mode = 0
-offset_left = 41.0
-offset_top = 101.0
-offset_right = 73.0
-offset_bottom = 133.0
-scale = Vector2(2.755, 2.755)
-texture_normal = ExtResource("11_hwvrm")
+offset_left = 30.0
+offset_top = 106.0
+offset_right = 232.0
+offset_bottom = 267.0
+texture_normal = ExtResource("28_3ljtq")
 
 [node name="path_1_text" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/path_1"]
 layout_mode = 0
-offset_left = 2.90381
-offset_top = 2.17786
-offset_right = 302.904
-offset_bottom = 120.178
-scale = Vector2(0.09, 0.09)
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 1133.0
+offset_bottom = 195.0
+scale = Vector2(0.175, 0.175)
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 91
+theme_override_font_sizes/normal_font_size = 150
 text = "PATH 1"
+horizontal_alignment = 1
 
 [node name="path_1_desc" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/path_1"]
 layout_mode = 0
-offset_left = 2.90381
-offset_top = 12.3412
-offset_right = 302.904
-offset_bottom = 130.341
-scale = Vector2(0.09, 0.09)
+offset_left = 2.0
+offset_top = 38.0
+offset_right = 1724.0
+offset_bottom = 751.0
+scale = Vector2(0.115, 0.115)
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 91
+theme_override_font_sizes/normal_font_size = 150
 text = "PATH 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="path_2" type="TextureButton" parent="Camera2D/base_manager/base_upgrade_options"]
+self_modulate = Color(0.730499, 0.313291, 0.468274, 1)
 layout_mode = 0
-offset_left = 180.0
-offset_top = 97.0
-offset_right = 212.0
-offset_bottom = 129.0
-scale = Vector2(2.755, 2.755)
-texture_normal = ExtResource("11_hwvrm")
+offset_left = 243.0
+offset_top = 106.0
+offset_right = 445.0
+offset_bottom = 267.0
+texture_normal = ExtResource("28_3ljtq")
 
 [node name="path_2_text" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/path_2"]
 layout_mode = 0
-offset_left = 3.2668
-offset_top = 3.26678
-offset_right = 303.267
-offset_bottom = 121.267
-scale = Vector2(0.09, 0.09)
+offset_left = 2.00001
+offset_top = 3.0
+offset_right = 1133.0
+offset_bottom = 195.0
+scale = Vector2(0.175, 0.175)
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 91
+theme_override_font_sizes/normal_font_size = 150
 text = "PATH 2"
+horizontal_alignment = 1
 
 [node name="path_2_desc" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/path_2"]
 layout_mode = 0
-offset_left = 3.2668
-offset_top = 12.3412
-offset_right = 303.267
-offset_bottom = 130.341
-scale = Vector2(0.09, 0.09)
+offset_left = 2.0
+offset_top = 38.0
+offset_right = 1724.0
+offset_bottom = 751.0
+scale = Vector2(0.115, 0.115)
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 91
+theme_override_font_sizes/normal_font_size = 150
 text = "PATH 2"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="confirm_base_upgrade" type="TextureButton" parent="Camera2D/base_manager/base_upgrade_options"]
-offset_left = 121.0
-offset_top = 255.0
-offset_right = 194.0
-offset_bottom = 282.0
+layout_mode = 0
+offset_left = 197.0
+offset_top = 285.0
+offset_right = 270.0
+offset_bottom = 312.0
 texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/confirm_base_upgrade"]
+layout_mode = 0
+offset_right = 667.0
+offset_bottom = 245.0
+scale = Vector2(0.11, 0.11)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "CONFIRM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Camera2D/base_manager/base_upgrade_options/confirm_base_upgrade"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0136986
+anchor_top = -0.25926
+anchor_right = -0.0136986
+anchor_bottom = -0.25926
+offset_left = -21.0
+offset_top = 10.0
+offset_right = 19.0
+offset_bottom = 50.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_wk4qg")
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/confirm_base_upgrade/coin"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.2
+anchor_bottom = 1.55
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.2, 0.2)
+theme_override_colors/default_color = Color(0.133333, 0.137255, 0, 1)
+theme_override_font_sizes/normal_font_size = 200
+text = "8"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="close_button" type="TextureButton" parent="Camera2D/base_manager/base_upgrade_options"]
+z_index = 1
+offset_left = 451.0
+offset_top = 25.0
+offset_right = 478.0
+offset_bottom = 52.0
+texture_normal = ExtResource("13_pjqx2")
+texture_pressed = ExtResource("14_l5wyo")
+texture_hover = ExtResource("15_ywfir")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/base_manager/base_upgrade_options/close_button"]
+layout_mode = 0
+offset_right = 274.0
+offset_bottom = 274.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "X"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="shadow" type="TextureRect" parent="Camera2D/base_manager/base_upgrade_options/close_button"]
+modulate = Color(0, 0, 0, 0.529412)
+z_index = -1
+layout_mode = 0
+offset_left = 2.00004
+offset_top = 1.33333
+offset_right = 29.0
+offset_bottom = 28.3333
+texture = ExtResource("13_pjqx2")
+
+[node name="base_anim_player" type="AnimationPlayer" parent="Camera2D/base_manager/base_upgrade_options"]
+libraries = {
+&"": SubResource("AnimationLibrary_i4wjb")
+}
 
 [node name="Tooltip" parent="Camera2D" instance=ExtResource("14_vg5hm")]
 position = Vector2(-261, 173)
@@ -1608,3 +1780,5 @@ position = Vector2(-309, -176)
 [connection signal="pressed" from="Camera2D/base_manager/base_upgrade_options/path_1" to="Camera2D/base_manager" method="_on_path_1_pressed"]
 [connection signal="pressed" from="Camera2D/base_manager/base_upgrade_options/path_2" to="Camera2D/base_manager" method="_on_path_2_pressed"]
 [connection signal="pressed" from="Camera2D/base_manager/base_upgrade_options/confirm_base_upgrade" to="Camera2D/base_manager" method="_on_confirm_base_upgrade_pressed"]
+[connection signal="pressed" from="Camera2D/base_manager/base_upgrade_options/close_button" to="Camera2D/base_manager" method="_on_close_button_pressed"]
+[connection signal="animation_finished" from="Camera2D/base_manager/base_upgrade_options/base_anim_player" to="Camera2D/base_manager" method="_on_base_anim_player_animation_finished"]

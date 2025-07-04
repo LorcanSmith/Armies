@@ -32,6 +32,7 @@ var army_units : Array
 var healer_units : Array
 
 ##Upgrading Bases
+@export var base_upgrade_cost : int = 8
 var tier : int = 0
 var path_selected : int = 0
 var upgrade_name_1 : String
@@ -66,6 +67,27 @@ func set_base(id, n, d, play_anim : bool):
 		base_sprite.get_child(0).texture = base_sprites[id]
 		base_name = n
 		base_description = d
+		var gm = find_parent("game_manager")
+		#Themes
+		medieval_health = gm.medieval_health
+		medieval_attack = gm.medieval_attack
+		army_health = gm.army_health
+		army_attack = gm.army_attack
+		dinosaur_health = gm.dinosaur_health
+
+		#Types
+		vehicle_health = gm.vehicle_health
+		vehicle_attack = gm.vehicle_attack
+		human_health = gm.human_health
+		human_attack = gm.human_attack
+		animal_health = gm.animal_health
+		animal_attack = gm.animal_attack
+
+		#Names
+		soldier_health = gm.soldier_health
+		soldier_attack = gm.soldier_attack
+		velociraptor_health = gm.velociraptor_health
+		velociraptor_attack = gm.velociraptor_attack
 		if(play_anim):
 			get_node("AnimationPlayer").play("base_appear")
 	
@@ -84,6 +106,27 @@ func end_of_turn():
 	gm.base_description = base_description
 	gm.base_sprite = base_sprites[current_base_ID]
 	army = gm.army_units
+	#Save current base stats
+	#Themes
+	gm.medieval_health = medieval_health
+	gm.medieval_attack = medieval_attack
+	gm.army_health = army_health
+	gm.army_attack = army_attack
+	gm.dinosaur_health = dinosaur_health
+	#Types
+	gm.vehicle_health = vehicle_health
+	gm.vehicle_attack = vehicle_attack
+	gm.human_health = human_health
+	gm.human_attack = human_attack
+	gm.animal_health = animal_health
+	gm.animal_attack = animal_attack
+
+	#Names
+	gm.soldier_health = soldier_health
+	gm.soldier_attack = soldier_attack
+	gm.velociraptor_health = velociraptor_health
+	gm.velociraptor_attack = velociraptor_attack
+		
 	check_units()
 	
 func check_units():
@@ -96,17 +139,27 @@ func check_units():
 				var unit = dictionary_instance.unit_scenes[army[x][y].units_on_tile[0].unit_ID].instantiate()
 				##THEMES
 				#Medieval
-				if(!unit.Medieval):
-					medieval_exclusive = false
-				else:
-					medieval_units.append(army[x][y].units_on_tile[0])
+				if(unit.Medieval):
+					if(medieval_health > 0):
+						var instance = health_buff.instantiate()
+						instance.global_position = self.global_position
+						instance.unit = army[x][y].units_on_tile[0]
+						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
+						instance.find_child("buff_text").text = str("+",medieval_health)
+						army[x][y].units_on_tile[0].health_boost += medieval_health
+					if(medieval_attack > 0):
+						var instance = damage_buff.instantiate()
+						instance.global_position = self.global_position
+						instance.unit = army[x][y].units_on_tile[0]
+						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
+						instance.find_child("buff_text").text = str("+",medieval_attack)
+						army[x][y].units_on_tile[0].damage_boost += medieval_attack
 				#Army
-				if(!unit.Army):
-					army_exclusive = false
-				else:
-					army_units.append(army[x][y].units_on_tile[0])
-				if(unit.Healer):
-					healer_units.append(army[x][y].units_on_tile[0])
+				if(unit.Army):
+					pass
+				#Dinsoaur
+				if(unit.Dinosaur):
+					pass
 				##UNITS
 				#Sheep
 				if(unit.Sheep):
@@ -120,6 +173,10 @@ func _on_base_area_2d_mouse_entered() -> void:
 
 #SHOW BASE UPGRADES
 func _on_base_upgrade_button_pressed() -> void:
+	#Play popin animation
+	get_node("base_upgrade_options/base_anim_player").play("popin")
+	#Set text for the tier
+	find_child("tier_text").text = ("Current Tier: " + str(tier))
 	#turn on upgrade UI
 	find_child("base_upgrade_options").visible = true
 	#turn off upgrade button
@@ -142,24 +199,115 @@ func _on_base_upgrade_button_pressed() -> void:
 		upgrade_path_2_desc.text = castle_path_2_descs[tier]
 #SET BASE UPGRADE
 func _on_confirm_base_upgrade_pressed() -> void:
-	#Path 1
-	if(path_selected == 1):
-		#Tier 0
-		if(tier == 0):
-			#Castle
-			if(current_base_ID == 0):
-				medieval_health += 1
-		#Tier 1
-		elif(tier == 1):
-			#Castle
-			if(current_base_ID == 0):
-				medieval_health += 2
-				
-	#Turn off UI
-	find_child("base_upgrade_options").visible = false
-	#Turn on upgrade_button
-	find_child("base_upgrade_button").visible = true
+	var shop_manager = find_parent("shop_manager")
+	#Check if you have enough money
+	if(shop_manager.money > base_upgrade_cost):
+		shop_manager.change_money(base_upgrade_cost)
+		#Path 1
+		if(path_selected == 1):
+			#Tier 0
+			if(tier == 0):
+				#Castle
+				if(current_base_ID == 0):
+					medieval_health += 1
+				#Bank
+				elif(current_base_ID == 1):
+					pass
+				#Tent
+				elif(current_base_ID == 2):
+					pass
+				#Hospital
+				elif(current_base_ID == 3):
+					pass
+			#Tier 1
+			elif(tier == 1):
+				#Castle
+				if(current_base_ID == 0):
+					medieval_health += 1
+				#Bank
+				elif(current_base_ID == 1):
+					pass
+				#Tent
+				elif(current_base_ID == 2):
+					pass
+				#Hospital
+				elif(current_base_ID == 3):
+					pass
+			#Tier 2
+			elif(tier == 2):
+				#Castle
+				if(current_base_ID == 0):
+					medieval_health += 1
+				#Bank
+				elif(current_base_ID == 1):
+					pass
+				#Tent
+				elif(current_base_ID == 2):
+					pass
+				#Hospital
+				elif(current_base_ID == 3):
+					pass
+		#Path 2
+		elif(path_selected == 2):
+			#Tier 0
+			if(tier == 0):
+				#Castle
+				if(current_base_ID == 0):
+					medieval_health += 1
+				#Bank
+				elif(current_base_ID == 1):
+					pass
+				#Tent
+				elif(current_base_ID == 2):
+					pass
+				#Hospital
+				elif(current_base_ID == 3):
+					pass
+			#Tier 1
+			elif(tier == 1):
+				#Castle
+				if(current_base_ID == 0):
+					medieval_health += 1
+				#Bank
+				elif(current_base_ID == 1):
+					pass
+				#Tent
+				elif(current_base_ID == 2):
+					pass
+				#Hospital
+				elif(current_base_ID == 3):
+					pass
+			#Tier 2
+			elif(tier == 2):
+				#Castle
+				if(current_base_ID == 0):
+					medieval_health += 1
+				#Bank
+				elif(current_base_ID == 1):
+					pass
+				#Tent
+				elif(current_base_ID == 2):
+					pass
+				#Hospital
+				elif(current_base_ID == 3):
+					pass
+		#Play popout animation
+		get_node("base_upgrade_options/base_anim_player").play("popout")
+	#Not enough money, play animation to indicate this
+	else:
+		pass
 func _on_path_1_pressed() -> void:
 	path_selected = 1
 func _on_path_2_pressed() -> void:
 	path_selected = 2
+func _on_close_button_pressed() -> void:
+	#Turn off UI
+	find_child("base_upgrade_options").visible = false
+	#Turn on upgrade_button
+	find_child("base_upgrade_button").visible = true
+func _on_base_anim_player_animation_finished(anim_name: StringName) -> void:
+	#Turn off UI
+	if(anim_name == "popout"):
+		find_child("base_upgrade_options").visible = false
+		#Turn on upgrade_button
+		find_child("base_upgrade_button").visible = true

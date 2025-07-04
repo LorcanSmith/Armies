@@ -25,6 +25,27 @@ var base_ID : int = -1
 var base_name : String
 var base_description : String
 var base_sprite : Texture2D
+#Base stats
+#Themes
+var medieval_health : int = 0
+var medieval_attack : int = 0
+var army_health : int = 0
+var army_attack : int = 0
+var dinosaur_health : int = 0
+#Types
+var vehicle_health : int = 0
+var vehicle_attack : int = 0
+var human_health : int = 0
+var human_attack : int = 0
+var animal_health : int = 0
+var animal_attack : int = 0
+
+#Names
+var soldier_health : int = 0
+var soldier_attack : int = 0
+var velociraptor_health : int = 0
+var velociraptor_attack : int = 0
+
 
 #Just the unit IDS
 var army : Array
