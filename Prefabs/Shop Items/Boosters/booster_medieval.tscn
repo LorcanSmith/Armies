@@ -15,7 +15,10 @@
 [node name="booster_medieval" instance=ExtResource("1_6m5sb")]
 booster_name = "Medieval Crate"
 booster_description = "Gives a random selection of 5 medieval units. Choose one to gain for free."
-potential_units_IDs = [0, 18, 6, 3, 27]
+potential_units_IDs = [0, 6, 2, 1, 9]
+
+[node name="Container" parent="choose_unit_UI" index="0"]
+scale = Vector2(1, 1)
 
 [node name="unit_button" parent="choose_unit_UI/Container/unit_locations/location_1" index="0"]
 button_group = SubResource("ButtonGroup_6m5sb")

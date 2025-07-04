@@ -130,15 +130,12 @@ func run_report(game_manager : Node2D):
 func create_enemy_armies():
 	var turn_number = 1
 	var dictionary_instance = dictionary.new()
-	var base_money : int = 30
+	var base_money : int = 15
 	var base_threshold : int = 7
 	var money : int
 	var threshold : int
 	var items : Dictionary
 	var units : Array
-	
-	var level2_percentage = 3
-	var level3_percentage = 0.5
 	
 	var price : int
 	var random_unit : int
@@ -171,23 +168,7 @@ func create_enemy_armies():
 		var total_units : int = grid_width * grid_height
 		
 		while money > threshold and units.size() <= total_units:
-			random_unit = (randi_range(1,(dictionary_instance.item_scenes.size()/3))*3)
-			var random_percentage = randf_range(1,100)
-			var random_level
-			if(random_percentage <= (level2_percentage + (4 * turn_number))):
-				random_level = 2
-				if(random_percentage <= level3_percentage * turn_number):
-					random_level = 3
-			else:
-				random_level = 1
-			if(random_level == 1):
-				random_unit = random_unit-3
-			elif(random_level == 2):
-				#Gets the unit ID
-				random_unit = random_unit-2
-			elif(random_level == 3):
-				#Gets the unit ID
-				random_unit = random_unit-1
+			random_unit = (randi_range(1,(dictionary_instance.item_scenes.size()))) - 1
 			if items.has(random_unit):
 				price = items[random_unit].instantiate().buy_cost
 				

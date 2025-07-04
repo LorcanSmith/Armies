@@ -8,10 +8,6 @@ var shop_manager : Node2D
 var purchase_booster_UI : CanvasLayer
 var choose_unit_UI : CanvasLayer
 
-#Chance of higher leveled units showing up
-@export var level2_chance : float = 10
-@export var level3_chance : float = 3
-
 @export var booster_name : String
 @export var booster_description : String
 @export var booster_image : Texture2D
@@ -28,8 +24,6 @@ var current_unit_selected : Node2D
 var crate_sprite : TextureButton
 var crate_starting_size : Vector2
 func _ready():
-	level2_chance = level2_chance/100
-	level3_chance = level3_chance/100
 	shop_manager = find_parent("shop_manager")
 	purchase_booster_UI = find_child("purchase_booster_UI")
 	choose_unit_UI = find_child("choose_unit_UI")
@@ -53,12 +47,6 @@ func select_units(crate_number : int):
 		var random_unit_percentage = randf_range(0,100)/100
 		var unit_position = int(round((potential_units_IDs.size()-1) * random_unit_percentage))
 		var random_number = potential_units_IDs[unit_position]
-		if(percentage <= level2_chance and percentage > level3_chance):
-			#Sets our unit to be level2
-			random_number += 1
-		if(percentage <= level3_chance):
-			#Sets our unit to be level3
-			random_number += 2
 		
 		var dictionary_instance = dictionary.new()
 		#Gets a random unit type

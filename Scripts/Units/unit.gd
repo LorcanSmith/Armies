@@ -150,7 +150,6 @@ func _ready() -> void:
 			if(find_parent("game_manager").turn_number % 2 == 0):
 				unit_has_transformed = true
 				get_node("AnimatedSprite2D").play("idle_transformed")
-	set_level_chevron()
 	set_unit_types()
 
 func set_damage_and_health(dmg, hlth):
@@ -158,18 +157,7 @@ func set_damage_and_health(dmg, hlth):
 	health_boost = hlth
 	max_health += hlth
 	health = max_health
-	
-func set_level_chevron():
-	var level_chevron_parent = find_child("level_chevrons")
-	if(unit_ID % 3 == 0):
-		level_chevron_parent.get_child(0).visible = true
-	elif(unit_ID % 3 == 1):
-		level_chevron_parent.get_child(0).visible = true
-		level_chevron_parent.get_child(1).visible = true
-	elif(unit_ID % 3 == 2):
-		level_chevron_parent.get_child(0).visible = true
-		level_chevron_parent.get_child(1).visible = true
-		level_chevron_parent.get_child(2).visible = true
+
 func set_unit_types():
 	#Gets all the unit types
 	effective_against_types = unit_types.duplicate()

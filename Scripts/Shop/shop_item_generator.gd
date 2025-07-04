@@ -8,10 +8,6 @@ var booster_locations = []
 var dictionary = load("res://Scripts/Units/dictionary.gd")
 #Amount of re-rolls taken, used for randomness
 var rerolls_taken : int = 0
-##Percentage out of 100 for how likely a level 2 unit is to show up
-@export var level2_percentage : float = 7
-@export var level3_percentage : float = 0.5
-##Percentage out of 100 for how likely a level 3 unit is to show up
 
 var game_manager : Node2D
 
@@ -44,9 +40,6 @@ func _ready() -> void:
 	remove_units_UI = find_child("remove_units_UI")
 	buy_bases_UI = find_child("buy_bases_UI")
 	base_locations = find_child("upgraded_base_locations").get_children()
-	level2_percentage = (level2_percentage + game_manager.higher_level_unit_chance) /100
-	level3_percentage = (level3_percentage + game_manager.higher_level_unit_chance) /100
-	print("lvl2: ", level2_percentage, ", lvl3: ", level3_percentage)
 	#Gets the children and sets them as locations units can spawn at
 	var counter = 0
 	var location
@@ -98,28 +91,14 @@ func choose_random_unit(loc : int):
 	var random_unit_percentage
 	var random_unit
 	var random_unit_position
-	var random_level
 	var loaded_unit
 	var unit_not_found = true
 	
 	while unit_not_found:
 		percentage = randf_range(0,100)/100
 		random_unit_percentage = randf_range(0,100)/100
-		random_unit = int(((dictionary_instance.item_scenes.size()/3) * random_unit_percentage))
-		random_unit_position = random_unit*3
-		if(percentage <= level2_percentage):
-			if(percentage <= level3_percentage):
-				random_level = 3
-			else:
-				random_level = 2
-		else:
-			random_level = 1
-		if(random_level == 2):
-			#Gets the unit ID
-			random_unit_position += 1
-		elif(random_level == 3):
-			#Gets the unit ID
-			random_unit_position += 2
+		random_unit = int(((dictionary_instance.item_scenes.size()) * random_unit_percentage))
+		random_unit_position = random_unit
 		var unit = dictionary_instance.unit_scenes[random_unit_position].instantiate()
 		var x = 0
 		var types = []
@@ -196,19 +175,7 @@ func _on_reroll_button_pressed():
 	reroll_shop()
 
 func _on_unit_chance_button_pressed():
-	var success = false
-	if !(find_parent("shop_manager").free_reroll):
-		if (((game_manager.shop_upgrades + 1) * 5)  <= find_parent("shop_manager").money):
-			success = true
-			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
-	else:
-		success = true
-	if success:
-		reroll_UI.visible = false
-		game_manager.higher_level_unit_chance += 1
-		game_manager.shop_upgrades += 1
-		update_upgrade_cost_labels()
-		reroll_shop()
+	pass
 
 func _on_shop_slot_button_pressed():
 	var success = false
@@ -240,7 +207,6 @@ func update_upgrade_cost_labels():
 	while (counter < game_manager.shop_slots):
 		counter += 1
 		find_child("pedestal" + str(counter)).modulate = Color("#ffffff")
-	find_child("unit_chance_cost").text = str((game_manager.shop_upgrades + 1) * 5)
 	if game_manager.shop_slots < game_manager.MAX_SHOP_SLOTS:
 		find_child("shop_slot_cost").text = str((game_manager.shop_upgrades + 1) * 5)
 	else:

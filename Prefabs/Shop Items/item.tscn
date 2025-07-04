@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d26riwgg0v8nl"]
+[gd_scene load_steps=25 format=3 uid="uid://d26riwgg0v8nl"]
 
 [ext_resource type="Script" uid="uid://bvdq4sn7w35b4" path="res://Scripts/Shop/item_script.gd" id="1_mdv0s"]
 [ext_resource type="Script" path="res://Scripts/Effects/animated_shadow.gd" id="3_6sqpo"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://fpwwhqpb42av" path="res://Sprites/UI/sword.png" id="5_opg0c"]
 [ext_resource type="Texture2D" uid="uid://doklob2e1xafl" path="res://Sprites/UI/arrow.png" id="7_6sqpo"]
 [ext_resource type="Script" uid="uid://bxdwjf5tj7s4c" path="res://Scripts/Skills/location_stick_to_sprite.gd" id="10_te1c8"]
-[ext_resource type="Texture2D" uid="uid://djdl8p52grdjd" path="res://Sprites/UI/chevrons/level_chevron.png" id="11_eytbw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6sqpo"]
 atlas = ExtResource("5_1nmpe")
@@ -187,6 +186,36 @@ _data = {
 &"upgrade_arrow": SubResource("Animation_te1c8")
 }
 
+[sub_resource type="Animation" id="Animation_cj1d5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lg7m4"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.566667, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_rb8ex"]
 resource_name = "hurt"
 tracks/0/type = "value"
@@ -212,36 +241,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, -0.139626, 0.0698132, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_lg7m4"]
-resource_name = "death"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.566667, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_cj1d5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lg7m4"]
@@ -287,49 +286,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_6sqpo")
 }
 autoplay = "upgrade_arrow"
-
-[node name="level_chevrons" type="Node2D" parent="Sprite2D"]
-position = Vector2(-25, -15)
-
-[node name="lvl1" type="Sprite2D" parent="Sprite2D/level_chevrons"]
-z_index = 1
-texture_filter = 1
-texture = ExtResource("11_eytbw")
-
-[node name="lvl1_shadow" type="Sprite2D" parent="Sprite2D/level_chevrons/lvl1"]
-modulate = Color(0, 0, 0, 0.313726)
-z_as_relative = false
-texture_filter = 1
-position = Vector2(1, 1)
-texture = ExtResource("11_eytbw")
-
-[node name="lvl2" type="Sprite2D" parent="Sprite2D/level_chevrons"]
-visible = false
-z_index = 1
-texture_filter = 1
-position = Vector2(-0.254821, -6)
-texture = ExtResource("11_eytbw")
-
-[node name="lvl2_shadow" type="Sprite2D" parent="Sprite2D/level_chevrons/lvl2"]
-modulate = Color(0, 0, 0, 0.313726)
-z_as_relative = false
-texture_filter = 1
-position = Vector2(0.75482, 1.5)
-texture = ExtResource("11_eytbw")
-
-[node name="lvl3" type="Sprite2D" parent="Sprite2D/level_chevrons"]
-visible = false
-z_index = 1
-texture_filter = 1
-position = Vector2(-8.64267e-07, -12)
-texture = ExtResource("11_eytbw")
-
-[node name="lvl3_shadow" type="Sprite2D" parent="Sprite2D/level_chevrons/lvl3"]
-modulate = Color(0, 0, 0, 0.313726)
-z_as_relative = false
-texture_filter = 1
-position = Vector2(0.5, 1.5)
-texture = ExtResource("11_eytbw")
 
 [node name="Item_Info" type="Control" parent="Sprite2D"]
 layout_mode = 3

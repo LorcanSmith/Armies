@@ -96,9 +96,6 @@ func load_units():
 							instance.damage_boost += unit_IDs[width][height][1]
 							instance.health_boost += unit_IDs[width][height][2]
 							instance.update_label_text()
-							#Increase shop percentages if the unit can do it
-							get_parent().find_child("shop_item_generator").level2_percentage += instance.increase_higher_level_unit_perecentage/100
-							get_parent().find_child("shop_item_generator").level3_percentage += instance.increase_higher_level_unit_perecentage/100
 							#Gets the unit version so we can check if the item needs to be transformed
 							var unit_version = dictionary_instance.unit_scenes[int(unit_IDs[width][height][0])].instantiate()
 							instance.transform_item(unit_version)
