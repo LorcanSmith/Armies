@@ -470,7 +470,6 @@ texture = ExtResource("6_cxn27")
 [connection signal="area_entered" from="movement_locations/move_spot/Area2D" to="movement_locations/move_spot" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="movement_locations/move_spot/Area2D" to="movement_locations/move_spot" method="_on_area_2d_area_exited"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

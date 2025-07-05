@@ -220,24 +220,28 @@ func combat_phase():
 		#Tell each unit in the player army to do their skill
 		var unit = 0
 		while unit in range(player_army.size()):
-			#Checks to see if the unit can do damage
-			if(player_army[unit].skill_damage + player_army[unit].damage_boost > 0):
-				damage_unit_alive = true
-			player_army[unit].skill("combat_phase")
-			#Checks to see if the unit does healing
-			if(player_army[unit].skill_heal > 0):
-				healing_unit_alive = true
+			#Makes sure the unit didnt die during the movement phase (like self-destructing units can)
+			if(player_army[unit]):
+				#Checks to see if the unit can do damage
+				if(player_army[unit].skill_damage + player_army[unit].damage_boost > 0):
+					damage_unit_alive = true
+				player_army[unit].skill("combat_phase")
+				#Checks to see if the unit does healing
+				if(player_army[unit].skill_heal > 0):
+					healing_unit_alive = true
 			unit += 1
 			
 		#Tell each unit in the enemy army to do their skill
 		unit = 0
 		while unit in range(enemy_army.size()):
-			if(enemy_army[unit].skill_damage + enemy_army[unit].damage_boost> 0):
-				damage_unit_alive = true
-			enemy_army[unit].skill("combat_phase")
-			#Checks to see if the unit does healing
-			if(enemy_army[unit].skill_heal > 0):
-				healing_unit_alive = true
+			#Makes sure the enemy didnt die during the movement phase (like self-destructing units can)
+			if(enemy_army[unit]):
+				if(enemy_army[unit].skill_damage + enemy_army[unit].damage_boost> 0):
+					damage_unit_alive = true
+				enemy_army[unit].skill("combat_phase")
+				#Checks to see if the unit does healing
+				if(enemy_army[unit].skill_heal > 0):
+					healing_unit_alive = true
 			unit += 1
 		if(healing_unit_alive):
 			#Combat is this turn so set the healing phase to be next turn
