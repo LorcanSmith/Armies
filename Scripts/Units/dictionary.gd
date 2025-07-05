@@ -93,7 +93,7 @@ var item_scenes = {
   	#Trex
 	20: preload("res://Prefabs/Shop Items/Level1/trex_item_LVL1.tscn"),
 	#Ankylosaurus
-	21: preload("res://Prefabs/Shop Items/Level1/ankylosaurus_item_LVL1.tscn"),
+	21: preload("res://Prefabs/Shop Items/Level1/ankylosaurus_item_LVL1.tscn")
 }
 
 var booster_scenes = {
