@@ -148,7 +148,6 @@ projectile = ExtResource("2_ior7b")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_rt2l6")
-autoplay = "idle"
 
 [node name="Sprite2D" parent="." index="4"]
 texture = null
