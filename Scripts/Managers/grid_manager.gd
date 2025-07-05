@@ -86,7 +86,6 @@ func load_units():
 						if(unit_IDs[width][height] != null):
 							#Spawn an item. Reference the UnitDictionary to find out what item to spawn
 							instance = dictionary_instance.item_scenes[int(unit_IDs[width][height][0])].instantiate()
-			
 							#Add unit ID
 							instance.unit_ID = unit_IDs[width][height][0]
 							tiles[width][height].add_child(instance)

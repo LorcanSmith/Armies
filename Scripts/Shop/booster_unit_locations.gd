@@ -5,7 +5,9 @@ var unit : Node2D
 var tooltip : Node2D
 
 func _ready() -> void:
-	tooltip = find_parent("shop_manager").find_child("Tooltip")
+	var shop_manager = find_parent("shop_manager")
+	if(shop_manager):
+		tooltip = shop_manager.find_child("Tooltip")
 	
 func _on_area_2d_pressed() -> void:
 	if(get_parent().name == "base_locations"):
