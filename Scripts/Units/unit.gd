@@ -523,22 +523,11 @@ func _process(delta: float) -> void:
 			x += 1
 	if(!mouse_over):
 		#Plays animation to popout tooltip. Once the animation finishes the tooltip turns itself off
-		#tooltip.get_node("AnimationPlayer").play("tooltip_popout")
 		#Turns on skill locations
 		var x = 0
 		while x < skill_locations_parent.get_child_count():
 			skill_locations_parent.get_child(x).get_node("AnimationPlayer").play("location_popout")
 			x += 1
-
-#func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	##If the unit is dead and the damage animation has played, destroy this unit
-	#if(!alive and anim_name == "unit_damage"):
-		#if(!unit_has_transformed):
-			#get_node("sprite_animator").play("death")
-			#get_node("AnimatedSprite2D").play("death")
-		#elif(unit_has_transformed):
-			#get_node("sprite_animator").play("death_transformed")
-			#get_node("AnimatedSprite2D").play("death_transformed")
 
 #When a sprite animation finishes we should play the default animation
 func _on_sprite_animator_animation_finished(anim_name: StringName) -> void:
@@ -553,3 +542,15 @@ func _on_sprite_animator_animation_finished(anim_name: StringName) -> void:
 			elif(unit_has_transformed):
 				get_node("sprite_animator").play("idle_transformed")
 				get_node("AnimatedSprite2D").play("idle_transformed")
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	var unit = area.get_parent()
+	#If it makes contact with a unit that is a self destructing unit and this unit also self destructs
+	#Then blow up. This is checked as it could happen during the movement phase as well
+	if((unit.is_in_group("player") or unit.is_in_group("enemy")) and self_destruction and unit.self_destruction):
+		#If this were to happen during the movement phase the combat manager still needs to continue ticking
+		if(combat_manager.next_phase == "movement"):
+			combat_manager.w += 1
+			combat_manager.waited_for_move()
+			destroy_unit()
