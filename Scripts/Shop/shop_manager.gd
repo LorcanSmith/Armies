@@ -87,6 +87,32 @@ func _on_reroll_button_mouse_exited():
 	if find_child("RerollText"):
 		find_child("RerollText").modulate = Color(1, 1, 1, 1)
 
+#Turn on the unit section of the shop
+func _on_shop_unit_button_toggled(toggled_on: bool) -> void:
+	if(toggled_on):
+		find_child("unit_section").visible = true
+		find_child("base_section").visible = false
+		find_child("choose_base_section").visible = false
+		find_child("shop_remove_section").visible = false
+#Turn on base upgrade section of the shop
+func _on_shop_base_button_toggled(toggled_on: bool) -> void:
+	if(toggled_on):
+		find_child("base_manager").update_base_upgrade_paths()
+		find_child("unit_section").visible = false
+		find_child("base_section").visible = true
+		find_child("choose_base_section").visible = false
+		find_child("shop_remove_section").visible = false
 
-func _on_upgrade_button_pressed():
-	pass # Replace with function body.
+func _on_shop_upgrade_button_toggled(toggled_on: bool) -> void:
+	if(toggled_on):
+		find_child("unit_section").visible = false
+		find_child("base_section").visible = false
+		find_child("choose_base_section").visible = false
+		find_child("shop_remove_section").visible = true
+
+func _on_texture_button_toggled(toggled_on: bool) -> void:
+	if(toggled_on):
+		find_child("unit_section").visible = false
+		find_child("base_section").visible = false
+		find_child("choose_base_section").visible = true
+		find_child("shop_remove_section").visible = false

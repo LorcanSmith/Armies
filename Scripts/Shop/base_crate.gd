@@ -18,10 +18,7 @@ var base_locations : Array
 var base_manager : Node2D
 func _ready():
 	base_manager = find_parent("shop_manager").find_child("base_manager")
-	UI = find_child("UI")
-	crate_sprite = find_child("base_button")
-	crate_starting_size = crate_sprite.scale
-	base_locations = UI.find_child("base_locations").get_children()
+	base_locations = find_child("base_locations").get_children()
 	select_bases()
 	
 func select_bases():
@@ -39,30 +36,10 @@ func select_bases():
 		instance.global_position = base_locations[x].global_position
 		x+=1
 		
-	#Opens the base chooser automatically on the first turn
-	if(find_parent("game_manager").turn_number == 1):
-		_on_base_button_pressed()
-		
-
-func _on_base_button_pressed() -> void:
-	find_child("Container").scale = Vector2(0,0)
-	#Turn on the UI to purchase the booster
-	UI.visible = true
-	#play animation to pop base crate in shop out
-	get_node("AnimationPlayer2").stop()
-	get_node("AnimationPlayer2").play("base_button_disappear")
-	
-
-func _on_close_button_pressed() -> void:
-	#play animation to pop the crate out
-	get_node("AnimationPlayer").play("crate_disappear")
-	find_child("buy_base_button").visible = false
-	find_parent("shop_manager").find_child("Tooltip").get_node("AnimationPlayer").play("tooltip_popout")
-
 func _on_buy_base_button_pressed() -> void:
-	#play animation to pop the crate out
-	get_node("AnimationPlayer").play("crate_disappear")
 	base_manager.set_base(current_base_selected.base_id, current_base_selected.base_name, current_base_selected.description, true)
+	find_parent("game_manager").tier = 0
+	base_manager.tier = 0
 	selected_base = true
 	find_parent("shop_manager").find_child("Tooltip").get_node("AnimationPlayer").play("tooltip_popout")
 
