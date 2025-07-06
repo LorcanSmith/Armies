@@ -31,8 +31,10 @@ var army_units : Array
 var healer_units : Array
 
 ##Upgrading Bases
+#Section in the shop that contains the upgrade paths
+var base_section : Node2D
 @export var base_upgrade_cost : int = 8
-var tier : int = 0
+var tier : int = 3
 var path_selected : int = 0
 var upgrade_name_1 : String
 var upgrade_name_2 : String
@@ -64,9 +66,10 @@ var velociraptor_attack : int = 0
 func _ready() -> void:
 	base_sprite = find_child("base_sprite")
 	tooltip = get_parent().find_child("Tooltip")
+	base_section = find_parent("shop_manager").find_child("base_section")
+
 func set_base(id, n, d, play_anim : bool):
 	if(id != -1):
-		find_child("base_upgrade_button").visible = true
 		current_base_ID = id
 		base_sprite.texture = base_sprites[id]
 		base_sprite.get_child(0).texture = base_sprites[id]
@@ -100,8 +103,6 @@ func set_base(id, n, d, play_anim : bool):
 		if(play_anim):
 			get_node("AnimationPlayer").play("base_appear")
 			tier = 0
-	elif(id == -1):
-		find_child("base_upgrade_button").visible = false
 func start_of_turn():
 	#Bank
 	if(current_base_ID == 1):
@@ -214,76 +215,71 @@ func check_units():
 		x+= 1
 
 func _on_base_area_2d_mouse_entered() -> void:
-	if(find_child("base_upgrade_options").visible == false):
-		tooltip.update_base_tooltip(current_base_ID,base_name, base_description)
+	tooltip.update_base_tooltip(current_base_ID,base_name, base_description)
 
 #SHOW BASE UPGRADES
-func _on_base_upgrade_button_pressed() -> void:
+func update_base_upgrade_paths() -> void:
 	#Turn off tooltip
 	tooltip.get_node("AnimationPlayer").play("tooltip_popout")
-	#Play popin animation
-	get_node("base_upgrade_options/base_anim_player").play("popin")
-	#turn on upgrade UI
-	find_child("base_upgrade_options").visible = true
-	#turn off upgrade button
-	find_child("base_upgrade_button").visible = false
+	
+	#Update text
 	#Set text for the tier
-	find_child("tier_text").text = ("Current Tier: " + str(tier))
-	var upgrade_path_1_text = find_child("path_1_text")
-	var upgrade_path_1_desc = find_child("path_1_desc")
-	var upgrade_path_2_text = find_child("path_2_text")
-	var upgrade_path_2_desc = find_child("path_2_desc")
+	base_section.find_child("tier_text").text = ("Current Tier: " + str(tier))
+	var upgrade_path_1_text = base_section.find_child("path_1_text")
+	var upgrade_path_1_desc = base_section.find_child("path_1_desc")
+	var upgrade_path_2_text = base_section.find_child("path_2_text")
+	var upgrade_path_2_desc = base_section.find_child("path_2_desc")
 	#If max tier, don't allow any more upgrades
 	if(tier > 2):
-		find_child("path_1").visible = false
-		find_child("path_2").visible = false
-		find_child("max_tier").visible = true
-		find_child("confirm_base_upgrade").visible = false
+		base_section.find_child("path_1").visible = false
+		base_section.find_child("path_2").visible = false
+		base_section.find_child("max_tier").visible = true
+		base_section.find_child("confirm_base_upgrade").visible = false
 	else:
-		find_child("path_1").visible = true
-		find_child("path_2").visible = true
-		find_child("max_tier").visible = false
-		find_child("confirm_base_upgrade").visible = true
+		base_section.find_child("path_1").visible = true
+		base_section.find_child("path_2").visible = true
+		base_section.find_child("max_tier").visible = false
+		base_section.find_child("confirm_base_upgrade").visible = true
 	
 	var current_path_1_name_array : Array
 	var current_path_1_desc_array : Array
 	var current_path_2_name_array : Array
 	var current_path_2_desc_array : Array
 	#set upgrade path names
-	#Castle
-	if(current_base_ID == 0):
-		current_path_1_name_array = ["Shields", "Fortifications", "Tight Formations"]
-		current_path_1_desc_array = ["Gives +1 health to medieval units at end of turn", "Gives +2 health to medieval units at end of turn", "Gives +3 health to medieval units at end of turn"]
-		
-		current_path_2_name_array = ["Blacksmith Training", "Attack Training", "Flanking Tactics"]
-		current_path_2_desc_array = ["Gives +1 attack to medieval units at end of turn", "Gives +2 attack to medieval units at end of turn", "Gives +3 attack to medieval units at end of turn"]
-		
-	#Bank
-	elif(current_base_ID == 1):
-		current_path_1_name_array = ["Pocket Money", "Investments", "Lottery Tickets"]
-		current_path_1_desc_array = ["Gain an extra +3 gold each turn", "Gain an extra +6 gold each turn", "Gain an extra +10 gold each turn"]
-		
-		current_path_2_name_array = ["Long Term Goals", "Re-investments", "Dividends"]
-		current_path_2_desc_array = ["Does nothing YET", "Patience pays off", "Gain an extra + 15 gold each turn"]
-	#Army Tent
-	elif(current_base_ID == 2):
-		current_path_1_name_array = ["Reinforcements", "Extensive Training", "Mandatory Service"]
-		current_path_1_desc_array = ["Army units gain +1 health at the end of turn", "Army units gain +2 health and +1 attack at the end of turn", "Army units gain +4 health and +2 attack at the end of turn"]
-		
-		current_path_2_name_array = ["Fighting Spirit", "Better Guns", "Fight till the death"]
-		current_path_2_desc_array = ["Army units gain +1 attack at the end of turn", "Army units gain +2 attack and +1 health at the end of turn", "Army units gain +4 attack and +2 health at the end of turn"]
-	#Hospital
-	elif(current_base_ID == 3):
-		current_path_1_name_array = ["Medical Supplies", "Highly Qualified Doctors", "Government Funding"]
-		current_path_1_desc_array = ["Gives Healers +2 health at the end of the turn", "Gives Healers +4 health at the end of turn", "Gives Healers +6 health and +1 attack at the end of the turn"]
-		
-		current_path_2_name_array = ["Field Hospital","Resourceful Medics", "Combat Medics"]
-		current_path_2_desc_array = ["Gives Healers +1 attack and +1 health at the end of the turn", "Gives Healers +4 attack at the end of turn", "Gives Healers +6 attack and +1 health at the end of the turn"]
-		
-	upgrade_path_1_text.text = current_path_1_name_array[tier]
-	upgrade_path_1_desc.text = current_path_1_desc_array[tier]
-	upgrade_path_2_text.text = current_path_2_name_array[tier]
-	upgrade_path_2_desc.text = current_path_2_desc_array[tier]
+	if(tier != 3):
+		#Castle
+		if(current_base_ID == 0):
+			current_path_1_name_array = ["Shields", "Fortifications", "Tight Formations"]
+			current_path_1_desc_array = ["Gives +1 health to medieval units at end of turn", "Gives +2 health to medieval units at end of turn", "Gives +3 health to medieval units at end of turn"]
+			
+			current_path_2_name_array = ["Blacksmith Training", "Attack Training", "Flanking Tactics"]
+			current_path_2_desc_array = ["Gives +1 attack to medieval units at end of turn", "Gives +2 attack to medieval units at end of turn", "Gives +3 attack to medieval units at end of turn"]
+			
+		#Bank
+		elif(current_base_ID == 1):
+			current_path_1_name_array = ["Pocket Money", "Investments", "Lottery Tickets"]
+			current_path_1_desc_array = ["Gain an extra +3 gold each turn", "Gain an extra +6 gold each turn", "Gain an extra +10 gold each turn"]
+			
+			current_path_2_name_array = ["Long Term Goals", "Re-investments", "Dividends"]
+			current_path_2_desc_array = ["Does nothing YET", "Patience pays off", "Gain an extra + 15 gold each turn"]
+		#Army Tent
+		elif(current_base_ID == 2):
+			current_path_1_name_array = ["Reinforcements", "Extensive Training", "Mandatory Service"]
+			current_path_1_desc_array = ["Army units gain +1 health at the end of turn", "Army units gain +2 health and +1 attack at the end of turn", "Army units gain +4 health and +2 attack at the end of turn"]
+			
+			current_path_2_name_array = ["Fighting Spirit", "Better Guns", "Fight till the death"]
+			current_path_2_desc_array = ["Army units gain +1 attack at the end of turn", "Army units gain +2 attack and +1 health at the end of turn", "Army units gain +4 attack and +2 health at the end of turn"]
+		#Hospital
+		elif(current_base_ID == 3):
+			current_path_1_name_array = ["Medical Supplies", "Highly Qualified Doctors", "Government Funding"]
+			current_path_1_desc_array = ["Gives Healers +2 health at the end of the turn", "Gives Healers +4 health at the end of turn", "Gives Healers +6 health and +1 attack at the end of the turn"]
+			
+			current_path_2_name_array = ["Field Hospital","Resourceful Medics", "Combat Medics"]
+			current_path_2_desc_array = ["Gives Healers +1 attack and +1 health at the end of the turn", "Gives Healers +4 attack at the end of turn", "Gives Healers +6 attack and +1 health at the end of the turn"]
+		upgrade_path_1_text.text = current_path_1_name_array[tier]
+		upgrade_path_1_desc.text = current_path_1_desc_array[tier]
+		upgrade_path_2_text.text = current_path_2_name_array[tier]
+		upgrade_path_2_desc.text = current_path_2_desc_array[tier]
 #SET BASE UPGRADE
 func _on_confirm_base_upgrade_pressed() -> void:
 	var shop_manager = find_parent("shop_manager")
@@ -385,29 +381,18 @@ func _on_confirm_base_upgrade_pressed() -> void:
 				elif(current_base_ID == 3):
 					healer_attack = 6
 					healer_health = 1
-		#Play popout animation
-		get_node("base_upgrade_options/base_anim_player").play("popout")
 	#Not enough money, play animation to indicate this
 	else:
 		pass
+	update_base_upgrade_paths()
 	untoggle_buttons()
 func _on_path_1_pressed() -> void:
 	path_selected = 1
-	base_description = find_child("path_1_desc").text
+	base_description = base_section.find_child("path_1_desc").text
 func _on_path_2_pressed() -> void:
 	path_selected = 2
-	base_description = find_child("path_2_desc").text
-func _on_close_button_pressed() -> void:
-	#Play popout animation
-	get_node("base_upgrade_options/base_anim_player").play("popout")
-	untoggle_buttons()
+	base_description = base_section.find_child("path_2_desc").text
 	
 func untoggle_buttons():
-	find_child("path_1").button_pressed = false
-	find_child("path_2").button_pressed = false
-func _on_base_anim_player_animation_finished(anim_name: StringName) -> void:
-	#Turn off UI
-	if(anim_name == "popout"):
-		find_child("base_upgrade_options").visible = false
-		#Turn on upgrade_button
-		find_child("base_upgrade_button").visible = true
+	base_section.find_child("path_1").button_pressed = false
+	base_section.find_child("path_2").button_pressed = false

@@ -102,7 +102,7 @@ func load_units():
 			width += 1
 	#units have been loaded in
 	if(!game_manager.in_combat):
-		get_parent().find_child("shop_item_generator").show_new_units()
+		get_parent().find_child("shop_item_generator").show_new_units(true)
 
 func _unit_upload(unit_IDs):
 	var enemy_unit_IDs

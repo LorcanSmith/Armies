@@ -52,20 +52,23 @@ func _ready() -> void:
 	update_upgrade_cost_labels()
 
 #Spawns in new shop units
-func show_new_units():
+func show_new_units(reroll_all : bool):
 	var x = 0
 	#Displays a new unit for each shop unit location
 	while x < unit_locations.size():
-		#Chooses a random unit and loads the unit from the path, gets it unit_ID
-		var chosen_unit = choose_random_unit(x)
-		#Spawns in the chosen unit as a new unit in the shop
-		var new_unit = chosen_unit[0].instantiate()
-		new_unit.bought = false
-		new_unit.unit_ID = chosen_unit[1]
-		#Sets the new units' parent to be the unit location in the shop
-		unit_locations[x].add_child(new_unit)
-		#Sets the new units' location to be that of its parent (the shop unit location)
-		new_unit.position = Vector2(0,0)
+		if(reroll_all or (!reroll_all and unit_locations[x].get_child_count() == 0)):
+			var pedastal = find_child("pedastals").get_child(x)
+			pedastal.self_modulate.a = 1
+			#Chooses a random unit and loads the unit from the path, gets it unit_ID
+			var chosen_unit = choose_random_unit(x)
+			#Spawns in the chosen unit as a new unit in the shop
+			var new_unit = chosen_unit[0].instantiate()
+			new_unit.bought = false
+			new_unit.unit_ID = chosen_unit[1]
+			#Sets the new units' parent to be the unit location in the shop
+			unit_locations[x].add_child(new_unit)
+			#Sets the new units' location to be that of its parent (the shop unit location)
+			new_unit.position = Vector2(0,0)
 		x+=1
 	x = 0
 	while x < booster_locations.size():
@@ -143,12 +146,12 @@ func choose_random_booster(loc : int):
 			booster_not_found = false
 	return booster
 	
-func reroll_shop():
+func reroll_shop(reroll_all : bool):
 	#Remove old shop units before showing new units
 	#The units are parented to the shop location they are at, so we loop over every
 	#shop location and delete their child
 	var reroll_success = false
-	if !(find_parent("shop_manager").free_reroll):
+	if (!find_parent("shop_manager").free_reroll and reroll_all):
 		if (find_parent("shop_manager").reroll_cost <= find_parent("shop_manager").money):
 			find_parent("shop_manager").change_money(find_parent("shop_manager").reroll_cost)
 			reroll_success = true
@@ -159,7 +162,7 @@ func reroll_shop():
 		while location < unit_locations.size():
 			#If it doesn't have a child no need to delete the child, this if statement
 			#stops crashes
-			if(unit_locations[location].get_child_count() > 0):
+			if(unit_locations[location].get_child_count() > 0 and reroll_all):
 				unit_locations[location].get_child(0).queue_free()
 			location += 1
 		location = 0
@@ -169,74 +172,38 @@ func reroll_shop():
 			location += 1
 		#Gets new units for the shop
 		rerolls_taken += 1
-		show_new_units()
+		show_new_units(reroll_all)
 
 func _on_reroll_button_pressed():
-	reroll_shop()
+	reroll_shop(true)
 
-func _on_unit_chance_button_pressed():
-	pass
+func increase_shop_slots():
+	find_parent("shop_manager").change_money(5)
+	game_manager.shop_slots += 1
+	unit_locations.append(find_child("unit" + str(game_manager.shop_slots)))
+	find_child("pedestal" + str(game_manager.shop_slots)).visible = true
+	game_manager.shop_upgrades += 1
+	update_upgrade_cost_labels()
+	reroll_shop(false)
 
-func _on_shop_slot_button_pressed():
-	var success = false
-	if !(find_parent("shop_manager").free_reroll):
-		if (((game_manager.shop_upgrades + 1) * 5)  <= find_parent("shop_manager").money):
-			success = true
-			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
-	else:
-		success = true
-	if success:
-		reroll_UI.visible = false
-		game_manager.shop_slots += 1
-		unit_locations.append(find_child("unit" + str(game_manager.shop_slots)))
-		find_child("pedestal" + str(game_manager.shop_slots)).visible = true
-		game_manager.shop_upgrades += 1
-		update_upgrade_cost_labels()
-		reroll_shop()
-
-
-func _on_upgrade_button_pressed():
-	reroll_UI.visible = true
-
-
-func _on_close_button_pressed():
-	reroll_UI.visible = false
-	
 func update_upgrade_cost_labels():
-	var counter = 4
-	while (counter < game_manager.shop_slots):
-		counter += 1
-		find_child("pedestal" + str(counter)).modulate = Color("#ffffff")
-	if game_manager.shop_slots < game_manager.MAX_SHOP_SLOTS:
-		find_child("shop_slot_cost").text = str((game_manager.shop_upgrades + 1) * 5)
-	else:
-		find_child("shop_slot_cost").text = "X"
-		find_child("shop_slot_button_text").text = "FULL"
-		find_child("shop_slot_button").disabled = true
-	counter = 0
+	var counter = 0
 	var theme
+	var remove_section : Node2D
+	remove_section = find_parent("shop_manager").find_child("shop_remove_section")
 	while counter < unit_themes.size():
 		theme = unit_themes[counter].to_lower()
 		if game_manager.blocked_types.has(unit_themes[counter]):
-			find_child("remove_{theme}_cost".format({"theme": theme})).text = "X"
-			find_child("remove_{theme}_button_text".format({"theme": theme})).text = "REMOVED"
-			find_child("remove_{theme}_button".format({"theme": theme})).disabled = true
+			remove_section.find_child("remove_{theme}_cost".format({"theme": theme})).text = "X"
+			remove_section.find_child("remove_{theme}_button_text".format({"theme": theme})).text = "REMOVED"
+			remove_section.find_child("remove_{theme}_button".format({"theme": theme})).disabled = true
 		else:
-			find_child("remove_{theme}_cost".format({"theme": theme})).text = str((game_manager.shop_upgrades + 1) * 5)
+			remove_section.find_child("remove_{theme}_cost".format({"theme": theme})).text = str((game_manager.shop_upgrades + 1) * 5)
 		counter += 1
 	if base_purchased == true:
 		find_child("base_upgrade_button_text").text = "BOUGHT"
 		find_child("base_upgrade_button").disabled = true
 	
-
-func _on_remove_units_button_pressed():
-	reroll_UI.visible = false
-	remove_units_UI.visible = true
-
-
-func _on_remove_UI_close_button_pressed():
-	remove_units_UI.visible = false
-	reroll_UI.visible = true
 
 
 func _on_remove_medieval_button_pressed():
@@ -248,11 +215,10 @@ func _on_remove_medieval_button_pressed():
 	else:
 		success = true
 	if success:
-		remove_units_UI.visible = false
 		game_manager.blocked_types.append("Medieval")
 		game_manager.shop_upgrades += 1
 		update_upgrade_cost_labels()
-		reroll_shop()
+		reroll_shop(true)
 
 
 func _on_remove_army_button_pressed():
@@ -264,11 +230,10 @@ func _on_remove_army_button_pressed():
 	else:
 		success = true
 	if success:
-		remove_units_UI.visible = false
 		game_manager.blocked_types.append("Army")
 		game_manager.shop_upgrades += 1
 		update_upgrade_cost_labels()
-		reroll_shop()
+		reroll_shop(true)
 
 
 func _on_remove_dinosaur_button_pressed():
@@ -280,11 +245,10 @@ func _on_remove_dinosaur_button_pressed():
 	else:
 		success = true
 	if success:
-		remove_units_UI.visible = false
 		game_manager.blocked_types.append("Dinosaur")
 		game_manager.shop_upgrades += 1
 		update_upgrade_cost_labels()
-		reroll_shop()
+		reroll_shop(true)
 
 
 func _on_remove_fantasy_button_pressed():
@@ -296,11 +260,10 @@ func _on_remove_fantasy_button_pressed():
 	else:
 		success = true
 	if success:
-		remove_units_UI.visible = false
 		game_manager.blocked_types.append("Fantasy")
 		game_manager.shop_upgrades += 1
 		update_upgrade_cost_labels()
-		reroll_shop()
+		reroll_shop(true)
 		
 
 func setup_base_shop() -> void:

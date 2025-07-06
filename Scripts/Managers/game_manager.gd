@@ -81,7 +81,7 @@ var shop_slots : int = 4
 #list of unit types that have been removed from the shop pool
 var blocked_types = []
 #maximum number of shop slots the game supports
-const MAX_SHOP_SLOTS = 6
+const MAX_SHOP_SLOTS = 9
 
 
 @export var auto_create_armies_at_runtime : bool
@@ -104,7 +104,6 @@ func _ready():
 	update_tick_label_text(0)
 	in_combat = false
 	coin_text.text = str(0)
-	name_canvas = find_child("name_maker_canvas")
 	game_over_canvas = find_child("game_over_canvas")
 	if(auto_create_armies_at_runtime):
 		DebuggerScript.create_enemy_armies()
@@ -153,10 +152,6 @@ func create_scene():
 			ShopManager.find_child("base_manager").set_base(base_ID, base_name, base_description, false)
 			#Calls start of turn actions for the current base
 			ShopManager.find_child("base_manager").start_of_turn()
-			base_crate_spawner = ShopManager.find_child("base_spawn_location")
-			#Spawn in base crate if it is the right turn number
-			if(bases_appear_on_turn_numbers.has(turn_number)):
-				base_crate_spawner.spawn_base_crate()
 		elif(in_combat):
 			CombatManager.player_base_sprite = base_sprite
 			CombatManager.find_child("player_team_name").text = ("The " + adjective + " " + noun)
