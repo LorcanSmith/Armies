@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=50 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://csdafwihqevfx" path="res://Sprites/UI/outline.png" id="8_rrq0j"]
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="9_vg5hm"]
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="10_1cd4y"]
+[ext_resource type="Script" uid="uid://byhndmpbuw1s2" path="res://Scripts/Shop/tab_expand.gd" id="10_21oc8"]
 [ext_resource type="Texture2D" uid="uid://chl5qvy7eq8wv" path="res://Sprites/Booster_Packs/Crate.png" id="11_hwvrm"]
 [ext_resource type="Texture2D" uid="uid://cgef7wpismeva" path="res://Sprites/UI/shop/new shop icons/cross.png" id="11_m4m2t"]
 [ext_resource type="Script" uid="uid://bwdgvw5opgre2" path="res://Scripts/Shop/sell_location.gd" id="12_1cd4y"]
@@ -206,6 +207,7 @@ button_group = ExtResource("6_ofn6w")
 texture_normal = ExtResource("6_q866l")
 texture_pressed = ExtResource("7_epx5i")
 texture_hover = ExtResource("8_k16vs")
+script = ExtResource("10_21oc8")
 
 [node name="TextureRect2" type="TextureRect" parent="Camera2D/shop_stuff/shop_visuals/shop_background/shop_unit_button"]
 layout_mode = 0
@@ -229,6 +231,7 @@ button_group = ExtResource("6_ofn6w")
 texture_normal = ExtResource("6_q866l")
 texture_pressed = ExtResource("7_epx5i")
 texture_hover = ExtResource("8_k16vs")
+script = ExtResource("10_21oc8")
 
 [node name="TextureRect2" type="TextureRect" parent="Camera2D/shop_stuff/shop_visuals/shop_background/shop_base_button"]
 layout_mode = 0
@@ -252,6 +255,7 @@ button_group = ExtResource("6_ofn6w")
 texture_normal = ExtResource("6_q866l")
 texture_pressed = ExtResource("7_epx5i")
 texture_hover = ExtResource("8_k16vs")
+script = ExtResource("10_21oc8")
 
 [node name="TextureRect2" type="TextureRect" parent="Camera2D/shop_stuff/shop_visuals/shop_background/shop_remove_button"]
 self_modulate = Color(0.898791, 0, 0.289819, 1)
@@ -604,10 +608,13 @@ scroll_active = false
 horizontal_alignment = 1
 
 [node name="lock" type="TextureButton" parent="Camera2D/shop_stuff/unit_section/shop_item_generator"]
+z_index = 1
 offset_left = 652.0
 offset_top = 331.0
 offset_right = 684.0
 offset_bottom = 363.0
+pivot_offset = Vector2(16, 17)
+mouse_filter = 1
 texture_normal = ExtResource("19_5x64g")
 script = ExtResource("20_i5pgw")
 
@@ -632,6 +639,18 @@ theme_override_font_sizes/normal_font_size = 150
 text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="pedastal_locked" type="TextureRect" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/lock"]
+self_modulate = Color(0.435294, 0.254902, 0.278431, 0.392157)
+z_as_relative = false
+layout_mode = 0
+offset_left = -25.0
+offset_top = -34.0
+offset_right = 39.0
+offset_bottom = 30.0
+scale = Vector2(1.29, 1.29)
+mouse_filter = 2
+texture = ExtResource("8_rrq0j")
 
 [node name="re-roll button" type="TextureButton" parent="Camera2D/shop_stuff/unit_section"]
 self_modulate = Color(0.212305, 0.212305, 0.212305, 1)
@@ -810,11 +829,12 @@ texture = ExtResource("28_3ljtq")
 
 [node name="max_tier_text" type="RichTextLabel" parent="Camera2D/shop_stuff/base_section/max_tier"]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 3.0
-offset_right = 1133.0
-offset_bottom = 195.0
+offset_left = 1.00003
+offset_top = -157.0
+offset_right = 1132.0
+offset_bottom = 35.0
 scale = Vector2(0.175, 0.175)
+pivot_offset = Vector2(0.03125, 194.859)
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 150
 text = "MAX TIER"
@@ -898,6 +918,7 @@ texture_pressed = ExtResource("13_ofn6w")
 texture_hover = ExtResource("14_5x64g")
 
 [node name="TextureRect" type="TextureRect" parent="Camera2D/shop_stuff/base_section/TextureButton"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = -4.0
 offset_right = 43.0
@@ -914,7 +935,6 @@ offset_bottom = 35.0
 texture = ExtResource("16_ontla")
 
 [node name="choose_base_section" type="Node2D" parent="Camera2D/shop_stuff"]
-visible = false
 position = Vector2(-1398, -392)
 
 [node name="base_crate" type="Node2D" parent="Camera2D/shop_stuff/choose_base_section"]
@@ -938,6 +958,7 @@ grow_vertical = 2
 pivot_offset = Vector2(54.11, 408.763)
 
 [node name="buy_base_button" type="TextureButton" parent="Camera2D/shop_stuff/choose_base_section/base_crate/Container"]
+visible = false
 layout_mode = 0
 offset_left = 253.0
 offset_top = 589.0
@@ -955,6 +976,18 @@ scale = Vector2(0.1, 0.1)
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 150
 text = "SELECT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Camera2D/shop_stuff/choose_base_section/base_crate/Container/buy_base_button"]
+offset_left = -55.0
+offset_top = -31.0
+offset_right = 1675.0
+offset_bottom = 228.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "Resets any base upgrades"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1355,8 +1388,14 @@ metadata/_edit_lock_ = true
 [node name="coin_pos" type="Node2D" parent="Camera2D"]
 position = Vector2(-309, -176)
 
+[connection signal="mouse_entered" from="Camera2D/shop_stuff/shop_visuals/shop_background/shop_unit_button" to="Camera2D/shop_stuff/shop_visuals/shop_background/shop_unit_button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Camera2D/shop_stuff/shop_visuals/shop_background/shop_unit_button" to="Camera2D/shop_stuff/shop_visuals/shop_background/shop_unit_button" method="_on_mouse_exited"]
 [connection signal="toggled" from="Camera2D/shop_stuff/shop_visuals/shop_background/shop_unit_button" to="." method="_on_shop_unit_button_toggled"]
+[connection signal="mouse_entered" from="Camera2D/shop_stuff/shop_visuals/shop_background/shop_base_button" to="Camera2D/shop_stuff/shop_visuals/shop_background/shop_base_button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Camera2D/shop_stuff/shop_visuals/shop_background/shop_base_button" to="Camera2D/shop_stuff/shop_visuals/shop_background/shop_base_button" method="_on_mouse_exited"]
 [connection signal="toggled" from="Camera2D/shop_stuff/shop_visuals/shop_background/shop_base_button" to="." method="_on_shop_base_button_toggled"]
+[connection signal="mouse_entered" from="Camera2D/shop_stuff/shop_visuals/shop_background/shop_remove_button" to="Camera2D/shop_stuff/shop_visuals/shop_background/shop_remove_button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Camera2D/shop_stuff/shop_visuals/shop_background/shop_remove_button" to="Camera2D/shop_stuff/shop_visuals/shop_background/shop_remove_button" method="_on_mouse_exited"]
 [connection signal="toggled" from="Camera2D/shop_stuff/shop_visuals/shop_background/shop_remove_button" to="." method="_on_shop_upgrade_button_toggled"]
 [connection signal="button_down" from="Camera2D/shop_stuff/unit_section/shop_item_generator/battle_button" to="." method="_on_battle_button_button_down"]
 [connection signal="button_up" from="Camera2D/shop_stuff/unit_section/shop_item_generator/battle_button" to="." method="_on_battle_button_button_up"]
@@ -1365,6 +1404,8 @@ position = Vector2(-309, -176)
 [connection signal="pressed" from="Camera2D/shop_stuff/unit_section/shop_item_generator/battle_button" to="." method="_on_battle_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_stuff/unit_section/shop_item_generator/buy_bases_UI/Container/crate/close_button" to="Camera2D/shop_stuff/unit_section/shop_item_generator" method="_on_buy_bases_close_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_stuff/unit_section/shop_item_generator/buy_bases_UI/Container/buy_base_button" to="Camera2D/shop_stuff/unit_section/shop_item_generator" method="_on_buy_base_button_pressed"]
+[connection signal="mouse_entered" from="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" to="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" to="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" method="_on_mouse_exited"]
 [connection signal="pressed" from="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" to="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" method="_on_pressed"]
 [connection signal="button_down" from="Camera2D/shop_stuff/unit_section/re-roll button" to="." method="_on_reroll_button_button_down"]
 [connection signal="mouse_entered" from="Camera2D/shop_stuff/unit_section/re-roll button" to="." method="_on_reroll_button_mouse_entered"]
