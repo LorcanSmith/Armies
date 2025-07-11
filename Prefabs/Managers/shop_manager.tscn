@@ -608,10 +608,13 @@ scroll_active = false
 horizontal_alignment = 1
 
 [node name="lock" type="TextureButton" parent="Camera2D/shop_stuff/unit_section/shop_item_generator"]
+z_index = 1
 offset_left = 652.0
 offset_top = 331.0
 offset_right = 684.0
 offset_bottom = 363.0
+pivot_offset = Vector2(16, 17)
+mouse_filter = 1
 texture_normal = ExtResource("19_5x64g")
 script = ExtResource("20_i5pgw")
 
@@ -636,6 +639,18 @@ theme_override_font_sizes/normal_font_size = 150
 text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="pedastal_locked" type="TextureRect" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/lock"]
+self_modulate = Color(0.435294, 0.254902, 0.278431, 0.392157)
+z_as_relative = false
+layout_mode = 0
+offset_left = -25.0
+offset_top = -34.0
+offset_right = 39.0
+offset_bottom = 30.0
+scale = Vector2(1.29, 1.29)
+mouse_filter = 2
+texture = ExtResource("8_rrq0j")
 
 [node name="re-roll button" type="TextureButton" parent="Camera2D/shop_stuff/unit_section"]
 self_modulate = Color(0.212305, 0.212305, 0.212305, 1)
@@ -1376,6 +1391,8 @@ position = Vector2(-309, -176)
 [connection signal="pressed" from="Camera2D/shop_stuff/unit_section/shop_item_generator/battle_button" to="." method="_on_battle_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_stuff/unit_section/shop_item_generator/buy_bases_UI/Container/crate/close_button" to="Camera2D/shop_stuff/unit_section/shop_item_generator" method="_on_buy_bases_close_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_stuff/unit_section/shop_item_generator/buy_bases_UI/Container/buy_base_button" to="Camera2D/shop_stuff/unit_section/shop_item_generator" method="_on_buy_base_button_pressed"]
+[connection signal="mouse_entered" from="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" to="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" to="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" method="_on_mouse_exited"]
 [connection signal="pressed" from="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" to="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" method="_on_pressed"]
 [connection signal="button_down" from="Camera2D/shop_stuff/unit_section/re-roll button" to="." method="_on_reroll_button_button_down"]
 [connection signal="mouse_entered" from="Camera2D/shop_stuff/unit_section/re-roll button" to="." method="_on_reroll_button_mouse_entered"]
