@@ -935,7 +935,6 @@ offset_bottom = 35.0
 texture = ExtResource("16_ontla")
 
 [node name="choose_base_section" type="Node2D" parent="Camera2D/shop_stuff"]
-visible = false
 position = Vector2(-1398, -392)
 
 [node name="base_crate" type="Node2D" parent="Camera2D/shop_stuff/choose_base_section"]
@@ -959,6 +958,7 @@ grow_vertical = 2
 pivot_offset = Vector2(54.11, 408.763)
 
 [node name="buy_base_button" type="TextureButton" parent="Camera2D/shop_stuff/choose_base_section/base_crate/Container"]
+visible = false
 layout_mode = 0
 offset_left = 253.0
 offset_top = 589.0
@@ -976,6 +976,18 @@ scale = Vector2(0.1, 0.1)
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 150
 text = "SELECT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Camera2D/shop_stuff/choose_base_section/base_crate/Container/buy_base_button"]
+offset_left = -55.0
+offset_top = -31.0
+offset_right = 1675.0
+offset_bottom = 228.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "Resets any base upgrades"
 horizontal_alignment = 1
 vertical_alignment = 1
 
