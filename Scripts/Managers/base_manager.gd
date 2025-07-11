@@ -234,6 +234,7 @@ func update_base_upgrade_paths() -> void:
 		base_section.find_child("path_1").visible = false
 		base_section.find_child("path_2").visible = false
 		base_section.find_child("max_tier").visible = true
+		base_section.find_child("max_tier_desc").text = base_description
 		base_section.find_child("confirm_base_upgrade").visible = false
 	else:
 		base_section.find_child("path_1").visible = true

@@ -829,11 +829,12 @@ texture = ExtResource("28_3ljtq")
 
 [node name="max_tier_text" type="RichTextLabel" parent="Camera2D/shop_stuff/base_section/max_tier"]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 3.0
-offset_right = 1133.0
-offset_bottom = 195.0
+offset_left = 1.00003
+offset_top = -157.0
+offset_right = 1132.0
+offset_bottom = 35.0
 scale = Vector2(0.175, 0.175)
+pivot_offset = Vector2(0.03125, 194.859)
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 150
 text = "MAX TIER"
