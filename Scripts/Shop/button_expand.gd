@@ -12,3 +12,11 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	self.scale = Vector2(starting_size, starting_size)
+
+
+func _on_select_base_button_mouse_entered() -> void:
+	self.scale = Vector2(starting_size * expanding_amount, starting_size * expanding_amount)
+
+
+func _on_select_base_button_mouse_exited() -> void:
+	self.scale = Vector2(starting_size, starting_size)
