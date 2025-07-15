@@ -38,6 +38,7 @@ func _process(delta: float) -> void:
 		if(enemy):
 			enemy.projectile_hit(damage)
 			enemy = null
+			queue_free()
 	#Stops an issue where projectiles over shoot their target for some reason
 	if(t > 1.5):
 		queue_free()
