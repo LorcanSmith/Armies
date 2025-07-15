@@ -194,9 +194,8 @@ func update_upgrade_cost_labels():
 	while counter < unit_themes.size():
 		theme = unit_themes[counter].to_lower()
 		if game_manager.blocked_types.has(unit_themes[counter]):
-			remove_section.find_child("remove_{theme}_cost".format({"theme": theme})).text = "X"
-			remove_section.find_child("remove_{theme}_button_text".format({"theme": theme})).text = "REMOVED"
-			remove_section.find_child("remove_{theme}_button".format({"theme": theme})).disabled = true
+			remove_section.find_child("remove_{theme}_button".format({"theme": theme})).visible = false
+			remove_section.find_child("remove_{theme}".format({"theme": theme})).find_child("cross").visible = true
 		else:
 			remove_section.find_child("remove_{theme}_cost".format({"theme": theme})).text = str((game_manager.shop_upgrades + 1) * 5)
 		counter += 1
