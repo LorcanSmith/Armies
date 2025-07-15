@@ -1,0 +1,138 @@
+[gd_scene load_steps=21 format=3 uid="uid://coxtealiyteau"]
+
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_y84wa"]
+[ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_wjucx"]
+[ext_resource type="Texture2D" uid="uid://belb66o6tdguo" path="res://Sprites/Units/Animals/dog/dog_death.png" id="3_y84wa"]
+[ext_resource type="Texture2D" uid="uid://d0lxga4djtkj1" path="res://Sprites/Units/Animals/dog/dog_idle.png" id="4_wjucx"]
+[ext_resource type="Texture2D" uid="uid://c6rb6rqkpgk10" path="res://Sprites/Units/Animals/dog/dog_skill.png" id="5_y84wa"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="6_a1f7q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lxyc"]
+atlas = ExtResource("3_y84wa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmejf"]
+atlas = ExtResource("3_y84wa")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jljoi"]
+atlas = ExtResource("3_y84wa")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1f7q"]
+atlas = ExtResource("3_y84wa")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3ls7"]
+atlas = ExtResource("3_y84wa")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud2gy"]
+atlas = ExtResource("4_wjucx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lb3js"]
+atlas = ExtResource("4_wjucx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_em3tv"]
+atlas = ExtResource("4_wjucx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onwxh"]
+atlas = ExtResource("4_wjucx")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjucx"]
+atlas = ExtResource("5_y84wa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhv53"]
+atlas = ExtResource("5_y84wa")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kndua"]
+atlas = ExtResource("5_y84wa")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcf0u"]
+atlas = ExtResource("5_y84wa")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0pau"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lxyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmejf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jljoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1f7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3ls7")
+}],
+"loop": false,
+"name": &"death",
+"speed": 13.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ud2gy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lb3js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_em3tv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onwxh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjucx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhv53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kndua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcf0u")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 10.0
+}]
+
+[node name="Dog" instance=ExtResource("1_y84wa")]
+attack_animation_length = 0.5
+max_health = 5
+brawl_damage = 4
+Animal = true
+Dog = true
+skill_damage = 4
+projectile = ExtResource("2_wjucx")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_m0pau")
+
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("6_a1f7q")]
+position = Vector2(74, 0)
+
+[node name="Sprite2D" parent="." index="4"]
+texture = null
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-2, -0.5)

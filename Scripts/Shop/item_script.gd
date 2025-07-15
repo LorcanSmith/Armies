@@ -87,6 +87,8 @@ var buffs_work_against : Array = []
 @export_subgroup("Names")
 @export var Soldier : bool
 @export var Velociraptor : bool
+@export var Dog : bool
+@export var Sheep : bool
 
 
 var item_has_transformed : bool = false

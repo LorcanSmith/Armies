@@ -68,8 +68,9 @@ var unit_types : Array = [
 @export var Healer : bool
 @export_subgroup("Names")
 @export var Soldier : bool
-@export var Sheep : bool
 @export var Velociraptor : bool
+@export var Dog : bool
+@export var Sheep : bool
 
 
 

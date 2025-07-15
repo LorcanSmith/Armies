@@ -47,8 +47,9 @@ var unit_scenes = {
 	20: preload("res://Prefabs/Units/Level1/trex_unit_LVL1.tscn"),
 	#Ankylosaurus
 	21: preload("res://Prefabs/Units/Level1/ankylosaurus_unit_LVL1.tscn"),
+	#Dog
+	22: preload("res://Prefabs/Units/Level1/dog_unit.tscn")
 }
-
 var item_scenes = {
 	#KNIGHT
 	0: preload("res://Prefabs/Shop Items/Level1/knight_item_LVL1.tscn"),
@@ -93,7 +94,9 @@ var item_scenes = {
   	#Trex
 	20: preload("res://Prefabs/Shop Items/Level1/trex_item_LVL1.tscn"),
 	#Ankylosaurus
-	21: preload("res://Prefabs/Shop Items/Level1/ankylosaurus_item_LVL1.tscn")
+	21: preload("res://Prefabs/Shop Items/Level1/ankylosaurus_item_LVL1.tscn"),
+	#Dog
+	22: preload("res://Prefabs/Shop Items/Level1/dog_item.tscn")
 }
 
 var booster_scenes = {

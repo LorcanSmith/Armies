@@ -206,10 +206,6 @@ func check_units():
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
 						instance.find_child("buff_text").text = str("+",healer_attack)
 						army[x][y].units_on_tile[0].damage_boost += healer_attack					
-				##UNITS
-				#Sheep
-				if(unit.Sheep):
-					army[x][y].units_on_tile[0].spawn_coin(army[x][y].units_on_tile[0].sell_cost)
 				unit.queue_free()
 			y += 1
 		x+= 1
