@@ -42,7 +42,13 @@ func _on_buy_base_button_pressed() -> void:
 	base_manager.tier = 0
 	selected_base = true
 	find_parent("shop_manager").find_child("Tooltip").get_node("AnimationPlayer").play("tooltip_popout")
-
+	#Turn off select button
+	find_child("buy_base_button").visible = false
+	#Switch back to upgrade menu
+	find_parent("choose_base_section").visible = false
+	find_parent("shop_stuff").find_child("base_section").visible = true
+	#Update base path text
+	find_parent("Camera2D").find_child("base_manager").update_base_upgrade_paths()
 func set_current_base(base):
 	current_base_selected = base
 	find_child("buy_base_button").visible = true

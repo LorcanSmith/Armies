@@ -1006,7 +1006,6 @@ position = Vector2(-35, 70)
 position = Vector2(35, 70)
 
 [node name="shop_remove_section" type="Node2D" parent="Camera2D/shop_stuff"]
-visible = false
 position = Vector2(-1398, -392)
 
 [node name="remove_medieval" type="Control" parent="Camera2D/shop_stuff/shop_remove_section"]
@@ -1090,6 +1089,15 @@ position = Vector2(58.8235, 70.5882)
 scale = Vector2(4.41176, 4.41177)
 texture = ExtResource("6_wk4qg")
 
+[node name="cross" type="TextureRect" parent="Camera2D/shop_stuff/shop_remove_section/remove_medieval"]
+visible = false
+self_modulate = Color(0.880013, 0, 0.158553, 1)
+offset_left = -9.0
+offset_top = -39.0
+offset_right = 7.0
+offset_bottom = -23.0
+texture = ExtResource("11_m4m2t")
+
 [node name="remove_army" type="Control" parent="Camera2D/shop_stuff/shop_remove_section"]
 layout_mode = 3
 anchors_preset = 0
@@ -1170,6 +1178,15 @@ z_as_relative = false
 position = Vector2(58.8235, 70.5882)
 scale = Vector2(4.41176, 4.41177)
 texture = ExtResource("6_wk4qg")
+
+[node name="cross" type="TextureRect" parent="Camera2D/shop_stuff/shop_remove_section/remove_army"]
+visible = false
+self_modulate = Color(0.880013, 0, 0.158553, 1)
+offset_left = -9.0
+offset_top = -39.0
+offset_right = 7.0
+offset_bottom = -23.0
+texture = ExtResource("11_m4m2t")
 
 [node name="remove_fantasy" type="Control" parent="Camera2D/shop_stuff/shop_remove_section"]
 layout_mode = 3
@@ -1252,6 +1269,15 @@ position = Vector2(58.8235, 70.5882)
 scale = Vector2(4.41176, 4.41177)
 texture = ExtResource("6_wk4qg")
 
+[node name="cross" type="TextureRect" parent="Camera2D/shop_stuff/shop_remove_section/remove_fantasy"]
+visible = false
+self_modulate = Color(0.880013, 0, 0.158553, 1)
+offset_left = -9.0
+offset_top = -39.0
+offset_right = 7.0
+offset_bottom = -23.0
+texture = ExtResource("11_m4m2t")
+
 [node name="remove_dinosaur" type="Control" parent="Camera2D/shop_stuff/shop_remove_section"]
 layout_mode = 3
 anchors_preset = 0
@@ -1332,6 +1358,15 @@ z_as_relative = false
 position = Vector2(58.8235, 70.5882)
 scale = Vector2(4.41176, 4.41177)
 texture = ExtResource("6_wk4qg")
+
+[node name="cross" type="TextureRect" parent="Camera2D/shop_stuff/shop_remove_section/remove_dinosaur"]
+visible = false
+self_modulate = Color(0.880013, 0, 0.158553, 1)
+offset_left = -9.0
+offset_top = -39.0
+offset_right = 7.0
+offset_bottom = -23.0
+texture = ExtResource("11_m4m2t")
 
 [node name="base_manager" type="Node2D" parent="Camera2D"]
 position = Vector2(-282, 8)

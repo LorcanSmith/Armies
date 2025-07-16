@@ -68,8 +68,9 @@ var unit_types : Array = [
 @export var Healer : bool
 @export_subgroup("Names")
 @export var Soldier : bool
-@export var Sheep : bool
 @export var Velociraptor : bool
+@export var Dog : bool
+@export var Sheep : bool
 
 
 
@@ -226,8 +227,13 @@ func skill(phase : String):
 	#If this unit is the only unit on the tile then they can do their skill
 	if(alive and get_parent().units_on_tile.size() < 2):
 		if((phase == "combat_phase" and skill_damage > 0) or (phase == "healing_phase" and skill_heal > 0)):
-			#If there is at least one enemy within the units range (in a skill location) and the unit isn't reloading
-			if((enemies_in_range.size() > 0 or friendlies_in_range.size() > 0) and !reloading):
+			var friendly_needs_heals : bool = false
+			if(friendlies_in_range.size() > 0 and phase == "healing_phase" and skill_heal > 0):
+				for u in friendlies_in_range:
+					if(u.health_bar_remaining < u.max_health):
+						friendly_needs_heals = true
+			#If there is at least one enemy within the units range (in a skill location)
+			if((enemies_in_range.size() > 0 or friendly_needs_heals)):
 				var skills_spawned = 0
 				#which unit in enemies_in_range/friendlies_in_range are we targeting
 				var unit_number = 0
@@ -236,7 +242,7 @@ func skill(phase : String):
 					seed(find_parent("game_manager").seed * max_health * (skills_spawned+2)* find_parent("combat_manager").current_round_number)
 					var percentage = randf_range(0,100)/100
 					#Picks a random number for our wait time
-					var wait_time = 0.05 + (0.25 - 0.05) * percentage
+					var wait_time = 0.25 * percentage
 					#Delay so the buffs don't all appear at the same time
 					await get_tree().create_timer(wait_time).timeout
 					if((unit_number > enemies_in_range.size()-1 and skill_damage + damage_boost > 0) or (unit_number > friendlies_in_range.size()-1 and skill_heal > 0)):
@@ -245,8 +251,9 @@ func skill(phase : String):
 							unit_number = 0
 						else:
 							break
-					var skill_instance 
+					var skill_instance
 					skill_instance = skill_prefab.instantiate()
+					
 					#Play skill animation if alive
 					if(alive and health_bar_remaining > 0):
 						if(!unit_has_transformed):
@@ -509,7 +516,7 @@ func _process(delta: float) -> void:
 	if(self.position != Vector2(0,0) and alive):
 		#Moves the unit smoothly
 		self.position = lerp(self.position, Vector2(0,0), delta*5)
-	if(self.position.distance_to(Vector2(0,0)) < 1.8 and mo):
+	if(self.position.distance_to(Vector2(0,0)) < 4 and mo):
 		mo = false
 		combat_manager.w += 1
 		combat_manager.waited_for_move()
