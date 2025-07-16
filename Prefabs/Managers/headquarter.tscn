@@ -22,6 +22,7 @@ debug_color = Color(0, 0.599853, 0.700848, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+position = Vector2(-28, 0)
 texture = ExtResource("2_i8o0q")
 offset = Vector2(0, -13)
 

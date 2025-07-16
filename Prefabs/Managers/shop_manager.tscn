@@ -267,6 +267,27 @@ offset_bottom = 37.0
 mouse_filter = 2
 texture = ExtResource("11_m4m2t")
 
+[node name="battle_button" type="TextureButton" parent="Camera2D/shop_stuff/shop_visuals"]
+texture_filter = 1
+offset_left = 49.0
+offset_top = 327.0
+offset_right = 122.0
+offset_bottom = 354.0
+texture_normal = ExtResource("8_qjc8s")
+texture_pressed = ExtResource("9_vg5hm")
+texture_hover = ExtResource("10_1cd4y")
+
+[node name="BattleText" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_visuals/battle_button"]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 142.0
+scale = Vector2(0.19, 0.19)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 100
+text = "BATTLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="unit_section" type="Node2D" parent="Camera2D/shop_stuff"]
 position = Vector2(-699, -196)
 
@@ -313,27 +334,6 @@ position = Vector2(648, 315)
 
 [node name="booster_2" type="Node2D" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/booster_locations"]
 position = Vector2(722, 315)
-
-[node name="battle_button" type="TextureButton" parent="Camera2D/shop_stuff/unit_section/shop_item_generator"]
-texture_filter = 1
-offset_left = 690.0
-offset_top = 421.0
-offset_right = 763.0
-offset_bottom = 448.0
-texture_normal = ExtResource("8_qjc8s")
-texture_pressed = ExtResource("9_vg5hm")
-texture_hover = ExtResource("10_1cd4y")
-
-[node name="BattleText" type="RichTextLabel" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/battle_button"]
-layout_mode = 0
-offset_right = 384.0
-offset_bottom = 142.0
-scale = Vector2(0.19, 0.19)
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 100
-text = "BATTLE"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="base_spawn_location" type="Node2D" parent="Camera2D/shop_stuff/unit_section/shop_item_generator"]
 position = Vector2(607, 401)
@@ -1398,11 +1398,11 @@ position = Vector2(-309, -176)
 [connection signal="mouse_entered" from="Camera2D/shop_stuff/shop_visuals/shop_background/shop_remove_button" to="Camera2D/shop_stuff/shop_visuals/shop_background/shop_remove_button" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Camera2D/shop_stuff/shop_visuals/shop_background/shop_remove_button" to="Camera2D/shop_stuff/shop_visuals/shop_background/shop_remove_button" method="_on_mouse_exited"]
 [connection signal="toggled" from="Camera2D/shop_stuff/shop_visuals/shop_background/shop_remove_button" to="." method="_on_shop_upgrade_button_toggled"]
-[connection signal="button_down" from="Camera2D/shop_stuff/unit_section/shop_item_generator/battle_button" to="." method="_on_battle_button_button_down"]
-[connection signal="button_up" from="Camera2D/shop_stuff/unit_section/shop_item_generator/battle_button" to="." method="_on_battle_button_button_up"]
-[connection signal="mouse_entered" from="Camera2D/shop_stuff/unit_section/shop_item_generator/battle_button" to="." method="_on_battle_button_mouse_entered"]
-[connection signal="mouse_exited" from="Camera2D/shop_stuff/unit_section/shop_item_generator/battle_button" to="." method="_on_battle_button_mouse_exited"]
-[connection signal="pressed" from="Camera2D/shop_stuff/unit_section/shop_item_generator/battle_button" to="." method="_on_battle_button_pressed"]
+[connection signal="button_down" from="Camera2D/shop_stuff/shop_visuals/battle_button" to="." method="_on_battle_button_button_down"]
+[connection signal="button_up" from="Camera2D/shop_stuff/shop_visuals/battle_button" to="." method="_on_battle_button_button_up"]
+[connection signal="mouse_entered" from="Camera2D/shop_stuff/shop_visuals/battle_button" to="." method="_on_battle_button_mouse_entered"]
+[connection signal="mouse_exited" from="Camera2D/shop_stuff/shop_visuals/battle_button" to="." method="_on_battle_button_mouse_exited"]
+[connection signal="pressed" from="Camera2D/shop_stuff/shop_visuals/battle_button" to="." method="_on_battle_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_stuff/unit_section/shop_item_generator/buy_bases_UI/Container/crate/close_button" to="Camera2D/shop_stuff/unit_section/shop_item_generator" method="_on_buy_bases_close_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_stuff/unit_section/shop_item_generator/buy_bases_UI/Container/buy_base_button" to="Camera2D/shop_stuff/unit_section/shop_item_generator" method="_on_buy_base_button_pressed"]
 [connection signal="mouse_entered" from="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" to="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" method="_on_mouse_entered"]
