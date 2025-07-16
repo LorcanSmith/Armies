@@ -1,0 +1,112 @@
+[gd_scene load_steps=16 format=3 uid="uid://buarcjlhvwkkx"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_t3lgf"]
+[ext_resource type="Texture2D" path="res://Sprites/Units/Animals/dog/dog_death.png" id="2_t3lgf"]
+[ext_resource type="Texture2D" path="res://Sprites/Units/Animals/dog/dog_idle.png" id="3_2cq8l"]
+[ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="4_2cq8l"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_vyr02"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0wir"]
+atlas = ExtResource("2_t3lgf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyr02"]
+atlas = ExtResource("2_t3lgf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jafrk"]
+atlas = ExtResource("2_t3lgf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15gok"]
+atlas = ExtResource("2_t3lgf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmxxl"]
+atlas = ExtResource("2_t3lgf")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yc54"]
+atlas = ExtResource("3_2cq8l")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qal7d"]
+atlas = ExtResource("3_2cq8l")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7yjs"]
+atlas = ExtResource("3_2cq8l")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgobt"]
+atlas = ExtResource("3_2cq8l")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v4k38"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0wir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyr02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jafrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15gok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmxxl")
+}],
+"loop": false,
+"name": &"death",
+"speed": 13.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yc54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qal7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7yjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgobt")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="Dog" instance=ExtResource("1_t3lgf")]
+description = "Protector of sheep"
+before_combat_desc = "Gives +1 health to sheep"
+unit_name = "Dog"
+buy_cost = 4
+sell_cost = 2
+can_buff = true
+health_buff = 1
+
+[node name="Sprite2D" parent="." index="0"]
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_v4k38")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="buff_location" parent="buffs" index="0" instance=ExtResource("4_2cq8l")]
+position = Vector2(0, 74)
+
+[node name="buff_location2" parent="buffs" index="1" instance=ExtResource("4_2cq8l")]
+position = Vector2(0, -74)
+
+[node name="buff_location3" parent="buffs" index="2" instance=ExtResource("4_2cq8l")]
+position = Vector2(-74, 0)
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("4_vyr02")]
+position = Vector2(74, 0)
