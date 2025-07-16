@@ -15,10 +15,8 @@ var base_name : String = "House"
 var base_sprites : Array = [
 	preload("res://Sprites/Bases/castle.png"),
 	preload("res://Sprites/Bases/bank.png"),
-	preload("res://Sprites/Bases/tent.png"),
-	preload("res://Sprites/Bases/hospital.png"),
 	preload("res://Sprites/Bases/military_base_upgrade.png"),
-	preload("res://Sprites/Bases/dragon_den_lowres.png"),
+	preload("res://Sprites/Bases/hospital.png"),
 	preload("res://Sprites/Bases/default.png")
 ]
 
