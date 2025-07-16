@@ -108,7 +108,6 @@ projectile = ExtResource("2_e27eo")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_u6xyw")
-autoplay = "idle"
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_pg4u0")]
 position = Vector2(74, 0)
