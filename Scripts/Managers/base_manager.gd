@@ -252,6 +252,8 @@ func _on_base_area_2d_mouse_entered() -> void:
 
 #SHOW BASE UPGRADES
 func update_base_upgrade_paths() -> void:
+	untoggle_buttons()
+	base_section.find_child("confirm_base_upgrade").visible = false
 	#Turn off tooltip
 	tooltip.get_node("AnimationPlayer").play("tooltip_popout")
 	
@@ -273,7 +275,6 @@ func update_base_upgrade_paths() -> void:
 		base_section.find_child("path_1").visible = true
 		base_section.find_child("path_2").visible = true
 		base_section.find_child("max_tier").visible = false
-		base_section.find_child("confirm_base_upgrade").visible = true
 	
 	var current_path_1_name_array : Array
 	var current_path_1_desc_array : Array
@@ -453,10 +454,12 @@ func _on_confirm_base_upgrade_pressed() -> void:
 func _on_path_1_pressed() -> void:
 	path_selected = 1
 	base_description = base_section.find_child("path_1_desc").text
+	base_section.find_child("confirm_base_upgrade").visible = true
+
 func _on_path_2_pressed() -> void:
 	path_selected = 2
 	base_description = base_section.find_child("path_2_desc").text
-	
+	base_section.find_child("confirm_base_upgrade").visible = true
 func untoggle_buttons():
 	base_section.find_child("path_1").button_pressed = false
 	base_section.find_child("path_2").button_pressed = false

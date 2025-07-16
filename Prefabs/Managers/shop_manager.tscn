@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=52 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://bm7qe1w2xsxio" path="res://Sprites/UI/square_button/square_hovered.png" id="15_ywfir"]
 [ext_resource type="Texture2D" uid="uid://bmqt28gocxy6v" path="res://Sprites/UI/shop/new shop icons/re-roll button/arrow.png" id="16_ontla"]
 [ext_resource type="Texture2D" uid="uid://bxqvssxisncyy" path="res://Sprites/UI/shop/new shop icons/lock.png" id="19_5x64g"]
+[ext_resource type="Texture2D" uid="uid://bnb662be6om1a" path="res://Sprites/Locations/tile_location.png" id="19_m2rvv"]
 [ext_resource type="Script" uid="uid://caqdnygqatsi6" path="res://Scripts/Shop/lock.gd" id="20_i5pgw"]
 [ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="21_hxbdf"]
 [ext_resource type="Texture2D" uid="uid://cspyn7seap7nm" path="res://Sprites/Units/Dinosaurs/velociraptor/velociraptor_sprite_lvl1.png" id="22_kga0f"]
@@ -43,6 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://bd8mbqamio3hi" path="res://Sprites/UI/shop/path_clicked.png" id="29_i4wjb"]
 [ext_resource type="Texture2D" uid="uid://b8d2lpa5njmui" path="res://Sprites/UI/shop/path_hovered.png" id="30_uug8p"]
 [ext_resource type="Script" uid="uid://mrsc5vs4uclq" path="res://Scripts/Shop/base_crate.gd" id="32_ontla"]
+[ext_resource type="Texture2D" uid="uid://cvoyqv5bccasw" path="res://Sprites/UI/shop/max_path.png" id="36_m85sq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4adb8"]
 size = Vector2(46, 59)
@@ -269,6 +271,7 @@ texture = ExtResource("11_m4m2t")
 
 [node name="battle_button" type="TextureButton" parent="Camera2D/shop_stuff/shop_visuals"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 49.0
 offset_top = 327.0
 offset_right = 122.0
@@ -342,67 +345,58 @@ script = ExtResource("12_qjc8s")
 [node name="pedastals" type="Node2D" parent="Camera2D/shop_stuff/unit_section/shop_item_generator"]
 
 [node name="pedestal" type="Sprite2D" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/pedastals"]
-self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
+self_modulate = Color(0.390729, 1, 0.659929, 1)
 texture_filter = 1
-position = Vector2(625.32, 129.32)
-scale = Vector2(1.26, 1.26)
-texture = ExtResource("8_rrq0j")
+position = Vector2(625, 121)
+texture = ExtResource("19_m2rvv")
 
 [node name="pedestal2" type="Sprite2D" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/pedastals"]
-self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
+self_modulate = Color(0.390729, 1, 0.659929, 1)
 texture_filter = 1
-position = Vector2(699.32, 129.32)
-scale = Vector2(1.26, 1.26)
-texture = ExtResource("8_rrq0j")
+position = Vector2(699, 121)
+texture = ExtResource("19_m2rvv")
 
 [node name="pedestal3" type="Sprite2D" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/pedastals"]
-self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
+self_modulate = Color(0.390729, 1, 0.659929, 1)
 texture_filter = 1
-position = Vector2(625.32, 200.32)
-scale = Vector2(1.26, 1.26)
-texture = ExtResource("8_rrq0j")
+position = Vector2(625, 192)
+texture = ExtResource("19_m2rvv")
 
 [node name="pedestal4" type="Sprite2D" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/pedastals"]
-self_modulate = Color(0.434477, 0.25551, 0.277837, 1)
+self_modulate = Color(0.390729, 1, 0.659929, 1)
 texture_filter = 1
-position = Vector2(699.32, 200.32)
-scale = Vector2(1.26, 1.26)
-texture = ExtResource("8_rrq0j")
+position = Vector2(699, 192)
+texture = ExtResource("19_m2rvv")
 
 [node name="pedestal5" type="Sprite2D" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/pedastals"]
-self_modulate = Color(0.435294, 0.254902, 0.278431, 0.392157)
+self_modulate = Color(0.392157, 1, 0.658824, 0.392157)
 texture_filter = 1
-position = Vector2(773.32, 130.32)
-scale = Vector2(1.26, 1.26)
-texture = ExtResource("8_rrq0j")
+position = Vector2(773, 122)
+texture = ExtResource("19_m2rvv")
 
 [node name="pedestal6" type="Sprite2D" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/pedastals"]
-self_modulate = Color(0.435294, 0.254902, 0.278431, 0.392157)
+self_modulate = Color(0.392157, 1, 0.658824, 0.392157)
 texture_filter = 1
-position = Vector2(773.32, 200.32)
-scale = Vector2(1.26, 1.26)
-texture = ExtResource("8_rrq0j")
+position = Vector2(773, 192)
+texture = ExtResource("19_m2rvv")
 
 [node name="pedestal7" type="Sprite2D" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/pedastals"]
-self_modulate = Color(0.435294, 0.254902, 0.278431, 0.392157)
+self_modulate = Color(0.392157, 1, 0.658824, 0.392157)
 texture_filter = 1
-position = Vector2(625.32, 275.32)
-scale = Vector2(1.26, 1.26)
-texture = ExtResource("8_rrq0j")
+position = Vector2(625, 267)
+texture = ExtResource("19_m2rvv")
 
 [node name="pedestal8" type="Sprite2D" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/pedastals"]
-self_modulate = Color(0.435294, 0.254902, 0.278431, 0.392157)
+self_modulate = Color(0.392157, 1, 0.658824, 0.392157)
 texture_filter = 1
-position = Vector2(699.32, 275.32)
-scale = Vector2(1.26, 1.26)
-texture = ExtResource("8_rrq0j")
+position = Vector2(699, 267)
+texture = ExtResource("19_m2rvv")
 
 [node name="pedestal9" type="Sprite2D" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/pedastals"]
-self_modulate = Color(0.435294, 0.254902, 0.278431, 0.392157)
+self_modulate = Color(0.392157, 1, 0.658824, 0.392157)
 texture_filter = 1
-position = Vector2(773.32, 275.32)
-scale = Vector2(1.26, 1.26)
-texture = ExtResource("8_rrq0j")
+position = Vector2(773, 267)
+texture = ExtResource("19_m2rvv")
 
 [node name="buy_bases_UI" type="CanvasLayer" parent="Camera2D/shop_stuff/unit_section/shop_item_generator"]
 visible = false
@@ -743,10 +737,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="path_1" type="TextureButton" parent="Camera2D/shop_stuff/base_section"]
-self_modulate = Color(0.19334, 0.547819, 0.449156, 1)
-offset_left = 1337.0
+self_modulate = Color(0.534815, 0.444584, 0.350427, 1)
+offset_left = 1311.0
 offset_top = 303.0
-offset_right = 1539.0
+offset_right = 1588.0
 offset_bottom = 464.0
 scale = Vector2(0.62, 0.62)
 toggle_mode = true
@@ -758,33 +752,32 @@ texture_hover = ExtResource("30_uug8p")
 [node name="path_1_text" type="RichTextLabel" parent="Camera2D/shop_stuff/base_section/path_1"]
 layout_mode = 0
 offset_left = 2.0
-offset_top = 3.0
-offset_right = 1240.0
-offset_bottom = 366.0
+offset_top = 6.22559
+offset_right = 1706.0
+offset_bottom = 369.226
 scale = Vector2(0.16, 0.16)
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 150
+theme_override_font_sizes/normal_font_size = 200
 text = "PATH 1"
 horizontal_alignment = 1
 
 [node name="path_1_desc" type="RichTextLabel" parent="Camera2D/shop_stuff/base_section/path_1"]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 67.0
-offset_right = 1724.0
-offset_bottom = 876.0
+offset_left = 13.0
+offset_top = 44.0
+offset_right = 2200.0
+offset_bottom = 1060.0
 scale = Vector2(0.115, 0.115)
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 150
+theme_override_font_sizes/normal_font_size = 225
 text = "PATH 1"
 horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="path_2" type="TextureButton" parent="Camera2D/shop_stuff/base_section"]
-self_modulate = Color(0.730499, 0.313291, 0.468274, 1)
-offset_left = 1337.0
+self_modulate = Color(0.50455, 0.472566, 0.437532, 1)
+offset_left = 1311.0
 offset_top = 410.0
-offset_right = 1539.0
+offset_right = 1588.0
 offset_bottom = 571.0
 scale = Vector2(0.62, 0.62)
 toggle_mode = true
@@ -795,65 +788,66 @@ texture_hover = ExtResource("30_uug8p")
 
 [node name="path_2_text" type="RichTextLabel" parent="Camera2D/shop_stuff/base_section/path_2"]
 layout_mode = 0
-offset_left = 2.00001
-offset_top = 3.0
-offset_right = 1233.0
-offset_bottom = 372.0
+offset_left = 2.0
+offset_top = 6.22559
+offset_right = 1706.0
+offset_bottom = 375.226
 scale = Vector2(0.16, 0.16)
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 150
+theme_override_font_sizes/normal_font_size = 200
 text = "PATH 2"
 horizontal_alignment = 1
 
 [node name="path_2_desc" type="RichTextLabel" parent="Camera2D/shop_stuff/base_section/path_2"]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 58.0
-offset_right = 1724.0
-offset_bottom = 945.0
+offset_left = 13.0
+offset_top = 45.0
+offset_right = 2186.0
+offset_bottom = 1042.0
 scale = Vector2(0.115, 0.115)
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 150
+theme_override_font_sizes/normal_font_size = 225
 text = "PATH 2"
 horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="max_tier" type="TextureRect" parent="Camera2D/shop_stuff/base_section"]
 visible = false
 self_modulate = Color(0.75889, 0.311138, 0.313611, 1)
-offset_left = 1300.0
-offset_top = 324.0
-offset_right = 1502.0
-offset_bottom = 485.0
-texture = ExtResource("28_3ljtq")
+offset_left = 1301.0
+offset_top = 327.0
+offset_right = 1578.0
+offset_bottom = 488.0
+scale = Vector2(0.68, 0.68)
+texture = ExtResource("36_m85sq")
 
 [node name="max_tier_text" type="RichTextLabel" parent="Camera2D/shop_stuff/base_section/max_tier"]
 layout_mode = 0
-offset_left = 1.00003
+offset_left = 1.0
 offset_top = -157.0
-offset_right = 1132.0
-offset_bottom = 35.0
+offset_right = 1567.0
+offset_bottom = 57.0
 scale = Vector2(0.175, 0.175)
 pivot_offset = Vector2(0.03125, 194.859)
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 150
+theme_override_font_sizes/normal_font_size = 175
 text = "MAX TIER"
 horizontal_alignment = 1
 
 [node name="max_tier_desc" type="RichTextLabel" parent="Camera2D/shop_stuff/base_section/max_tier"]
 layout_mode = 0
 offset_left = 2.0
-offset_top = 38.0
-offset_right = 1724.0
-offset_bottom = 751.0
+offset_top = 46.0
+offset_right = 2350.0
+offset_bottom = 2076.0
 scale = Vector2(0.115, 0.115)
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 150
+theme_override_font_sizes/normal_font_size = 260
 text = "PATH 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="confirm_base_upgrade" type="TextureButton" parent="Camera2D/shop_stuff/base_section"]
+visible = false
 offset_left = 1365.0
 offset_top = 519.0
 offset_right = 1438.0
@@ -907,10 +901,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="TextureButton" type="TextureButton" parent="Camera2D/shop_stuff/base_section"]
 self_modulate = Color(0.381703, 0.381703, 0.381703, 1)
-offset_left = 1288.0
-offset_top = 511.0
-offset_right = 1334.0
-offset_bottom = 551.0
+offset_left = 1263.0
+offset_top = 533.0
+offset_right = 1309.0
+offset_bottom = 573.0
 toggle_mode = true
 button_group = ExtResource("6_ofn6w")
 texture_normal = ExtResource("12_m4m2t")
