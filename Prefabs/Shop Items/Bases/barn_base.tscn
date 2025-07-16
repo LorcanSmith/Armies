@@ -1,16 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://ckgb2aec4d3hs"]
+[gd_scene load_steps=17 format=3 uid="uid://b5mx7sehyto1w"]
 
-[ext_resource type="Texture2D" uid="uid://8af7s6x54d8a" path="res://Sprites/Bases/castle.png" id="1_26ikh"]
-[ext_resource type="Script" uid="uid://cc646f6ymc6pf" path="res://Scripts/Shop/base_script.gd" id="1_xddxu"]
-[ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="3_e6837"]
-[ext_resource type="Texture2D" uid="uid://qugs6w1u0f15" path="res://Sprites/UI/selected_ui.png" id="3_yc0f8"]
-[ext_resource type="PackedScene" uid="uid://dct8tnv8f1a46" path="res://Prefabs/Effects/shadow.tscn" id="4_m5xxh"]
-[ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="4_th0md"]
-[ext_resource type="Script" uid="uid://bm4bqw0xncv2x" path="res://Scripts/Shop/button_expand.gd" id="4_yc0f8"]
-[ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="5_bly1q"]
-[ext_resource type="Texture2D" uid="uid://dirtbdn43qwvv" path="res://Sprites/UI/square_button/square.png" id="7_to6h8"]
-[ext_resource type="Texture2D" uid="uid://be0cwtjifif32" path="res://Sprites/UI/square_button/square_pressed.png" id="8_m5xxh"]
-[ext_resource type="Texture2D" uid="uid://bm7qe1w2xsxio" path="res://Sprites/UI/square_button/square_hovered.png" id="9_yc0f8"]
+[ext_resource type="Script" uid="uid://cc646f6ymc6pf" path="res://Scripts/Shop/base_script.gd" id="1_skbdb"]
+[ext_resource type="Texture2D" uid="uid://qugs6w1u0f15" path="res://Sprites/UI/selected_ui.png" id="2_7md8n"]
+[ext_resource type="Texture2D" uid="uid://dhruha6qki053" path="res://Sprites/Bases/barn.png" id="3_7md8n"]
+[ext_resource type="Texture2D" uid="uid://8af7s6x54d8a" path="res://Sprites/Bases/castle.png" id="3_lcfia"]
+[ext_resource type="PackedScene" uid="uid://dct8tnv8f1a46" path="res://Prefabs/Effects/shadow.tscn" id="4_5oma6"]
+[ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="5_23cpv"]
+[ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="6_xb80t"]
+[ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="7_hs1e1"]
+[ext_resource type="Texture2D" uid="uid://dirtbdn43qwvv" path="res://Sprites/UI/square_button/square.png" id="8_yhq8i"]
+[ext_resource type="Texture2D" uid="uid://be0cwtjifif32" path="res://Sprites/UI/square_button/square_pressed.png" id="9_x0lgt"]
+[ext_resource type="Texture2D" uid="uid://bm7qe1w2xsxio" path="res://Sprites/UI/square_button/square_hovered.png" id="10_wy8f5"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_1g71s"]
 
@@ -68,14 +68,14 @@ _data = {
 &"base_confirm_disappear": SubResource("Animation_to6h8")
 }
 
-[node name="castle_base" type="Node2D"]
+[node name="barn_base" type="Node2D"]
 z_index = 6
 z_as_relative = false
 texture_filter = 1
-script = ExtResource("1_xddxu")
-base_id = 0
-base_name = "Castle"
-description = "Can be upgraded to provide bonuses to Medieval units"
+script = ExtResource("1_skbdb")
+base_id = 4
+base_name = "Barn"
+description = "Can be upgraded to provide bonuses to Animal Units"
 
 [node name="select_base_button" type="TextureButton" parent="."]
 z_index = 14
@@ -94,7 +94,7 @@ scale = Vector2(0.68, 0.68)
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_1g71s")
-texture_focused = ExtResource("3_yc0f8")
+texture_focused = ExtResource("2_7md8n")
 metadata/_edit_use_anchors_ = true
 
 [node name="base_image" type="TextureRect" parent="."]
@@ -105,13 +105,12 @@ offset_right = 29.0
 offset_bottom = 15.0
 pivot_offset = Vector2(28, 42)
 mouse_filter = 2
-texture = ExtResource("1_26ikh")
-script = ExtResource("4_yc0f8")
+texture = ExtResource("3_7md8n")
 
-[node name="shadow" parent="base_image" instance=ExtResource("4_m5xxh")]
+[node name="shadow" parent="base_image" instance=ExtResource("4_5oma6")]
 modulate = Color(0, 0, 0, 0.6)
 position = Vector2(28.5, 65)
-texture = ExtResource("1_26ikh")
+texture = ExtResource("3_7md8n")
 
 [node name="set_base_UI" type="Control" parent="."]
 visible = false
@@ -162,7 +161,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2.12, 2.12)
 pivot_offset = Vector2(20.0224, 20.0224)
-texture = ExtResource("1_26ikh")
+texture = ExtResource("3_lcfia")
 
 [node name="Description" type="RichTextLabel" parent="set_base_UI"]
 layout_mode = 0
@@ -181,9 +180,9 @@ offset_left = -67.0
 offset_top = 7.0
 offset_right = 6.0
 offset_bottom = 34.0
-texture_normal = ExtResource("3_e6837")
-texture_pressed = ExtResource("4_th0md")
-texture_hover = ExtResource("5_bly1q")
+texture_normal = ExtResource("5_23cpv")
+texture_pressed = ExtResource("6_xb80t")
+texture_hover = ExtResource("7_hs1e1")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="set_base_UI/set_base"]
 layout_mode = 0
@@ -203,9 +202,9 @@ offset_left = 119.0
 offset_top = -240.575
 offset_right = 147.0
 offset_bottom = -212.575
-texture_normal = ExtResource("7_to6h8")
-texture_pressed = ExtResource("8_m5xxh")
-texture_hover = ExtResource("9_yc0f8")
+texture_normal = ExtResource("8_yhq8i")
+texture_pressed = ExtResource("9_x0lgt")
+texture_hover = ExtResource("10_wy8f5")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="set_base_UI/close_button"]
 layout_mode = 0
@@ -227,7 +226,7 @@ offset_left = 2.00004
 offset_top = 1.33333
 offset_right = 29.0
 offset_bottom = 28.3333
-texture = ExtResource("7_to6h8")
+texture = ExtResource("8_yhq8i")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -235,8 +234,6 @@ libraries = {
 }
 
 [connection signal="mouse_entered" from="select_base_button" to="." method="_on_select_base_button_mouse_entered"]
-[connection signal="mouse_entered" from="select_base_button" to="base_image" method="_on_select_base_button_mouse_entered"]
-[connection signal="mouse_exited" from="select_base_button" to="base_image" method="_on_select_base_button_mouse_exited"]
 [connection signal="pressed" from="select_base_button" to="." method="_on_base_button_pressed"]
 [connection signal="pressed" from="set_base_UI/set_base" to="." method="_on_set_base_pressed"]
 [connection signal="pressed" from="set_base_UI/close_button" to="." method="_on_close_button_pressed"]

@@ -14,13 +14,15 @@ description = "Can be upgraded to provide extra money"
 button_group = SubResource("ButtonGroup_b1mkj")
 
 [node name="base_image" parent="." index="1"]
-offset_left = -17.0
-offset_right = 18.0
-pivot_offset = Vector2(17, 23)
+offset_left = -29.0
+offset_top = -40.0
+offset_right = 28.0
+offset_bottom = 17.0
+pivot_offset = Vector2(29, 40)
 texture = ExtResource("2_uvii2")
 
 [node name="shadow" parent="base_image" index="0"]
-position = Vector2(17.495, 34.225)
+position = Vector2(28, 65)
 texture = ExtResource("2_uvii2")
 script = null
 

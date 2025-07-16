@@ -26,7 +26,7 @@ func select_bases():
 	while x < base_locations.size():
 		var dictionary_instance = dictionary.new()
 		seed(find_parent("game_manager").seed * find_parent("game_manager").turn_number * (x+1))
-		var base_pos = randi_range(0, 3)
+		var base_pos = randi_range(0, dictionary_instance.base_scenes.size()-1)
 		#Gets a random unit type
 		var base = dictionary_instance.base_scenes[base_pos]
 		

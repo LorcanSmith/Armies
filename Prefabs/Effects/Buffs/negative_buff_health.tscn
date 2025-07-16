@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://c42s6ajknayho"]
+
+[ext_resource type="PackedScene" uid="uid://g4bygrh6v0vd" path="res://Prefabs/Effects/Buffs/buff_damage.tscn" id="1_6qtqx"]
+[ext_resource type="Texture2D" uid="uid://bos864ovdl3jf" path="res://Sprites/UI/heart.png" id="2_p3c6q"]
+
+[node name="buff_health" instance=ExtResource("1_6qtqx")]
+this_is_health_buff = true
+
+[node name="Sprite2D" parent="." index="0"]
+self_modulate = Color(0.118581, 0.118581, 0.118581, 1)
+position = Vector2(-14, 0)
+rotation = -3.14159
+texture = ExtResource("2_p3c6q")
+
+[node name="buff_text" parent="Sprite2D" index="0"]
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 222.0
+offset_bottom = 233.0
+rotation = -3.14159
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+text = "-1"

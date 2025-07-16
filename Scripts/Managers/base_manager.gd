@@ -6,6 +6,7 @@ var army : Array
 var tooltip : Node2D
 var damage_buff : PackedScene = preload("res://Prefabs/Effects/Buffs/buff_damage.tscn")
 var health_buff : PackedScene = preload("res://Prefabs/Effects/Buffs/buff_health.tscn")
+var negative_health_buff : PackedScene = preload("res://Prefabs/Effects/Buffs/negative_buff_health.tscn")
 
 var current_base_ID : int = -1
 var base_sprite
@@ -15,10 +16,9 @@ var base_name : String = "House"
 var base_sprites : Array = [
 	preload("res://Sprites/Bases/castle.png"),
 	preload("res://Sprites/Bases/bank.png"),
-	preload("res://Sprites/Bases/tent.png"),
-	preload("res://Sprites/Bases/hospital.png"),
 	preload("res://Sprites/Bases/military_base_upgrade.png"),
-	preload("res://Sprites/Bases/dragon_den_lowres.png"),
+	preload("res://Sprites/Bases/hospital.png"),
+	preload("res://Sprites/Bases/barn.png"),
 	preload("res://Sprites/Bases/default.png")
 ]
 
@@ -29,6 +29,7 @@ var army_exclusive : bool = true
 var medieval_units : Array
 var army_units : Array
 var healer_units : Array
+var animal_units : Array
 
 ##Upgrading Bases
 #Section in the shop that contains the upgrade paths
@@ -156,56 +157,93 @@ func check_units():
 				##THEMES
 				#Medieval
 				if(unit.Medieval):
-					if(medieval_health > 0):
-						var instance = health_buff.instantiate()
+					if(medieval_health > 0 or medieval_health < 0):
+						var instance 
+						if(medieval_health > 0):
+							instance = health_buff.instantiate()
+						elif(medieval_health < 0):
+							instance = negative_health_buff.instantiate()
 						instance.global_position = self.global_position
 						instance.unit = army[x][y].units_on_tile[0]
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
 						instance.find_child("buff_text").text = str("+",medieval_health)
-						army[x][y].units_on_tile[0].health_boost += medieval_health
+						army[x][y].units_on_tile[0].buff_unit_health(medieval_health)
 					if(medieval_attack > 0):
 						var instance = damage_buff.instantiate()
 						instance.global_position = self.global_position
 						instance.unit = army[x][y].units_on_tile[0]
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
 						instance.find_child("buff_text").text = str("+",medieval_attack)
-						army[x][y].units_on_tile[0].damage_boost += medieval_attack
+						army[x][y].units_on_tile[0].buff_unit_damage(medieval_attack)
 				#Army
 				if(unit.Army):
-					if(army_health > 0):
-						var instance = health_buff.instantiate()
+					if(army_health > 0 or army_health < 0):
+						var instance 
+						if(army_health > 0):
+							instance = health_buff.instantiate()
+						elif(army_health < 0):
+							instance = negative_health_buff.instantiate()
 						instance.global_position = self.global_position
 						instance.unit = army[x][y].units_on_tile[0]
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
 						instance.find_child("buff_text").text = str("+",army_health)
-						army[x][y].units_on_tile[0].health_boost += army_health
+						army[x][y].units_on_tile[0].buff_unit_health(army_health)
 					if(army_attack > 0):
 						var instance = damage_buff.instantiate()
 						instance.global_position = self.global_position
 						instance.unit = army[x][y].units_on_tile[0]
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
 						instance.find_child("buff_text").text = str("+",army_attack)
-						army[x][y].units_on_tile[0].damage_boost += army_attack
+						army[x][y].units_on_tile[0].buff_unit_damage(army_attack)
 				#Dinsoaur
 				if(unit.Dinosaur):
 					pass
 				##TYPES
 				#Healer
 				if(unit.Healer):
-					if(healer_health > 0):
-						var instance = health_buff.instantiate()
+					if(healer_health > 0 or healer_health < 0):
+						var instance 
+						if(healer_health > 0):
+							instance = health_buff.instantiate()
+						elif(healer_health < 0):
+							instance = negative_health_buff.instantiate()
 						instance.global_position = self.global_position
 						instance.unit = army[x][y].units_on_tile[0]
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
 						instance.find_child("buff_text").text = str("+",healer_health)
-						army[x][y].units_on_tile[0].health_boost += healer_health
+						army[x][y].units_on_tile[0].buff_unit_health(healer_health)
 					if(healer_attack > 0):
 						var instance = damage_buff.instantiate()
 						instance.global_position = self.global_position
 						instance.unit = army[x][y].units_on_tile[0]
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
 						instance.find_child("buff_text").text = str("+",healer_attack)
-						army[x][y].units_on_tile[0].damage_boost += healer_attack					
+						army[x][y].units_on_tile[0].buff_unit_damage(healer_attack)
+				#Animal
+				if(unit.Animal):
+					if(animal_health > 0 or animal_health < 0):
+						var instance 
+						if(animal_health > 0):
+							instance = health_buff.instantiate()
+						elif(animal_health < 0):
+							instance = negative_health_buff.instantiate()
+						instance.global_position = self.global_position
+						instance.unit = army[x][y].units_on_tile[0]
+						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
+						instance.find_child("buff_text").text = str("+",animal_health)
+						army[x][y].units_on_tile[0].buff_unit_health(animal_health)
+					if(animal_attack > 0):
+						var instance = damage_buff.instantiate()
+						instance.global_position = self.global_position
+						instance.unit = army[x][y].units_on_tile[0]
+						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
+						instance.find_child("buff_text").text = str("+",animal_attack)
+						army[x][y].units_on_tile[0].buff_unit_damage(animal_attack)
+				##UNITS
+				#Sheep
+				if(unit.Sheep):
+					army[x][y].units_on_tile[0].spawn_coin(army[x][y].units_on_tile[0].sell_cost)
+						army[x][y].units_on_tile[0].damage_boost += healer_attack	
 				unit.queue_free()
 			y += 1
 		x+= 1
@@ -215,6 +253,8 @@ func _on_base_area_2d_mouse_entered() -> void:
 
 #SHOW BASE UPGRADES
 func update_base_upgrade_paths() -> void:
+	untoggle_buttons()
+	base_section.find_child("confirm_base_upgrade").visible = false
 	#Turn off tooltip
 	tooltip.get_node("AnimationPlayer").play("tooltip_popout")
 	
@@ -236,7 +276,6 @@ func update_base_upgrade_paths() -> void:
 		base_section.find_child("path_1").visible = true
 		base_section.find_child("path_2").visible = true
 		base_section.find_child("max_tier").visible = false
-		base_section.find_child("confirm_base_upgrade").visible = true
 	
 	var current_path_1_name_array : Array
 	var current_path_1_desc_array : Array
@@ -273,6 +312,16 @@ func update_base_upgrade_paths() -> void:
 			
 			current_path_2_name_array = ["Field Hospital","Resourceful Medics", "Combat Medics"]
 			current_path_2_desc_array = ["Gives Healers +1 attack and +1 health at the end of the turn", "Gives Healers +4 attack at the end of turn", "Gives Healers +6 attack and +1 health at the end of the turn"]
+		#Barn
+		elif(current_base_ID == 4):
+			current_path_1_name_array = ["Free Range", "Petting Zoo", "Animal Sanctuary"]
+			current_path_1_desc_array = ["Gives Animals +1 health at the end of turn", "Gives Animals +2 health at the end of turn", "Gives Animals +4 health at the end of turn"]
+			
+			current_path_2_name_array = ["Food Supplements", "Indoor Farm", "Factory Farming"]
+			current_path_2_desc_array = ["Gives Animals +1 attack at the end of turn", "Gives Animals +3 attack and -1 health at the end of turn", "Gives Animals +6 attack and -3 health at the end of the turn"]
+		
+		
+		
 		upgrade_path_1_text.text = current_path_1_name_array[tier]
 		upgrade_path_1_desc.text = current_path_1_desc_array[tier]
 		upgrade_path_2_text.text = current_path_2_name_array[tier]
@@ -300,6 +349,9 @@ func _on_confirm_base_upgrade_pressed() -> void:
 				#Hospital
 				elif(current_base_ID == 3):
 					healer_health = 2
+				#Barn
+				elif(current_base_ID == 4):
+					animal_health = 1
 			#Tier 2
 			elif(tier == 1):
 				#Castle
@@ -315,6 +367,9 @@ func _on_confirm_base_upgrade_pressed() -> void:
 				#Hospital
 				elif(current_base_ID == 3):
 					healer_health = 4
+				#Barn
+				elif(current_base_ID == 4):
+					animal_health = 2
 			#Tier 3
 			elif(tier == 2):
 				#Castle
@@ -331,6 +386,9 @@ func _on_confirm_base_upgrade_pressed() -> void:
 				elif(current_base_ID == 3):
 					healer_health = 6
 					healer_attack = 1
+				#Barn
+				elif(current_base_ID == 4):
+					animal_health = 4
 		#Path 2
 		elif(path_selected == 2):
 			#Tier 0
@@ -347,6 +405,9 @@ func _on_confirm_base_upgrade_pressed() -> void:
 				#Hospital
 				elif(current_base_ID == 3):
 					healer_attack = 2
+				#Barn
+				elif(current_base_ID == 4):
+					animal_attack = 1
 			#Tier 1
 			elif(tier == 1):
 				#Castle
@@ -362,6 +423,10 @@ func _on_confirm_base_upgrade_pressed() -> void:
 				#Hospital
 				elif(current_base_ID == 3):
 					healer_attack = 4
+				#Barn
+				elif(current_base_ID == 4):
+					animal_attack = 3
+					animal_health = -1
 			#Tier 2
 			elif(tier == 2):
 				#Castle
@@ -378,6 +443,10 @@ func _on_confirm_base_upgrade_pressed() -> void:
 				elif(current_base_ID == 3):
 					healer_attack = 6
 					healer_health = 1
+				#Barn
+				elif(current_base_ID == 4):
+					animal_attack = 6
+					animal_health = -3
 	#Not enough money, play animation to indicate this
 	else:
 		pass
@@ -386,10 +455,12 @@ func _on_confirm_base_upgrade_pressed() -> void:
 func _on_path_1_pressed() -> void:
 	path_selected = 1
 	base_description = base_section.find_child("path_1_desc").text
+	base_section.find_child("confirm_base_upgrade").visible = true
+
 func _on_path_2_pressed() -> void:
 	path_selected = 2
 	base_description = base_section.find_child("path_2_desc").text
-	
+	base_section.find_child("confirm_base_upgrade").visible = true
 func untoggle_buttons():
 	base_section.find_child("path_1").button_pressed = false
 	base_section.find_child("path_2").button_pressed = false
