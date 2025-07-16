@@ -243,7 +243,7 @@ func check_units():
 				#Sheep
 				if(unit.Sheep):
 					army[x][y].units_on_tile[0].spawn_coin(army[x][y].units_on_tile[0].sell_cost)
-						army[x][y].units_on_tile[0].damage_boost += healer_attack	
+					army[x][y].units_on_tile[0].damage_boost += healer_attack	
 				unit.queue_free()
 			y += 1
 		x+= 1

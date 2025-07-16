@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c1nmqclasqmuq" path="res://Sprites/UI/shop/new shop icons/shop_bg.png" id="5_i4wjb"]
 [ext_resource type="PackedScene" uid="uid://bqgwbmbquy7su" path="res://Prefabs/Grid/grid_generator.tscn" id="6_e3q61"]
 [ext_resource type="ButtonGroup" uid="uid://dfieioq1y7aqx" path="res://Prefabs/Managers/base_section_group.tres" id="6_ofn6w"]
-[ext_resource type="Texture2D" uid="uid://4k6yb2x87fqe" path="res://Sprites/UI/shop/new shop icons/tab.png" id="6_q866l"]
+[ext_resource type="Texture2D" uid="uid://w17i17efgald" path="res://Sprites/UI/shop/new shop icons/tab/tab.png" id="6_q866l"]
 [ext_resource type="Texture2D" uid="uid://b23cqtniwm02y" path="res://Sprites/UI/coin.png" id="6_wk4qg"]
 [ext_resource type="Texture2D" uid="uid://c5hsk8ddwrd7q" path="res://Sprites/UI/shop/new shop icons/tab/tab_pressed.png" id="7_epx5i"]
 [ext_resource type="Texture2D" uid="uid://8af7s6x54d8a" path="res://Sprites/Bases/castle.png" id="8_idi8a"]
@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://csdafwihqevfx" path="res://Sprites/UI/outline.png" id="8_rrq0j"]
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="9_vg5hm"]
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="10_1cd4y"]
-[ext_resource type="Script" uid="uid://byhndmpbuw1s2" path="res://Scripts/Shop/tab_expand.gd" id="10_21oc8"]
+[ext_resource type="Script" path="res://Scripts/Shop/tab_expand.gd" id="10_21oc8"]
 [ext_resource type="Texture2D" uid="uid://chl5qvy7eq8wv" path="res://Sprites/Booster_Packs/Crate.png" id="11_hwvrm"]
 [ext_resource type="Texture2D" uid="uid://cgef7wpismeva" path="res://Sprites/UI/shop/new shop icons/cross.png" id="11_m4m2t"]
 [ext_resource type="Script" uid="uid://bwdgvw5opgre2" path="res://Scripts/Shop/sell_location.gd" id="12_1cd4y"]
@@ -1006,6 +1006,7 @@ position = Vector2(-35, 70)
 position = Vector2(35, 70)
 
 [node name="shop_remove_section" type="Node2D" parent="Camera2D/shop_stuff"]
+visible = false
 position = Vector2(-1398, -392)
 
 [node name="remove_medieval" type="Control" parent="Camera2D/shop_stuff/shop_remove_section"]
@@ -1092,6 +1093,7 @@ texture = ExtResource("6_wk4qg")
 [node name="cross" type="TextureRect" parent="Camera2D/shop_stuff/shop_remove_section/remove_medieval"]
 visible = false
 self_modulate = Color(0.880013, 0, 0.158553, 1)
+layout_mode = 0
 offset_left = -9.0
 offset_top = -39.0
 offset_right = 7.0
@@ -1182,6 +1184,7 @@ texture = ExtResource("6_wk4qg")
 [node name="cross" type="TextureRect" parent="Camera2D/shop_stuff/shop_remove_section/remove_army"]
 visible = false
 self_modulate = Color(0.880013, 0, 0.158553, 1)
+layout_mode = 0
 offset_left = -9.0
 offset_top = -39.0
 offset_right = 7.0
@@ -1272,6 +1275,7 @@ texture = ExtResource("6_wk4qg")
 [node name="cross" type="TextureRect" parent="Camera2D/shop_stuff/shop_remove_section/remove_fantasy"]
 visible = false
 self_modulate = Color(0.880013, 0, 0.158553, 1)
+layout_mode = 0
 offset_left = -9.0
 offset_top = -39.0
 offset_right = 7.0
@@ -1362,6 +1366,7 @@ texture = ExtResource("6_wk4qg")
 [node name="cross" type="TextureRect" parent="Camera2D/shop_stuff/shop_remove_section/remove_dinosaur"]
 visible = false
 self_modulate = Color(0.880013, 0, 0.158553, 1)
+layout_mode = 0
 offset_left = -9.0
 offset_top = -39.0
 offset_right = 7.0
