@@ -118,14 +118,14 @@ animations = [{
 }]
 
 [node name="Medic" instance=ExtResource("1_oiijl")]
-attack_animation_length = 0.5
+attack_animation_length = 0.4
 max_health = 6
 brawl_damage = 1
 leaves_blood_on_ground = false
 particle_effect = ExtResource("2_fju1w")
 Army = true
-Healer = true
 Vehicle = true
+Healer = true
 skill_spawn_amount = 3
 skill_max_once_per_unit = true
 skill_heal = 1
@@ -133,7 +133,6 @@ projectile = ExtResource("2_eq8xu")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_0w33a")
-autoplay = "idle"
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_eq8xu")]
 position = Vector2(74, 0)

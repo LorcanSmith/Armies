@@ -11,6 +11,7 @@ var shockwave_scene = load("res://Prefabs/Effects/Projectiles/shockwave.tscn")
 
 var distance : int
 
+@export var destroy_projectile_instantly : bool = false
 func target_enemy(unit : Node2D):
 	enemy = unit
 	enemy_position = unit.global_position
@@ -32,12 +33,14 @@ func _process(delta: float) -> void:
 			else:
 				if(enemy):
 					enemy.projectile_hit(damage)
-				queue_free()
+					queue_free()
 	else:
 		self.global_position = enemy_position
 		if(enemy):
 			enemy.projectile_hit(damage)
 			enemy = null
+		if(destroy_projectile_instantly):
+			queue_free()
 	#Stops an issue where projectiles over shoot their target for some reason
 	if(t > 1.5):
 		queue_free()
