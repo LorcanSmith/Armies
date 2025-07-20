@@ -23,7 +23,6 @@ var before_combat : RichTextLabel
 var health : RichTextLabel
 var skill_damage : RichTextLabel
 var skill_heal : RichTextLabel
-var brawl : RichTextLabel
 var reload : RichTextLabel
 var cost : RichTextLabel
 var type : RichTextLabel
@@ -39,7 +38,6 @@ func _ready() -> void:
 	health = find_child("health")
 	skill_damage = find_child("skill")
 	skill_heal = find_child("heal")
-	brawl = find_child("brawl")
 	reload = find_child("reload")
 	cost = find_child("cost")
 	type = find_child("type")
@@ -77,7 +75,6 @@ func update_tooltip(u, damage_boost, health_boost) -> void:
 		health.text = str(unit.max_health + health_boost)
 		skill_damage.text = str(unit.skill_damage + damage_boost)
 		skill_heal.text = str(unit.skill_heal)
-		brawl.text = str(unit.brawl_damage)
 		if(unit.reload_time > 0):
 			reload.text = str("[b]RELOAD TIME: [/b]", unit.reload_time)
 		else:
@@ -136,7 +133,6 @@ func update_base_tooltip(id, base_name, desc):
 	health.text = str("")
 	skill_damage.text = str("")
 	skill_heal.text = str("")
-	brawl.text = str("")
 	reload.text = str("")
 	cost.text = str("")
 	type.text = str("")

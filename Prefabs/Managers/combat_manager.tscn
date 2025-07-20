@@ -41,7 +41,7 @@ distance_between_grids = 2
 
 [node name="Camera2D" type="Camera2D" parent="grid_manager/grid_generator (army)"]
 position = Vector2(0, -31)
-zoom = Vector2(1.3, 1.3)
+zoom = Vector2(1.5, 1.5)
 
 [node name="NextButton" type="TextureButton" parent="grid_manager/grid_generator (army)/Camera2D"]
 visible = false
