@@ -28,8 +28,6 @@ var movement_locations : Array = []
 @export var move_distance : int = 1
 var tile_to_move_to : Node2D
 
-##Damage done when brawling
-@export var brawl_damage : int
 var brawling_grid : Node2D
 ##Does the unit have no weaknesses
 @export var no_weaknesses : bool
@@ -344,17 +342,17 @@ func skill(phase : String):
 					#Check if the unit front of you in an enemy
 					if((unit_in_front and unit_in_front.is_in_group("enemy") and self.is_in_group("player")) or (unit_in_front and unit_in_front.is_in_group("player") and self.is_in_group("enemy"))):
 						#Do brawl damage to the enemy in front of you
-						unit_in_front.hurt(brawl_damage + damage_boost)
-						unit_in_front.projectile_hit(brawl_damage + damage_boost)
+						unit_in_front.hurt(skill_damage + damage_boost)
+						unit_in_front.projectile_hit(skill_damage + damage_boost)
 
 				elif(movement_locations[0].hq != null):
-					movement_locations[0].hq.hurt(brawl_damage + damage_boost)
-					movement_locations[0].hq.projectile_hit(brawl_damage + damage_boost)
+					movement_locations[0].hq.hurt(skill_damage + damage_boost)
+					movement_locations[0].hq.projectile_hit(skill_damage + damage_boost)
 		#If we're in the combat phase, we can self destruct and there is an enemy in range
 		#For self destruction units, the only time enemies in range > 0, whilst not brawling, is if its in range of the HQ
 		elif(phase == "combat_phase" and self_destruction and enemies_in_range.size() > 0):
-			movement_locations[0].hq.hurt(brawl_damage + damage_boost)
-			movement_locations[0].hq.projectile_hit(brawl_damage + damage_boost)
+			movement_locations[0].hq.hurt(skill_damage + damage_boost)
+			movement_locations[0].hq.projectile_hit(skill_damage + damage_boost)
 			destroy_unit()
 	#If there is another unit on this tile then they will brawl
 	else:
@@ -374,8 +372,8 @@ func brawl():
 	for unit in brawling_grid.units_on_tile:
 		#If the unit isnt itself do some brawl damage to it
 		if(unit and unit != self):
-			unit.hurt(brawl_damage)
-			unit.projectile_hit(brawl_damage)
+			unit.hurt(skill_damage)
+			unit.projectile_hit(skill_damage)
 			#Check for self destruction
 			if(self_destruction):
 				destroy_unit()
