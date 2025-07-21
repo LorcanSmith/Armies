@@ -134,18 +134,15 @@ animations = [{
 [node name="AntiTank" instance=ExtResource("1_2e02l")]
 attack_animation_length = 0.4
 max_health = 5
-brawl_damage = 1
 leaves_blood_on_ground = false
 particle_effect = ExtResource("2_0aj1f")
 Army = true
 skill_damage = 3
 skill_shooots_closest_enemy = true
 projectile = ExtResource("2_4iijl")
-Vehicle_effective = true
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_0aj1f")
-autoplay = "idle"
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_17cso")]
 position = Vector2(74, 0)

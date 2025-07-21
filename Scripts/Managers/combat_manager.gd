@@ -90,11 +90,6 @@ func battle_ticker():
 		elif(next_phase == "combat"):
 			update_phase_label("combat")
 			combat_phase()
-		#If healing is next
-		elif(next_phase == "healing"):
-			if(healing_unit_alive):
-				update_phase_label("healing")
-			healing_phase()
 	#If the battle is over then go back to the shop
 	else:
 		game_manager.update_tick_label_text(0)
@@ -215,7 +210,6 @@ func combat_phase():
 	if(player_army.size() > 0 or enemy_army.size() > 0):
 		#Used to check if any units remain that can do damage
 		var damage_unit_alive = false
-		healing_unit_alive = false
 		
 		#Tell each unit in the player army to do their skill
 		var unit = 0
@@ -226,9 +220,6 @@ func combat_phase():
 				if(player_army[unit].skill_damage + player_army[unit].damage_boost > 0):
 					damage_unit_alive = true
 				player_army[unit].skill("combat_phase")
-				#Checks to see if the unit does healing
-				if(player_army[unit].skill_heal > 0):
-					healing_unit_alive = true
 			unit += 1
 			
 		#Tell each unit in the enemy army to do their skill
@@ -239,15 +230,8 @@ func combat_phase():
 				if(enemy_army[unit].skill_damage + enemy_army[unit].damage_boost> 0):
 					damage_unit_alive = true
 				enemy_army[unit].skill("combat_phase")
-				#Checks to see if the unit does healing
-				if(enemy_army[unit].skill_heal > 0):
-					healing_unit_alive = true
 			unit += 1
-		if(healing_unit_alive):
-			#Combat is this turn so set the healing phase to be next turn
-			next_phase = "healing"
-		else:
-			next_phase = "movement"
+		next_phase = "movement"
 		#Tell the skill_holder that skills have been spawned and we're waiting for them to be finished
 		find_child("skill_holder").waiting_for_skills = true
 	#No units exist, the round is a draw
@@ -256,28 +240,6 @@ func combat_phase():
 		round_draw = true
 		game_manager.won_battle(false, true)
 		end_combat()
-func healing_phase():
-	#Healing is this turn so set the movement phase to be next turn
-	next_phase = "movement"
-	#If a healing unit exists
-	if(healing_unit_alive):
-		#Tell each unit in the enemy army to do their skill
-		var unit = 0
-		while unit in range(player_army.size()):
-			#Checks to see if the unit can do damage
-			if(player_army[unit] and player_army[unit].skill_heal > 0):
-				player_army[unit].skill("healing_phase")
-			unit += 1
-		#Tell each unit in the player army to do their skill
-		unit = 0
-		while unit in range(enemy_army.size()):
-			if(enemy_army[unit] and enemy_army[unit].skill_heal > 0):
-				enemy_army[unit].skill("healing_phase")
-			unit += 1
-		#Tell the skill_holder that skills have been spawned and we're waiting for them to be finished
-		find_child("skill_holder").waiting_for_skills = true
-	else:
-		auto_tick()
 func end_combat():
 	battle_over = true
 	var round_end_visuals

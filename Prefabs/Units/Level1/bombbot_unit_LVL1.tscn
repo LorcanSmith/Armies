@@ -139,10 +139,10 @@ animations = [{
 
 [node name="Bomb Bot" instance=ExtResource("1_agrxf")]
 max_health = 10
-brawl_damage = 8
 leaves_blood_on_ground = false
 particle_effect = ExtResource("2_1lold")
 skill_spawn_amount = 0
+skill_damage = 50
 self_destruction = true
 projectile = ExtResource("2_ior7b")
 

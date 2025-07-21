@@ -128,14 +128,6 @@ func update_label_text():
 	current_health = unit.max_health + health_boost
 	cost_label.text = str(buy_cost)
 	
-	#Sets the skill_locations to be green if they heal friendlies
-	var x = 0
-	while x < skill_location.get_child_count():
-		if(unit.skill_heal > 0):
-			var location_sprite = skill_location.get_child(x).find_child("location_sprite")
-			location_sprite.find_child("sword").visible = false
-			location_sprite.find_child("cross").visible = true
-		x+= 1
 	#If the item is in the shop we should check if it needs transforming
 	if(!bought):
 		transform_item(unit)	
@@ -404,8 +396,25 @@ func buff():
 							buff_instance.global_position = self.global_position
 							buff_instance.unit = unit
 							buff_instance.find_child("buff_text").text = str("+",health_buff)
+							
+							##Activates unit abilities in shop
+							activate_any_abilities(unit)
 			buff_loc += 1
 
+#Activates specific abilities on units
+func activate_any_abilities(unit):
+	##Anti-tank
+	if(unit_ID == 11):
+		#Gains a buff if a vehicle is hurt by its shot
+		if(unit.current_health <= -health_buff):
+			self.buff_unit_health(5)
+			var buff_instance = health_buff_visual.instantiate()
+			find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
+			buff_instance.global_position = unit.global_position
+			buff_instance.unit = self
+			buff_instance.find_child("buff_text").text = str("+",health_buff)
+			
+			
 func check_if_can_buff_unit(unit_dictionary):
 	var b = 0
 	var can_buff = false

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bnb662be6om1a" path="res://Sprites/Locations/tile_location.png" id="2_54ony"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62j2u"]
-size = Vector2(97.561, 145.528)
+size = Vector2(97.561, 89.4309)
 
 [sub_resource type="Animation" id="Animation_jlgaw"]
 length = 0.001
@@ -56,7 +56,7 @@ offset = Vector2(0, -31.3308)
 position = Vector2(0.00037, 18)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-3.57628e-07, -14.25)
+position = Vector2(-3.57628e-07, -10.5)
 scale = Vector2(0.615, 0.615)
 shape = SubResource("RectangleShape2D_62j2u")
 

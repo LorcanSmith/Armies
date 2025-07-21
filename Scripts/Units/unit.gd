@@ -20,17 +20,14 @@ var current_tooltip_time_left
 var health : int
 var health_bar_remaining : int
 var health_bar : ColorRect
-var ammo_bar : ColorRect
 #Keep track of if the unit has moved this turn
 var moved = false
 #Child node that contains all the locations the unit can move to
 var movement_locations : Array = []
-@export var move_distance : int = 1
+
 var tile_to_move_to : Node2D
 
 var brawling_grid : Node2D
-##Does the unit have no weaknesses
-@export var no_weaknesses : bool
 
 ##Does the unit leave blood on the ground
 @export var leaves_blood_on_ground : bool = true
@@ -88,17 +85,11 @@ var damage_done_to_self : int = 0
 @export var skill_spawn_random : bool
 ##The amount of damage the unit's skill does
 @export var skill_damage : int
-##The amount of damage the unit's skill does
-@export var skill_heal : int
 ##If a unit is currently reloading
 var reloading : bool
-##The amount of time it takes for a unit to reload
-@export var reload_time : int = 1
+
 
 @export var skill_shooots_closest_enemy : bool
-
-#internal timer that keeps track of a unit's current reload
-var reloading_counter : int
 
 #Does the unit destroy itself
 @export var self_destruction : bool
@@ -115,12 +106,6 @@ var unit_has_transformed : bool
 @export var all : bool = true
 @export var Human_works_against : bool
 
-@export_subgroup("Skill Effective Against")
-@export var effectiveness : int = 4
-@export var Soldier_effective : bool
-@export var Animal_effective : bool
-@export var Vehicle_effective : bool
-var effective_against_types : Array
 
 #The parent containing all the skill locations
 var skill_locations_parent : Node2D
@@ -134,10 +119,7 @@ var friendlies_in_range : Array = []
 func _ready() -> void:
 	combat_manager = find_parent("combat_manager")
 	health_bar = find_child("health_bar_color")
-	ammo_bar = find_child("ammo_bar_color")
-		
-	if reload_time > 1:
-		find_child("ammo_bar_background").visible = true
+
 	current_tooltip_time_left = tooltip_show_time
 	skill_locations_parent = find_child("skill_locations")
 
@@ -161,8 +143,6 @@ func set_damage_and_health(dmg, hlth):
 	health = max_health
 
 func set_unit_types():
-	#Gets all the unit types
-	effective_against_types = unit_types.duplicate()
 	var x = 0
 	while(x < unit_types.size()):
 		#Finds the boolean with the same name as unit_types[x]
@@ -171,8 +151,6 @@ func set_unit_types():
 		#If the bool is set to false then it isnt of this type and should be removed from the list
 		if(!type):
 			unit_types[x] = null
-		if(!effective_against_type):
-			effective_against_types[x] = null
 		x+=1
 	
 func find_movement_tile():
@@ -180,16 +158,14 @@ func find_movement_tile():
 		var moved_distance = 0
 		#The unit has already found a tile this turn
 		moved = true
-		#Moves the unit forward until it has moved its maximum distance
-		while(moved_distance < move_distance):
-			#If the tile it is trying to move to is empty
-			#This handles self-destruct robot from destroying teammates as well as jumping into an already occurring brawl
-			if(movement_locations[0].movement_tile != null and (movement_locations[0].movement_tile.is_empty or movement_locations[0].movement_tile.units_on_tile[0] == null) or (self_destruction and movement_locations[0].movement_tile.units_on_tile.size() < 2 and (movement_locations[0].movement_tile.is_empty or (movement_locations[0].movement_tile.units_on_tile[0].is_in_group("enemy") and self.is_in_group("player")) or (movement_locations[0].movement_tile.units_on_tile[0].is_in_group("player") and self.is_in_group("enemy"))))):
-				#Sets the tile it wishes to move to
-				tile_to_move_to = movement_locations[0].movement_tile
-				#Tells the tile we're currently on to be empty
-				get_parent().is_empty = true
-				get_parent().units_on_tile.erase(self)
+		#If the tile it is trying to move to is empty
+		#This handles self-destruct robot from destroying teammates as well as jumping into an already occurring brawl
+		if(movement_locations[0].movement_tile != null and (movement_locations[0].movement_tile.is_empty or movement_locations[0].movement_tile.units_on_tile[0] == null) or (self_destruction and movement_locations[0].movement_tile.units_on_tile.size() < 2 and (movement_locations[0].movement_tile.is_empty or (movement_locations[0].movement_tile.units_on_tile[0].is_in_group("enemy") and self.is_in_group("player")) or (movement_locations[0].movement_tile.units_on_tile[0].is_in_group("player") and self.is_in_group("enemy"))))):
+			#Sets the tile it wishes to move to
+			tile_to_move_to = movement_locations[0].movement_tile
+			#Tells the tile we're currently on to be empty
+			get_parent().is_empty = true
+			get_parent().units_on_tile.erase(self)
 			#We have moved one unit
 			moved_distance += 1
 	#If the unit is in front of the headquarters and self destruction is true
@@ -226,14 +202,9 @@ func move():
 func skill(phase : String):
 	#If this unit is the only unit on the tile then they can do their skill
 	if(alive and get_parent().units_on_tile.size() < 2):
-		if((phase == "combat_phase" and skill_damage > 0) or (phase == "healing_phase" and skill_heal > 0)):
-			var friendly_needs_heals : bool = false
-			if(friendlies_in_range.size() > 0 and phase == "healing_phase" and skill_heal > 0):
-				for u in friendlies_in_range:
-					if(u.health_bar_remaining < u.max_health):
-						friendly_needs_heals = true
+		if((phase == "combat_phase" and skill_damage > 0)):
 			#If there is at least one enemy within the units range (in a skill location)
-			if((enemies_in_range.size() > 0 or friendly_needs_heals)):
+			if((enemies_in_range.size() > 0)):
 				var skills_spawned = 0
 				#which unit in enemies_in_range/friendlies_in_range are we targeting
 				var unit_number = 0
@@ -245,7 +216,7 @@ func skill(phase : String):
 					var wait_time = 0.25 * percentage
 					#Delay so the buffs don't all appear at the same time
 					await get_tree().create_timer(wait_time).timeout
-					if((unit_number > enemies_in_range.size()-1 and skill_damage + damage_boost > 0) or (unit_number > friendlies_in_range.size()-1 and skill_heal > 0)):
+					if((unit_number > enemies_in_range.size()-1 and skill_damage + damage_boost > 0)):
 						#If the skill can be spawned on each unit more than once
 						if(!skill_max_once_per_unit):
 							unit_number = 0
@@ -265,9 +236,6 @@ func skill(phase : String):
 					skill_instance.anim_time = attack_animation_length
 					#Tell the skill how much damage it does
 					skill_instance.damage = skill_damage + damage_boost
-					skill_instance.heal = skill_heal
-					skill_instance.effective_against = effective_against_types
-					skill_instance.effectiveness = effectiveness
 					skill_instance.owner_of_skill = self.global_position
 					skill_instance.projectile = projectile
 					find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
@@ -276,10 +244,6 @@ func skill(phase : String):
 						skill_instance.belongs_to_player = true
 					else:
 						skill_instance.belongs_to_player = false
-					
-					if reload_time > 1:
-						reloading = true
-						reloading_counter = reload_time
 					
 					#If the skill doesnt spawn randomly
 					if(!skill_spawn_random):
@@ -299,15 +263,11 @@ func skill(phase : String):
 								while(u < skill_locations_parent.get_child(z).units_on_node.size()):
 									if(skill_damage > 0 and enemies_in_range.has(skill_locations_parent.get_child(z).units_on_node[u])):
 										closest_unit = skill_locations_parent.get_child(z).units_on_node[u]
-									elif(skill_heal > 0 and friendlies_in_range.has(skill_locations_parent.get_child(z).units_on_node[u])):
-										closest_unit = skill_locations_parent.get_child(z).units_on_node[u]
 									u += 1
 								z+=1
 							if(!closest_unit and enemies_in_range.size() > 0):
 								closest_unit = enemies_in_range[0]
 							if(skill_damage + damage_boost > 0 and enemies_in_range.size() > 0):
-								skill_instance.global_position = closest_unit.global_position
-							elif(skill_heal > 0 and friendlies_in_range.size() > 0):
 								skill_instance.global_position = closest_unit.global_position
 							if(closest_unit):
 								skill_instance.target = closest_unit
@@ -318,11 +278,6 @@ func skill(phase : String):
 								if(enemies_in_range.size() > 0):
 									skill_instance.global_position = enemies_in_range[unit_number].global_position
 									skill_instance.target = enemies_in_range[unit_number]
-							elif(skill_heal > 0):
-								#Stops a crash that probably happens because the enemy is dead
-								if(friendlies_in_range.size() > 0):
-									skill_instance.global_position = friendlies_in_range[unit_number].global_position
-									skill_instance.target = friendlies_in_range[unit_number]
 					#If the skill spawns at a random location
 					elif(skill_spawn_random and enemies_in_range.size() > 0):
 						#Picks a random enemy based that is a percentage of the way through the enemies
@@ -359,13 +314,6 @@ func skill(phase : String):
 	#If there is another unit on this tile then they will brawl
 	else:
 		brawl()
-	
-	if reloading:
-		reloading_counter -= 1
-		var ammo_cooldown = float((reload_time - reloading_counter)-1)/float(reload_time - 1)
-		ammo_bar.scale.x = 1 * ammo_cooldown
-		if reloading_counter == 0:
-			reloading = false
 
 func brawl():
 	if(alive):
@@ -472,11 +420,6 @@ func skill_area_entered(area: Area2D) -> void:
 				check_if_skill_works_against(area.get_parent())
 			elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
 				enemies_in_range.append(area.get_parent())
-				check_if_skill_works_against(area.get_parent())
-		if(skill_heal > 0):
-			##If the area on our skill location is a unit of the same type
-			if((self.is_in_group("player") and area.get_parent().is_in_group("player")) or (self.is_in_group("enemy") and area.get_parent().is_in_group("enemy"))):
-				friendlies_in_range.append(area.get_parent())
 				check_if_skill_works_against(area.get_parent())
 
 func check_if_skill_works_against(u : Node2D):

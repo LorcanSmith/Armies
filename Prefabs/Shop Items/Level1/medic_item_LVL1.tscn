@@ -83,13 +83,12 @@ animations = [{
 }]
 
 [node name="Medic" instance=ExtResource("1_kbpoi")]
-description = "Heals friendlies"
-before_combat_desc = "Gives units above and below +1 health"
+before_combat_desc = "Gives units above and below +4 health"
 unit_name = "Medic"
 buy_cost = 6
 sell_cost = 3
 can_buff = true
-health_buff = 1
+health_buff = 4
 All = true
 Medieval = true
 Army = true
@@ -114,9 +113,3 @@ position = Vector2(0, -74)
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("4_i5eyo")]
 position = Vector2(74, 0)
-
-[node name="skill_location2" parent="skills" index="1" instance=ExtResource("4_i5eyo")]
-position = Vector2(74, 74)
-
-[node name="skill_location3" parent="skills" index="2" instance=ExtResource("4_i5eyo")]
-position = Vector2(74, -74)
