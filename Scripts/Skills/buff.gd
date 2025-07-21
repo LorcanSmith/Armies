@@ -44,8 +44,7 @@ func _process(delta: float) -> void:
 		#Plays an animation
 		if(!unit_to_buff.find_child("health_upgrade_preview_sprite").visible and !unit_to_buff.find_child("health_downgrade_preview_sprite").visible and !unit_to_buff.find_child("damage_upgrade_preview_sprite").visible and !unit_to_buff.find_child("damage_downgrade_preview_sprite").visible):
 			unit_to_buff.find_child("buff_preview_animator").play("popin")
-		
-		
+	
 		if(buff_health_amount > 0):
 			unit_to_buff.find_child("AnimatedSprite2D").self_modulate = Color(0.075,1,0.065,1)
 			unit_to_buff.find_child("health_upgrade_preview_sprite").visible = true

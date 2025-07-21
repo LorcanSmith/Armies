@@ -422,22 +422,6 @@ bbcode_enabled = true
 text = "[b]BEFORE COMBAT:[/b]"
 fit_content = true
 
-[node name="reload" type="RichTextLabel" parent="Positioner/text"]
-clip_contents = false
-layout_mode = 0
-offset_left = 4.0
-offset_top = -24.0
-offset_right = 1604.0
-offset_bottom = 113.0
-scale = Vector2(0.125, 0.125)
-mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 100
-theme_override_font_sizes/bold_font_size = 100
-bbcode_enabled = true
-text = "Reload Time:"
-fit_content = true
-
 [node name="cost" type="RichTextLabel" parent="Positioner/text"]
 clip_contents = false
 layout_mode = 2

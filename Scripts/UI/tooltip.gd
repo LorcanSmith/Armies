@@ -23,7 +23,6 @@ var before_combat : RichTextLabel
 var health : RichTextLabel
 var skill_damage : RichTextLabel
 var skill_heal : RichTextLabel
-var reload : RichTextLabel
 var cost : RichTextLabel
 var type : RichTextLabel
 
@@ -38,7 +37,6 @@ func _ready() -> void:
 	health = find_child("health")
 	skill_damage = find_child("skill")
 	skill_heal = find_child("heal")
-	reload = find_child("reload")
 	cost = find_child("cost")
 	type = find_child("type")
 
@@ -128,7 +126,7 @@ func update_base_tooltip(id, base_name, desc):
 	health.text = str("")
 	skill_damage.text = str("")
 	skill_heal.text = str("")
-	reload.text = str("")
+
 	cost.text = str("")
 	type.text = str("")
 	#Resets the time so the tooltip doesn't auto close
