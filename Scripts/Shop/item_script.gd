@@ -72,6 +72,7 @@ var locations_popped_in = false
 #Visual that spawns to show a buff being done
 var damage_buff_visual = preload("res://Prefabs/Effects/Buffs/buff_damage.tscn")
 var health_buff_visual = preload("res://Prefabs/Effects/Buffs/buff_health.tscn")
+var negative_health_buff_visual = preload("res://Prefabs/Effects/Buffs/negative_buff_health.tscn")
 var buffs_work_against : Array = []
 @export_subgroup("Buffs work for")
 @export var All : bool
@@ -172,7 +173,6 @@ func toggle_skill_location():
 			var x = 0
 			while x < buff_location.get_child_count():
 				buff_location.get_child(x).visible = true
-				buff_location.get_child(x).get_node("AnimationPlayer").play("location_popin")
 				x += 1
 			x = 0
 			while x < skill_location.get_child_count():
@@ -188,7 +188,7 @@ func toggle_skill_location():
 			locations_popped_in = false
 			var x = 0
 			while x < buff_location.get_child_count():
-				buff_location.get_child(x).get_node("AnimationPlayer").play("location_popout")
+				buff_location.get_child(x).visible = false
 				x += 1
 			x = 0
 			while x < skill_location.get_child_count():
@@ -201,7 +201,7 @@ func _on_area_2d__mouse_collision_mouse_entered() -> void:
 			mouse_over_item = true
 			sprite.scale = Vector2(item_hovered_scale,item_hovered_scale)
 		#If the locations haven't been popped in yet, then turn them on and play an animation
-		if(bought):
+		if(!locations_popped_in):
 			toggle_skill_location()
 #Called when the mouse stops hovering over
 func _on_area_2d__mouse_collision_mouse_exited() -> void:
@@ -210,7 +210,7 @@ func _on_area_2d__mouse_collision_mouse_exited() -> void:
 		if(!mouse_pressed):
 			mouse_over_item = false
 			sprite.scale = Vector2(1,1)
-		if(bought):
+		if(locations_popped_in):
 			toggle_skill_location()
 	current_time_till_tooltip = show_tooltip_time
 	
@@ -374,17 +374,8 @@ func buff():
 			if(unit != null and unit.bought):
 				var dictionary_instance = dictionary.new()
 				var unit_dictionary = dictionary_instance.unit_scenes[unit.unit_ID].instantiate()
-				var can_buff_unit
-				var b = 0
-				if(!All):
-					while b < buffs_work_against.size():
-						if(buffs_work_against[b] != null):
-							if(unit_dictionary.get(buffs_work_against[b])):
-								can_buff_unit = true
-						b += 1
-				else:
-					can_buff_unit = true
-				if(can_buff_unit):
+				var can_buff_unit = true
+				if(check_if_can_buff_unit(unit_dictionary)):
 					##Checks for specific units
 					#Diplodocus
 					if(unit_ID == 51 or unit_ID == 52 or unit_ID == 53):
@@ -404,17 +395,30 @@ func buff():
 							#Delay so the buffs don't all appear at the same time
 							await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
 							unit.buff_unit_health(health_buff)
-							var buff_instance = health_buff_visual.instantiate()
+							var buff_instance
+							if(health_buff > 0):
+								buff_instance = health_buff_visual.instantiate()
+							elif(health_buff < 0):
+								buff_instance = negative_health_buff_visual.instantiate()
 							find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
 							buff_instance.global_position = self.global_position
 							buff_instance.unit = unit
 							buff_instance.find_child("buff_text").text = str("+",health_buff)
-							#Set buff sprite to be a sword if it hurts a unit
-							if(health_buff < 0):
-								var sword : CompressedTexture2D = preload("res://Sprites/UI/sword.png")
-								buff_instance.get_node("Sprite2D").texture = sword
 			buff_loc += 1
 
+func check_if_can_buff_unit(unit_dictionary):
+	var b = 0
+	var can_buff = false
+	if(!All):
+		while b < buffs_work_against.size():
+			if(buffs_work_against[b] != null):
+				if(unit_dictionary.get(buffs_work_against[b])):
+					can_buff = true
+			b += 1
+	else:
+		can_buff = true
+	return can_buff
+	
 var last_health_change : int = 0
 var last_damage_change : int = 0
 func buff_unit_health(amount : int):
