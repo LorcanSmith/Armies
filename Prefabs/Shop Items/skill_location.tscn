@@ -73,7 +73,7 @@ monitorable = false
 shape = SubResource("CircleShape2D_6sqpo")
 
 [node name="location_sprite" type="Sprite2D" parent="."]
-z_index = 2
+z_index = 6
 texture_filter = 1
 scale = Vector2(0.45, 0.45)
 

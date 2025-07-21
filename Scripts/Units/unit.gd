@@ -51,8 +51,10 @@ var unit_types : Array = [
 	"Animal",
 	"Healer",
 	"Fantasy",
-	"Sheep",
-	"Velociraptor"
+	"Velociraptor",
+	"Dog",
+	"Sheep"
+	
 ]
 @export_subgroup("Themes")
 @export var Medieval : bool

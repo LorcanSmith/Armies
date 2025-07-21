@@ -84,14 +84,12 @@ animations = [{
 [node name="Pig" instance=ExtResource("1_fxu3u")]
 attack_animation_length = 0.4
 max_health = 4
-brawl_damage = 3
 Animal = true
 skill_damage = 2
 projectile = ExtResource("2_v6fio")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_vq3cx")
-autoplay = "idle"
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_wswqx")]
 position = Vector2(74, 0)

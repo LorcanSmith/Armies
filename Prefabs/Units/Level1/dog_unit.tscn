@@ -119,7 +119,6 @@ animations = [{
 [node name="Dog" instance=ExtResource("1_y84wa")]
 attack_animation_length = 0.5
 max_health = 5
-brawl_damage = 4
 Animal = true
 Dog = true
 skill_damage = 4
