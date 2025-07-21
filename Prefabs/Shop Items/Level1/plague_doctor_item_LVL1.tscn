@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://do8l42upmud2a"]
+[gd_scene load_steps=14 format=3 uid="uid://do8l42upmud2a"]
 
 [ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_t7kd5"]
 [ext_resource type="Texture2D" uid="uid://cem1d016w78ad" path="res://Sprites/Units/Medieval/Plague_Doctor/lvl1/plaguedoctor_idle_lvl1.png" id="2_c1my0"]
 [ext_resource type="Texture2D" uid="uid://ex742aoohf74" path="res://Sprites/Units/Medieval/Plague_Doctor/lvl1/plaguedoctor_death_lvl1.png" id="2_t7kd5"]
+[ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="4_ghoa7"]
 [ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_h8gc6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dn87c"]
@@ -68,15 +69,12 @@ animations = [{
 }]
 
 [node name="PlagueDoctor" instance=ExtResource("1_t7kd5")]
-description = "Heals units with the type \"Human\""
-unit_name = "Medic"
+before_combat_desc = "Gives Human units +5 health."
+unit_name = "Plague Doctor"
 buy_cost = 6
 sell_cost = 3
-health_buff = 1
-Medieval = true
-Army = true
+health_buff = 5
 Human = true
-Soldier = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = null
@@ -86,8 +84,11 @@ sprite_frames = SubResource("SpriteFrames_dn87c")
 animation = &"death"
 autoplay = "idle"
 
-[node name="skill_location" parent="skills" index="0" instance=ExtResource("4_h8gc6")]
+[node name="buff_location" parent="buffs" index="0" instance=ExtResource("4_ghoa7")]
 position = Vector2(74, 0)
 
-[node name="skill_location2" parent="skills" index="1" instance=ExtResource("4_h8gc6")]
+[node name="buff_location2" parent="buffs" index="1" instance=ExtResource("4_ghoa7")]
 position = Vector2(148, 0)
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("4_h8gc6")]
+position = Vector2(74, 0)

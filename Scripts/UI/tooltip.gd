@@ -74,11 +74,6 @@ func update_tooltip(u, damage_boost, health_boost) -> void:
 			before_combat.text = ""
 		health.text = str(unit.max_health + health_boost)
 		skill_damage.text = str(unit.skill_damage + damage_boost)
-		skill_heal.text = str(unit.skill_heal)
-		if(unit.reload_time > 0):
-			reload.text = str("[b]RELOAD TIME: [/b]", unit.reload_time)
-		else:
-			reload.text = ""
 		cost.text = str("[b]BUY COST: [/b]", item.buy_cost, "[b] / SELL COST: [/b]", item.sell_cost)
 		var x = 0
 		var types = []

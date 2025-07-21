@@ -28,11 +28,13 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		tile_when_no_unit = area.get_parent()
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if(area.get_parent() == unit_to_buff):
-		unit_to_buff.find_child("AnimatedSprite2D").self_modulate = Color(1,1,1,1)
-		unit_to_buff.find_child("health_upgrade_preview_sprite").visible = false
-		unit_to_buff.find_child("damage_upgrade_preview_sprite").visible = false
-		unit_to_buff.find_child("health_downgrade_preview_sprite").visible = false
-		unit_to_buff.find_child("damage_downgrade_preview_sprite").visible = false
+		#Checks to make sure the unit hasnt died, weird way to do it, but only way i could get it to work
+		if(unit_to_buff.find_child("AnimatedSprite2D")):
+			unit_to_buff.find_child("AnimatedSprite2D").self_modulate = Color(1,1,1,1)
+			unit_to_buff.find_child("health_upgrade_preview_sprite").visible = false
+			unit_to_buff.find_child("damage_upgrade_preview_sprite").visible = false
+			unit_to_buff.find_child("health_downgrade_preview_sprite").visible = false
+			unit_to_buff.find_child("damage_downgrade_preview_sprite").visible = false
 		unit_to_buff = null
 	elif(area.get_parent() == tile_when_no_unit):
 		tile_when_no_unit.find_child("Sprite2D").self_modulate = Color(1,1,1,1)
