@@ -92,7 +92,7 @@ var reloading : bool
 @export var skill_shooots_closest_enemy : bool
 
 #Does the unit destroy itself
-@export var self_destruction : bool
+@export var self_destruction : bool = false
 
 @export_subgroup("Skill Projectile")
 @export var projectile : PackedScene
@@ -291,7 +291,7 @@ func skill(phase : String):
 					if(skill_instance.target == null):
 						skill_instance.queue_free()
 			#No units in range
-			else:
+			if((enemies_in_range.size() > 0) and !self_destruction):
 				#Check if there is a unit in front of you
 				if(movement_locations[0].movement_tile != null and movement_locations[0].movement_tile.units_on_tile.size() > 0):
 					#Unit on the tile in front of you
