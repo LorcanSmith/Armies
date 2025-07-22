@@ -105,7 +105,6 @@ animations = [{
 [node name="Knight" instance=ExtResource("1_abkdl")]
 attack_animation_length = 0.5
 max_health = 6
-brawl_damage = 3
 Medieval = true
 Human = true
 skill_damage = 3
@@ -113,7 +112,6 @@ projectile = ExtResource("2_g20bn")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_o5g8b")
-autoplay = "idle"
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_0nli0")]
 position = Vector2(74, 0)

@@ -368,11 +368,6 @@ func buff():
 				var unit_dictionary = dictionary_instance.unit_scenes[unit.unit_ID].instantiate()
 				var can_buff_unit = true
 				if(check_if_can_buff_unit(unit_dictionary)):
-					##Checks for specific units
-					#Diplodocus
-					if(unit_ID == 51 or unit_ID == 52 or unit_ID == 53):
-						if(unit_dictionary.max_health + unit.health_boost >= self.current_health):
-							can_buff_unit = false
 					if(can_buff_unit):
 						if(damage_buff > 0 or damage_buff < 0):
 							#Delay so the buffs don't all appear at the same time
@@ -408,12 +403,12 @@ func activate_any_abilities(unit):
 		#Gains a buff if a vehicle is hurt by its shot
 		if(unit.current_health <= -health_buff):
 			self.buff_unit_health(5)
-			var buff_instance = health_buff_visual.instantiate()
-			find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
-			buff_instance.global_position = unit.global_position
-			buff_instance.unit = self
-			buff_instance.find_child("buff_text").text = str("+",health_buff)
-			
+			var anim_player = get_node("AnimationPlayer")
+			if(anim_player.is_playing()):
+				anim_player.queue("health_bounce")
+			else:
+				anim_player.play("health_bounce")
+			update_label_text()
 			
 func check_if_can_buff_unit(unit_dictionary):
 	var b = 0

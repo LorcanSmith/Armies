@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://coe67mw201f6k"]
 
 [ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_88sch"]
-[ext_resource type="PackedScene" uid="uid://cwefhvoo3dhqh" path="res://Prefabs/Effects/heal_animation.tscn" id="2_hh30h"]
+[ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_l4esi"]
 [ext_resource type="Texture2D" uid="uid://cem1d016w78ad" path="res://Sprites/Units/Medieval/Plague_Doctor/lvl1/plaguedoctor_idle_lvl1.png" id="3_hh30h"]
 [ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="3_l4esi"]
 [ext_resource type="Texture2D" uid="uid://ex742aoohf74" path="res://Sprites/Units/Medieval/Plague_Doctor/lvl1/plaguedoctor_death_lvl1.png" id="3_qa6fd"]
@@ -117,7 +117,7 @@ Human = true
 Healer = true
 skill_max_once_per_unit = true
 skill_damage = 1
-projectile = ExtResource("2_hh30h")
+projectile = ExtResource("2_l4esi")
 all = false
 Human_works_against = true
 

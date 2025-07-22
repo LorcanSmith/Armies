@@ -126,8 +126,6 @@ animations = [{
 [node name="Orc" instance=ExtResource("1_t41hx")]
 attack_animation_length = 0.6
 max_health = 8
-brawl_damage = 3
-no_weaknesses = true
 Fantasy = true
 skill_max_once_per_unit = true
 skill_damage = 4
@@ -135,7 +133,6 @@ projectile = ExtResource("2_61ta0")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_j7t7h")
-autoplay = "idle"
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_vjprv")]
 position = Vector2(74, 0)

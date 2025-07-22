@@ -417,27 +417,10 @@ func skill_area_entered(area: Area2D) -> void:
 			#If the area on our skill location is a unit of the opposite type
 			if(self.is_in_group("player") and area.get_parent().is_in_group("enemy")):
 				enemies_in_range.append(area.get_parent())
-				check_if_skill_works_against(area.get_parent())
 			elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
 				enemies_in_range.append(area.get_parent())
-				check_if_skill_works_against(area.get_parent())
 
-func check_if_skill_works_against(u : Node2D):
-	#Skill doesn't work against all units so check for specific types
-	if(!all):
-		var x = 0
-		var remove : bool = true
-		#Checks the unit in range and its types
-		while x < u.unit_types.size():
-			var type_to_string = str(var_to_str(u.unit_types[x]) + "_works_against")
-			type_to_string = type_to_string.replace('"',"")
-			#If the unit type is the same as one of types that the skill works against, we dont need to remove this enemy
-			if(get(type_to_string)):
-				remove = false
-			x+=1
-		if(remove):
-			friendlies_in_range.erase(u)
-			enemies_in_range.erase(u)
+
 func skill_area_exited(area: Area2D) -> void:
 	if alive:
 		enemies_in_range.erase(area.get_parent())
