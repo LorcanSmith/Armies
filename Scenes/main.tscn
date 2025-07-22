@@ -58,22 +58,10 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath(".:self_modulate")
+tracks/3/path = NodePath("CPUParticles2D:self_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CPUParticles2D:self_modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -121,7 +109,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath(".:self_modulate")
+tracks/3/path = NodePath("CPUParticles2D:self_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -133,7 +121,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CPUParticles2D:self_modulate")
+tracks/4/path = NodePath(".:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -547,7 +535,7 @@ offset_right = -453.0
 offset_bottom = 5.0
 
 [node name="1" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
-modulate = Color(0.879194, 0.145925, 0, 1)
+self_modulate = Color(0.878431, 0.145098, 0, 1)
 z_index = 10
 texture_filter = 1
 layout_mode = 0
@@ -583,7 +571,7 @@ hue_variation_max = -0.01
 hue_variation_curve = SubResource("Curve_b3802")
 
 [node name="2" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
-modulate = Color(0.879194, 0.145925, 0, 1)
+self_modulate = Color(0.878431, 0.145098, 0, 1)
 z_index = 10
 texture_filter = 1
 layout_mode = 0
@@ -619,7 +607,7 @@ hue_variation_max = -0.01
 hue_variation_curve = SubResource("Curve_b3802")
 
 [node name="3" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
-modulate = Color(0.879194, 0.145925, 0, 1)
+self_modulate = Color(0.878431, 0.145098, 0, 1)
 z_index = 10
 texture_filter = 1
 layout_mode = 0
@@ -655,7 +643,7 @@ hue_variation_max = -0.01
 hue_variation_curve = SubResource("Curve_b3802")
 
 [node name="4" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
-modulate = Color(0.879194, 0.145925, 0, 1)
+self_modulate = Color(0.878431, 0.145098, 0, 1)
 z_index = 10
 texture_filter = 1
 layout_mode = 0
@@ -691,7 +679,7 @@ hue_variation_max = -0.01
 hue_variation_curve = SubResource("Curve_b3802")
 
 [node name="5" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
-modulate = Color(0.879194, 0.145925, 0, 1)
+self_modulate = Color(0.878431, 0.145098, 0, 1)
 z_index = 10
 texture_filter = 1
 layout_mode = 0
@@ -727,7 +715,7 @@ hue_variation_max = -0.01
 hue_variation_curve = SubResource("Curve_b3802")
 
 [node name="6" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
-modulate = Color(0.879194, 0.145925, 0, 1)
+self_modulate = Color(0.878431, 0.145098, 0, 1)
 z_index = 10
 texture_filter = 1
 layout_mode = 0
@@ -763,7 +751,7 @@ hue_variation_max = -0.01
 hue_variation_curve = SubResource("Curve_b3802")
 
 [node name="7" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
-modulate = Color(0.879194, 0.145925, 0, 1)
+self_modulate = Color(0.878431, 0.145098, 0, 1)
 z_index = 10
 texture_filter = 1
 layout_mode = 0
@@ -799,7 +787,7 @@ hue_variation_max = -0.01
 hue_variation_curve = SubResource("Curve_b3802")
 
 [node name="8" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
-modulate = Color(0.879194, 0.145925, 0, 1)
+self_modulate = Color(0.878431, 0.145098, 0, 1)
 z_index = 10
 texture_filter = 1
 layout_mode = 0
@@ -835,7 +823,7 @@ hue_variation_max = -0.01
 hue_variation_curve = SubResource("Curve_b3802")
 
 [node name="9" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
-modulate = Color(0.879194, 0.145925, 0, 1)
+self_modulate = Color(0.878431, 0.145098, 0, 1)
 z_index = 10
 texture_filter = 1
 layout_mode = 0
@@ -871,7 +859,7 @@ hue_variation_max = -0.01
 hue_variation_curve = SubResource("Curve_b3802")
 
 [node name="10" type="TextureRect" parent="UI/heart_trophy_UI/life_bg/life"]
-modulate = Color(0.879194, 0.145925, 0, 1)
+self_modulate = Color(0.878431, 0.145098, 0, 1)
 z_index = 10
 texture_filter = 1
 layout_mode = 0

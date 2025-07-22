@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djdl8p52grdjd"
-path="res://.godot/imported/level_chevron.png-7731d1d4cbee703468b14f957df0cb0d.ctex"
+uid="uid://c53fov1abxq7l"
+path="res://.godot/imported/highlight.png-f245b796ba6b9e879aa1b867025c9866.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/chevrons/level_chevron.png"
-dest_files=["res://.godot/imported/level_chevron.png-7731d1d4cbee703468b14f957df0cb0d.ctex"]
+source_file="res://Sprites/UI/Game Info/highlight.png"
+dest_files=["res://.godot/imported/highlight.png-f245b796ba6b9e879aa1b867025c9866.ctex"]
 
 [params]
 
