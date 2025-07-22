@@ -1493,6 +1493,7 @@ offset_top = -1496.0
 offset_right = 193.0
 offset_bottom = 528.0
 rotation = 0.385657
+mouse_filter = 2
 color = Color(0.118581, 0.118581, 0.118581, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="scene_transitions"]
@@ -1502,6 +1503,7 @@ offset_top = -198.0
 offset_right = 4079.0
 offset_bottom = 1826.0
 rotation = 0.385657
+mouse_filter = 2
 color = Color(0.118581, 0.118581, 0.118581, 1)
 
 [node name="game_over_canvas" type="CanvasLayer" parent="."]
