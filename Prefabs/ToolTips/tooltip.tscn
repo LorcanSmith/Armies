@@ -264,9 +264,9 @@ texture = ExtResource("3_lc6ab")
 [node name="heart" type="TextureRect" parent="Positioner/text/base_stats/banner"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 18.0
+offset_left = 56.0
 offset_top = 10.0
-offset_right = 58.0
+offset_right = 96.0
 offset_bottom = 50.0
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("3_igob6")
@@ -274,29 +274,19 @@ texture = ExtResource("3_igob6")
 [node name="sword" type="TextureRect" parent="Positioner/text/base_stats/banner"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 89.0
+offset_left = 127.0
 offset_top = 7.0
-offset_right = 129.0
+offset_right = 167.0
 offset_bottom = 47.0
 scale = Vector2(0.69, 0.69)
 texture = ExtResource("4_b1inx")
 
-[node name="cross" type="TextureRect" parent="Positioner/text/base_stats/banner"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 174.0
-offset_top = 10.0
-offset_right = 214.0
-offset_bottom = 50.0
-scale = Vector2(0.485, 0.485)
-texture = ExtResource("5_r303g")
-
 [node name="health" type="RichTextLabel" parent="Positioner/text/base_stats/banner"]
 clip_contents = false
 layout_mode = 2
-offset_left = 42.0
+offset_left = 80.0
 offset_top = 6.0
-offset_right = 1413.0
+offset_right = 1451.0
 offset_bottom = 143.0
 scale = Vector2(0.23, 0.23)
 mouse_filter = 2
@@ -311,19 +301,6 @@ layout_mode = 2
 offset_left = 317.391
 offset_right = 1688.38
 offset_bottom = 137.0
-mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 100
-text = "55"
-fit_content = true
-
-[node name="heal" type="RichTextLabel" parent="Positioner/text/base_stats/banner/health/skill"]
-clip_contents = false
-layout_mode = 2
-offset_left = 347.826
-offset_top = -4.34784
-offset_right = 1718.83
-offset_bottom = 132.652
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 100

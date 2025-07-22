@@ -187,6 +187,7 @@ func increase_shop_slots():
 	reroll_shop(false)
 
 func update_upgrade_cost_labels():
+	#Check to stop crashes mid scene
 	var counter = 0
 	var theme
 	var remove_section : Node2D

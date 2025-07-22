@@ -168,6 +168,7 @@ func check_units():
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
 						instance.find_child("buff_text").text = str("+",medieval_health)
 						army[x][y].units_on_tile[0].buff_unit_health(medieval_health)
+						instance.get_node("AnimationPlayer").play("buff_appear")
 					if(medieval_attack > 0):
 						var instance = damage_buff.instantiate()
 						instance.global_position = self.global_position
@@ -175,6 +176,7 @@ func check_units():
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
 						instance.find_child("buff_text").text = str("+",medieval_attack)
 						army[x][y].units_on_tile[0].buff_unit_damage(medieval_attack)
+						instance.get_node("AnimationPlayer").play("buff_appear")
 				#Army
 				if(unit.Army):
 					if(army_health > 0 or army_health < 0):
@@ -188,6 +190,7 @@ func check_units():
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
 						instance.find_child("buff_text").text = str("+",army_health)
 						army[x][y].units_on_tile[0].buff_unit_health(army_health)
+						instance.get_node("AnimationPlayer").play("buff_appear")
 					if(army_attack > 0):
 						var instance = damage_buff.instantiate()
 						instance.global_position = self.global_position
@@ -195,6 +198,7 @@ func check_units():
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
 						instance.find_child("buff_text").text = str("+",army_attack)
 						army[x][y].units_on_tile[0].buff_unit_damage(army_attack)
+						instance.get_node("AnimationPlayer").play("buff_appear")
 				#Dinsoaur
 				if(unit.Dinosaur):
 					pass
@@ -212,6 +216,7 @@ func check_units():
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
 						instance.find_child("buff_text").text = str("+",healer_health)
 						army[x][y].units_on_tile[0].buff_unit_health(healer_health)
+						instance.get_node("AnimationPlayer").play("buff_appear")
 					if(healer_attack > 0):
 						var instance = damage_buff.instantiate()
 						instance.global_position = self.global_position
@@ -219,6 +224,7 @@ func check_units():
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
 						instance.find_child("buff_text").text = str("+",healer_attack)
 						army[x][y].units_on_tile[0].buff_unit_damage(healer_attack)
+						instance.get_node("AnimationPlayer").play("buff_appear")
 				#Animal
 				if(unit.Animal):
 					if(animal_health > 0 or animal_health < 0):
@@ -232,6 +238,7 @@ func check_units():
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
 						instance.find_child("buff_text").text = str("+",animal_health)
 						army[x][y].units_on_tile[0].buff_unit_health(animal_health)
+						instance.get_node("AnimationPlayer").play("buff_appear")
 					if(animal_attack > 0):
 						var instance = damage_buff.instantiate()
 						instance.global_position = self.global_position
@@ -239,12 +246,14 @@ func check_units():
 						find_parent("shop_manager").find_child("buff_animation_holder").add_child(instance)
 						instance.find_child("buff_text").text = str("+",animal_attack)
 						army[x][y].units_on_tile[0].buff_unit_damage(animal_attack)
+						instance.get_node("AnimationPlayer").play("buff_appear")
 				##UNITS
 				#Sheep
 				if(unit.Sheep):
 					army[x][y].units_on_tile[0].spawn_coin(army[x][y].units_on_tile[0].sell_cost)
 					army[x][y].units_on_tile[0].damage_boost += healer_attack	
 				unit.queue_free()
+				
 			y += 1
 		x+= 1
 

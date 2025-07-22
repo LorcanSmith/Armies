@@ -139,8 +139,7 @@ animations = [{
 
 [node name="Velociraptor" instance=ExtResource("1_70yhg")]
 attack_animation_length = 0.7
-max_health = 3
-brawl_damage = 5
+max_health = 2
 Dinosaur = true
 Animal = true
 Velociraptor = true
@@ -150,7 +149,6 @@ projectile = ExtResource("2_usc7u")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_ee63l")
-autoplay = "idle"
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_qqb3h")]
 position = Vector2(74, 0)

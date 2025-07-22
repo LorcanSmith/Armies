@@ -94,7 +94,6 @@ animations = [{
 [node name="Sniper" instance=ExtResource("1_keifj")]
 attack_animation_length = 0.3
 max_health = 4
-brawl_damage = 2
 Army = true
 Human = true
 skill_damage = 2
@@ -103,7 +102,6 @@ projectile = ExtResource("2_x5eb8")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_ssxv6")
-autoplay = "idle"
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("4_lnsmn")]
 position = Vector2(148, 0)
@@ -116,3 +114,6 @@ position = Vector2(296, 0)
 
 [node name="Sprite2D" parent="." index="4"]
 texture = null
+
+[node name="projectile_spawn_location" parent="." index="8"]
+position = Vector2(16, -7)

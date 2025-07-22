@@ -10,7 +10,7 @@ var status_bar: StatusBar
 #Amount of money the player can spend each turn
 @export var money : int = 30
 var same_units = []
-var units_to_delete = []
+var tiles_to_delete_units_from = []
 
 func _ready() -> void:
 	game_manager = find_parent("game_manager")
@@ -48,17 +48,30 @@ func apply_buffs():
 	find_child("buff_animation_holder").waiting_for_skills = true
 
 func no_skills_left():
-	if units_to_delete.size() > 0:
+	if tiles_to_delete_units_from.size() > 0:
 		var x = 0
-		while x < units_to_delete.size():
-			if(units_to_delete[x].get_parent().is_in_group("tile")):
-				units_to_delete[x].get_parent().is_empty = true
-				units_to_delete[x].get_parent().units_on_tile.erase(units_to_delete[x])
-			units_to_delete[x].queue_free()
+		while x < tiles_to_delete_units_from.size():
+			if(tiles_to_delete_units_from[x].is_in_group("tile")):
+				tiles_to_delete_units_from[x].is_empty = true
+				tiles_to_delete_units_from[x].units_on_tile.erase(tiles_to_delete_units_from[x])
 			x += 1
 	find_child("grid_generator (army)").save_current_grid()
 	game_manager.swap_scenes()
 
+func kill_units():
+	var tiles = find_child("grid_manager").find_child("grid_generator (army)").get_children()
+	var x = 0
+	#Loops over all tiles
+	while (x < (tiles.size())):
+		var y = 0
+		var children = tiles[x].get_children()
+		while (y < (children.size())):
+			#If there is a item on the tile
+			if(children[y].is_in_group("item")):
+				#Add it to the same units array
+				children[y].health_check()
+			y+=1
+		x+=1
 
 func _on_battle_button_button_down():
 	if find_child("BattleText"):

@@ -1,12 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://di2vorbunt4ep"]
+[gd_scene load_steps=25 format=3 uid="uid://di2vorbunt4ep"]
 
 [ext_resource type="Script" uid="uid://j11sqyma6iil" path="res://Scripts/Units/unit.gd" id="1_bdk6m"]
-[ext_resource type="PackedScene" path="res://Prefabs/Effects/blood_splatter.tscn" id="2_5f33s"]
+[ext_resource type="PackedScene" uid="uid://c471dbwx6ct34" path="res://Prefabs/Effects/blood_splatter.tscn" id="2_5f33s"]
 [ext_resource type="Script" path="res://Scripts/Effects/animated_shadow.gd" id="2_mjxsx"]
 [ext_resource type="Texture2D" uid="uid://ca2y0ewqn4yt" path="res://Sprites/Units/Medieval/Knight/knight_sprite.png" id="3_cxn27"]
 [ext_resource type="Script" uid="uid://cdc2qqsvqw1rh" path="res://Scripts/Units/move_spot.gd" id="3_lq4h4"]
 [ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="5_dwjn5"]
-[ext_resource type="Texture2D" uid="uid://djdl8p52grdjd" path="res://Sprites/UI/chevrons/level_chevron.png" id="6_cxn27"]
 
 [sub_resource type="Animation" id="Animation_bcdoc"]
 length = 0.001
@@ -359,7 +358,6 @@ _data = {
 [node name="unit_prefab" type="Node2D"]
 script = ExtResource("1_bdk6m")
 particle_effect = ExtResource("2_5f33s")
-reload_time = 0
 
 [node name="sprite_animator" type="AnimationPlayer" parent="."]
 libraries = {
@@ -427,44 +425,7 @@ offset_bottom = 2.0
 pivot_offset = Vector2(0, 1)
 color = Color(0.935177, 0, 0.20955, 1)
 
-[node name="ammo_bar_background" type="ColorRect" parent="."]
-visible = false
-offset_left = -14.0
-offset_top = -20.0
-offset_right = 13.73
-offset_bottom = -18.0
-pivot_offset = Vector2(14, 1)
-color = Color(0.244776, 0.244776, 0.244776, 1)
-
-[node name="ammo_bar_color" type="ColorRect" parent="ammo_bar_background"]
-layout_mode = 0
-offset_right = 27.73
-offset_bottom = 2.0
-pivot_offset = Vector2(0, 1)
-color = Color(0.878431, 0.729412, 0, 1)
-
-[node name="level_chevrons" type="Node2D" parent="."]
-visible = false
-position = Vector2(-22, -8)
-
-[node name="lvl1" type="Sprite2D" parent="level_chevrons"]
-z_index = 1
-texture_filter = 1
-texture = ExtResource("6_cxn27")
-
-[node name="lvl2" type="Sprite2D" parent="level_chevrons"]
-visible = false
-z_index = 1
-texture_filter = 1
-position = Vector2(0, -3.30578)
-texture = ExtResource("6_cxn27")
-
-[node name="lvl3" type="Sprite2D" parent="level_chevrons"]
-visible = false
-z_index = 1
-texture_filter = 1
-position = Vector2(0, -6.75482)
-texture = ExtResource("6_cxn27")
+[node name="projectile_spawn_location" type="Node2D" parent="."]
 
 [connection signal="animation_finished" from="sprite_animator" to="." method="_on_sprite_animator_animation_finished"]
 [connection signal="area_entered" from="movement_locations/move_spot/Area2D" to="movement_locations/move_spot" method="_on_area_2d_area_entered"]

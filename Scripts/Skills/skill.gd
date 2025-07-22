@@ -4,6 +4,9 @@ extends Node
 var damage : int
 
 var projectile : PackedScene
+
+var projectile_spawn_location : Node2D
+
 var target : Node2D
 
 var target_is_friendly : bool
@@ -40,7 +43,10 @@ func attack_visuals():
 	await get_tree().create_timer(anim_time).timeout
 	var projectile_instance = projectile.instantiate()
 	find_parent("combat_manager").find_child("skill_holder").add_child(projectile_instance)
-	projectile_instance.global_position = owner_of_skill
+	if(projectile_spawn_location):
+		projectile_instance.global_position = projectile_spawn_location.global_position
+	elif(!projectile_spawn_location):
+		projectile_instance.global_position = owner_of_skill
 	if(!target_is_friendly):
 		projectile_instance.damage = damage
 	if(target):

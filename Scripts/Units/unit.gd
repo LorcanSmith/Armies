@@ -238,6 +238,7 @@ func skill(phase : String):
 					skill_instance.damage = skill_damage + damage_boost
 					skill_instance.owner_of_skill = self.global_position
 					skill_instance.projectile = projectile
+					skill_instance.projectile_spawn_location = find_child("projectile_spawn_location")
 					find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
 					#Tell the skill if it is a friendly or enemy skill
 					if(self.is_in_group("player")):

@@ -155,7 +155,6 @@ animations = [{
 [node name="Tank" instance=ExtResource("1_r74ut")]
 attack_animation_length = 0.25
 max_health = 8
-brawl_damage = 2
 leaves_blood_on_ground = false
 particle_effect = ExtResource("2_elr0t")
 Army = true
@@ -163,11 +162,9 @@ Vehicle = true
 skill_damage = 3
 skill_shooots_closest_enemy = true
 projectile = ExtResource("2_inajs")
-Soldier_effective = true
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_qv5u3")
-autoplay = "idle"
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_inajs")]
 position = Vector2(74, 0)
@@ -177,3 +174,6 @@ position = Vector2(148, 0)
 
 [node name="Sprite2D" parent="." index="4"]
 texture = null
+
+[node name="projectile_spawn_location" parent="." index="8"]
+position = Vector2(25, 4)

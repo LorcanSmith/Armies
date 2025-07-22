@@ -430,19 +430,22 @@ var last_damage_change : int = 0
 func buff_unit_health(amount : int):
 	health_boost += amount
 	last_health_change = amount
-	#Play damage animation
-	if(amount < 0):
-		get_node("item_hurt_anim_player").play("hurt")
-		if current_health + health_boost <= 0:
-			get_node("item_hurt_anim_player").queue("death")
-			if(!item_has_transformed):
-				get_node("Sprite2D/AnimatedSprite2D").play("death")
-			elif(item_has_transformed):
-				get_node("Sprite2D/AnimatedSprite2D").play("death_transformed")
-			find_parent("shop_manager").units_to_delete.append(self)
+
 func buff_unit_damage(amount : int):
 	damage_boost += amount
 	last_damage_change = amount
+
+##Health check called by skill holder at the end of the shop phase once all buffs are done
+func health_check():
+	if current_health <= 0:
+		get_node("item_hurt_anim_player").queue("death")
+		if(!item_has_transformed):
+			get_node("Sprite2D/AnimatedSprite2D").play("death")
+		elif(item_has_transformed):
+			get_node("Sprite2D/AnimatedSprite2D").play("death_transformed")
+		var shop_manager = find_parent("shop_manager")
+		shop_manager.tiles_to_delete_units_from.append(self.get_parent())
+		self.reparent(shop_manager.find_child("buff_animation_holder"))
 
 #Controls the heart	
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
@@ -458,6 +461,9 @@ func _on_animation_player_animation_started(anim_name: StringName) -> void:
 						anim_player.queue("damage_bounce")
 					else:
 						anim_player.play("damage_bounce")
+			#Play damage animation
+			if(last_health_change < 0):
+				get_node("item_hurt_anim_player").play("hurt")
 #Controls the sword
 func _on_animation_player_2_animation_started(anim_name: StringName) -> void:
 	if(anim_name == "damage_bounce"):
@@ -519,3 +525,7 @@ func play_buff_sound(sound_stream: AudioStream):
 	# Free after it's done playing (based on length of audio)
 	await get_tree().create_timer(player.stream.get_length(), false).timeout
 	player.queue_free()
+
+#Gets triggered when the unit dies
+func _on_animated_sprite_2d_animation_finished() -> void:
+	self.queue_free()
