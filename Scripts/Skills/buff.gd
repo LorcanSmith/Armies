@@ -10,7 +10,6 @@ func _ready() -> void:
 	self.visible = false
 	buff_health_amount = get_parent().get_parent().health_buff
 	buff_damage_amount = get_parent().get_parent().damage_buff
-
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if(area.name == "Area2D - Tile Collision" and area.get_parent().bought and self.get_parent().get_parent() != area.get_parent() and !self.get_parent().get_parent().disabled):
 		if(unit_to_buff):
@@ -43,10 +42,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			tile_when_no_unit.find_child("Sprite2D").self_modulate = Color(1,1,1,1)
 			tile_when_no_unit = null
 		tile_when_no_unit = area.get_parent()
-		if(buff_damage_amount > 0 or buff_health_amount > 0):
-			tile_when_no_unit.find_child("Sprite2D").self_modulate = Color(0.075,1,0.065,1)
-		elif(buff_damage_amount < 0 or buff_health_amount < 0):
-			tile_when_no_unit.find_child("Sprite2D").self_modulate = Color(1,0,.038,1)
+		if(self.visible):
+			if(buff_damage_amount > 0 or buff_health_amount > 0):
+				tile_when_no_unit.find_child("Sprite2D").self_modulate = Color(0.075,1,0.065,1)
+			elif(buff_damage_amount < 0 or buff_health_amount < 0):
+				tile_when_no_unit.find_child("Sprite2D").self_modulate = Color(1,0,.038,1)
 	if(self.visible):
 		turn_highlights_on()
 func _on_area_2d_area_exited(area: Area2D) -> void:
@@ -66,7 +66,7 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 
 func _on_visibility_changed() -> void:
 	if(!self.visible):
-		if(unit_to_buff):
+		if(unit_to_buff != null):
 			#Checks to make sure the unit hasnt died, weird way to do it, but only way i could get it to work
 			if(unit_to_buff.find_child("AnimatedSprite2D")):
 				unit_to_buff.find_child("AnimatedSprite2D").self_modulate = Color(1,1,1,1)

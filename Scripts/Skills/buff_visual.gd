@@ -9,7 +9,7 @@ var starting_location : Vector2
 
 var t = 0
 func _process(delta: float) -> void:
-	if(move):
+	if(move and unit):
 		t += delta
 		#If this is a health buff, set the target to the heart sprite
 		if(this_is_health_buff):

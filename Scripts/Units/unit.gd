@@ -291,7 +291,7 @@ func skill(phase : String):
 					if(skill_instance.target == null):
 						skill_instance.queue_free()
 			#No units in range
-			if((enemies_in_range.size() > 0) and !self_destruction):
+			if((enemies_in_range.size() <= 0) and !self_destruction):
 				#Check if there is a unit in front of you
 				if(movement_locations[0].movement_tile != null and movement_locations[0].movement_tile.units_on_tile.size() > 0):
 					#Unit on the tile in front of you

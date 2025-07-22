@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=55 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
@@ -47,6 +47,60 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4adb8"]
 size = Vector2(46, 59)
+
+[sub_resource type="Animation" id="Animation_m85sq"]
+resource_name = "unlock_tile"
+length = 0.236
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m2rvv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fymy5"]
+resource_name = "lock_disappear"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fymy5"]
+_data = {
+&"RESET": SubResource("Animation_m2rvv"),
+&"lock_disappear": SubResource("Animation_fymy5"),
+&"unlock_tile": SubResource("Animation_m85sq")
+}
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_i4wjb"]
 
@@ -149,7 +203,7 @@ script = ExtResource("12_cnpns")
 [node name="grid_manager" parent="." instance=ExtResource("4_2ahac")]
 
 [node name="grid_generator (army)" parent="grid_manager" instance=ExtResource("6_e3q61")]
-position = Vector2(415, 476)
+position = Vector2(405, 476)
 grid_name = "army"
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -601,18 +655,21 @@ text = "Sell"
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="lock" type="TextureButton" parent="Camera2D/shop_stuff/unit_section/shop_item_generator"]
+[node name="lock_control_node2D" type="Node2D" parent="Camera2D/shop_stuff/unit_section/shop_item_generator"]
+position = Vector2(668, 352)
+
+[node name="lock" type="TextureButton" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/lock_control_node2D"]
 z_index = 1
-offset_left = 652.0
-offset_top = 331.0
-offset_right = 684.0
-offset_bottom = 363.0
+offset_left = -16.0
+offset_top = -21.0
+offset_right = 16.0
+offset_bottom = 11.0
 pivot_offset = Vector2(16, 17)
 mouse_filter = 1
 texture_normal = ExtResource("19_5x64g")
 script = ExtResource("20_i5pgw")
 
-[node name="lock_coin" type="TextureRect" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/lock"]
+[node name="lock_coin" type="TextureRect" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/lock_control_node2D/lock"]
 layout_mode = 0
 offset_left = 24.4762
 offset_top = -4.92063
@@ -622,7 +679,7 @@ scale = Vector2(0.285, 0.285)
 mouse_filter = 2
 texture = ExtResource("6_wk4qg")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/lock/lock_coin"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/lock_control_node2D/lock/lock_coin"]
 layout_mode = 0
 offset_right = 199.0
 offset_bottom = 198.0
@@ -634,7 +691,7 @@ text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="pedastal_locked" type="TextureRect" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/lock"]
+[node name="pedastal_locked" type="TextureRect" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/lock_control_node2D/lock"]
 self_modulate = Color(0.392157, 1, 0.658824, 0.392157)
 z_as_relative = false
 layout_mode = 0
@@ -645,6 +702,11 @@ offset_bottom = 43.0
 pivot_offset = Vector2(35, 56)
 mouse_filter = 2
 texture = ExtResource("19_m2rvv")
+
+[node name="lock_animator" type="AnimationPlayer" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/lock_control_node2D/lock"]
+libraries = {
+&"": SubResource("AnimationLibrary_fymy5")
+}
 
 [node name="re-roll button" type="TextureButton" parent="Camera2D/shop_stuff/unit_section"]
 self_modulate = Color(0.212305, 0.212305, 0.212305, 1)
@@ -1440,9 +1502,10 @@ position = Vector2(-309, -176)
 [connection signal="pressed" from="Camera2D/shop_stuff/shop_visuals/battle_button" to="." method="_on_battle_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_stuff/unit_section/shop_item_generator/buy_bases_UI/Container/crate/close_button" to="Camera2D/shop_stuff/unit_section/shop_item_generator" method="_on_buy_bases_close_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_stuff/unit_section/shop_item_generator/buy_bases_UI/Container/buy_base_button" to="Camera2D/shop_stuff/unit_section/shop_item_generator" method="_on_buy_base_button_pressed"]
-[connection signal="mouse_entered" from="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" to="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" to="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" method="_on_mouse_exited"]
-[connection signal="pressed" from="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" to="Camera2D/shop_stuff/unit_section/shop_item_generator/lock" method="_on_pressed"]
+[connection signal="mouse_entered" from="Camera2D/shop_stuff/unit_section/shop_item_generator/lock_control_node2D/lock" to="Camera2D/shop_stuff/unit_section/shop_item_generator/lock_control_node2D/lock" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Camera2D/shop_stuff/unit_section/shop_item_generator/lock_control_node2D/lock" to="Camera2D/shop_stuff/unit_section/shop_item_generator/lock_control_node2D/lock" method="_on_mouse_exited"]
+[connection signal="pressed" from="Camera2D/shop_stuff/unit_section/shop_item_generator/lock_control_node2D/lock" to="Camera2D/shop_stuff/unit_section/shop_item_generator/lock_control_node2D/lock" method="_on_pressed"]
+[connection signal="animation_finished" from="Camera2D/shop_stuff/unit_section/shop_item_generator/lock_control_node2D/lock/lock_animator" to="Camera2D/shop_stuff/unit_section/shop_item_generator/lock_control_node2D/lock" method="_on_lock_animator_animation_finished"]
 [connection signal="button_down" from="Camera2D/shop_stuff/unit_section/re-roll button" to="." method="_on_reroll_button_button_down"]
 [connection signal="mouse_entered" from="Camera2D/shop_stuff/unit_section/re-roll button" to="." method="_on_reroll_button_mouse_entered"]
 [connection signal="mouse_exited" from="Camera2D/shop_stuff/unit_section/re-roll button" to="." method="_on_reroll_button_mouse_exited"]

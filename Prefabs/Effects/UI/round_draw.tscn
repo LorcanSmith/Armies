@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dq25puw8cnwdj"]
+[gd_scene load_steps=2 format=3 uid="uid://c5hje0y6y2axv"]
 
 [ext_resource type="PackedScene" uid="uid://y642uwgblpda" path="res://Prefabs/Effects/UI/round_won.tscn" id="1_jy6go"]
 
 [node name="Round Draw" instance=ExtResource("1_jy6go")]
 
-[node name="RichTextLabel" parent="." index="0"]
+[node name="RichTextLabel" parent="Control" index="0"]
+offset_left = -830.0
+offset_top = -624.445
+offset_right = 749.0
+offset_bottom = 575.555
 text = "Round Draw"

@@ -367,6 +367,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ueoa1"]
 resource_name = "transition_in"
+length = 0.5835
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1313,10 +1314,10 @@ libraries = {
 [node name="trophy" type="TextureRect" parent="UI/heart_trophy_UI/wins_bg"]
 z_index = 2
 layout_mode = 0
-offset_left = -10.0
-offset_top = -4.00006
-offset_right = 30.0
-offset_bottom = 35.9999
+offset_left = -6.0
+offset_top = -3.0
+offset_right = 23.0
+offset_bottom = 36.0
 pivot_offset = Vector2(21, 20)
 texture = ExtResource("6_d1ilt")
 
@@ -1478,53 +1479,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_b3802")
 }
 
-[node name="game_over_canvas" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="game_over_canvas"]
-offset_left = -742.0
-offset_top = -580.0
-offset_right = 1818.0
-offset_bottom = 1044.0
-color = Color(0.279406, 0.361789, 0.522832, 1)
-
-[node name="Restart Button" type="TextureButton" parent="game_over_canvas"]
-texture_filter = 1
-offset_left = 450.0
-offset_top = 324.0
-offset_right = 523.0
-offset_bottom = 351.0
-scale = Vector2(2.7, 2.7)
-texture_normal = ExtResource("7_6bp64")
-texture_pressed = ExtResource("8_ynf5e")
-texture_hover = ExtResource("9_hptm8")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="game_over_canvas/Restart Button"]
-layout_mode = 0
-offset_left = -703.0
-offset_top = -247.0
-offset_right = 757.0
-offset_bottom = 293.0
-scale = Vector2(0.09, 0.09)
-pivot_offset = Vector2(739.973, 260)
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 200
-text = "RESTART"
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Title" type="RichTextLabel" parent="game_over_canvas"]
-offset_left = 189.0
-offset_top = 103.0
-offset_right = 2539.0
-offset_bottom = 823.0
-scale = Vector2(0.32, 0.32)
-theme_override_font_sizes/normal_font_size = 300
-text = "10 WINS! YOU WIN"
-fit_content = true
-horizontal_alignment = 1
-
 [node name="scene_transitions" type="CanvasLayer" parent="."]
 
 [node name="scene_transition_animation_player" type="AnimationPlayer" parent="scene_transitions"]
@@ -1550,10 +1504,53 @@ offset_bottom = 1826.0
 rotation = 0.385657
 color = Color(0.118581, 0.118581, 0.118581, 1)
 
+[node name="game_over_canvas" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Restart Button" type="TextureButton" parent="game_over_canvas"]
+z_index = 100
+texture_filter = 1
+offset_left = 530.0
+offset_top = 436.0
+offset_right = 603.0
+offset_bottom = 463.0
+scale = Vector2(2.7, 2.7)
+texture_normal = ExtResource("7_6bp64")
+texture_pressed = ExtResource("8_ynf5e")
+texture_hover = ExtResource("9_hptm8")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="game_over_canvas/Restart Button"]
+z_index = 100
+layout_mode = 0
+offset_left = -703.0
+offset_top = -247.0
+offset_right = 757.0
+offset_bottom = 293.0
+scale = Vector2(0.09, 0.09)
+pivot_offset = Vector2(739.973, 260)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 200
+text = "RESTART"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="RichTextLabel" parent="game_over_canvas"]
+z_index = 100
+offset_top = 103.0
+offset_right = 4010.0
+offset_bottom = 823.0
+scale = Vector2(0.32, 0.32)
+theme_override_font_sizes/normal_font_size = 300
+text = "10 Wins!
+Game Over :D"
+fit_content = true
+horizontal_alignment = 1
+
 [connection signal="toggled" from="DEBUGGER/CanvasLayer/place_enemy_button" to="DEBUGGER" method="_on_place_enemy_button_toggled"]
 [connection signal="toggled" from="DEBUGGER/CanvasLayer/CheckButton" to="DEBUGGER" method="_on_check_button_toggled"]
 [connection signal="item_selected" from="DEBUGGER/CanvasLayer/OptionButton" to="DEBUGGER" method="_on_option_button_item_selected"]
 [connection signal="child_entered_tree" from="UI/HBoxContainer/dollar_control/CoinNotifs" to="UI/HBoxContainer/dollar_control/CoinNotifs" method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="UI/HBoxContainer/dollar_control/CoinNotifs" to="UI/HBoxContainer/dollar_control/CoinNotifs" method="_on_child_exiting_tree"]
-[connection signal="pressed" from="game_over_canvas/Restart Button" to="." method="_on_restart_button_pressed"]
 [connection signal="animation_finished" from="scene_transitions/scene_transition_animation_player" to="." method="_on_scene_transition_animation_player_animation_finished"]
+[connection signal="pressed" from="game_over_canvas/Restart Button" to="." method="_on_restart_button_pressed"]
