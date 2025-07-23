@@ -411,40 +411,19 @@ texture_filter = 1
 position = Vector2(1.5, 1.54128)
 texture = ExtResource("4_awdqk")
 
-[node name="Defense" type="Label" parent="Sprite2D/Item_Info/heart_sprite"]
-z_index = 5
-z_as_relative = false
-anchors_preset = -1
-anchor_left = -2.63542
-anchor_top = -3.2061
-anchor_right = 0.114582
-anchor_bottom = -1.25372
-offset_left = 2.25
-offset_top = 0.328125
-offset_right = 137.25
-offset_bottom = 140.328
-scale = Vector2(0.12, 0.12)
-pivot_offset = Vector2(55.5556, 63.889)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 100
-text = "55"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
 [node name="health_upgrade_preview_sprite" type="Sprite2D" parent="Sprite2D/Item_Info/heart_sprite"]
 visible = false
 z_index = -1
 position = Vector2(3, 1.25229)
-scale = Vector2(1e-05, 1)
+scale = Vector2(1.09497, 1)
 texture = ExtResource("7_te1c8")
 offset = Vector2(-29.4016, -1.54128)
 
 [node name="health_upgrade_preview_text" type="RichTextLabel" parent="Sprite2D/Item_Info/heart_sprite/health_upgrade_preview_sprite"]
-offset_left = -42.6323
-offset_top = -9.2477
-offset_right = 224.368
-offset_bottom = 199.752
+offset_left = -43.5
+offset_top = -10.789
+offset_right = 280.5
+offset_bottom = 198.211
 scale = Vector2(0.09, 0.09)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 150
@@ -454,24 +433,47 @@ text = "+55"
 visible = false
 z_index = -1
 position = Vector2(3, -0.288991)
-scale = Vector2(1e-05, 1)
+scale = Vector2(1.09497, 1)
 texture = ExtResource("8_te1c8")
 offset = Vector2(-29.4016, -4.76837e-07)
 
 [node name="health_downgrade_preview_text" type="RichTextLabel" parent="Sprite2D/Item_Info/heart_sprite/health_downgrade_preview_sprite"]
-offset_left = -42.6323
-offset_top = -9.2477
-offset_right = 224.368
-offset_bottom = 199.752
+offset_left = -43.0
+offset_top = -9.0
+offset_right = 281.0
+offset_bottom = 200.0
 scale = Vector2(0.09, 0.09)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 150
-text = "-55"
+text = "-555"
+
+[node name="Defense" type="Label" parent="Sprite2D/Item_Info/heart_sprite"]
+z_index = 5
+z_as_relative = false
+anchors_preset = -1
+anchor_left = -0.296875
+anchor_top = 0.00534276
+anchor_right = 2.70313
+anchor_bottom = 1.48153
+offset_left = -59.2589
+offset_top = -75.4256
+offset_right = 111.741
+offset_bottom = 157.574
+scale = Vector2(0.075, 0.075)
+pivot_offset = Vector2(62.0367, 69.4437)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 35
+theme_override_font_sizes/font_size = 220
+text = "55"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="sword_sprite" type="Sprite2D" parent="Sprite2D/Item_Info"]
 z_index = 3
 texture_filter = 1
-position = Vector2(-26, 13)
+position = Vector2(-25, 13)
 scale = Vector2(0.666667, 0.64881)
 texture = ExtResource("5_opg0c")
 
@@ -482,22 +484,37 @@ texture_filter = 1
 position = Vector2(1.5, 1.54128)
 texture = ExtResource("5_opg0c")
 
+[node name="sword_sprite2" type="Sprite2D" parent="Sprite2D/Item_Info/sword_sprite"]
+z_index = 1
+texture_filter = 1
+texture = ExtResource("5_opg0c")
+flip_h = true
+
+[node name="sword_shadow" type="Sprite2D" parent="Sprite2D/Item_Info/sword_sprite/sword_sprite2"]
+modulate = Color(0, 0, 0, 0.376471)
+z_index = -1
+texture_filter = 1
+position = Vector2(1.5, 1.54128)
+texture = ExtResource("5_opg0c")
+
 [node name="Attack" type="Label" parent="Sprite2D/Item_Info/sword_sprite"]
 z_index = 5
 z_as_relative = false
 anchors_preset = -1
-anchor_left = -0.296875
-anchor_top = 0.0070917
-anchor_right = 4.00313
-anchor_bottom = 0.340425
-offset_left = -59.0625
-offset_top = -72.1122
-offset_right = 54.9375
-offset_bottom = 64.8878
-scale = Vector2(0.12, 0.12)
+anchor_left = -0.437053
+anchor_top = 0.0202666
+anchor_right = 5.11295
+anchor_bottom = 1.49646
+offset_left = -59.2589
+offset_top = -75.4256
+offset_right = 111.741
+offset_bottom = 157.574
+scale = Vector2(0.075, 0.075)
 pivot_offset = Vector2(62.0367, 69.4437)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 100
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 35
+theme_override_font_sizes/font_size = 220
 text = "55"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -511,10 +528,10 @@ texture = ExtResource("7_te1c8")
 offset = Vector2(-30, 0)
 
 [node name="damage_upgrade_preview_text" type="RichTextLabel" parent="Sprite2D/Item_Info/sword_sprite/damage_upgrade_preview_sprite"]
-offset_left = -43.5
-offset_top = -9.2477
-offset_right = 223.5
-offset_bottom = 199.752
+offset_left = -43.0
+offset_top = -9.0
+offset_right = 290.0
+offset_bottom = 200.0
 scale = Vector2(0.09, 0.09)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 150
@@ -524,19 +541,19 @@ text = "+55"
 visible = false
 z_index = -1
 position = Vector2(4.5, -5.96046e-07)
-scale = Vector2(1e-05, 1)
+scale = Vector2(1.09497, 1)
 texture = ExtResource("8_te1c8")
 offset = Vector2(-29.4016, 0)
 
 [node name="damage_downgrade_preview_text" type="RichTextLabel" parent="Sprite2D/Item_Info/sword_sprite/damage_downgrade_preview_sprite"]
-offset_left = -42.6323
-offset_top = -9.2477
-offset_right = 224.368
-offset_bottom = 199.752
+offset_left = -43.0
+offset_top = -9.0
+offset_right = 281.0
+offset_bottom = 200.0
 scale = Vector2(0.09, 0.09)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 150
-text = "-55"
+text = "-555"
 
 [node name="buff_preview_animator" type="AnimationPlayer" parent="Sprite2D/Item_Info"]
 root_node = NodePath("../heart_sprite")
@@ -581,6 +598,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_lg7m4")
 }
 
+[connection signal="animation_finished" from="Sprite2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="mouse_entered" from="Sprite2D/Item_Info" to="Sprite2D/Item_Info" method="_on_mouse_entered"]
 [connection signal="area_entered" from="Area2D - Tile Collision" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D - Tile Collision" to="." method="_on_area_2d_area_exited"]
@@ -588,3 +606,4 @@ libraries = {
 [connection signal="mouse_entered" from="Area2D - Mouse Collision" to="." method="_on_area_2d__mouse_collision_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D - Mouse Collision" to="." method="_on_area_2d__mouse_collision_mouse_exited"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
+[connection signal="animation_started" from="AnimationPlayer2" to="." method="_on_animation_player_2_animation_started"]

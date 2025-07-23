@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bgv4jk4whdmy6"]
+[gd_scene load_steps=27 format=3 uid="uid://bgv4jk4whdmy6"]
 
 [ext_resource type="Script" uid="uid://ekpmqxviagv3" path="res://Scripts/Managers/combat_manager.gd" id="1_7ijpe"]
 [ext_resource type="PackedScene" uid="uid://cuf4kh851odj1" path="res://Prefabs/Managers/headquarter.tscn" id="2_2r55k"]
@@ -21,7 +21,11 @@
 [ext_resource type="Texture2D" uid="uid://dhxlfggdx2kxf" path="res://Sprites/UI/departure board empty.png" id="15_yudfw"]
 [ext_resource type="PackedScene" uid="uid://rl8ohk3jx7cd" path="res://Prefabs/Status/letter.tscn" id="16_5jl04"]
 [ext_resource type="PackedScene" uid="uid://trk87sgcanig" path="res://Prefabs/ToolTips/tooltip.tscn" id="21_b20ae"]
-[ext_resource type="Texture2D" uid="uid://coon5hqrkq71r" path="res://Sprites/Backgrounds/bg.png" id="21_l3yi2"]
+[ext_resource type="Texture2D" uid="uid://bb5af5j4pftf6" path="res://Sprites/Backgrounds/combat_bg.png" id="21_l3yi2"]
+[ext_resource type="Texture2D" uid="uid://by2jistn7lbgf" path="res://Sprites/Backgrounds/combat_bg_2.png" id="22_v8o1h"]
+[ext_resource type="Texture2D" uid="uid://by3m348c6nhgs" path="res://Sprites/Backgrounds/combat_bg_3.png" id="23_7dm8s"]
+[ext_resource type="Texture2D" uid="uid://buhtrkfwncgk" path="res://Sprites/Backgrounds/combat_bg_4.png" id="24_3cesx"]
+[ext_resource type="Texture2D" uid="uid://drnhn21mqereq" path="res://Sprites/Backgrounds/combat_behind.png" id="25_m6sye"]
 
 [node name="combat_manager" type="Node2D"]
 script = ExtResource("1_7ijpe")
@@ -185,20 +189,78 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="background" type="TextureRect" parent="grid_manager/grid_generator (army)/Camera2D"]
+[node name="background1" type="TextureRect" parent="grid_manager/grid_generator (army)/Camera2D"]
 z_index = -4
 texture_filter = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -694.0
-offset_top = -282.0
-offset_right = 1593.0
-offset_bottom = 956.0
+offset_left = -428.0
+offset_top = -240.0
+offset_right = 427.0
+offset_bottom = 241.0
 grow_horizontal = 0
-scale = Vector2(0.52, 0.52)
 mouse_filter = 2
 texture = ExtResource("21_l3yi2")
+
+[node name="background2" type="TextureRect" parent="grid_manager/grid_generator (army)/Camera2D"]
+visible = false
+z_index = -4
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -428.0
+offset_top = -240.0
+offset_right = 427.0
+offset_bottom = 241.0
+grow_horizontal = 0
+mouse_filter = 2
+texture = ExtResource("22_v8o1h")
+
+[node name="background3" type="TextureRect" parent="grid_manager/grid_generator (army)/Camera2D"]
+visible = false
+z_index = -4
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -428.0
+offset_top = -240.0
+offset_right = 427.0
+offset_bottom = 241.0
+grow_horizontal = 0
+mouse_filter = 2
+texture = ExtResource("23_7dm8s")
+
+[node name="background4" type="TextureRect" parent="grid_manager/grid_generator (army)/Camera2D"]
+visible = false
+z_index = -4
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -428.0
+offset_top = -240.0
+offset_right = 427.0
+offset_bottom = 241.0
+grow_horizontal = 0
+mouse_filter = 2
+texture = ExtResource("24_3cesx")
+
+[node name="behind" type="TextureRect" parent="grid_manager/grid_generator (army)/Camera2D"]
+z_index = -5
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -543.0
+offset_top = -285.0
+offset_right = 502.0
+offset_bottom = 298.0
+grow_horizontal = 0
+mouse_filter = 2
+texture = ExtResource("25_m6sye")
 
 [node name="skill_holder" type="Node2D" parent="."]
 script = ExtResource("5_vexsu")

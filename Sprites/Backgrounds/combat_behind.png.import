@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djdl8p52grdjd"
-path="res://.godot/imported/level_chevron.png-7731d1d4cbee703468b14f957df0cb0d.ctex"
+uid="uid://drnhn21mqereq"
+path="res://.godot/imported/combat_behind.png-e594169c93a98eda47ae3dcf34a4d7d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/chevrons/level_chevron.png"
-dest_files=["res://.godot/imported/level_chevron.png-7731d1d4cbee703468b14f957df0cb0d.ctex"]
+source_file="res://Sprites/Backgrounds/combat_behind.png"
+dest_files=["res://.godot/imported/combat_behind.png-e594169c93a98eda47ae3dcf34a4d7d6.ctex"]
 
 [params]
 

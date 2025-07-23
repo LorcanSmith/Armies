@@ -4,13 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://doklob2e1xafl" path="res://Sprites/UI/arrow.png" id="3_8wc4m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6sqpo"]
-radius = 37.604
+radius = 23.8812
 
 [node name="buff_location" type="Node2D"]
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_2kgwh")
 
 [node name="Area2D" type="Area2D" parent="."]
+input_pickable = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -20,5 +21,6 @@ shape = SubResource("CircleShape2D_6sqpo")
 visible = false
 texture = ExtResource("3_8wc4m")
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

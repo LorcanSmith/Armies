@@ -1,18 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwimlvq1mhgwg"]
+[gd_scene load_steps=2 format=3 uid="uid://bwimlvq1mhgwg"]
 
 [ext_resource type="Script" uid="uid://c4cg8tnold5q5" path="res://Scripts/Effects/projectile.gd" id="1_w5i43"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_cjnkr"]
-animations = []
 
 [node name="slice_projectile" type="Node2D"]
 script = ExtResource("1_w5i43")
 speed = 2.0
 destroy_projectile_instantly = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_cjnkr")
-animation = &""
-
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

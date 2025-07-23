@@ -30,7 +30,7 @@ var shop_manager : Node2D
 @export var sell_cost : int = 0
 #Keeps track if the player has bought the unit yet. Stops the player from selling
 #items that haven't been bought yet, as well as making sure the player pays for items
-var bought : bool = true
+var bought : bool = false
 
 #Set when the player is placing the object. When this item is hovering over
 #a tile, the tile is set below. Then when the player "places" the item, we use
@@ -368,24 +368,18 @@ func buff():
 				var unit_dictionary = dictionary_instance.unit_scenes[unit.unit_ID].instantiate()
 				var can_buff_unit = true
 				if(check_if_can_buff_unit(unit_dictionary)):
-					##Checks for specific units
-					#Diplodocus
-					if(unit_ID == 51 or unit_ID == 52 or unit_ID == 53):
-						if(unit_dictionary.max_health + unit.health_boost >= self.current_health):
-							can_buff_unit = false
 					if(can_buff_unit):
 						if(damage_buff > 0 or damage_buff < 0):
-							#Delay so the buffs don't all appear at the same time
-							await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
 							unit.buff_unit_damage(damage_buff)
 							var buff_instance = damage_buff_visual.instantiate()
 							find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
+							#Delay so the buffs don't all appear at the same time
+							await get_tree().create_timer(randf_range(0.05, 0.6)).timeout
 							buff_instance.global_position = self.global_position
+							buff_instance.get_node("AnimationPlayer").play("buff_appear")
 							buff_instance.unit = unit
 							buff_instance.find_child("buff_text").text = str("+",damage_buff)
 						if(health_buff > 0 or health_buff < 0):
-							#Delay so the buffs don't all appear at the same time
-							await get_tree().create_timer(randf_range(0.05, 0.25)).timeout
 							unit.buff_unit_health(health_buff)
 							var buff_instance
 							if(health_buff > 0):
@@ -393,7 +387,10 @@ func buff():
 							elif(health_buff < 0):
 								buff_instance = negative_health_buff_visual.instantiate()
 							find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
+							#Delay so the buffs don't all appear at the same time
+							await get_tree().create_timer(randf_range(0.05, 0.6)).timeout
 							buff_instance.global_position = self.global_position
+							buff_instance.get_node("AnimationPlayer").play("buff_appear")
 							buff_instance.unit = unit
 							buff_instance.find_child("buff_text").text = str("+",health_buff)
 							
@@ -408,12 +405,12 @@ func activate_any_abilities(unit):
 		#Gains a buff if a vehicle is hurt by its shot
 		if(unit.current_health <= -health_buff):
 			self.buff_unit_health(5)
-			var buff_instance = health_buff_visual.instantiate()
-			find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
-			buff_instance.global_position = unit.global_position
-			buff_instance.unit = self
-			buff_instance.find_child("buff_text").text = str("+",health_buff)
-			
+			var anim_player = get_node("AnimationPlayer")
+			if(anim_player.is_playing()):
+				anim_player.queue("health_bounce")
+			else:
+				anim_player.play("health_bounce")
+			update_label_text()
 			
 func check_if_can_buff_unit(unit_dictionary):
 	var b = 0
@@ -433,22 +430,27 @@ var last_damage_change : int = 0
 func buff_unit_health(amount : int):
 	health_boost += amount
 	last_health_change = amount
-	#Play damage animation
-	if(amount < 0):
-		get_node("item_hurt_anim_player").play("hurt")
-		if current_health + health_boost <= 0:
-			get_node("item_hurt_anim_player").queue("death")
-			if(!item_has_transformed):
-				get_node("Sprite2D/AnimatedSprite2D").play("death")
-			elif(item_has_transformed):
-				get_node("Sprite2D/AnimatedSprite2D").play("death_transformed")
-			find_parent("shop_manager").units_to_delete.append(self)
+
 func buff_unit_damage(amount : int):
 	damage_boost += amount
 	last_damage_change = amount
-	
+
+##Health check called by skill holder at the end of the shop phase once all buffs are done
+func health_check():
+	if current_health <= 0:
+		get_node("item_hurt_anim_player").queue("death")
+		if(!item_has_transformed):
+			get_node("Sprite2D/AnimatedSprite2D").play("death")
+		elif(item_has_transformed):
+			get_node("Sprite2D/AnimatedSprite2D").play("death_transformed")
+		var shop_manager = find_parent("shop_manager")
+		shop_manager.tiles_to_delete_units_from.append(self.get_parent())
+		self.reparent(shop_manager.find_child("buff_animation_holder"))
+
+#Controls the heart	
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
 	if(anim_name == "health_bounce"):
+			play_buff_sound(buff_sound)
 			#Unit specific abilities that happen on damage gain/loss
 			if(unit_name == "Ankylosaurus"):
 				if(last_health_change < 0):
@@ -459,6 +461,13 @@ func _on_animation_player_animation_started(anim_name: StringName) -> void:
 						anim_player.queue("damage_bounce")
 					else:
 						anim_player.play("damage_bounce")
+			#Play damage animation
+			if(last_health_change < 0):
+				get_node("item_hurt_anim_player").play("hurt")
+#Controls the sword
+func _on_animation_player_2_animation_started(anim_name: StringName) -> void:
+	if(anim_name == "damage_bounce"):
+		play_buff_sound(buff_sound)
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	#If the area is a tile and the item is picked up, following the mouse
 	if(area.is_in_group("tile") and follow_mouse):
@@ -500,3 +509,23 @@ func spawn_coin(amount):
 		c.global_position.y += randf_range(-10,10)
 		coins_left -= 1
 		await get_tree().create_timer(0.1).timeout
+
+##Playing sounds
+var buff_sound : AudioStream = preload("res://Sounds/pop.mp3")
+func play_buff_sound(sound_stream: AudioStream):
+	var player = AudioStreamPlayer.new()
+	add_child(player)
+	player.stream = sound_stream
+
+	if position != null and player is AudioStreamPlayer2D:
+		player.position = self.position
+
+	player.play()
+
+	# Free after it's done playing (based on length of audio)
+	await get_tree().create_timer(player.stream.get_length(), false).timeout
+	player.queue_free()
+
+#Gets triggered when the unit dies
+func _on_animated_sprite_2d_animation_finished() -> void:
+	self.queue_free()

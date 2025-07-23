@@ -152,3 +152,6 @@ position = Vector2(148, 0)
 
 [node name="Sprite2D" parent="." index="4"]
 texture = null
+
+[node name="projectile_spawn_location" parent="." index="8"]
+position = Vector2(16, 8)

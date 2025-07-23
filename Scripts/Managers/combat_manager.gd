@@ -3,6 +3,8 @@ extends Node
 var game_manager : Node2D
 
 var current_round_number : int = 0
+
+
 #Keeps track of which phase we are in
 var next_phase = "movement"
 
@@ -41,6 +43,20 @@ func _ready() -> void:
 	game_manager = find_parent("game_manager")
 	player_headquarter = self.find_child("player_headquarter")
 	enemy_headquarter = self.find_child("enemy_headquarter")
+	#Set background
+	if(game_manager.turn_number >= 3):
+		find_child("background1").visible = false
+		find_child("background2").visible = true
+	if(game_manager.turn_number >= 5):
+		find_child("Camera2D").zoom = Vector2(1.3,1.3)
+		find_child("background1").visible = false
+		find_child("background2").visible = false
+		find_child("background3").visible = true
+	if(game_manager.turn_number >= 7):
+		find_child("background1").visible = false
+		find_child("background2").visible = false
+		find_child("background3").visible = false
+		find_child("background4").visible = true
 	auto_tick()
 
 func setup_headquarters(base_id):
@@ -51,7 +67,7 @@ func setup_headquarters(base_id):
 	#Gets the tile which is the furthest to the right
 	var grid_width = grid[-1]
 	#Offsets our headquarters by its sprite size
-	var offset = (find_child("Sprite2D").texture.get_width())+25
+	var offset = (find_child("Sprite2D").texture.get_width())+20
 	#Sets the player headquarter to be to the left of the map
 	player_headquarter.global_position = Vector2(grid[0][0].global_position.x-offset, grid_height_center)
 	#Sets the base sprite
@@ -67,6 +83,7 @@ func setup_headquarters(base_id):
 	enemy_headquarter.global_position = Vector2(grid_width[0].global_position.x+offset+50, grid_height_center)
 	#Sets the enemy base shadow
 	enemy_headquarter.set_base_shadow()
+	
 # called from ready() or from game_manager, automatically cycles through battle_ticker()
 func auto_tick():
 ##		causes the function to pause, allows an opening for game_manager to pause if necessary

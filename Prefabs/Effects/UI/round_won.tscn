@@ -7,11 +7,11 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RichTextLabel:scale")
+tracks/0/path = NodePath("Control:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
@@ -19,15 +19,15 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_36bif"]
 resource_name = "round won"
-length = 4.0
+length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RichTextLabel:scale")
+tracks/0/path = NodePath("Control:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.466667, 0.833333, 3),
+"times": PackedFloat32Array(0, 0.433333, 0.933333, 1.4),
 "transitions": PackedFloat32Array(1, 0.25, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1.3, 1.3), Vector2(1, 1), Vector2(1.009, 1.009)]
@@ -42,13 +42,21 @@ _data = {
 [node name="Round Won" type="Node2D"]
 script = ExtResource("1_adfqu")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = -467.0
-offset_top = -117.0
-offset_right = 466.0
-offset_bottom = 363.0
-pivot_offset = Vector2(467.001, 252.004)
-theme_override_font_sizes/normal_font_size = 100
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = -829.0
+offset_top = -624.0
+offset_right = 750.0
+offset_bottom = 576.0
+scale = Vector2(0.35, 0.35)
+pivot_offset = Vector2(828.692, 624.302)
+theme_override_font_sizes/normal_font_size = 350
 text = "Round Won"
 fit_content = true
 horizontal_alignment = 1

@@ -74,7 +74,6 @@ func load_units():
 								instance.add_to_group("enemy")
 								instance.scale.x = -instance.scale.x
 								instance.find_child("health_bar_background").scale.x = -instance.find_child("health_bar_background").scale.x
-								instance.find_child("ammo_bar_background").scale.x = -instance.find_child("ammo_bar_background").scale.x
 								reversed_tiles[width][height].add_child(instance)
 								instance.position = Vector2i(0,0)
 								reversed_tiles[width][height].unit_placed_on(instance)
@@ -98,6 +97,7 @@ func load_units():
 							#Gets the unit version so we can check if the item needs to be transformed
 							var unit_version = dictionary_instance.unit_scenes[int(unit_IDs[width][height][0])].instantiate()
 							instance.transform_item(unit_version)
+							instance.bought = true
 				height += 1
 			width += 1
 	#units have been loaded in

@@ -92,7 +92,7 @@ var reloading : bool
 @export var skill_shooots_closest_enemy : bool
 
 #Does the unit destroy itself
-@export var self_destruction : bool
+@export var self_destruction : bool = false
 
 @export_subgroup("Skill Projectile")
 @export var projectile : PackedScene
@@ -238,6 +238,7 @@ func skill(phase : String):
 					skill_instance.damage = skill_damage + damage_boost
 					skill_instance.owner_of_skill = self.global_position
 					skill_instance.projectile = projectile
+					skill_instance.projectile_spawn_location = find_child("projectile_spawn_location")
 					find_parent("combat_manager").find_child("skill_holder").add_child(skill_instance)
 					#Tell the skill if it is a friendly or enemy skill
 					if(self.is_in_group("player")):
@@ -291,7 +292,7 @@ func skill(phase : String):
 					if(skill_instance.target == null):
 						skill_instance.queue_free()
 			#No units in range
-			else:
+			if((enemies_in_range.size() <= 0) and !self_destruction):
 				#Check if there is a unit in front of you
 				if(movement_locations[0].movement_tile != null and movement_locations[0].movement_tile.units_on_tile.size() > 0):
 					#Unit on the tile in front of you
@@ -417,27 +418,10 @@ func skill_area_entered(area: Area2D) -> void:
 			#If the area on our skill location is a unit of the opposite type
 			if(self.is_in_group("player") and area.get_parent().is_in_group("enemy")):
 				enemies_in_range.append(area.get_parent())
-				check_if_skill_works_against(area.get_parent())
 			elif(self.is_in_group("enemy") and area.get_parent().is_in_group("player")):
 				enemies_in_range.append(area.get_parent())
-				check_if_skill_works_against(area.get_parent())
 
-func check_if_skill_works_against(u : Node2D):
-	#Skill doesn't work against all units so check for specific types
-	if(!all):
-		var x = 0
-		var remove : bool = true
-		#Checks the unit in range and its types
-		while x < u.unit_types.size():
-			var type_to_string = str(var_to_str(u.unit_types[x]) + "_works_against")
-			type_to_string = type_to_string.replace('"',"")
-			#If the unit type is the same as one of types that the skill works against, we dont need to remove this enemy
-			if(get(type_to_string)):
-				remove = false
-			x+=1
-		if(remove):
-			friendlies_in_range.erase(u)
-			enemies_in_range.erase(u)
+
 func skill_area_exited(area: Area2D) -> void:
 	if alive:
 		enemies_in_range.erase(area.get_parent())

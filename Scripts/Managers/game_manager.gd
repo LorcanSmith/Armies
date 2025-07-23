@@ -242,6 +242,7 @@ func won_battle(won : bool, draw : bool):
 		show_game_over(false)
  	
 func show_game_over(win : bool):
+	find_child("scene_transitions").get_node("scene_transition_animation_player").play("transition_in")
 	game_over_canvas.visible = true
 	if(win):
 		game_over_canvas.find_child("Title").text = "10 Wins! You win!"

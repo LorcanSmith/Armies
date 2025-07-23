@@ -133,7 +133,6 @@ animations = [{
 [node name="Sheep" instance=ExtResource("1_gumnu")]
 attack_animation_length = 0.45
 max_health = 5
-brawl_damage = 3
 Animal = true
 Sheep = true
 skill_damage = 2
