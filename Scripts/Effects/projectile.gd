@@ -34,6 +34,8 @@ func _process(delta: float) -> void:
 				if(enemy):
 					enemy.projectile_hit(damage)
 					queue_free()
+				else:
+					queue_free()
 	else:
 		self.global_position = enemy_position
 		if(enemy):

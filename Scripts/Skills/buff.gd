@@ -23,7 +23,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			unit_to_buff = null
 		
 		unit_to_buff = area.get_parent()
-		#Unit dictionary, used to spawn in upgraded units
 		var dictionary = preload("res://Scripts/Units/dictionary.gd")
 		var dictionary_instance = dictionary.new()
 		var unit_dictionary = dictionary_instance.unit_scenes[unit_to_buff.unit_ID].instantiate()
@@ -34,7 +33,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			##Checks for specific units
 			#Diplodocus
 			if(parent_unit.unit_ID == 17):
-				if(unit_dictionary.max_health + unit_dictionary.health_boost >= parent_unit.current_health):
+				if(unit_to_buff.current_health + unit_to_buff.health_boost >= parent_unit.current_health):
 					unit_to_buff = null
 			#Wizard
 			elif(parent_unit.unit_ID == 23):

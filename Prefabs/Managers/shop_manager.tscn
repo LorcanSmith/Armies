@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://d4h2dufyod7as"]
+[gd_scene load_steps=82 format=3 uid="uid://d4h2dufyod7as"]
 
 [ext_resource type="Script" uid="uid://cpbujw188hrw8" path="res://Scripts/Shop/shop_manager.gd" id="1_0fc1a"]
 [ext_resource type="Script" uid="uid://fqvctuf5o4m5" path="res://Scripts/Shop/shop_item_generator.gd" id="2_v5hhx"]
@@ -35,15 +35,18 @@
 [ext_resource type="Texture2D" uid="uid://bxqvssxisncyy" path="res://Sprites/UI/shop/new shop icons/lock.png" id="19_5x64g"]
 [ext_resource type="Texture2D" uid="uid://bnb662be6om1a" path="res://Sprites/Locations/tile_location.png" id="19_m2rvv"]
 [ext_resource type="Script" uid="uid://caqdnygqatsi6" path="res://Scripts/Shop/lock.gd" id="20_i5pgw"]
-[ext_resource type="Texture2D" uid="uid://3617v1uukbov" path="res://Sprites/Units/Army/soldier/soldier_sprite.png" id="21_hxbdf"]
-[ext_resource type="Texture2D" uid="uid://cspyn7seap7nm" path="res://Sprites/Units/Dinosaurs/velociraptor/velociraptor_sprite_lvl1.png" id="22_kga0f"]
-[ext_resource type="Texture2D" uid="uid://duqq8x48i1fj" path="res://Sprites/Units/Fantasy/orc.png" id="23_3ljtq"]
 [ext_resource type="Texture2D" uid="uid://dnmlrb05mdhr" path="res://Sprites/UI/shop/path.png" id="28_3ljtq"]
 [ext_resource type="Texture2D" uid="uid://coon5hqrkq71r" path="res://Sprites/Backgrounds/bg.png" id="28_hxbdf"]
 [ext_resource type="Texture2D" uid="uid://bd8mbqamio3hi" path="res://Sprites/UI/shop/path_clicked.png" id="29_i4wjb"]
 [ext_resource type="Texture2D" uid="uid://b8d2lpa5njmui" path="res://Sprites/UI/shop/path_hovered.png" id="30_uug8p"]
 [ext_resource type="Script" uid="uid://mrsc5vs4uclq" path="res://Scripts/Shop/base_crate.gd" id="32_ontla"]
 [ext_resource type="Texture2D" uid="uid://cvoyqv5bccasw" path="res://Sprites/UI/shop/max_path.png" id="36_m85sq"]
+[ext_resource type="Texture2D" uid="uid://mmbtqshopihg" path="res://Sprites/Units/Animals/pig/lvl1/pig_idle_lvl1.png" id="38_21oc8"]
+[ext_resource type="Texture2D" uid="uid://dca8t10ldaxlg" path="res://Sprites/Units/Medieval/Knight/lvl1/knight_idle_lvl1.png" id="38_gbnr4"]
+[ext_resource type="Texture2D" uid="uid://bmh5en35bau06" path="res://Sprites/Units/Army/tank/lvl1/tank_idle_lvl1.png" id="39_eak18"]
+[ext_resource type="Texture2D" uid="uid://cd6eypfceikml" path="res://Sprites/Units/Dinosaurs/diplodocus/lvl1/diplodocus_idle_lvl1.png" id="41_c4unp"]
+[ext_resource type="Texture2D" uid="uid://b74xh6uljw4ty" path="res://Sprites/Units/Fantasy/Wizard/wizard_idle.png" id="42_fymy5"]
+[ext_resource type="Texture2D" uid="uid://qsylll1wnluk" path="res://Sprites/Units/Sci-fi/Strider/strider_idle.png" id="43_dygu0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4adb8"]
 size = Vector2(46, 59)
@@ -103,6 +106,180 @@ _data = {
 }
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_i4wjb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkvo1"]
+atlas = ExtResource("38_gbnr4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvc1c"]
+atlas = ExtResource("38_gbnr4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q34q2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkvo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvc1c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h8pa"]
+atlas = ExtResource("39_eak18")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fureh"]
+atlas = ExtResource("39_eak18")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b4oeu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6h8pa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fureh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctc8r"]
+atlas = ExtResource("42_fymy5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tfba"]
+atlas = ExtResource("42_fymy5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tpkkk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctc8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7tfba")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y74oa"]
+atlas = ExtResource("41_c4unp")
+region = Rect2(0, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7yet"]
+atlas = ExtResource("41_c4unp")
+region = Rect2(42, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyq7g"]
+atlas = ExtResource("41_c4unp")
+region = Rect2(84, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_biagb"]
+atlas = ExtResource("41_c4unp")
+region = Rect2(126, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sh5ar"]
+atlas = ExtResource("41_c4unp")
+region = Rect2(168, 0, 42, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n105p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y74oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7yet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyq7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_biagb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sh5ar")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m85sq"]
+atlas = ExtResource("38_21oc8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2rvv"]
+atlas = ExtResource("38_21oc8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fymy5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m85sq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2rvv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbnr4"]
+atlas = ExtResource("43_dygu0")
+region = Rect2(0, 0, 32, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eak18"]
+atlas = ExtResource("43_dygu0")
+region = Rect2(32, 0, 32, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4unp"]
+atlas = ExtResource("43_dygu0")
+region = Rect2(64, 0, 32, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dygu0"]
+atlas = ExtResource("43_dygu0")
+region = Rect2(96, 0, 32, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bba2w"]
+atlas = ExtResource("43_dygu0")
+region = Rect2(128, 0, 32, 51)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c4unp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbnr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eak18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4unp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dygu0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bba2w")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vg5hm"]
 size = Vector2(136, 134)
@@ -1074,27 +1251,24 @@ position = Vector2(-1398, -392)
 [node name="remove_medieval" type="Control" parent="Camera2D/shop_stuff/shop_remove_section"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1336.0
-offset_top = 335.0
-offset_right = 1336.0
-offset_bottom = 335.0
+offset_left = 1350.0
+offset_top = 296.0
+offset_right = 1350.0
+offset_bottom = 296.0
 
-[node name="unit_image" type="TextureRect" parent="Camera2D/shop_stuff/shop_remove_section/remove_medieval"]
+[node name="unit_image" type="AnimatedSprite2D" parent="Camera2D/shop_stuff/shop_remove_section/remove_medieval"]
 texture_filter = 1
-layout_mode = 0
-offset_left = -16.6665
-offset_top = -45.3336
-offset_right = 15.3335
-offset_bottom = -13.3336
-texture = ExtResource("12_uptcy")
-stretch_mode = 3
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_q34q2")
+autoplay = "default"
+frame_progress = 0.258151
 
 [node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_remove_section/remove_medieval"]
 layout_mode = 0
 offset_left = -42.0
-offset_top = -12.0
+offset_top = -4.0
 offset_right = 785.0
-offset_bottom = 498.0
+offset_bottom = 126.0
 scale = Vector2(0.1, 0.1)
 theme_override_font_sizes/normal_font_size = 100
 text = "Medieval"
@@ -1157,35 +1331,32 @@ visible = false
 self_modulate = Color(0.880013, 0, 0.158553, 1)
 layout_mode = 0
 offset_left = -9.0
-offset_top = -39.0
+offset_top = -14.0
 offset_right = 7.0
-offset_bottom = -23.0
+offset_bottom = 2.0
 texture = ExtResource("11_m4m2t")
 
 [node name="remove_army" type="Control" parent="Camera2D/shop_stuff/shop_remove_section"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1445.0
-offset_top = 334.0
+offset_top = 297.0
 offset_right = 1445.0
-offset_bottom = 334.0
+offset_bottom = 297.0
 
-[node name="unit_image" type="TextureRect" parent="Camera2D/shop_stuff/shop_remove_section/remove_army"]
+[node name="unit_image" type="AnimatedSprite2D" parent="Camera2D/shop_stuff/shop_remove_section/remove_army"]
 texture_filter = 1
-layout_mode = 0
-offset_left = -16.6665
-offset_top = -45.3336
-offset_right = 15.3335
-offset_bottom = -13.3336
-texture = ExtResource("21_hxbdf")
-stretch_mode = 3
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_b4oeu")
+autoplay = "default"
+frame_progress = 0.816721
 
 [node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_remove_section/remove_army"]
 layout_mode = 0
 offset_left = -42.0
-offset_top = -12.0
+offset_top = -4.0
 offset_right = 785.0
-offset_bottom = 498.0
+offset_bottom = 506.0
 scale = Vector2(0.1, 0.1)
 theme_override_font_sizes/normal_font_size = 100
 text = "Army"
@@ -1247,36 +1418,33 @@ texture = ExtResource("6_wk4qg")
 visible = false
 self_modulate = Color(0.880013, 0, 0.158553, 1)
 layout_mode = 0
-offset_left = -9.0
-offset_top = -39.0
-offset_right = 7.0
-offset_bottom = -23.0
+offset_left = -8.0
+offset_top = -9.0
+offset_right = 8.0
+offset_bottom = 7.0
 texture = ExtResource("11_m4m2t")
 
 [node name="remove_fantasy" type="Control" parent="Camera2D/shop_stuff/shop_remove_section"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1337.0
-offset_top = 428.0
-offset_right = 1337.0
-offset_bottom = 428.0
+offset_left = 1350.0
+offset_top = 368.0
+offset_right = 1350.0
+offset_bottom = 368.0
 
-[node name="unit_image" type="TextureRect" parent="Camera2D/shop_stuff/shop_remove_section/remove_fantasy"]
+[node name="unit_image" type="AnimatedSprite2D" parent="Camera2D/shop_stuff/shop_remove_section/remove_fantasy"]
 texture_filter = 1
-layout_mode = 0
-offset_left = -16.6665
-offset_top = -45.3336
-offset_right = 15.3335
-offset_bottom = -13.3336
-texture = ExtResource("23_3ljtq")
-stretch_mode = 3
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_tpkkk")
+autoplay = "default"
+frame_progress = 0.830776
 
 [node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_remove_section/remove_fantasy"]
 layout_mode = 0
 offset_left = -42.0
-offset_top = -12.0
+offset_top = -4.0
 offset_right = 785.0
-offset_bottom = 498.0
+offset_bottom = 506.0
 scale = Vector2(0.1, 0.1)
 theme_override_font_sizes/normal_font_size = 100
 text = "Fantasy"
@@ -1339,35 +1507,32 @@ visible = false
 self_modulate = Color(0.880013, 0, 0.158553, 1)
 layout_mode = 0
 offset_left = -9.0
-offset_top = -39.0
+offset_top = -11.0
 offset_right = 7.0
-offset_bottom = -23.0
+offset_bottom = 5.0
 texture = ExtResource("11_m4m2t")
 
 [node name="remove_dinosaur" type="Control" parent="Camera2D/shop_stuff/shop_remove_section"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1448.0
-offset_top = 427.0
+offset_top = 367.0
 offset_right = 1448.0
-offset_bottom = 427.0
+offset_bottom = 367.0
 
-[node name="unit_image" type="TextureRect" parent="Camera2D/shop_stuff/shop_remove_section/remove_dinosaur"]
+[node name="unit_image" type="AnimatedSprite2D" parent="Camera2D/shop_stuff/shop_remove_section/remove_dinosaur"]
 texture_filter = 1
-layout_mode = 0
-offset_left = -16.6665
-offset_top = -45.3336
-offset_right = 15.3335
-offset_bottom = -13.3336
-texture = ExtResource("22_kga0f")
-stretch_mode = 3
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_n105p")
+autoplay = "default"
+frame_progress = 0.981816
 
 [node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_remove_section/remove_dinosaur"]
 layout_mode = 0
 offset_left = -42.0
-offset_top = -12.0
+offset_top = -4.0
 offset_right = 785.0
-offset_bottom = 498.0
+offset_bottom = 506.0
 scale = Vector2(0.1, 0.1)
 theme_override_font_sizes/normal_font_size = 100
 text = "Dinosaur"
@@ -1430,9 +1595,186 @@ visible = false
 self_modulate = Color(0.880013, 0, 0.158553, 1)
 layout_mode = 0
 offset_left = -9.0
-offset_top = -39.0
+offset_top = -9.0
 offset_right = 7.0
-offset_bottom = -23.0
+offset_bottom = 7.0
+texture = ExtResource("11_m4m2t")
+
+[node name="remove_animal" type="Control" parent="Camera2D/shop_stuff/shop_remove_section"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1350.0
+offset_top = 438.0
+offset_right = 1350.0
+offset_bottom = 438.0
+
+[node name="unit_image" type="AnimatedSprite2D" parent="Camera2D/shop_stuff/shop_remove_section/remove_animal"]
+texture_filter = 1
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_fymy5")
+autoplay = "default"
+frame_progress = 0.633414
+
+[node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_remove_section/remove_animal"]
+layout_mode = 0
+offset_left = -42.0
+offset_top = -4.0
+offset_right = 785.0
+offset_bottom = 506.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/normal_font_size = 100
+text = "Animal"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="remove_animal_button" type="TextureButton" parent="Camera2D/shop_stuff/shop_remove_section/remove_animal"]
+layout_mode = 0
+offset_left = -35.3331
+offset_top = 8.66638
+offset_right = 37.6669
+offset_bottom = 35.6664
+texture_normal = ExtResource("8_qjc8s")
+texture_pressed = ExtResource("9_vg5hm")
+texture_hover = ExtResource("10_1cd4y")
+
+[node name="remove_animal_button_text" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_remove_section/remove_animal/remove_animal_button"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 740.0
+offset_bottom = 305.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "REMOVE"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="remove_animal_cost" type="Label" parent="Camera2D/shop_stuff/shop_remove_section/remove_animal/remove_animal_button"]
+z_index = 5
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.39269
+anchor_top = 0.876556
+anchor_right = 1.39269
+anchor_bottom = 0.876556
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 83.27
+offset_bottom = 109.0
+scale = Vector2(0.105, 0.105)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 95
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_stuff/shop_remove_section/remove_animal/remove_animal_button/remove_animal_cost"]
+z_index = 1
+z_as_relative = false
+position = Vector2(58.8235, 70.5882)
+scale = Vector2(4.41176, 4.41177)
+texture = ExtResource("6_wk4qg")
+
+[node name="cross" type="TextureRect" parent="Camera2D/shop_stuff/shop_remove_section/remove_animal"]
+visible = false
+self_modulate = Color(0.880013, 0, 0.158553, 1)
+layout_mode = 0
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 7.0
+offset_bottom = 7.0
+texture = ExtResource("11_m4m2t")
+
+[node name="remove_scifi" type="Control" parent="Camera2D/shop_stuff/shop_remove_section"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1448.0
+offset_top = 436.0
+offset_right = 1448.0
+offset_bottom = 436.0
+
+[node name="unit_image" type="AnimatedSprite2D" parent="Camera2D/shop_stuff/shop_remove_section/remove_scifi"]
+texture_filter = 1
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_c4unp")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.708966
+
+[node name="unit_description" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_remove_section/remove_scifi"]
+layout_mode = 0
+offset_left = -42.0
+offset_top = -4.0
+offset_right = 785.0
+offset_bottom = 506.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/normal_font_size = 100
+text = "Scifi"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="remove_scifi_button" type="TextureButton" parent="Camera2D/shop_stuff/shop_remove_section/remove_scifi"]
+layout_mode = 0
+offset_left = -35.3331
+offset_top = 8.66638
+offset_right = 37.6669
+offset_bottom = 35.6664
+texture_normal = ExtResource("8_qjc8s")
+texture_pressed = ExtResource("9_vg5hm")
+texture_hover = ExtResource("10_1cd4y")
+
+[node name="remove_scifi_button_text" type="RichTextLabel" parent="Camera2D/shop_stuff/shop_remove_section/remove_scifi/remove_scifi_button"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 740.0
+offset_bottom = 305.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "REMOVE"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="remove_scifi_cost" type="Label" parent="Camera2D/shop_stuff/shop_remove_section/remove_scifi/remove_scifi_button"]
+z_index = 5
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.39269
+anchor_top = 0.876556
+anchor_right = 1.39269
+anchor_bottom = 0.876556
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 83.27
+offset_bottom = 109.0
+scale = Vector2(0.105, 0.105)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 95
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/shop_stuff/shop_remove_section/remove_scifi/remove_scifi_button/remove_scifi_cost"]
+z_index = 1
+z_as_relative = false
+position = Vector2(58.8235, 70.5882)
+scale = Vector2(4.41176, 4.41177)
+texture = ExtResource("6_wk4qg")
+
+[node name="cross" type="TextureRect" parent="Camera2D/shop_stuff/shop_remove_section/remove_scifi"]
+visible = false
+self_modulate = Color(0.880013, 0, 0.158553, 1)
+layout_mode = 0
+offset_left = -9.0
+offset_top = -15.0
+offset_right = 7.0
+offset_bottom = 1.0
 texture = ExtResource("11_m4m2t")
 
 [node name="base_manager" type="Node2D" parent="Camera2D"]
@@ -1519,4 +1861,6 @@ position = Vector2(-309, -176)
 [connection signal="pressed" from="Camera2D/shop_stuff/shop_remove_section/remove_army/remove_army_button" to="Camera2D/shop_stuff/unit_section/shop_item_generator" method="_on_remove_army_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_stuff/shop_remove_section/remove_fantasy/remove_fantasy_button" to="Camera2D/shop_stuff/unit_section/shop_item_generator" method="_on_remove_fantasy_button_pressed"]
 [connection signal="pressed" from="Camera2D/shop_stuff/shop_remove_section/remove_dinosaur/remove_dinosaur_button" to="Camera2D/shop_stuff/unit_section/shop_item_generator" method="_on_remove_dinosaur_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_stuff/shop_remove_section/remove_animal/remove_animal_button" to="Camera2D/shop_stuff/unit_section/shop_item_generator" method="_on_remove_animal_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_stuff/shop_remove_section/remove_scifi/remove_scifi_button" to="Camera2D/shop_stuff/unit_section/shop_item_generator" method="_on_remove_scifi_button_pressed"]
 [connection signal="mouse_entered" from="Camera2D/base_manager/base_Area2D" to="Camera2D/base_manager" method="_on_base_area_2d_mouse_entered"]

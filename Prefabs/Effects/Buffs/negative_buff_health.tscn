@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://g4bygrh6v0vd" path="res://Prefabs/Effects/Buffs/buff_damage.tscn" id="1_6qtqx"]
 [ext_resource type="Texture2D" uid="uid://bos864ovdl3jf" path="res://Sprites/UI/heart.png" id="2_p3c6q"]
 
-[node name="buff_health" instance=ExtResource("1_6qtqx")]
-this_is_health_buff = true
+[node name="negative_buff_health" instance=ExtResource("1_6qtqx")]
+buff_type = 0
 
 [node name="Sprite2D" parent="." index="0"]
 self_modulate = Color(0.118581, 0.118581, 0.118581, 1)

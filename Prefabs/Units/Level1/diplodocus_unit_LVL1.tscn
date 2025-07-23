@@ -237,16 +237,13 @@ animations = [{
 
 [node name="Diplodocus" instance=ExtResource("1_47xvh")]
 attack_animation_length = 1.1
-max_health = 12
-brawl_damage = 4
+max_health = 8
 Dinosaur = true
-Animal = true
 skill_damage = 1
 projectile = ExtResource("2_12osh")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_sy03x")
-autoplay = "idle"
 
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_vow5w")]
 position = Vector2(74, 0)

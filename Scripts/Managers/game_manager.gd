@@ -111,24 +111,25 @@ func _ready():
 
 
 func swap_scenes():
-	army_units = []
-	if(!in_combat):
-		for grids in GridManager.get_children():
-			grids.save_current_grid()
-	#reverses the value of in_combat boolean
-	in_combat = !in_combat
-	
-	if(turn_number == 1 and name_canvas):
-		#Turn on name maker UI
-		name_canvas.visible = true
-		#Set size to 0 so it can animate in
-		name_canvas.find_child("ColorRect").scale = Vector2(0,0)
-		#Play animation to make the canvas pop in
-		name_canvas.get_node("AnimationPlayer").play("name_maker_appear")
-		#Select random names for selections
-		select_words()
-	else:
-		find_child("scene_transitions").get_node("scene_transition_animation_player").play("transition_in")
+	if(!game_over_canvas.visible):
+		army_units = []
+		if(!in_combat):
+			for grids in GridManager.get_children():
+				grids.save_current_grid()
+		#reverses the value of in_combat boolean
+		in_combat = !in_combat
+		
+		if(turn_number == 1 and name_canvas):
+			#Turn on name maker UI
+			name_canvas.visible = true
+			#Set size to 0 so it can animate in
+			name_canvas.find_child("ColorRect").scale = Vector2(0,0)
+			#Play animation to make the canvas pop in
+			name_canvas.get_node("AnimationPlayer").play("name_maker_appear")
+			#Select random names for selections
+			select_words()
+		else:
+			find_child("scene_transitions").get_node("scene_transition_animation_player").play("transition_in")
 	
 func create_scene():
 	
@@ -159,11 +160,12 @@ func create_scene():
 	load_complete("scene")
 
 func load_complete(element_loaded : String):
-	if(element_loaded == "scene"):
-		GridManager.generate_grids()
-	if(element_loaded == "grids"):
-		if(in_combat):
-			CombatManager.setup_headquarters(base_sprite)
+	if(!game_over_canvas.visible):
+		if(element_loaded == "scene"):
+			GridManager.generate_grids()
+		if(element_loaded == "grids"):
+			if(in_combat):
+				CombatManager.setup_headquarters(base_sprite)
 
 func _input(event):
 	if Input.is_action_just_pressed("save"):
@@ -348,7 +350,7 @@ func update_tick_label_text(tick: int):
 
 
 func _on_scene_transition_animation_player_animation_finished(anim_name: StringName) -> void:
-	if(anim_name == "transition_in"):
+	if(anim_name == "transition_in" and !game_over_canvas.visible):
 		find_child("scene_transitions").get_node("scene_transition_animation_player").play("transition_out")
 		current_scene.queue_free()
 		create_scene()

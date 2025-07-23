@@ -190,7 +190,10 @@ sprite_frames = SubResource("SpriteFrames_hv8ot")
 [node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("3_m1s20")]
 position = Vector2(222, 0)
 
-[node name="unit_skill_location2" parent="skill_locations" index="1" instance=ExtResource("3_m1s20")]
+[node name="unit_skill_location3" parent="skill_locations" index="1" instance=ExtResource("3_m1s20")]
+position = Vector2(74, 0)
+
+[node name="unit_skill_location2" parent="skill_locations" index="2" instance=ExtResource("3_m1s20")]
 position = Vector2(148, 0)
 
 [node name="Sprite2D" parent="." index="4"]

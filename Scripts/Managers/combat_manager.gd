@@ -258,18 +258,19 @@ func combat_phase():
 		game_manager.won_battle(false, true)
 		end_combat()
 func end_combat():
-	battle_over = true
-	var round_end_visuals
-	if(player_won):
-		round_end_visuals = round_won_ui.instantiate()
-	#Enemy Won
-	elif(!player_won and !round_draw):
-		round_end_visuals = round_lost_ui.instantiate()
-	#Round draw
-	elif (!player_won and round_draw):
-		round_end_visuals = round_draw_ui.instantiate()
-	self.add_child(round_end_visuals)
-	round_end_visuals.global_position = find_child("Camera2D").global_position
+	if(!game_manager.game_over_canvas.visible):
+		battle_over = true
+		var round_end_visuals
+		if(player_won):
+			round_end_visuals = round_won_ui.instantiate()
+		#Enemy Won
+		elif(!player_won and !round_draw):
+			round_end_visuals = round_lost_ui.instantiate()
+		#Round draw
+		elif (!player_won and round_draw):
+			round_end_visuals = round_draw_ui.instantiate()
+		self.add_child(round_end_visuals)
+		round_end_visuals.global_position = find_child("Camera2D").global_position
 	
 #Called by the skill_holder child when no skills remain, meaning we can proceed with combat
 func no_skills_left():

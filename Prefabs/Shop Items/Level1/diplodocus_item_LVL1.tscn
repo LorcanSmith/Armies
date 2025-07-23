@@ -159,20 +159,8 @@ position = Vector2(0, 74)
 [node name="buff_location8" parent="buffs" index="2" instance=ExtResource("3_c8b5r")]
 position = Vector2(0, -74)
 
-[node name="buff_location2" parent="buffs" index="3" instance=ExtResource("3_c8b5r")]
-position = Vector2(74, 74)
-
-[node name="buff_location3" parent="buffs" index="4" instance=ExtResource("3_c8b5r")]
-position = Vector2(74, -74)
-
-[node name="buff_location4" parent="buffs" index="5" instance=ExtResource("3_c8b5r")]
+[node name="buff_location4" parent="buffs" index="3" instance=ExtResource("3_c8b5r")]
 position = Vector2(-74, 0)
-
-[node name="buff_location5" parent="buffs" index="6" instance=ExtResource("3_c8b5r")]
-position = Vector2(-74, 74)
-
-[node name="buff_location6" parent="buffs" index="7" instance=ExtResource("3_c8b5r")]
-position = Vector2(-74, -74)
 
 [node name="skill_location" parent="skills" index="0" instance=ExtResource("4_mbplh")]
 position = Vector2(74, 0)
