@@ -7,7 +7,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/path = NodePath("sprite_holder:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -22,7 +22,7 @@ resource_name = "stain_appear"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/path = NodePath("sprite_holder:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -42,7 +42,9 @@ _data = {
 z_index = -1
 scale = Vector2(0.871081, 0.871081)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="sprite_holder" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="sprite_holder"]
 position = Vector2(0, 17.22)
 texture = ExtResource("1_smv6p")
 offset = Vector2(0, -12.0193)

@@ -41,6 +41,8 @@ var unit_types : Array = [
 	"Medieval",
 	"Army",
 	"Dinosaur",
+	"Fantasy",
+	"Scifi",
 	"Healer",
 	"Vehicle",
 	"Human",
@@ -50,7 +52,8 @@ var unit_types : Array = [
 	"Fantasy",
 	"Velociraptor",
 	"Dog",
-	"Sheep"
+	"Sheep",
+	"Pig"
 	
 ]
 @export_subgroup("Themes")
@@ -58,6 +61,7 @@ var unit_types : Array = [
 @export var Army : bool
 @export var Dinosaur : bool
 @export var Fantasy : bool
+@export var Scifi : bool
 @export_subgroup("Types")
 @export var Vehicle : bool
 @export var Human : bool
@@ -68,6 +72,7 @@ var unit_types : Array = [
 @export var Velociraptor : bool
 @export var Dog : bool
 @export var Sheep : bool
+@export var Pig : bool
 
 
 

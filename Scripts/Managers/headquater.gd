@@ -5,6 +5,8 @@ var health = 150
 
 var damage_to_do : int
 
+var explosion_stain : PackedScene = preload("res://Prefabs/Effects/Stains/residue/residue_1.tscn")
+
 func _ready():
 	health = max_health
 	update_label()
@@ -30,6 +32,11 @@ func update_label():
 	
 #Called when the headquater runs out of health
 func destroy_headquarters():
+	#Make mark on the ground
+	var stain = explosion_stain.instantiate()
+	stain.find_child("Sprite2D").scale = stain.find_child("Sprite2D").scale * 3.5
+	stain.global_position = find_child("Sprite2D").global_position
+	find_parent("combat_manager").add_child(stain)
 	queue_free()
 
 

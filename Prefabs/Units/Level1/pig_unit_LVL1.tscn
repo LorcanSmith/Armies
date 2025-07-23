@@ -85,6 +85,7 @@ animations = [{
 attack_animation_length = 0.4
 max_health = 4
 Animal = true
+Pig = true
 skill_damage = 2
 projectile = ExtResource("2_v6fio")
 

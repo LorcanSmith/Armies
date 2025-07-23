@@ -1,0 +1,122 @@
+[gd_scene load_steps=17 format=3 uid="uid://cap4xm7bsrk5g"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_6k010"]
+[ext_resource type="Texture2D" uid="uid://korfuewnqur5" path="res://Sprites/Units/Sci-fi/Strider/strider_death.png" id="2_6k010"]
+[ext_resource type="Texture2D" uid="uid://qsylll1wnluk" path="res://Sprites/Units/Sci-fi/Strider/strider_idle.png" id="3_p5qd2"]
+[ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="4_e3wte"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="5_vy7v5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1odd6"]
+atlas = ExtResource("2_6k010")
+region = Rect2(0, 0, 60, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3wte"]
+atlas = ExtResource("2_6k010")
+region = Rect2(60, 0, 60, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vy7v5"]
+atlas = ExtResource("2_6k010")
+region = Rect2(120, 0, 60, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvo21"]
+atlas = ExtResource("2_6k010")
+region = Rect2(180, 0, 60, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_na5n3"]
+atlas = ExtResource("2_6k010")
+region = Rect2(240, 0, 60, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojd20"]
+atlas = ExtResource("3_p5qd2")
+region = Rect2(0, 0, 32, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4oso"]
+atlas = ExtResource("3_p5qd2")
+region = Rect2(32, 0, 32, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8f2x"]
+atlas = ExtResource("3_p5qd2")
+region = Rect2(64, 0, 32, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6u60"]
+atlas = ExtResource("3_p5qd2")
+region = Rect2(96, 0, 32, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa4v1"]
+atlas = ExtResource("3_p5qd2")
+region = Rect2(128, 0, 32, 51)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2xhc7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1odd6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3wte")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vy7v5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvo21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_na5n3")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojd20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4oso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8f2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6u60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oa4v1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="Strider" instance=ExtResource("1_6k010")]
+before_combat_desc = "If this unit deals damage to a Human then it gains +4 attack."
+unit_name = "Strider"
+buy_cost = 8
+sell_cost = 4
+can_buff = true
+health_buff = -15
+Human = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_2xhc7")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="buff_location" parent="buffs" index="0" instance=ExtResource("4_e3wte")]
+position = Vector2(74, 0)
+
+[node name="buff_location2" parent="buffs" index="1" instance=ExtResource("4_e3wte")]
+position = Vector2(74, 74)
+
+[node name="buff_location3" parent="buffs" index="2" instance=ExtResource("4_e3wte")]
+position = Vector2(74, -74)
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("5_vy7v5")]
+position = Vector2(74, 0)
+
+[node name="skill_location2" parent="skills" index="1" instance=ExtResource("5_vy7v5")]
+position = Vector2(148, 0)
