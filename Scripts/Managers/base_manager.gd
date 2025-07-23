@@ -248,10 +248,9 @@ func check_units():
 						army[x][y].units_on_tile[0].buff_unit_damage(animal_attack)
 						instance.get_node("AnimationPlayer").play("buff_appear")
 				##UNITS
-				#Sheep
-				if(unit.Sheep):
+				#Pig
+				if(unit.Pig):
 					army[x][y].units_on_tile[0].spawn_coin(army[x][y].units_on_tile[0].sell_cost)
-					army[x][y].units_on_tile[0].damage_boost += healer_attack	
 				unit.queue_free()
 				
 			y += 1

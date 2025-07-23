@@ -89,6 +89,8 @@ var buffs_work_against : Array = []
 @export var Medieval : bool
 @export var Army : bool
 @export var Dinosaur : bool
+@export var Fantasy : bool
+@export var Scifi : bool
 @export_subgroup("Types")
 @export var Vehicle : bool
 @export var Human : bool
@@ -99,6 +101,7 @@ var buffs_work_against : Array = []
 @export var Velociraptor : bool
 @export var Dog : bool
 @export var Sheep : bool
+@export var Pig : bool
 
 
 var item_has_transformed : bool = false
@@ -394,6 +397,7 @@ func buff():
 							buff_instance.get_node("AnimationPlayer").play("buff_appear")
 							buff_instance.unit = unit
 							buff_instance.find_child("buff_text").text = str("+",damage_buff)
+							get_node("item_buffs_anim_player").play("unit_buffs")
 						if(health_buff > 0 or health_buff < 0):
 							unit.buff_unit_health(health_buff)
 							var buff_instance
@@ -408,6 +412,7 @@ func buff():
 							buff_instance.get_node("AnimationPlayer").play("buff_appear")
 							buff_instance.unit = unit
 							buff_instance.find_child("buff_text").text = str("+",health_buff)
+							get_node("item_buffs_anim_player").play("unit_buffs")
 						if(retriggers_buffs):
 							var buff_instance
 							buff_instance = buff_retrigger_visual.instantiate()
@@ -418,15 +423,18 @@ func buff():
 							buff_instance.get_node("AnimationPlayer").play("buff_appear")
 							buff_instance.unit = unit
 							unit.buff()
+							get_node("item_buffs_anim_player").play("unit_buffs")
 						##Activates unit abilities in shop
-						activate_any_abilities(unit)
+						activate_any_abilities(unit, unit.unit_ID)
 			buff_loc += 1
 
 #Activates specific abilities on units
-func activate_any_abilities(unit):
+func activate_any_abilities(unit, id : int):
+	var dictionary_instance = dictionary.new()
+	var unit_dictionary = dictionary_instance.unit_scenes[id].instantiate()
 	##Anti-tank
 	if(unit_ID == 11):
-		#Gains a buff if a vehicle is hurt by its shot
+		#Gains a buff if a vehicle is killed by its shot
 		if(unit.current_health <= -health_buff):
 			self.buff_unit_health(5)
 			var anim_player = get_node("AnimationPlayer")
@@ -435,7 +443,18 @@ func activate_any_abilities(unit):
 			else:
 				anim_player.play("health_bounce")
 			update_label_text()
-			
+	##Strider
+	if(unit_ID == 24):
+		#Gains a buff if a Human is hurt by its shot
+		if(unit_dictionary.Human):
+			self.buff_unit_damage(4)
+			var anim_player = get_node("AnimationPlayer2")
+			if(anim_player.is_playing()):
+				anim_player.queue("damage_bounce")
+			else:
+				anim_player.play("damage_bounce")
+			update_label_text()
+	unit_dictionary.queue_free()
 func check_if_can_buff_unit(unit_dictionary):
 	var b = 0
 	var can_buff = false
@@ -462,7 +481,6 @@ func buff_unit_damage(amount : int):
 ##Health check called by skill holder at the end of the shop phase once all buffs are done
 func health_check():
 	if current_health <= 0:
-		get_node("item_hurt_anim_player").queue("death")
 		if(!item_has_transformed):
 			get_node("Sprite2D/AnimatedSprite2D").play("death")
 		elif(item_has_transformed):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d26riwgg0v8nl"]
+[gd_scene load_steps=31 format=3 uid="uid://d26riwgg0v8nl"]
 
 [ext_resource type="Script" uid="uid://bvdq4sn7w35b4" path="res://Scripts/Shop/item_script.gd" id="1_mdv0s"]
 [ext_resource type="Script" path="res://Scripts/Effects/animated_shadow.gd" id="3_6sqpo"]
@@ -261,36 +261,6 @@ _data = {
 &"upgrade_arrow": SubResource("Animation_te1c8")
 }
 
-[sub_resource type="Animation" id="Animation_cj1d5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_lg7m4"]
-resource_name = "death"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.566667, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_rb8ex"]
 resource_name = "hurt"
 tracks/0/type = "value"
@@ -320,9 +290,44 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lg7m4"]
 _data = {
-&"RESET": SubResource("Animation_cj1d5"),
-&"death": SubResource("Animation_lg7m4"),
 &"hurt": SubResource("Animation_rb8ex")
+}
+
+[sub_resource type="Animation" id="Animation_lg7m4"]
+resource_name = "unit_buffs"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.4, 1.4), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cj1d5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2lbd0"]
+_data = {
+&"RESET": SubResource("Animation_cj1d5"),
+&"unit_buffs": SubResource("Animation_lg7m4")
 }
 
 [node name="Item" type="Node2D" groups=["item", "player"]]
@@ -596,6 +601,11 @@ libraries = {
 [node name="item_hurt_anim_player" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_lg7m4")
+}
+
+[node name="item_buffs_anim_player" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2lbd0")
 }
 
 [connection signal="animation_finished" from="Sprite2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

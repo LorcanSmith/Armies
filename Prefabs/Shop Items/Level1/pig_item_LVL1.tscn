@@ -54,7 +54,7 @@ animations = [{
 }]
 
 [node name="Pig" instance=ExtResource("1_gfj3s")]
-description = "Increase the chance of higher level units by +1%"
+before_combat_desc = "Gives +3 coins"
 unit_name = "Pig"
 buy_cost = 6
 sell_cost = 3

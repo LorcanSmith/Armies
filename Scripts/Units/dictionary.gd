@@ -50,7 +50,9 @@ var unit_scenes = {
 	#Dog
 	22: preload("res://Prefabs/Units/Level1/dog_unit.tscn"),
 	#Wizard
-	23: preload("res://Prefabs/Units/Level1/wizard_unit.tscn")
+	23: preload("res://Prefabs/Units/Level1/wizard_unit.tscn"),
+	#Strider
+	24: preload("res://Prefabs/Units/Level1/strider_unit.tscn")
 }
 var item_scenes = {
 	#KNIGHT
@@ -100,7 +102,9 @@ var item_scenes = {
 	#Dog
 	22: preload("res://Prefabs/Shop Items/Level1/dog_item.tscn"),
 	#Wizard
-	23: preload("res://Prefabs/Shop Items/Level1/wizard_item.tscn")
+	23: preload("res://Prefabs/Shop Items/Level1/wizard_item.tscn"),
+	#Strider
+	24: preload("res://Prefabs/Shop Items/Level1/strider_item.tscn")
 }
 
 var booster_scenes = {
