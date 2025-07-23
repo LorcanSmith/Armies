@@ -1,0 +1,136 @@
+[gd_scene load_steps=20 format=3 uid="uid://cofyq4ndngmuq"]
+
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_goioy"]
+[ext_resource type="PackedScene" uid="uid://bu32xey8rb5dy" path="res://Prefabs/Effects/Projectiles/fireball_projectile.tscn" id="2_goioy"]
+[ext_resource type="Texture2D" uid="uid://jexwj6uileko" path="res://Sprites/Units/Fantasy/Wizard/wizard_death.png" id="3_goioy"]
+[ext_resource type="Texture2D" uid="uid://b74xh6uljw4ty" path="res://Sprites/Units/Fantasy/Wizard/wizard_idle.png" id="4_5elbw"]
+[ext_resource type="Texture2D" uid="uid://byyeirshch2au" path="res://Sprites/Units/Fantasy/Wizard/wizard_skill.png" id="5_rgqu4"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="6_g0bmr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yn6e"]
+atlas = ExtResource("3_goioy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kel2f"]
+atlas = ExtResource("3_goioy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0bmr"]
+atlas = ExtResource("3_goioy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acc3a"]
+atlas = ExtResource("3_goioy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcyjh"]
+atlas = ExtResource("3_goioy")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8e8i"]
+atlas = ExtResource("4_5elbw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbkn4"]
+atlas = ExtResource("4_5elbw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp40l"]
+atlas = ExtResource("5_rgqu4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0qxu"]
+atlas = ExtResource("5_rgqu4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbt7x"]
+atlas = ExtResource("5_rgqu4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvls5"]
+atlas = ExtResource("5_rgqu4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kt6ia"]
+atlas = ExtResource("5_rgqu4")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o5g8b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yn6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kel2f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0bmr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acc3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcyjh")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8e8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbkn4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp40l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0qxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbt7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvls5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kt6ia")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 10.0
+}]
+
+[node name="Wizard" instance=ExtResource("1_goioy")]
+attack_animation_length = 0.5
+max_health = 3
+Fantasy = true
+Human = true
+skill_damage = 2
+projectile = ExtResource("2_goioy")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_o5g8b")
+
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("6_g0bmr")]
+position = Vector2(74, 0)
+
+[node name="unit_skill_location2" parent="skill_locations" index="1" instance=ExtResource("6_g0bmr")]
+position = Vector2(148, 0)
+
+[node name="Sprite2D" parent="." index="4"]
+texture = null
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-2, -0.5)
+
+[node name="projectile_spawn_location" parent="." index="8"]
+position = Vector2(13, -2)

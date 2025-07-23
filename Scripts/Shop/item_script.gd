@@ -56,6 +56,13 @@ var mouse_pressed : bool = false
 var item_hovered_scale = 1.2
 var item_clicked_scale = 1.4
 
+##Does the unit leave blood on the ground
+var leaves_blood_on_ground : bool = true
+var blood_stain : Array = [preload("res://Prefabs/Effects/Stains/blood/blood_1.tscn")]
+var explosion_stain : Array = [preload("res://Prefabs/Effects/Stains/residue/residue_1.tscn")]
+##What particle effect does it use when it dies?
+var particle_effect : PackedScene
+
 @export_group("Item Abilities")
 
 @export_group("Item buffs")
@@ -63,6 +70,7 @@ var item_clicked_scale = 1.4
 @export var can_buff : bool
 @export var damage_buff : int
 @export var health_buff : int
+@export var retriggers_buffs : bool = false
 #locations where buffs happen
 var buff_location : Node2D
 #locations where skills happen
@@ -73,6 +81,7 @@ var locations_popped_in = false
 var damage_buff_visual = preload("res://Prefabs/Effects/Buffs/buff_damage.tscn")
 var health_buff_visual = preload("res://Prefabs/Effects/Buffs/buff_health.tscn")
 var negative_health_buff_visual = preload("res://Prefabs/Effects/Buffs/negative_buff_health.tscn")
+var buff_retrigger_visual = preload("res://Prefabs/Effects/Buffs/buff_retrigger.tscn")
 var buffs_work_against : Array = []
 @export_subgroup("Buffs work for")
 @export var All : bool
@@ -122,6 +131,12 @@ func update_label_text():
 	var dictionary_instance = dictionary.new()
 	cost_label = find_child("Cost")
 	var unit = dictionary_instance.unit_scenes[unit_ID].instantiate()
+	
+	leaves_blood_on_ground = unit.leaves_blood_on_ground
+	blood_stain = unit.blood_stain
+	explosion_stain = unit.explosion_stain
+	particle_effect = unit.particle_effect
+	
 	attack_label.text = str(unit.skill_damage + damage_boost)
 	defense_label.text = str(unit.max_health + health_boost)
 	current_damage = unit.skill_damage + damage_boost
@@ -393,9 +408,18 @@ func buff():
 							buff_instance.get_node("AnimationPlayer").play("buff_appear")
 							buff_instance.unit = unit
 							buff_instance.find_child("buff_text").text = str("+",health_buff)
-							
-							##Activates unit abilities in shop
-							activate_any_abilities(unit)
+						if(retriggers_buffs):
+							var buff_instance
+							buff_instance = buff_retrigger_visual.instantiate()
+							find_parent("shop_manager").find_child("buff_animation_holder").add_child(buff_instance)
+							#Delay so the buffs don't all appear at the same time
+							await get_tree().create_timer(randf_range(0.05, 0.6)).timeout
+							buff_instance.global_position = self.global_position
+							buff_instance.get_node("AnimationPlayer").play("buff_appear")
+							buff_instance.unit = unit
+							unit.buff()
+						##Activates unit abilities in shop
+						activate_any_abilities(unit)
 			buff_loc += 1
 
 #Activates specific abilities on units
@@ -446,11 +470,25 @@ func health_check():
 		var shop_manager = find_parent("shop_manager")
 		shop_manager.tiles_to_delete_units_from.append(self.get_parent())
 		self.reparent(shop_manager.find_child("buff_animation_holder"))
-
+		#Leaving stains on the ground
+		if(leaves_blood_on_ground):
+			play_sound(blood_sound)
+			var random_stain = randi_range(0, blood_stain.size()-1)
+			var stain = blood_stain[random_stain].instantiate()
+			stain.global_position = self.global_position
+			find_parent("shop_manager").add_child(stain)
+			stain.z_index = 5
+		elif(!leaves_blood_on_ground):
+			play_sound(explosion_sound)
+			var random_stain = randi_range(0, explosion_stain.size()-1)
+			var stain = explosion_stain[random_stain].instantiate()
+			stain.global_position = self.global_position
+			find_parent("shop_manager").add_child(stain)
+			stain.z_index = 5
 #Controls the heart	
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
 	if(anim_name == "health_bounce"):
-			play_buff_sound(buff_sound)
+			play_sound(buff_sound)
 			#Unit specific abilities that happen on damage gain/loss
 			if(unit_name == "Ankylosaurus"):
 				if(last_health_change < 0):
@@ -464,10 +502,16 @@ func _on_animation_player_animation_started(anim_name: StringName) -> void:
 			#Play damage animation
 			if(last_health_change < 0):
 				get_node("item_hurt_anim_player").play("hurt")
+				if(last_health_change < 0):
+					#SPAWN PARTICLES
+					if(particle_effect):
+						var particles = particle_effect.instantiate()
+						particles.global_position = self.global_position
+						find_parent("shop_manager").add_child(particles)
 #Controls the sword
 func _on_animation_player_2_animation_started(anim_name: StringName) -> void:
 	if(anim_name == "damage_bounce"):
-		play_buff_sound(buff_sound)
+		play_sound(buff_sound)
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	#If the area is a tile and the item is picked up, following the mouse
 	if(area.is_in_group("tile") and follow_mouse):
@@ -512,12 +556,14 @@ func spawn_coin(amount):
 
 ##Playing sounds
 var buff_sound : AudioStream = preload("res://Sounds/pop.mp3")
-func play_buff_sound(sound_stream: AudioStream):
+var blood_sound : AudioStream  = preload("res://Sounds/blood_die.mp3")
+var explosion_sound : AudioStream = preload("res://Sounds/explosion.mp3")
+func play_sound(sound_stream: AudioStream):
 	var player = AudioStreamPlayer.new()
 	add_child(player)
 	player.stream = sound_stream
 
-	if position != null and player is AudioStreamPlayer2D:
+	if player is AudioStreamPlayer2D:
 		player.position = self.position
 
 	player.play()

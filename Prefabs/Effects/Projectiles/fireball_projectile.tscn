@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu32xey8rb5dy"]
+
+[ext_resource type="Script" uid="uid://c4cg8tnold5q5" path="res://Scripts/Effects/projectile.gd" id="1_q443i"]
+[ext_resource type="Texture2D" uid="uid://d0mlphqd7lwuv" path="res://Sprites/Effects/Projectiles/fireball.png" id="2_q443i"]
+
+[node name="rock_projectile" type="Node2D"]
+script = ExtResource("1_q443i")
+moves = true
+speed = 4.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_q443i")

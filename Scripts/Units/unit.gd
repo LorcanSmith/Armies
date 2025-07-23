@@ -412,6 +412,27 @@ func destroy_unit():
 		elif(unit_has_transformed):
 			get_node("sprite_animator").play("death_transformed")
 			get_node("AnimatedSprite2D").play("death_transformed")
+	#play death sound
+	if(leaves_blood_on_ground):
+		play_sound(blood_sound)
+	elif(!leaves_blood_on_ground):
+		play_sound(explosion_sound)
+##Playing sounds
+var blood_sound : AudioStream  = preload("res://Sounds/blood_die.mp3")
+var explosion_sound : AudioStream = preload("res://Sounds/explosion.mp3")
+func play_sound(sound_stream: AudioStream):
+	var player = AudioStreamPlayer.new()
+	add_child(player)
+	player.stream = sound_stream
+
+	if player is AudioStreamPlayer2D:
+		player.position = self.position
+
+	player.play()
+
+	# Free after it's done playing (based on length of audio)
+	await get_tree().create_timer(player.stream.get_length(), false).timeout
+	player.queue_free()
 func skill_area_entered(area: Area2D) -> void:
 	#	check if skill is meant to be used on allies or enemies
 		if(skill_damage > 0):

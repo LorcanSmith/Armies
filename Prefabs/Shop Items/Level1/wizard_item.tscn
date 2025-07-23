@@ -1,0 +1,95 @@
+[gd_scene load_steps=14 format=3 uid="uid://yjv7cxnxldaq"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_wjrdw"]
+[ext_resource type="Texture2D" uid="uid://jexwj6uileko" path="res://Sprites/Units/Fantasy/Wizard/wizard_death.png" id="2_wjrdw"]
+[ext_resource type="Texture2D" uid="uid://b74xh6uljw4ty" path="res://Sprites/Units/Fantasy/Wizard/wizard_idle.png" id="3_yqvga"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_it1rj"]
+[ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="4_yqvga"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lol0j"]
+atlas = ExtResource("2_wjrdw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_it1rj"]
+atlas = ExtResource("2_wjrdw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dws70"]
+atlas = ExtResource("2_wjrdw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptnec"]
+atlas = ExtResource("2_wjrdw")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd4a0"]
+atlas = ExtResource("2_wjrdw")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xt5c"]
+atlas = ExtResource("3_yqvga")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0uji"]
+atlas = ExtResource("3_yqvga")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nc70n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lol0j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_it1rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dws70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptnec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd4a0")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xt5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0uji")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Wizard" instance=ExtResource("1_wjrdw")]
+before_combat_desc = "Triggers the shop ability of the unit in front of it."
+unit_name = "Wizard"
+buy_cost = 8
+sell_cost = 4
+can_buff = true
+retriggers_buffs = true
+All = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_nc70n")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="buff_location" parent="buffs" index="0" instance=ExtResource("4_yqvga")]
+position = Vector2(74, 0)
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("4_it1rj")]
+position = Vector2(74, 0)
+
+[node name="skill_location2" parent="skills" index="1" instance=ExtResource("4_it1rj")]
+position = Vector2(148, 0)
