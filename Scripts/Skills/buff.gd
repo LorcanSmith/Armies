@@ -36,8 +36,12 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			if(parent_unit.unit_ID == 17):
 				if(unit_dictionary.max_health + unit_dictionary.health_boost >= parent_unit.current_health):
 					unit_to_buff = null
+			#Wizard
+			elif(parent_unit.unit_ID == 23):
+				if(!unit_to_buff.can_buff):
+					unit_to_buff = null
 		unit_dictionary.queue_free()
-	elif(area.get_parent().is_in_group("tile")):
+	if(area.get_parent().is_in_group("tile")):
 		if(tile_when_no_unit):
 			tile_when_no_unit.find_child("Sprite2D").self_modulate = Color(1,1,1,1)
 			tile_when_no_unit = null
@@ -47,6 +51,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 				tile_when_no_unit.find_child("Sprite2D").self_modulate = Color(0.075,1,0.065,1)
 			elif(buff_damage_amount < 0 or buff_health_amount < 0):
 				tile_when_no_unit.find_child("Sprite2D").self_modulate = Color(1,0,.038,1)
+			#Has a buff but doesn't change unit health or damage (eg. wizard triggering buffs twice)
+			elif(buff_damage_amount == 0 and buff_damage_amount == 0):
+				tile_when_no_unit.find_child("Sprite2D").self_modulate = Color(0.075,1,0.065,1)
 	if(self.visible):
 		turn_highlights_on()
 func _on_area_2d_area_exited(area: Area2D) -> void:
@@ -93,6 +100,7 @@ func turn_highlights_on():
 			unit_to_buff.find_child("AnimatedSprite2D").self_modulate = Color(1,0,.038,1)
 			unit_to_buff.find_child("health_downgrade_preview_sprite").visible = true
 			unit_to_buff.find_child("health_downgrade_preview_text").text = str(buff_health_amount)
+		
 		if(buff_damage_amount > 0):
 			unit_to_buff.find_child("AnimatedSprite2D").self_modulate = Color(0.075,1,0.065,1)
 			unit_to_buff.find_child("damage_upgrade_preview_sprite").visible = true
@@ -101,8 +109,18 @@ func turn_highlights_on():
 			unit_to_buff.find_child("AnimatedSprite2D").self_modulate = Color(1,0,.038,1)
 			unit_to_buff.find_child("damage_downgrade_preview_sprite").visible = true
 			unit_to_buff.find_child("damage_downgrade_preview_text").text = str(buff_damage_amount)
+	
+		#For stuff like wizards who dont actually give buffs but instead trigger abilities twice
+		if(buff_damage_amount == 0 and buff_health_amount == 0):
+			unit_to_buff.find_child("AnimatedSprite2D").self_modulate = Color(0.075,1,0.065,1)
+			
 	if(tile_when_no_unit):
 		if(buff_damage_amount > 0 or buff_health_amount > 0):
 			tile_when_no_unit.find_child("Sprite2D").self_modulate = Color(0.075,1,0.065,1)
 		elif(buff_damage_amount < 0 or buff_health_amount < 0):
 			tile_when_no_unit.find_child("Sprite2D").self_modulate = Color(1,0,.038,1)
+		
+		#For stuff like wizards who dont actually give buffs but instead trigger abilities twice
+		if(buff_damage_amount == 0 and buff_health_amount == 0):
+			tile_when_no_unit.find_child("Sprite2D").self_modulate = Color(0.075,1,0.065,1)
+			

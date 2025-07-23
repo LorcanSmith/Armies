@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://df5ttnq4lmysr"
-path="res://.godot/imported/tornado wizard.png-b517c191ea850f0fd6173827258e70fe.ctex"
+uid="uid://b74xh6uljw4ty"
+path="res://.godot/imported/wizard_idle.png-fa383e05c0710c22ad5557b6a9977777.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Units/Wizard/tornado wizard.png"
-dest_files=["res://.godot/imported/tornado wizard.png-b517c191ea850f0fd6173827258e70fe.ctex"]
+source_file="res://Sprites/Units/Fantasy/Wizard/wizard_idle.png"
+dest_files=["res://.godot/imported/wizard_idle.png-fa383e05c0710c22ad5557b6a9977777.ctex"]
 
 [params]
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://g4bygrh6v0vd"]
+[gd_scene load_steps=7 format=3 uid="uid://bk5bfk7exja27"]
 
-[ext_resource type="Script" uid="uid://bx7tk0j2kdn7m" path="res://Scripts/Skills/buff_visual.gd" id="1_7kii6"]
-[ext_resource type="Texture2D" uid="uid://fpwwhqpb42av" path="res://Sprites/UI/sword.png" id="2_sfbea"]
-[ext_resource type="FontFile" uid="uid://ddl4glfhhwobo" path="res://previous_font.ttf" id="3_sfbea"]
+[ext_resource type="Script" uid="uid://bx7tk0j2kdn7m" path="res://Scripts/Skills/buff_visual.gd" id="1_1y3jm"]
+[ext_resource type="Texture2D" uid="uid://ccogh5hmv1sh8" path="res://Sprites/UI/retrigger.png" id="2_qu7hh"]
 
 [sub_resource type="Animation" id="Animation_qjc8s"]
 length = 0.001
@@ -69,29 +68,15 @@ _data = {
 &"fade_out": SubResource("Animation_sfbea")
 }
 
-[node name="buff_damage" type="Node2D"]
-script = ExtResource("1_7kii6")
-buff_type = 1
+[node name="buff_retrigger" type="Node2D"]
+script = ExtResource("1_1y3jm")
+buff_type = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 4
 texture_filter = 1
-position = Vector2(13, 0)
-texture = ExtResource("2_sfbea")
-
-[node name="buff_text" type="RichTextLabel" parent="Sprite2D"]
-offset_left = -9.0
-offset_top = -11.0
-offset_right = 202.0
-offset_bottom = 212.0
-scale = Vector2(0.09, 0.09)
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("3_sfbea")
-theme_override_font_sizes/normal_font_size = 100
-text = "+1"
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1
+position = Vector2(-3.8147e-06, 0)
+texture = ExtResource("2_qu7hh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
