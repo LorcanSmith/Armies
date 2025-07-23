@@ -49,7 +49,6 @@ var unit_types : Array = [
 	"Soldier",
 	"Animal",
 	"Healer",
-	"Fantasy",
 	"Velociraptor",
 	"Dog",
 	"Sheep",
