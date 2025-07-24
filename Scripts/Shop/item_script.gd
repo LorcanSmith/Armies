@@ -465,7 +465,7 @@ func activate_any_abilities(unit, id : int):
 				anim_player.play("damage_bounce")
 			update_label_text()
 	unit_dictionary.queue_free()
-	unit.queue_free()
+	dictionary_instance.queue_free()
 func check_if_can_buff_unit(unit_dictionary):
 	var b = 0
 	var can_buff = false
