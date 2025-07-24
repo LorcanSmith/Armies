@@ -152,7 +152,10 @@ func update_label_text():
 	
 	#If the item is in the shop we should check if it needs transforming
 	if(!bought):
-		transform_item(unit)	
+		transform_item(unit)
+	else:
+		unit.queue_free()
+	dictionary_instance.queue_free()
 func transform_item(unit):
 	attack_label = find_child("Attack")
 	defense_label = find_child("Defense")
@@ -179,6 +182,7 @@ func transform_item(unit):
 			current_health = unit.skill_damage + damage_boost
 			current_damage = unit.max_health + health_boost
 			item_has_transformed = false
+	unit.queue_free()
 func toggle_skill_location():
 	if(!disabled):
 		#If the locations haven't been popped in yet, then turn them on and play an animation
@@ -379,14 +383,15 @@ func set_unit_buff_types():
 		if(!buff_bool):
 			buffs_work_against[x] = null
 		x += 1
-	
+	dictionary_instance.queue_free()
+	unit.queue_free()
 func buff():
+	var dictionary_instance = dictionary.new()
 	if(can_buff):
 		var buff_loc = 0
 		while(buff_loc < buff_location.get_child_count()):
 			var unit = buff_location.get_child(buff_loc).unit_to_buff
 			if(unit != null and unit.bought):
-				var dictionary_instance = dictionary.new()
 				var unit_dictionary = dictionary_instance.unit_scenes[unit.unit_ID].instantiate()
 				var can_buff_unit = true
 				if(check_if_can_buff_unit(unit_dictionary)):
@@ -431,6 +436,7 @@ func buff():
 						##Activates unit abilities in shop
 						activate_any_abilities(unit, unit.unit_ID)
 			buff_loc += 1
+	dictionary_instance.queue_free()
 
 #Activates specific abilities on units
 func activate_any_abilities(unit, id : int):
@@ -459,6 +465,7 @@ func activate_any_abilities(unit, id : int):
 				anim_player.play("damage_bounce")
 			update_label_text()
 	unit_dictionary.queue_free()
+	unit.queue_free()
 func check_if_can_buff_unit(unit_dictionary):
 	var b = 0
 	var can_buff = false

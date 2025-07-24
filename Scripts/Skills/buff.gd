@@ -33,7 +33,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			##Checks for specific units
 			#Diplodocus
 			if(parent_unit.unit_ID == 17):
-				if(unit_to_buff.current_health + unit_to_buff.health_boost >= parent_unit.current_health):
+				if(unit_to_buff.current_health >= parent_unit.current_health):
 					unit_to_buff = null
 			#Wizard
 			elif(parent_unit.unit_ID == 23):

@@ -210,3 +210,4 @@ func create_enemy_armies():
 		save_file.close()  # Don't forget to close the file after you're done.
 		
 		turn_number += 1
+	dictionary_instance.queue_free()
