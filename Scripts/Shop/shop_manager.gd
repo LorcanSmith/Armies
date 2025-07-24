@@ -12,7 +12,18 @@ var status_bar: StatusBar
 var same_units = []
 var tiles_to_delete_units_from = []
 
+var sound_stream : AudioStream = preload("res://Sounds/test.mp3")
+var player
+var text_starting_scale : Vector2
+
 func _ready() -> void:
+	#For playing audio like music
+	text_starting_scale = find_child("volume_text").scale
+	player = AudioStreamPlayer.new()
+	add_child(player)
+	find_child("Volume_Slider").value = 100 * ((Settings.volume+80)/160)
+
+	
 	game_manager = find_parent("game_manager")
 	money += game_manager.money_remaining
 	game_manager.money_changed(money)
@@ -107,6 +118,7 @@ func _on_shop_unit_button_toggled(toggled_on: bool) -> void:
 		find_child("base_section").visible = false
 		find_child("choose_base_section").visible = false
 		find_child("shop_remove_section").visible = false
+		find_child("settings_section").visible = false
 #Turn on base upgrade section of the shop
 func _on_shop_base_button_toggled(toggled_on: bool) -> void:
 	if(toggled_on):
@@ -115,17 +127,45 @@ func _on_shop_base_button_toggled(toggled_on: bool) -> void:
 		find_child("base_section").visible = true
 		find_child("choose_base_section").visible = false
 		find_child("shop_remove_section").visible = false
-
+		find_child("settings_section").visible = false
 func _on_shop_upgrade_button_toggled(toggled_on: bool) -> void:
 	if(toggled_on):
 		find_child("unit_section").visible = false
 		find_child("base_section").visible = false
 		find_child("choose_base_section").visible = false
 		find_child("shop_remove_section").visible = true
-
+		find_child("settings_section").visible = false
 func _on_texture_button_toggled(toggled_on: bool) -> void:
 	if(toggled_on):
 		find_child("unit_section").visible = false
 		find_child("base_section").visible = false
 		find_child("choose_base_section").visible = true
 		find_child("shop_remove_section").visible = false
+		find_child("settings_section").visible = false
+
+func _on_shop_settings_b_toggled(toggled_on: bool) -> void:
+	if(toggled_on):
+		find_child("unit_section").visible = false
+		find_child("base_section").visible = false
+		find_child("choose_base_section").visible = false
+		find_child("shop_remove_section").visible = false
+		find_child("settings_section").visible = true
+
+
+func _on_volume_slider_value_changed(value: float) -> void:
+	Settings.change_volume(value)
+	#Set volume percentage
+	player.volume_db = Settings.volume
+	find_child("volume_text").scale = text_starting_scale * (1 + ((Settings.volume + 80)/160))
+
+
+func _on_fullscreen_button_toggled(toggled_on: bool) -> void:
+	if(toggled_on):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	elif(!toggled_on):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()

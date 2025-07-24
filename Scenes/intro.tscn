@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://hcxci321580j"]
 
-[ext_resource type="Script" path="res://Scripts/Managers/onboarder.gd" id="1_hwjxs"]
+[ext_resource type="Script" uid="uid://ckujhhkmirwqw" path="res://Scripts/Managers/onboarder.gd" id="1_hwjxs"]
 [ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="2_duh1u"]
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="3_geirw"]
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="4_hwjxs"]
@@ -103,4 +103,23 @@ scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/normal_font_size = 100
 text = "ver: 0.05"
 
+[node name="Volume_Slider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 555.0
+offset_right = 791.0
+offset_bottom = 594.0
+
+[node name="volume_text" type="RichTextLabel" parent="Volume_Slider"]
+layout_mode = 0
+offset_left = -35.0
+offset_top = -244.0
+offset_right = 771.0
+offset_bottom = 111.0
+scale = Vector2(0.085, 0.085)
+pivot_offset = Vector2(43.8169, 249.803)
+theme_override_font_sizes/normal_font_size = 250
+text = "Volume"
+
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="value_changed" from="Volume_Slider" to="." method="_on_volume_slider_value_changed"]
