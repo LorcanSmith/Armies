@@ -27,7 +27,9 @@ var unit_themes : Array = [
 	"Medieval",
 	"Army",
 	"Dinosaur",
-	"Fantasy"
+	"Fantasy",
+	"Animal",
+	"Scifi"
 	]
 	
 var base_purchased : bool = false
@@ -264,7 +266,33 @@ func _on_remove_fantasy_button_pressed():
 		game_manager.shop_upgrades += 1
 		update_upgrade_cost_labels()
 		reroll_shop(true)
-		
+
+func _on_remove_animal_button_pressed() -> void:
+	var success = false
+	if !(find_parent("shop_manager").free_reroll):
+		if (((game_manager.shop_upgrades + 1) * 5)  <= find_parent("shop_manager").money):
+			success = true
+			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
+	else:
+		success = true
+	if success:
+		game_manager.blocked_types.append("Animal")
+		game_manager.shop_upgrades += 1
+		update_upgrade_cost_labels()
+		reroll_shop(true)
+func _on_remove_scifi_button_pressed() -> void:
+	var success = false
+	if !(find_parent("shop_manager").free_reroll):
+		if (((game_manager.shop_upgrades + 1) * 5)  <= find_parent("shop_manager").money):
+			success = true
+			find_parent("shop_manager").change_money(((game_manager.shop_upgrades + 1) * 5) - find_parent("shop_manager").reroll_cost)
+	else:
+		success = true
+	if success:
+		game_manager.blocked_types.append("Scifi")
+		game_manager.shop_upgrades += 1
+		update_upgrade_cost_labels()
+		reroll_shop(true)
 
 func setup_base_shop() -> void:
 	var x = 0

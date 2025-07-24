@@ -130,7 +130,7 @@ max_health = 10
 particle_effect = ExtResource("2_c0lo4")
 Scifi = true
 skill_max_once_per_unit = true
-skill_damage = 3
+skill_damage = 1
 skill_shooots_closest_enemy = true
 projectile = ExtResource("3_75b70")
 

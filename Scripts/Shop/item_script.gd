@@ -83,6 +83,10 @@ var health_buff_visual = preload("res://Prefabs/Effects/Buffs/buff_health.tscn")
 var negative_health_buff_visual = preload("res://Prefabs/Effects/Buffs/negative_buff_health.tscn")
 var buff_retrigger_visual = preload("res://Prefabs/Effects/Buffs/buff_retrigger.tscn")
 var buffs_work_against : Array = []
+
+#Used for skills that require taking damage to activate
+var taken_damage : bool = false
+
 @export_subgroup("Buffs work for")
 @export var All : bool
 @export_subgroup("Themes")
@@ -91,10 +95,10 @@ var buffs_work_against : Array = []
 @export var Dinosaur : bool
 @export var Fantasy : bool
 @export var Scifi : bool
+@export var Animal : bool
 @export_subgroup("Types")
 @export var Vehicle : bool
 @export var Human : bool
-@export var Animal : bool
 @export var Healer : bool
 @export_subgroup("Names")
 @export var Soldier : bool
@@ -473,7 +477,8 @@ var last_damage_change : int = 0
 func buff_unit_health(amount : int):
 	health_boost += amount
 	last_health_change = amount
-
+	if(amount < 0):
+		taken_damage = true
 func buff_unit_damage(amount : int):
 	damage_boost += amount
 	last_damage_change = amount
@@ -509,8 +514,9 @@ func _on_animation_player_animation_started(anim_name: StringName) -> void:
 			play_sound(buff_sound)
 			#Unit specific abilities that happen on damage gain/loss
 			if(unit_name == "Ankylosaurus"):
-				if(last_health_change < 0):
+				if(taken_damage):
 					damage_boost += damage_buff
+					print(damage_boost + damage_buff)
 					update_label_text()
 					var anim_player = get_node("AnimationPlayer2")
 					if(anim_player.is_playing()):

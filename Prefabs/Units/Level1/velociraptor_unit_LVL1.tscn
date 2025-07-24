@@ -141,7 +141,6 @@ animations = [{
 attack_animation_length = 0.7
 max_health = 2
 Dinosaur = true
-Animal = true
 Velociraptor = true
 skill_max_once_per_unit = true
 skill_damage = 5
