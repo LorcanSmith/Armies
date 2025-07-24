@@ -119,6 +119,7 @@ func update_base_tooltip(id, base_name, desc):
 		else:
 			before_combat.text = ""
 		dictionary_instance.queue_free()
+		base.queue_free()
 	else:
 		description.text = "[b]DESCRIPTION: [/b]" + desc
 		before_combat.text = ""
