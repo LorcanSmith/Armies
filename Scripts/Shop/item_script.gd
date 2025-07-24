@@ -593,7 +593,9 @@ func play_sound(sound_stream: AudioStream):
 	var player = AudioStreamPlayer.new()
 	add_child(player)
 	player.stream = sound_stream
-
+	#Set volume percentage
+	player.volume_db = Settings.volume
+	
 	if player is AudioStreamPlayer2D:
 		player.position = self.position
 
