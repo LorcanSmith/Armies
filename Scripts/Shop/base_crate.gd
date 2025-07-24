@@ -23,8 +23,8 @@ func _ready():
 	
 func select_bases():
 	var x = 0
+	var dictionary_instance = dictionary.new()
 	while x < base_locations.size():
-		var dictionary_instance = dictionary.new()
 		seed(find_parent("game_manager").seed * find_parent("game_manager").turn_number * (x+1))
 		var base_pos = randi_range(0, dictionary_instance.base_scenes.size()-1)
 		#Gets a random unit type
@@ -35,7 +35,7 @@ func select_bases():
 		base_locations[x].add_child(instance)
 		instance.global_position = base_locations[x].global_position
 		x+=1
-		
+	dictionary_instance.queue_free()
 func _on_buy_base_button_pressed() -> void:
 	base_manager.set_base(current_base_selected.base_id, current_base_selected.base_name, current_base_selected.description, true)
 	find_parent("game_manager").tier = 0

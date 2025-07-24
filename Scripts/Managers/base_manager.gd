@@ -255,7 +255,7 @@ func check_units():
 				
 			y += 1
 		x+= 1
-
+	dictionary_instance.queue_free()
 func _on_base_area_2d_mouse_entered() -> void:
 	tooltip.update_base_tooltip(current_base_ID,base_name, base_description)
 

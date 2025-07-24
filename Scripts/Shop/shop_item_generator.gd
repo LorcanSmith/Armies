@@ -71,23 +71,24 @@ func show_new_units(reroll_all : bool):
 			unit_locations[x].add_child(new_unit)
 			#Sets the new units' location to be that of its parent (the shop unit location)
 			new_unit.position = Vector2(0,0)
+			new_unit = null
 		x+=1
 	x = 0
-	while x < booster_locations.size():
-		#If there isnt a unit from a previous pack in the slot
-		if(booster_locations[x].get_child_count() == 0 or booster_locations[x].get_child(0).is_in_group("booster")):
-			#Chooses a random unit and loads the unit from the path, gets it unit_ID
-			var chosen_booster = choose_random_booster(x)
-			#Spawns in the chosen unit as a new unit in the shop
-			var new_booster = chosen_booster.instantiate()
-			#Sets the new units' parent to be the unit location in the shop
-			booster_locations[x].add_child(new_booster)
-			
-			#Tells it, what crate number it is for "randomness"
-			new_booster.select_units(x)
-			#Sets the new units' location to be that of its parent (the shop unit location)
-			new_booster.position = Vector2(0,0)
-		x+=1
+	#while x < booster_locations.size():
+		##If there isnt a unit from a previous pack in the slot
+		#if(booster_locations[x].get_child_count() == 0 or booster_locations[x].get_child(0).is_in_group("booster")):
+			##Chooses a random unit and loads the unit from the path, gets it unit_ID
+			#var chosen_booster = choose_random_booster(x)
+			##Spawns in the chosen unit as a new unit in the shop
+			#var new_booster = chosen_booster.instantiate()
+			##Sets the new units' parent to be the unit location in the shop
+			#booster_locations[x].add_child(new_booster)
+			#
+			##Tells it, what crate number it is for "randomness"
+			#new_booster.select_units(x)
+			##Sets the new units' location to be that of its parent (the shop unit location)
+			#new_booster.position = Vector2(0,0)
+		#x+=1
 #Chooses a random unit
 func choose_random_unit(loc : int):
 	var dictionary_instance = dictionary.new()
@@ -119,6 +120,8 @@ func choose_random_unit(loc : int):
 		if unit_allowed:
 			loaded_unit = dictionary_instance.item_scenes[random_unit_position]
 			unit_not_found = false
+		unit.queue_free()
+	dictionary_instance.queue_free()
 	return [loaded_unit, random_unit_position]
 	
 func choose_random_booster(loc : int):
@@ -146,6 +149,7 @@ func choose_random_booster(loc : int):
 		if booster_allowed:
 			booster = dictionary_instance.booster_scenes[random_booster]
 			booster_not_found = false
+	dictionary_instance.queue_free()
 	return booster
 	
 func reroll_shop(reroll_all : bool):
@@ -296,8 +300,9 @@ func _on_remove_scifi_button_pressed() -> void:
 
 func setup_base_shop() -> void:
 	var x = 0
+	var dictionary_instance = dictionary.new()
 	while x < base_locations.size():
-		var dictionary_instance = dictionary.new()
+		
 		seed(find_parent("game_manager").seed * find_parent("game_manager").turn_number * (x+1))
 		var base_pos = randi_range(4, dictionary_instance.base_scenes.size()-1)
 		#Gets a random unit type
@@ -308,6 +313,7 @@ func setup_base_shop() -> void:
 		base_locations[x].add_child(instance)
 		instance.global_position = base_locations[x].global_position
 		x+=1
+	dictionary_instance.queue_free()
 
 
 func _on_base_upgrade_button_pressed():

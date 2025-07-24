@@ -80,6 +80,10 @@ func update_tooltip(u, damage_boost, health_boost) -> void:
 				types.append(unit.unit_types[x])
 			x += 1
 		type.text = str("[b]TYPES: [/b] ", ", ".join(types))
+	
+		dictionary_instance.queue_free()
+		unit.queue_free()
+		item.queue_free()
 	elif(u == -1 and self.visible == true):
 		self.get_node("AnimationPlayer").play("tooltip_popout")
 	#Resets the time so the tooltip doesn't auto close
@@ -114,6 +118,7 @@ func update_base_tooltip(id, base_name, desc):
 			before_combat.text = "[b]BEFORE COMBAT: [/b]" + base.before_combat_desc
 		else:
 			before_combat.text = ""
+		dictionary_instance.queue_free()
 	else:
 		description.text = "[b]DESCRIPTION: [/b]" + desc
 		before_combat.text = ""

@@ -41,6 +41,7 @@ func _ready():
 func select_units(crate_number : int):
 	var unit_locations = choose_unit_UI.find_child("unit_locations").get_children()
 	var x = 0
+	var dictionary_instance = dictionary.new()
 	while x < unit_locations.size():
 		seed(find_parent("game_manager").seed * find_parent("game_manager").turn_number * ((crate_number+1)*2) *((x+1)*2) * ((find_parent("shop_item_generator").rerolls_taken+1)*2))
 		var percentage = randf_range(0,100)/100
@@ -48,7 +49,6 @@ func select_units(crate_number : int):
 		var unit_position = int(round((potential_units_IDs.size()-1) * random_unit_percentage))
 		var random_number = potential_units_IDs[unit_position]
 		
-		var dictionary_instance = dictionary.new()
 		#Gets a random unit type
 		var unit = dictionary_instance.item_scenes[random_number]
 		
@@ -63,7 +63,7 @@ func select_units(crate_number : int):
 		instance.cost_label.visible = false
 		instance._ready()
 		x+=1
-
+	dictionary_instance.queue_free()
 func _on_booster_button_pressed() -> void:
 	#Turn on the UI to purchase the booster
 	purchase_booster_UI.visible = true

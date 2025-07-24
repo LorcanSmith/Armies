@@ -98,12 +98,13 @@ func load_units():
 							var unit_version = dictionary_instance.unit_scenes[int(unit_IDs[width][height][0])].instantiate()
 							instance.transform_item(unit_version)
 							instance.bought = true
+					instance = null
 				height += 1
 			width += 1
 	#units have been loaded in
 	if(!game_manager.in_combat):
 		get_parent().find_child("shop_item_generator").show_new_units(true)
-
+	dictionary_instance.queue_free()
 func _unit_upload(unit_IDs):
 	var enemy_unit_IDs
 	var load_from_local = false
