@@ -1,4 +1,8 @@
 extends Node
+
+
+@export var legendary : bool
+
 var combat_manager : Node2D
 
 var alive : bool = true
@@ -16,6 +20,8 @@ var current_tooltip_time_left
 @export_group("Unit Properties")
 #Units max health 
 @export var max_health : int
+##The amount of damage the unit's skill does
+@export var skill_damage : int
 #Unit's current health
 var health : int
 var health_bar_remaining : int
@@ -52,7 +58,8 @@ var unit_types : Array = [
 	"Velociraptor",
 	"Dog",
 	"Sheep",
-	"Pig"
+	"Pig",
+	"Knight"
 	
 ]
 @export_subgroup("Themes")
@@ -72,6 +79,7 @@ var unit_types : Array = [
 @export var Dog : bool
 @export var Sheep : bool
 @export var Pig : bool
+@export var Knight : bool
 
 
 
@@ -87,8 +95,7 @@ var damage_done_to_self : int = 0
 @export var skill_max_once_per_unit : bool
 ##Does the skill spawn at a random skill_location?
 @export var skill_spawn_random : bool
-##The amount of damage the unit's skill does
-@export var skill_damage : int
+
 ##If a unit is currently reloading
 var reloading : bool
 
