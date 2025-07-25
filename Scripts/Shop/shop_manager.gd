@@ -21,7 +21,7 @@ func _ready() -> void:
 	text_starting_scale = find_child("volume_text").scale
 	player = AudioStreamPlayer.new()
 	add_child(player)
-	find_child("Volume_Slider").value = 100 * ((Settings.volume+80)/160)
+	find_child("Volume_Slider").value = 100 * ((Settings.volume+80)/130)
 
 	
 	game_manager = find_parent("game_manager")
@@ -137,7 +137,7 @@ func _on_volume_slider_value_changed(value: float) -> void:
 	Settings.change_volume(value)
 	#Set volume percentage
 	player.volume_db = Settings.volume
-	find_child("volume_text").scale = text_starting_scale * (1 + ((Settings.volume + 80)/160))
+	find_child("volume_text").scale = text_starting_scale * (1 + ((Settings.volume + 80)/130))
 
 
 func _on_fullscreen_button_toggled(toggled_on: bool) -> void:

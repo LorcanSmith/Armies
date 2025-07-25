@@ -8,4 +8,4 @@ func change_volume(percent: float):
 	if(percent <= 0):
 		volume = -80
 	else:
-		volume = lerp(-80, 80, percent / 100.0)
+		volume = lerp(-80, 50, percent / 100.0)
