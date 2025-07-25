@@ -1,0 +1,106 @@
+[gd_scene load_steps=13 format=3 uid="uid://b0ecxptf1ti3h"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_woeay"]
+[ext_resource type="Texture2D" uid="uid://xlrfmc24oe8" path="res://Sprites/Units/Animals/Bear/bear_death.png" id="2_woeay"]
+[ext_resource type="Texture2D" uid="uid://dwh25q5x78vnk" path="res://Sprites/Units/Animals/Bear/bear_idle.png" id="3_lfwkk"]
+[ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="4_lfwkk"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="4_tbijn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6nie"]
+atlas = ExtResource("2_woeay")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbijn"]
+atlas = ExtResource("2_woeay")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoxvh"]
+atlas = ExtResource("2_woeay")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c32ot"]
+atlas = ExtResource("2_woeay")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgmbh"]
+atlas = ExtResource("3_lfwkk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bmtf"]
+atlas = ExtResource("3_lfwkk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ugoi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6nie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbijn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoxvh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c32ot")
+}],
+"loop": false,
+"name": &"death",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgmbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bmtf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Bear" instance=ExtResource("1_woeay")]
+before_combat_desc = "If this unit kills in the shop, it gains +3 health and +3 attack."
+unit_name = "Bear"
+buy_cost = 12
+sell_cost = 6
+can_buff = true
+health_buff = -25
+Human = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_4ugoi")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="buff_location" parent="buffs" index="0" instance=ExtResource("4_lfwkk")]
+position = Vector2(74, 0)
+
+[node name="buff_location2" parent="buffs" index="1" instance=ExtResource("4_lfwkk")]
+position = Vector2(74, 74)
+
+[node name="buff_location3" parent="buffs" index="2" instance=ExtResource("4_lfwkk")]
+position = Vector2(74, -74)
+
+[node name="buff_location4" parent="buffs" index="3" instance=ExtResource("4_lfwkk")]
+position = Vector2(0, 74)
+
+[node name="buff_location5" parent="buffs" index="4" instance=ExtResource("4_lfwkk")]
+position = Vector2(0, -74)
+
+[node name="buff_location6" parent="buffs" index="5" instance=ExtResource("4_lfwkk")]
+position = Vector2(-74, 74)
+
+[node name="buff_location7" parent="buffs" index="6" instance=ExtResource("4_lfwkk")]
+position = Vector2(-74, -74)
+
+[node name="buff_location8" parent="buffs" index="7" instance=ExtResource("4_lfwkk")]
+position = Vector2(-74, 0)
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("4_tbijn")]
+position = Vector2(74, 0)

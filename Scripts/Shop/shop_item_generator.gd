@@ -68,6 +68,9 @@ func show_new_units(reroll_all : bool):
 			#Sets the new units' location to be that of its parent (the shop unit location)
 			new_unit.position = Vector2(0,0)
 			new_unit = null
+			#Set legendary pedastal to yellow
+			if(x >= 6):
+				pedastal.self_modulate = Color("e6d800")
 		x+=1
 #Chooses a random unit
 func choose_random_unit(loc : int):
@@ -97,6 +100,15 @@ func choose_random_unit(loc : int):
 				unit_allowed = false
 				break
 			x += 1
+			
+		#Regular pedastal, doesnt spawn legendary
+		if(loc < 6):
+			if(unit.legendary):
+				unit_allowed = false
+		#Legendary pedastal
+		elif(loc >= 6):
+			if(!unit.legendary):
+				unit_allowed = false
 		if unit_allowed:
 			loaded_unit = dictionary_instance.item_scenes[random_unit_position]
 			unit_not_found = false
@@ -136,7 +148,7 @@ func _on_reroll_button_pressed():
 	reroll_shop(true)
 
 func increase_shop_slots():
-	find_parent("shop_manager").change_money(5)
+	find_parent("shop_manager").change_money(10)
 	game_manager.shop_slots += 1
 	unit_locations.append(find_child("unit" + str(game_manager.shop_slots)))
 	find_child("pedestal" + str(game_manager.shop_slots)).visible = true

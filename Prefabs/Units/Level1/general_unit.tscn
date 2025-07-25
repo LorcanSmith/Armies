@@ -1,0 +1,140 @@
+[gd_scene load_steps=21 format=3 uid="uid://rbkh08f35i7a"]
+
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_bvbuq"]
+[ext_resource type="PackedScene" uid="uid://j16g2a5ai3sr" path="res://Prefabs/Effects/Projectiles/bullet_projectile.tscn" id="2_k0j4t"]
+[ext_resource type="Texture2D" uid="uid://bjrqarc1yf5c3" path="res://Sprites/Units/Army/General/general_death.png" id="3_bvbuq"]
+[ext_resource type="Texture2D" uid="uid://g3a80mx8fm1" path="res://Sprites/Units/Army/General/general_idle.png" id="4_k0j4t"]
+[ext_resource type="Texture2D" uid="uid://bwmos8ruvv0ka" path="res://Sprites/Units/Army/General/general_skill.png" id="5_b10q1"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="6_q6yey"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sesl"]
+atlas = ExtResource("3_bvbuq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17vyx"]
+atlas = ExtResource("3_bvbuq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6yey"]
+atlas = ExtResource("3_bvbuq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ec4e"]
+atlas = ExtResource("3_bvbuq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxf8d"]
+atlas = ExtResource("3_bvbuq")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q038t"]
+atlas = ExtResource("3_bvbuq")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qio7"]
+atlas = ExtResource("4_k0j4t")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4c2s"]
+atlas = ExtResource("4_k0j4t")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajyiy"]
+atlas = ExtResource("5_b10q1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktdfj"]
+atlas = ExtResource("5_b10q1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmrxq"]
+atlas = ExtResource("5_b10q1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t0k7"]
+atlas = ExtResource("5_b10q1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6imsh"]
+atlas = ExtResource("5_b10q1")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qo0op"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3sesl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17vyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6yey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ec4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxf8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q038t")
+}],
+"loop": false,
+"name": &"death",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qio7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4c2s")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajyiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktdfj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmrxq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t0k7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6imsh")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 10.0
+}]
+
+[node name="General" instance=ExtResource("1_bvbuq")]
+legendary = true
+attack_animation_length = 0.5
+max_health = 10
+skill_damage = 4
+Army = true
+Human = true
+Soldier = true
+skill_spawn_random = true
+projectile = ExtResource("2_k0j4t")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_qo0op")
+
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("6_q6yey")]
+position = Vector2(74, 0)
+
+[node name="Sprite2D" parent="." index="4"]
+texture = null
+
+[node name="projectile_spawn_location" parent="." index="8"]
+position = Vector2(11, -5)

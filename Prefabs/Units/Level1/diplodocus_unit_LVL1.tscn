@@ -236,10 +236,11 @@ animations = [{
 }]
 
 [node name="Diplodocus" instance=ExtResource("1_47xvh")]
+legendary = true
 attack_animation_length = 1.1
 max_health = 8
-Dinosaur = true
 skill_damage = 1
+Dinosaur = true
 projectile = ExtResource("2_12osh")
 
 [node name="AnimatedSprite2D" parent="." index="1"]

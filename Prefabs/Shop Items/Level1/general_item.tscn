@@ -1,0 +1,137 @@
+[gd_scene load_steps=16 format=3 uid="uid://c37b7p73a0uxo"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_k7dym"]
+[ext_resource type="Texture2D" uid="uid://bjrqarc1yf5c3" path="res://Sprites/Units/Army/General/general_death.png" id="2_6ymj1"]
+[ext_resource type="Texture2D" uid="uid://g3a80mx8fm1" path="res://Sprites/Units/Army/General/general_idle.png" id="3_6ymj1"]
+[ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="4_eeyqn"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="5_seb5e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c88r"]
+atlas = ExtResource("2_6ymj1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gg7kj"]
+atlas = ExtResource("2_6ymj1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_py6it"]
+atlas = ExtResource("2_6ymj1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap3xj"]
+atlas = ExtResource("2_6ymj1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36qmw"]
+atlas = ExtResource("2_6ymj1")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vg7d"]
+atlas = ExtResource("2_6ymj1")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34wj8"]
+atlas = ExtResource("3_6ymj1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r74ir"]
+atlas = ExtResource("3_6ymj1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m7lqm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c88r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gg7kj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_py6it")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ap3xj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36qmw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vg7d")
+}],
+"loop": false,
+"name": &"death",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34wj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r74ir")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1nmpe"]
+radius = 1.41421
+
+[node name="General" instance=ExtResource("1_k7dym")]
+before_combat_desc = "Triggers Army unit abilities twice"
+unit_name = "General"
+buy_cost = 9
+sell_cost = 4
+can_buff = true
+retriggers_buffs = true
+Army = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_m7lqm")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.865965
+
+[node name="Item_Info" parent="Sprite2D" index="2" groups=["item"]]
+
+[node name="Area2D - Tile Collsion" type="Area2D" parent="." index="1"]
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - Tile Collsion" index="0"]
+position = Vector2(-1, 5)
+shape = SubResource("CircleShape2D_1nmpe")
+
+[node name="buff_location" parent="buffs" index="0" instance=ExtResource("4_eeyqn")]
+position = Vector2(0, 74)
+
+[node name="buff_location3" parent="buffs" index="1" instance=ExtResource("4_eeyqn")]
+position = Vector2(74, 0)
+
+[node name="buff_location7" parent="buffs" index="2" instance=ExtResource("4_eeyqn")]
+position = Vector2(74, 74)
+
+[node name="buff_location8" parent="buffs" index="3" instance=ExtResource("4_eeyqn")]
+position = Vector2(74, -74)
+
+[node name="buff_location4" parent="buffs" index="4" instance=ExtResource("4_eeyqn")]
+position = Vector2(-74, 0)
+
+[node name="buff_location5" parent="buffs" index="5" instance=ExtResource("4_eeyqn")]
+position = Vector2(-74, 74)
+
+[node name="buff_location6" parent="buffs" index="6" instance=ExtResource("4_eeyqn")]
+position = Vector2(-74, -74)
+
+[node name="buff_location2" parent="buffs" index="7" instance=ExtResource("4_eeyqn")]
+position = Vector2(0, -74)
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("5_seb5e")]
+position = Vector2(74, 0)
+
+[connection signal="area_entered" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D - Tile Collsion" to="." method="_on_area_2d_area_exited"]
+[connection signal="mouse_exited" from="Area2D - Tile Collsion" to="." method="_on_area_2d_mouse_exited"]

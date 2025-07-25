@@ -1,0 +1,147 @@
+[gd_scene load_steps=22 format=3 uid="uid://khuhs7cf6xow"]
+
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_s8yrb"]
+[ext_resource type="PackedScene" uid="uid://bu32xey8rb5dy" path="res://Prefabs/Effects/Projectiles/fireball_projectile.tscn" id="2_s8yrb"]
+[ext_resource type="Texture2D" uid="uid://bjw8j0fi0cuj1" path="res://Sprites/Units/Fantasy/Dragon/dragon_death.png" id="3_praqw"]
+[ext_resource type="Texture2D" uid="uid://cu14q8vvi6fyg" path="res://Sprites/Units/Fantasy/Dragon/dragon_idle.png" id="4_yfwi3"]
+[ext_resource type="Texture2D" uid="uid://ch25xist82rdn" path="res://Sprites/Units/Fantasy/Dragon/dragon_skill.png" id="5_ciysk"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="6_30loj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xt8r0"]
+atlas = ExtResource("3_praqw")
+region = Rect2(0, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30loj"]
+atlas = ExtResource("3_praqw")
+region = Rect2(52, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plib4"]
+atlas = ExtResource("3_praqw")
+region = Rect2(104, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kxtj"]
+atlas = ExtResource("3_praqw")
+region = Rect2(156, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bucds"]
+atlas = ExtResource("3_praqw")
+region = Rect2(208, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lk26"]
+atlas = ExtResource("4_yfwi3")
+region = Rect2(0, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxygx"]
+atlas = ExtResource("4_yfwi3")
+region = Rect2(42, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8x5wt"]
+atlas = ExtResource("4_yfwi3")
+region = Rect2(84, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbn1g"]
+atlas = ExtResource("4_yfwi3")
+region = Rect2(126, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sx872"]
+atlas = ExtResource("5_ciysk")
+region = Rect2(0, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6cie"]
+atlas = ExtResource("5_ciysk")
+region = Rect2(52, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw8lv"]
+atlas = ExtResource("5_ciysk")
+region = Rect2(104, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgdan"]
+atlas = ExtResource("5_ciysk")
+region = Rect2(156, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55a6p"]
+atlas = ExtResource("5_ciysk")
+region = Rect2(208, 0, 52, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sy03x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xt8r0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30loj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plib4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kxtj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bucds")
+}],
+"loop": false,
+"name": &"death",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lk26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxygx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8x5wt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbn1g")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sx872")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6cie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw8lv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgdan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55a6p")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 12.0
+}]
+
+[node name="Dragon" instance=ExtResource("1_s8yrb")]
+legendary = true
+attack_animation_length = 0.417
+max_health = 8
+skill_damage = 4
+Fantasy = true
+projectile = ExtResource("2_s8yrb")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_sy03x")
+
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("6_30loj")]
+position = Vector2(74, 0)
+
+[node name="unit_skill_location2" parent="skill_locations" index="1" instance=ExtResource("6_30loj")]
+position = Vector2(148, 0)
+
+[node name="Sprite2D" parent="." index="4"]
+texture = null
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-2, -0.5)

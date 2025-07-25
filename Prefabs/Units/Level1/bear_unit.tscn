@@ -1,0 +1,151 @@
+[gd_scene load_steps=23 format=3 uid="uid://b4kem2s7225g5"]
+
+[ext_resource type="PackedScene" uid="uid://di2vorbunt4ep" path="res://Prefabs/Units/unit_prefab.tscn" id="1_b1c0n"]
+[ext_resource type="PackedScene" uid="uid://bwimlvq1mhgwg" path="res://Prefabs/Effects/Projectiles/slice_effect.tscn" id="2_lurbe"]
+[ext_resource type="Texture2D" uid="uid://xlrfmc24oe8" path="res://Sprites/Units/Animals/Bear/bear_death.png" id="3_b1c0n"]
+[ext_resource type="Texture2D" uid="uid://dwh25q5x78vnk" path="res://Sprites/Units/Animals/Bear/bear_idle.png" id="4_b1c0n"]
+[ext_resource type="Texture2D" uid="uid://cqkqwa3xrsl27" path="res://Sprites/Units/Animals/Bear/bear_skill.png" id="5_lurbe"]
+[ext_resource type="PackedScene" uid="uid://dtme7smjui6nt" path="res://Prefabs/Skills/unit_skill_location.tscn" id="6_cce15"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lurbe"]
+atlas = ExtResource("3_b1c0n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrejx"]
+atlas = ExtResource("3_b1c0n")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1nqs"]
+atlas = ExtResource("3_b1c0n")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqdpu"]
+atlas = ExtResource("3_b1c0n")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cce15"]
+atlas = ExtResource("4_b1c0n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfh6o"]
+atlas = ExtResource("4_b1c0n")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ow26"]
+atlas = ExtResource("5_lurbe")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvvjf"]
+atlas = ExtResource("5_lurbe")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t18we"]
+atlas = ExtResource("5_lurbe")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klf81"]
+atlas = ExtResource("5_lurbe")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxq0n"]
+atlas = ExtResource("5_lurbe")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jj011"]
+atlas = ExtResource("5_lurbe")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri4pm"]
+atlas = ExtResource("5_lurbe")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8y37"]
+atlas = ExtResource("5_lurbe")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8m0a"]
+atlas = ExtResource("5_lurbe")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vq3cx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lurbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrejx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1nqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqdpu")
+}],
+"loop": false,
+"name": &"death",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cce15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfh6o")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ow26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvvjf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t18we")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klf81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxq0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jj011")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri4pm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8y37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8m0a")
+}],
+"loop": false,
+"name": &"skill",
+"speed": 9.0
+}]
+
+[node name="Bear" instance=ExtResource("1_b1c0n")]
+legendary = true
+attack_animation_length = 1.0
+max_health = 14
+skill_damage = 5
+Animal = true
+projectile = ExtResource("2_lurbe")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_vq3cx")
+
+[node name="unit_skill_location" parent="skill_locations" index="0" instance=ExtResource("6_cce15")]
+position = Vector2(74, 0)
+
+[node name="Sprite2D" parent="." index="4"]
+texture = null
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-2, -0.5)

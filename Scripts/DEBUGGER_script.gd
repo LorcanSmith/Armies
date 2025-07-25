@@ -136,7 +136,6 @@ func create_enemy_armies():
 	var threshold : int
 	var items : Dictionary
 	var units : Array
-	var random_item : Node2D
 	
 	var price : int
 	var random_unit : int
@@ -171,15 +170,13 @@ func create_enemy_armies():
 		while money > threshold and units.size() <= total_units:
 			random_unit = (randi_range(1,(dictionary_instance.item_scenes.size()))) - 1
 			if items.has(random_unit):
-				random_item = items[random_unit].instantiate()
-				price = random_item.buy_cost
+				price = items[random_unit].instantiate().buy_cost
 				
 				if price > money:
 					items.erase(random_unit)
 				else:
 					money -= price
 					units.append([random_unit, 0, 0])
-				random_item.queue_free()
 		while units.size() < total_units:
 			units.append(null)
 		
