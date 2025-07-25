@@ -154,7 +154,6 @@ func create_scene():
 			#Calls start of turn actions for the current base
 			ShopManager.find_child("base_manager").start_of_turn()
 		elif(in_combat):
-			CombatManager.player_base_sprite = base_sprite
 			CombatManager.find_child("player_team_name").text = ("The " + adjective + " " + noun)
 	GridManager = current_scene.find_child("grid_manager")	
 	load_complete("scene")
@@ -165,7 +164,7 @@ func load_complete(element_loaded : String):
 			GridManager.generate_grids()
 		if(element_loaded == "grids"):
 			if(in_combat):
-				CombatManager.setup_headquarters(base_sprite)
+				CombatManager.setup_headquarters()
 
 func _input(event):
 	if Input.is_action_just_pressed("save"):

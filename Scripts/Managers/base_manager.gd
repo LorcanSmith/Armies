@@ -41,7 +41,7 @@ var upgrade_name_1 : String
 var upgrade_name_2 : String
 
 #Special
-var base_description : String = "This base does nothing special but it's a great place to spend the winters!"
+var base_description : String = "A great place to spend the summers!"
 var extra_money : int = 0
 #Themes
 var medieval_health : int = 0
