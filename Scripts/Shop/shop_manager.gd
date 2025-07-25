@@ -40,8 +40,6 @@ func _on_battle_button_pressed() -> void:
 			
 func apply_buffs():	
 	find_child("grid_generator (army)").save_current_grid()
-	#Tell the base manager to do end of turn effects
-	find_child("base_manager").end_of_turn()
 	var tiles = find_child("grid_manager").find_child("grid_generator (army)").get_children()
 	var x = 0
 	#Loops over all tiles
@@ -115,39 +113,22 @@ func _on_reroll_button_mouse_exited():
 func _on_shop_unit_button_toggled(toggled_on: bool) -> void:
 	if(toggled_on):
 		find_child("unit_section").visible = true
-		find_child("base_section").visible = false
-		find_child("choose_base_section").visible = false
-		find_child("shop_remove_section").visible = false
-		find_child("settings_section").visible = false
-#Turn on base upgrade section of the shop
-func _on_shop_base_button_toggled(toggled_on: bool) -> void:
-	if(toggled_on):
-		find_child("base_manager").update_base_upgrade_paths()
-		find_child("unit_section").visible = false
-		find_child("base_section").visible = true
-		find_child("choose_base_section").visible = false
 		find_child("shop_remove_section").visible = false
 		find_child("settings_section").visible = false
 func _on_shop_upgrade_button_toggled(toggled_on: bool) -> void:
 	if(toggled_on):
 		find_child("unit_section").visible = false
-		find_child("base_section").visible = false
-		find_child("choose_base_section").visible = false
 		find_child("shop_remove_section").visible = true
 		find_child("settings_section").visible = false
 func _on_texture_button_toggled(toggled_on: bool) -> void:
 	if(toggled_on):
 		find_child("unit_section").visible = false
-		find_child("base_section").visible = false
-		find_child("choose_base_section").visible = true
 		find_child("shop_remove_section").visible = false
 		find_child("settings_section").visible = false
 
 func _on_shop_settings_b_toggled(toggled_on: bool) -> void:
 	if(toggled_on):
 		find_child("unit_section").visible = false
-		find_child("base_section").visible = false
-		find_child("choose_base_section").visible = false
 		find_child("shop_remove_section").visible = false
 		find_child("settings_section").visible = true
 

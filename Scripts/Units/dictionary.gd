@@ -106,18 +106,3 @@ var item_scenes = {
 	#Strider
 	24: preload("res://Prefabs/Shop Items/Level1/strider_item.tscn")
 }
-
-var booster_scenes = {
-	0: preload("res://Prefabs/Shop Items/Boosters/booster_medieval.tscn"),
-	1: preload("res://Prefabs/Shop Items/Boosters/booster_army.tscn"),
-	2: preload("res://Prefabs/Shop Items/Boosters/booster_farm.tscn"),
-	3: preload("res://Prefabs/Shop Items/Boosters/booster_dinosaur.tscn")
-}
-
-var base_scenes = {
-	0: preload("res://Prefabs/Shop Items/Bases/castle_base.tscn"),
-	1: preload("res://Prefabs/Shop Items/Bases/bank_base.tscn"),
-	2: preload("res://Prefabs/Shop Items/Bases/army_base.tscn"),
-	3: preload("res://Prefabs/Shop Items/Bases/hospital_base.tscn"),
-	4: preload("res://Prefabs/Shop Items/Bases/barn_base.tscn")
-}
