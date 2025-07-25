@@ -16,12 +16,19 @@ var sound_stream : AudioStream = preload("res://Sounds/test.mp3")
 var player
 var text_starting_scale : Vector2
 
+#Tutorial to remove when its time
+var unit_tutorial : Node2D
+var battle_tutorial : Node2D
+
 func _ready() -> void:
 	#For playing audio like music
 	text_starting_scale = find_child("volume_text").scale
 	player = AudioStreamPlayer.new()
 	add_child(player)
+	#Setting previously saved settings
 	find_child("Volume_Slider").value = 100 * ((Settings.volume+80)/130)
+	_on_fullscreen_button_toggled(Settings.fullscreen)
+	find_child("Fullscreen_Button").button_pressed = Settings.fullscreen
 
 	
 	game_manager = find_parent("game_manager")
@@ -32,8 +39,12 @@ func _ready() -> void:
 func change_money(amount : int):
 	money -= amount
 	game_manager.money_changed(money)
-
-
+	
+	#For the first time we spend money we should delete the unit_tutorial if it exists
+	if(unit_tutorial):
+		unit_tutorial.get_node("AnimationPlayer").play("pop_out")
+	if(find_child("onboarding")):
+		find_child("onboarding").check_tutorials()
 func _on_battle_button_pressed() -> void:
 	find_child("battle_button").visible = false
 	apply_buffs()
@@ -141,6 +152,7 @@ func _on_volume_slider_value_changed(value: float) -> void:
 
 
 func _on_fullscreen_button_toggled(toggled_on: bool) -> void:
+	Settings.changed_fullscreen(toggled_on)
 	if(toggled_on):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	elif(!toggled_on):

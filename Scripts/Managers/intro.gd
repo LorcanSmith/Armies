@@ -4,7 +4,6 @@ var sound_stream : AudioStream = preload("res://Sounds/test.mp3")
 var player
 var text_starting_scale : Vector2
 func _ready() -> void:
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	text_starting_scale = find_child("volume_text").scale
 	player = AudioStreamPlayer.new()
 	add_child(player)
@@ -13,6 +12,11 @@ func _ready() -> void:
 	player.volume_db = Settings.volume
 	player.stream.loop = true
 	player.play()
+	
+	#Setting previously saved settings
+	find_child("Volume_Slider").value = 100 * ((Settings.volume+80)/130)
+	_on_fullscreen_button_toggled(Settings.fullscreen)
+	find_child("Fullscreen_Button").button_pressed = Settings.fullscreen
 
 func _on_volume_slider_value_changed(value: float) -> void:
 	Settings.change_volume(value)
@@ -34,6 +38,7 @@ func _on_quit_pressed() -> void:
 
 
 func _on_fullscreen_button_toggled(toggled_on: bool) -> void:
+	Settings.changed_fullscreen(toggled_on)
 	if(toggled_on):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	elif(!toggled_on):
