@@ -17,6 +17,7 @@ var damage_boost : int
 var health_boost : int
 var current_health : int
 var current_damage : int
+
 @export var description : String
 @export var before_combat_desc : String
 @export var start_of_shop_desc : String
@@ -106,6 +107,7 @@ var taken_damage : bool = false
 @export var Dog : bool
 @export var Sheep : bool
 @export var Pig : bool
+@export var Knight : bool
 
 
 var item_has_transformed : bool = false
@@ -454,7 +456,7 @@ func activate_any_abilities(unit, id : int):
 				anim_player.play("health_bounce")
 			update_label_text()
 	##Strider
-	if(unit_ID == 24):
+	elif(unit_ID == 24):
 		#Gains a buff if a Human is hurt by its shot
 		if(unit_dictionary.Human):
 			self.buff_unit_damage(4)
@@ -463,6 +465,36 @@ func activate_any_abilities(unit, id : int):
 				anim_player.queue("damage_bounce")
 			else:
 				anim_player.play("damage_bounce")
+			update_label_text()
+	##Bear
+	elif(unit_ID == 27):
+		#Gains a buff if a vehicle is killed by its shot
+		if(unit.current_health <= -health_buff):
+			self.buff_unit_health(3)
+			self.buff_unit_damage(3)
+			var anim_player = get_node("AnimationPlayer")
+			if(anim_player.is_playing()):
+				anim_player.queue("health_bounce")
+			else:
+				anim_player.play("health_bounce")
+			anim_player = get_node("AnimationPlayer2")
+			if(anim_player.is_playing()):
+				anim_player.queue("damage_bounce")
+			else:
+				anim_player.play("damage_bounce")
+			update_label_text()
+	##Dragon
+	elif(unit_ID == 28):
+		#Gains a buff if a vehicle is killed by its shot
+		if(unit.current_health <= -health_buff):
+			self.buff_unit_health(3)
+			self.spawn_coin(5)
+			var anim_player = get_node("AnimationPlayer")
+			if(anim_player.is_playing()):
+				anim_player.queue("health_bounce")
+			else:
+				anim_player.play("health_bounce")
+			anim_player = get_node("AnimationPlayer2")
 			update_label_text()
 	unit_dictionary.queue_free()
 	dictionary_instance.queue_free()
