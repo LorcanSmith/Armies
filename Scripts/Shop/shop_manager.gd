@@ -162,3 +162,7 @@ func _on_fullscreen_button_toggled(toggled_on: bool) -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_reset_tutorials_button_pressed() -> void:
+	Settings.reset_tutorials()

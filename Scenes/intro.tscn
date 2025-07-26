@@ -187,8 +187,31 @@ mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 250
 text = "Full Screen"
 
+[node name="reset_tutorials_button" type="TextureButton" parent="settings_section"]
+offset_left = 1532.0
+offset_top = 172.0
+offset_right = 1605.0
+offset_bottom = 199.0
+scale = Vector2(1.225, 1.225)
+texture_normal = ExtResource("2_duh1u")
+texture_pressed = ExtResource("3_geirw")
+texture_hover = ExtResource("4_hwjxs")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="settings_section/reset_tutorials_button"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 900.0
+offset_bottom = 365.0
+scale = Vector2(0.08, 0.08)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "RESET TUTORIALS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="value_changed" from="Volume_Slider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="toggled" from="settings_section/Fullscreen_Button" to="." method="_on_fullscreen_button_toggled"]
+[connection signal="pressed" from="settings_section/reset_tutorials_button" to="." method="_on_reset_tutorials_button_pressed"]

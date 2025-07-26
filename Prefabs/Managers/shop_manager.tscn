@@ -1343,9 +1343,9 @@ text = "Full Screen"
 
 [node name="quit_button" type="TextureButton" parent="Camera2D/shop_stuff/settings_section"]
 offset_left = 1301.0
-offset_top = 424.0
+offset_top = 456.0
 offset_right = 1374.0
-offset_bottom = 451.0
+offset_bottom = 483.0
 texture_normal = ExtResource("8_qjc8s")
 texture_pressed = ExtResource("9_vg5hm")
 texture_hover = ExtResource("10_1cd4y")
@@ -1358,6 +1358,28 @@ scale = Vector2(0.08, 0.08)
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 150
 text = "QUIT GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="reset_tutorials_button" type="TextureButton" parent="Camera2D/shop_stuff/settings_section"]
+offset_left = 1301.0
+offset_top = 412.0
+offset_right = 1374.0
+offset_bottom = 439.0
+scale = Vector2(1.225, 1.225)
+texture_normal = ExtResource("8_qjc8s")
+texture_pressed = ExtResource("9_vg5hm")
+texture_hover = ExtResource("10_1cd4y")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_stuff/settings_section/reset_tutorials_button"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 900.0
+offset_bottom = 365.0
+scale = Vector2(0.08, 0.08)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "RESET TUTORIALS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1455,4 +1477,5 @@ position = Vector2(531, 437)
 [connection signal="value_changed" from="Camera2D/shop_stuff/settings_section/Volume_Slider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="toggled" from="Camera2D/shop_stuff/settings_section/Fullscreen_Button" to="." method="_on_fullscreen_button_toggled"]
 [connection signal="pressed" from="Camera2D/shop_stuff/settings_section/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Camera2D/shop_stuff/settings_section/reset_tutorials_button" to="." method="_on_reset_tutorials_button_pressed"]
 [connection signal="mouse_entered" from="Camera2D/base_manager/base_Area2D" to="Camera2D/base_manager" method="_on_base_area_2d_mouse_entered"]

@@ -145,4 +145,6 @@ libraries = {
 }
 autoplay = "default"
 
+[connection signal="mouse_entered" from="bg" to="." method="_on_bg_mouse_entered"]
+[connection signal="mouse_exited" from="bg" to="." method="_on_bg_mouse_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
