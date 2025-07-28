@@ -35,7 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://mmbtqshopihg" path="res://Sprites/Units/Animals/pig/lvl1/pig_idle_lvl1.png" id="38_21oc8"]
 [ext_resource type="Texture2D" uid="uid://dca8t10ldaxlg" path="res://Sprites/Units/Medieval/Knight/lvl1/knight_idle_lvl1.png" id="38_gbnr4"]
 [ext_resource type="Texture2D" uid="uid://bmh5en35bau06" path="res://Sprites/Units/Army/tank/lvl1/tank_idle_lvl1.png" id="39_eak18"]
-[ext_resource type="Script" uid="uid://b8gv4nrpbrqh1" path="res://Scripts/onboarding/onboarder.gd" id="39_ontla"]
+[ext_resource type="PackedScene" uid="uid://twf7v40ikvhe" path="res://Prefabs/tutorials/onboarding.tscn" id="39_ontla"]
 [ext_resource type="Texture2D" uid="uid://cd6eypfceikml" path="res://Sprites/Units/Dinosaurs/diplodocus/lvl1/diplodocus_idle_lvl1.png" id="41_c4unp"]
 [ext_resource type="Texture2D" uid="uid://b74xh6uljw4ty" path="res://Sprites/Units/Fantasy/Wizard/wizard_idle.png" id="42_fymy5"]
 [ext_resource type="Texture2D" uid="uid://qsylll1wnluk" path="res://Sprites/Units/Sci-fi/Strider/strider_idle.png" id="43_dygu0"]
@@ -1434,17 +1434,7 @@ metadata/_edit_lock_ = true
 [node name="coin_pos" type="Node2D" parent="Camera2D"]
 position = Vector2(-309, -176)
 
-[node name="onboarding" type="Node2D" parent="."]
-script = ExtResource("39_ontla")
-
-[node name="unit_tutorial_pos" type="Node2D" parent="onboarding"]
-position = Vector2(531, 420)
-
-[node name="battle_tutorial_pos" type="Node2D" parent="onboarding"]
-position = Vector2(544, 623)
-
-[node name="health_tutorial_pos" type="Node2D" parent="onboarding"]
-position = Vector2(531, 437)
+[node name="onboarding" parent="." instance=ExtResource("39_ontla")]
 
 [connection signal="mouse_entered" from="Camera2D/shop_stuff/shop_visuals/shop_background/shop_unit_button" to="Camera2D/shop_stuff/shop_visuals/shop_background/shop_unit_button" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Camera2D/shop_stuff/shop_visuals/shop_background/shop_unit_button" to="Camera2D/shop_stuff/shop_visuals/shop_background/shop_unit_button" method="_on_mouse_exited"]

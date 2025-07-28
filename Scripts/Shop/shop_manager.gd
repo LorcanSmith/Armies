@@ -164,5 +164,11 @@ func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
 
+var onboarder : PackedScene = preload("res://Prefabs/tutorials/onboarding.tscn")
 func _on_reset_tutorials_button_pressed() -> void:
 	Settings.reset_tutorials()
+	if(find_child("onboarding")):
+		find_child("onboarding").queue_free()
+	var instance = onboarder.instantiate()
+	self.add_child(instance)
+	instance.global_position = self.global_position

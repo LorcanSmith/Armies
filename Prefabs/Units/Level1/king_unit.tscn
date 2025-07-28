@@ -95,7 +95,7 @@ animations = [{
 "speed": 9.0
 }]
 
-[node name="Archer" instance=ExtResource("1_q1j8p")]
+[node name="King" instance=ExtResource("1_q1j8p")]
 legendary = true
 attack_animation_length = 0.33
 max_health = 8

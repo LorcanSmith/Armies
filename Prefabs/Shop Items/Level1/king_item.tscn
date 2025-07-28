@@ -70,6 +70,7 @@ animations = [{
 
 [node name="King" instance=ExtResource("1_comjh")]
 before_combat_desc = "Gives +3 attack and +2 health to Medieval units."
+unit_name = "King"
 buy_cost = 9
 sell_cost = 4
 can_buff = true

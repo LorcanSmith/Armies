@@ -13,13 +13,15 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_bg_mouse_exited() -> void:
 	countdown = true
-	self.scale = starting_scale
+	if(find_child("NodeResizer")):
+		find_child("NodeResizer").scale = starting_scale
 	mouse_over = false
 
 func _on_bg_mouse_entered() -> void:
 	countdown = false
 	close_in_secs = 1.5
-	self.scale = starting_scale * 1.1
+	if(find_child("NodeResizer")):
+		find_child("NodeResizer").scale = starting_scale * 1.1
 	mouse_over = true
 
 func _process(delta: float) -> void:
