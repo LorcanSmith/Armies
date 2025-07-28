@@ -1342,6 +1342,7 @@ theme_override_font_sizes/normal_font_size = 250
 text = "Full Screen"
 
 [node name="quit_button" type="TextureButton" parent="Camera2D/shop_stuff/settings_section"]
+visible = false
 offset_left = 1301.0
 offset_top = 456.0
 offset_right = 1374.0

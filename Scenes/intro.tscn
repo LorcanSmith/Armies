@@ -103,6 +103,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Quit" type="TextureButton" parent="."]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 33.0
