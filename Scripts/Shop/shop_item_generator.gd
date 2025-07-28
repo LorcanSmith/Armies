@@ -40,8 +40,6 @@ func _ready() -> void:
 	base_manager = find_parent("Camera2D").find_child("base_manager")
 	reroll_UI = find_child("reroll_UI")
 	remove_units_UI = find_child("remove_units_UI")
-	buy_bases_UI = find_child("buy_bases_UI")
-	base_locations = find_child("upgraded_base_locations").get_children()
 	#Gets the children and sets them as locations units can spawn at
 	var counter = 0
 	var location
@@ -49,8 +47,6 @@ func _ready() -> void:
 		counter += 1
 		location = find_child("unit" + str(counter))
 		unit_locations.append(location)
-	for loc in find_child("booster_locations").get_children():
-		booster_locations.append(loc)
 	update_upgrade_cost_labels()
 
 #Spawns in new shop units
@@ -72,23 +68,10 @@ func show_new_units(reroll_all : bool):
 			#Sets the new units' location to be that of its parent (the shop unit location)
 			new_unit.position = Vector2(0,0)
 			new_unit = null
+			#Set legendary pedastal to yellow
+			if(x >= 6):
+				pedastal.self_modulate = Color("e6d800")
 		x+=1
-	x = 0
-	#while x < booster_locations.size():
-		##If there isnt a unit from a previous pack in the slot
-		#if(booster_locations[x].get_child_count() == 0 or booster_locations[x].get_child(0).is_in_group("booster")):
-			##Chooses a random unit and loads the unit from the path, gets it unit_ID
-			#var chosen_booster = choose_random_booster(x)
-			##Spawns in the chosen unit as a new unit in the shop
-			#var new_booster = chosen_booster.instantiate()
-			##Sets the new units' parent to be the unit location in the shop
-			#booster_locations[x].add_child(new_booster)
-			#
-			##Tells it, what crate number it is for "randomness"
-			#new_booster.select_units(x)
-			##Sets the new units' location to be that of its parent (the shop unit location)
-			#new_booster.position = Vector2(0,0)
-		#x+=1
 #Chooses a random unit
 func choose_random_unit(loc : int):
 	var dictionary_instance = dictionary.new()
@@ -117,40 +100,21 @@ func choose_random_unit(loc : int):
 				unit_allowed = false
 				break
 			x += 1
+			
+		#Regular pedastal, doesnt spawn legendary
+		if(loc < 6):
+			if(unit.legendary):
+				unit_allowed = false
+		#Legendary pedastal
+		elif(loc >= 6):
+			if(!unit.legendary):
+				unit_allowed = false
 		if unit_allowed:
 			loaded_unit = dictionary_instance.item_scenes[random_unit_position]
 			unit_not_found = false
 		unit.queue_free()
 	dictionary_instance.queue_free()
 	return [loaded_unit, random_unit_position]
-	
-func choose_random_booster(loc : int):
-	var dictionary_instance = dictionary.new()
-	seed(find_parent("game_manager").seed * (1+loc) * (rerolls_taken+1))
-	var booster_not_found = true
-	var booster_instance
-	var booster
-	while booster_not_found:
-		var random_booster_percentage = randf_range(0,100)/100
-		#Gets a random unit type
-		
-		var random_booster = int(round((dictionary_instance.booster_scenes.size()-1) * random_booster_percentage))
-		booster_instance = dictionary_instance.booster_scenes[random_booster].instantiate()
-		var booster_name = booster_instance.booster_name
-		
-		#if booster_instance.booster_name.contains
-		var x = 0
-		var booster_allowed = true
-		while(x < game_manager.blocked_types.size()):
-			if(booster_name.contains(game_manager.blocked_types[x])):
-				booster_allowed = false
-				break
-			x += 1
-		if booster_allowed:
-			booster = dictionary_instance.booster_scenes[random_booster]
-			booster_not_found = false
-	dictionary_instance.queue_free()
-	return booster
 	
 func reroll_shop(reroll_all : bool):
 	#Remove old shop units before showing new units
@@ -184,7 +148,7 @@ func _on_reroll_button_pressed():
 	reroll_shop(true)
 
 func increase_shop_slots():
-	find_parent("shop_manager").change_money(5)
+	find_parent("shop_manager").change_money(10)
 	game_manager.shop_slots += 1
 	unit_locations.append(find_child("unit" + str(game_manager.shop_slots)))
 	find_child("pedestal" + str(game_manager.shop_slots)).visible = true

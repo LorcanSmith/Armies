@@ -482,10 +482,10 @@ expand_mode = 1
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 53.0
-offset_top = 679.0
-offset_right = 53.0
-offset_bottom = 679.0
+offset_left = -130.0
+offset_top = 15.0
+offset_right = -130.0
+offset_bottom = 15.0
 grow_horizontal = 2
 
 [node name="life_bg" type="TextureRect" parent="UI/heart_trophy_UI"]

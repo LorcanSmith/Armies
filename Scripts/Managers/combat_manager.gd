@@ -59,7 +59,7 @@ func _ready() -> void:
 		find_child("background4").visible = true
 	auto_tick()
 
-func setup_headquarters(base_id):
+func setup_headquarters():
 	#Gets the current grid so we can find out its size
 	var grid = game_manager.GridManager.get_grid()
 	#Gets the center of the grid in the y axis
@@ -70,8 +70,6 @@ func setup_headquarters(base_id):
 	var offset = (find_child("Sprite2D").texture.get_width())+20
 	#Sets the player headquarter to be to the left of the map
 	player_headquarter.global_position = Vector2(grid[0][0].global_position.x-offset, grid_height_center)
-	#Sets the base sprite
-	player_headquarter.find_child("Sprite2D").texture = player_base_sprite
 	#Sets the shadow
 	player_headquarter.set_base_shadow()
 	#Get enemy child Sprite 2D and flip horizontally

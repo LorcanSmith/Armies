@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://twf7v40ikvhe"]
+
+[ext_resource type="Script" uid="uid://b8gv4nrpbrqh1" path="res://Scripts/onboarding/onboarder.gd" id="1_mwp5y"]
+
+[node name="onboarding" type="Node2D"]
+script = ExtResource("1_mwp5y")
+
+[node name="unit_tutorial_pos" type="Node2D" parent="."]
+position = Vector2(531, 420)
+
+[node name="battle_tutorial_pos" type="Node2D" parent="."]
+position = Vector2(544, 623)
+
+[node name="health_tutorial_pos" type="Node2D" parent="."]
+position = Vector2(531, 437)

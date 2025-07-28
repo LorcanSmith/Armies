@@ -1,0 +1,113 @@
+[gd_scene load_steps=16 format=3 uid="uid://bvbhrbmsytsp8"]
+
+[ext_resource type="PackedScene" uid="uid://d26riwgg0v8nl" path="res://Prefabs/Shop Items/item.tscn" id="1_ldt0k"]
+[ext_resource type="Texture2D" uid="uid://bjw8j0fi0cuj1" path="res://Sprites/Units/Fantasy/Dragon/dragon_death.png" id="2_ldt0k"]
+[ext_resource type="Texture2D" uid="uid://cu14q8vvi6fyg" path="res://Sprites/Units/Fantasy/Dragon/dragon_idle.png" id="3_l8vtb"]
+[ext_resource type="PackedScene" uid="uid://cae7lrkh2qneg" path="res://Prefabs/Shop Items/buff_location.tscn" id="4_iisrd"]
+[ext_resource type="PackedScene" uid="uid://cuqtq5diypdpy" path="res://Prefabs/Shop Items/skill_location.tscn" id="5_usybh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2je0"]
+atlas = ExtResource("2_ldt0k")
+region = Rect2(0, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iisrd"]
+atlas = ExtResource("2_ldt0k")
+region = Rect2(52, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usybh"]
+atlas = ExtResource("2_ldt0k")
+region = Rect2(104, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlk4f"]
+atlas = ExtResource("2_ldt0k")
+region = Rect2(156, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qck3"]
+atlas = ExtResource("2_ldt0k")
+region = Rect2(208, 0, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70vwf"]
+atlas = ExtResource("3_l8vtb")
+region = Rect2(0, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3oba"]
+atlas = ExtResource("3_l8vtb")
+region = Rect2(42, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orudj"]
+atlas = ExtResource("3_l8vtb")
+region = Rect2(84, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtcf7"]
+atlas = ExtResource("3_l8vtb")
+region = Rect2(126, 0, 42, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_15mgd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2je0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iisrd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usybh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlk4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qck3")
+}],
+"loop": false,
+"name": &"death",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70vwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3oba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orudj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtcf7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="Dragon" instance=ExtResource("1_ldt0k")]
+start_of_shop_desc = "If this unit eats a Knight, it gains +3 health and you gain +5 gold"
+unit_name = "Dragon"
+buy_cost = 9
+sell_cost = 4
+can_buff = true
+health_buff = -8
+Knight = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = null
+
+[node name="AnimatedSprite2D" parent="Sprite2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_15mgd")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.833978
+
+[node name="buff_location" parent="buffs" index="0" instance=ExtResource("4_iisrd")]
+position = Vector2(74, 0)
+
+[node name="buff_location2" parent="buffs" index="1" instance=ExtResource("4_iisrd")]
+position = Vector2(148, 0)
+
+[node name="skill_location" parent="skills" index="0" instance=ExtResource("5_usybh")]
+position = Vector2(74, 0)
+
+[node name="skill_location2" parent="skills" index="1" instance=ExtResource("5_usybh")]
+position = Vector2(148, 0)

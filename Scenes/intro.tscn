@@ -1,37 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://hcxci321580j"]
+[gd_scene load_steps=6 format=3 uid="uid://hcxci321580j"]
 
-[ext_resource type="Script" uid="uid://ckujhhkmirwqw" path="res://Scripts/Managers/onboarder.gd" id="1_hwjxs"]
+[ext_resource type="Script" uid="uid://ckujhhkmirwqw" path="res://Scripts/Managers/intro.gd" id="1_hwjxs"]
 [ext_resource type="Texture2D" uid="uid://c5edr2eiohh3j" path="res://Sprites/UI/restart_button/restart.png" id="2_duh1u"]
 [ext_resource type="Texture2D" uid="uid://bf5hr0f5f82ex" path="res://Sprites/UI/restart_button/restart_pressed.png" id="3_geirw"]
 [ext_resource type="Texture2D" uid="uid://c2sabwain3qrl" path="res://Sprites/UI/restart_button/restart_hovered.png" id="4_hwjxs"]
+[ext_resource type="Texture2D" uid="uid://drnhn21mqereq" path="res://Sprites/Backgrounds/combat_behind.png" id="5_hwjxs"]
 
 [node name="Intro" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -35.0
+offset_right = 4.0
+offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hwjxs")
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 574.0
-offset_top = -272.0
-offset_right = 1609.0
-offset_bottom = 639.0
-rotation = 0.319723
-mouse_filter = 2
-color = Color(0.339636, 0.133142, 0.292786, 1)
-
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = -548.0
-offset_top = 328.0
-offset_right = 636.0
-offset_bottom = 1588.0
-rotation = -0.710953
-color = Color(0.291235, 0.10736, 0.448158, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -40,75 +26,122 @@ offset_top = 21.0
 offset_right = 3229.0
 offset_bottom = 623.0
 scale = Vector2(0.2, 0.2)
-theme_override_font_sizes/normal_font_size = 300
-text = "Welcome to our playtest"
+theme_override_colors/default_color = Color(0.789163, 0.833436, 0.673586, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 60
+theme_override_font_sizes/normal_font_size = 620
+text = "ARMIES"
 fit_content = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 382.0
+offset_top = 195.0
+offset_right = 1195.0
+offset_bottom = 638.0
+color = Color(0.205, 0.205, 0.205, 0.807)
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 55.0
-offset_top = 185.0
-offset_right = 4528.0
-offset_bottom = 4700.0
+offset_left = 412.0
+offset_top = 213.0
+offset_right = 7248.0
+offset_bottom = 4085.0
 scale = Vector2(0.11, 0.11)
 theme_override_font_sizes/normal_font_size = 300
-text = "SHOP UPDATE:
+text = "Playtest Ver: 0.06
 
-We have added some upgrades to our shop, we would love feedback on these changes.
-"
+Since the last play test, most aspects of the game have been changed. We need feedback on everything in the game. Anything that looks or feels bad, we would like to know about. Our aim is no longer add any systems to the game and instead work on refining everything currently in the game. The more feedback you can give the better, we need it all!"
 fit_content = true
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 741.0
-offset_top = 163.0
-offset_right = 5232.0
-offset_bottom = 4678.0
-scale = Vector2(0.11, 0.11)
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 300
-fit_content = true
-
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="PlayButton" type="TextureButton" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 1062.0
-offset_top = 615.0
-offset_right = 1135.0
-offset_bottom = 655.0
+offset_left = 33.0001
+offset_top = 195.0
+offset_right = 106.0
+offset_bottom = 222.0
 scale = Vector2(2.69, 2.69)
 texture_normal = ExtResource("2_duh1u")
 texture_pressed = ExtResource("3_geirw")
 texture_hover = ExtResource("4_hwjxs")
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="TextureButton"]
+[node name="RichTextLabel4" type="RichTextLabel" parent="PlayButton"]
 layout_mode = 0
-offset_left = 14.8699
-offset_top = 2.97398
-offset_right = 994.87
-offset_bottom = 362.974
+offset_right = 1453.0
+offset_bottom = 521.0
 scale = Vector2(0.05, 0.05)
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 300
 text = "PLAY!"
 fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 33.0
+offset_top = 288.0
+offset_right = 106.0
+offset_bottom = 315.0
+scale = Vector2(2.69, 2.69)
+texture_normal = ExtResource("2_duh1u")
+texture_pressed = ExtResource("3_geirw")
+texture_hover = ExtResource("4_hwjxs")
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="SettingsButton"]
+layout_mode = 0
+offset_right = 1457.0
+offset_bottom = 526.0
+scale = Vector2(0.05, 0.05)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 300
+text = "Settings"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 33.0
+offset_top = 383.0
+offset_right = 106.0
+offset_bottom = 410.0
+scale = Vector2(2.69, 2.69)
+texture_normal = ExtResource("2_duh1u")
+texture_pressed = ExtResource("3_geirw")
+texture_hover = ExtResource("4_hwjxs")
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="Quit"]
+layout_mode = 0
+offset_right = 1457.0
+offset_bottom = 526.0
+scale = Vector2(0.05, 0.05)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 300
+text = "Quit"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 1182.0
-offset_top = 9.00003
-offset_right = 1652.0
-offset_bottom = 199.0
+offset_left = 1161.0
+offset_top = 53.0
+offset_right = 1631.0
+offset_bottom = 243.0
 scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/normal_font_size = 100
-text = "ver: 0.05"
+text = "ver: 0.06"
 
 [node name="Volume_Slider" type="HSlider" parent="."]
 layout_mode = 0
-offset_left = 392.0
-offset_top = 555.0
-offset_right = 791.0
-offset_bottom = 594.0
+offset_left = 31.0
+offset_top = 665.0
+offset_right = 248.0
+offset_bottom = 698.0
 
 [node name="volume_text" type="RichTextLabel" parent="Volume_Slider"]
 layout_mode = 0
@@ -121,5 +154,64 @@ pivot_offset = Vector2(43.8169, 249.803)
 theme_override_font_sizes/normal_font_size = 250
 text = "Volume"
 
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[node name="background" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_left = -8.0
+offset_top = 23.0
+offset_right = 1320.0
+offset_bottom = 770.0
+mouse_filter = 2
+texture = ExtResource("5_hwjxs")
+
+[node name="settings_section" type="Node2D" parent="."]
+visible = false
+position = Vector2(-1261, 187)
+
+[node name="Fullscreen_Button" type="CheckButton" parent="settings_section"]
+offset_left = 1526.0
+offset_top = 124.0
+offset_right = 1570.0
+offset_bottom = 148.0
+focus_mode = 0
+
+[node name="Fullscreen_text" type="RichTextLabel" parent="settings_section/Fullscreen_Button"]
+layout_mode = 0
+offset_left = -35.0
+offset_top = -248.0
+offset_right = 1240.0
+offset_bottom = 107.0
+scale = Vector2(0.07, 0.07)
+pivot_offset = Vector2(43.8169, 249.803)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 250
+text = "Full Screen"
+
+[node name="reset_tutorials_button" type="TextureButton" parent="settings_section"]
+offset_left = 1532.0
+offset_top = 172.0
+offset_right = 1605.0
+offset_bottom = 199.0
+scale = Vector2(1.225, 1.225)
+texture_normal = ExtResource("2_duh1u")
+texture_pressed = ExtResource("3_geirw")
+texture_hover = ExtResource("4_hwjxs")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="settings_section/reset_tutorials_button"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 900.0
+offset_bottom = 365.0
+scale = Vector2(0.08, 0.08)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "RESET TUTORIALS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="value_changed" from="Volume_Slider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="toggled" from="settings_section/Fullscreen_Button" to="." method="_on_fullscreen_button_toggled"]
+[connection signal="pressed" from="settings_section/reset_tutorials_button" to="." method="_on_reset_tutorials_button_pressed"]

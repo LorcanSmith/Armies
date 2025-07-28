@@ -52,7 +52,15 @@ var unit_scenes = {
 	#Wizard
 	23: preload("res://Prefabs/Units/Level1/wizard_unit.tscn"),
 	#Strider
-	24: preload("res://Prefabs/Units/Level1/strider_unit.tscn")
+	24: preload("res://Prefabs/Units/Level1/strider_unit.tscn"),
+	#General
+	25: preload("res://Prefabs/Units/Level1/general_unit.tscn"),
+	#King
+	26: preload("res://Prefabs/Units/Level1/king_unit.tscn"),
+	#Bear
+	27: preload("res://Prefabs/Units/Level1/bear_unit.tscn"),
+	#Dragon
+	28: preload("res://Prefabs/Units/Level1/dragon_unit.tscn")
 }
 var item_scenes = {
 	#KNIGHT
@@ -104,20 +112,13 @@ var item_scenes = {
 	#Wizard
 	23: preload("res://Prefabs/Shop Items/Level1/wizard_item.tscn"),
 	#Strider
-	24: preload("res://Prefabs/Shop Items/Level1/strider_item.tscn")
-}
-
-var booster_scenes = {
-	0: preload("res://Prefabs/Shop Items/Boosters/booster_medieval.tscn"),
-	1: preload("res://Prefabs/Shop Items/Boosters/booster_army.tscn"),
-	2: preload("res://Prefabs/Shop Items/Boosters/booster_farm.tscn"),
-	3: preload("res://Prefabs/Shop Items/Boosters/booster_dinosaur.tscn")
-}
-
-var base_scenes = {
-	0: preload("res://Prefabs/Shop Items/Bases/castle_base.tscn"),
-	1: preload("res://Prefabs/Shop Items/Bases/bank_base.tscn"),
-	2: preload("res://Prefabs/Shop Items/Bases/army_base.tscn"),
-	3: preload("res://Prefabs/Shop Items/Bases/hospital_base.tscn"),
-	4: preload("res://Prefabs/Shop Items/Bases/barn_base.tscn")
+	24: preload("res://Prefabs/Shop Items/Level1/strider_item.tscn"),
+	#General
+	25: preload("res://Prefabs/Shop Items/Level1/general_item.tscn"),
+	#King
+	26: preload("res://Prefabs/Shop Items/Level1/king_item.tscn"),
+	#Bear
+	27: preload("res://Prefabs/Shop Items/Level1/bear_item.tscn"),
+	#Dragon
+	28: preload("res://Prefabs/Shop Items/Level1/dragon_item.tscn")
 }

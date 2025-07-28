@@ -16,12 +16,19 @@ var sound_stream : AudioStream = preload("res://Sounds/test.mp3")
 var player
 var text_starting_scale : Vector2
 
+#Tutorial to remove when its time
+var unit_tutorial : Node2D
+var battle_tutorial : Node2D
+
 func _ready() -> void:
 	#For playing audio like music
 	text_starting_scale = find_child("volume_text").scale
 	player = AudioStreamPlayer.new()
 	add_child(player)
-	find_child("Volume_Slider").value = 100 * ((Settings.volume+80)/160)
+	#Setting previously saved settings
+	find_child("Volume_Slider").value = 100 * ((Settings.volume+80)/130)
+	_on_fullscreen_button_toggled(Settings.fullscreen)
+	find_child("Fullscreen_Button").button_pressed = Settings.fullscreen
 
 	
 	game_manager = find_parent("game_manager")
@@ -32,16 +39,18 @@ func _ready() -> void:
 func change_money(amount : int):
 	money -= amount
 	game_manager.money_changed(money)
-
-
+	
+	#For the first time we spend money we should delete the unit_tutorial if it exists
+	if(unit_tutorial):
+		unit_tutorial.get_node("AnimationPlayer").play("pop_out")
+	if(find_child("onboarding")):
+		find_child("onboarding").check_tutorials()
 func _on_battle_button_pressed() -> void:
 	find_child("battle_button").visible = false
 	apply_buffs()
 			
 func apply_buffs():	
 	find_child("grid_generator (army)").save_current_grid()
-	#Tell the base manager to do end of turn effects
-	find_child("base_manager").end_of_turn()
 	var tiles = find_child("grid_manager").find_child("grid_generator (army)").get_children()
 	var x = 0
 	#Loops over all tiles
@@ -115,39 +124,22 @@ func _on_reroll_button_mouse_exited():
 func _on_shop_unit_button_toggled(toggled_on: bool) -> void:
 	if(toggled_on):
 		find_child("unit_section").visible = true
-		find_child("base_section").visible = false
-		find_child("choose_base_section").visible = false
-		find_child("shop_remove_section").visible = false
-		find_child("settings_section").visible = false
-#Turn on base upgrade section of the shop
-func _on_shop_base_button_toggled(toggled_on: bool) -> void:
-	if(toggled_on):
-		find_child("base_manager").update_base_upgrade_paths()
-		find_child("unit_section").visible = false
-		find_child("base_section").visible = true
-		find_child("choose_base_section").visible = false
 		find_child("shop_remove_section").visible = false
 		find_child("settings_section").visible = false
 func _on_shop_upgrade_button_toggled(toggled_on: bool) -> void:
 	if(toggled_on):
 		find_child("unit_section").visible = false
-		find_child("base_section").visible = false
-		find_child("choose_base_section").visible = false
 		find_child("shop_remove_section").visible = true
 		find_child("settings_section").visible = false
 func _on_texture_button_toggled(toggled_on: bool) -> void:
 	if(toggled_on):
 		find_child("unit_section").visible = false
-		find_child("base_section").visible = false
-		find_child("choose_base_section").visible = true
 		find_child("shop_remove_section").visible = false
 		find_child("settings_section").visible = false
 
 func _on_shop_settings_b_toggled(toggled_on: bool) -> void:
 	if(toggled_on):
 		find_child("unit_section").visible = false
-		find_child("base_section").visible = false
-		find_child("choose_base_section").visible = false
 		find_child("shop_remove_section").visible = false
 		find_child("settings_section").visible = true
 
@@ -156,10 +148,11 @@ func _on_volume_slider_value_changed(value: float) -> void:
 	Settings.change_volume(value)
 	#Set volume percentage
 	player.volume_db = Settings.volume
-	find_child("volume_text").scale = text_starting_scale * (1 + ((Settings.volume + 80)/160))
+	find_child("volume_text").scale = text_starting_scale * (1 + ((Settings.volume + 80)/130))
 
 
 func _on_fullscreen_button_toggled(toggled_on: bool) -> void:
+	Settings.changed_fullscreen(toggled_on)
 	if(toggled_on):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	elif(!toggled_on):
@@ -169,3 +162,13 @@ func _on_fullscreen_button_toggled(toggled_on: bool) -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+
+var onboarder : PackedScene = preload("res://Prefabs/tutorials/onboarding.tscn")
+func _on_reset_tutorials_button_pressed() -> void:
+	Settings.reset_tutorials()
+	if(find_child("onboarding")):
+		find_child("onboarding").queue_free()
+	var instance = onboarder.instantiate()
+	self.add_child(instance)
+	instance.global_position = self.global_position

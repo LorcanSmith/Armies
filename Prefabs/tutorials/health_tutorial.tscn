@@ -1,0 +1,153 @@
+[gd_scene load_steps=8 format=3 uid="uid://cofojsvoljhkx"]
+
+[ext_resource type="Script" uid="uid://dxoqyftkhy0s1" path="res://Scripts/onboarding/delete_tutorial.gd" id="1_fclm7"]
+[ext_resource type="Texture2D" uid="uid://dnmlrb05mdhr" path="res://Sprites/UI/shop/path.png" id="2_mmwp4"]
+[ext_resource type="Texture2D" uid="uid://yaccahs7cyl2" path="res://Sprites/UI/onboarding/arrow_left.png" id="3_sw8w0"]
+
+[sub_resource type="Animation" id="Animation_21oc8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NodeResizer/arrow1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i5pgw"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NodeResizer/arrow1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.533333, 0.666667, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gbnr4"]
+resource_name = "pop_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.366667, 0.5, 0.633333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NodeResizer/arrow1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m85sq"]
+_data = {
+&"RESET": SubResource("Animation_21oc8"),
+&"default": SubResource("Animation_i5pgw"),
+&"pop_out": SubResource("Animation_gbnr4")
+}
+
+[node name="health_tutorial" type="Node2D"]
+script = ExtResource("1_fclm7")
+
+[node name="NodeResizer" type="Node2D" parent="."]
+
+[node name="bg" type="TextureRect" parent="NodeResizer"]
+self_modulate = Color(0.169, 0.18, 0.165, 0.845)
+offset_left = -113.0
+offset_top = -70.0
+offset_right = 164.0
+offset_bottom = 91.0
+scale = Vector2(0.86, 0.86)
+texture = ExtResource("2_mmwp4")
+
+[node name="title" type="RichTextLabel" parent="NodeResizer"]
+offset_left = -139.0
+offset_top = -70.0
+offset_right = 1825.0
+offset_bottom = 237.0
+scale = Vector2(0.14, 0.14)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 200
+text = "Health / Wins"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="desc" type="RichTextLabel" parent="NodeResizer"]
+offset_left = -107.0
+offset_top = -36.0
+offset_right = 2017.0
+offset_bottom = 907.0
+scale = Vector2(0.105, 0.105)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 200
+text = "Get 10 wins before you run out of health!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="arrow1" type="TextureRect" parent="NodeResizer"]
+self_modulate = Color(1, 0.925, 0.706, 1)
+offset_left = -126.0
+offset_top = -51.0
+offset_right = -89.0
+offset_bottom = -14.0
+rotation = 2.72037
+pivot_offset = Vector2(36, 1)
+mouse_filter = 2
+texture = ExtResource("3_sw8w0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_m85sq")
+}
+autoplay = "default"
+
+[connection signal="gui_input" from="NodeResizer/bg" to="." method="_on_bg_gui_input"]
+[connection signal="mouse_entered" from="NodeResizer/bg" to="." method="_on_bg_mouse_entered"]
+[connection signal="mouse_exited" from="NodeResizer/bg" to="." method="_on_bg_mouse_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
