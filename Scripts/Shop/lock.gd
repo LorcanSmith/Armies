@@ -3,14 +3,18 @@ var starting_size : float
 
 @export var expanding_amount : float = 1.1
 
+@export var cost : int = 10
+
 var disable_lock : bool = false
 func _ready() -> void:
 	starting_size = self.scale.x
+	find_child("lock_cost").text = str(cost)
 	check_slots_left(true)
+	
 
 func _on_pressed() -> void:
 	#Stops the lock from being clickable during its popout animation
-	if(!disable_lock):
+	if(!disable_lock and find_parent("shop_manager").money >= cost):
 		find_parent("shop_item_generator").increase_shop_slots()
 		get_node("lock_animator").play("unlock_tile")
 		check_slots_left(false)

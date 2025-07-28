@@ -677,7 +677,7 @@ scale = Vector2(0.285, 0.285)
 mouse_filter = 2
 texture = ExtResource("6_wk4qg")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/lock_control_node2D/lock/lock_coin"]
+[node name="lock_cost" type="RichTextLabel" parent="Camera2D/shop_stuff/unit_section/shop_item_generator/lock_control_node2D/lock/lock_coin"]
 layout_mode = 0
 offset_right = 199.0
 offset_bottom = 198.0
