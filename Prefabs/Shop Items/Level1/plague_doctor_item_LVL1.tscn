@@ -73,6 +73,7 @@ before_combat_desc = "Gives Human units +5 health."
 unit_name = "Plague Doctor"
 buy_cost = 6
 sell_cost = 3
+can_buff = true
 health_buff = 5
 Human = true
 
